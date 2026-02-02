@@ -1,0 +1,272 @@
+{
+  "parasha": "Yitro",
+  "deck_version": "1.0",
+  "review_date": "2026-02-01",
+  "cards": [
+    {
+      "card_id": "anchor_1",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "text",
+          "comment": "Define AWE in simple terms for 4-6 year olds (e.g., 'Awe means feeling amazed and a little bit surprised by something really special')",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "visual",
+          "comment": "Image shows God's name (yud-hey-vav-hey) on tablets - this should NEVER be used. Use first 10 Hebrew alphabet letters as placeholders instead.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "text",
+          "comment": "Should say 'Parashat Yitro' in Hebrew (פרשת יתרו). This is a global formatting requirement for all anchor cards.",
+          "priority": "high",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "spotlight_1",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "educational",
+          "comment": "Card is too basic. Needs higher level detail - more description and context about the character.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "text",
+          "comment": "'Happy' is too basic an emotion. Use more nuanced emotions like 'joyful', 'grateful', 'caring', 'relieved'.",
+          "priority": "medium",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "spotlight_2",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "text",
+          "comment": "Remove the 'trait line' - it's too duplicative with the information below.",
+          "priority": "medium",
+          "resolved": false
+        },
+        {
+          "category": "educational",
+          "comment": "Add more information about Yitro. Explain what 'father-in-law' means in child-friendly terms.",
+          "priority": "high",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "action_1",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "visual",
+          "comment": "Moses is missing his head covering. Should be fixed with character reference sheets.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "layout",
+          "comment": "GLOBAL: Keep font style at top of card consistent across ALL action cards. Same for number positioning and keyword styling.",
+          "priority": "high",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "action_2",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "text",
+          "comment": "Remove transliteration from Hebrew word box. NO transliterations anywhere on cards.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "educational",
+          "comment": "Change 'Act it out' to: 'Act out what it would look like to be overwhelmed and working too hard.'",
+          "priority": "medium",
+          "resolved": false
+        },
+        {
+          "category": "layout",
+          "comment": "Apply global action card template consistency (see action_1 feedback).",
+          "priority": "high",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "action_3",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "layout",
+          "comment": "Apply global action card template consistency.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "text",
+          "comment": "Under the Hebrew word 'har', add the English meaning. This is a global requirement for all action cards.",
+          "priority": "high",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "action_4",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "visual",
+          "comment": "Cool looking card! Good visual style.",
+          "priority": "low",
+          "resolved": true
+        },
+        {
+          "category": "text",
+          "comment": "Remove transliteration under 'kol'. Add English meaning instead.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "layout",
+          "comment": "Apply global action card template consistency.",
+          "priority": "high",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "action_5",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "visual",
+          "comment": "Hebrew word styling is GREAT. Use this style as the global template for all action cards.",
+          "priority": "low",
+          "resolved": true
+        },
+        {
+          "category": "text",
+          "comment": "Add English meaning below the Hebrew word.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "visual",
+          "comment": "10 Commandments tablets need 5 letters on each tablet, using first 10 letters of Hebrew alphabet (א ב ג ד ה | ו ז ח ט י).",
+          "priority": "high",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "thinker_1",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "educational",
+          "comment": "Good card content!",
+          "priority": "low",
+          "resolved": true
+        },
+        {
+          "category": "layout",
+          "comment": "Template needs consistency. Top part of card should share template with all cards, using thinker-type color.",
+          "priority": "high",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "thinker_2",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "educational",
+          "comment": "Good questions!",
+          "priority": "low",
+          "resolved": true
+        },
+        {
+          "category": "layout",
+          "comment": "Keep template consistent with thinker_1 and global standards.",
+          "priority": "high",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "power_word_1",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "text",
+          "comment": "Remove transliteration - GLOBAL CHANGE: Never include transliterations.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "visual",
+          "comment": "Remove QR code from template.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "educational",
+          "comment": "Add a direct quote from the parasha where Yitro gives this advice to Moses.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "layout",
+          "comment": "Remove the Aleph (א) from top left corner of template.",
+          "priority": "medium",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "power_word_2",
+      "status": "needs_revision",
+      "feedback": [
+        {
+          "category": "text",
+          "comment": "Remove transliteration - GLOBAL CHANGE: Never include transliterations.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "visual",
+          "comment": "Remove QR code from template.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "educational",
+          "comment": "Add a direct quote from the parasha where Yitro gives this advice to Moses.",
+          "priority": "high",
+          "resolved": false
+        },
+        {
+          "category": "layout",
+          "comment": "Remove the Aleph (א) from top left corner of template.",
+          "priority": "medium",
+          "resolved": false
+        }
+      ]
+    }
+  ],
+  "global_feedback": "CRITICAL GLOBAL CHANGES NEEDED:\n\n1. CARD TEMPLATES: Create consistent templates for each card type to ensure uniformity across all parashiyot. See /card_templates.md for specifications.\n\n2. IMAGE CONSTRAINTS:\n   - NEVER use God's name (יהוה) in any image\n   - Use first 10 Hebrew alphabet letters on tablets\n   - NO QR codes\n   - NO transliterations anywhere\n\n3. ACTION CARD CONSISTENCY:\n   - Consistent font style for titles\n   - Fixed number positioning\n   - Consistent Hebrew keyword styling (use action_5 style)\n   - Always include English below Hebrew word\n\n4. CHARACTER CONSISTENCY:\n   - Moses must always have head covering\n   - Use character reference sheets for all images\n\n5. CONTENT STANDARDS:\n   - Define emotions simply for 4-6 year olds\n   - Use nuanced emotions (not 'happy' or 'sad')\n   - Anchor cards must say 'Parashat [Name]' in Hebrew\n   - Power word cards need direct Torah quotes"
+}

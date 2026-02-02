@@ -1,0 +1,7 @@
+# Parasha Pack Dependencies
+
+# Image generation and manipulation
+Pillow>=10.0.0
+
+# Optional: For PDF generation (included in Pillow)
+# reportlab>=4.0.0

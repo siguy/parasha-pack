@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parasha Pack - Review Workspace</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Parasha Pack</h1>
+        <p class="subtitle">Educational Card Deck Review Workspace</p>
+    </header>
+
+    <main class="main-content">
+        <!-- Deck Selector -->
+        <section class="deck-selector">
+            <label for="deck-select">Select Deck:</label>
+            <select id="deck-select">
+                <option value="">-- Choose a deck --</option>
+            </select>
+            <button id="load-deck-btn" class="btn btn-primary">Load Deck</button>
+            <button id="export-feedback-btn" class="btn btn-secondary" disabled>Export Feedback</button>
+        </section>
+
+        <!-- View Tabs -->
+        <nav id="view-tabs" class="view-tabs hidden">
+            <button class="tab-btn active" data-view="cards">Cards</button>
+            <button class="tab-btn" data-view="characters">Characters</button>
+        </nav>
+
+        <!-- Deck Info Bar -->
+        <section id="deck-info" class="deck-info hidden">
+            <div class="deck-meta">
+                <h2 id="deck-title"></h2>
+                <span id="deck-ref" class="deck-ref"></span>
+                <span id="deck-card-count" class="card-count"></span>
+            </div>
+            <div class="deck-theme">
+                <span class="theme-label">Theme:</span>
+                <span id="deck-theme" class="theme-badge"></span>
+                <span id="border-color-preview" class="border-preview"></span>
+            </div>
+        </section>
+
+        <!-- Card Detail Panel -->
+        <section id="card-detail" class="card-detail hidden">
+            <button id="close-detail" class="close-btn">&times;</button>
+
+            <div class="detail-header">
+                <button id="prev-card-btn" class="nav-btn" title="Previous card">&larr;</button>
+                <h2 id="detail-title"></h2>
+                <span id="detail-type" class="type-badge"></span>
+                <button id="next-card-btn" class="nav-btn" title="Next card">&rarr;</button>
+            </div>
+
+            <div class="detail-content">
+                <!-- Preview Column (Left) -->
+                <div class="preview-column">
+                    <div id="card-preview" class="card-preview">
+                        <div class="preview-placeholder">
+                            <span>Image Preview</span>
+                            <p id="image-status">No image generated</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Column (Right) -->
+                <div class="info-column">
+                    <!-- Teacher Script Section -->
+                    <div class="info-section collapsible">
+                        <h4 class="section-header">Teacher Script <span class="collapse-icon"></span></h4>
+                        <div class="section-content">
+                            <div id="teacher-script" class="script-text"></div>
+                        </div>
+                    </div>
+
+                    <!-- Type-Specific Content -->
+                    <div id="type-specific" class="info-section collapsible"></div>
+
+                    <!-- Metadata Section -->
+                    <div class="info-section collapsible metadata-compact collapsed">
+                        <h4 class="section-header">Metadata <span class="collapse-icon"></span></h4>
+                        <div class="section-content">
+                            <div id="metadata-content" class="metadata-grid"></div>
+                        </div>
+                    </div>
+
+                    <!-- Feedback Section -->
+                    <div class="info-section feedback-section collapsible collapsed">
+                        <h4 class="section-header">Feedback <span class="collapse-icon"></span></h4>
+                        <div class="section-content">
+                            <div class="feedback-status">
+                                <label>
+                                    <input type="radio" name="card-status" value="approved"> Approve
+                                </label>
+                                <label>
+                                    <input type="radio" name="card-status" value="needs_revision"> Needs Revision
+                                </label>
+                            </div>
+                            <div class="feedback-form">
+                                <select id="feedback-category">
+                                    <option value="visual">Visual</option>
+                                    <option value="text">Text</option>
+                                    <option value="hebrew">Hebrew</option>
+                                    <option value="educational">Educational</option>
+                                    <option value="layout">Layout</option>
+                                </select>
+                                <textarea id="feedback-comment" placeholder="Enter feedback..."></textarea>
+                                <select id="feedback-priority">
+                                    <option value="low">Low Priority</option>
+                                    <option value="medium" selected>Medium Priority</option>
+                                    <option value="high">High Priority</option>
+                                </select>
+                                <button id="add-feedback-btn" class="btn btn-primary">Add Feedback</button>
+                            </div>
+                            <div id="feedback-list" class="feedback-list"></div>
+                        </div>
+                    </div>
+
+                    <!-- Image Prompt Section (Bottom) -->
+                    <div class="info-section collapsible collapsed image-prompt-section">
+                        <h4 class="section-header">Image Prompt <span class="collapse-icon"></span></h4>
+                        <div class="section-content">
+                            <pre id="image-prompt" class="prompt-text"></pre>
+                            <button class="btn btn-small copy-btn" data-target="image-prompt">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Card Gallery -->
+        <section id="card-gallery" class="card-gallery hidden">
+            <h3>Cards</h3>
+            <div id="card-grid" class="card-grid"></div>
+        </section>
+
+        <!-- Characters View -->
+        <section id="characters-view" class="characters-view hidden">
+            <h3>Character References</h3>
+            <div id="characters-grid" class="characters-grid"></div>
+        </section>
+
+        <!-- Character Detail Panel -->
+        <section id="character-detail" class="character-detail hidden">
+            <button id="close-character-detail" class="close-btn">&times;</button>
+            <h2 id="character-name"></h2>
+
+            <!-- Reference tabs -->
+            <div class="ref-tabs">
+                <button class="ref-tab-btn active" data-ref="identity">Identity</button>
+                <button class="ref-tab-btn" data-ref="expressions">Expressions</button>
+                <button class="ref-tab-btn" data-ref="turnaround">Turnaround</button>
+                <button class="ref-tab-btn" data-ref="poses">Poses</button>
+            </div>
+
+            <!-- Reference image display -->
+            <div id="character-ref-image" class="ref-image-container"></div>
+
+            <!-- Character details from deck -->
+            <div id="character-details" class="character-info"></div>
+
+            <!-- Feedback export button -->
+            <button id="export-char-feedback" class="btn btn-primary">
+                Copy Feedback for Claude
+            </button>
+        </section>
+
+        <!-- Export Modal -->
+        <div id="export-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Export Feedback for Claude</h3>
+                <p>Copy this JSON and paste it to Claude for targeted revisions:</p>
+                <pre id="export-json" class="export-json"></pre>
+                <div class="modal-actions">
+                    <button id="copy-export-btn" class="btn btn-primary">Copy to Clipboard</button>
+                    <button id="close-modal-btn" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Parasha Pack Review Workspace | Ages 4-6 Educational Cards</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

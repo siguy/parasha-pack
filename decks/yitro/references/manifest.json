@@ -1,0 +1,14 @@
+{
+  "moses": {
+    "identity": "decks/yitro/references/moses_identity.png",
+    "expressions": "decks/yitro/references/moses_expressions.png",
+    "turnaround": "decks/yitro/references/moses_turnaround.png",
+    "poses": "decks/yitro/references/moses_poses.png"
+  },
+  "yitro": {
+    "identity": "decks/yitro/references/yitro_identity.png",
+    "expressions": "decks/yitro/references/yitro_expressions.png",
+    "turnaround": "decks/yitro/references/yitro_turnaround.png",
+    "poses": "decks/yitro/references/yitro_poses.png"
+  }
+}
