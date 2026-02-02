@@ -20,50 +20,87 @@ import base64
 from pathlib import Path
 
 
-def generate_image_gemini(prompt: str, api_key: str, output_path: str) -> bool:
+def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspect_ratio: str = "3:4") -> bool:
     """
-    Generate an image using Google Gemini's Imagen model.
+    Generate an image using Nano Banana Pro model (best for children's book style).
 
     Args:
         prompt: The image generation prompt
         api_key: Gemini API key
         output_path: Path to save the generated image
+        aspect_ratio: Aspect ratio (default 3:4 for cards)
 
     Returns:
         True if successful, False otherwise
     """
-    # Gemini Imagen 4.0 API endpoint
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key={api_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/nano-banana-pro-preview:generateContent?key={api_key}"
 
-    # Request payload
     payload = {
-        "instances": [{"prompt": prompt}],
-        "parameters": {
-            "sampleCount": 1,
-            "aspectRatio": "3:4",  # Close to 5:7 ratio for cards
-            "personGeneration": "allow_adult",
-            "safetySetting": "block_some"
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "responseModalities": ["IMAGE", "TEXT"],
+            "imageConfig": {"aspectRatio": aspect_ratio}
         }
-    }
-
-    headers = {
-        "Content-Type": "application/json"
     }
 
     try:
         data = json.dumps(payload).encode('utf-8')
-        req = urllib.request.Request(url, data=data, headers=headers, method='POST')
+        req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"}, method='POST')
+
+        with urllib.request.urlopen(req, timeout=180) as response:
+            result = json.loads(response.read().decode())
+
+        if "candidates" in result:
+            for candidate in result["candidates"]:
+                for part in candidate.get("content", {}).get("parts", []):
+                    if "inlineData" in part:
+                        image_data = part["inlineData"].get("data")
+                        if image_data:
+                            with open(output_path, 'wb') as f:
+                                f.write(base64.b64decode(image_data))
+                            return True
+
+        print(f"  No image in response")
+        return False
+
+    except urllib.error.HTTPError as e:
+        error_body = e.read().decode() if e.fp else ""
+        print(f"  HTTP Error {e.code}: {error_body[:200]}")
+        return False
+    except Exception as e:
+        print(f"  Error: {e}")
+        return False
+
+
+def generate_image_imagen(prompt: str, api_key: str, output_path: str) -> bool:
+    """
+    Generate an image using Google Imagen 4.0 model (legacy).
+    Note: Prefer nano-banana for better children's book style results.
+    """
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key={api_key}"
+
+    payload = {
+        "instances": [{"prompt": prompt}],
+        "parameters": {
+            "sampleCount": 1,
+            "aspectRatio": "3:4",
+            "personGeneration": "allow_adult",
+            "safetySetting": "block_low_and_above"
+        }
+    }
+
+    try:
+        data = json.dumps(payload).encode('utf-8')
+        req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"}, method='POST')
 
         with urllib.request.urlopen(req, timeout=120) as response:
             result = json.loads(response.read().decode())
 
-        # Extract and save image
         if "predictions" in result and len(result["predictions"]) > 0:
             image_data = result["predictions"][0].get("bytesBase64Encoded")
             if image_data:
-                image_bytes = base64.b64decode(image_data)
                 with open(output_path, 'wb') as f:
-                    f.write(image_bytes)
+                    f.write(base64.b64decode(image_data))
                 return True
 
         print(f"  No image in response: {result}")
@@ -133,7 +170,7 @@ def main():
     parser.add_argument("--api-key", help="Gemini API key (or set GEMINI_API_KEY env var)")
     parser.add_argument("--card", help="Generate image for specific card ID only")
     parser.add_argument("--skip-existing", action="store_true", help="Skip cards that already have images")
-    parser.add_argument("--model", choices=["imagen", "flash"], default="imagen", help="Model to use")
+    parser.add_argument("--model", choices=["nano-banana", "imagen", "flash"], default="nano-banana", help="Model to use (nano-banana recommended)")
 
     args = parser.parse_args()
 
@@ -163,8 +200,13 @@ def main():
     print(f"Model: {args.model}")
     print("-" * 50)
 
-    # Select generation function
-    generate_fn = generate_image_gemini if args.model == "imagen" else generate_image_gemini_flash
+    # Select generation function (nano-banana is default and recommended)
+    if args.model == "nano-banana":
+        generate_fn = generate_image_nano_banana
+    elif args.model == "imagen":
+        generate_fn = generate_image_imagen
+    else:
+        generate_fn = generate_image_gemini_flash
 
     # Track results
     success_count = 0
