@@ -1,0 +1,283 @@
+{
+  "parasha_en": "Beshalach",
+  "parasha_he": "בְּשַׁלַּח",
+  "ref": "Exodus 13:17-17:16",
+  "border_color": "#2d8a8a",
+  "theme": "water",
+  "version": "1.0",
+  "target_age": "4-6",
+  "card_count": 12,
+  "mitzvah_connection": "Even when things seem scary, we can be brave! And when good things happen, we celebrate together.",
+  "cards": [
+    {
+      "card_id": "anchor_1",
+      "card_type": "anchor",
+      "title_en": "Beshalach",
+      "title_he": "בְּשַׁלַּח",
+      "emotional_hook_en": "This week is about feeling [EMOTION]!",
+      "emotional_hook_he": "",
+      "symbol_description": "[DESCRIBE CENTRAL SYMBOL]",
+      "border_color": "#2d8a8a",
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    },
+    {
+      "card_id": "spotlight_1",
+      "card_type": "spotlight",
+      "title_en": "[CHARACTER 1 NAME]",
+      "title_he": "",
+      "character_name_en": "",
+      "character_name_he": "",
+      "emotion_label": "[happy/proud/brave/etc]",
+      "character_trait": "",
+      "character_description_en": "",
+      "character_description_he": "",
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    },
+    {
+      "card_id": "spotlight_2",
+      "card_type": "spotlight",
+      "title_en": "[CHARACTER 2 NAME]",
+      "title_he": "",
+      "character_name_en": "",
+      "character_name_he": "",
+      "emotion_label": "[happy/proud/brave/etc]",
+      "character_trait": "",
+      "character_description_en": "",
+      "character_description_he": "",
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    },
+    {
+      "card_id": "action_1",
+      "card_type": "action",
+      "title_en": "[SCENE 1 TITLE]",
+      "title_he": "",
+      "sequence_number": 1,
+      "hebrew_key_word": "",
+      "hebrew_key_word_nikud": "",
+      "english_description": "",
+      "roleplay_prompt": "Act it out: [ACTION]!",
+      "emotional_reactions": [],
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    },
+    {
+      "card_id": "action_2",
+      "card_type": "action",
+      "title_en": "[SCENE 2 TITLE]",
+      "title_he": "",
+      "sequence_number": 2,
+      "hebrew_key_word": "",
+      "hebrew_key_word_nikud": "",
+      "english_description": "",
+      "roleplay_prompt": "Act it out: [ACTION]!",
+      "emotional_reactions": [],
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    },
+    {
+      "card_id": "action_3",
+      "card_type": "action",
+      "title_en": "[SCENE 3 TITLE]",
+      "title_he": "",
+      "sequence_number": 3,
+      "hebrew_key_word": "",
+      "hebrew_key_word_nikud": "",
+      "english_description": "",
+      "roleplay_prompt": "Act it out: [ACTION]!",
+      "emotional_reactions": [],
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    },
+    {
+      "card_id": "action_4",
+      "card_type": "action",
+      "title_en": "[SCENE 4 TITLE]",
+      "title_he": "",
+      "sequence_number": 4,
+      "hebrew_key_word": "",
+      "hebrew_key_word_nikud": "",
+      "english_description": "",
+      "roleplay_prompt": "Act it out: [ACTION]!",
+      "emotional_reactions": [],
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    },
+    {
+      "card_id": "action_5",
+      "card_type": "action",
+      "title_en": "[SCENE 5 TITLE]",
+      "title_he": "",
+      "sequence_number": 5,
+      "hebrew_key_word": "",
+      "hebrew_key_word_nikud": "",
+      "english_description": "",
+      "roleplay_prompt": "Act it out: [ACTION]!",
+      "emotional_reactions": [],
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    },
+    {
+      "card_id": "thinker_1",
+      "card_type": "thinker",
+      "title_en": "[DISCUSSION THEME 1]",
+      "title_he": "",
+      "questions": [
+        {
+          "question_type": "emotional_empathy",
+          "question_en": "How do you think [character] felt when...?",
+          "question_he": ""
+        },
+        {
+          "question_type": "cognitive_empathy",
+          "question_en": "Why do you think [character] did...?",
+          "question_he": ""
+        },
+        {
+          "question_type": "connection",
+          "question_en": "Have you ever felt...? What did you do?",
+          "question_he": ""
+        }
+      ],
+      "torah_talk_instruction": "Sit in a circle and share!",
+      "feeling_faces": [
+        {
+          "emoji": "😊",
+          "label_en": "Happy",
+          "label_he": "שָׂמֵחַ"
+        },
+        {
+          "emoji": "😢",
+          "label_en": "Sad",
+          "label_he": "עָצוּב"
+        },
+        {
+          "emoji": "😨",
+          "label_en": "Scared",
+          "label_he": "מְפֻחָד"
+        },
+        {
+          "emoji": "😮",
+          "label_en": "Surprised",
+          "label_he": "מֻפְתָּע"
+        },
+        {
+          "emoji": "🥹",
+          "label_en": "Proud",
+          "label_he": "גֵּאֶה"
+        },
+        {
+          "emoji": "😕",
+          "label_en": "Confused",
+          "label_he": "מְבֻלְבָּל"
+        }
+      ],
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    },
+    {
+      "card_id": "thinker_2",
+      "card_type": "thinker",
+      "title_en": "[DISCUSSION THEME 2]",
+      "title_he": "",
+      "questions": [
+        {
+          "question_type": "emotional_empathy",
+          "question_en": "How do you think [character] felt when...?",
+          "question_he": ""
+        },
+        {
+          "question_type": "cognitive_empathy",
+          "question_en": "Why do you think [character] did...?",
+          "question_he": ""
+        },
+        {
+          "question_type": "connection",
+          "question_en": "Have you ever felt...? What did you do?",
+          "question_he": ""
+        }
+      ],
+      "torah_talk_instruction": "Sit in a circle and share!",
+      "feeling_faces": [
+        {
+          "emoji": "😊",
+          "label_en": "Happy",
+          "label_he": "שָׂמֵחַ"
+        },
+        {
+          "emoji": "😢",
+          "label_en": "Sad",
+          "label_he": "עָצוּב"
+        },
+        {
+          "emoji": "😨",
+          "label_en": "Scared",
+          "label_he": "מְפֻחָד"
+        },
+        {
+          "emoji": "😮",
+          "label_en": "Surprised",
+          "label_he": "מֻפְתָּע"
+        },
+        {
+          "emoji": "🥹",
+          "label_en": "Proud",
+          "label_he": "גֵּאֶה"
+        },
+        {
+          "emoji": "😕",
+          "label_en": "Confused",
+          "label_he": "מְבֻלְבָּל"
+        }
+      ],
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    },
+    {
+      "card_id": "power_word_1",
+      "card_type": "power_word",
+      "title_en": "[WORD 1] - [MEANING]",
+      "title_he": "",
+      "hebrew_word": "",
+      "hebrew_word_nikud": "",
+      "transliteration": "",
+      "english_meaning": "",
+      "example_sentence_en": "",
+      "example_sentence_he": "",
+      "is_emotion_word": false,
+      "audio_qr_url": null,
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    },
+    {
+      "card_id": "power_word_2",
+      "card_type": "power_word",
+      "title_en": "[WORD 2] - [MEANING]",
+      "title_he": "",
+      "hebrew_word": "",
+      "hebrew_word_nikud": "",
+      "transliteration": "",
+      "english_meaning": "",
+      "example_sentence_en": "",
+      "example_sentence_he": "",
+      "is_emotion_word": false,
+      "audio_qr_url": null,
+      "image_prompt": "",
+      "image_path": null,
+      "teacher_script": ""
+    }
+  ]
+}

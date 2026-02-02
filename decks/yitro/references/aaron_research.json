@@ -1,0 +1,27 @@
+{
+  "research": {
+    "name_en": "Aaron",
+    "name_he": "",
+    "biblical_refs": [],
+    "key_stories": [],
+    "personality_traits": [],
+    "relationships": {},
+    "emotional_moments": [],
+    "age_appropriate_summary": "Research needed for aaron"
+  },
+  "design": {
+    "key": "aaron",
+    "name_en": "Aaron",
+    "name_he": "",
+    "visual_description": "",
+    "clothing": [],
+    "distinguishing_features": [],
+    "props": [],
+    "default_emotion": "kind",
+    "emotional_range": [],
+    "signature_poses": [],
+    "style_prompt": "Children's book cartoon character AARON:\n- Rounded, friendly cartoon style\n- Thick clean black outlines\n- Bold colors, simple shapes\n- LARGE expressive eyes (20% of face)"
+  },
+  "references": {},
+  "created_at": "2026-02-01T19:16:06.570245"
+}

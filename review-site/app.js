@@ -14,7 +14,8 @@ let currentRefType = 'identity'; // Currently selected reference type
 
 // Available decks (will be populated from file system in production)
 const availableDecks = [
-    { id: 'yitro', name: 'Parshat Yitro', path: '../decks/yitro/deck.json', feedbackPath: '../decks/yitro/feedback.json', basePath: '../decks/yitro/' }
+    { id: 'yitro', name: 'Parshat Yitro', path: '../decks/yitro/deck.json', feedbackPath: '../decks/yitro/feedback.json', basePath: '../decks/yitro/' },
+    { id: 'beshalach', name: 'Parshat Beshalach', path: '../decks/beshalach/deck.json', feedbackPath: '../decks/beshalach/feedback.json', basePath: '../decks/beshalach/' }
 ];
 
 // DOM Elements

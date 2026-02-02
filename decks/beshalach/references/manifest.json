@@ -1,0 +1,8 @@
+{
+  "miriam": {
+    "identity": "decks/beshalach/references/miriam_identity.png",
+    "expressions": "decks/beshalach/references/miriam_expressions.png",
+    "turnaround": "decks/beshalach/references/miriam_turnaround.png",
+    "poses": "decks/beshalach/references/miriam_poses.png"
+  }
+}

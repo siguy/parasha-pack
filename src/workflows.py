@@ -653,8 +653,10 @@ class CharacterWorkflow:
         # Add this character's references
         manifest[self.key] = {}
         for ref_type, path in self.reference_paths.items():
-            # Store relative path from deck root
-            rel_path = str(Path(path).relative_to(self.deck_path.parent))
+            # Store relative path from project root (parent of decks/)
+            # This ensures paths like "decks/yitro/references/..." work from review-site
+            project_root = self.deck_path.parent.parent
+            rel_path = str(Path(path).relative_to(project_root))
             manifest[self.key][ref_type] = rel_path
 
         # Save manifest

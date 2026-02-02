@@ -1,0 +1,81 @@
+{
+  "research": {
+    "name_en": "Miriam",
+    "name_he": "מִרְיָם",
+    "biblical_refs": [
+      "Exodus 2:1-10",
+      "Exodus 15:20-21",
+      "Numbers 12",
+      "Numbers 20:1"
+    ],
+    "key_stories": [
+      "Watching baby Moses in the basket",
+      "Suggesting her mother as a nurse",
+      "Leading the women in song at the sea",
+      "The well that followed the Israelites"
+    ],
+    "personality_traits": [
+      "brave",
+      "musical",
+      "protective",
+      "joyful",
+      "faithful"
+    ],
+    "relationships": {
+      "Moses": "younger brother",
+      "Aaron": "brother",
+      "Yocheved": "mother",
+      "Pharaoh's daughter": "spoke to her about Moses"
+    },
+    "emotional_moments": [
+      {
+        "event": "Hiding to watch baby Moses",
+        "emotion": "worried but brave"
+      },
+      {
+        "event": "Singing at the sea",
+        "emotion": "overjoyed and grateful"
+      },
+      {
+        "event": "Caring for her family",
+        "emotion": "loving and protective"
+      }
+    ],
+    "age_appropriate_summary": "Miriam was brave and loved to sing! She protected her baby brother Moses and later led everyone in celebrating with music."
+  },
+  "design": {
+    "key": "miriam",
+    "name_en": "Miriam",
+    "name_he": "מִרְיָם",
+    "visual_description": "Young woman with joyful, brave expression",
+    "clothing": [
+      "Colorful dress with blue and purple",
+      "Simple head covering"
+    ],
+    "distinguishing_features": [
+      "Long dark wavy hair",
+      "Bright expressive eyes",
+      "Ready smile"
+    ],
+    "props": [
+      "Tambourine/timbrel"
+    ],
+    "default_emotion": "kind",
+    "emotional_range": [
+      "brave",
+      "musical",
+      "protective",
+      "joyful",
+      "faithful"
+    ],
+    "signature_poses": [
+      "Playing tambourine, dancing joyfully",
+      "Watching over something carefully",
+      "Leading others with arm raised",
+      "Singing with joy"
+    ],
+    "style_prompt": "Children's book cartoon character MIRIAM:\n- Young woman with joyful, brave expression\n- Long dark wavy hair\n- Bright expressive eyes\n- Ready smile\n- Colorful dress with blue and purple\n- Simple head covering\n- Tambourine/timbrel\n- Rounded, friendly cartoon style\n- Thick clean black outlines\n- Bold colors, simple shapes\n- LARGE expressive eyes (20% of face)"
+  },
+  "references": {},
+  "created_at": "2026-02-01T19:15:43.897354"
+}
