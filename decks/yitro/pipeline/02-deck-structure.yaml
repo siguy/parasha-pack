@@ -1,0 +1,233 @@
+deck_structure:
+  parasha: "Yitro"
+
+  # Inherited and confirmed
+  emotional_core: |
+    AWE and WONDER - experiencing something so amazing it takes your breath away.
+    This parasha builds from joyful reunion → wise advice → building anticipation →
+    spectacular revelation → focused listening. A complete emotional journey!
+
+  # Approach
+  deck_approach: narrative
+
+  # Learning objectives
+  learning_objectives:
+    understand: |
+      The Jewish people went to a special mountain and heard the most important
+      words ever. When we listen carefully, we learn important things.
+      Also: asking for help is smart, not weak!
+    feel: |
+      AWE at the spectacle of Sinai. Joy at family reunion. Appreciation for
+      people who give us good advice. The special feeling of listening carefully.
+    do: |
+      Practice the "listening" pose (hand to ear). Say "Shema!" Practice giving
+      a BIG hug. Shake like the mountain. Show amazed faces.
+
+  # Card count decision
+  card_count: 12
+  card_count_rationale: |
+    This is a narrative-rich parasha with two distinct story arcs (family/advice
+    and revelation). Using full 12 cards to do justice to both threads:
+    - 1 Anchor, 2 Spotlights (Moses and Yitro both important)
+    - 5 Action cards (reunion, advice, arrival, thunder, listening)
+    - 2 Thinker cards (one per theme)
+    - 2 Power Words (שמע and עצה - both central)
+
+  # Session design
+  session_flow:
+    required_cards:
+      - card_id: "anchor_1"
+        minutes: 2
+        notes: "Set the tone of AWE"
+      - card_id: "spotlight_1"
+        minutes: 2
+        notes: "Introduce Moses as devoted leader"
+      - card_id: "spotlight_2"
+        minutes: 2
+        notes: "Introduce Yitro as wise grandfather"
+      - card_id: "action_1"
+        minutes: 2
+        notes: "The joyful reunion - high energy"
+      - card_id: "action_2"
+        minutes: 2
+        notes: "Yitro's advice - calmer"
+      - card_id: "action_3"
+        minutes: 2
+        notes: "Arriving at mountain - building"
+      - card_id: "thinker_1"
+        minutes: 4
+        notes: "Discussion about helping/advice"
+    total_required_minutes: 16
+
+    optional_cards:
+      - card_id: "action_4"
+        minutes: 2
+        notes: "Thunder on the mountain - HIGH energy climax"
+      - card_id: "action_5"
+        minutes: 2
+        notes: "Listening to the words - calm reverence"
+      - card_id: "thinker_2"
+        minutes: 3
+        notes: "Discussion about the mountain experience"
+      - card_id: "power_word_1"
+        minutes: 2
+        notes: "עצה (Advice)"
+      - card_id: "power_word_2"
+        minutes: 2
+        notes: "שמע (Listen)"
+
+    recommended_order: |
+      Anchor → Spotlight 1 (Moses) → Spotlight 2 (Yitro) → Action 1 (Reunion) →
+      Action 2 (Advice) → Thinker 1 (about advice) → Action 3 (Mountain) →
+      [Optional: Action 4 (Thunder) → Action 5 (Listen) → Thinker 2 (about awe)]
+      [Power words can be woven in or used as extensions]
+
+  # Energy arc
+  energy_arc: |
+    Calm intro (Anchor) → Medium (Spotlights, character intro) →
+    HIGH (Reunion, hugging!) → Calm (Advice scene, listening) →
+    Discussion (Thinker 1) → Building (Arriving at mountain) →
+    PEAK (Thunder, shaking!) → Calm reverence (Listening) →
+    Reflection (Thinker 2)
+
+  # Card assignments
+  card_assignments:
+    anchor:
+      emotional_hook: |
+        "This week is about feeling AWE - that's when something is SO amazing
+        it makes you go WOW!"
+      symbol: |
+        Two stone tablets glowing with golden light, with Hebrew letters א-ה and ו-י
+        (first 10 letters of alphabet, NOT God's name). Light rays from above.
+      rationale: |
+        The tablets are iconic and immediately recognizable. Sets up the culmination
+        of the parasha. Kids will see these tablets and know "something special!"
+
+    spotlight_1:
+      character: "Moses"
+      is_new_character: no
+      emotion_focus: "devoted"
+      why_kids_relate: |
+        Moses works SO hard helping everyone. Kids know being tired! They also
+        know it feels good when someone notices you're working hard.
+      rationale: |
+        Moses is the central figure. This week shows him as devoted but learning
+        that asking for help is okay. Important lesson for perfectionist kids!
+
+    spotlight_2:
+      character: "Yitro"
+      is_new_character: yes
+      emotion_focus: "wise"
+      why_kids_relate: |
+        Like a loving grandfather who traveled far to visit and gives good advice.
+        Kids love grandparent figures and understand "wise" grown-ups.
+      rationale: |
+        Yitro is new and his name is the parasha! His role as advice-giver is
+        a key lesson. Establishing him warmly sets up the advice scene.
+
+    action_1:
+      moment: "Yitro arrives and reunites with Moses"
+      title: "The Joyful Reunion"
+      energy_level: high
+      hebrew_keyword: "שִׂמְחָה (Joy)"
+      roleplay: |
+        "Hug like you missed someone SO much!"
+      rationale: |
+        Start with joy and love - universally relatable. High energy to engage
+        kids immediately. Hugging is physical and fun.
+
+    action_2:
+      moment: "Yitro gives Moses advice about getting helpers"
+      title: "Wise Advice"
+      energy_level: medium
+      hebrew_keyword: "עֵצָה (Advice)"
+      roleplay: |
+        "Point your finger like you're giving wise advice!"
+      rationale: |
+        Key lesson card. Calms energy after reunion excitement. Sets up Thinker
+        discussion about helping each other.
+
+    action_3:
+      moment: "The people arrive at Mount Sinai"
+      title: "The Big Mountain"
+      energy_level: medium-high
+      hebrew_keyword: "הַר (Mountain)"
+      roleplay: |
+        "Walk like you're climbing up, up, UP!"
+      rationale: |
+        Transition card - builds anticipation for the revelation. Physical
+        movement (climbing) re-engages bodies.
+
+    action_4:
+      moment: "Thunder, lightning, shofar on the mountain"
+      title: "Thunder and Light!"
+      energy_level: high
+      hebrew_keyword: "קוֹל (Voice/Sound)"
+      roleplay: |
+        "Shake like the mountain! SHAKE SHAKE SHAKE!"
+      rationale: |
+        The spectacular climax! Kids LOVE drama. Shaking is fun and releases
+        energy. Must keep it AWE-inspiring, not scary.
+      optional: true
+
+    action_5:
+      moment: "The people listen to the Ten Commandments"
+      title: "Listening Carefully"
+      energy_level: calm
+      hebrew_keyword: "שָׁמַע (Listen)"
+      roleplay: |
+        "Put your hand to your ear and listen VERY carefully!"
+      rationale: |
+        Calm after the storm. Teaches the important skill of listening.
+        Connects to Shema. Prepares for reflection.
+      optional: true
+
+    thinker_1:
+      theme: "Getting Help"
+      personal_question: |
+        "Has anyone ever helped YOU when something was too hard?"
+      placement_rationale: |
+        After Action 2 (advice scene). Kids just saw the lesson in action,
+        now connect it to their own lives.
+      feeling_faces: ["happy", "tired", "grateful", "proud"]
+
+    thinker_2:
+      theme: "At the Mountain"
+      personal_question: |
+        "Have you ever heard something SO loud it surprised you?"
+      optional: true
+      placement_rationale: |
+        After Action 4-5. Reflects on the awe experience and connects
+        to kids' own experiences of spectacle.
+      feeling_faces: ["amazed", "excited", "nervous", "proud"]
+
+    power_word_1:
+      word: "עֵצָה (Advice)"
+      when_to_use: |
+        After Thinker 1 discussion, or as standalone extension.
+        Can also be woven into Action 2 teacher script.
+      optional: true
+      rationale: |
+        Practical word kids can use. Reinforces the lesson about asking for help.
+
+    power_word_2:
+      word: "שָׁמַע (Listen)"
+      when_to_use: |
+        After Action 5, or as standalone extension. Connects to Shema prayer
+        which many kids know.
+      optional: true
+      rationale: |
+        Central to parasha (Yitro "heard", people "listened"). Connects to
+        broader Jewish practice.
+
+  # Teacher guidance
+  teacher_notes: |
+    This parasha has two threads: the family/advice story (Actions 1-2) and the
+    revelation story (Actions 3-5). You can do just the first thread if short on
+    time - it's complete with Thinker 1.
+
+    The thunder scene (Action 4) is the energy peak - have kids really shake!
+    Then bring them back down with the quiet listening pose.
+
+    Yitro is new - take a moment with Spotlight 2 to really introduce him warmly.
+    Kids love the "wise grandfather" archetype.

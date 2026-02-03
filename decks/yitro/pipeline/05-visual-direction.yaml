@@ -1,0 +1,113 @@
+visual_direction:
+  parasha: "Yitro"
+
+  # Character specifications
+  character_specs:
+    moses:
+      is_new: false
+      visual_description: |
+        Friendly middle-aged man with warm brown skin and kind, gentle eyes.
+        Short dark beard with some gray. Blue and cream robes.
+        HEAD COVERING (cloth wrap/turban) - ALWAYS INCLUDE.
+        Wooden shepherd's staff resting nearby.
+      reference_sheet_path: "references/moses_identity.png"
+      this_week_notes: |
+        Shows range: DEVOTED when helping, OVERJOYED at reunion with Yitro,
+        LISTENING carefully when receiving advice, AWE at the mountain.
+
+    yitro:
+      is_new: true
+      visual_description: |
+        Wise elderly man with LONG FLOWING white/gray beard. Warm twinkling
+        eyes that show wisdom and kindness. Wears COLORFUL earth-toned desert
+        robes (rich browns, tans, with red and gold accents - Midianite style).
+        Gentle grandfatherly smile. Has a walking stick.
+      needs_new_reference_sheet: yes
+
+  # Style notes for all cards
+  style_notes: |
+    This parasha has a dramatic visual arc:
+    - Reunion scene: warm, joyful colors (oranges, golds)
+    - Advice scene: calm, thoughtful (soft blues, creams)
+    - Mountain approach: building drama (deeper colors)
+    - Thunder scene: SPECTACULAR but not scary (purples, golds, lightning)
+    - Listening scene: peaceful, reverent (warm golden glow)
+
+  # Card-specific notes for image generation
+  card_notes:
+    anchor_1: |
+      Two tablets as central symbol. NEVER show God's name.
+      Use Hebrew letters א-ה on left tablet, ו-י on right tablet.
+      Golden light rays from above. Majestic but child-friendly.
+
+    spotlight_1: |
+      Moses portrait. DEVOTED expression - caring, dedicated.
+      Blue and cream robes. HEAD COVERING visible.
+      Staff nearby. Desert background with waiting people (showing he helps everyone).
+
+    spotlight_2: |
+      Yitro portrait. WISE expression - knowing, warm, grandfatherly.
+      Colorful Midianite robes (browns, reds, golds).
+      Long white beard. Walking stick. Desert journey background.
+
+    action_1: |
+      Moses and Yitro embracing or about to embrace.
+      Both faces show pure JOY. Running toward each other.
+      Desert setting, Israelite camp in background.
+      High energy, movement lines, emotional warmth.
+
+    action_2: |
+      Yitro standing, gesturing wisely with raised finger.
+      Moses seated, looking tired but listening carefully.
+      LONG LINE of people waiting in background (the problem).
+      Speech indicator from Yitro suggesting advice.
+
+    action_3: |
+      Majestic Mount Sinai dominating the scene.
+      Israelite families at base, looking UP in wonder.
+      Children pointing excitedly. Parents shading eyes.
+      Anticipation and excitement on faces.
+
+    action_4: |
+      Mount Sinai ALIVE with phenomena - but AWE-inspiring, not scary!
+      Glowing clouds, stylized lightning (like fireworks), motion lines.
+      Sound waves from shofar blast.
+      Israelites at base watching in amazement (not terror).
+
+    action_5: |
+      Two tablets floating in golden light above.
+      Sea of Israelites below in listening poses.
+      Hands cupped to ears, eyes closed or looking up.
+      Peaceful, reverent, focused. Warm golden glow.
+
+    thinker_1: |
+      Yitro with hand on Moses's shoulder supportively.
+      Both look caring and connected.
+      Warm sunset colors. Family feeling.
+
+    thinker_2: |
+      Children in thoughtful poses, wondering.
+      Hand on chin, looking up, pondering.
+      Soft mountain silhouette in background.
+      Ready for discussion.
+
+    power_word_1: |
+      Wise figure giving advice to younger person.
+      Lightbulb "aha!" moment above listener's head.
+      Clear, simple illustration of giving advice.
+
+    power_word_2: |
+      Child with hand cupped to ear, listening.
+      Eyes closed in concentration.
+      Sound waves coming toward ear.
+      Peaceful, focused.
+
+  # Pre-generation checklist
+  pre_generation_checklist:
+    - All characters match reference sheets
+    - Style consistent with STYLE_GUIDE
+    - Safety rules in all prompts (no God depiction, no God's name)
+    - Compositions leave room for text
+    - Emotions readable at card size
+    - Thunder scene is AWE-inspiring, not scary
+    - Tablets show א-י (first 10 letters), NOT commandments or God's name

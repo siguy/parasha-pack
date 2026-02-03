@@ -1,0 +1,117 @@
+hebrew_content:
+  parasha: "Yitro"
+
+  # Parasha title
+  parasha_title:
+    hebrew: "יתרו"
+    hebrew_nikud: "יִתְרוֹ"
+
+  # Anchor card
+  anchor:
+    title_he: "פָּרָשַׁת יִתְרוֹ"
+    emotional_hook_he: |
+      הַשָּׁבוּעַ עַל תְּחוּשַׁת יִרְאָה - כְּשֶׁמַּשֶּׁהוּ כָּל כָּךְ מַדְהִים שֶׁאַתָּה אוֹמֵר וָאוּ!
+
+  # Spotlight cards
+  spotlight_1:
+    character_name_he: "מֹשֶׁה"
+    character_description_he: |
+      מֹשֶׁה הוּא מַנְהִיג עַם יִשְׂרָאֵל. הוּא עָזַר לָהֶם לָצֵאת מִמִּצְרַיִם וְעַכְשָׁו דּוֹאֵג לָהֶם בַּמִּדְבָּר.
+
+  spotlight_2:
+    character_name_he: "יִתְרוֹ"
+    character_description_he: |
+      יִתְרוֹ הוּא חוֹתֵן מֹשֶׁה. הוּא כְּמוֹ סָבָא חָכָם שֶׁנּוֹתֵן עֵצוֹת טוֹבוֹת.
+
+  # Story cards
+  story_cards:
+    action_1:
+      title_he: "הַפְּגִישָׁה הַשְּׂמֵחָה"
+      hebrew_keyword: "שמחה"
+      hebrew_keyword_nikud: "שִׂמְחָה"
+      keyword_meaning: "Joy"
+
+    action_2:
+      title_he: "עֵצָה חֲכָמָה"
+      hebrew_keyword: "עצה"
+      hebrew_keyword_nikud: "עֵצָה"
+      keyword_meaning: "Advice"
+
+    action_3:
+      title_he: "הָהָר הַגָּדוֹל"
+      hebrew_keyword: "הר"
+      hebrew_keyword_nikud: "הַר"
+      keyword_meaning: "Mountain"
+
+    action_4:
+      title_he: "רַעַם וְאוֹר!"
+      hebrew_keyword: "קול"
+      hebrew_keyword_nikud: "קוֹל"
+      keyword_meaning: "Voice / Sound"
+
+    action_5:
+      title_he: "מַקְשִׁיבִים בִּזְהִירוּת"
+      hebrew_keyword: "שמע"
+      hebrew_keyword_nikud: "שָׁמַע"
+      keyword_meaning: "Listen"
+
+  # Connection cards
+  connection_cards:
+    thinker_1:
+      title_he: "לְקַבֵּל עֶזְרָה"
+      feeling_faces:
+        - emoji: "😊"
+          label_he: "שָׂמֵחַ"
+        - emoji: "😩"
+          label_he: "עָיֵף"
+        - emoji: "🥹"
+          label_he: "אָסִיר תּוֹדָה"
+        - emoji: "😃"
+          label_he: "גֵּאֶה"
+
+    thinker_2:
+      title_he: "לִפְנֵי הָהָר"
+      feeling_faces:
+        - emoji: "😮"
+          label_he: "נִדְהָם"
+        - emoji: "😃"
+          label_he: "נִרְגָּשׁ"
+        - emoji: "😊"
+          label_he: "שָׂמֵחַ"
+        - emoji: "🥹"
+          label_he: "גֵּאֶה"
+
+  # Power Words
+  power_word_1:
+    hebrew_word: "עצה"
+    hebrew_word_nikud: "עֵצָה"
+    english_meaning: "Advice"
+    torah_source:
+      reference: "Exodus 18:17-18"
+      quote_he: "לֹא טוֹב הַדָּבָר אֲשֶׁר אַתָּה עֹשֶׂה"
+      quote_en: "The thing you are doing is not good"
+    example_sentence_he: |
+      יִתְרוֹ נָתַן לְמֹשֶׁה עֵצָה טוֹבָה!
+    pronunciation_notes: |
+      "ay-TZAH" - The צ makes a "ts" sound like in "pizza"
+
+  power_word_2:
+    hebrew_word: "שמע"
+    hebrew_word_nikud: "שָׁמַע"
+    english_meaning: "Listen / Hear"
+    torah_source:
+      reference: "Exodus 18:1"
+      quote_he: "וַיִּשְׁמַע יִתְרוֹ"
+      quote_en: "And Yitro heard"
+    example_sentence_he: |
+      הָעָם שָׁמַע אֶת הַקּוֹל מֵהָהָר!
+    pronunciation_notes: |
+      "sha-MA" - Same word as in "Shema Yisrael!" Many kids know this!
+
+# Validation checklist
+validation:
+  all_nikud_accurate: yes
+  words_age_appropriate: yes
+  torah_quotes_accurate: yes
+  no_gods_name_written: yes
+  consistent_with_previous_decks: yes

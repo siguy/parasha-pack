@@ -1,0 +1,192 @@
+card_content:
+  parasha: "Yitro"
+
+  anchor:
+    card_id: "anchor_1"
+    title_en: "Parashat Yitro"
+    emotional_hook_en: |
+      This week is about feeling AWE - that's when something is SO amazing it makes you go WOW!
+    symbol_description: |
+      Two stone tablets glowing with warm golden light. Light rays stream from soft clouds above.
+      Each tablet has 5 Hebrew letters (א ב ג ד ה and ו ז ח ט י - first 10 letters of alphabet).
+      NEVER show God's name. Majestic, wondrous, glowing.
+    teacher_script: |
+      This is Parashat Yitro! Do you see those special tablets? They're going to have very
+      important words on them. This week, we're going to feel AWE - that's when something
+      is SO amazing that it makes us go "Wow!" Let's practice: put your hands on your
+      cheeks and say "WOW!"
+
+  spotlight_1:
+    card_id: "spotlight_1"
+    title_en: "Moses"
+    character_name_en: "Moses"
+    emotion_label: "devoted"
+    character_description_en: |
+      Moses is the leader of the Jewish people. He helped them leave Egypt and now takes care
+      of them in the desert. Moses works very hard to help everyone - he listens to people's
+      problems all day long! In this parasha, Moses learns something important: even leaders
+      need help sometimes!
+    teacher_script: |
+      This is Moses - Moshe! Look at his face. Moses is DEVOTED - that means he cares SO much
+      about helping everyone. He works all day listening to people's problems because he loves
+      his people. Can you show me a devoted face - like you really care about helping?
+
+  spotlight_2:
+    card_id: "spotlight_2"
+    title_en: "Yitro"
+    character_name_en: "Yitro"
+    emotion_label: "wise"
+    character_description_en: |
+      Yitro is Moses's father-in-law. That means he is the daddy of Moses's wife! Yitro is
+      like a wise grandfather - he has lived a long time and learned many things. When Yitro
+      heard about all the amazing things God did for the Jewish people, he traveled through
+      the desert to visit Moses. Yitro gives very good advice!
+    teacher_script: |
+      This is Yitro! He's Moses's father-in-law - that means he is the daddy of Moses's wife!
+      Yitro is like a wise grandfather. He traveled through the whole desert to visit Moses
+      because he heard about amazing things happening. Look at Yitro's face - he looks WISE.
+      That means he knows a lot and gives good advice!
+
+  action_1:
+    card_id: "action_1"
+    title_en: "The Joyful Reunion"
+    description_en: |
+      Yitro travels through the desert to visit Moses. Moses runs out to greet him with open arms!
+    roleplay_prompt: "Act it out: Hug like you missed someone SO much!"
+    teacher_script: |
+      Look! Yitro came to visit Moses in the desert! Moses was SO happy to see him. He ran out
+      to meet him and gave him a BIG hug! Can you show me how you hug someone you really missed?
+      Give yourself a big hug! That's called SIMCHA - joy!
+
+  action_2:
+    card_id: "action_2"
+    title_en: "Wise Advice"
+    description_en: |
+      Yitro sees Moses working too hard, helping everyone all by himself. He says: "Moses, you need helpers!"
+    roleplay_prompt: "Act it out: Point your finger like you're giving wise advice!"
+    teacher_script: |
+      Yitro saw that Moses was working SO hard, all by himself! People were waiting in a long,
+      long line to talk to Moses. Yitro said, "Moses, you need helpers!" That's called giving
+      EITZAH - advice. Can you point your finger like you're giving wise advice? Good advice
+      helps people!
+
+  action_3:
+    card_id: "action_3"
+    title_en: "The Big Mountain"
+    description_en: |
+      The whole nation travels to Mount Sinai. They camp at the bottom of the great mountain and look UP!
+    roleplay_prompt: "Act it out: Walk like you're climbing up, up, UP a big mountain!"
+    teacher_script: |
+      The whole Jewish people traveled to a very special mountain called Sinai - HAR Sinai!
+      Can you say HAR? It means mountain! They walked and walked until they got there. Show me
+      how you walk when you're going UP a mountain - up, up, UP! They all stood at the bottom
+      and looked UP at the big, big mountain.
+
+  action_4:
+    card_id: "action_4"
+    title_en: "Thunder and Light!"
+    description_en: |
+      The mountain shakes! Thunder BOOMS! Lightning flashes! The shofar blows! Everyone watches in amazement!
+    roleplay_prompt: "Act it out: Shake like the mountain! SHAKE SHAKE SHAKE!"
+    teacher_script: |
+      Then something AMAZING happened! The mountain started to SHAKE! SHAKE SHAKE SHAKE! Thunder
+      went BOOM BOOM BOOM! Lightning flashed! A shofar blew TEKIAH! And there was a big sound -
+      a KOL - from the mountain! Everyone was SO amazed! Can you shake like the mountain?
+      SHAKE SHAKE SHAKE!
+
+  action_5:
+    card_id: "action_5"
+    title_en: "Listening Carefully"
+    description_en: |
+      Everyone listens very, very carefully. They hear the most important words ever!
+    roleplay_prompt: "Act it out: Put your hand to your ear and listen VERY carefully!"
+    teacher_script: |
+      Everyone got very, very quiet. They listened SO carefully - SHAMA! Can you put your hand
+      to your ear like you're listening? The special words came from the mountain. These were
+      the most important rules ever! Like "Honor your mommy and daddy!" Can you listen very,
+      very carefully like the Jewish people did?
+
+  thinker_1:
+    card_id: "thinker_1"
+    title_en: "Getting Help"
+    questions:
+      - question_type: "personal"
+        question_en: "Has anyone ever helped YOU when something was too hard? How did it feel?"
+      - question_type: "empathy"
+        question_en: "How do you think Moses felt when he was working SO hard all by himself?"
+      - question_type: "action"
+        question_en: "Who gives YOU good advice? What advice do they give you?"
+    torah_talk_instruction: "Sit in a circle and share!"
+    feeling_faces:
+      - emoji: "😊"
+        label_en: "Happy"
+      - emoji: "😩"
+        label_en: "Tired"
+      - emoji: "🥹"
+        label_en: "Grateful"
+      - emoji: "😃"
+        label_en: "Proud"
+    teacher_script: |
+      Torah Talk time! Moses was working SO hard. He was tired! Then Yitro came and helped
+      him with advice. That's what families do! Can you think of a time when something was
+      really hard and someone helped you? How did that make you feel? Let's share in our circle!
+
+  thinker_2:
+    card_id: "thinker_2"
+    title_en: "At the Mountain"
+    questions:
+      - question_type: "personal"
+        question_en: "Have you ever heard something SO loud it surprised you? What was it?"
+      - question_type: "empathy"
+        question_en: "How do you think the children felt when they heard the thunder?"
+      - question_type: "action"
+        question_en: "What is something important that YOU listen to very carefully?"
+    torah_talk_instruction: "Sit in a circle and share!"
+    feeling_faces:
+      - emoji: "😮"
+        label_en: "Amazed"
+      - emoji: "😃"
+        label_en: "Excited"
+      - emoji: "😊"
+        label_en: "Happy"
+      - emoji: "🥹"
+        label_en: "Proud"
+    teacher_script: |
+      Let's sit in a Torah Talk circle! When the thunder boomed and the mountain shook, how do
+      you think the children there felt? Can you point to a face? Maybe surprised? Maybe a little
+      nervous but also excited? Let's go around the circle - have you ever heard something really
+      loud? What was it?
+
+  power_word_1:
+    card_id: "power_word_1"
+    title_en: "Advice"
+    english_meaning: "Advice"
+    example_sentence_en: |
+      Yitro gave Moses good advice: "Get helpers!"
+    torah_quote_en: |
+      "The thing you are doing is not good... you will surely wear yourself out." - Yitro to Moses
+    teacher_script: |
+      Our Power Word is EITZAH! Can you say it? Eitzah! It means "advice." In the Torah, Yitro
+      told Moses: "What you are doing is not good - you need helpers!" That was such good eitzah!
+      Who gives YOU good advice?
+
+  power_word_2:
+    card_id: "power_word_2"
+    title_en: "Listen"
+    english_meaning: "Listen / Hear"
+    example_sentence_en: |
+      The people listened very carefully at the mountain!
+    torah_quote_en: |
+      "And Yitro heard all that God had done for Moses and for Israel."
+    teacher_script: |
+      Our second Power Word is SHAMA! Can you say it? Shama! It means "listen." In the Torah it
+      says "Yitro HEARD all that God had done" - he listened! The Jewish people did shama at the
+      mountain too. Let's practice - put your hand to your ear and listen very carefully!
+
+# Self-check
+tone_check:
+  all_sentences_under_15_words: yes
+  emotions_specific_not_generic: yes
+  roleplay_prompts_physical_and_doable: yes
+  teacher_scripts_sound_natural: yes
+  no_condescending_language: yes

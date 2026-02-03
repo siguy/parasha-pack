@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parasha Pack - Deck Preview</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #5c2d91 0%, #7b4bb3 100%);
+      color: white;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+    }
+
+    .deck-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .deck-selector label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .deck-selector select {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .deck-header {
+      background: white;
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 2px solid #eee;
+    }
+
+    .deck-header .hebrew-title {
+      font-size: 2.5rem;
+      font-family: 'Times New Roman', serif;
+      color: #5c2d91;
+      margin-bottom: 0.5rem;
+    }
+
+    .deck-header h2 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .deck-header .subtitle {
+      color: #666;
+    }
+
+    .pipeline-toggle {
+      background: #e8f4fd;
+      padding: 1rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .pipeline-toggle button {
+      background: #0074D9;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin: 0 0.5rem;
+    }
+
+    .pipeline-toggle button:hover {
+      background: #0063b8;
+    }
+
+    .pipeline-toggle button.active {
+      background: #5c2d91;
+    }
+
+    .pipeline-content {
+      display: none;
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .pipeline-content.active {
+      display: block;
+    }
+
+    .pipeline-box {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    .pipeline-box h3 {
+      color: #5c2d91;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #eee;
+    }
+
+    .pipeline-box pre {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .cards-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: #5c2d91;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .card-header {
+      padding: 1rem 1.5rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-header.anchor { background: #5c2d91; }
+    .card-header.spotlight { background: #FFD700; color: #333; }
+    .card-header.action { background: #FF4136; }
+    .card-header.connection { background: #0074D9; }
+    .card-header.power-word { background: #2ECC40; }
+
+    .card-title {
+      font-size: 1.3rem;
+    }
+
+    .card-title-he {
+      font-family: 'Times New Roman', serif;
+      font-size: 1.4rem;
+      margin-right: 0.5rem;
+    }
+
+    .card-badge {
+      background: rgba(255,255,255,0.2);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+    }
+
+    .card-image-panel {
+      position: sticky;
+      top: 1rem;
+      align-self: start;
+    }
+
+    .card-image {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .card-image:hover {
+      transform: scale(1.02);
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .card-section h4 {
+      color: #666;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .hebrew-word {
+      font-family: 'Times New Roman', serif;
+      font-size: 1.8rem;
+      color: #5c2d91;
+      background: #f8f4fc;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .teacher-script {
+      background: #e8f4fd;
+      border-left: 4px solid #0074D9;
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+
+    .roleplay {
+      background: #fff3e0;
+      border-left: 4px solid #FF9800;
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .story-text {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      border-left: 4px solid #FF4136;
+    }
+
+    .questions-list {
+      list-style: none;
+    }
+
+    .questions-list li {
+      padding: 0.75rem;
+      background: #f8f9fa;
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #0074D9;
+    }
+
+    .question-type {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 0.25rem;
+    }
+
+    .feeling-faces {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .feeling-face {
+      text-align: center;
+      padding: 0.5rem 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .feeling-face .emoji {
+      font-size: 2rem;
+    }
+
+    .feeling-face .label-he {
+      font-family: 'Times New Roman', serif;
+      font-size: 1rem;
+      color: #5c2d91;
+    }
+
+    /* Lightbox for full-size images */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    .deck-content {
+      display: none;
+    }
+
+    .deck-content.active {
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .card-body {
+        grid-template-columns: 1fr;
+      }
+      .card-image-panel {
+        position: static;
+        text-align: center;
+      }
+      .card-image {
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <h1>Parasha Pack Preview</h1>
+    </div>
+    <div class="deck-selector">
+      <label for="deck-select">Select Deck:</label>
+      <select id="deck-select" onchange="switchDeck(this.value)">
+        <option value="yitro">Yitro (12 cards)</option>
+        <option value="terumah">Terumah (8 cards)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- YITRO DECK -->
+  <div id="deck-yitro" class="deck-content active">
+    <div class="deck-header">
+      <div class="hebrew-title">פָּרָשַׁת יִתְרוֹ</div>
+      <h2>Parashat Yitro</h2>
+      <div class="subtitle">Exodus 18:1-20:23 | 12 Cards | AWE and WONDER</div>
+    </div>
+
+    <div class="pipeline-toggle">
+      <button onclick="togglePipeline('yitro', 'cards')" class="active" id="yitro-cards-btn">View Cards</button>
+      <button onclick="togglePipeline('yitro', 'pipeline')" id="yitro-pipeline-btn">View Pipeline</button>
+    </div>
+
+    <div id="yitro-pipeline" class="pipeline-content">
+      <div class="pipeline-box">
+        <h3>01 - Parasha Research</h3>
+        <p>Key themes: AWE and WONDER at Sinai, family reunion, accepting advice</p>
+        <p>Characters: Moses (returning), Yitro (new - needs reference sheet)</p>
+        <p>Safety: Never depict God, tablets show alphabet letters only</p>
+      </div>
+      <div class="pipeline-box">
+        <h3>02 - Deck Structure</h3>
+        <p>12 cards: 1 Anchor, 2 Spotlight, 5 Action, 2 Thinker, 2 Power Word</p>
+        <p>Two story threads: Family/advice (Actions 1-2) + Revelation (Actions 3-5)</p>
+      </div>
+      <div class="pipeline-box">
+        <h3>03 - Card Content</h3>
+        <p>All English text written with teacher scripts and roleplay prompts</p>
+      </div>
+      <div class="pipeline-box">
+        <h3>04 - Hebrew Content</h3>
+        <p>All Hebrew with nikud verified. Power words: Eitzah (Advice), Shama (Listen)</p>
+      </div>
+      <div class="pipeline-box">
+        <h3>05 - Visual Direction</h3>
+        <p>Character specs, style notes, card-specific composition notes</p>
+      </div>
+      <div class="pipeline-box">
+        <h3>06 - Editor Review</h3>
+        <p>Status: APPROVED FOR GENERATION - All 12 cards ready</p>
+      </div>
+    </div>
+
+    <div id="yitro-cards" class="pipeline-content active">
+      <div class="cards-container">
+        <h2 class="section-title">Anchor Card</h2>
+
+        <!-- ANCHOR -->
+        <div class="card">
+          <div class="card-header anchor">
+            <div class="card-title">
+              <span class="card-title-he">פָּרָשַׁת יִתְרוֹ</span>
+              Parashat Yitro
+            </div>
+            <span class="card-badge">ANCHOR</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/anchor_1.png" alt="Anchor Card" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Emotional Hook</h4>
+                <p style="font-size: 1.2rem; color: #5c2d91;">This week is about feeling AWE - that's when something is SO amazing it makes you go WOW!</p>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">This is Parashat Yitro! Do you see those special tablets? They're going to have very important words on them. This week, we're going to feel AWE - that's when something is SO amazing that it makes us go 'Wow!' Let's practice: put your hands on your cheeks and say 'WOW!'</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title">Spotlight Cards</h2>
+
+        <!-- SPOTLIGHT 1 -->
+        <div class="card">
+          <div class="card-header spotlight">
+            <div class="card-title">
+              <span class="card-title-he">מֹשֶׁה</span>
+              Moses
+            </div>
+            <span class="card-badge">SPOTLIGHT</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/spotlight_1.png" alt="Moses" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Emotion</h4>
+                <span class="hebrew-word">DEVOTED</span>
+              </div>
+              <div class="card-section">
+                <h4>Description (on card)</h4>
+                <p>Moses is the leader of the Jewish people. He helped them leave Egypt and now takes care of them in the desert.</p>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">This is Moses - Moshe! Look at his face. Moses is DEVOTED - that means he cares SO much about helping everyone. He works all day listening to people's problems because he loves his people. Can you show me a devoted face - like you really care about helping?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPOTLIGHT 2 -->
+        <div class="card">
+          <div class="card-header spotlight">
+            <div class="card-title">
+              <span class="card-title-he">יִתְרוֹ</span>
+              Yitro
+            </div>
+            <span class="card-badge">SPOTLIGHT</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/spotlight_2.png" alt="Yitro" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Emotion</h4>
+                <span class="hebrew-word">WISE</span>
+              </div>
+              <div class="card-section">
+                <h4>Description (on card)</h4>
+                <p>Yitro is Moses's father-in-law. He is like a wise grandfather who gives very good advice!</p>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">This is Yitro! He's Moses's father-in-law - that means he is the daddy of Moses's wife, Tzipporah! Yitro is like a wise grandfather. He traveled through the whole desert to visit Moses because he heard about amazing things happening. Look at Yitro's face - he looks WISE. That means he knows a lot and gives good advice!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title">Action Cards (Story Sequence)</h2>
+
+        <!-- ACTION 1 -->
+        <div class="card">
+          <div class="card-header action">
+            <div class="card-title">
+              <span class="card-title-he">הַפְּגִישָׁה הַשְּׂמֵחָה</span>
+              #1: The Joyful Reunion
+            </div>
+            <span class="card-badge">ACTION</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/action_1.png" alt="Action 1" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Hebrew Keyword</h4>
+                <span class="hebrew-word">שִׂמְחָה</span>
+                <span style="margin-left: 0.5rem;">Joy</span>
+              </div>
+              <div class="card-section">
+                <h4>Story Text (on card)</h4>
+                <div class="story-text">Yitro travels through the desert to visit Moses. Moses runs out to greet him with open arms!</div>
+              </div>
+              <div class="card-section">
+                <h4>Roleplay Prompt (on card)</h4>
+                <div class="roleplay">Act it out: Hug like you missed someone SO much!</div>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">Look! Yitro came to visit Moses in the desert! Moses was SO happy to see him. He ran out to meet him and gave him a BIG hug! Can you show me how you hug someone you really missed? Give yourself a big hug! That's called SIMCHA - joy!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTION 2 -->
+        <div class="card">
+          <div class="card-header action">
+            <div class="card-title">
+              <span class="card-title-he">עֵצָה חֲכָמָה</span>
+              #2: Wise Advice
+            </div>
+            <span class="card-badge">ACTION</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/action_2.png" alt="Action 2" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Hebrew Keyword</h4>
+                <span class="hebrew-word">עֵצָה</span>
+                <span style="margin-left: 0.5rem;">Advice</span>
+              </div>
+              <div class="card-section">
+                <h4>Story Text (on card)</h4>
+                <div class="story-text">Yitro sees Moses working too hard, helping everyone all by himself. He says: 'Moses, you need helpers!'</div>
+              </div>
+              <div class="card-section">
+                <h4>Roleplay Prompt (on card)</h4>
+                <div class="roleplay">Act it out: Point your finger like you're giving wise advice!</div>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">Yitro saw that Moses was working SO hard, all by himself! He said, 'Moses, you need helpers!' That's called giving EITZAH - advice. When someone gives you good advice, they're helping you! Can you point your finger like you're giving wise advice?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTION 3 -->
+        <div class="card">
+          <div class="card-header action">
+            <div class="card-title">
+              <span class="card-title-he">הָהָר הַגָּדוֹל</span>
+              #3: The Big Mountain
+            </div>
+            <span class="card-badge">ACTION</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/action_3.png" alt="Action 3" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Hebrew Keyword</h4>
+                <span class="hebrew-word">הַר</span>
+                <span style="margin-left: 0.5rem;">Mountain</span>
+              </div>
+              <div class="card-section">
+                <h4>Story Text (on card)</h4>
+                <div class="story-text">The whole nation travels to Mount Sinai. They camp at the bottom of the great mountain and look UP!</div>
+              </div>
+              <div class="card-section">
+                <h4>Roleplay Prompt (on card)</h4>
+                <div class="roleplay">Act it out: Walk like you're climbing up, up, UP a big mountain!</div>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">The whole Jewish people traveled to a very special mountain called Sinai - HAR Sinai! Can you say HAR? It means mountain! They walked and walked until they got there. Show me how you walk when you're going UP a mountain - up, up, UP!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTION 4 -->
+        <div class="card">
+          <div class="card-header action">
+            <div class="card-title">
+              <span class="card-title-he">רַעַם וְאוֹר!</span>
+              #4: Thunder and Light!
+            </div>
+            <span class="card-badge">ACTION</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/action_4.png" alt="Action 4" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Hebrew Keyword</h4>
+                <span class="hebrew-word">קוֹל</span>
+                <span style="margin-left: 0.5rem;">Voice / Sound</span>
+              </div>
+              <div class="card-section">
+                <h4>Story Text (on card)</h4>
+                <div class="story-text">The mountain shakes! Thunder BOOMS! Lightning flashes! The shofar blows! Everyone watches in amazement!</div>
+              </div>
+              <div class="card-section">
+                <h4>Roleplay Prompt (on card)</h4>
+                <div class="roleplay">Act it out: Shake like the mountain! SHAKE SHAKE SHAKE!</div>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">Then something AMAZING happened! The mountain started to SHAKE! SHAKE SHAKE SHAKE! Thunder went BOOM BOOM BOOM! Lightning flashed! A shofar blew TEKIAH! And there was a big voice - a KOL - from the mountain! Everyone was SO amazed!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTION 5 -->
+        <div class="card">
+          <div class="card-header action">
+            <div class="card-title">
+              <span class="card-title-he">מַקְשִׁיבִים בִּזְהִירוּת</span>
+              #5: Listening Carefully
+            </div>
+            <span class="card-badge">ACTION</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/action_5.png" alt="Action 5" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Hebrew Keyword</h4>
+                <span class="hebrew-word">שָׁמַע</span>
+                <span style="margin-left: 0.5rem;">Listen</span>
+              </div>
+              <div class="card-section">
+                <h4>Story Text (on card)</h4>
+                <div class="story-text">Everyone listens very, very carefully. They hear the most important words ever!</div>
+              </div>
+              <div class="card-section">
+                <h4>Roleplay Prompt (on card)</h4>
+                <div class="roleplay">Act it out: Put your hand to your ear and listen VERY carefully!</div>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">Everyone got very, very quiet. They listened SO carefully - SHAMA! Can you put your hand to your ear like you're listening? The special words came from the mountain. These were the most important rules ever - the Ten Commandments!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title">Connection Cards (Discussion)</h2>
+
+        <!-- THINKER 1 -->
+        <div class="card">
+          <div class="card-header connection">
+            <div class="card-title">
+              <span class="card-title-he">לִפְנֵי הָהָר</span>
+              At the Mountain
+            </div>
+            <span class="card-badge">CONNECTION</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/thinker_1.png" alt="Thinker 1" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Discussion Questions (on card)</h4>
+                <ul class="questions-list">
+                  <li><div class="question-type">Emotional Empathy</div>How do you think the children felt when they heard the thunder? Point to a feeling face!</li>
+                  <li><div class="question-type">Cognitive Empathy</div>Why do you think everyone was so quiet when the special words came?</li>
+                  <li><div class="question-type">Connection</div>Have you ever heard something SO loud it surprised you?</li>
+                </ul>
+              </div>
+              <div class="card-section">
+                <h4>Feeling Faces (on card)</h4>
+                <div class="feeling-faces">
+                  <div class="feeling-face"><div class="emoji">😊</div><div class="label-he">שָׂמֵחַ</div></div>
+                  <div class="feeling-face"><div class="emoji">😢</div><div class="label-he">עָצוּב</div></div>
+                  <div class="feeling-face"><div class="emoji">😨</div><div class="label-he">מְפֻחָד</div></div>
+                  <div class="feeling-face"><div class="emoji">😮</div><div class="label-he">מֻפְתָּע</div></div>
+                  <div class="feeling-face"><div class="emoji">🥹</div><div class="label-he">גֵּאֶה</div></div>
+                  <div class="feeling-face"><div class="emoji">😕</div><div class="label-he">מְבֻלְבָּל</div></div>
+                </div>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">Let's sit in a Torah Talk circle! Look at these feeling faces. When the thunder boomed and the mountain shook, how do you think the children there felt? Can you point to a face? Maybe surprised? Maybe a little scared but also excited?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- THINKER 2 -->
+        <div class="card">
+          <div class="card-header connection">
+            <div class="card-title">
+              <span class="card-title-he">לְקַבֵּל עֶזְרָה</span>
+              Getting Help
+            </div>
+            <span class="card-badge">CONNECTION</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/thinker_2.png" alt="Thinker 2" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Discussion Questions (on card)</h4>
+                <ul class="questions-list">
+                  <li><div class="question-type">Emotional Empathy</div>How do you think Moses felt when he was working SO hard all by himself?</li>
+                  <li><div class="question-type">Cognitive Empathy</div>Why do you think Yitro wanted to help Moses?</li>
+                  <li><div class="question-type">Connection</div>Has anyone ever helped YOU when something was too hard? How did you feel?</li>
+                </ul>
+              </div>
+              <div class="card-section">
+                <h4>Feeling Faces (on card)</h4>
+                <div class="feeling-faces">
+                  <div class="feeling-face"><div class="emoji">😊</div><div class="label-he">שָׂמֵחַ</div></div>
+                  <div class="feeling-face"><div class="emoji">😩</div><div class="label-he">עָיֵף</div></div>
+                  <div class="feeling-face"><div class="emoji">🥹</div><div class="label-he">אָסִיר תּוֹדָה</div></div>
+                  <div class="feeling-face"><div class="emoji">😃</div><div class="label-he">גֵּאֶה</div></div>
+                </div>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">Torah Talk time! Moses was working SO hard. He was tired! Then Yitro came and helped him with advice. That's what families do! Can you think of a time when something was really hard and someone helped you?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title">Power Word Cards (Hebrew Vocabulary)</h2>
+
+        <!-- POWER WORD 1 -->
+        <div class="card">
+          <div class="card-header power-word">
+            <div class="card-title">
+              <span class="card-title-he">עֵצָה</span>
+              Advice
+            </div>
+            <span class="card-badge">POWER WORD</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/power_word_1.png" alt="Power Word 1" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Hebrew Word</h4>
+                <span class="hebrew-word" style="font-size: 2.5rem;">עֵצָה</span>
+                <div style="margin-top: 0.5rem;">Eitzah - Advice</div>
+              </div>
+              <div class="card-section">
+                <h4>Torah Source (on card)</h4>
+                <p>"The thing you are doing is not good..." - Yitro to Moses (Exodus 18:17-18)</p>
+              </div>
+              <div class="card-section">
+                <h4>Example (on card)</h4>
+                <p>"Yitro gave Moses good advice: Get helpers!"</p>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">Our Power Word is EITZAH! Can you say it? Eitzah! It means 'advice.' In the Torah, Yitro told Moses: 'What you are doing is not good - you need helpers!' That was such good eitzah! Who gives YOU good advice?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- POWER WORD 2 -->
+        <div class="card">
+          <div class="card-header power-word">
+            <div class="card-title">
+              <span class="card-title-he">שָׁמַע</span>
+              Listen
+            </div>
+            <span class="card-badge">POWER WORD</span>
+          </div>
+          <div class="card-body">
+            <div class="card-image-panel">
+              <img src="../decks/yitro/images/power_word_2.png" alt="Power Word 2" class="card-image" onclick="openLightbox(this.src)">
+            </div>
+            <div class="card-content">
+              <div class="card-section">
+                <h4>Hebrew Word</h4>
+                <span class="hebrew-word" style="font-size: 2.5rem;">שָׁמַע</span>
+                <div style="margin-top: 0.5rem;">Shama - Listen / Hear</div>
+              </div>
+              <div class="card-section">
+                <h4>Torah Source (on card)</h4>
+                <p>"And Yitro heard all that God had done for Moses and for Israel." (Exodus 18:1)</p>
+              </div>
+              <div class="card-section">
+                <h4>Example (on card)</h4>
+                <p>"The people listened very carefully at the mountain!"</p>
+              </div>
+              <div class="card-section">
+                <h4>Teacher Script</h4>
+                <div class="teacher-script">Our second Power Word is SHAMA! Can you say it? Shama! It means 'listen.' In the Torah it says 'Yitro HEARD all that God had done' - he listened! The Jewish people did shama at the mountain too. Let's practice - put your hand to your ear and listen very carefully!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- TERUMAH DECK -->
+  <div id="deck-terumah" class="deck-content">
+    <div class="deck-header">
+      <div class="hebrew-title">פָּרָשַׁת תְּרוּמָה</div>
+      <h2>Parashat Terumah</h2>
+      <div class="subtitle">Exodus 25:1-27:19 | 8 Cards | GIVING from the Heart</div>
+    </div>
+
+    <div class="pipeline-toggle">
+      <button onclick="togglePipeline('terumah', 'cards')" class="active" id="terumah-cards-btn">View Cards</button>
+      <button onclick="togglePipeline('terumah', 'pipeline')" id="terumah-pipeline-btn">View Pipeline</button>
+    </div>
+
+    <div id="terumah-pipeline" class="pipeline-content">
+      <div class="pipeline-box">
+        <h3>Pipeline Summary</h3>
+        <p>8 cards total: 1 Anchor, 4 Story, 2 Connection, 1 Power Word</p>
+        <p>Theme: GIVING from the heart - contributing to build something beautiful together</p>
+        <p>See individual Terumah preview for full pipeline details.</p>
+      </div>
+    </div>
+
+    <div id="terumah-cards" class="pipeline-content active">
+      <div class="cards-container">
+        <p style="text-align: center; padding: 2rem; color: #666;">
+          <a href="../decks/terumah/preview.html" style="color: #5c2d91; font-size: 1.2rem;">
+            Open Terumah Preview (8 cards with full details)
+          </a>
+        </p>
+
+        <h2 class="section-title">Quick Preview - All 8 Cards</h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+          <div style="text-align: center;">
+            <img src="../decks/terumah/images/anchor_1.png" alt="Anchor" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer;" onclick="openLightbox(this.src)">
+            <p style="margin-top: 0.5rem; font-weight: 500;">Anchor</p>
+          </div>
+          <div style="text-align: center;">
+            <img src="../decks/terumah/images/story_1.png" alt="Story 1" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer;" onclick="openLightbox(this.src)">
+            <p style="margin-top: 0.5rem; font-weight: 500;">Story 1</p>
+          </div>
+          <div style="text-align: center;">
+            <img src="../decks/terumah/images/story_2.png" alt="Story 2" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer;" onclick="openLightbox(this.src)">
+            <p style="margin-top: 0.5rem; font-weight: 500;">Story 2</p>
+          </div>
+          <div style="text-align: center;">
+            <img src="../decks/terumah/images/story_3.png" alt="Story 3" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer;" onclick="openLightbox(this.src)">
+            <p style="margin-top: 0.5rem; font-weight: 500;">Story 3</p>
+          </div>
+          <div style="text-align: center;">
+            <img src="../decks/terumah/images/story_4.png" alt="Story 4" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer;" onclick="openLightbox(this.src)">
+            <p style="margin-top: 0.5rem; font-weight: 500;">Story 4</p>
+          </div>
+          <div style="text-align: center;">
+            <img src="../decks/terumah/images/connection_1.png" alt="Connection 1" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer;" onclick="openLightbox(this.src)">
+            <p style="margin-top: 0.5rem; font-weight: 500;">Connection 1</p>
+          </div>
+          <div style="text-align: center;">
+            <img src="../decks/terumah/images/connection_2.png" alt="Connection 2" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer;" onclick="openLightbox(this.src)">
+            <p style="margin-top: 0.5rem; font-weight: 500;">Connection 2</p>
+          </div>
+          <div style="text-align: center;">
+            <img src="../decks/terumah/images/power_word_1.png" alt="Power Word" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer;" onclick="openLightbox(this.src)">
+            <p style="margin-top: 0.5rem; font-weight: 500;">Power Word</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Full size">
+  </div>
+
+  <!-- Floating Feedback Button -->
+  <div id="feedback-fab" onclick="openFeedbackPanel()" style="
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #5c2d91;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    font-weight: 600;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  ">
+    <span style="font-size: 1.2rem;">&#9997;</span> Share Feedback
+  </div>
+
+  <!-- Feedback Panel -->
+  <div id="feedback-panel" style="
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+    z-index: 200;
+    overflow-y: auto;
+  ">
+    <div style="
+      background: #5c2d91;
+      color: white;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    ">
+      <h2 style="margin: 0; font-size: 1.3rem;">Feedback</h2>
+      <button onclick="closeFeedbackPanel()" style="
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      ">&times;</button>
+    </div>
+
+    <div style="padding: 1.5rem;">
+      <p style="margin-bottom: 1rem; color: #666;">Add your feedback for each deck. When done, click "Download Feedback" to save the JSON file and send it back.</p>
+
+      <div style="margin-bottom: 1.5rem;">
+        <h3 style="color: #5c2d91; margin-bottom: 0.5rem;">Yitro Deck Feedback</h3>
+        <label style="font-size: 0.9rem; color: #666;">Overall Comments:</label>
+        <textarea id="yitro-feedback" style="
+          width: 100%;
+          height: 120px;
+          padding: 0.75rem;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          font-family: inherit;
+          margin-top: 0.25rem;
+          resize: vertical;
+        " placeholder="Enter your feedback for the Yitro deck here..."></textarea>
+
+        <label style="font-size: 0.9rem; color: #666; margin-top: 0.5rem; display: block;">Card-Specific Issues (optional):</label>
+        <textarea id="yitro-card-feedback" style="
+          width: 100%;
+          height: 80px;
+          padding: 0.75rem;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          font-family: inherit;
+          margin-top: 0.25rem;
+          resize: vertical;
+        " placeholder="e.g., 'Action 3: text too small' or 'Power Word 1: Hebrew spelling issue'"></textarea>
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <h3 style="color: #5c2d91; margin-bottom: 0.5rem;">Terumah Deck Feedback</h3>
+        <label style="font-size: 0.9rem; color: #666;">Overall Comments:</label>
+        <textarea id="terumah-feedback" style="
+          width: 100%;
+          height: 120px;
+          padding: 0.75rem;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          font-family: inherit;
+          margin-top: 0.25rem;
+          resize: vertical;
+        " placeholder="Enter your feedback for the Terumah deck here..."></textarea>
+
+        <label style="font-size: 0.9rem; color: #666; margin-top: 0.5rem; display: block;">Card-Specific Issues (optional):</label>
+        <textarea id="terumah-card-feedback" style="
+          width: 100%;
+          height: 80px;
+          padding: 0.75rem;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          font-family: inherit;
+          margin-top: 0.25rem;
+          resize: vertical;
+        " placeholder="e.g., 'Story 2: image doesn't match description'"></textarea>
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <label style="font-size: 0.9rem; color: #666;">Your Name:</label>
+        <input type="text" id="reviewer-name" style="
+          width: 100%;
+          padding: 0.75rem;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          font-family: inherit;
+          margin-top: 0.25rem;
+        " placeholder="Enter your name">
+      </div>
+
+      <button onclick="downloadFeedback()" style="
+        width: 100%;
+        background: #2ECC40;
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 0.5rem;
+      ">Download Feedback JSON</button>
+
+      <button onclick="copyFeedbackToClipboard()" style="
+        width: 100%;
+        background: #0074D9;
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+      ">Copy to Clipboard</button>
+
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: #999; text-align: center;">
+        Send the downloaded JSON file back via email or text.
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align: center; padding: 2rem; color: #999; font-size: 0.9rem;">
+    Parasha Pack Preview - Generated via Agent Pipeline
+  </div>
+
+  <script>
+    function switchDeck(deckId) {
+      document.querySelectorAll('.deck-content').forEach(d => d.classList.remove('active'));
+      document.getElementById('deck-' + deckId).classList.add('active');
+    }
+
+    function togglePipeline(deck, view) {
+      document.getElementById(deck + '-cards-btn').classList.remove('active');
+      document.getElementById(deck + '-pipeline-btn').classList.remove('active');
+      document.getElementById(deck + '-' + view + '-btn').classList.add('active');
+
+      document.getElementById(deck + '-cards').classList.remove('active');
+      document.getElementById(deck + '-pipeline').classList.remove('active');
+      document.getElementById(deck + '-' + view).classList.add('active');
+    }
+
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    function openFeedbackPanel() {
+      document.getElementById('feedback-panel').style.display = 'block';
+      document.getElementById('feedback-fab').style.display = 'none';
+    }
+
+    function closeFeedbackPanel() {
+      document.getElementById('feedback-panel').style.display = 'none';
+      document.getElementById('feedback-fab').style.display = 'flex';
+    }
+
+    function getFeedbackData() {
+      return {
+        reviewer: document.getElementById('reviewer-name').value || 'Anonymous',
+        timestamp: new Date().toISOString(),
+        decks: {
+          yitro: {
+            overall_feedback: document.getElementById('yitro-feedback').value,
+            card_issues: document.getElementById('yitro-card-feedback').value
+          },
+          terumah: {
+            overall_feedback: document.getElementById('terumah-feedback').value,
+            card_issues: document.getElementById('terumah-card-feedback').value
+          }
+        }
+      };
+    }
+
+    function downloadFeedback() {
+      const data = getFeedbackData();
+      const json = JSON.stringify(data, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'parasha-pack-feedback-' + new Date().toISOString().split('T')[0] + '.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      alert('Feedback downloaded! Please send this file back via email.');
+    }
+
+    function copyFeedbackToClipboard() {
+      const data = getFeedbackData();
+      const json = JSON.stringify(data, null, 2);
+      navigator.clipboard.writeText(json).then(() => {
+        alert('Feedback copied to clipboard! You can paste it in an email or message.');
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+        alert('Failed to copy. Please use the download button instead.');
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        closeFeedbackPanel();
+      }
+    });
+  </script>
+</body>
+</html>

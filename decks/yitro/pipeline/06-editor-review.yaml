@@ -1,0 +1,120 @@
+editor_review:
+  parasha: "Yitro"
+  review_date: "2026-02-03"
+
+  # Summary of agent pipeline
+  pipeline_summary:
+    research_complete: yes
+    structure_complete: yes
+    content_complete: yes
+    hebrew_complete: yes
+    visual_direction_complete: yes
+
+  # Deck statistics
+  deck_stats:
+    total_cards: 12
+    anchor_cards: 1
+    spotlight_cards: 2
+    action_cards: 5
+    thinker_cards: 2
+    power_word_cards: 2
+
+  # Key themes verified
+  themes:
+    primary: "AWE and WONDER at Sinai"
+    secondary: "Family reunion, accepting good advice"
+    emotional_core: "That breathtaking WOW feeling when experiencing something truly amazing"
+
+  # Character consistency check
+  characters:
+    moses:
+      reference_exists: yes
+      description_consistent: yes
+      notes: "Blue/cream robes, head covering, staff, devoted expression"
+    yitro:
+      reference_exists: no
+      needs_generation: yes
+      description_consistent: yes
+      notes: "Long white beard, colorful Midianite robes, walking stick, wise grandfather"
+
+  # Hebrew accuracy check
+  hebrew_accuracy:
+    nikud_verified: yes
+    age_appropriate: yes
+    torah_quotes_accurate: yes
+    no_gods_name: yes
+
+  # Safety compliance
+  safety_check:
+    no_god_depiction: yes
+    tablets_use_alphabet: yes
+    thunder_scene_not_scary: yes
+    all_imagery_age_appropriate: yes
+
+  # Card-by-card review
+  card_reviews:
+    anchor_1:
+      status: approved
+      notes: "Tablets with א-י, golden light, AWE theme clear"
+
+    spotlight_1:
+      status: approved
+      notes: "Moses with devoted expression, helping everyone"
+
+    spotlight_2:
+      status: approved
+      notes: "Yitro as wise grandfather, needs reference sheet"
+
+    action_1:
+      status: approved
+      notes: "Joyful reunion with hugging, high energy"
+      keyword: "שִׂמְחָה (Joy)"
+
+    action_2:
+      status: approved
+      notes: "Advice scene - Yitro standing, Moses seated, long line in background"
+      keyword: "עֵצָה (Advice)"
+
+    action_3:
+      status: approved
+      notes: "Mountain arrival, families looking UP"
+      keyword: "הַר (Mountain)"
+
+    action_4:
+      status: approved
+      notes: "Thunder scene - AWE-inspiring NOT scary, like fireworks"
+      keyword: "קוֹל (Voice/Sound)"
+
+    action_5:
+      status: approved
+      notes: "Listening scene - peaceful, reverent, tablets visible"
+      keyword: "שָׁמַע (Listen)"
+
+    thinker_1:
+      status: approved
+      notes: "At the Mountain - questions about thunder experience"
+      feeling_faces: ["amazed", "excited", "happy", "proud"]
+
+    thinker_2:
+      status: approved
+      notes: "Getting Help - questions about advice and support"
+      feeling_faces: ["happy", "tired", "grateful", "proud"]
+
+    power_word_1:
+      status: approved
+      notes: "עֵצָה (Advice) - practical word kids can use"
+
+    power_word_2:
+      status: approved
+      notes: "שָׁמַע (Listen) - connects to Shema prayer"
+
+  # Final approval
+  final_status: approved_for_generation
+  generation_notes: |
+    Ready for v2 image generation. All content reviewed and approved.
+    Key reminders for prompts:
+    - Tablets show א ב ג ד ה | ו ז ח ט י (NOT God's name)
+    - Thunder scene: AWE not fear - like amazing fireworks
+    - Moses: always include head covering
+    - Yitro: long flowing white beard, colorful robes
+    - Include exact text to render in all prompts

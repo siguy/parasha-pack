@@ -1,0 +1,154 @@
+parasha_research:
+  name_en: "Yitro"
+  name_he: "יִתְרוֹ"
+  ref: "Exodus 18:1-20:23"
+  book: "Exodus"
+
+  # Core emotional focus
+  emotional_core: |
+    AWE and WONDER - the experience of something so amazing it takes your breath away.
+    Secondary: Family love (reunion) and the wisdom of asking for help.
+
+  connection_hook: |
+    Have you ever seen something SO amazing you said "WOW!"? Like fireworks, or a huge
+    mountain, or something that made your eyes go wide? That's how the Jewish people
+    felt when they stood at the mountain and heard the most special words ever!
+
+  # Parasha type assessment
+  parasha_type: narrative
+  narrative_potential: high
+
+  # Key story moments (ranked)
+  key_moments:
+    - moment: "Yitro arrives and reunites with Moses"
+      characters: ["Moses", "Yitro", "Tzipporah", "Gershom", "Eliezer"]
+      emotion: "joy, love, excitement"
+      connection_potential: |
+        Kids know the feeling of seeing a grandparent or relative they haven't
+        seen in a long time. The hug, the happiness!
+      visual_potential: high
+
+    - moment: "Yitro gives Moses advice about getting helpers"
+      characters: ["Moses", "Yitro"]
+      emotion: "concerned, wise, grateful"
+      connection_potential: |
+        Kids understand being tired from doing too much. They know what it's
+        like when someone helps them with something hard.
+      visual_potential: medium
+
+    - moment: "The people arrive at Mount Sinai"
+      characters: ["Israelites (families)", "Moses"]
+      emotion: "excited, anticipating, awed"
+      connection_potential: |
+        Like arriving somewhere special - Disneyland, the beach, grandma's house.
+        The excitement of "we're finally here!"
+      visual_potential: high
+
+    - moment: "Thunder, lightning, shofar on the mountain"
+      characters: ["Israelites watching", "The mountain"]
+      emotion: "amazed, awed, a little nervous but excited"
+      connection_potential: |
+        Kids know thunder and lightning. The drama! The spectacle!
+        Like the biggest fireworks show ever.
+      visual_potential: high
+
+    - moment: "The people listen to the Ten Commandments"
+      characters: ["Israelites", "Two tablets"]
+      emotion: "focused, reverent, attentive"
+      connection_potential: |
+        Kids know what it's like to listen very carefully when something
+        important is being said. The quiet, focused attention.
+      visual_potential: high
+
+  # Character analysis
+  main_character:
+    name_en: "Moses"
+    name_he: "מֹשֶׁה"
+    why_relatable: |
+      Moses works SO hard helping everyone. Kids know what it's like to be tired.
+      He also shows that even leaders need help sometimes - asking for help is smart!
+    key_emotion: "devoted, but also overwhelmed then relieved"
+
+  secondary_character:
+    name_en: "Yitro"
+    name_he: "יִתְרוֹ"
+    role_in_story: |
+      The wise grandfather figure who travels far to visit family and gives
+      helpful advice. Kids relate to grandparent figures who help and care.
+
+  # Discussion seeds for Connection cards
+  discussion_seeds:
+    - "Have you ever seen someone you love after a long time apart? How did it feel?"
+    - "Has anyone ever helped YOU when something was too hard?"
+    - "Have you ever heard something SO loud it surprised you?"
+    - "What's a special rule that helps your family or class?"
+    - "Who gives YOU good advice?"
+
+  # Hebrew vocabulary recommendations
+  hebrew_words:
+    primary:
+      word: "שמע"
+      word_nikud: "שָׁמַע"
+      meaning: "Listen / Hear"
+      why_this_word: |
+        Central to the parasha - Yitro "heard" about the miracles, and the people
+        "listened" to the commandments. Also connects to Shema prayer.
+      torah_source: "Exodus 18:1 - 'And Yitro heard...'"
+
+    secondary:
+      word: "עצה"
+      word_nikud: "עֵצָה"
+      meaning: "Advice"
+      why_this_word: |
+        Yitro's advice to Moses is a key lesson - asking for and accepting help.
+        Practical word kids can use.
+      torah_source: "Exodus 18:19 - Yitro's advice scene"
+
+    story_keywords:
+      - word_nikud: "שִׂמְחָה"
+        meaning: "Joy"
+        for_card: "story_1 (reunion)"
+      - word_nikud: "עֵצָה"
+        meaning: "Advice"
+        for_card: "story_2 (Yitro's advice)"
+      - word_nikud: "הַר"
+        meaning: "Mountain"
+        for_card: "story_3 (arriving at Sinai)"
+      - word_nikud: "קוֹל"
+        meaning: "Voice/Sound"
+        for_card: "story_4 (thunder and revelation)"
+
+  # Safety notes
+  avoid:
+    - "Any depiction of God in human form"
+    - "Writing God's name (יהוה) - use letters א-י on tablets instead"
+    - "Making the thunder/lightning scene scary - keep it AWE-inspiring, not frightening"
+    - "The actual commandments text - too complex, just show the moment"
+    - "Death of any characters"
+
+  # Continuity tracking
+  continuity:
+    year_context_checked: yes
+
+    characters_this_week:
+      new_characters:
+        - name: "Yitro"
+          needs_reference_sheet: yes
+          visual_description: |
+            Wise elderly man with LONG FLOWING white/gray beard. Warm twinkling
+            eyes that show wisdom and kindness. Wears COLORFUL earth-toned desert
+            robes (rich browns, tans, with red and gold accents - Midianite style).
+            Gentle grandfatherly smile. Has a walking stick.
+
+      returning_characters:
+        - name: "Moses"
+          last_appearance: "Beshalach"
+          reference_sheet_exists: yes
+          what_changed: |
+            This week shows Moses as DEVOTED leader who works too hard, then
+            learns to accept help. Also shows his JOY at family reunion.
+
+    year_context_updates:
+      new_characters_to_add: ["Yitro"]
+      new_concepts_to_add: ["Giving the Torah", "Mount Sinai", "Ten Commandments"]
+      new_hebrew_words_to_add: ["שָׁמַע", "עֵצָה", "הַר", "קוֹל"]

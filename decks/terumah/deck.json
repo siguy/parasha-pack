@@ -1,0 +1,224 @@
+{
+  "parasha_en": "Terumah",
+  "parasha_he": "תְּרוּמָה",
+  "ref": "Exodus 25:1-27:19",
+  "border_color": "#5c2d91",
+  "theme": "contribution",
+  "version": "2.0",
+  "target_age": "4-6",
+  "card_count": 8,
+  "emotional_core": "GIVING from the heart - the joy and pride of contributing something special to build something beautiful together.",
+  "cards": [
+    {
+      "card_id": "anchor_1",
+      "card_type": "anchor",
+      "title_en": "Parashat Terumah",
+      "title_he": "פָּרָשַׁת תְּרוּמָה",
+      "emotional_hook_en": "This week is about GIVING! When you give something special to help make something beautiful, it feels SO good inside!",
+      "emotional_hook_he": "הַשָּׁבוּעַ עַל נְתִינָה! כְּשֶׁאַתָּה נוֹתֵן מַשֶּׁהוּ מְיֻחָד לַעֲזֹר לַעֲשׂוֹת מַשֶּׁהוּ יָפֶה, זֶה מַרְגִּישׁ כָּל כָּךְ טוֹב!",
+      "symbol_description": "Hands lifting up colorful gifts toward golden light. Treasures include: shiny gold, purple and blue fabric, red yarn. A heart shape formed by the arrangement. Warm, glowing feeling. Community silhouettes in the background, all contributing.",
+      "border_color": "#5c2d91",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive features.\n- Lines: Thick, clean black outlines (2-3px equivalent).\n- Contrast: High contrast between foreground and background.\n- Complexity: Maximum 5-7 distinct visual elements per scene.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\nColors:\n- Main elements: Bold primary colors\n- Background: Soft warm cream/tan gradient\n\n=== RESTRICTIONS ===\nNEVER depict God in any human or physical form.\nUse only: Warm golden light rays from above.\nNo scary elements. All imagery warm and inviting.\n\n=== CARD TYPE: ANCHOR (Full Bleed Parasha Introduction) ===\n\n=== EXACT TEXT TO RENDER ===\nHebrew Title: \"פָּרָשַׁת תְּרוּמָה\"\nEnglish Title: \"Parashat Terumah\"\nEmotional Hook: \"This week is about GIVING! When you give something special to help make something beautiful, it feels SO good inside!\"\n\n=== CENTRAL SYMBOL ===\nMultiple hands (4-6 hands, diverse skin tones from light to dark brown) lifting treasures upward toward golden light.\n\nThe treasures being lifted:\n- Shiny gold coins/jewelry\n- Purple fabric (rich grape purple)\n- Blue yarn/cloth (sky blue)\n- Red/crimson fabric\n\nThe hands arrange naturally to suggest a heart shape.\nWarm golden light rays stream down from soft clouds above.\nFaint silhouettes of community members in the background.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. HEBREW TITLE (top 15%): \"פָּרָשַׁת תְּרוּמָה\" in large, beautiful Hebrew lettering with nikud\n2. ENGLISH TITLE (5%): \"Parashat Terumah\" in friendly font below Hebrew\n3. CENTRAL SYMBOL (55%): Hands lifting colorful treasures toward golden light rays\n4. EMOTIONAL HOOK (18%): \"This week is about GIVING! When you give something special to help make something beautiful, it feels SO good inside!\"\n5. Small decorative hearts/sparkles around the edges\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #5c2d91 Royal Purple (8px width)\n- Heart icon in top-left corner\n\n=== MOOD ===\nWarm, generous, communal, joyful. Children should feel: \"Giving is wonderful! Everyone can help!\"",
+      "image_path": "images/anchor_1.png",
+      "teacher_script": "This is Parashat Terumah! Can you say \"Terumah\"? Terumah! It means a special gift that you give from your HEART. This week, the Jewish people are going to build something SO special - and everyone gets to help! When we give something to help others, it makes us feel really good inside. Put your hand on your heart - that's where the good feeling is!"
+    },
+    {
+      "card_id": "story_1",
+      "card_type": "story",
+      "title_en": "A Special Request",
+      "title_he": "בַּקָּשָׁה מְיֻחֶדֶת",
+      "sequence_number": 1,
+      "hebrew_key_word": "לב",
+      "hebrew_key_word_nikud": "לֵב",
+      "english_key_word": "Heart",
+      "english_description": "God asks Moses for help. \"Tell the people to bring gifts from their hearts. We are going to build something special!\"",
+      "roleplay_prompt": "Act it out: Put your hand on your heart - that's where giving comes from!",
+      "emotional_reactions": [
+        "excited",
+        "honored"
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes (20% of face).\n- Lines: Thick, clean black outlines (2-3px equivalent).\n- Emotion: Big, clear facial expressions visible from across classroom.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== RESTRICTIONS ===\nNEVER depict God in any human or physical form.\nShow divine presence ONLY as warm golden light rays from clouds above.\n\n=== CARD TYPE: STORY (Key Moment #1) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle: \"A Special Request\"\nHebrew Title: \"בַּקָּשָׁה מְיֻחֶדֶת\"\nSequence Badge: #1 in white circle with red border (top-right corner)\nHebrew Keyword: \"לֵב\" (Heart) in red badge\nStory Text: \"God asks Moses for help. 'Tell the people to bring gifts from their hearts. We are going to build something special!'\"\nRoleplay: \"Act it out: Put your hand on your heart - that's where giving comes from!\"\n\n=== CHARACTER: MOSES ===\nFriendly middle-aged man with warm brown skin and kind, gentle eyes.\nShort dark beard with some gray. Blue and cream robes.\nHEAD COVERING (cloth wrap/turban) - ALWAYS INCLUDE.\nWooden shepherd's staff resting nearby.\n\nExpression: INSPIRED - eyes bright with excitement, gentle smile, one hand placed on his heart. Looking upward toward the light. He has just heard something wonderful!\n\n=== VISUAL DESCRIPTION ===\nMoses stands in a desert/mountain setting (suggesting Sinai).\nWarm golden light rays stream down from soft glowing clouds above.\nMoses has one hand on his heart, looking up with an inspired, honored expression.\nSimple background: desert hills, blue sky.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 12%): Red background bar with:\n   - Lightning bolt icon (left)\n   - \"A Special Request\" in white text (center)\n   - \"בַּקָּשָׁה מְיֻחֶדֶת\" below in white\n   - #1 badge in white circle (right)\n2. ACTION SCENE (center 55%):\n   - Golden light rays from above (divine presence)\n   - Moses center-frame, hand on heart, looking up\n   - Inspired, excited expression\n   - Desert/mountain background\n3. HEBREW KEYWORD BADGE (floating at bottom of art): \"לֵב\" with heart icon, \"Heart\" below, red background\n4. TEXT BOX (bottom 25%): Cream/tan background containing:\n   - \"God asks Moses for help. 'Tell the people to bring gifts from their hearts. We are going to build something special!'\"\n   - Star icon followed by: \"Act it out: Put your hand on your heart - that's where giving comes from!\" in red accent text\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #FF4136 Red (8px width)\n\n=== MOOD ===\nInspirational, honored, anticipatory. Moses feels special to be asked. Children should feel: \"Something exciting is about to happen!\"",
+      "image_path": "images/story_1.png",
+      "teacher_script": "God said to Moses, \"I have a very special job for the people. Ask them to bring gifts - but not just any gifts. Gifts from their HEARTS!\" That means gifts they REALLY want to give. Put your hand on your heart. Can you feel it? When we give from our heart, it means we really, truly want to help! Moses was so excited to tell everyone!"
+    },
+    {
+      "card_id": "story_2",
+      "card_type": "story",
+      "title_en": "Beautiful Gifts",
+      "title_he": "מַתָּנוֹת יָפוֹת",
+      "sequence_number": 2,
+      "hebrew_key_word": "זהב",
+      "hebrew_key_word_nikud": "זָהָב",
+      "english_key_word": "Gold",
+      "english_description": "The people bring their treasures! Shiny gold! Sparkling silver! Beautiful purple, blue, and red fabric! Everyone has something to give!",
+      "roleplay_prompt": "Act it out: Carry something precious very carefully and put it in the pile!",
+      "emotional_reactions": [
+        "generous",
+        "proud",
+        "joyful"
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- This scene should be COLORFUL and JOYFUL!\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: STORY (Key Moment #2) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle: \"Beautiful Gifts\"\nHebrew Title: \"מַתָּנוֹת יָפוֹת\"\nSequence Badge: #2 in white circle with red border (top-right corner)\nHebrew Keyword: \"זָהָב\" (Gold) in red badge\nStory Text: \"The people bring their treasures! Shiny gold! Sparkling silver! Beautiful purple, blue, and red fabric! Everyone has something to give!\"\nRoleplay: \"Act it out: Carry something precious very carefully and put it in the pile!\"\n\n=== CHARACTERS: ISRAELITE COMMUNITY ===\nDiverse group of Jewish people - show 5-7 individuals:\n- A father carrying something gold (coins, jewelry, cup)\n- A mother holding beautiful purple fabric\n- A child carrying blue yarn excitedly\n- An elderly person with silver items\n- Another child with red/crimson cloth\n\nAll have warm skin tones (variety from light to dark brown).\nModest, colorful clothing in earth tones.\nALL have joyful, proud expressions - big smiles!\n\n=== VISUAL DESCRIPTION ===\nA procession of people bringing their treasures.\nThe scene BURSTS with color:\n- GOLD: shiny, gleaming gold items\n- PURPLE: rich grape-purple fabric\n- BLUE: sky-blue yarn and cloth\n- CRIMSON: deep red fabric\n\nPeople walk toward a central collection area.\nA child in the foreground carries something with great care.\nWarm sunlight. Festive, generous atmosphere.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 12%): Red background bar with:\n   - Lightning bolt icon (left)\n   - \"Beautiful Gifts\" in white text (center)\n   - \"מַתָּנוֹת יָפוֹת\" below in white\n   - #2 badge in white circle (right)\n2. ACTION SCENE (center 55%):\n   - Colorful procession of people bringing gifts\n   - Emphasis on the COLORS of the treasures\n   - Joyful expressions on all faces\n   - Child in foreground for relatability\n3. HEBREW KEYWORD BADGE (floating at bottom of art): \"זָהָב\" with sparkle icon, \"Gold\" below, red background\n4. TEXT BOX (bottom 25%): Cream/tan background containing:\n   - \"The people bring their treasures! Shiny gold! Sparkling silver! Beautiful purple, blue, and red fabric! Everyone has something to give!\"\n   - Star icon followed by: \"Act it out: Carry something precious very carefully and put it in the pile!\" in red accent text\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #FF4136 Red (8px width)\n\n=== MOOD ===\nJoyful, generous, colorful, celebratory! Children should feel: \"I want to bring something too!\"",
+      "image_path": "images/story_2.png",
+      "teacher_script": "When the people heard they could help, they were SO excited! They brought their most beautiful things. Some people brought shiny gold - ZAHAV! Some brought silver. Some brought beautiful fabric - purple like grapes, blue like the sky, red like apples! Let's pretend we're bringing something special. Pick up something pretend that's very precious. Carry it carefully... now put it gently in the pile. You're helping!"
+    },
+    {
+      "card_id": "story_3",
+      "card_type": "story",
+      "title_en": "Building Together",
+      "title_he": "בּוֹנִים בְּיַחַד",
+      "sequence_number": 3,
+      "hebrew_key_word": "יחד",
+      "hebrew_key_word_nikud": "יַחַד",
+      "english_key_word": "Together",
+      "english_description": "Everyone works together! Some people sew. Some people hammer. Some people carry. When we all help, we can build amazing things!",
+      "roleplay_prompt": "Act it out: Show me how YOU would help build - hammer, sew, carry, or paint!",
+      "emotional_reactions": [
+        "hardworking",
+        "connected",
+        "proud"
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Show MOVEMENT and ACTIVITY!\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: STORY (Key Moment #3) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle: \"Building Together\"\nHebrew Title: \"בּוֹנִים בְּיַחַד\"\nSequence Badge: #3 in white circle with red border (top-right corner)\nHebrew Keyword: \"יַחַד\" (Together) in red badge\nStory Text: \"Everyone works together! Some people sew. Some people hammer. Some people carry. When we all help, we can build amazing things!\"\nRoleplay: \"Act it out: Show me how YOU would help build - hammer, sew, carry, or paint!\"\n\n=== CHARACTERS: WORKING COMMUNITY ===\nShow 5-6 people doing DIFFERENT building tasks:\n- Someone SEWING beautiful fabric (pulling thread, focused)\n- Someone HAMMERING wood (motion lines showing hammer movement)\n- Two people CARRYING a wooden beam together\n- Someone arranging/organizing materials\n- A child helping by holding something or handing tools\n\nDiverse group, all ages, warm skin tones.\nEveryone looks happy while working - smiles, focused joy.\n\n=== VISUAL DESCRIPTION ===\nA busy, happy construction scene.\nThe beginnings of a structure visible (wooden frames, fabric panels).\nAction and movement throughout:\n- Motion lines on the hammer\n- Thread being pulled through fabric\n- People lifting together\n\nMaterials visible: gold items, colorful fabrics, wooden beams.\nWarm outdoor setting, sunny day.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 12%): Red background bar with:\n   - Lightning bolt icon (left)\n   - \"Building Together\" in white text (center)\n   - \"בּוֹנִים בְּיַחַד\" below in white\n   - #3 badge in white circle (right)\n2. ACTION SCENE (center 55%):\n   - Multiple people doing different tasks\n   - Clear movement and activity\n   - Child participating\n   - Beginning of structure visible\n3. HEBREW KEYWORD BADGE (floating at bottom of art): \"יַחַד\" with hands icon, \"Together\" below, red background\n4. TEXT BOX (bottom 25%): Cream/tan background containing:\n   - \"Everyone works together! Some people sew. Some people hammer. Some people carry. When we all help, we can build amazing things!\"\n   - Star icon followed by: \"Act it out: Show me how YOU would help build - hammer, sew, carry, or paint!\" in red accent text\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #FF4136 Red (8px width)\n\n=== MOOD ===\nEnergetic, collaborative, purposeful, joyful work! Children should feel: \"I want to help too! What job can I do?\"",
+      "image_path": "images/story_3.png",
+      "teacher_script": "Now it was time to BUILD! But one person couldn't do it alone. They needed to work YACHAD - together! Some people knew how to sew the beautiful fabrics. Some people knew how to hammer and build with wood. Some people carried heavy things. Everyone helped in their own special way! Let's all help build! Show me - what job would YOU do? Hammer? (pound pound!) Sew? (pull the thread!) Carry? (lift and walk!) Paint? (swish swish!) Great job, builders!"
+    },
+    {
+      "card_id": "story_4",
+      "card_type": "story",
+      "title_en": "Look What We Made!",
+      "title_he": "הִנֵּה מָה עָשִׂינוּ!",
+      "sequence_number": 4,
+      "optional": true,
+      "hebrew_key_word": "משכן",
+      "hebrew_key_word_nikud": "מִשְׁכָּן",
+      "english_key_word": "Tabernacle",
+      "english_description": "The Mishkan is beautiful! It shines with gold and glows with colors. Everyone helped make this special place!",
+      "roleplay_prompt": "Act it out: Step back, look up, and say WOW together!",
+      "emotional_reactions": [
+        "amazed",
+        "proud",
+        "awestruck"
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- This scene should feel MAJESTIC and AWE-INSPIRING!\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== RESTRICTIONS ===\nShow the Mishkan (Tabernacle) as a beautiful tent structure.\nIt should look special but NOT show the inside or the Ark.\nWarm golden glow around it - divine presence as LIGHT only.\n\n=== CARD TYPE: STORY (Key Moment #4) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle: \"Look What We Made!\"\nHebrew Title: \"הִנֵּה מָה עָשִׂינוּ!\"\nSequence Badge: #4 in white circle with red border (top-right corner)\nHebrew Keyword: \"מִשְׁכָּן\" (Tabernacle) in red badge\nStory Text: \"The Mishkan is beautiful! It shines with gold and glows with colors. Everyone helped make this special place!\"\nRoleplay: \"Act it out: Step back, look up, and say WOW together!\"\n\n=== VISUAL DESCRIPTION ===\nThe completed Mishkan stands magnificent:\n- Beautiful tent structure with golden accents\n- Colorful fabric panels (purple, blue, crimson)\n- Wooden framework visible\n- Warm golden light glowing around/from it\n\nIn the foreground: Community members (5-6 people including children) standing back and looking UP at their creation.\nPoses of awe: hands on cheeks, pointing, embracing each other.\nExpressions: amazed, proud, joyful tears, wonder.\nA family (parent and child) in foreground - child pointing up excitedly.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 12%): Red background bar with:\n   - Lightning bolt icon (left)\n   - \"Look What We Made!\" in white text (center)\n   - \"הִנֵּה מָה עָשִׂינוּ!\" below in white\n   - #4 badge in white circle (right)\n2. ACTION SCENE (center 55%):\n   - Mishkan in upper portion, glowing beautifully\n   - Community in lower portion, looking up in awe\n   - Family with child in foreground\n   - Wonder and pride on all faces\n3. HEBREW KEYWORD BADGE (floating at bottom of art): \"מִשְׁכָּן\" with tent icon, \"Tabernacle\" below, red background\n4. TEXT BOX (bottom 25%): Cream/tan background containing:\n   - \"The Mishkan is beautiful! It shines with gold and glows with colors. Everyone helped make this special place!\"\n   - Star icon followed by: \"Act it out: Step back, look up, and say WOW together!\" in red accent text\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #FF4136 Red (8px width)\n\n=== MOOD ===\nAwe, wonder, accomplishment, communal pride! Children should feel: \"WOW! They did it! We can build amazing things together!\"",
+      "image_path": "images/story_4.png",
+      "teacher_script": "And when it was all done, everyone stepped back and looked. The Mishkan - God's special house - was SO beautiful! It sparkled with gold. The fabrics were purple and blue and red. Everything was just right. And you know what? EVERYONE helped make it. The people who brought gold, the people who brought fabric, the people who sewed, the people who hammered - everyone! Let's step back and look at our amazing work. Ready? Say it with me: WOW! We did it TOGETHER!"
+    },
+    {
+      "card_id": "connection_1",
+      "card_type": "connection",
+      "title_en": "What Can I Give?",
+      "title_he": "מָה אֲנִי יָכוֹל לָתֵת?",
+      "questions": [
+        {
+          "question_type": "personal",
+          "question_en": "If we were building something special for our classroom, what would YOU bring to help?",
+          "question_he": "אִם הָיִינוּ בּוֹנִים מַשֶּׁהוּ מְיֻחָד לַכִּתָּה, מָה הָיִיתָ מֵבִיא לַעֲזֹר?"
+        },
+        {
+          "question_type": "empathy",
+          "question_en": "How do you think the people felt when they gave their special gifts?",
+          "question_he": "אֵיךְ לְדַעְתְּךָ הִרְגִּישׁוּ הָאֲנָשִׁים כְּשֶׁנָּתְנוּ אֶת הַמַּתָּנוֹת שֶׁלָּהֶם?"
+        },
+        {
+          "question_type": "action",
+          "question_en": "What's something special you have that you could share with someone?",
+          "question_he": "מָה מַשֶּׁהוּ מְיֻחָד שֶׁיֵּשׁ לְךָ שֶׁתּוּכַל לַחֲלֹק עִם מִישֶׁהוּ?"
+        }
+      ],
+      "torah_talk_instruction": "Sit in a circle and share!",
+      "feeling_faces": [
+        {
+          "emoji": "🥹",
+          "label_en": "Proud",
+          "label_he": "גֵּאֶה"
+        },
+        {
+          "emoji": "😊",
+          "label_en": "Happy",
+          "label_he": "שָׂמֵחַ"
+        },
+        {
+          "emoji": "🤗",
+          "label_en": "Generous",
+          "label_he": "נָדִיב"
+        },
+        {
+          "emoji": "😃",
+          "label_en": "Excited",
+          "label_he": "נִרְגָּשׁ"
+        }
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Mood: Calm, thoughtful, inviting for discussion.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: CONNECTION (Discussion Card) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle: \"What Can I Give?\"\nHebrew Title: \"מָה אֲנִי יָכוֹל לָתֵת?\"\nFeeling Faces Row (Hebrew labels ONLY on faces):\n  🥹 גֵּאֶה | 😊 שָׂמֵחַ | 🤗 נָדִיב | 😃 נִרְגָּשׁ\nQuestion 1: \"If we were building something special for our classroom, what would YOU bring to help?\"\nQuestion 2: \"How do you think the people felt when they gave their special gifts?\"\nQuestion 3: \"What's something special you have that you could share with someone?\"\nBottom Banner: \"Torah Talk: Sit in a circle and share!\"\n\n=== CHARACTERS ===\n2-3 children (ages 4-6 appearance) in thoughtful, sharing poses:\n- One child holding out an object to share (toy, book, or craft item)\n- One child with hand on chin, thinking\n- One child smiling, looking at the sharing child\n\nDiverse children, warm and relatable.\nSimple clothing, modern/timeless style.\n\n=== VISUAL DESCRIPTION ===\nChildren in a circle-time type setting.\nOne child is offering/sharing something with a proud, generous expression.\nOther children look thoughtful or appreciative.\nWarm, soft background (classroom or home setting).\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 10%): Blue background bar with:\n   - Thought bubble icon (left)\n   - \"What Can I Give?\" in white text (center)\n   - \"מָה אֲנִי יָכוֹל לָתֵת?\" below in white\n2. SCENE (25%): Children in sharing/thinking poses\n3. FEELING FACES ROW (10%): Four emoji-style faces with HEBREW labels only:\n   🥹 גֵּאֶה | 😊 שָׂמֵחַ | 🤗 נָדִיב | 😃 נִרְגָּשׁ\n4. QUESTIONS (40%): Three colored speech bubbles:\n   - Pink bubble: \"If we were building something special for our classroom, what would YOU bring to help?\"\n   - Green bubble: \"How do you think the people felt when they gave their special gifts?\"\n   - Yellow bubble: \"What's something special you have that you could share with someone?\"\n5. BOTTOM BANNER (8%): Blue banner with \"Torah Talk: Sit in a circle and share!\" in white\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #0074D9 Blue (8px width)\n\n=== MOOD ===\nWarm, reflective, inviting. Children should feel safe to share.",
+      "image_path": "images/connection_1.png",
+      "teacher_script": "Let's sit in our Torah Talk circle! In our story, everyone brought something to help. Now I want to hear from YOU! If we were building something special for our classroom - maybe a cozy reading corner or a beautiful art wall - what would YOU bring to help? Maybe crayons? A special pillow? Your helping hands? Let's go around and share. And point to a feeling face - how does it feel when you give something special?"
+    },
+    {
+      "card_id": "connection_2",
+      "card_type": "connection",
+      "title_en": "Helping Together",
+      "title_he": "עוֹזְרִים בְּיַחַד",
+      "optional": true,
+      "questions": [
+        {
+          "question_type": "personal",
+          "question_en": "Have you ever helped build or make something with other people? What did you make?",
+          "question_he": "הַאִם פַּעַם עָזַרְתָּ לִבְנוֹת אוֹ לַעֲשׂוֹת מַשֶּׁהוּ עִם אֲנָשִׁים אֲחֵרִים?"
+        },
+        {
+          "question_type": "empathy",
+          "question_en": "Why is it more fun to build something with friends than all alone?",
+          "question_he": "לָמָּה יוֹתֵר כֵּיף לִבְנוֹת עִם חֲבֵרִים מֵאֲשֶׁר לְבַד?"
+        },
+        {
+          "question_type": "action",
+          "question_en": "What's one way you can help at home or at school this week?",
+          "question_he": "מָה דֶּרֶךְ אַחַת שֶׁאַתָּה יָכוֹל לַעֲזֹר בַּבַּיִת אוֹ בְּבֵית הַסֵּפֶר הַשָּׁבוּעַ?"
+        }
+      ],
+      "torah_talk_instruction": "Sit in a circle and share!",
+      "feeling_faces": [
+        {
+          "emoji": "😊",
+          "label_en": "Happy",
+          "label_he": "שָׂמֵחַ"
+        },
+        {
+          "emoji": "🥹",
+          "label_en": "Proud",
+          "label_he": "גֵּאֶה"
+        },
+        {
+          "emoji": "🤝",
+          "label_en": "Helpful",
+          "label_he": "עוֹזֵר"
+        },
+        {
+          "emoji": "💪",
+          "label_en": "Strong",
+          "label_he": "חָזָק"
+        }
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Mood: Collaborative, warm, joyful.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: CONNECTION (Discussion Card) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle: \"Helping Together\"\nHebrew Title: \"עוֹזְרִים בְּיַחַד\"\nFeeling Faces Row (Hebrew labels ONLY on faces):\n  😊 שָׂמֵחַ | 🥹 גֵּאֶה | 🤝 עוֹזֵר | 💪 חָזָק\nQuestion 1: \"Have you ever helped build or make something with other people? What did you make?\"\nQuestion 2: \"Why is it more fun to build something with friends than all alone?\"\nQuestion 3: \"What's one way you can help at home or at school this week?\"\nBottom Banner: \"Torah Talk: Sit in a circle and share!\"\n\n=== CHARACTERS ===\n2-3 children (ages 4-6 appearance) working TOGETHER on a project:\n- Building with blocks\n- Or making an art project together\n- Or working on a puzzle\n\nAll contributing, all smiling.\nHands meeting in the middle of the activity.\nDiverse children.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 10%): Blue background bar with:\n   - Thought bubble icon (left)\n   - \"Helping Together\" in white text (center)\n   - \"עוֹזְרִים בְּיַחַד\" below in white\n2. SCENE (25%): Children collaborating on a project\n3. FEELING FACES ROW (10%): Four emoji-style faces with HEBREW labels only:\n   😊 שָׂמֵחַ | 🥹 גֵּאֶה | 🤝 עוֹזֵר | 💪 חָזָק\n4. QUESTIONS (40%): Three colored speech bubbles:\n   - Pink bubble: \"Have you ever helped build or make something with other people? What did you make?\"\n   - Green bubble: \"Why is it more fun to build something with friends than all alone?\"\n   - Yellow bubble: \"What's one way you can help at home or at school this week?\"\n5. BOTTOM BANNER (8%): Blue banner with \"Torah Talk: Sit in a circle and share!\" in white\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #0074D9 Blue (8px width)\n\n=== MOOD ===\nCollaborative, joyful, connected.",
+      "image_path": "images/connection_2.png",
+      "teacher_script": "The Jewish people worked TOGETHER - yachad! Have you ever built something with other people? Maybe you built a tall tower with blocks with a friend. Or helped your family cook dinner. Or made an art project with your class. Tell us about it! What did you make? Who helped? And here's a question: why is it more fun to build with friends? Let's share our ideas!"
+    },
+    {
+      "card_id": "power_word_1",
+      "card_type": "power_word",
+      "title_en": "Terumah - Gift",
+      "title_he": "תְּרוּמָה",
+      "optional": true,
+      "hebrew_word": "תרומה",
+      "hebrew_word_nikud": "תְּרוּמָה",
+      "english_meaning": "Gift / Contribution",
+      "torah_quote_en": "Tell the people to bring Me gifts - from everyone whose heart moves them.",
+      "torah_quote_he": "וְיִקְחוּ לִי תְּרוּמָה מֵאֵת כָּל אִישׁ אֲשֶׁר יִדְּבֶנּוּ לִבּוֹ",
+      "torah_source": "Exodus 25:2",
+      "example_sentence_en": "When you share your toys, that's a terumah - a gift from your heart!",
+      "example_sentence_he": "כְּשֶׁאַתָּה מְשַׁתֵּף אֶת הַצַּעֲצוּעִים שֶׁלְּךָ, זוֹ תְּרוּמָה - מַתָּנָה מֵהַלֵּב!",
+      "is_emotion_word": false,
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- This card teaches a Hebrew word!\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== RESTRICTIONS ===\n- NO transliteration on the card\n- NO QR codes\n- Keep fonts simple and consistent - avoid decorative script fonts\n- Use ONE clear font for all text\n\n=== CARD TYPE: POWER WORD (Full Bleed Hebrew Vocabulary) ===\n\n=== EXACT TEXT TO RENDER ===\nLarge Hebrew Word: \"תְּרוּמָה\" (very large, with nikud, top of card)\nEnglish Meaning: \"GIFT\" (bold, below Hebrew)\nTorah Quote (English only): \"Tell the people to bring Me gifts - from everyone whose heart moves them.\"\nSource: \"— Exodus 25:2\"\nExample: \"When you share your toys, that's a terumah - a gift from your heart!\"\n\n=== VISUAL DESCRIPTION ===\nA child lifting up a gift (wrapped present or special object) toward warm golden light from above.\n\nThe child has a proud, happy expression.\nThe gift seems to glow as it's lifted.\nMotion lines or sparkles showing the \"lifting up\" action.\nDiverse child, relatable.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. HEBREW WORD (top 20%): \"תְּרוּמָה\" in LARGE, beautiful Hebrew lettering with nikud\n   - Clear, readable font (not decorative script)\n   - Centered\n2. ENGLISH MEANING (8%): \"GIFT\" in bold, friendly font\n3. VISUAL (center 40%): Child lifting gift upward toward golden light\n4. TORAH QUOTE (15%): \n   - \"Tell the people to bring Me gifts - from everyone whose heart moves them.\"\n   - \"— Exodus 25:2\" below, smaller\n5. EXAMPLE (12%): \"When you share your toys, that's a terumah - a gift from your heart!\"\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #2ECC40 Green (8px width)\n- NO icon in corner\n\n=== MOOD ===\nEducational and inspiring. Learning Hebrew is discovering treasure!",
+      "image_path": "images/power_word_1.png",
+      "teacher_script": "Our special Hebrew word today is TERUMAH! Can you say it? Te-ru-MAH! It means a gift - but not just any gift. A terumah is a gift you give because you WANT to, from your heart. The Torah says the people brought gifts \"from everyone whose heart moved them.\" That means they felt the giving feeling inside! When you share something because you want to help, that's a terumah. Can you think of a terumah you gave? Let's say it again: Terumah!"
+    }
+  ]
+}
