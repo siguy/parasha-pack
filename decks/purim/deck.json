@@ -1,0 +1,360 @@
+{
+  "holiday_en": "Purim",
+  "holiday_he": "פּוּרִים",
+  "source": "Megillat Esther",
+  "content_type": "holiday",
+  "border_color": "#8B5CF6",
+  "theme": "courage",
+  "version": "1.0",
+  "target_age": "4-6",
+  "card_count": 15,
+  "sessions": 2,
+  "emotional_core": "Hidden courage — being brave even when scared",
+  "cards": [
+    {
+      "card_id": "anchor_1",
+      "card_type": "anchor",
+      "title_en": "Purim",
+      "title_he": "פּוּרִים",
+      "emotional_hook_en": "Have you ever had to be really, REALLY brave? Today we meet a queen with a big secret!",
+      "emotional_hook_he": "הֲאִם אֵי פַּעַם הָיִיתָ צָרִיךְ לִהְיוֹת מַמָּשׁ, מַמָּשׁ אַמִּיץ? הַיּוֹם נִפְגֹּשׁ מַלְכָּה עִם סוֹד גָּדוֹל!",
+      "symbol_description": "A golden crown with a subtle Star of David woven into its design, glowing softly. Represents Esther's hidden Jewish identity beneath her royal role.",
+      "border_color": "#8B5CF6",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines (2-3px equivalent).\n- Complexity: Maximum 5-7 distinct visual elements.\nCard Format: 5x7 inches (1500x2100px), rounded corners (8-10px radius).\n\n=== RESTRICTIONS ===\nNEVER depict God in any human or physical form.\nNEVER write God's name in Hebrew.\n\n=== CARD TYPE: ANCHOR (Full Bleed) ===\nOpening card that sets the emotional tone. Title prominently displayed, central symbol, emotional hook text.\n\n=== EXACT TEXT TO RENDER ===\nTitle (top, large): \"פּוּרִים\"\nSubtitle (below title): \"Purim\"\nBottom text zone: \"Have you ever had to be really, REALLY brave? Today we meet a queen with a big secret!\"\n\n=== COMPOSITION ===\nLayout (top to bottom):\nTOP: Hebrew title \"פּוּרִים\" large and centered, \"Purim\" below in English\nCENTER (largest area): Golden crown illustration with subtle Star of David woven into the crown's design, glowing softly, sparkles around it\nBOTTOM: Cream/light background zone with emotional hook text\n\nBackground: Gradient from deep royal purple at top to softer purple-blue at bottom.\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: Royal purple #8B5CF6 (8px width)\n- Small crown icon in top-left corner\n\n=== MOOD ===\nMagical, mysterious, wonder. The crown glows with hidden meaning. Inviting children into an exciting story about bravery and secrets.",
+      "image_path": "images/anchor_1.png",
+      "teacher_script": "Today we're going to hear an amazing story. It's about a queen named Esther who had a BIG secret. She was Jewish — just like us! — but nobody knew. When her people needed help, she had to be SO brave. Let's find out what happened!",
+      "session": 1
+    },
+    {
+      "card_id": "spotlight_1",
+      "card_type": "spotlight",
+      "title_en": "Queen Esther",
+      "title_he": "אֶסְתֵּר הַמַּלְכָּה",
+      "character_name_en": "Esther",
+      "character_name_he": "אֶסְתֵּר",
+      "emotion_label_en": "Brave",
+      "emotion_label_he": "אַמִּיצָה",
+      "character_description_en": "Esther was a young Jewish woman who became the queen. She kept her Jewish identity a secret. When her people needed help, she found her courage.",
+      "character_description_he": "אֶסְתֵּר הָיְתָה אִשָּׁה יְהוּדִיָּה צְעִירָה שֶׁהָפְכָה לְמַלְכָּה. הִיא שָׁמְרָה אֶת זְהוּתָהּ הַיְּהוּדִית בְּסוֹד. כְּשֶׁעַמָּהּ הָיָה צָרִיךְ עֶזְרָה, הִיא מָצְאָה אֶת הָאֹמֶץ שֶׁלָּהּ.",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\nRounded, friendly shapes. Large expressive eyes (20% of face).\nThick, clean black outlines. Maximum 5-7 visual elements.\n\n=== RESTRICTIONS ===\nNEVER depict God in any form. All characters modestly dressed.\n\n=== CARD TYPE: SPOTLIGHT ===\nCharacter introduction card. Portrait-style with name and description.\n\n=== CHARACTER: ESTHER ===\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress, simple gold tiara.\nGentle, determined expression. Hand near heart gesture.\nRounded friendly features, warm and approachable.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar: \"אֶסְתֵּר\" (large) with \"Queen Esther\" below\nEmotion badge (top right): \"אַמִּיצָה\" with \"Brave\" below\nDescription zone (bottom): \"Esther was a young Jewish woman who became the queen. She kept her Jewish identity a secret. When her people needed help, she found her courage.\"\n\n=== COMPOSITION ===\nTop: Gold title bar with name centered\nMain area: Esther portrait from waist up, palace background\nTop-right corner: Emotion badge as rounded rectangle\nBottom third: Cream background with character description text\n\n=== FRAME ===\n- Rounded corners, Border: Gold #d4a84b (8px)\n- Crown icon top-left\n\n=== MOOD ===\nWarm, regal, kind. She's someone children will root for.",
+      "image_path": "images/spotlight_1.png",
+      "teacher_script": "This is Esther. She became the queen! But she had a secret — she was Jewish, and nobody in the palace knew. Esther was nervous about her secret. But guess what? When it really mattered, she was SO brave. She's our hero!",
+      "session": 1
+    },
+    {
+      "card_id": "spotlight_2",
+      "card_type": "spotlight",
+      "title_en": "Mordechai",
+      "title_he": "מׇרְדְּכַי הַצַּדִּיק",
+      "character_name_en": "Mordechai",
+      "character_name_he": "מׇרְדְּכַי",
+      "emotion_label_en": "Wise",
+      "emotion_label_he": "חָכָם",
+      "character_description_en": "Mordechai was Esther's older cousin. He raised her and always gave her good advice. He stood up for what was right, no matter what.",
+      "character_description_he": "מׇרְדְּכַי הָיָה בֶּן הַדּוֹד הַמְּבֻגָּר שֶׁל אֶסְתֵּר. הוּא גִּדֵּל אוֹתָהּ וְתָמִיד נָתַן לָהּ עֵצוֹת טוֹבוֹת. הוּא עָמַד עַל מַה שֶּׁנָּכוֹן, לֹא מְשַׁנֶּה מָה.",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\nRounded, friendly shapes. Large expressive eyes (20% of face).\nThick, clean black outlines. Maximum 5-7 visual elements.\n\n=== RESTRICTIONS ===\nNEVER depict God in any form. All characters modestly dressed.\n\n=== CARD TYPE: SPOTLIGHT ===\nCharacter introduction card.\n\n=== CHARACTER: MORDECHAI ===\nOlder Jewish man, warm brown skin, kind wise eyes.\nFull gray-brown beard, dignified posture.\nJewish head covering (kippah or cloth wrap).\nModest robes in earth tones - browns, creams, subtle blues.\nGrandfatherly warmth, stands tall with quiet confidence.\nHands clasped peacefully in front.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar: \"מׇרְדְּכַי\" (large) with \"Mordechai\" below\nEmotion badge: \"חָכָם\" with \"Wise\" below\nDescription zone: \"Mordechai was Esther's older cousin. He raised her and always gave her good advice. He stood up for what was right, no matter what.\"\n\n=== COMPOSITION ===\nTop: Gold title bar with name centered\nMain area: Mordechai portrait, near palace gates background\nTop-right corner: Emotion badge\nBottom third: Cream background with description text\n\n=== FRAME ===\n- Border: Gold #d4a84b (8px)\n- Star icon top-left\n\n=== MOOD ===\nWise, trustworthy, like a favorite grandfather.",
+      "image_path": "images/spotlight_2.png",
+      "teacher_script": "This is Mordechai. He's like a wise uncle or grandpa. He helped raise Esther and always knew what to do. Mordechai was very brave too — he wouldn't bow down to anyone except God. He helped Esther be brave!",
+      "session": 1
+    },
+    {
+      "card_id": "spotlight_3",
+      "card_type": "spotlight",
+      "title_en": "Haman",
+      "title_he": "הָמָן",
+      "character_name_en": "Haman",
+      "character_name_he": "הָמָן",
+      "emotion_label_en": "Jealous",
+      "emotion_label_he": "קַנַּאי",
+      "portrayal": "misguided",
+      "character_description_en": "Haman worked for the king. He wanted everyone to bow down to him. When Mordechai wouldn't bow, Haman felt very jealous.",
+      "character_description_he": "הָמָן עָבַד אֵצֶל הַמֶּלֶךְ. הוּא רָצָה שֶׁכֻּלָּם יִשְׁתַּחֲווּ לוֹ. כְּשֶׁמׇרְדְּכַי לֹא הִשְׁתַּחֲוָה, הָמָן הִרְגִּישׁ מְאוֹד קַנַּאי.",
+      "teaching_moment_en": "Sometimes when we feel jealous, we want to do something mean. But that's not a good choice. We can talk about our feelings instead.",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\nRounded, friendly shapes. Thick, clean black outlines.\n\n=== RESTRICTIONS ===\nCRITICAL VILLAIN GUIDELINES:\n- Expression: Frustrated, pouty, jealous — NOT angry, menacing, or scary\n- Colors: MUTED purples, dusty browns, grays — NOT black, dark red, shadows\n- Posture: Crossed arms, turned away — NOT aggressive or threatening\n- NO: Skulls, dark backgrounds, scary imagery, evil grins\n- Overall vibe: \"Someone who made bad choices because of jealousy\"\n\n=== CARD TYPE: SPOTLIGHT (Misguided Character) ===\nThis character made bad choices. Frame as misguided, not evil.\n\n=== CHARACTER: HAMAN ===\nAdult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.\nPouty, frustrated expression. Furrowed brow, eyes narrowed with JEALOUSY (not rage).\nDISTINCTIVE THREE-CORNERED HAT (like a hamantaschen pastry shape).\nPersian-style clothing in MUTED dusty purple and gray-brown.\nArms crossed defensively. Shoulders slightly hunched.\nTurned slightly away. Looking jealous, not scary.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar: \"הָמָן\" (large) with \"Haman\" below\nEmotion badge: \"קַנַּאי\" with \"Jealous\" below\nDescription zone: \"Haman worked for the king. He wanted everyone to bow down to him. When Mordechai wouldn't bow, Haman felt very jealous.\"\nTeaching moment box (small, bottom): \"Sometimes when we feel jealous, we want to do something mean. But that's not a good choice.\"\n\n=== COMPOSITION ===\nTop: Gold title bar with Hebrew and English name\nMain area: Haman illustration with crossed arms, pouty face, muted colors\nTop-right corner: Emotion badge with \"קַנַּאי / Jealous\"\nLower section: Character description text\nBottom: Small teaching moment box\n\nBackground: Neutral palace hallway, soft muted colors.\n\n=== FRAME ===\n- Border: Gold #d4a84b (8px)\n- NO special villain styling — treat like other spotlight cards\n\n=== MOOD ===\nNOT scary. This is someone who felt jealous and made bad choices. Kids should understand his feelings, not be frightened.",
+      "image_path": "images/spotlight_3.png",
+      "teacher_script": "This is Haman. He worked for the king and wanted everyone to bow down to him. But Mordechai said no — he only bows to God. That made Haman feel SO jealous. His jealousy grew and grew... and he made a very bad choice. Have you ever felt jealous? It's okay to feel that way, but Haman didn't make good choices with his feelings.",
+      "session": 2
+    },
+    {
+      "card_id": "spotlight_4",
+      "card_type": "spotlight",
+      "title_en": "King Achashverosh",
+      "title_he": "הַמֶּלֶךְ אֲחַשְׁוֵרוֹשׁ",
+      "character_name_en": "King Achashverosh",
+      "character_name_he": "אֲחַשְׁוֵרוֹשׁ",
+      "emotion_label_en": "Confused",
+      "emotion_label_he": "מְבֻלְבָּל",
+      "portrayal": "misguided",
+      "character_description_en": "King Achashverosh ruled a very big kingdom. He didn't always think before he decided things. He listened to Haman without asking enough questions.",
+      "character_description_he": "הַמֶּלֶךְ אֲחַשְׁוֵרוֹשׁ שָׁלַט בְּמַמְלָכָה גְּדוֹלָה מְאוֹד. הוּא לֹא תָּמִיד חָשַׁב לִפְנֵי שֶׁהֶחְלִיט דְּבָרִים. הוּא הִקְשִׁיב לְהָמָן בְּלִי לִשְׁאֹל מַסְפִּיק שְׁאֵלוֹת.",
+      "teaching_moment_en": "It's important to think before we decide. We should ask questions and not just say yes right away.",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\nRounded, friendly shapes. Thick, clean black outlines.\n\n=== RESTRICTIONS ===\nMISGUIDED CHARACTER GUIDELINES:\n- Expression: Confused, bewildered, distracted — NOT evil or scary\n- Can appear somewhat silly/cartoonish\n- NOT malicious — just didn't think carefully\n\n=== CARD TYPE: SPOTLIGHT (Misguided Character) ===\nThis character didn't think before acting. Careless, not evil.\n\n=== CHARACTER: KING ACHASHVEROSH ===\nAdult man with confused, distracted expression.\nLarge ornate crown. Royal Persian robes in golds and reds.\nBewildered look — eyebrows raised, maybe scratching head.\nSomewhat cartoonish, almost comedic.\nNOT scary or threatening — just didn't pay attention.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar: \"אֲחַשְׁוֵרוֹשׁ\" (large) with \"King Achashverosh\" below\nEmotion badge: \"מְבֻלְבָּל\" with \"Confused\" below\nDescription zone: \"King Achashverosh ruled a very big kingdom. He didn't always think before he decided things. He listened to Haman without asking enough questions.\"\nTeaching moment: \"It's important to think before we decide.\"\n\n=== COMPOSITION ===\nTop: Gold title bar\nMain area: King looking confused/distracted\nTop-right corner: Emotion badge\nLower section: Description text\nBottom: Small teaching moment box\n\n=== FRAME ===\n- Border: Gold #d4a84b (8px)\n\n=== MOOD ===\nSlightly comedic. He's not evil, just didn't think. Kids will understand — we all sometimes don't listen carefully!",
+      "image_path": "images/spotlight_4.png",
+      "teacher_script": "This is King Achashverosh. He was the king! But you know what? He didn't always stop to think. When Haman told him a bad plan, the king just said yes without asking questions. That wasn't smart! We should always think first and ask questions. But don't worry — the king learns his lesson!",
+      "session": 2
+    },
+    {
+      "card_id": "story_1",
+      "card_type": "story",
+      "title_en": "Esther Becomes Queen",
+      "title_he": "אֶסְתֵּר נַעֲשֵׂית מַלְכָּה",
+      "sequence_number": 1,
+      "hebrew_key_word": "מלכה",
+      "hebrew_key_word_nikud": "מַלְכָּה",
+      "english_key_word": "Queen",
+      "description_en": "The king chose Esther to be his new queen. She moved into the beautiful palace. But she kept her secret — she didn't tell anyone she was Jewish.",
+      "description_he": "הַמֶּלֶךְ בָּחַר בְּאֶסְתֵּר לִהְיוֹת הַמַּלְכָּה הַחֲדָשָׁה שֶׁלּוֹ. הִיא עָבְרָה לְאַרְמוֹן הַיָּפֶה. אֲבָל הִיא שָׁמְרָה אֶת הַסּוֹד שֶׁלָּהּ — הִיא לֹא סִפְּרָה לְאַף אֶחָד שֶׁהִיא יְהוּדִיָּה.",
+      "roleplay_prompt": "Act it out: Put an imaginary crown on your head and give a royal wave!",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\nRounded, friendly shapes. Large expressive eyes. Thick clean outlines.\n\n=== RESTRICTIONS ===\nAll characters modestly dressed. No God depiction.\n\n=== CARD TYPE: STORY ===\nNarrative moment with illustration, description, and roleplay prompt.\n\n=== SCENE ===\nEsther in the palace, wearing or receiving her crown.\nShe looks beautiful but slightly nervous — this is a big moment!\nWarm palace interior with pillars and soft light.\nSimple background, focus on Esther.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar (red): \"Esther Becomes Queen\" | \"#1\"\nHebrew subtitle: \"אֶסְתֵּר נַעֲשֵׂית מַלְכָּה\"\nKeyword badge (bottom-right of illustration): \"מַלְכָּה\" / \"Queen\"\nDescription: \"The king chose Esther to be his new queen. She moved into the beautiful palace. But she kept her secret — she didn't tell anyone she was Jewish.\"\nRoleplay: \"★ Act it out: Put an imaginary crown on your head and give a royal wave!\"\n\n=== COMPOSITION ===\nTop: Red title bar with white text, lightning icon, \"#1\" badge\nMain area: Esther in palace receiving/wearing crown\nBottom-right of illustration: Keyword badge\nBottom third: Cream background with description + roleplay prompt\n\n=== FRAME ===\n- Border: Red #FF4136 (8px) — Story card\n- Lightning bolt icon top-left\n\n=== MOOD ===\nMagical, exciting, but with hint of nervousness.",
+      "image_path": "images/story_1.png",
+      "teacher_script": "The king needed a new queen, and he chose Esther! She was so beautiful and kind. She moved into the big palace and wore a shiny crown. But Esther had a secret — shhh! — she didn't tell anyone she was Jewish. Let's all put on our pretend crowns and wave like Queen Esther!",
+      "session": 1
+    },
+    {
+      "card_id": "story_2",
+      "card_type": "story",
+      "title_en": "Mordechai Stands Tall",
+      "title_he": "מׇרְדְּכַי עוֹמֵד זָקוּף",
+      "sequence_number": 2,
+      "hebrew_key_word": "עומד",
+      "hebrew_key_word_nikud": "עוֹמֵד",
+      "english_key_word": "Stands",
+      "description_en": "Haman wanted everyone to bow down to him. But Mordechai said no! He stood tall and would not bow.",
+      "description_he": "הָמָן רָצָה שֶׁכֻּלָּם יִשְׁתַּחֲווּ לוֹ. אֲבָל מׇרְדְּכַי אָמַר לֹא! הוּא עָמַד זָקוּף וְלֹא הִשְׁתַּחֲוָה.",
+      "roleplay_prompt": "Act it out: Stand up straight and tall! Shake your head NO!",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style for ages 4-6.\n\n=== CARD TYPE: STORY ===\n\n=== CHARACTER CONSISTENCY - MORDECHAI ===\nOlder Jewish man, warm brown skin, kind wise eyes.\nFull gray-brown beard, dignified posture.\nJewish head covering (kippah or cloth wrap).\nModest robes in earth tones - browns, creams, subtle blues.\nGrandfatherly warmth.\n\n=== CHARACTER CONSISTENCY - HAMAN ===\nAdult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.\nDISTINCTIVE THREE-CORNERED HAT (like hamantaschen).\nPouty frustrated expression (NOT scary).\nPersian clothing in MUTED dusty purple and gray-brown.\nArms crossed or shoulders hunched.\n\n=== SCENE ===\nMordechai standing TALL and STRAIGHT near palace gates.\nHe shakes his head NO. Other people may be bowing in background.\nHaman passing by looking frustrated (NOT scary), wearing his three-cornered hat.\nMordechai's posture is dignified and brave.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar: \"Mordechai Stands Tall\" | \"#2\"\nHebrew: \"מׇרְדְּכַי עוֹמֵד זָקוּף\"\nKeyword badge: \"עוֹמֵד\" / \"Stands\"\nDescription: \"Haman wanted everyone to bow down to him. But Mordechai said no! He stood tall and would not bow.\"\nRoleplay: \"★ Act it out: Stand up straight and tall! Shake your head NO!\"\n\n=== COMPOSITION ===\nStandard story card layout with red title bar.\n\n=== FRAME ===\n- Border: Red #FF4136\n\n=== MOOD ===\nProud, dignified, brave. Mordechai is a hero for standing firm.",
+      "image_path": "images/story_2.png",
+      "teacher_script": "Haman walked through the streets and wanted everyone to bow down to him. But when he passed Mordechai, guess what happened? Mordechai stood up TALL. He shook his head and said NO! Mordechai only bows to God. Let's all stand up tall like Mordechai! Stand straight... now shake your head NO!",
+      "session": 1
+    },
+    {
+      "card_id": "story_3",
+      "card_type": "story",
+      "title_en": "Haman's Bad Choice",
+      "title_he": "הַבְּחִירָה הָרָעָה שֶׁל הָמָן",
+      "sequence_number": 3,
+      "hebrew_key_word": "קנאה",
+      "hebrew_key_word_nikud": "קִנְאָה",
+      "english_key_word": "Jealousy",
+      "description_en": "Haman felt SO jealous that Mordechai wouldn't bow. His jealousy grew bigger and bigger. He made a plan to hurt all the Jewish people. That was wrong!",
+      "description_he": "הָמָן הִרְגִּישׁ כָּל כָּךְ קַנַּאי שֶׁמׇרְדְּכַי לֹא הִשְׁתַּחֲוָה. הַקִּנְאָה שֶׁלּוֹ גָּדְלָה וְגָדְלָה. הוּא עָשָׂה תָּכְנִית לְהַזִּיק לְכָל הַיְּהוּדִים. זֶה הָיָה לֹא נָכוֹן!",
+      "roleplay_prompt": "Act it out: Make a jealous, pouty face and cross your arms!",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid cartoon style for ages 4-6.\n\n=== RESTRICTIONS ===\nVILLAIN SCENE GUIDELINES:\n- Haman looks frustrated/pouty, NOT scary\n- Muted colors, NOT dark or ominous\n- NO skulls, shadows, scary imagery\n- Frame as \"bad choice\" not \"evil person\"\n\n=== CHARACTER CONSISTENCY - HAMAN ===\nAdult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.\nDISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape).\nPouty frustrated expression, furrowed brow (NOT scary or angry).\nPersian clothing in MUTED dusty purple and gray-brown.\nArms crossed defensively, shoulders slightly hunched.\n\n=== SCENE ===\nHaman alone, arms crossed, pouty frustrated expression.\nWEARING HIS THREE-CORNERED HAT.\nHe's stewing in jealousy — furrowed brow, frowning.\nMaybe a small thought/feeling cloud showing his jealousy growing.\nBackground is neutral — NOT dark or scary.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar: \"Haman's Bad Choice\" | \"#3\"\nHebrew: \"הַבְּחִירָה הָרָעָה שֶׁל הָמָן\"\nKeyword badge: \"קִנְאָה\" / \"Jealousy\"\nDescription: \"Haman felt SO jealous that Mordechai wouldn't bow. His jealousy grew bigger and bigger. He made a plan to hurt all the Jewish people. That was wrong!\"\nRoleplay: \"★ Act it out: Make a jealous, pouty face and cross your arms!\"\n\n=== FRAME ===\n- Border: Red #FF4136\n\n=== MOOD ===\nThis is a teaching moment about jealousy leading to bad choices. NOT scary — kids should recognize the feeling, not be frightened.",
+      "image_path": "images/story_3.png",
+      "teacher_script": "Uh oh. Haman was SO jealous and angry that Mordechai wouldn't bow. His jealousy grew and grew until he made a VERY bad choice. He decided he wanted to hurt all the Jewish people! That was SO wrong. Can you make a jealous, pouty face like Haman? Cross your arms... Now — is that a good choice? NO! Haman needed to stop and think.",
+      "session": 1
+    },
+    {
+      "card_id": "story_4",
+      "card_type": "story",
+      "title_en": "Esther's Brave Choice",
+      "title_he": "הַבְּחִירָה הָאַמִּיצָה שֶׁל אֶסְתֵּר",
+      "sequence_number": 4,
+      "hebrew_key_word": "אמיץ",
+      "hebrew_key_word_nikud": "אַמִּיץ",
+      "english_key_word": "Brave",
+      "description_en": "Mordechai told Esther about Haman's bad plan. Esther was scared, but she knew what she had to do. She went to the king and told him her secret!",
+      "description_he": "מׇרְדְּכַי סִפֵּר לְאֶסְתֵּר עַל הַתָּכְנִית הָרָעָה שֶׁל הָמָן. אֶסְתֵּר פָּחֲדָה, אֲבָל הִיא יָדְעָה מַה הִיא צְרִיכָה לַעֲשׂוֹת. הִיא הָלְכָה לַמֶּלֶךְ וְסִפְּרָה לוֹ אֶת הַסּוֹד שֶׁלָּהּ!",
+      "roleplay_prompt": "Act it out: Take a deep breath and say 'I have something important to tell you!'",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid cartoon style for ages 4-6.\n\n=== SCENE ===\nEsther taking a deep breath, gathering courage.\nShe's approaching the throne room or standing before the king.\nHer expression shows determination despite fear.\nHand might be over heart or taking brave step forward.\nKing Achashverosh visible in background, looking surprised.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar: \"Esther's Brave Choice\" | \"#4\"\nHebrew: \"הַבְּחִירָה הָאַמִּיצָה שֶׁל אֶסְתֵּר\"\nKeyword badge: \"אַמִּיץ\" / \"Brave\"\nDescription: \"Mordechai told Esther about Haman's bad plan. Esther was scared, but she knew what she had to do. She went to the king and told him her secret!\"\nRoleplay: \"★ Act it out: Take a deep breath and say 'I have something important to tell you!'\"\n\n=== FRAME ===\n- Border: Red #FF4136\n\n=== MOOD ===\nThe climax! Tension and courage. Esther's bravest moment.",
+      "image_path": "images/story_4.png",
+      "teacher_script": "Mordechai ran to tell Esther about Haman's terrible plan. Esther was scared — really scared! But she knew she had to help. She took a deep breath and went to see the king. Then she said the bravest words: 'I have something important to tell you. I am Jewish!' Let's practice being brave like Esther. Take a deep breath... now say 'I have something important to tell you!'",
+      "session": 2
+    },
+    {
+      "card_id": "story_5",
+      "card_type": "story",
+      "title_en": "The Happy Ending",
+      "title_he": "הַסּוֹף הַשָּׂמֵחַ",
+      "sequence_number": 5,
+      "hebrew_key_word": "שמחה",
+      "hebrew_key_word_nikud": "שִׂמְחָה",
+      "english_key_word": "Joy",
+      "description_en": "The king listened to Esther. He stopped Haman's bad plan! All the Jewish people were saved, and everyone celebrated!",
+      "description_he": "הַמֶּלֶךְ הִקְשִׁיב לְאֶסְתֵּר. הוּא עָצַר אֶת הַתָּכְנִית הָרָעָה שֶׁל הָמָן! כָּל הַיְּהוּדִים נִצְּלוּ, וְכֻלָּם חָגְגוּ!",
+      "roleplay_prompt": "Act it out: Jump up and cheer! The Jewish people were saved!",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, JOYFUL cartoon style for ages 4-6.\nBright, celebratory colors!\n\n=== CHARACTER CONSISTENCY - ESTHER ===\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress, simple gold tiara.\nGentle, joyful expression.\n\n=== CHARACTER CONSISTENCY - MORDECHAI ===\nOlder Jewish man, warm brown skin, kind wise eyes.\nFull gray-brown beard, dignified posture.\nJewish head covering (kippah or cloth wrap).\nModest robes in earth tones - browns, creams, subtle blues.\nGrandfatherly warmth.\n\n=== SCENE ===\nCelebration! Esther and Mordechai together in foreground, smiling hugely.\nESTHER wearing her royal dress and tiara.\nMORDECHAI wearing his earth-toned robes and head covering.\nJewish people in background cheering, hands raised.\nConfetti or festive elements. Bright, warm colors.\nEveryone looks HAPPY and RELIEVED.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar: \"The Happy Ending\" | \"#5\"\nHebrew: \"הַסּוֹף הַשָּׂמֵחַ\"\nKeyword badge: \"שִׂמְחָה\" / \"Joy\"\nDescription: \"The king listened to Esther. He stopped Haman's bad plan! All the Jewish people were saved, and everyone celebrated!\"\nRoleplay: \"★ Act it out: Jump up and cheer! The Jewish people were saved!\"\n\n=== FRAME ===\n- Border: Red #FF4136\n\n=== MOOD ===\nPURE JOY! This is the payoff — let kids feel the celebration!",
+      "image_path": "images/story_5.png",
+      "teacher_script": "When the king heard Esther's secret, he was so surprised! He loved Queen Esther. He stopped Haman's bad plan right away. The Jewish people were SAVED! Everyone was SO happy! They celebrated and danced and cheered! Let's celebrate too — jump up and down and cheer! YAY!",
+      "session": 2
+    },
+    {
+      "card_id": "connection_1",
+      "card_type": "connection",
+      "title_en": "Being Brave",
+      "title_he": "לִהְיוֹת אַמִּיץ",
+      "questions": [
+        {
+          "question_type": "personal",
+          "question_en": "Have you ever had to be brave, even when you were scared?",
+          "question_he": "הֲאִם אֵי פַּעַם הָיִיתָ צָרִיךְ לִהְיוֹת אַמִּיץ, גַּם כְּשֶׁפָּחַדְתָּ?"
+        },
+        {
+          "question_type": "empathy",
+          "question_en": "How do you think Esther felt before she told her secret?",
+          "question_he": "אֵיךְ לְדַעְתְּךָ הִרְגִּישָׁה אֶסְתֵּר לִפְנֵי שֶׁסִּפְּרָה אֶת הַסּוֹד שֶׁלָּהּ?"
+        },
+        {
+          "question_type": "action",
+          "question_en": "What helps YOU feel brave when you're scared?",
+          "question_he": "מָה עוֹזֵר לְךָ לְהַרְגִּישׁ אַמִּיץ כְּשֶׁאַתָּה מְפֻחָד?"
+        }
+      ],
+      "torah_talk_instruction": "Sit in a circle and share!",
+      "feeling_faces": [
+        {
+          "emoji": "😰",
+          "label_en": "Scared",
+          "label_he": "פּוֹחֵד"
+        },
+        {
+          "emoji": "💪",
+          "label_en": "Brave",
+          "label_he": "אַמִּיץ"
+        },
+        {
+          "emoji": "😌",
+          "label_en": "Relieved",
+          "label_he": "מֻקָל"
+        },
+        {
+          "emoji": "😊",
+          "label_en": "Proud",
+          "label_he": "גֵּאֶה"
+        }
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid cartoon style for ages 4-6.\n\n=== CARD TYPE: CONNECTION ===\nDiscussion card with feeling faces and questions.\n\n=== SCENE ===\nDiverse illustrated children sitting in a circle.\nThoughtful, sharing expressions. Warm classroom setting.\nSome children with hands raised, others listening.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar (blue): \"Being Brave\"\nHebrew: \"לִהְיוֹת אַמִּיץ\"\n\nFeeling faces row:\n😰 פּוֹחֵד (Scared) | 💪 אַמִּיץ (Brave) | 😌 מֻקָל (Relieved) | 😊 גֵּאֶה (Proud)\n\n\"Have you ever had to be brave, even when you were scared?\"\n\"How do you think Esther felt before she told her secret?\"\n\"What helps YOU feel brave when you're scared?\"\n\nBottom banner: \"Torah Talk: Sit in a circle and share!\"\n\n=== COMPOSITION ===\nTop: Blue title bar with title text\nUpper section: Children sitting in discussion circle illustration\nMiddle: Row of 4 feeling face emojis with Hebrew labels\nLower section: Three question bubbles in different soft colors\nBottom: \"Torah Talk\" banner with instruction\n\n=== FRAME ===\n- Border: Blue #0074D9\n\n=== MOOD ===\nWarm, safe, inviting discussion.",
+      "image_path": "images/connection_1.png",
+      "teacher_script": "Esther was really scared, but she was brave anyway. Let's sit in a circle and talk about being brave. Have YOU ever had to be brave, even when you were scared? Maybe speaking up, or trying something new? What helps you feel brave? Let's share with each other!",
+      "session": 2
+    },
+    {
+      "card_id": "connection_2",
+      "card_type": "connection",
+      "title_en": "Secrets and Feelings",
+      "title_he": "סוֹדוֹת וּרְגָשׁוֹת",
+      "questions": [
+        {
+          "question_type": "personal",
+          "question_en": "Have you ever had a secret that was hard to keep?",
+          "question_he": "הֲאִם אֵי פַּעַם הָיָה לְךָ סוֹד שֶׁהָיָה קָשֶׁה לִשְׁמֹר?"
+        },
+        {
+          "question_type": "empathy",
+          "question_en": "How do you think Esther felt keeping her secret?",
+          "question_he": "אֵיךְ לְדַעְתְּךָ הִרְגִּישָׁה אֶסְתֵּר כְּשֶׁשָּׁמְרָה אֶת הַסּוֹד שֶׁלָּהּ?"
+        },
+        {
+          "question_type": "action",
+          "question_en": "Who do you talk to when something feels too big to hold inside?",
+          "question_he": "לְמִי אַתָּה מְדַבֵּר כְּשֶׁמַּשֶּׁהוּ מַרְגִּישׁ גָּדוֹל מִדַּי לִשְׁמֹר בִּפְנִים?"
+        }
+      ],
+      "torah_talk_instruction": "Sit in a circle and share!",
+      "feeling_faces": [
+        {
+          "emoji": "🤐",
+          "label_en": "Quiet",
+          "label_he": "שָׁקֵט"
+        },
+        {
+          "emoji": "😟",
+          "label_en": "Worried",
+          "label_he": "מֻדְאָג"
+        },
+        {
+          "emoji": "😌",
+          "label_en": "Relieved",
+          "label_he": "מֻקָל"
+        },
+        {
+          "emoji": "🤗",
+          "label_en": "Safe",
+          "label_he": "בָּטוּחַ"
+        }
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== CARD TYPE: CONNECTION ===\n\n=== SCENE ===\nA child looking thoughtful, maybe hugging themselves.\nSoft, warm colors. Safe feeling.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar: \"Secrets and Feelings\"\nHebrew: \"סוֹדוֹת וּרְגָשׁוֹת\"\n\nFeeling faces:\n🤐 שָׁקֵט (Quiet) | 😟 מֻדְאָג (Worried) | 😌 מֻקָל (Relieved) | 🤗 בָּטוּחַ (Safe)\n\n\"Have you ever had a secret that was hard to keep?\"\n\"How do you think Esther felt keeping her secret?\"\n\"Who do you talk to when something feels too big to hold inside?\"\n\nBottom: \"Torah Talk: Sit in a circle and share!\"\n\n=== FRAME ===\n- Border: Blue #0074D9\n\n=== MOOD ===\nGentle, safe. It's okay to have big feelings.",
+      "image_path": "images/connection_2.png",
+      "teacher_script": "Esther had to keep a big secret for a long time. That can feel hard! Have you ever had a secret that felt too big to hold inside? Sometimes we need to talk to a grown-up we trust. Who do you talk to when you have big feelings? Let's share in our circle.",
+      "session": 3,
+      "optional": true
+    },
+    {
+      "card_id": "tradition_1",
+      "card_type": "tradition",
+      "title_en": "Shake the Grogger!",
+      "title_he": "רַעֲשָׁן",
+      "story_connection_en": "Haman made a very bad choice because of his jealousy. Every year when we hear his name, we make noise to 'blot it out!'",
+      "story_connection_he": "הָמָן עָשָׂה בְּחִירָה רָעָה מְאוֹד בִּגְלַל הַקִּנְאָה שֶׁלּוֹ. בְּכָל שָׁנָה כְּשֶׁאָנוּ שׁוֹמְעִים אֶת שְׁמוֹ, אָנוּ עוֹשִׂים רַעַשׁ כְּדֵי 'לִמְחֹק אוֹתוֹ!'",
+      "practice_description_en": "When someone reads the Purim story out loud, we listen carefully. Every time we hear 'Haman,' we shake our groggers as loud as we can!",
+      "practice_description_he": "כְּשֶׁמִּישֶׁהוּ קוֹרֵא אֶת סִפּוּר פּוּרִים בְּקוֹל רָם, אָנוּ מַקְשִׁיבִים בְּתַשׂוּמַת לֵב. בְּכָל פַּעַם שֶׁאָנוּ שׁוֹמְעִים 'הָמָן', אָנוּ מְנַעְנְעִים אֶת הָרַעֲשָׁנִים שֶׁלָּנוּ חָזָק כְּכָל הָאֶפְשָׁר!",
+      "child_action_en": "Can you shake a grogger? Let's practice together — when I say 'Haman,' shake as loud as you can!",
+      "child_action_he": "הַאִם אַתָּה יָכוֹל לְנַעְנֵעַ רַעֲשָׁן? בּוֹא נִתְרַגֵּל יַחַד — כְּשֶׁאֲנִי אוֹמֵר 'הָמָן', נַעְנֵעַ חָזָק כְּכָל הָאֶפְשָׁר!",
+      "hebrew_term": "רַעֲשָׁן",
+      "hebrew_term_meaning": "Grogger (noisemaker)",
+      "border_color": "#D4A84B",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid cartoon style. WARM golden palette.\nCelebratory but calm energy — joyful, not manic.\n\n=== CARD TYPE: TRADITION ===\nShows a Purim practice. Warm, inviting, connects story to ritual.\nGold/amber color scheme. Sparkle icon (not star).\n\n=== SCENE ===\nFamily or community gathered. GENERIC ADULT (NOT a story character) reading from a scroll (megillah).\nThe reader should be a friendly community member — NOT Haman, NOT a villain.\nChildren in foreground happily shaking colorful groggers.\nWarm synagogue or home setting. Golden candlelight feeling.\nEveryone joyful and engaged.\n\n=== IMPORTANT ===\nDo NOT include Haman or any villain in this image. The text mentions his name, but he should NOT appear visually. Show only positive, joyful community members.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar (gold/amber): \"Shake the Grogger!\"\nHebrew: \"רַעֲשָׁן\"\n\nStory connection box: \"Haman made a very bad choice because of his jealousy. Every year when we hear his name, we make noise to 'blot it out!'\"\n\nPractice description: \"When someone reads the Purim story out loud, we listen carefully. Every time we hear 'Haman,' we shake our groggers as loud as we can!\"\n\nChild action: \"✨ Can you shake a grogger? Let's practice together!\"\n\nBottom bar: \"רַעֲשָׁן • Grogger\"\n\n=== COMPOSITION ===\nTop: Warm gold/amber title bar\nMain area: Community/children shaking groggers illustration\nBelow illustration: Subtle box with story connection text\nLower section: Practice description and sparkle invitation\nBottom: Hebrew term bar with meaning\n\n=== FRAME ===\n- Border: Warm amber/gold #D4A84B\n- Sparkle icon ✨ (not star or lightning)\n\n=== MOOD ===\nWarm, celebratory, joyful. Community togetherness. Inviting, not instructional.",
+      "image_path": "images/tradition_1.png",
+      "teacher_script": "Remember how Haman made such a bad choice? Every year, when we read the Purim story and hear his name, we make LOTS of noise! We use a special noisemaker called a grogger. Can you say that? Gro-gger! It sounds like this — [shake grogger]. Let's practice! When I say 'Haman'... everyone shake! Ready? HAMAN! [let kids shake] Great job! That's how we celebrate Purim!",
+      "session": 2
+    },
+    {
+      "card_id": "tradition_2",
+      "card_type": "tradition",
+      "title_en": "Dressing Up",
+      "title_he": "תַּחְפּוֹשׂוֹת",
+      "story_connection_en": "Esther kept who she really was hidden, like a costume. On Purim, we dress up to remember her brave secret.",
+      "story_connection_he": "אֶסְתֵּר הֶחְבִּיאָה מִי שֶׁהִיא בֶּאֱמֶת, כְּמוֹ תַּחְפּוֹשֶׂת. בְּפוּרִים, אָנוּ מִתְחַפְּשִׂים כְּדֵי לִזְכֹּר אֶת הַסּוֹד הָאַמִּיץ שֶׁלָּהּ.",
+      "practice_description_en": "On Purim, everyone wears costumes! We can dress up as queens, kings, heroes, or anything we want!",
+      "practice_description_he": "בְּפוּרִים, כֻּלָּם לוֹבְשִׁים תַּחְפּוֹשׂוֹת! אָנוּ יְכוֹלִים לְהִתְחַפֵּשׂ לְמַלְכוֹת, מְלָכִים, גִּבּוֹרִים, אוֹ כָּל דָּבָר שֶׁאָנוּ רוֹצִים!",
+      "child_action_en": "If you could wear any costume for Purim, what would you be? A queen? A superhero? Something silly?",
+      "child_action_he": "אִם הָיִיתָ יָכוֹל לִלְבֹּשׁ כָּל תַּחְפּוֹשֶׂת לְפוּרִים, מַה הָיִיתָ? מַלְכָּה? גִּבּוֹר עַל? מַשֶּׁהוּ מַצְחִיק?",
+      "hebrew_term": "תַּחְפּוֹשׂוֹת",
+      "hebrew_term_meaning": "Costumes",
+      "border_color": "#D4A84B",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid cartoon style. WARM golden palette.\nJoyful, festive, celebratory.\n\n=== CARD TYPE: TRADITION ===\nGold/amber color scheme. Sparkle icon.\n\n=== SCENE ===\nChildren dressed in colorful Purim costumes!\nA mix: someone dressed as a queen, a superhero, maybe an animal.\nJoyful expressions, showing off costumes.\nFestive setting — maybe with decorations.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar: \"Dressing Up\"\nHebrew: \"תַּחְפּוֹשׂוֹת\"\n\nStory connection: \"Esther kept who she really was hidden, like a costume. On Purim, we dress up to remember her brave secret.\"\n\nPractice description: \"On Purim, everyone wears costumes! We can dress up as queens, kings, heroes, or anything we want!\"\n\nChild action: \"✨ If you could wear any costume for Purim, what would you be?\"\n\nBottom bar: \"תַּחְפּוֹשׂוֹת • Costumes\"\n\n=== FRAME ===\n- Border: Warm amber/gold #D4A84B\n- Sparkle icon ✨\n\n=== MOOD ===\nFun, festive, imaginative! Celebrates creativity and joy.",
+      "image_path": "images/tradition_2.png",
+      "teacher_script": "Remember how Esther kept her Jewish identity hidden? It was like she was wearing an invisible costume! On Purim, we wear REAL costumes to remember Esther's secret. Some people dress as queens and kings. Some dress as animals or superheroes. Some wear silly costumes! If YOU could wear any Purim costume, what would you be? Let's share our ideas!",
+      "session": 3,
+      "optional": true
+    },
+    {
+      "card_id": "tradition_3",
+      "card_type": "tradition",
+      "title_en": "Giving Gifts",
+      "title_he": "מִשְׁלוֹחַ מָנוֹת",
+      "story_connection_en": "When the Jewish people were saved, they wanted to share their joy! They gave food and treats to their friends and neighbors.",
+      "story_connection_he": "כְּשֶׁהַיְּהוּדִים נִצְּלוּ, הֵם רָצוּ לַחֲלֹק אֶת הַשִּׂמְחָה שֶׁלָּהֶם! הֵם נָתְנוּ אֹכֶל וּפִנּוּקִים לַחֲבֵרִים וְלַשְּׁכֵנִים שֶׁלָּהֶם.",
+      "practice_description_en": "On Purim, we make gift baskets filled with yummy treats. We give them to friends to spread happiness!",
+      "practice_description_he": "בְּפוּרִים, אָנוּ מְכִינִים סַלֵּי מַתָּנוֹת מְלֵאִים בְּפִנּוּקִים טְעִימִים. אָנוּ נוֹתְנִים אוֹתָם לַחֲבֵרִים כְּדֵי לְהָפִיץ אֹשֶׁר!",
+      "child_action_en": "Can you help make a gift basket for someone you care about?",
+      "child_action_he": "הַאִם אַתָּה יָכוֹל לַעֲזֹר לְהָכִין סַל מַתָּנָה לְמִישֶׁהוּ שֶׁאִכְפַּת לְךָ מִמֶּנוּ?",
+      "hebrew_term": "מִשְׁלוֹחַ מָנוֹת",
+      "hebrew_term_meaning": "Sending Gifts",
+      "border_color": "#D4A84B",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid cartoon style. WARM golden palette.\nJoyful, generous, community feeling.\n\n=== CARD TYPE: TRADITION ===\nGold/amber color scheme. Sparkle icon.\n\n=== SCENE ===\nChild handing a colorful gift basket to a friend.\nBasket filled with treats (hamantaschen visible, fruits, wrapped goodies).\nBoth children smiling warmly. Warm home or community setting.\nGenerous, sharing feeling.\n\n=== EXACT TEXT TO RENDER ===\nTitle bar: \"Giving Gifts\"\nHebrew: \"מִשְׁלוֹחַ מָנוֹת\"\n\nStory connection: \"When the Jewish people were saved, they wanted to share their joy! They gave food and treats to their friends and neighbors.\"\n\nPractice description: \"On Purim, we make gift baskets filled with yummy treats. We give them to friends to spread happiness!\"\n\nChild action: \"✨ Can you help make a gift basket for someone you care about?\"\n\nBottom bar: \"מִשְׁלוֹחַ מָנוֹת • Sending Gifts\"\n\n=== FRAME ===\n- Border: Warm amber/gold #D4A84B\n- Sparkle icon ✨\n\n=== MOOD ===\nGenerous, warm, sharing joy with others.",
+      "image_path": "images/tradition_3.png",
+      "teacher_script": "When the Jewish people were saved, they were SO happy! They wanted to share that happy feeling with everyone. So they gave gifts of food to their friends and neighbors. On Purim, we do the same thing! We make baskets with treats and give them to people we care about. Who would YOU like to give a gift basket to?",
+      "session": 3,
+      "optional": true
+    },
+    {
+      "card_id": "power_word_1",
+      "card_type": "power_word",
+      "title_en": "Gibor - Hero",
+      "title_he": "גִּבּוֹר",
+      "hebrew_word": "גבור",
+      "hebrew_word_nikud": "גִּבּוֹר",
+      "english_meaning": "Hero / Brave One",
+      "example_sentence_en": "Esther was a gibor — she was brave even when she was scared!",
+      "example_sentence_he": "אֶסְתֵּר הָיְתָה גִּבּוֹרָה — הִיא הָיְתָה אַמִּיצָה גַּם כְּשֶׁהִיא פָּחֲדָה!",
+      "kid_friendly_explanation_en": "A gibor is someone who does the right thing, even when it's hard or scary. YOU can be a gibor too!",
+      "kid_friendly_explanation_he": "גִּבּוֹר הוּא מִישֶׁהוּ שֶׁעוֹשֶׂה אֶת הַדָּבָר הַנָּכוֹן, גַּם כְּשֶׁזֶה קָשֶׁה אוֹ מְפַחֵד. גַּם אַתָּה יָכוֹל לִהְיוֹת גִּבּוֹר!",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid cartoon style. Empowering, warm colors.\n\n=== CARD TYPE: POWER WORD ===\nHebrew vocabulary card. Large word, illustration, example.\n\n=== SCENE ===\nChild standing in brave, confident pose (hands on hips, or fist raised).\nOr: Esther looking brave and determined.\nEmpowering imagery — \"I am a hero!\"\n\n=== EXACT TEXT TO RENDER ===\nLarge Hebrew (top center): \"גִּבּוֹר\"\nMeaning below: \"Hero / Brave One\"\n\nIllustration zone: Brave child or Esther\n\nMain text: \"A gibor is someone who does the right thing, even when it's hard or scary. YOU can be a gibor too!\"\n\nExample: \"Esther was a gibor — she was brave even when she was scared!\"\n\n=== COMPOSITION ===\nTop: \"גִּבּוֹר\" large and centered with meaning below\nMain area: Brave child or Esther illustration\nBelow illustration: Kid-friendly explanation text\nBottom: Example sentence\n\n=== FRAME ===\n- Border: Green #2ECC40 (Power Word color)\n\n=== MOOD ===\nEmpowering! \"YOU can be a gibor too!\"",
+      "image_path": "images/power_word_1.png",
+      "teacher_script": "Let's learn a special Hebrew word: GIBOR. Can you say it? Gi-bor! It means 'hero' or 'brave one.' Esther was a gibor because she did the right thing even when she was scared. Guess what? YOU can be a gibor too! When you help someone, or try something new, or stand up for what's right — that's being a gibor. Let's all say it: 'I am a gibor!'",
+      "session": 3,
+      "optional": true
+    }
+  ]
+}

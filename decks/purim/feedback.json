@@ -1,0 +1,44 @@
+{
+  "holiday": "Purim",
+  "deck_version": "1.0",
+  "content_type": "holiday",
+  "review_date": "2026-02-04",
+  "cards": [
+    {"card_id": "anchor_1", "status": "pending", "feedback": []},
+    {"card_id": "spotlight_1", "status": "approved", "feedback": []},
+    {"card_id": "spotlight_2", "status": "approved", "feedback": []},
+    {"card_id": "spotlight_3", "status": "approved", "feedback": [
+      {"category": "visual", "comment": "Haman identity v2 selected and regenerated", "priority": "high", "resolved": true}
+    ]},
+    {"card_id": "spotlight_4", "status": "approved", "feedback": [
+      {"category": "visual", "comment": "Achashverosh identity v1 selected and regenerated", "priority": "high", "resolved": true}
+    ]},
+    {"card_id": "story_1", "status": "approved", "feedback": [
+      {"category": "text", "comment": "Fixed: roleplay prompt now gender-neutral ('give a royal wave' not 'wave like a queen')", "priority": "high", "resolved": true}
+    ]},
+    {"card_id": "story_2", "status": "approved", "feedback": []},
+    {"card_id": "story_3", "status": "needs_review", "feedback": [
+      {"category": "visual", "comment": "'that was wrong' may render twice - appears only once in prompt, may be AI artifact. Check regenerated image.", "priority": "medium", "resolved": false}
+    ]},
+    {"card_id": "story_4", "status": "pending", "feedback": [
+      {"category": "visual", "comment": "Achashverosh has beard/mustache but reference shows clean-shaven. Sitting pose may cause consistency drift. Worth investigating but not blocking.", "priority": "low", "resolved": false}
+    ]},
+    {"card_id": "story_5", "status": "approved", "feedback": []},
+    {"card_id": "connection_1", "status": "approved", "feedback": []},
+    {"card_id": "connection_2", "status": "approved", "feedback": []},
+    {"card_id": "tradition_1", "status": "approved", "feedback": [
+      {"category": "visual", "comment": "Fixed: Regenerated WITHOUT character refs. Added explicit 'NOT Haman' instruction to prompt. Generic adult now reads megillah.", "priority": "high", "resolved": true}
+    ]},
+    {"card_id": "tradition_2", "status": "pending", "feedback": []},
+    {"card_id": "tradition_3", "status": "approved", "feedback": []},
+    {"card_id": "power_word_1", "status": "pending", "feedback": []}
+  ],
+  "global_feedback": "Session 2 feedback addressed: (1) gender-neutral roleplay implemented, (2) character identity selections finalized, (3) tradition_1 villain-in-scene bug fixed via --no-refs workaround.",
+  "lessons_captured": [
+    "Gender-neutral roleplay prompts - added to Content Writer agent",
+    "Duplicate text check - added to Editor agent checklist",
+    "Character ref exclusion for text-only mentions - documented in LESSONS_LEARNED.md",
+    "Character review checkpoint workflow - documented in STYLE_GUIDE.md and Visual Director agent"
+  ],
+  "notes": "First holiday deck. 15 cards total. Villain characters framed as misguided. 3 tradition cards included."
+}
