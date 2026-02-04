@@ -14,13 +14,10 @@ decks/
     │   ├── anchor_1.png
     │   ├── spotlight_1.png
     │   └── ...
-    └── references/     # Character reference sheets
+    └── references/     # Character identity references
         ├── manifest.json
-        ├── moses_identity.png
-        ├── moses_expressions.png
-        ├── moses_turnaround.png
-        ├── moses_poses.png
-        └── ...
+        ├── moses_identity.png      # Single source of truth
+        └── yitro_identity.png
 ```
 
 ## Creating a New Deck
@@ -199,46 +196,58 @@ This creates:
 
 ## references/ Directory
 
-Contains character reference sheets for visual consistency.
+Contains character identity reference sheets for visual consistency.
+
+**Important:** We generate ONLY the identity sheet per character (portrait + full body).
+This single image is the source of truth for character appearance and is passed to
+all card image generations to maintain consistency.
 
 ### manifest.json
 
 ```json
 {
   "moses": {
-    "identity": "decks/yitro/references/moses_identity.png",
-    "expressions": "decks/yitro/references/moses_expressions.png",
-    "turnaround": "decks/yitro/references/moses_turnaround.png",
-    "poses": "decks/yitro/references/moses_poses.png"
+    "identity": "decks/yitro/references/moses_identity.png"
   },
-  "yitro": {
-    "identity": "decks/yitro/references/yitro_identity.png",
-    ...
+  "esther": {
+    "identity": "decks/purim/references/esther_identity.png"
   }
 }
 ```
 
-### Reference Sheet Types
+### Why Only Identity?
 
-| Type | Content | Aspect Ratio |
-|------|---------|--------------|
-| identity | Portrait + full body side by side | 16:9 |
-| expressions | 6 emotions in 3x2 grid | 3:2 |
-| turnaround | Front, 3/4, side, back views | 16:9 |
-| poses | 4 key action poses | 16:9 |
+Previously we generated 4 reference types (identity, expressions, turnaround, poses).
+However, each was generated independently from text, resulting in inconsistent
+interpretations of the same character. Now we generate ONE identity sheet and use
+it as the reference for ALL card generations.
+
+### Character Review Workflow
+
+Before finalizing a new character identity:
+
+1. **Generate versions:** Create 2+ identity variants
+   ```bash
+   # Generates {character}_identity_v1.png, {character}_identity_v2.png
+   python workflows.py character haman --deck ../decks/purim --generate --versions 2
+   ```
+
+2. **User review:** Present versions for selection
+
+3. **Finalize:** Rename selected version to canonical name
+   ```bash
+   mv haman_identity_v2.png haman_identity.png
+   rm haman_identity_v1.png
+   ```
+
+4. **Update manifest:** Ensure manifest.json points to canonical file
 
 ### Generating References
 
 ```bash
 cd src
 
-# Generate all characters for a deck
-python generate_references.py --output ../decks/yitro/references
-
-# Generate specific character
-python generate_references.py --output ../decks/yitro/references --character moses
-
-# Or use the workflow
+# Generate identity reference for a character
 python workflows.py character moses --deck ../decks/yitro --generate
 ```
 

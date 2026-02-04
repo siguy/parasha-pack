@@ -1,0 +1,14 @@
+{
+  "esther": {
+    "identity": "decks/purim/references/esther_identity.png"
+  },
+  "mordechai": {
+    "identity": "decks/purim/references/mordechai_identity.png"
+  },
+  "haman": {
+    "identity": "decks/purim/references/haman_identity.png"
+  },
+  "achashverosh": {
+    "identity": "decks/purim/references/achashverosh_identity.png"
+  }
+}

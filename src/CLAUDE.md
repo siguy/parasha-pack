@@ -175,37 +175,58 @@ python generate_images.py ../decks/yitro/deck.json --model flash
 
 ## generate_references.py
 
-Generates character reference sheets (identity, expressions, turnaround, poses).
+Generates character identity reference sheets (single source of truth for character appearance).
+
+**Note:** We generate ONLY identity sheets. Previously we generated 4 types (identity, expressions, turnaround, poses), but each was generated independently from text, producing inconsistent character interpretations. A single identity image now serves as the visual anchor for all card generations.
 
 ### Functions
 
 **`generate_image(prompt, api_key, output_path, aspect_ratio) -> bool`**
-- Calls Gemini API to generate image
+- Calls Gemini API (nano-banana-pro model) to generate image
 - Returns True on success
-
-**`generate_all_references(api_key, output_dir, characters) -> dict`**
-- Generates all 4 reference types for each character
-- Creates manifest.json
-- Returns dict of paths
-
-**`get_identity_prompt(char_key) -> str`**
-- Portrait + full body reference
-
-**`get_expression_sheet_prompt(char_key) -> str`**
-- 6-emotion expression grid
-
-**`get_turnaround_prompt(char_key) -> str`**
-- Front/3-4/side/back views
-
-**`get_pose_sheet_prompt(char_key, poses) -> str`**
-- Character action poses
 
 ### CLI
 
 ```bash
 python generate_references.py --output ../decks/yitro/references
 python generate_references.py --character moses  # Single character
-python generate_references.py --type expressions  # Single type
+```
+
+## generate_images.py - Reference Image Integration
+
+When generating card images, reference images are automatically loaded and passed to the API.
+
+### How It Works
+
+1. **Load references:** Reads `references/manifest.json` in the deck directory
+2. **Match characters:** Scans the image prompt for character names
+3. **Encode images:** Base64-encodes matching identity PNG files
+4. **API payload:** Includes image data alongside text prompt:
+   ```python
+   contents = [
+       {"text": prompt},
+       {"inlineData": {"mimeType": "image/png", "data": base64_image}}
+   ]
+   ```
+
+### Key Functions
+
+**`load_reference_images(deck_path, prompt) -> List[Dict]`**
+- Loads identity images for characters mentioned in the prompt
+- Returns list of base64-encoded image parts for API
+
+**`generate_image_nano_banana(prompt, output_path, aspect_ratio, reference_images) -> bool`**
+- Accepts optional reference_images parameter
+- Passes images to API for consistency
+
+### CLI Options
+
+```bash
+# Normal (with references)
+python generate_images.py ../decks/purim/deck.json
+
+# Without references (for debugging)
+python generate_images.py ../decks/purim/deck.json --no-refs
 ```
 
 ---
