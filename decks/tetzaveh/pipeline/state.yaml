@@ -1,0 +1,14 @@
+checkpoints:
+  structure:
+    requested_at: '2026-02-06T00:23:27.065496'
+    status: pending
+completed_stages:
+- agent_1
+- agent_2
+content_type: parasha
+created_at: '2026-02-06T00:22:31.668317'
+current_stage: agent_2
+errors: []
+needs_human_review: []
+parasha: Tetzaveh
+updated_at: '2026-02-06T00:23:27.065498'

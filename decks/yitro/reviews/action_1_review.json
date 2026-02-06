@@ -1,0 +1,65 @@
+{
+  "card_id": "action_1",
+  "image_path": "images/action_1.png",
+  "overall_score": 87,
+  "recommendation": "PASS",
+  "characters": [
+    {
+      "name": "Moses",
+      "overall_score": 87,
+      "attributes": {
+        "skin_tone": {
+          "score": 95,
+          "note": "Warm brown skin matches reference well."
+        },
+        "beard": {
+          "score": 85,
+          "note": "Short dark beard matches, but gray streaks at chin are not clearly visible."
+        },
+        "head_covering": {
+          "score": 95,
+          "note": "Blue cloth turban/head wrap matches reference well."
+        },
+        "clothing_main_color": {
+          "score": 95,
+          "note": "Blue outer robe over cream/beige inner garment matches reference well."
+        },
+        "props": {
+          "score": 50,
+          "note": "Wooden shepherd's staff is not visible in the scene as Moses is running with open arms."
+        }
+      },
+      "blocking_issues": []
+    },
+    {
+      "name": "Yitro",
+      "overall_score": 95,
+      "attributes": {
+        "skin_tone": {
+          "score": 95,
+          "note": "Light olive/tan skin matches reference well."
+        },
+        "beard": {
+          "score": 95,
+          "note": "Long flowing white/gray beard reaching chest matches reference well."
+        },
+        "head_covering": {
+          "score": 95,
+          "note": "Tan/olive cloth head covering with darker band matches reference well."
+        },
+        "clothing_main_color": {
+          "score": 95,
+          "note": "Olive/brown layered robes with geometric patterns match reference well."
+        },
+        "props": {
+          "score": 95,
+          "note": "Wooden walking staff with curved top matches reference well."
+        }
+      },
+      "blocking_issues": []
+    }
+  ],
+  "blocking_issues": [],
+  "summary": "Both characters, Moses and Yitro, are depicted accurately according to their reference images. Moses's staff is not visible in the action scene, which is acceptable given the context. All other attributes for both characters are a strong match.",
+  "timestamp": "2026-02-04T07:04:07.003945"
+}

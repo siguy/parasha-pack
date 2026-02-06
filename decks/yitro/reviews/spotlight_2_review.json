@@ -1,0 +1,38 @@
+{
+  "card_id": "spotlight_2",
+  "image_path": "images/spotlight_2.png",
+  "overall_score": 95,
+  "recommendation": "PASS",
+  "characters": [
+    {
+      "name": "Yitro",
+      "overall_score": 95,
+      "attributes": {
+        "skin_tone": {
+          "score": 95,
+          "note": "The light olive/tan skin tone matches the reference image perfectly."
+        },
+        "beard": {
+          "score": 95,
+          "note": "The long, flowing white/gray beard reaching the chest is an excellent match to the reference."
+        },
+        "head_covering": {
+          "score": 95,
+          "note": "The tan/olive cloth head covering with a darker band is accurately reproduced."
+        },
+        "clothing_main_color": {
+          "score": 95,
+          "note": "The olive/brown layered robes with geometric patterns are consistent with the reference."
+        },
+        "props": {
+          "score": 95,
+          "note": "The wooden walking staff with a curved top is identical to the one in the reference image."
+        }
+      },
+      "blocking_issues": []
+    }
+  ],
+  "blocking_issues": [],
+  "summary": "The character Yitro in the generated card is an excellent match to the provided reference image, with all key attributes accurately reproduced.",
+  "timestamp": "2026-02-04T19:17:53.005978"
+}

@@ -1,0 +1,38 @@
+{
+  "card_id": "spotlight_1",
+  "image_path": "images/spotlight_1.png",
+  "overall_score": 100,
+  "recommendation": "PASS",
+  "characters": [
+    {
+      "name": "Moses",
+      "overall_score": 100,
+      "attributes": {
+        "skin_tone": {
+          "score": 100,
+          "note": "Perfect match to reference."
+        },
+        "beard": {
+          "score": 100,
+          "note": "Matches reference perfectly, including the gray streaks at the chin."
+        },
+        "head_covering": {
+          "score": 100,
+          "note": "Matches reference perfectly."
+        },
+        "clothing_main_color": {
+          "score": 100,
+          "note": "Matches reference perfectly, blue outer robe over cream inner garment."
+        },
+        "props": {
+          "score": 100,
+          "note": "Staff matches reference perfectly."
+        }
+      },
+      "blocking_issues": []
+    }
+  ],
+  "blocking_issues": [],
+  "summary": "The character Moses in the generated card is a perfect match to the reference image in all attributes, maintaining consistent appearance, clothing, and props.",
+  "timestamp": "2026-02-05T19:12:47.120517"
+}

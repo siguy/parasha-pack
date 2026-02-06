@@ -1,14 +1,18 @@
 {
   "esther": {
-    "identity": "decks/purim/references/esther_identity.png"
+    "identity": "characters/esther/identity.png",
+    "stage": null
   },
   "mordechai": {
-    "identity": "decks/purim/references/mordechai_identity.png"
+    "identity": "characters/mordechai/identity.png",
+    "stage": null
   },
   "haman": {
-    "identity": "decks/purim/references/haman_identity.png"
+    "identity": "characters/haman/identity.png",
+    "stage": null
   },
   "achashverosh": {
-    "identity": "decks/purim/references/achashverosh_identity.png"
+    "identity": "characters/achashverosh/identity.png",
+    "stage": null
   }
 }

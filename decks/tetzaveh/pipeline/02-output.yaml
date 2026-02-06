@@ -1,0 +1,123 @@
+deck_structure:
+  parasha: "Tetzaveh"
+  content_type: parasha
+
+  emotional_core: |
+    Special clothing makes us feel important and ready for special jobs
+
+  deck_approach: ritual
+
+  learning_objectives:
+    understand: |
+      Aaron gets the most beautiful, special clothes ever made to help him serve God in the Tabernacle
+    feel: |
+      Excited about special clothes and proud when we have important jobs to do
+    do: |
+      Talk about their own special clothes and how different clothes help people do different jobs
+
+  card_type_adjustments:
+    spotlight: include
+    story_cards: ritual moments
+    connection_emphasis: elevated
+    power_word: include
+
+  session_flow:
+    required_cards:
+      - card_id: "anchor_1"
+        minutes: 2
+      - card_id: "spotlight_1"
+        minutes: 2
+      - card_id: "story_1"
+        minutes: 2
+      - card_id: "story_2"
+        minutes: 3
+      - card_id: "connection_1"
+        minutes: 4
+    total_required_minutes: 13
+
+    optional_cards:
+      - card_id: "story_3"
+        minutes: 2
+      - card_id: "connection_2"
+        minutes: 3
+      - card_id: "power_word_1"
+        minutes: 2
+
+    recommended_order: |
+      Start with Anchor to establish the excitement of special clothes → Spotlight introduces Aaron and his important job → Story 1 shows God's instructions → Story 2 shows the beautiful clothes being made → Connection 1 relates to kids' special clothing experiences → Optional extensions for deeper exploration
+
+  energy_arc: |
+    Calm intro about special clothes → Meet Aaron with gentle excitement → Build energy as we see the beautiful garments → Active roleplay with clothing → Calm reflection on special jobs and clothes
+
+  card_assignments:
+    anchor:
+      emotional_hook: |
+        Getting the most beautiful, special clothes to do the most important job
+      symbol: |
+        Golden priestly garments on display - ephod, breastplate, and turban arranged beautifully
+      rationale: |
+        Kids immediately understand special clothes and can relate to the excitement of getting dressed up for important occasions
+
+    spotlight:
+      character: "Aaron"
+      is_new_character: yes
+      emotion_focus: "honored and responsible"
+      why_kids_relate: |
+        Kids understand being chosen for an important job and wanting to do it well, plus the excitement of getting special clothes
+      rationale: |
+        Aaron is the central figure receiving these magnificent garments, and kids can relate to both being chosen for something special and the joy of beautiful new clothes
+
+    story_1:
+      moment: "God tells Moses to make beautiful, holy clothes for Aaron"
+      title: "God's Special Instructions"
+      energy_level: medium
+      roleplay: |
+        Point to different parts of your clothes as we name Aaron's special pieces
+      rationale: |
+        This establishes the divine origin and importance of the garments, starting the story with God's care and Moses receiving instructions
+
+    story_2:
+      moment: "The skilled craftspeople make the ephod with gold and colorful threads"
+      title: "Making Something Beautiful"
+      energy_level: high
+      roleplay: |
+        Pretend to weave beautiful threads together, making careful, precise movements
+      rationale: |
+        This shows the craftsmanship and beauty, letting kids appreciate the skill and care that goes into making something special
+
+    story_3:
+      moment: "Aaron puts on the breastplate with 12 special stones for the 12 tribes"
+      title: "Getting Dressed for Service"
+      energy_level: medium
+      roleplay: |
+        Pretend to put on each piece of special clothing, standing tall and proud
+      optional: true
+      rationale: |
+        This focuses on Aaron wearing the completed garments and representing all the Jewish people through the 12 stones
+
+    connection_1:
+      theme: "Special clothes for special times"
+      personal_question: |
+        Have you ever worn special clothes that made you feel important or ready for something special?
+      placement_rationale: |
+        After Story 2 when kids have seen the beautiful clothes being made and can connect to their own experiences
+      feeling_faces: ["excited", "proud", "important", "careful"]
+
+    connection_2:
+      theme: "Taking care of special things"
+      personal_question: |
+        What special things do you have that you take very good care of?
+      optional: true
+      rationale: |
+        Extends the lesson to responsibility and care for precious items
+
+    power_word:
+      word: "כֹּהֵן"
+      when_to_use: |
+        As optional extension after main story, introducing Aaron's special job title
+      optional: true
+      rationale: |
+        Central vocabulary for understanding Aaron's role, but not essential for the core emotional connection
+
+  teacher_notes: |
+    This deck focuses on the relatable excitement of special clothes rather than complex ritual details. Aaron is being introduced as a new character - he's Moses's brother who gets chosen for this important job. Kids will connect strongly to the dress-up theme and the feeling of being chosen for something special. The craftspeople story moment celebrates skill and beauty, which kids appreciate. If extending, the daily lighting of the menorah adds a responsibility element kids understand.

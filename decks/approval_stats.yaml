@@ -1,0 +1,41 @@
+# Approval Statistics for Parasha Pack
+# Tracks approval rates at checkpoints for confidence-based auto-approval (Phase 4)
+#
+# Note: This file is automatically updated by the orchestrator.
+# Do not edit manually unless resetting statistics.
+
+checkpoints:
+  structure:
+    total: 0
+    auto_approved: 0
+    human_approved: 0
+    human_rejected: 0
+    approval_rate: 0.0
+
+  identity:
+    total: 0
+    auto_approved: 0
+    human_approved: 0
+    human_rejected: 0
+    approval_rate: 0.0
+
+  final:
+    total: 0
+    auto_approved: 0
+    human_approved: 0
+    human_rejected: 0
+    approval_rate: 0.0
+
+thresholds:
+  # Minimum approval rate before checkpoints become advisory
+  advisory_threshold: 0.90
+
+  # Minimum approval rate before auto-approving
+  auto_approve_threshold: 0.95
+
+  # Minimum number of samples before considering auto-approve
+  min_samples: 5
+
+metadata:
+  created_at: "2026-02-05"
+  version: "1.0"

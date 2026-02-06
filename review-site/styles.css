@@ -153,21 +153,58 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-bottom: var(--spacing-lg);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.deck-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.deck-title-row {
+    display: flex;
     align-items: center;
-    flex-wrap: wrap;
     gap: var(--spacing-md);
+    flex-wrap: wrap;
 }
 
 .deck-meta h2 {
     font-size: var(--font-size-xl);
     color: var(--primary);
+    margin: 0;
+}
+
+.content-type-badge {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.content-type-badge.parasha {
+    background: var(--primary);
+    color: white;
+}
+
+.content-type-badge.holiday {
+    background: #d946ef;
+    color: white;
+}
+
+.deck-subtitle-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
 }
 
 .deck-ref {
     color: var(--text-light);
     font-size: var(--font-size-sm);
-    margin-left: var(--spacing-md);
 }
 
 .card-count {
@@ -176,7 +213,24 @@ body {
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--border-radius);
     font-size: var(--font-size-sm);
-    margin-left: var(--spacing-sm);
+}
+
+.session-count {
+    background: var(--type-action);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+}
+
+.deck-theme-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--border);
 }
 
 .deck-theme {
@@ -200,6 +254,17 @@ body {
     border: 2px solid var(--border);
 }
 
+.deck-emotional-core {
+    flex: 1;
+    min-width: 200px;
+    font-style: italic;
+    color: var(--text-light);
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+    padding-left: var(--spacing-md);
+    border-left: 3px solid var(--secondary);
+}
+
 /* Card Gallery */
 .card-gallery {
     background: var(--surface);
@@ -209,9 +274,54 @@ body {
     margin-bottom: var(--spacing-lg);
 }
 
-.card-gallery h3 {
+/* Gallery header with session filter */
+.gallery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.gallery-header h3 {
     color: var(--primary);
+    margin: 0;
+}
+
+/* Session filter */
+.session-filter {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.session-filter span {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+}
+
+.session-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-width: 36px;
+}
+
+.session-btn:hover {
+    border-color: var(--primary);
+    background: var(--background);
+}
+
+.session-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
 }
 
 .card-grid {
@@ -311,6 +421,19 @@ body {
 .card-thumb-status.needs_revision { background: var(--warning); }
 .card-thumb-status.pending { background: var(--border); }
 
+/* Session badge on card thumbnail */
+.card-thumb-session {
+    position: absolute;
+    bottom: var(--spacing-xs);
+    right: var(--spacing-xs);
+    padding: 2px 6px;
+    font-size: 0.65rem;
+    border-radius: 4px;
+    background: var(--primary);
+    color: white;
+    font-weight: bold;
+}
+
 /* Card Detail Panel */
 .card-detail {
     background: var(--surface);
@@ -406,9 +529,247 @@ body {
     gap: var(--spacing-lg);
 }
 
+/* ==========================================
+   Mobile Responsive Styles
+   ========================================== */
+
+/* Tablet breakpoint */
 @media (max-width: 900px) {
     .detail-content {
         grid-template-columns: 1fr;
+    }
+
+    .preview-column {
+        position: static;
+    }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 600px) {
+    :root {
+        /* Larger text for mobile readability */
+        --font-size-sm: 0.9rem;
+        --font-size-md: 1rem;
+        --font-size-lg: 1.15rem;
+        --font-size-xl: 1.3rem;
+    }
+
+    /* Header */
+    .header {
+        padding: var(--spacing-md);
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: var(--font-size-sm);
+    }
+
+    /* Main content */
+    .main-content {
+        padding: var(--spacing-sm);
+    }
+
+    /* Deck selector - stack vertically on mobile */
+    .deck-selector {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-sm);
+    }
+
+    .deck-selector label {
+        text-align: center;
+    }
+
+    .deck-selector select {
+        min-width: 100%;
+        padding: var(--spacing-md);
+        font-size: var(--font-size-lg);
+    }
+
+    .deck-selector .btn {
+        padding: var(--spacing-md);
+        font-size: var(--font-size-md);
+    }
+
+    /* View tabs - full width buttons */
+    .view-tabs {
+        justify-content: stretch;
+    }
+
+    .tab-btn {
+        flex: 1;
+        padding: var(--spacing-md);
+    }
+
+    /* Deck info - stack on mobile */
+    .deck-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .deck-meta h2 {
+        font-size: var(--font-size-lg);
+    }
+
+    .deck-ref {
+        display: block;
+        margin-left: 0;
+        margin-top: var(--spacing-xs);
+    }
+
+    /* Card grid - 2 columns on mobile */
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+
+    .card-thumb {
+        padding: var(--spacing-xs);
+    }
+
+    .card-thumb-title {
+        font-size: 0.75rem;
+    }
+
+    .card-thumb-title-he {
+        font-size: 0.85rem;
+    }
+
+    /* Card detail panel */
+    .card-detail {
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .detail-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-sm);
+    }
+
+    .detail-header h2 {
+        font-size: var(--font-size-md);
+        order: -1;
+        flex-basis: 100%;
+        text-align: center;
+    }
+
+    /* Navigation buttons - larger tap targets */
+    .nav-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+    }
+
+    /* Card preview */
+    .card-preview {
+        max-height: 50vh;
+    }
+
+    /* Info sections */
+    .info-column {
+        gap: var(--spacing-sm);
+    }
+
+    .info-section {
+        padding: var(--spacing-sm);
+    }
+
+    .script-text {
+        font-size: var(--font-size-lg);
+        line-height: 1.8;
+    }
+
+    /* Feedback form */
+    .feedback-form {
+        grid-template-columns: 1fr;
+    }
+
+    .feedback-status {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    /* Characters grid */
+    .characters-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 95%;
+        padding: var(--spacing-md);
+        max-height: 90vh;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .modal-actions .btn {
+        width: 100%;
+    }
+
+    /* Print options - easier to tap */
+    .print-option {
+        padding: var(--spacing-sm);
+        background: var(--background);
+        border-radius: var(--border-radius);
+    }
+
+    /* Close button - larger tap target */
+    .close-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.75rem;
+    }
+
+    /* Footer */
+    .footer {
+        padding: var(--spacing-md);
+    }
+}
+
+/* Touch-friendly minimum tap targets */
+@media (hover: none) and (pointer: coarse) {
+    /* Ensure all interactive elements are at least 44x44px */
+    .btn, .tab-btn, .nav-btn, .ref-tab-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Card thumbnails - larger tap targets */
+    .card-thumb {
+        min-height: 120px;
+    }
+
+    /* Character cards */
+    .character-card {
+        min-height: 150px;
+    }
+
+    /* Form elements */
+    select, input, textarea {
+        min-height: 44px;
+        font-size: 16px; /* Prevents iOS zoom on focus */
+    }
+
+    /* Radio buttons - larger touch area */
+    .feedback-status label,
+    .print-option {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Collapsible headers - easier to tap */
+    .collapsible .section-header {
+        min-height: 44px;
+        padding: var(--spacing-sm) 0;
     }
 }
 
@@ -1030,4 +1391,251 @@ body {
     font-size: var(--font-size-xl);
     font-weight: bold;
     margin-top: var(--spacing-sm);
+}
+
+/* ==========================================
+   Print Modal Styles
+   ========================================== */
+
+.print-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.print-option {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+}
+
+.print-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+}
+
+.print-option select {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    margin-left: var(--spacing-xs);
+}
+
+.print-preview-info {
+    background: var(--background);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    margin-top: var(--spacing-md);
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+}
+
+/* ==========================================
+   Print Container (Hidden on screen)
+   ========================================== */
+
+.print-container {
+    display: none;
+}
+
+/* ==========================================
+   Print Styles - 8.5x11 pages
+   ========================================== */
+
+@media print {
+    /* Hide everything except print container */
+    body > *:not(.print-container) {
+        display: none !important;
+    }
+
+    .print-container {
+        display: block !important;
+    }
+
+    /* Page setup: 8.5 x 11 inches */
+    @page {
+        size: letter portrait;
+        margin: 0.5in;
+    }
+
+    /* Each card is one page */
+    .print-page {
+        page-break-after: always;
+        page-break-inside: avoid;
+        width: 7.5in;
+        min-height: 10in;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .print-page:last-child {
+        page-break-after: avoid;
+    }
+
+    /* Header: deck name and card number */
+    .print-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10pt;
+        color: #666;
+        margin-bottom: 0.25in;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 0.1in;
+    }
+
+    .print-deck-name {
+        font-weight: 600;
+    }
+
+    /* Card title */
+    .print-card-title {
+        font-size: 18pt;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        margin-bottom: 0.1in;
+    }
+
+    /* Card type badge */
+    .print-card-type {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 9pt;
+        letter-spacing: 1px;
+        padding: 4px 12px;
+        border-radius: 12px;
+        display: inline-block;
+        margin: 0 auto 0.25in;
+        color: white;
+    }
+
+    .print-card-type.anchor { background: #1e3a5f; }
+    .print-card-type.spotlight { background: #d4a84b; }
+    .print-card-type.action, .print-card-type.story { background: #2d8a8a; }
+    .print-card-type.thinker, .print-card-type.connection { background: #5c2d91; }
+    .print-card-type.power_word { background: #a52a2a; }
+
+    /* Card image */
+    .print-image-container {
+        text-align: center;
+        margin: 0.15in 0;
+    }
+
+    .print-image-container img {
+        max-width: 4in;
+        max-height: 4in;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+    }
+
+    /* Teacher script section */
+    .print-script-section {
+        background: #f5f5f5;
+        padding: 0.2in;
+        border-radius: 8px;
+        margin: 0.15in 0;
+        flex-grow: 1;
+    }
+
+    .print-script-label {
+        font-size: 10pt;
+        font-weight: bold;
+        color: #5c2d91;
+        margin-bottom: 0.1in;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .print-script-text {
+        font-size: 14pt;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    /* Hebrew section */
+    .print-hebrew-section {
+        text-align: center;
+        margin: 0.15in 0;
+        padding: 0.15in;
+        background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+        border-radius: 8px;
+    }
+
+    .print-hebrew-word {
+        font-family: 'Times New Roman', serif;
+        font-size: 28pt;
+        color: #5c2d91;
+        direction: rtl;
+    }
+
+    .print-transliteration {
+        font-size: 12pt;
+        font-style: italic;
+        color: #666;
+    }
+
+    .print-meaning {
+        font-size: 14pt;
+        font-weight: bold;
+        margin-top: 0.05in;
+    }
+
+    .print-keyword {
+        font-family: 'Times New Roman', serif;
+        font-size: 20pt;
+        color: #2d8a8a;
+        direction: rtl;
+    }
+
+    .print-roleplay {
+        font-size: 12pt;
+        font-style: italic;
+        color: #c9a227;
+        margin-top: 0.1in;
+        padding: 0.1in;
+        background: #fff3e0;
+        border: 1px dashed #c9a227;
+        border-radius: 4px;
+    }
+
+    .print-roleplay::before {
+        content: "Act it out! ";
+        font-weight: bold;
+    }
+
+    .print-hook {
+        font-size: 14pt;
+        font-style: italic;
+        color: #5c2d91;
+    }
+
+    .print-description {
+        font-size: 11pt;
+        line-height: 1.5;
+        color: #333;
+    }
+
+    .print-question {
+        font-size: 12pt;
+        margin: 0.05in 0;
+        padding: 0.05in 0.1in;
+        background: white;
+        border-left: 3px solid #5c2d91;
+        text-align: left;
+    }
+
+    /* Footer */
+    .print-footer {
+        display: flex;
+        justify-content: space-between;
+        font-size: 9pt;
+        color: #999;
+        margin-top: auto;
+        padding-top: 0.1in;
+        border-top: 1px solid #ddd;
+    }
 }

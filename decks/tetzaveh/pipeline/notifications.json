@@ -1,0 +1,15 @@
+{
+  "notifications": [
+    {
+      "checkpoint": "structure",
+      "timestamp": "2026-02-06T00:23:27.065319",
+      "summary": {
+        "stage": "structure",
+        "agents_complete": [
+          1,
+          2
+        ]
+      }
+    }
+  ]
+}

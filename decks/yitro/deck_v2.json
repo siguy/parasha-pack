@@ -1,0 +1,235 @@
+{
+  "parasha_en": "Yitro",
+  "parasha_he": "יִתְרוֹ",
+  "ref": "Exodus 18:1-20:23",
+  "border_color": "#5c2d91",
+  "theme": "covenant",
+  "version": "2.0",
+  "target_age": "4-6",
+  "card_count": 12,
+  "mitzvah_connection": "Listening carefully and respecting our parents and teachers",
+  "cards": [
+    {
+      "card_id": "anchor_1",
+      "card_type": "anchor",
+      "title_en": "Yitro",
+      "title_he": "יִתְרוֹ",
+      "emotional_hook_en": "This week is about feeling AWE!",
+      "emotional_hook_he": "הַשָּׁבוּעַ הַזֶּה עַל תְּחוּשַׁת יִרְאָה!",
+      "symbol_description": "Two stone tablets with rounded tops, glowing with warm golden light rays streaming from clouds above. Small Hebrew letters visible on the tablets.",
+      "border_color": "#5c2d91",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\nThink: Colorful children's book illustration meets educational flashcard.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Forms: Simple shapes, no fine details or complex patterns.\n- Lines: Thick, clean black outlines (2-3px equivalent).\n- Contrast: High contrast between foreground and background.\n- Complexity: Maximum 5-7 distinct visual elements per scene.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\nColors:\n- Main elements: Bold primary colors (#FF4136, #0074D9, #FFDC00, #2ECC40)\n- Backgrounds: Soft pastels (#FFE5E5, #E5F0FF, #FFFBE5, #E5FFE5)\n\n=== RESTRICTIONS ===\nNEVER depict God in any human or physical form.\nUse only: Warm golden/white light rays from above, glowing soft clouds with radiance.\n\n=== CARD TYPE: ANCHOR (Parasha Introduction) ===\n\n=== CONTENT ===\nHebrew Title: \"יִתְרוֹ\" (large, centered, with nikud vowel marks)\nEnglish Title: \"Yitro\" below the Hebrew\nEmotional Hook: \"This week is about feeling AWE!\"\n\n=== CENTRAL SYMBOL ===\nTwo stone tablets with rounded tops, GLOWING with warm golden light. Light rays stream down from soft clouds above. The tablets have a few Hebrew letters etched on them. A sense of majesty and wonder.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. HEBREW TITLE (top 15%): \"יִתְרוֹ\" in beautiful Hebrew lettering with nikud\n2. ENGLISH TITLE (below Hebrew, 5%): \"Yitro\" in friendly font\n3. CENTRAL SYMBOL (center 55%): The glowing tablets - ICONIC and MEMORABLE\n   - Large, simple, immediately recognizable\n   - Golden radiance emanating outward\n   - Centered and commanding attention\n4. EMOTIONAL HOOK (bottom 15%): \"This week is about feeling AWE!\" in playful font\n5. Small decorative stars around the tablets\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #5c2d91 Royal Purple (8px width)\n- Star icon in top-left corner\n\n=== MOOD ===\nMajestic, wondrous, exciting. Children should feel: \"Wow, something AMAZING happened!\"",
+      "image_path": "images/anchor_1.png",
+      "teacher_script": "This is Parshat Yitro! Do you see those special tablets? They're going to have very important words on them. This week, we're going to feel AWE - that's when something is SO amazing that it makes us go 'Wow!' Let's practice: put your hands on your cheeks and say 'WOW!'"
+    },
+    {
+      "card_id": "spotlight_1",
+      "card_type": "spotlight",
+      "title_en": "Moses",
+      "title_he": "מֹשֶׁה",
+      "character_name_en": "Moses",
+      "character_name_he": "מֹשֶׁה",
+      "emotion_label": "happy",
+      "character_trait": "A kind leader who loves his family",
+      "character_description_en": "Moses leads the Jewish people. He loves his family very much!",
+      "character_description_he": "מֹשֶׁה הוּא מַנְהִיג עַם יִשְׂרָאֵל. הוּא אוֹהֵב אֶת מִשְׁפַּחְתּוֹ מְאוֹד!",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes (20% of face).\n- Lines: Thick, clean black outlines (2-3px equivalent).\n- Emotion: Big, clear facial expressions visible from across a classroom.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\nColors:\n- Character: Bold primary colors\n- Background: Soft pastel cream/light blue desert sky\n\n=== CARD TYPE: SPOTLIGHT (Character Introduction) ===\n\n=== CHARACTER: MOSES ===\nFriendly middle-aged man with warm brown skin and kind, gentle eyes. Short dark beard with some gray showing he's experienced. Wears simple blue and cream robes. Holds a wooden shepherd's staff. Calm, patient expression.\n\nKey features (MUST include):\n- Kind gentle eyes (LARGE and expressive)\n- Short beard with touch of gray\n- Wooden shepherd's staff\n- Blue and cream robes\n- BIG HAPPY SMILE showing joy\n\n=== CONTENT ===\nHebrew Name: \"מֹשֶׁה\" (top, large, with nikud)\nEnglish Name: \"Moses\" below\nEmotion Label: \"HAPPY\" in a yellow bubble badge\nTrait: \"A kind leader who loves his family\"\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. NAME ZONE (top 12%): Hebrew \"מֹשֶׁה\" large with nikud, \"Moses\" below\n2. CHARACTER PORTRAIT (center 60%):\n   - Moses fills most of this space (portrait style from waist up)\n   - Face clearly visible with BIG HAPPY expression\n   - Eyes crinkled with joy, warm smile\n   - Holding staff, arms slightly open in welcoming gesture\n   - Background: Simple desert scene with tent, warm sunset colors\n3. EMOTION LABEL: \"HAPPY\" in bright yellow bubble badge (corner)\n4. TRAIT LINE (bottom 8%): \"A kind leader who loves his family\"\n5. DESCRIPTION (bottom 15%): \"Moses leads the Jewish people. He loves his family very much!\"\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #FFD700 Gold (8px width)\n- Person silhouette icon in top-left corner\n\n=== MOOD ===\nWarm, welcoming, joyful. Children should feel they could trust this kind leader.",
+      "image_path": "images/spotlight_1.png",
+      "teacher_script": "This is Moses - Moshe! Look at his face. See how HAPPY he looks? His eyes are all crinkly and he has a big smile. Moses is so happy because he's about to see someone very special. When YOU feel happy, what does your face look like? Show me!"
+    },
+    {
+      "card_id": "spotlight_2",
+      "card_type": "spotlight",
+      "title_en": "Yitro",
+      "title_he": "יִתְרוֹ",
+      "character_name_en": "Yitro",
+      "character_name_he": "יִתְרוֹ",
+      "emotion_label": "proud",
+      "character_trait": "A wise grandfather who gives good advice",
+      "character_description_en": "Yitro is Moses's father-in-law. He is very wise and helps Moses!",
+      "character_description_he": "יִתְרוֹ הוּא חוֹתֵן מֹשֶׁה. הוּא מְאוֹד חָכָם וְעוֹזֵר לְמֹשֶׁה!",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes (20% of face).\n- Lines: Thick, clean black outlines.\n- Emotion: Big, clear facial expressions.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: SPOTLIGHT (Character Introduction) ===\n\n=== CHARACTER: YITRO ===\nWise elderly man with LONG FLOWING white/gray beard. Warm twinkling eyes that show wisdom and kindness. Wears COLORFUL earth-toned desert robes (rich browns, tans, with red and gold accents - Midianite style). Gentle grandfatherly smile. Has a walking stick.\n\nKey features (MUST include):\n- Long flowing white/gray beard (distinguished)\n- Twinkling wise eyes\n- Grandfatherly warm smile\n- Colorful earth-toned robes with patterns\n- Walking stick\n- Head held HIGH showing PRIDE\n\n=== CONTENT ===\nHebrew Name: \"יִתְרוֹ\" (top, large, with nikud)\nEnglish Name: \"Yitro\" below\nEmotion Label: \"PROUD\" in a purple bubble badge\nTrait: \"A wise grandfather who gives good advice\"\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. NAME ZONE (top 12%): Hebrew \"יִתְרוֹ\" large with nikud, \"Yitro\" below\n2. CHARACTER PORTRAIT (center 60%):\n   - Yitro fills most of this space (portrait style)\n   - Face clearly visible with PROUD expression\n   - Head held high, gentle knowing smile\n   - Wise, kind eyes that twinkle\n   - One hand on walking stick, other hand gesturing wisely\n   - Background: Desert landscape with distant tents\n3. EMOTION LABEL: \"PROUD\" in purple bubble badge (corner)\n4. TRAIT LINE: \"A wise grandfather who gives good advice\"\n5. DESCRIPTION: \"Yitro is Moses's father-in-law. He is very wise and helps Moses!\"\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #FFD700 Gold (8px width)\n- Person silhouette icon in top-left corner\n\n=== MOOD ===\nWise, warm, trustworthy. Like a beloved grandfather who always knows what to do.",
+      "image_path": "images/spotlight_2.png",
+      "teacher_script": "This is Yitro! He's Moses's father-in-law - that means he's the father of Moses's wife. Look at Yitro's face. He looks PROUD. See how he holds his head up high? Yitro is proud of Moses for being such a good leader. When someone you love does something wonderful, you might feel proud too!"
+    },
+    {
+      "card_id": "action_1",
+      "card_type": "action",
+      "title_en": "The Joyful Reunion",
+      "title_he": "הַפְּגִישָׁה הַשְּׂמֵחָה",
+      "sequence_number": 1,
+      "hebrew_key_word": "שִׂמְחָה",
+      "hebrew_key_word_nikud": "שִׂמְחָה",
+      "english_description": "Yitro travels through the desert to visit Moses. Moses runs out to greet him with open arms!",
+      "roleplay_prompt": "Act it out: Hug like you missed someone SO much!",
+      "emotional_reactions": ["overjoyed", "loving"],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes (20% of face).\n- Lines: Thick, clean black outlines (2-3px equivalent).\n- Emotion: Big, clear facial expressions visible from across a classroom.\n- Complexity: Maximum 5-7 distinct visual elements per scene.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\nColors:\n- Characters: Bold primary colors\n- Background: Soft warm pastels (desert sunset)\n\n=== RESTRICTIONS ===\nNEVER depict God in any form. No violence or scary elements.\n\n=== CARD TYPE: ACTION (Key Plot Moment) ===\nStory moment #1: The Joyful Reunion\nThis card shows SOMETHING HAPPENING - characters showing emotion!\n\n=== CONTENT ===\nTitle: \"The Joyful Reunion\"\nHebrew Key Word: \"שִׂמְחָה\" (Simcha - Joy)\nText: \"Yitro travels through the desert to visit Moses. Moses runs out to greet him with open arms!\"\n\n=== CHARACTERS IN SCENE ===\n\n=== CHARACTER: MOSES ===\nFriendly middle-aged man, warm brown skin, kind eyes, short dark beard with gray. Blue and cream robes. Staff set aside.\nExpression: OVERJOYED - huge smile, eyes bright with tears of happiness, arms wide open running toward Yitro\n\n=== CHARACTER: YITRO ===\nWise elderly man, long white beard, colorful Midianite robes (browns, reds, golds). Walking stick.\nExpression: LOVING - warm smile, arms open to receive Moses's embrace\n\n=== VISUAL DESCRIPTION ===\nMoses and Yitro about to embrace in the desert. Moses is running toward Yitro with arms outstretched, pure joy on his face. Yitro has his arms open, face beaming with love. In the background: Israelite camp with tents, desert landscape, warm sunset colors. A few people watching the happy reunion. Dust from Moses's running feet. Emotional, heartwarming moment.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE ZONE (top 10%): \"The Joyful Reunion\" in dynamic, warm font\n2. SEQUENCE NUMBER: #1 badge in red circle (top-right corner)\n3. ACTION SCENE (center 65%): Moses running to embrace Yitro\n   - Moses mid-stride, arms wide, face GLOWING with joy\n   - Yitro welcoming him with open arms\n   - Background: Camp tents, watching Israelites, warm sunset\n   - MOVEMENT shown with dust and flowing robes\n4. HEBREW KEY WORD: \"שִׂמְחָה\" in small decorative badge\n5. TEXT ZONE (bottom 15%): \"Yitro travels through the desert to visit Moses. Moses runs out to greet him with open arms!\"\n6. ROLEPLAY STRIP (bottom): \"Act it out: Hug like you missed someone SO much!\" in playful font\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #FF4136 Red (8px width)\n- Lightning bolt icon in top-left corner (action card indicator)\n- Sequence #1 in top-right corner\n\n=== MOOD ===\nPure JOY and LOVE! A heartwarming family reunion. Children should feel the warmth of seeing someone you love after a long time apart.",
+      "image_path": "images/action_1.png",
+      "teacher_script": "Look! Yitro came to visit Moses in the desert! Moses was SO happy to see him. He ran out to meet him and gave him a BIG hug! Can you show me how you hug someone you really missed? Give yourself a big hug! That's called SIMCHA - joy!"
+    },
+    {
+      "card_id": "action_2",
+      "card_type": "action",
+      "title_en": "Yitro's Wise Advice",
+      "title_he": "עֵצַת יִתְרוֹ",
+      "sequence_number": 2,
+      "hebrew_key_word": "עֵצָה",
+      "hebrew_key_word_nikud": "עֵצָה",
+      "english_description": "Yitro sees Moses working too hard, helping everyone all by himself. He says: 'Moses, you need helpers!'",
+      "roleplay_prompt": "Act it out: Point like a wise advisor giving important advice!",
+      "emotional_reactions": ["concerned", "grateful"],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes (20% of face).\n- Lines: Thick, clean black outlines (2-3px equivalent).\n- Emotion: Big, clear facial expressions visible from across a classroom.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: ACTION (Key Plot Moment) ===\nStory moment #2: Yitro's Wise Advice\n\n=== CONTENT ===\nTitle: \"Yitro's Wise Advice\"\nHebrew Key Word: \"עֵצָה\" (Eitzah - Advice)\nText: \"Yitro sees Moses working too hard, helping everyone all by himself. He says: 'Moses, you need helpers!'\"\n\n=== CHARACTERS IN SCENE ===\n\n=== CHARACTER: YITRO ===\nWise elderly man, long white beard, colorful Midianite robes.\nExpression: CONFIDENT and CARING - pointing finger raised wisely, gentle but firm expression, concerned for Moses\n\n=== CHARACTER: MOSES ===\nLooks TIRED but LISTENING carefully. Seated, leaning forward attentively. Hand on chin in thoughtful pose.\nExpression: Surprised then grateful - \"Oh! That's a good idea!\" look\n\n=== VISUAL DESCRIPTION ===\nYitro standing next to a seated, tired Moses. Yitro gestures wisely with one hand raised, pointing up as he gives advice. Moses has a thoughtful expression, hand on chin, listening carefully. Behind them: A LONG LINE of people waiting to see Moses (showing why he's tired). Simple tent in background. In the distance, several smaller figures representing the potential helpers/judges. Speech bubble from Yitro: \"You need helpers!\"\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE ZONE (top 10%): \"Yitro's Wise Advice\" in wise, warm font\n2. SEQUENCE NUMBER: #2 badge in red circle\n3. ACTION SCENE (center 65%):\n   - Yitro standing, gesturing wisely with raised finger\n   - Moses seated, looking tired but interested, hand on chin\n   - LONG LINE of people waiting in background (the problem!)\n   - Speech bubble: \"You need helpers!\"\n   - Smaller figures in distance (the solution - future helpers)\n4. HEBREW KEY WORD: \"עֵצָה\" badge\n5. TEXT ZONE (bottom 15%): The description text\n6. ROLEPLAY STRIP: \"Act it out: Point like a wise advisor giving important advice!\"\n\n=== FRAME ===\n- Border: #FF4136 Red (8px width)\n- Lightning bolt icon, Sequence #2\n\n=== MOOD ===\nWise and caring. The moment when good advice changes everything. Children should understand: asking for help is smart!",
+      "image_path": "images/action_2.png",
+      "teacher_script": "Yitro saw that Moses was working SO hard, all by himself! He said, 'Moses, you need helpers!' That's called giving EITZAH - advice. When someone gives you good advice, they're helping you! Can you point your finger like you're giving wise advice? Good advice helps people!"
+    },
+    {
+      "card_id": "action_3",
+      "card_type": "action",
+      "title_en": "Arriving at the Mountain",
+      "title_he": "מַגִּיעִים לָהָר",
+      "sequence_number": 3,
+      "hebrew_key_word": "הַר",
+      "hebrew_key_word_nikud": "הַר",
+      "english_description": "The whole nation travels to Mount Sinai. They camp at the bottom of the great mountain and look UP!",
+      "roleplay_prompt": "Act it out: Walk like you're climbing up, up, UP a big mountain!",
+      "emotional_reactions": ["excited", "awed"],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Emotion: Big, clear facial expressions.\n- Complexity: Maximum 5-7 distinct visual elements.\n\nCard Format: 5x7 inches (1500x2100px)\n\n=== CARD TYPE: ACTION (Key Plot Moment) ===\nStory moment #3: Arriving at the Mountain\n\n=== CONTENT ===\nTitle: \"Arriving at the Mountain\"\nHebrew Key Word: \"הַר\" (Har - Mountain)\nText: \"The whole nation travels to Mount Sinai. They camp at the bottom of the great mountain and look UP!\"\n\n=== CHARACTERS IN SCENE ===\nThe ISRAELITES - A diverse group of men, women, and children. All looking UP with wonder and excitement. Families together, some pointing at the mountain.\n\n=== VISUAL DESCRIPTION ===\nA MAJESTIC Mount Sinai dominates the scene - tall, impressive, with peak touching soft clouds. At the base: The Israelite camp with colorful tents. In the foreground: Families (parents and children) looking UP at the mountain with AWE and EXCITEMENT. Children pointing excitedly. Adults with hands shading eyes, gazing upward. A sense of anticipation - something BIG is about to happen! Clear blue sky, warm sunlight.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE ZONE (top 10%): \"Arriving at the Mountain\"\n2. SEQUENCE NUMBER: #3 badge\n3. ACTION SCENE (center 65%):\n   - MOUNT SINAI: Tall, majestic, peak in soft clouds\n   - Base of mountain: Colorful tent camp\n   - Foreground: Families looking UP\n     - Children pointing with excitement\n     - Parents gazing in wonder\n     - Mixed emotions: excitement, awe, anticipation\n   - Upward motion - everyone's attention drawn UP\n4. HEBREW KEY WORD: \"הַר\" badge\n5. TEXT ZONE (bottom 15%)\n6. ROLEPLAY STRIP: \"Act it out: Walk like you're climbing up, up, UP a big mountain!\"\n\n=== FRAME ===\n- Border: #FF4136 Red (8px width)\n- Lightning bolt icon, Sequence #3\n\n=== MOOD ===\nAnticipation and wonder! Something amazing is about to happen. Children should feel the excitement of arriving somewhere very special.",
+      "image_path": "images/action_3.png",
+      "teacher_script": "The whole Jewish people traveled to a very special mountain called Sinai - HAR Sinai! Can you say HAR? It means mountain! They walked and walked until they got there. Show me how you walk when you're going UP a mountain - up, up, UP! They all stood at the bottom and looked UP at the big, big mountain."
+    },
+    {
+      "card_id": "action_4",
+      "card_type": "action",
+      "title_en": "Thunder on the Mountain!",
+      "title_he": "רַעַם עַל הָהָר!",
+      "sequence_number": 4,
+      "hebrew_key_word": "קוֹל",
+      "hebrew_key_word_nikud": "קוֹל",
+      "english_description": "The mountain shakes! Thunder BOOMS! Lightning flashes! The shofar blows! Everyone watches in amazement!",
+      "roleplay_prompt": "Act it out: Shake like the mountain! SHAKE SHAKE SHAKE!",
+      "emotional_reactions": ["awed", "amazed"],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Emotion: Big, clear facial expressions.\n- This scene should be DRAMATIC but NOT SCARY - awe-inspiring, not frightening.\n\nCard Format: 5x7 inches (1500x2100px)\n\n=== RESTRICTIONS ===\nNEVER depict God in any human form.\nDivine presence shown ONLY as: warm golden light from clouds, soft glowing clouds, gentle radiance.\nThe scene should feel AMAZING and WONDROUS, not terrifying.\n\n=== CARD TYPE: ACTION (Key Plot Moment) ===\nStory moment #4: Thunder on the Mountain!\n\n=== CONTENT ===\nTitle: \"Thunder on the Mountain!\"\nHebrew Key Word: \"קוֹל\" (Kol - Voice/Sound)\nText: \"The mountain shakes! Thunder BOOMS! Lightning flashes! The shofar blows! Everyone watches in amazement!\"\n\n=== CHARACTERS IN SCENE ===\nThe ISRAELITES at the base - families huddled together, children with parents. All looking up with AWE (not fear) - mouths open in amazement, eyes wide with wonder.\n\n=== VISUAL DESCRIPTION ===\nMount Sinai ALIVE with dramatic but beautiful phenomena:\n- Mountain shaking (motion lines!)\n- Thick soft clouds at the peak, GLOWING with warm golden light\n- Lightning bolts (stylized, dramatic but not scary - like fireworks!)\n- Smoke/mist rising from the mountain\n- Sound waves radiating out (representing the shofar and thunder)\n\nAt the base: Israelites watching in AWE\n- Families holding each other\n- Children on parents' shoulders pointing UP\n- Faces show WONDER and AMAZEMENT (not terror)\n- Some covering ears from the loud sounds\n\nColor palette: Dramatic purples, golds, warm oranges against the mountain. Golden light radiating from above.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE ZONE (top 10%): \"Thunder on the Mountain!\" in dramatic font\n2. SEQUENCE NUMBER: #4 badge\n3. ACTION SCENE (center 65%):\n   - MOUNT SINAI: Shaking, clouds, lightning, golden glow\n   - Motion lines showing the shake\n   - Lightning bolts (stylized, beautiful)\n   - Glowing clouds with warm light\n   - Sound waves (shofar blast)\n   - At base: Amazed Israelites watching\n4. HEBREW KEY WORD: \"קוֹל\" badge\n5. TEXT ZONE (bottom 15%)\n6. ROLEPLAY STRIP: \"Act it out: Shake like the mountain! SHAKE SHAKE SHAKE!\"\n\n=== FRAME ===\n- Border: #FF4136 Red (8px width)\n- Lightning bolt icon, Sequence #4\n\n=== MOOD ===\nAWE and WONDER! The most dramatic moment - but beautiful, not scary. Like the most amazing fireworks show ever. Children should feel excited amazement, not fear.",
+      "image_path": "images/action_4.png",
+      "teacher_script": "Then something AMAZING happened! The mountain started to SHAKE! SHAKE SHAKE SHAKE! Thunder went BOOM BOOM BOOM! Lightning flashed! A shofar blew TEKIAH! And there was a big voice - a KOL - from the mountain! Everyone was SO amazed! Can you shake like the mountain? SHAKE SHAKE SHAKE!"
+    },
+    {
+      "card_id": "action_5",
+      "card_type": "action",
+      "title_en": "The Special Words",
+      "title_he": "הַמִּלִּים הַמְּיֻחָדוֹת",
+      "sequence_number": 5,
+      "hebrew_key_word": "שָׁמַע",
+      "hebrew_key_word_nikud": "שָׁמַע",
+      "english_description": "Everyone listens very, very carefully. They hear the most important words ever - the Ten Commandments!",
+      "roleplay_prompt": "Act it out: Put your hand to your ear and listen VERY carefully!",
+      "emotional_reactions": ["focused", "reverent"],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Emotion: Big, clear facial expressions.\n- This scene should feel PEACEFUL and SACRED.\n\nCard Format: 5x7 inches (1500x2100px)\n\n=== RESTRICTIONS ===\nNEVER depict God in any human form.\nShow only: Golden light rays from above, the two tablets glowing in the light.\n\n=== CARD TYPE: ACTION (Key Plot Moment) ===\nStory moment #5: The Special Words\n\n=== CONTENT ===\nTitle: \"The Special Words\"\nHebrew Key Word: \"שָׁמַע\" (Shama - Listen)\nText: \"Everyone listens very, very carefully. They hear the most important words ever - the Ten Commandments!\"\n\n=== CHARACTERS IN SCENE ===\nThe ISRAELITES - Adults and children, all in poses of deep, focused LISTENING:\n- Hands cupped to ears\n- Eyes closed in concentration\n- Peaceful, reverent expressions\n- Complete stillness and attention\n\n=== VISUAL DESCRIPTION ===\nA moment of sacred stillness:\n- Above: Two stone tablets FLOATING in warm golden light, visible but ethereal\n- Golden light rays streaming down from soft clouds\n- The tablets have Hebrew letters glowing on them\n\n- Below: The Israelites in a sea of attentive listeners\n- Families together, adults and children\n- Various listening poses: hands to ears, eyes closed, faces upturned\n- Children mimicking adults' reverent poses\n- Complete peace and focus on every face\n- Some parents holding children, all looking up\n\nColor: Warm golden light washing over everything. Peaceful atmosphere.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE ZONE (top 10%): \"The Special Words\" in reverent, beautiful font\n2. SEQUENCE NUMBER: #5 badge\n3. ACTION SCENE (center 65%):\n   - TOP: Two tablets in golden light, Hebrew letters visible\n   - Light rays streaming down\n   - BOTTOM: Sea of listening Israelites\n     - Adults with hands cupped to ears\n     - Children mimicking the pose\n     - Faces peaceful and focused\n     - Everyone looking UP toward the light/tablets\n4. HEBREW KEY WORD: \"שָׁמַע\" badge\n5. TEXT ZONE (bottom 15%)\n6. ROLEPLAY STRIP: \"Act it out: Put your hand to your ear and listen VERY carefully!\"\n\n=== FRAME ===\n- Border: #FF4136 Red (8px width)\n- Lightning bolt icon, Sequence #5\n\n=== MOOD ===\nPeaceful, sacred, important. The most special moment. Children should feel the quiet importance of really, truly listening.",
+      "image_path": "images/action_5.png",
+      "teacher_script": "Everyone got very, very quiet. They listened SO carefully - SHAMA! Can you put your hand to your ear like you're listening? The special words came from the mountain. These were the most important rules ever - the Ten Commandments! Like 'Honor your mommy and daddy!' Can you listen very, very carefully like the Jewish people did?"
+    },
+    {
+      "card_id": "thinker_1",
+      "card_type": "thinker",
+      "title_en": "At the Mountain",
+      "title_he": "לִפְנֵי הָהָר",
+      "questions": [
+        {
+          "question_type": "emotional_empathy",
+          "question_en": "How do you think the children felt when they heard the thunder? Point to a feeling face!",
+          "question_he": "אֵיךְ אַתָּה חוֹשֵׁב שֶׁהַיְּלָדִים הִרְגִּישׁוּ כְּשֶׁשָּׁמְעוּ אֶת הָרַעַם?"
+        },
+        {
+          "question_type": "cognitive_empathy",
+          "question_en": "Why do you think everyone was so quiet when the special words came?",
+          "question_he": "לָמָה אַתָּה חוֹשֵׁב שֶׁכֻּלָּם הָיוּ שְׁקֵטִים כְּשֶׁהַמִּלִּים הַמְּיֻחָדוֹת בָּאוּ?"
+        },
+        {
+          "question_type": "connection",
+          "question_en": "Have you ever heard something SO loud it surprised you? How did it make you feel?",
+          "question_he": "הַאִם אֵי פַּעַם שָׁמַעְתָּ מַשֶּׁהוּ כָּל כָּךְ חָזָק שֶׁהִפְתִּיעַ אוֹתְךָ?"
+        }
+      ],
+      "torah_talk_instruction": "Sit in a circle and share!",
+      "feeling_faces": [
+        {"emoji": "😊", "label_en": "Happy", "label_he": "שָׂמֵחַ"},
+        {"emoji": "😢", "label_en": "Sad", "label_he": "עָצוּב"},
+        {"emoji": "😨", "label_en": "Scared", "label_he": "מְפֻחָד"},
+        {"emoji": "😮", "label_en": "Surprised", "label_he": "מֻפְתָּע"},
+        {"emoji": "🥹", "label_en": "Proud", "label_he": "גֵּאֶה"},
+        {"emoji": "😕", "label_en": "Confused", "label_he": "מְבֻלְבָּל"}
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Mood: Calm, thoughtful, inviting for discussion.\n\nCard Format: 5x7 inches (1500x2100px)\n\n=== CARD TYPE: THINKER (Discussion Card) ===\nThis card sparks conversation and emotional connection.\n\n=== CONTENT ===\nTitle: \"At the Mountain\"\nHebrew: \"לִפְנֵי הָהָר\"\n\n=== CHARACTERS ===\n2-3 Jewish children (ages 4-6 appearance) in thoughtful, wondering poses. Big curious eyes. Simple robes. Relatable to young viewers.\n\n=== VISUAL DESCRIPTION ===\nChildren in thoughtful poses, wondering about the mountain experience:\n- One child with hand on chin, thinking\n- One child looking up with curious expression\n- One child with finger to lips, pondering\n- In background: Soft silhouette of Mount Sinai\n- Warm, peaceful atmosphere\n- Children look like they're in a circle, ready to talk\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE ZONE (top 8%): \"At the Mountain\" / \"לִפְנֵי הָהָר\" in thoughtful font with thought-bubble styling\n2. WONDERING SCENE (center 35%):\n   - 2-3 children in thoughtful poses\n   - Hand on chin, looking up, pondering\n   - Peaceful, reflective atmosphere\n   - Soft mountain silhouette in background\n3. FEELING FACES ROW (12%): Six emoji-style faces in a row:\n   😊 Happy | 😢 Sad | 😨 Scared | 😮 Surprised | 🥹 Proud | 😕 Confused\n   With labels under each\n4. QUESTIONS ZONE (35%):\n   Three speech-bubble style question boxes:\n   • \"How do you think the children felt when they heard the thunder? Point to a feeling face!\"\n   • \"Why do you think everyone was so quiet when the special words came?\"\n   • \"Have you ever heard something SO loud it surprised you? How did it make you feel?\"\n5. TORAH TALK INSTRUCTION (bottom 10%): \"Torah Talk: Sit in a circle and share!\" in friendly banner\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #0074D9 Blue (8px width)\n- Thought-bubble icon in top-left corner (thinker card indicator)\n\n=== MOOD ===\nCalm, curious, and inviting. Children should feel safe to share their thoughts and feelings.",
+      "image_path": "images/thinker_1.png",
+      "teacher_script": "Let's sit in a Torah Talk circle! Look at these feeling faces. When the thunder boomed and the mountain shook, how do you think the children there felt? Can you point to a face? Maybe surprised? Maybe a little scared but also excited? Let's go around the circle - everyone pick a feeling face!"
+    },
+    {
+      "card_id": "thinker_2",
+      "card_type": "thinker",
+      "title_en": "Getting Help",
+      "title_he": "לְקַבֵּל עֶזְרָה",
+      "questions": [
+        {
+          "question_type": "emotional_empathy",
+          "question_en": "How do you think Moses felt when he was working SO hard all by himself?",
+          "question_he": "אֵיךְ אַתָּה חוֹשֵׁב שֶׁמֹּשֶׁה הִרְגִּישׁ כְּשֶׁעָבַד כָּל כָּךְ קָשֶׁה לְבַד?"
+        },
+        {
+          "question_type": "cognitive_empathy",
+          "question_en": "Why do you think Yitro wanted to help Moses?",
+          "question_he": "לָמָה אַתָּה חוֹשֵׁב שֶׁיִּתְרוֹ רָצָה לַעֲזֹר לְמֹשֶׁה?"
+        },
+        {
+          "question_type": "connection",
+          "question_en": "Has anyone ever helped YOU when something was too hard? How did you feel?",
+          "question_he": "הַאִם מִישֶׁהוּ אֵי פַּעַם עָזַר לְךָ כְּשֶׁמַּשֶּׁהוּ הָיָה קָשֶׁה מִדַּי?"
+        }
+      ],
+      "torah_talk_instruction": "Sit in a circle and share!",
+      "feeling_faces": [
+        {"emoji": "😊", "label_en": "Happy", "label_he": "שָׂמֵחַ"},
+        {"emoji": "😢", "label_en": "Sad", "label_he": "עָצוּב"},
+        {"emoji": "😨", "label_en": "Scared", "label_he": "מְפֻחָד"},
+        {"emoji": "😮", "label_en": "Surprised", "label_he": "מֻפְתָּע"},
+        {"emoji": "🥹", "label_en": "Proud", "label_he": "גֵּאֶה"},
+        {"emoji": "😕", "label_en": "Confused", "label_he": "מְבֻלְבָּל"}
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Mood: Warm, caring, thoughtful.\n\nCard Format: 5x7 inches (1500x2100px)\n\n=== CARD TYPE: THINKER (Discussion Card) ===\n\n=== CONTENT ===\nTitle: \"Getting Help\"\nHebrew: \"לְקַבֵּל עֶזְרָה\"\nTheme: The value of asking for and receiving help\n\n=== CHARACTERS ===\nMoses and Yitro in a warm, supportive scene. Yitro with hand on Moses's shoulder. Both looking thoughtful and caring.\n\n=== VISUAL DESCRIPTION ===\nA warm scene of support and wisdom:\n- Yitro with hand on Moses's shoulder supportively\n- Moses looking relieved and grateful\n- Both have thoughtful, caring expressions\n- Warm desert sunset colors in background\n- Feeling of family connection and support\n- Perhaps a small image of helpers in the distance\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE ZONE (top 8%): \"Getting Help\" / \"לְקַבֵּל עֶזְרָה\" with caring font styling\n2. CARING SCENE (center 35%):\n   - Yitro and Moses in supportive pose\n   - Yitro's hand on Moses's shoulder\n   - Warm, caring expressions\n   - Sunset desert background\n3. FEELING FACES ROW (12%): Six emoji-style faces:\n   😊 Happy | 😢 Sad | 😨 Scared | 😮 Surprised | 🥹 Proud | 😕 Confused\n4. QUESTIONS ZONE (35%):\n   Three speech-bubble style question boxes:\n   • \"How do you think Moses felt when he was working SO hard all by himself?\"\n   • \"Why do you think Yitro wanted to help Moses?\"\n   • \"Has anyone ever helped YOU when something was too hard? How did you feel?\"\n5. TORAH TALK INSTRUCTION (bottom 10%): \"Torah Talk: Sit in a circle and share!\"\n\n=== FRAME ===\n- Border: #0074D9 Blue (8px width)\n- Thought-bubble icon in top-left corner\n\n=== MOOD ===\nWarm, supportive, relatable. Children should think about times they needed help and how good it feels to have support.",
+      "image_path": "images/thinker_2.png",
+      "teacher_script": "Torah Talk time! Moses was working SO hard. He was tired! Then Yitro came and helped him. That's what families do! Can you think of a time when something was really hard and someone helped you? How did that make you feel? Let's share in our circle!"
+    },
+    {
+      "card_id": "power_word_1",
+      "card_type": "power_word",
+      "title_en": "Eitzah - Advice",
+      "title_he": "עֵצָה",
+      "hebrew_word": "עצה",
+      "hebrew_word_nikud": "עֵצָה",
+      "transliteration": "Eitzah",
+      "english_meaning": "Advice",
+      "example_sentence_en": "Yitro gave Moses good eitzah!",
+      "example_sentence_he": "יִתְרוֹ נָתַן לְמֹשֶׁה עֵצָה טוֹבָה!",
+      "is_emotion_word": false,
+      "audio_qr_url": null,
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Simple, clear illustration of the concept\n- Lines: Thick, clean black outlines.\n- Educational but FUN appearance.\n\nCard Format: 5x7 inches (1500x2100px)\n\n=== CARD TYPE: POWER WORD (Hebrew Vocabulary) ===\nTeaching: עֵצָה (Eitzah) - Advice\n\n=== CONTENT ===\nHebrew Word: \"עֵצָה\" (with nikud)\nTransliteration: \"Eitzah\" (AY-tzah)\nMeaning: \"Advice\"\nExample: \"Yitro gave Moses good eitzah!\"\n\n=== VISUAL REPRESENTATION ===\nA wise grandparent (like Yitro) giving advice to a younger person:\n- Elderly figure with kind expression, pointing/gesturing wisely\n- Younger figure listening attentively with lightbulb above head\n- The lightbulb represents the \"aha!\" moment of good advice\n- Warm, educational atmosphere\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. HEBREW WORD (top 25%): \"עֵצָה\" in LARGE beautiful Hebrew letters with full nikud\n   - Decorative but very readable\n   - Perhaps with small decorative elements (wisdom symbols)\n2. TRANSLITERATION (5%): \"Eitzah\" (AY-tzah) in friendly phonetic text\n3. VISUAL (center 35%):\n   - Wise figure giving advice (gesturing)\n   - Listener with lightbulb \"aha!\" moment\n   - Clear, simple illustration\n4. ENGLISH MEANING (10%): \"ADVICE\" in bold, clear, fun font\n5. EXAMPLE SENTENCE (15%): \n   \"Yitro gave Moses good eitzah!\"\n   \"יִתְרוֹ נָתַן לְמֹשֶׁה עֵצָה טוֹבָה!\"\n6. QR PLACEHOLDER (corner): Small box labeled \"Hear it! 🔊\"\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #2ECC40 Green (8px width)\n- Hebrew letter א (Aleph) icon in top-left corner (power word indicator)\n\n=== MOOD ===\nEducational and exciting! Learning Hebrew should feel like discovering treasure.",
+      "image_path": "images/power_word_1.png",
+      "teacher_script": "Our Power Word is EITZAH! Can you say it? Eitzah! It means 'advice.' When someone who loves you helps you know what to do, that's eitzah! Yitro gave Moses eitzah. Who gives YOU good eitzah? Maybe your mommy? Your daddy? Your teacher?"
+    },
+    {
+      "card_id": "power_word_2",
+      "card_type": "power_word",
+      "title_en": "Shama - Listen",
+      "title_he": "שָׁמַע",
+      "hebrew_word": "שמע",
+      "hebrew_word_nikud": "שָׁמַע",
+      "transliteration": "Shama",
+      "english_meaning": "Listen / Hear",
+      "example_sentence_en": "The people did shama - they listened very carefully!",
+      "example_sentence_he": "הָעָם עָשָׂה שָׁמַע - הֵם הִקְשִׁיבוּ בְּזְהִירוּת!",
+      "is_emotion_word": false,
+      "audio_qr_url": null,
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Simple, clear illustration\n- Lines: Thick, clean black outlines.\n- Educational and engaging.\n\nCard Format: 5x7 inches (1500x2100px)\n\n=== CARD TYPE: POWER WORD (Hebrew Vocabulary) ===\nTeaching: שָׁמַע (Shama) - Listen/Hear\n\n=== CONTENT ===\nHebrew Word: \"שָׁמַע\" (with nikud)\nTransliteration: \"Shama\" (shah-MAH)\nMeaning: \"Listen / Hear\"\nExample: \"The people did shama - they listened very carefully!\"\n\n=== VISUAL REPRESENTATION ===\nA child demonstrating LISTENING:\n- Child with hand cupped to ear in classic \"listening\" pose\n- Eyes closed in concentration\n- Peaceful, focused expression\n- Sound waves or musical notes coming toward the ear\n- Perhaps gentle sparkles around to show the importance of listening\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. HEBREW WORD (top 25%): \"שָׁמַע\" in LARGE beautiful Hebrew letters with full nikud\n   - Prominent and decorative\n   - Sound wave decorative elements around it\n2. TRANSLITERATION (5%): \"Shama\" (shah-MAH) in friendly phonetic text\n3. VISUAL (center 35%):\n   - Child with hand to ear, LISTENING\n   - Sound waves coming toward ear\n   - Eyes closed, peaceful concentration\n   - Clear, relatable pose\n4. ENGLISH MEANING (10%): \"LISTEN\" in bold, clear, fun font\n5. EXAMPLE SENTENCE (15%):\n   \"The people did shama - they listened very carefully!\"\n   \"הָעָם עָשָׂה שָׁמַע - הֵם הִקְשִׁיבוּ בְּזְהִירוּת!\"\n6. QR PLACEHOLDER (corner): \"Hear it! 🔊\"\n\n=== FRAME ===\n- Border: #2ECC40 Green (8px width)\n- Hebrew letter א (Aleph) icon in top-left corner\n\n=== MOOD ===\nPeaceful and focused. Listening is a superpower! Children should want to practice listening.",
+      "image_path": "images/power_word_2.png",
+      "teacher_script": "Our second Power Word is SHAMA! Can you say it? Shama! It means 'listen.' The Jewish people did shama at the mountain - they listened SO carefully! Let's practice shama - put your hand to your ear and close your eyes. What do you hear? That's doing shama!"
+    }
+  ]
+}

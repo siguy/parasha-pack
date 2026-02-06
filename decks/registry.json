@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "generated": "2026-02-04",
+  "description": "Auto-generated registry of available decks. Used by review-site for deck discovery.",
+  "decks": [
+    {
+      "id": "mishpatim",
+      "name_en": "Mishpatim",
+      "name_he": "מִשְׁפָּטִים",
+      "content_type": "parasha",
+      "theme": "fairness",
+      "status": "ready",
+      "path": "mishpatim/deck.json",
+      "card_count": 10,
+      "sessions": 1,
+      "ref": "Exodus 21:1-24:18"
+    },
+    {
+      "id": "purim",
+      "name_en": "Purim",
+      "name_he": "פּוּרִים",
+      "content_type": "holiday",
+      "theme": "courage",
+      "status": "ready",
+      "path": "purim/deck.json",
+      "card_count": 15,
+      "sessions": 2,
+      "source": "Megillat Esther"
+    },
+    {
+      "id": "terumah",
+      "name_en": "Terumah",
+      "name_he": "תְּרוּמָה",
+      "content_type": "parasha",
+      "theme": "contribution",
+      "status": "ready",
+      "path": "terumah/deck.json",
+      "card_count": 8,
+      "sessions": 1,
+      "ref": "Exodus 25:1-27:19"
+    },
+    {
+      "id": "yitro",
+      "name_en": "Yitro",
+      "name_he": "יִתְרוֹ",
+      "content_type": "parasha",
+      "theme": "covenant",
+      "status": "ready",
+      "path": "yitro/deck.json",
+      "card_count": 12,
+      "sessions": 1,
+      "ref": "Exodus 18:1-20:23"
+    },
+    {
+      "id": "beshalach",
+      "name_en": "Beshalach",
+      "name_he": "בְּשַׁלַּח",
+      "content_type": "parasha",
+      "theme": "water",
+      "status": "draft",
+      "path": "beshalach/deck.json",
+      "card_count": 12,
+      "sessions": 1,
+      "ref": "Exodus 13:17-17:16"
+    }
+  ]
+}

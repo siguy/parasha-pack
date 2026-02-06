@@ -20,6 +20,7 @@
                 <option value="">-- Choose a deck --</option>
             </select>
             <button id="load-deck-btn" class="btn btn-primary">Load Deck</button>
+            <button id="print-deck-btn" class="btn btn-secondary" disabled>Print Deck</button>
             <button id="export-feedback-btn" class="btn btn-secondary" disabled>Export Feedback</button>
         </section>
 
@@ -32,14 +33,23 @@
         <!-- Deck Info Bar -->
         <section id="deck-info" class="deck-info hidden">
             <div class="deck-meta">
-                <h2 id="deck-title"></h2>
-                <span id="deck-ref" class="deck-ref"></span>
-                <span id="deck-card-count" class="card-count"></span>
+                <div class="deck-title-row">
+                    <h2 id="deck-title"></h2>
+                    <span id="deck-content-type" class="content-type-badge"></span>
+                </div>
+                <div class="deck-subtitle-row">
+                    <span id="deck-ref" class="deck-ref"></span>
+                    <span id="deck-card-count" class="card-count"></span>
+                    <span id="deck-session-count" class="session-count hidden"></span>
+                </div>
             </div>
-            <div class="deck-theme">
-                <span class="theme-label">Theme:</span>
-                <span id="deck-theme" class="theme-badge"></span>
-                <span id="border-color-preview" class="border-preview"></span>
+            <div class="deck-theme-row">
+                <div class="deck-theme">
+                    <span class="theme-label">Theme:</span>
+                    <span id="deck-theme" class="theme-badge"></span>
+                    <span id="border-color-preview" class="border-preview"></span>
+                </div>
+                <div id="deck-emotional-core" class="deck-emotional-core hidden"></div>
             </div>
         </section>
 
@@ -51,6 +61,7 @@
                 <button id="prev-card-btn" class="nav-btn" title="Previous card">&larr;</button>
                 <h2 id="detail-title"></h2>
                 <span id="detail-type" class="type-badge"></span>
+                <button id="print-card-btn" class="btn btn-small btn-secondary" title="Print this card">Print</button>
                 <button id="next-card-btn" class="nav-btn" title="Next card">&rarr;</button>
             </div>
 
@@ -132,7 +143,13 @@
 
         <!-- Card Gallery -->
         <section id="card-gallery" class="card-gallery hidden">
-            <h3>Cards</h3>
+            <div class="gallery-header">
+                <h3>Cards</h3>
+                <div id="session-filter" class="session-filter hidden">
+                    <span>Session:</span>
+                    <button class="session-btn active" data-session="all">All</button>
+                </div>
+            </div>
             <div id="card-grid" class="card-grid"></div>
         </section>
 
@@ -179,6 +196,38 @@
                 </div>
             </div>
         </div>
+
+        <!-- Print Modal -->
+        <div id="print-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Print Cards</h3>
+                <p>Print teacher guides on 8.5" x 11" paper (1 card per page).</p>
+                <div class="print-options">
+                    <label class="print-option">
+                        <input type="radio" name="print-range" value="all" checked>
+                        <span>All cards (<span id="print-card-count">0</span> pages)</span>
+                    </label>
+                    <label class="print-option" id="print-current-option">
+                        <input type="radio" name="print-range" value="current">
+                        <span>Current card only</span>
+                    </label>
+                    <label class="print-option">
+                        <input type="radio" name="print-range" value="session">
+                        <span>Session <select id="print-session-select"></select></span>
+                    </label>
+                </div>
+                <div class="print-preview-info">
+                    <p>Each page includes: card image, title, teacher script, and Hebrew text.</p>
+                </div>
+                <div class="modal-actions">
+                    <button id="do-print-btn" class="btn btn-primary">Print</button>
+                    <button id="close-print-modal-btn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden print container -->
+        <div id="print-container" class="print-container"></div>
     </main>
 
     <footer class="footer">

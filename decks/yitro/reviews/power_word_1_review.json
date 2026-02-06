@@ -1,0 +1,65 @@
+{
+  "card_id": "power_word_1",
+  "image_path": "images/power_word_1.png",
+  "overall_score": 87,
+  "recommendation": "PASS",
+  "characters": [
+    {
+      "name": "Moses",
+      "overall_score": 87,
+      "attributes": {
+        "skin_tone": {
+          "score": 95,
+          "note": "Matches warm brown skin tone well."
+        },
+        "beard": {
+          "score": 85,
+          "note": "Short dark beard matches, but gray streaks at chin are not visible."
+        },
+        "head_covering": {
+          "score": 95,
+          "note": "Blue cloth turban/head wrap matches perfectly."
+        },
+        "clothing_main_color": {
+          "score": 95,
+          "note": "Blue outer robe over lighter inner garment matches well."
+        },
+        "props": {
+          "score": 50,
+          "note": "Wooden shepherd's staff is not visible in the scene."
+        }
+      },
+      "blocking_issues": []
+    },
+    {
+      "name": "Yitro",
+      "overall_score": 89,
+      "attributes": {
+        "skin_tone": {
+          "score": 95,
+          "note": "Matches light olive/tan skin tone well."
+        },
+        "beard": {
+          "score": 95,
+          "note": "Long flowing white/gray beard reaching chest matches perfectly."
+        },
+        "head_covering": {
+          "score": 95,
+          "note": "Tan/olive cloth head covering matches well."
+        },
+        "clothing_main_color": {
+          "score": 95,
+          "note": "Olive/brown layered robes with geometric patterns match well."
+        },
+        "props": {
+          "score": 50,
+          "note": "Wooden walking staff is not visible in the scene."
+        }
+      },
+      "blocking_issues": []
+    }
+  ],
+  "blocking_issues": [],
+  "summary": "Both Moses and Yitro are clearly recognizable and match their reference images very well. Minor deviations include Moses' beard lacking gray streaks and neither character's staff being visible in the scene, which is acceptable given the context.",
+  "timestamp": "2026-02-04T06:58:12.251590"
+}

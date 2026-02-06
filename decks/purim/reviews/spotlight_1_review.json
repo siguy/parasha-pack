@@ -1,0 +1,38 @@
+{
+  "card_id": "spotlight_1",
+  "image_path": "images/spotlight_1.png",
+  "overall_score": 93,
+  "recommendation": "PASS",
+  "characters": [
+    {
+      "name": "Esther",
+      "overall_score": 93,
+      "attributes": {
+        "skin_tone": {
+          "score": 100,
+          "note": "Matches reference perfectly."
+        },
+        "beard": {
+          "score": 100,
+          "note": "Not applicable, character is female and has no beard in reference or card."
+        },
+        "head_covering": {
+          "score": 100,
+          "note": "The blue head covering with gold trim matches the reference exactly."
+        },
+        "clothing_main_color": {
+          "score": 100,
+          "note": "The purple main color of the clothing with blue accents and gold trim matches the reference perfectly."
+        },
+        "props": {
+          "score": 50,
+          "note": "The golden staff seen in the full body reference is not visible in the close-up portrait on the card."
+        }
+      },
+      "blocking_issues": []
+    }
+  ],
+  "blocking_issues": [],
+  "summary": "The character Esther in the generated card is an excellent match to the provided reference images. All visible attributes like skin tone, head covering, and clothing color are perfectly consistent. The only minor difference is the absence of the staff prop, which is expected given the close-up nature of the card's illustration.",
+  "timestamp": "2026-02-04T21:51:01.439205"
+}

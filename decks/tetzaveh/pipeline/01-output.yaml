@@ -1,0 +1,112 @@
+parasha_research:
+  name_en: "Tetzaveh"
+  name_he: "תְּצַוֶּה"
+  ref: "Exodus 27:20-30:10"
+  book: "Exodus"
+  content_type: parasha
+
+  # Core emotional focus
+  emotional_core: |
+    Special clothing makes us feel important and ready for special jobs
+
+  connection_hook: |
+    Kids love dressing up and understand that different clothes help us do different jobs - doctor coats, firefighter uniforms, fancy clothes for celebrations. Aaron gets the most beautiful, special clothes ever made to help him serve God.
+
+  # Parasha type assessment
+  parasha_type: ritual
+  narrative_potential: medium
+
+  # Key story moments (3-5, ranked)
+  key_moments:
+    - moment: "God tells Moses to make beautiful, holy clothes for Aaron"
+      characters: ["Moses", "Aaron"]
+      emotion: "excitement"
+      connection_potential: |
+        Kids know how good it feels to get new, special clothes
+      visual_potential: high
+
+    - moment: "The skilled craftspeople make the ephod with gold and colorful threads"
+      characters: ["craftspeople"]
+      emotion: "pride"
+      connection_potential: |
+        Kids understand working hard to make something beautiful
+      visual_potential: high
+
+    - moment: "Aaron puts on the breastplate with 12 special stones for the 12 tribes"
+      characters: ["Aaron"]
+      emotion: "responsibility"
+      connection_potential: |
+        Kids can relate to wearing something that represents their family or group
+      visual_potential: high
+
+    - moment: "Aaron lights the menorah every day to keep the light burning"
+      characters: ["Aaron"]
+      emotion: "dedication"
+      connection_potential: |
+        Kids understand daily jobs and taking care of special things
+      visual_potential: high
+
+  # Character analysis
+  main_character:
+    name_en: "Aaron"
+    name_he: "אַהֲרֹן"
+    why_relatable: |
+      Aaron is Moses's helper and big brother - kids understand being chosen for an important job and wanting to do it well. He gets beautiful clothes that make him feel special and ready to serve God.
+    key_emotion: "honored and responsible"
+
+  secondary_character:
+    name_en: "Moses"
+    name_he: "מֹשֶׁה"
+    role_in_story: "God's messenger who receives instructions for Aaron's special clothes"
+
+  # Discussion seeds for Connection cards
+  discussion_seeds:
+    - "Have you ever worn special clothes for a celebration or important day?"
+    - "How do you feel when you put on your favorite outfit?"
+    - "What job would you want special clothes for?"
+    - "How do you take care of something very special that belongs to you?"
+
+  # Hebrew vocabulary recommendation
+  hebrew_word:
+    word: "כהן"
+    word_nikud: "כֹּהֵן"
+    meaning: "Priest"
+    why_this_word: |
+      This is Aaron's special job title - the cohen serves God in the Tabernacle and wears the beautiful clothes described in this parasha
+    torah_source: "Exodus 28:1"
+
+  # Safety notes
+  avoid:
+    - "Complex ritual details that are too abstract"
+    - "Detailed gemstone names that are confusing"
+    - "Sacrificial aspects - focus on clothing and service"
+
+  # Continuity tracking
+  continuity:
+    year_context_checked: yes
+
+    characters_this_week:
+      new_characters:
+        - name: "Aaron"
+          needs_reference_sheet: yes
+          visual_description: |
+            Aaron, Moses's older brother. Middle-aged man with warm brown skin, kind gentle eyes, and a full dark beard with some gray. Wearing the magnificent priestly garments - golden ephod vest over blue robe, colorful breastplate with 12 stones, white linen tunic, special turban with golden plate. Expression should be dignified, honored, and ready to serve. Standing upright with confidence and reverence.
+
+      returning_characters:
+        - name: "Moses"
+          last_appearance: "Terumah"
+          reference_sheet_exists: yes
+          what_changed: |
+            Now giving instructions about Aaron's special clothes instead of the Tabernacle building
+
+    # To add to YEAR_CONTEXT.yaml after deck complete
+    year_context_updates:
+      new_characters_to_add: 
+        - name: "Aaron"
+          relationship: "Moses's brother and the first High Priest"
+      new_concepts_to_add:
+        - "Special clothes help us do special jobs"
+        - "The priest serves God in beautiful garments"
+      new_hebrew_words_to_add:
+        - word: "כֹּהֵן"
+          meaning: "Priest"

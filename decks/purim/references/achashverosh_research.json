@@ -1,0 +1,75 @@
+{
+  "research": {
+    "name_en": "King Achashverosh",
+    "name_he": "אֲחַשְׁוֵרוֹשׁ",
+    "biblical_refs": [
+      "Megillat Esther"
+    ],
+    "key_stories": [
+      "Looking for a new queen",
+      "Choosing Esther as queen",
+      "Not thinking before agreeing to Haman's plan",
+      "Learning the truth and making things right"
+    ],
+    "personality_traits": [
+      "confused",
+      "careless",
+      "eventually learns"
+    ],
+    "relationships": {
+      "Esther": "wife and queen",
+      "Haman": "advisor he trusted too much",
+      "Mordechai": "honored him in the end"
+    },
+    "emotional_moments": [
+      {
+        "event": "Making hasty decisions",
+        "emotion": "distracted"
+      },
+      {
+        "event": "Learning the truth",
+        "emotion": "surprised and upset"
+      },
+      {
+        "event": "Making things right",
+        "emotion": "determined"
+      }
+    ],
+    "age_appropriate_summary": "King Achashverosh was a king who didn't always think before deciding. He learned it's important to ask questions and think carefully!"
+  },
+  "design": {
+    "key": "achashverosh",
+    "name_en": "King Achashverosh",
+    "name_he": "אֲחַשְׁוֵרוֹשׁ",
+    "visual_description": "King with confused bewildered expression - somewhat comedic",
+    "clothing": [
+      "Large ornate crown",
+      "Royal Persian robes in golds and reds"
+    ],
+    "distinguishing_features": [
+      "Bewildered look",
+      "Eyebrows often raised",
+      "Distracted expression",
+      "Somewhat cartoonish"
+    ],
+    "props": [
+      "Royal scepter",
+      "Crown"
+    ],
+    "default_emotion": "kind",
+    "emotional_range": [
+      "confused",
+      "careless",
+      "eventually learns"
+    ],
+    "signature_poses": [
+      "Scratching head, confused",
+      "Sitting on throne, distracted",
+      "Surprised expression",
+      "Making a proclamation"
+    ],
+    "style_prompt": "Children's book cartoon character KING ACHASHVEROSH:\n- King with confused bewildered expression - somewhat comedic\n- Bewildered look\n- Eyebrows often raised\n- Distracted expression\n- Somewhat cartoonish\n- Large ornate crown\n- Royal Persian robes in golds and reds\n- Royal scepter\n- Crown\n- Rounded, friendly cartoon style\n- Thick clean black outlines\n- Bold colors, simple shapes\n- LARGE expressive eyes (20% of face)"
+  },
+  "references": {},
+  "created_at": "2026-02-03T23:31:30.280181"
+}

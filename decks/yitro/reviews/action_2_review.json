@@ -1,0 +1,65 @@
+{
+  "card_id": "action_2",
+  "image_path": "images/action_2.png",
+  "overall_score": 89,
+  "recommendation": "PASS",
+  "characters": [
+    {
+      "name": "Moses",
+      "overall_score": 89,
+      "attributes": {
+        "skin_tone": {
+          "score": 95,
+          "note": "Matches the warm brown skin tone well."
+        },
+        "beard": {
+          "score": 95,
+          "note": "Matches the short dark beard with gray streaks at the chin."
+        },
+        "head_covering": {
+          "score": 95,
+          "note": "Matches the blue cloth turban/head wrap."
+        },
+        "clothing_main_color": {
+          "score": 95,
+          "note": "Matches the blue outer robe over a cream/beige inner garment."
+        },
+        "props": {
+          "score": 50,
+          "note": "The wooden shepherd's staff is not visible in the scene."
+        }
+      },
+      "blocking_issues": []
+    },
+    {
+      "name": "Yitro",
+      "overall_score": 89,
+      "attributes": {
+        "skin_tone": {
+          "score": 95,
+          "note": "Matches the light olive/tan skin tone well."
+        },
+        "beard": {
+          "score": 95,
+          "note": "Matches the long flowing white/gray beard."
+        },
+        "head_covering": {
+          "score": 95,
+          "note": "Matches the tan/olive cloth head covering with a darker band."
+        },
+        "clothing_main_color": {
+          "score": 95,
+          "note": "Matches the olive/brown layered robes with geometric patterns."
+        },
+        "props": {
+          "score": 50,
+          "note": "The wooden walking staff is not visible in the scene."
+        }
+      },
+      "blocking_issues": []
+    }
+  ],
+  "blocking_issues": [],
+  "summary": "Both Moses and Yitro are depicted accurately according to their reference images. All key visual attributes like skin tone, beard, head covering, and clothing colors are consistent. The props (staffs) are not visible for either character in the card, but this does not detract from their recognition in the scene.",
+  "timestamp": "2026-02-04T19:19:10.748478"
+}

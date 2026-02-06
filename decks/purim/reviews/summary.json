@@ -1,0 +1,18 @@
+{
+  "reviewed_at": "2026-02-04T21:51:03.444614",
+  "total_reviewed": 1,
+  "scores": {
+    "pass": 1,
+    "review": 0,
+    "regenerate": 0,
+    "reject": 0
+  },
+  "average_score": 93,
+  "common_issues": {},
+  "cards": {
+    "spotlight_1": {
+      "score": 93,
+      "recommendation": "PASS"
+    }
+  }
+}

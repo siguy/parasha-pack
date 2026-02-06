@@ -1,0 +1,239 @@
+{
+  "parasha_en": "Mishpatim",
+  "parasha_he": "מִשְׁפָּטִים",
+  "ref": "Exodus 21:1-24:18",
+  "border_color": "#2E7D32",
+  "theme": "fairness",
+  "version": "1.0",
+  "target_age": "4-6",
+  "card_count": 10,
+  "approach": "law-based",
+  "mitzvah_connection": "Being fair and kind to everyone, even when it's hard",
+  "cards": [
+    {
+      "card_id": "anchor_1",
+      "card_type": "anchor",
+      "title_en": "Parashat Mishpatim",
+      "title_he": "פָּרָשַׁת מִשְׁפָּטִים",
+      "emotional_hook_en": "This week we learn about being FAIR - that means treating everyone the right way!",
+      "emotional_hook_he": "הַשָּׁבוּעַ נִלְמַד עַל לִהְיוֹת הוֹגְנִים - לְהִתְנַהֵג נָכוֹן לְכָל אֶחָד!",
+      "symbol_description": "A simple balance scale with golden glow, perfectly balanced. Around it: small icons of helping hands, a heart, and two children sharing. Warm green and gold colors. NO Hebrew text on the scale itself.",
+      "border_color": "#2E7D32",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines (2-3px equivalent).\n- Complexity: Maximum 5-7 distinct visual elements per scene.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\nColors:\n- Main elements: Bold colors\n- Background: Soft warm cream/golden gradient\n\n=== RESTRICTIONS ===\nNEVER depict God in any human or physical form.\nNEVER write God's name in Hebrew.\n\n=== CARD TYPE: ANCHOR (Full Bleed Parasha Introduction) ===\n\n=== EXACT TEXT TO RENDER ===\nHebrew Title: \"פָּרָשַׁת מִשְׁפָּטִים\"\nEnglish Title: \"Parashat Mishpatim\"\nEmotional Hook: \"This week we learn about being FAIR - that means treating everyone the right way!\"\n\n=== CENTRAL SYMBOL ===\nA friendly balance scale with golden glow, perfectly balanced.\nAround it: small icons of helping hands, a heart, and two children sharing.\nWarm green and gold colors. Inviting and friendly.\nNO Hebrew text on the scale.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. HEBREW TITLE (top 15%): \"פָּרָשַׁת מִשְׁפָּטִים\" in large Hebrew with nikud\n2. ENGLISH TITLE (5%): \"Parashat Mishpatim\" below Hebrew\n3. CENTRAL SYMBOL (55%): Balance scale with warm glow\n   - Scale perfectly balanced\n   - Small icons around it: helping hands, heart, children sharing\n4. EMOTIONAL HOOK (18%): \"This week we learn about being FAIR - that means treating everyone the right way!\"\n5. Small decorative stars around scale\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #2E7D32 Forest Green (8px width)\n- Star icon in top-left corner\n\n=== MOOD ===\nWarm, fair, welcoming. Children should feel: \"Being fair is important and good!\"",
+      "image_path": "images/anchor_1.png",
+      "teacher_script": "This is Parashat Mishpatim! Do you see that scale? When both sides are even, that's FAIR. This week, we learn special rules about being fair and kind to everyone. Let's make our hands into a scale - can you balance them evenly? That's what fair looks like!"
+    },
+    {
+      "card_id": "spotlight_1",
+      "card_type": "spotlight",
+      "title_en": "Moses the Teacher",
+      "title_he": "מֹשֶׁה הַמּוֹרֶה",
+      "character_name_en": "Moses",
+      "character_name_he": "מֹשֶׁה",
+      "emotion_label": "wise",
+      "character_trait": "",
+      "character_description_en": "Remember Moses? He's the leader who helped everyone leave Egypt. Now Moses has a new job - he's a TEACHER! God told Moses special rules to help everyone get along. Moses listens carefully and then teaches the people. He wants everyone to know how to be fair and kind to each other!",
+      "character_description_he": "זוֹכְרִים אֶת מֹשֶׁה? הוּא הַמַּנְהִיג שֶׁעָזַר לְכֻלָּם לָצֵאת מִמִּצְרַיִם. עַכְשָׁו לְמֹשֶׁה יֵשׁ תַּפְקִיד חָדָשׁ - הוּא מוֹרֶה!",
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Emotion: Big, clear facial expressions.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: SPOTLIGHT (Character Introduction) ===\n\n=== EXACT TEXT TO RENDER ===\nHebrew Name: \"מֹשֶׁה\" (large, top)\nEnglish Name: \"Moses the Teacher\"\nEmotion Badge: \"WISE\"\nDescription: \"Moses has a new job - he's a TEACHER! He wants everyone to know how to be fair and kind.\"\n\n=== CHARACTER: MOSES ===\nFriendly middle-aged man with warm brown skin and kind, gentle eyes.\nShort dark beard with some gray. Blue and cream robes.\nHEAD COVERING (cloth wrap/turban) - ALWAYS INCLUDE.\nHolding a scroll open, pointing to it with teaching gesture.\n\nExpression: WISE - thoughtful, patient, caring teacher.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. NAME ZONE (top 12%): \"מֹשֶׁה\" large with nikud, \"Moses the Teacher\" below\n2. CHARACTER PORTRAIT (center 55%):\n   - Moses from waist up, WISE expression\n   - Head covering visible\n   - Holding open scroll, teaching gesture\n   - Background: Group of attentive listeners (adults and children)\n3. EMOTION BADGE: \"WISE\" in green bubble (corner)\n4. TEXT ZONE (bottom 25%): \"Moses has a new job - he's a TEACHER! He wants everyone to know how to be fair and kind.\"\n\n=== FRAME ===\n- Rounded corners (8-10px radius)\n- Border: #FFD700 Gold (8px width)\n- Person icon in top-left corner\n\n=== MOOD ===\nWarm, wise, patient. A teacher you can trust and learn from.",
+      "image_path": "images/spotlight_1.png",
+      "teacher_script": "Look, it's Moses again! Remember him from last week? Now Moses has a very special job. He's a TEACHER! God told Moses important rules about being fair, and Moses teaches them to all the people. Can you show me your best teacher face - like you're going to teach something important?"
+    },
+    {
+      "card_id": "story_1",
+      "card_type": "story",
+      "title_en": "The Lost Toy",
+      "title_he": "הַצַּעֲצוּעַ הָאָבוּד",
+      "sequence_number": 1,
+      "hebrew_key_word": "הָשֵׁב",
+      "hebrew_key_word_nikud": "הָשֵׁב",
+      "english_key_word": "Return",
+      "description_en": "The Torah says: If you find something that someone lost, you should return it! Even if it's really nice and you want to keep it - give it back! Finding something doesn't make it yours.",
+      "description_he": "הַתּוֹרָה אוֹמֶרֶת: אִם מָצָאתָ מַשֶּׁהוּ שֶׁמִּישֶׁהוּ אִבֵּד, צָרִיךְ לְהַחֲזִיר!",
+      "roleplay_prompt": "Act it out: Pretend you found something special. Now give it back with a big smile!",
+      "emotional_reactions": [
+        "honest",
+        "kind"
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Emotion: Big, clear facial expressions.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: STORY (Scenario Card #1) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle: \"The Lost Toy\"\nHebrew Title: \"הַצַּעֲצוּעַ הָאָבוּד\"\nSequence Badge: #1 in white circle with red border (top-right)\nHebrew Keyword: \"הָשֵׁב\" (Return) in red badge\nStory Text: \"The Torah says: If you find something that someone lost, you should return it! Finding something doesn't make it yours.\"\nRoleplay: \"Act it out: Pretend you found something special. Now give it back with a big smile!\"\n\n=== VISUAL DESCRIPTION ===\nTwo children in ancient Israelite clothing:\n- Child 1: Found a toy/ball on the ground, picking it up\n- Child 2: Looking sad nearby, clearly lost something\n- Child 1 is about to return it (arm extended)\n- Background: Simple village scene with tents\n\nEmotion: Kindness, honesty, happiness at doing right.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 12%): Red background with:\n   - Lightning bolt icon (left)\n   - \"The Lost Toy\" / \"הַצַּעֲצוּעַ הָאָבוּד\" in white\n   - #1 badge (right)\n2. SCENE (center 55%): Child returning lost item\n3. KEYWORD BADGE: \"הָשֵׁב\" with \"Return\" below\n4. TEXT BOX (bottom 25%):\n   - Story text\n   - Star icon + roleplay prompt in red\n\n=== FRAME ===\n- Border: #FF4136 Red (8px width)\n- Lightning bolt icon, Sequence #1\n\n=== MOOD ===\nHonest and kind. Doing the right thing feels good!",
+      "image_path": "images/story_1.png",
+      "teacher_script": "The Torah teaches us about returning lost things! Look at this picture. What do you think the child found? That's right - but it's not theirs! The Torah says we should return it. The word is HASHEV - return! Let's practice: pretend you found something. Now give it back and say 'Here you go!' How does that feel?"
+    },
+    {
+      "card_id": "story_2",
+      "card_type": "story",
+      "title_en": "Helping, Even When It's Hard",
+      "title_he": "לַעֲזֹר, גַּם כְּשֶׁקָּשֶׁה",
+      "sequence_number": 2,
+      "hebrew_key_word": "עָזַר",
+      "hebrew_key_word_nikud": "עָזַר",
+      "english_key_word": "Help",
+      "description_en": "The Torah says something amazing: Even if someone was NOT nice to you, you should STILL help them when they need it! If their donkey falls down, help them pick it up!",
+      "description_he": "הַתּוֹרָה אוֹמֶרֶת מַשֶּׁהוּ מַדְהִים: גַּם אִם מִישֶׁהוּ לֹא הָיָה נֶחְמָד אֵלֶיךָ, עֲדַיִן צָרִיךְ לַעֲזֹר!",
+      "roleplay_prompt": "Act it out: Pretend you're helping someone pick up something heavy - HEAVE!",
+      "emotional_reactions": [
+        "kind",
+        "brave"
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Emotion: Big, clear facial expressions.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: STORY (Scenario Card #2) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle: \"Helping, Even When It's Hard\"\nHebrew Title: \"לַעֲזֹר, גַּם כְּשֶׁקָּשֶׁה\"\nSequence Badge: #2 in white circle with red border (top-right)\nHebrew Keyword: \"עָזַר\" (Help) in red badge\nStory Text: \"The Torah says something amazing: Even if someone was NOT nice to you, you should STILL help them when they need it!\"\nRoleplay: \"Act it out: Pretend you're helping someone pick up something heavy - HEAVE!\"\n\n=== VISUAL DESCRIPTION ===\nTwo people helping a donkey that fell:\n- A kind person helping lift packages from a fallen donkey\n- The donkey's owner looks grateful/surprised\n- The helper looks determined and kind\n- Background: Desert path with packages scattered\n\nEmotion: Kindness, bravery, doing the right thing even when hard.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 12%): Red background with:\n   - Lightning bolt icon (left)\n   - \"Helping, Even When It's Hard\" / \"לַעֲזֹר, גַּם כְּשֶׁקָּשֶׁה\" in white\n   - #2 badge (right)\n2. SCENE (center 55%): Person helping with fallen donkey\n3. KEYWORD BADGE: \"עָזַר\" with \"Help\" below\n4. TEXT BOX (bottom 25%):\n   - Story text\n   - Star icon + roleplay prompt in red\n\n=== FRAME ===\n- Border: #FF4136 Red (8px width)\n- Lightning bolt icon, Sequence #2\n\n=== MOOD ===\nBrave and kind. Helping is the right thing to do!",
+      "image_path": "images/story_2.png",
+      "teacher_script": "This is an amazing rule from the Torah! Even if someone wasn't nice to you - maybe they didn't share or said something mean - you STILL help them when they need it. The word is AZAR - help! That takes bravery! Let's practice: pretend someone needs help carrying something heavy. Ready? HEAVE!"
+    },
+    {
+      "card_id": "story_3",
+      "card_type": "story",
+      "title_en": "Being Kind to the New Kid",
+      "title_he": "לִהְיוֹת נֶחְמָד לַיֶּלֶד הֶחָדָשׁ",
+      "sequence_number": 3,
+      "hebrew_key_word": "גֵּר",
+      "hebrew_key_word_nikud": "גֵּר",
+      "english_key_word": "Stranger / Newcomer",
+      "description_en": "The Torah says: Be extra kind to someone who is new! Remember, you were once new somewhere too! The Jewish people were strangers in Egypt, so we know how it feels to be new.",
+      "description_he": "הַתּוֹרָה אוֹמֶרֶת: תִּהְיוּ נֶחְמָדִים בְּמְיֻחָד לְמִי שֶׁחָדָשׁ! אַתֶּם יוֹדְעִים אֵיךְ זֶה לִהְיוֹת חֲדָשִׁים.",
+      "roleplay_prompt": "Act it out: Wave hello and say 'Come play with me!' to someone new!",
+      "emotional_reactions": [
+        "welcoming",
+        "kind"
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Emotion: Big, clear facial expressions.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: STORY (Scenario Card #3) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle: \"Being Kind to the New Kid\"\nHebrew Title: \"לִהְיוֹת נֶחְמָד לַיֶּלֶד הֶחָדָשׁ\"\nSequence Badge: #3 in white circle with red border (top-right)\nHebrew Keyword: \"גֵּר\" (Stranger) in red badge\nStory Text: \"The Torah says: Be extra kind to someone who is new! Remember, you were once new somewhere too!\"\nRoleplay: \"Act it out: Wave hello and say 'Come play with me!' to someone new!\"\n\n=== VISUAL DESCRIPTION ===\nChildren welcoming a new child:\n- Group of 2-3 children playing together\n- One child standing alone looking shy/nervous (the newcomer)\n- One of the group children extending hand in welcome, smiling warmly\n- Background: Israelite camp with tents, friendly atmosphere\n\nEmotion: Welcoming, kind, inclusive.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 12%): Red background with:\n   - Lightning bolt icon (left)\n   - \"Being Kind to the New Kid\" / \"לִהְיוֹת נֶחְמָד לַיֶּלֶד הֶחָדָשׁ\" in white\n   - #3 badge (right)\n2. SCENE (center 55%): Children welcoming newcomer\n3. KEYWORD BADGE: \"גֵּר\" with \"Stranger\" below\n4. TEXT BOX (bottom 25%):\n   - Story text\n   - Star icon + roleplay prompt in red\n\n=== FRAME ===\n- Border: #FF4136 Red (8px width)\n- Lightning bolt icon, Sequence #3\n\n=== MOOD ===\nWarm and welcoming. Everyone deserves to feel included!",
+      "image_path": "images/story_3.png",
+      "teacher_script": "Do you know what a GER is? It's someone who is new - like a new kid in class! The Torah says we should be EXTRA kind to someone new. Why? Because the Jewish people know what it's like to be new somewhere - they were strangers in Egypt! Let's practice welcoming someone new - wave and say 'Come play with me!'"
+    },
+    {
+      "card_id": "story_4",
+      "card_type": "story",
+      "title_en": "Rest Day for Everyone!",
+      "title_he": "יוֹם מְנוּחָה לְכֻלָּם!",
+      "sequence_number": 4,
+      "hebrew_key_word": "שַׁבָּת",
+      "hebrew_key_word_nikud": "שַׁבָּת",
+      "english_key_word": "Shabbat",
+      "description_en": "The Torah says: Everyone needs to rest on Shabbat - even the animals! Even people who work for you! Everyone gets to take a break and feel peaceful.",
+      "description_he": "הַתּוֹרָה אוֹמֶרֶת: כֻּלָּם צְרִיכִים לָנוּחַ בַּשַּׁבָּת - גַּם הַחַיּוֹת! כֻּלָּם מְקַבְּלִים הַפְסָקָה.",
+      "roleplay_prompt": "Act it out: Take a big deep breath, let it out, and say 'Ahhhh, Shabbat!'",
+      "emotional_reactions": [
+        "peaceful",
+        "rested"
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Emotion: Big, clear facial expressions.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: STORY (Scenario Card #4) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle: \"Rest Day for Everyone!\"\nHebrew Title: \"יוֹם מְנוּחָה לְכֻלָּם!\"\nSequence Badge: #4 in white circle with red border (top-right)\nHebrew Keyword: \"שַׁבָּת\" (Shabbat) in red badge\nStory Text: \"The Torah says: Everyone needs to rest on Shabbat - even the animals! Everyone gets to take a break and feel peaceful.\"\nRoleplay: \"Act it out: Take a big deep breath, let it out, and say 'Ahhhh, Shabbat!'\"\n\n=== VISUAL DESCRIPTION ===\nPeaceful Shabbat scene:\n- Family resting together near their tent\n- Donkey lying down peacefully, resting too\n- Cat curled up, ox resting in background\n- Warm sunset/golden light\n- Everyone looks peaceful and content\n\nEmotion: Peaceful, restful, content.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 12%): Red background with:\n   - Lightning bolt icon (left)\n   - \"Rest Day for Everyone!\" / \"יוֹם מְנוּחָה לְכֻלָּם!\" in white\n   - #4 badge (right)\n2. SCENE (center 55%): Family and animals resting peacefully\n3. KEYWORD BADGE: \"שַׁבָּת\" with \"Shabbat\" below\n4. TEXT BOX (bottom 25%):\n   - Story text\n   - Star icon + roleplay prompt in red\n\n=== FRAME ===\n- Border: #FF4136 Red (8px width)\n- Lightning bolt icon, Sequence #4\n\n=== MOOD ===\nPeaceful and warm. Rest is a gift for everyone!",
+      "image_path": "images/story_4.png",
+      "teacher_script": "SHABBAT! The Torah says everyone gets to rest - not just people, but animals too! Even the donkey gets a day off! Shabbat is a gift of rest. Let's take a deep breath together... breathe in... and out... 'Ahhhh, Shabbat!' Doesn't that feel peaceful?"
+    },
+    {
+      "card_id": "connection_1",
+      "card_type": "connection",
+      "title_en": "What Would You Do?",
+      "title_he": "מָה הָיִיתָ עוֹשֶׂה?",
+      "questions": [
+        {
+          "question_type": "connection",
+          "question_en": "If you found a really cool toy on the playground and didn't know whose it was, what would you do?",
+          "question_he": "אִם מָצָאתָ צַעֲצוּעַ מַמָּשׁ מְגַנִּיב וְלֹא יָדַעְתָּ שֶׁל מִי הוּא, מָה הָיִיתָ עוֹשֶׂה?"
+        },
+        {
+          "question_type": "emotional_empathy",
+          "question_en": "How do you think someone feels when they lose something special?",
+          "question_he": "אֵיךְ לְדַעְתְּךָ מִישֶׁהוּ מַרְגִּישׁ כְּשֶׁהוּא מְאַבֵּד מַשֶּׁהוּ מְיֻחָד?"
+        },
+        {
+          "question_type": "cognitive_empathy",
+          "question_en": "Have you ever lost something? How did you feel when someone helped you find it?",
+          "question_he": "הַאִם פַּעַם אִבַּדְתָּ מַשֶּׁהוּ? אֵיךְ הִרְגַּשְׁתָּ כְּשֶׁמִישֶׁהוּ עָזַר לְךָ לִמְצֹא?"
+        }
+      ],
+      "torah_talk_instruction": "Sit in a circle and share your ideas!",
+      "feeling_faces": [
+        {
+          "emoji": "😊",
+          "label_en": "Happy",
+          "label_he": "שָׂמֵחַ"
+        },
+        {
+          "emoji": "😢",
+          "label_en": "Sad",
+          "label_he": "עָצוּב"
+        },
+        {
+          "emoji": "😕",
+          "label_en": "Confused",
+          "label_he": "מְבֻלְבָּל"
+        },
+        {
+          "emoji": "🥹",
+          "label_en": "Grateful",
+          "label_he": "אָסִיר תּוֹדָה"
+        }
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Mood: Calm, thoughtful, inviting.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: CONNECTION (Discussion Card) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle Bar: \"What Would You Do?\" with Hebrew \"מָה הָיִיתָ עוֹשֶׂה?\" (include nikud/vowel marks)\n\nFeeling Faces Row (4 faces with Hebrew labels ONLY - no English):\n  😊 שָׂמֵחַ | 😢 עָצוּב | 😕 מְבֻלְבָּל | 🥹 אָסִיר תּוֹדָה\n\nThree Questions in speech bubbles (NO numbers, NO \"Question\" labels):\n  - \"If you found a really cool toy on the playground, what would you do?\"\n  - \"How do you think someone feels when they lose something special?\"\n  - \"Have you ever lost something? How did you feel when someone helped?\"\n\nBottom Banner: \"Torah Talk: Sit in a circle and share your ideas!\"\n\n=== VISUAL DESCRIPTION ===\n2-3 children in thoughtful, wondering poses:\n- One child holding something, looking thoughtful\n- Another child with finger on chin, thinking\n- Warm, friendly atmosphere\nBackground: Soft scene suggesting playground/outdoor area.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 10%): Blue background with thought bubble icon, \"What Would You Do?\" / \"מָה הָיִיתָ עוֹשֶׂה?\" in white WITH NIKUD\n2. SCENE (25%): Children in thoughtful poses\n3. FEELING FACES ROW (10%): Four emoji faces with Hebrew labels below each\n4. QUESTIONS (40%): Three colored speech bubbles - NO NUMBERS, just the question text\n5. BOTTOM BANNER (8%): Blue with \"Torah Talk: Sit in a circle and share your ideas!\"\n\n=== FRAME ===\n- Border: #0074D9 Blue (8px width)\n- Thought bubble icon\n\n=== MOOD ===\nCalm, curious, inviting. Safe space to think and share.",
+      "image_path": "images/connection_1.png",
+      "teacher_script": "Torah Talk time! Let's sit in our circle. Here's a question: If you found something really cool on the playground, but you didn't know whose it was - what would you do? Let's look at the feeling faces - how might someone feel when they lose something? Let's share our ideas!"
+    },
+    {
+      "card_id": "connection_2",
+      "card_type": "connection",
+      "title_en": "Being Fair",
+      "title_he": "לִהְיוֹת הוֹגֵן",
+      "questions": [
+        {
+          "question_type": "connection",
+          "question_en": "What does it mean to be fair? Can you think of a time when someone was fair to you?",
+          "question_he": "מָה זֶה אוֹמֵר לִהְיוֹת הוֹגֵן? אַתָּה זוֹכֵר פַּעַם שֶׁמִישֶׁהוּ הָיָה הוֹגֵן אֵלֶיךָ?"
+        },
+        {
+          "question_type": "emotional_empathy",
+          "question_en": "How does it feel when something is NOT fair?",
+          "question_he": "אֵיךְ מַרְגִּישִׁים כְּשֶׁמַּשֶּׁהוּ לֹא הוֹגֵן?"
+        },
+        {
+          "question_type": "cognitive_empathy",
+          "question_en": "Why do you think the Torah has so many rules about being fair?",
+          "question_he": "לָמָה לְדַעְתְּךָ לַתּוֹרָה יֵשׁ כָּל כָּךְ הַרְבֵּה חֻקִּים עַל לִהְיוֹת הוֹגֵן?"
+        }
+      ],
+      "torah_talk_instruction": "Sit in a circle and share your ideas!",
+      "feeling_faces": [
+        {
+          "emoji": "😊",
+          "label_en": "Happy",
+          "label_he": "שָׂמֵחַ"
+        },
+        {
+          "emoji": "😠",
+          "label_en": "Frustrated",
+          "label_he": "מְתֻסְכָּל"
+        },
+        {
+          "emoji": "😢",
+          "label_en": "Sad",
+          "label_he": "עָצוּב"
+        },
+        {
+          "emoji": "🥹",
+          "label_en": "Proud",
+          "label_he": "גֵּאֶה"
+        }
+      ],
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Characters: Rounded, friendly shapes. Large expressive eyes.\n- Lines: Thick, clean black outlines.\n- Mood: Calm, thoughtful, inviting.\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== CARD TYPE: CONNECTION (Discussion Card) ===\n\n=== EXACT TEXT TO RENDER ===\nTitle Bar: \"Being Fair\" with Hebrew \"לִהְיוֹת הוֹגֵן\" (include nikud/vowel marks)\n\nFeeling Faces Row (4 faces with Hebrew labels ONLY - no English):\n  😊 שָׂמֵחַ | 😠 מְתֻסְכָּל | 😢 עָצוּב | 🥹 גֵּאֶה\n\nThree Questions in speech bubbles (NO numbers, NO \"Question\" labels):\n  - \"What does it mean to be fair? Can you think of a time when someone was fair to you?\"\n  - \"How does it feel when something is NOT fair?\"\n  - \"Why do you think the Torah has so many rules about being fair?\"\n\nBottom Banner: \"Torah Talk: Sit in a circle and share your ideas!\"\n\n=== VISUAL DESCRIPTION ===\nChildren sharing/being fair:\n- Two children sharing something equally (maybe snacks or toys)\n- Both children smiling, content\n- Warm, friendly atmosphere\nBackground: Soft colors, inclusive feeling.\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. TITLE BAR (top 10%): Blue background with thought bubble icon, \"Being Fair\" / \"לִהְיוֹת הוֹגֵן\" in white WITH NIKUD\n2. SCENE (25%): Children sharing equally\n3. FEELING FACES ROW (10%): Four emoji faces with Hebrew labels below each\n4. QUESTIONS (40%): Three colored speech bubbles - NO NUMBERS, just the question text\n5. BOTTOM BANNER (8%): Blue with \"Torah Talk: Sit in a circle and share your ideas!\"\n\n=== FRAME ===\n- Border: #0074D9 Blue (8px width)\n- Thought bubble icon\n\n=== MOOD ===\nWarm, thoughtful. Fairness makes everyone feel good.",
+      "image_path": "images/connection_2.png",
+      "teacher_script": "Let's talk about being FAIR! What does fair mean? Maybe it's when everyone gets a turn, or when we share equally. Can you think of a time when someone was really fair to you? How did that make you feel? Now think - how does it feel when something is NOT fair? That's why the Torah gives us rules about being fair!"
+    },
+    {
+      "card_id": "power_word_1",
+      "card_type": "power_word",
+      "title_en": "Justice",
+      "title_he": "מִשְׁפָּט",
+      "hebrew_word": "משפט",
+      "hebrew_word_nikud": "מִשְׁפָּט",
+      "english_meaning": "Justice / Fairness",
+      "torah_quote_en": "\"These are the rules you shall set before them.\" - Exodus 21:1",
+      "torah_quote_he": "וְאֵלֶּה הַמִּשְׁפָּטִים אֲשֶׁר תָּשִׂים לִפְנֵיהֶם",
+      "example_sentence_en": "The Torah teaches us mishpat - how to be fair to everyone!",
+      "example_sentence_he": "הַתּוֹרָה מְלַמֶּדֶת אוֹתָנוּ מִשְׁפָּט - אֵיךְ לִהְיוֹת הוֹגְנִים לְכֻלָּם!",
+      "kid_friendly_explanation_en": "Mishpat means being fair and doing what's right. When we follow mishpat, everyone gets treated nicely!",
+      "kid_friendly_explanation_he": "מִשְׁפָּט זֶה לִהְיוֹת הוֹגֵן וְלַעֲשׂוֹת מָה שֶׁנָּכוֹן. כְּשֶׁאֲנַחְנוּ עוֹשִׂים מִשְׁפָּט, כֻּלָּם מְקַבְּלִים יַחַס נֶחְמָד!",
+      "is_emotion_word": false,
+      "image_prompt": "A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).\n\n=== STYLE ===\nVivid, high-contrast cartoon style suitable for ages 4-6.\n- Simple, clear illustration.\n- Lines: Thick, clean black outlines.\n- Educational but FUN!\n\nCard Format: 5x7 inches (1500x2100px)\nCorners: rounded (8-10px radius)\n\n=== RESTRICTIONS ===\n- NO transliteration\n- NO QR codes\n- NO percentage symbols\n- Simple clear fonts\n\n=== CARD TYPE: POWER WORD (Hebrew Vocabulary) ===\n\n=== EXACT TEXT TO RENDER ===\nLarge Hebrew Word: \"מִשְׁפָּט\" (very large, with nikud, top of card)\nEnglish Meaning: \"JUSTICE / FAIRNESS\" (bold, below Hebrew)\nTorah Quote: \"These are the rules you shall set before them.\"\nSource: \"- Exodus 21:1\"\nKid Explanation: \"Mishpat means being fair and doing what's right!\"\n\n=== VISUAL DESCRIPTION ===\nBalanced scale with happy children:\n- A golden balance scale, perfectly even\n- On each side: simple symbols of fairness (hearts, helping hands)\n- Below: Two children holding hands, one giving the other something\n- Warm, friendly, educational atmosphere\n\n=== COMPOSITION ===\nLayout (top to bottom):\n1. HEBREW WORD (top): \"מִשְׁפָּט\" in LARGE beautiful Hebrew with nikud\n2. ENGLISH MEANING: \"JUSTICE / FAIRNESS\" in bold, friendly font\n3. VISUAL (center): Balance scale with children below\n4. TORAH QUOTE: \"These are the rules you shall set before them.\" - Exodus 21:1\n5. KID EXPLANATION (bottom): \"Mishpat means being fair and doing what's right!\"\n\n=== FRAME ===\n- Border: #2ECC40 Green (8px width)\n- NO icon in corner\n\n=== MOOD ===\nEducational and warm! Fairness is a wonderful value.",
+      "image_path": "images/power_word_1.png",
+      "teacher_script": "Our Power Word is MISHPAT! Can you say it? Mishpat! It means 'justice' or 'fairness.' This whole parasha is called Mishpatim - that's the plural! It's full of rules about how to be fair. The Torah says these are the mishpatim - the fair rules - to follow. When we do mishpat, we treat everyone the right way!"
+    }
+  ]
+}
