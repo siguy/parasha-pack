@@ -13,8 +13,7 @@ parasha-pack/
 ├── CLAUDE.md              # This file - project overview
 ├── agents/                # Agent system documentation (see agents/AGENTS.md)
 │   ├── AGENTS.md          # Agent roster and workflow
-│   ├── FRAMEWORK.md       # Card framework v2
-│   ├── YEAR_CONTEXT.yaml  # Continuity tracking across decks
+│   ├── CARD_SPECS.md      # Card structure (v1 vs v2 format)
 │   ├── STYLE_GUIDE.md     # Visual consistency rules
 │   └── definitions/       # Individual agent specifications
 ├── src/                   # Python source code (see src/CLAUDE.md)
@@ -98,7 +97,7 @@ Open `review-site/index.html` in a browser to:
 
 ## Card Types (8-11 per deck)
 
-See [agents/FRAMEWORK.md](agents/FRAMEWORK.md) for full details.
+See [agents/CARD_SPECS.md](agents/CARD_SPECS.md) for full details.
 
 | Type | Count | Purpose |
 |------|-------|---------|
@@ -206,6 +205,18 @@ git add -A && git commit -m "Regenerate [deck name] images with [change descript
 ```
 
 Avoid manual `_v1`, `_v2` file copies. If you need to compare versions, use `git diff` or check out previous commits.
+
+## Workflow
+
+When implementing multi-step plans, break work into smaller commits and provide progress summaries after each major step.
+
+## Planning
+
+Before starting implementation tasks, confirm the workflow ordering and dependencies with the user.
+
+## Code Review
+
+For code reviews, output findings incrementally as files are read rather than waiting until all files are processed.
 
 ## Print Specifications
 
