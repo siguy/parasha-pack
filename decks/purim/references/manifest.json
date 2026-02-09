@@ -1,18 +1,14 @@
 {
   "esther": {
-    "identity": "characters/esther/identity.png",
-    "stage": null
+    "identity": "esther_identity.png"
   },
   "mordechai": {
-    "identity": "characters/mordechai/identity.png",
-    "stage": null
+    "identity": "mordechai_identity.png"
   },
   "haman": {
-    "identity": "characters/haman/identity.png",
-    "stage": null
+    "identity": "haman_identity.png"
   },
   "achashverosh": {
-    "identity": "characters/achashverosh/identity.png",
-    "stage": null
+    "identity": "achashverosh_identity.png"
   }
 }

@@ -20,6 +20,7 @@ parasha-pack/
 ├── src/                   # Python source code (see src/CLAUDE.md)
 ├── decks/                 # Deck data and images (see decks/CLAUDE.md)
 ├── review-site/           # Web review interface (see review-site/CLAUDE.md)
+├── review-site-v2/        # V2 review site with front/back support
 ├── exports/               # Generated PDFs and print files
 ├── templates/             # Card layout templates
 ├── requirements.txt       # Python dependencies
@@ -60,8 +61,33 @@ This will:
 
 ```bash
 cd src
-python generate_images.py ../decks/yitro/deck.json
+# Generate raw images (scene only, no text) to raw/ directory
+python generate_images.py ../decks/purim/deck.json
 ```
+
+### 3b. Export Final Cards with Card Designer
+
+Card Designer renders text overlay using React components:
+
+```bash
+cd card-designer
+
+# Start dev server (if not running)
+npm run dev
+
+# Export fronts only (default)
+npm run export purim
+
+# Export fronts AND backs
+npm run export purim -- --backs
+
+# Export backs only
+npm run export purim -- --backs-only
+```
+
+Output:
+- `decks/purim/images/{card_id}.png` - Final card fronts with text overlay
+- `decks/purim/backs/{card_id}_back.png` - Teacher content backs
 
 ### 4. Review Cards
 
@@ -188,3 +214,45 @@ Avoid manual `_v1`, `_v2` file copies. If you need to compare versions, use `git
 - Bleed: 0.125" (3mm)
 - Paper: 350gsm cardstock
 - Finish: Matte lamination
+
+## Card Format Versions
+
+### v1 (Legacy)
+- All content rendered in the generated image
+- Text included in image prompts via `=== EXACT TEXT TO RENDER ===`
+- Single-sided cards
+
+### v2 (Current - Card Designer)
+- **AI generates scene-only images** to `raw/` directory (no text in image)
+- **Card Designer (React)** renders text overlays and teacher content
+- **Card Front**: Full-bleed image with React-rendered text overlay
+- **Card Back**: 5x7 printable teacher content (scripts, activities, questions)
+- Image prompts use `=== COMPOSITION ZONES ===` for layout guidance
+- Supports double-sided printing
+
+**Directory Structure:**
+```
+decks/purim/
+├── deck.json
+├── raw/               # AI-generated images (no text)
+│   ├── story_1.png
+│   └── ...
+├── images/            # Final exports with text overlay
+│   ├── story_1.png
+│   └── ...
+├── backs/             # Teacher content backs
+│   ├── story_1_back.png
+│   └── ...
+└── references/
+```
+
+**Workflow:**
+```bash
+# 1. Generate raw images
+cd src && python generate_images.py ../decks/purim/deck.json
+
+# 2. Export with Card Designer
+cd card-designer && npm run export purim -- --backs
+```
+
+See [agents/CARD_SPECS.md](agents/CARD_SPECS.md) for full v2 schema.

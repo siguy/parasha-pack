@@ -6,6 +6,11 @@ Usage:
     export GEMINI_API_KEY="your-api-key"
     python generate_images.py ../decks/yitro/deck.json
 
+Output:
+    Images are saved to decks/{deck}/raw/ as scene-only images (no text).
+    Use the Card Designer React app to render final cards with text overlays.
+    Run `npm run export <deckId>` in card-designer/ to export final images.
+
 Get your API key at: https://aistudio.google.com/app/apikey
 """
 
@@ -19,8 +24,91 @@ import urllib.error
 import base64
 from pathlib import Path
 
+# PIL overlay system is deprecated - text overlay now handled by Card Designer React components
+# See card-designer/ for the React-based text overlay system
 
-def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspect_ratio: str = "3:4") -> bool:
+
+def is_v2_card(card: dict) -> bool:
+    """Check if a card uses v2 format (has front/back structure)."""
+    return "front" in card and "back" in card
+
+
+def load_reference_images(deck_path: Path) -> list:
+    """
+    Load ALL character reference images from the deck's manifest.
+
+    Always passes all character identities to ensure consistency across cards.
+    Each image is labeled with text so the model knows which character it represents.
+
+    Args:
+        deck_path: Path to deck.json
+
+    Returns:
+        List of image parts for API payload (alternating text labels and images)
+    """
+    refs_dir = deck_path.parent / "references"
+    manifest_path = refs_dir / "manifest.json"
+
+    if not manifest_path.exists():
+        return []
+
+    try:
+        with open(manifest_path, 'r', encoding='utf-8') as f:
+            manifest = json.load(f)
+    except Exception:
+        return []
+
+    image_parts = []
+    loaded_chars = []
+
+    # Character name mappings for clearer labels
+    character_labels = {
+        "esther": "Esther (Queen Esther)",
+        "mordechai": "Mordechai",
+        "haman": "Haman (the villain)",
+        "achashverosh": "King Achashverosh (the king)",
+        "moses": "Moses",
+        "miriam": "Miriam",
+        "yitro": "Yitro",
+    }
+
+    for character, data in manifest.items():
+        identity_file = data.get("identity", "")
+        if identity_file:
+            identity_path = refs_dir / identity_file
+            if identity_path.exists():
+                try:
+                    with open(identity_path, 'rb') as f:
+                        image_data = base64.b64encode(f.read()).decode('utf-8')
+
+                    # Add text label BEFORE the image so model knows who it is
+                    label = character_labels.get(character, character.title())
+                    image_parts.append({
+                        "text": f"Character reference for {label}:"
+                    })
+                    image_parts.append({
+                        "inlineData": {
+                            "mimeType": "image/png",
+                            "data": image_data
+                        }
+                    })
+                    loaded_chars.append(character)
+                except Exception as e:
+                    print(f"  -> Failed to load {character} reference: {e}")
+
+    # Add instruction after all references
+    if image_parts:
+        image_parts.append({
+            "text": "Use the above character references for visual consistency. Now generate:"
+        })
+
+    if loaded_chars:
+        print(f"  -> References: {', '.join(loaded_chars)}")
+
+    return image_parts
+
+
+def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspect_ratio: str = "3:4", reference_images: list = None) -> bool:
     """
     Generate an image using Nano Banana Pro model (best for children's book style).
 
@@ -29,14 +117,21 @@ def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspe
         api_key: Gemini API key
         output_path: Path to save the generated image
         aspect_ratio: Aspect ratio (default 3:4 for cards)
+        reference_images: Optional list of reference image parts for character consistency
 
     Returns:
         True if successful, False otherwise
     """
     url = f"https://generativelanguage.googleapis.com/v1beta/models/nano-banana-pro-preview:generateContent?key={api_key}"
 
+    # Build parts list: reference images first, then prompt
+    parts = []
+    if reference_images:
+        parts.extend(reference_images)
+    parts.append({"text": prompt})
+
     payload = {
-        "contents": [{"parts": [{"text": prompt}]}],
+        "contents": [{"parts": parts}],
         "generationConfig": {
             "responseModalities": ["IMAGE", "TEXT"],
             "imageConfig": {"aspectRatio": aspect_ratio}
@@ -171,6 +266,7 @@ def main():
     parser.add_argument("--card", help="Generate image for specific card ID only")
     parser.add_argument("--skip-existing", action="store_true", help="Skip cards that already have images")
     parser.add_argument("--model", choices=["nano-banana", "imagen", "flash"], default="nano-banana", help="Model to use (nano-banana recommended)")
+    parser.add_argument("--no-refs", action="store_true", help="Disable character reference images")
 
     args = parser.parse_args()
 
@@ -191,13 +287,19 @@ def main():
     with open(deck_path, 'r', encoding='utf-8') as f:
         deck = json.load(f)
 
-    # Setup output directory
-    images_dir = deck_path.parent / "images"
-    images_dir.mkdir(exist_ok=True)
+    # Setup output directory - raw/ for scene-only images
+    raw_dir = deck_path.parent / "raw"
+    raw_dir.mkdir(exist_ok=True)
 
-    print(f"Generating images for: {deck['parasha_en']}")
-    print(f"Output directory: {images_dir}")
+    # Get deck name
+    deck_name = deck.get('parasha_en') or deck.get('holiday_en') or 'Unknown'
+
+    print(f"Generating images for: {deck_name}")
+    print(f"Output directory: {raw_dir}")
     print(f"Model: {args.model}")
+    print("-" * 50)
+    print("Note: Images are saved WITHOUT text overlay.")
+    print("Use Card Designer (card-designer/) to render final cards with text.")
     print("-" * 50)
 
     # Select generation function (nano-banana is default and recommended)
@@ -221,7 +323,7 @@ def main():
         if args.card and card_id != args.card:
             continue
 
-        output_path = images_dir / f"{card_id}.png"
+        output_path = raw_dir / f"{card_id}.png"
 
         # Skip if image exists and flag set
         if args.skip_existing and output_path.exists():
@@ -235,14 +337,31 @@ def main():
             skip_count += 1
             continue
 
-        print(f"[GEN] {card_id}: {card['title_en'][:30]}...")
+        # Get title for display
+        if is_v2_card(card):
+            title = card.get("back", {}).get("title_en", card_id)[:30]
+        else:
+            title = card.get("title_en", card_id)[:30]
 
-        if generate_fn(prompt, api_key, str(output_path)):
+        print(f"[GEN] {card_id}: {title}...")
+
+        # Load reference images for character consistency (nano-banana only)
+        reference_images = []
+        if args.model == "nano-banana" and not args.no_refs:
+            reference_images = load_reference_images(deck_path)
+
+        # Generate image
+        if args.model == "nano-banana":
+            success = generate_fn(prompt, api_key, str(output_path), reference_images=reference_images)
+        else:
+            success = generate_fn(prompt, api_key, str(output_path))
+
+        if success:
             print(f"  -> Saved: {output_path.name}")
             success_count += 1
 
-            # Update deck with image path
-            card["image_path"] = f"images/{card_id}.png"
+            # Update deck with image path (raw/ for scene-only images)
+            card["image_path"] = f"raw/{card_id}.png"
         else:
             fail_count += 1
 
@@ -257,8 +376,11 @@ def main():
     print(f"Complete! Success: {success_count}, Skipped: {skip_count}, Failed: {fail_count}")
 
     if success_count > 0:
-        print(f"\nImages saved to: {images_dir}")
+        print(f"\nRaw images saved to: {raw_dir}")
         print(f"Deck updated with image paths: {deck_path}")
+        print(f"\nNext steps:")
+        print(f"  1. cd card-designer && npm run dev")
+        print(f"  2. npm run export {deck_path.parent.name}")
 
 
 if __name__ == "__main__":

@@ -306,14 +306,11 @@ visual_direction:
     - [ ] Tradition cards have warm, celebratory mood (holiday)
 ```
 
-## CRITICAL: Exact Text Requirement
+## Card Format Versions
 
-**ALL text that appears on the card MUST be specified EXACTLY in the prompt.**
+### v1 (Legacy): Exact Text in Prompts
 
-DO NOT use placeholders like:
-- "TEXT ZONE: Description and roleplay prompt" ❌
-- "Add the story text here" ❌
-- "Include the Hebrew word" ❌
+**For v1 cards**, ALL text that appears on the card MUST be specified EXACTLY in the prompt.
 
 DO specify the exact text:
 - `TEXT ZONE: "God asks Moses for help. Tell the people to bring gifts from their hearts."` ✓
@@ -321,6 +318,32 @@ DO specify the exact text:
 - `HEBREW KEYWORD: "לֵב" (Heart) in red badge` ✓
 
 The AI will render EXACTLY what you specify. If you give vague instructions, it will invent text.
+
+### v2 (New): Composition Zones Only
+
+**For v2 cards**, text is overlaid PROGRAMMATICALLY after image generation.
+
+**CRITICAL: v2 prompts must NOT include any text to render.**
+
+Instead, specify **composition zones** - areas to keep uncluttered for overlay:
+
+| Card Type | Composition Zone | Description |
+|-----------|-----------------|-------------|
+| Anchor | Top 20-25% | Keep uncluttered for Hebrew title overlay |
+| Spotlight | Top 30% | Keep uncluttered for name + emotion overlay |
+| Story | Bottom-left corner | Keep relatively simple for keyword badge |
+| Connection | Bottom 20% | Keep simple gradient for emoji row |
+| Power Word | Top 30% | Keep uncluttered for Hebrew word overlay |
+| Tradition | Top 25% | Keep uncluttered for title overlay |
+
+**Example v2 prompt section:**
+```
+=== COMPOSITION ZONES ===
+Compose the scene in the lower 70-75% of the image.
+Keep the top 25% uncluttered with simple gradient/sky for programmatic text overlay.
+The Hebrew title and English title will be overlaid in the top zone.
+Do NOT render any text in the image.
+```
 
 ## Card Type Templates
 
@@ -509,25 +532,17 @@ Use only: Warm golden/white light rays from above, glowing soft clouds.
 [Full character descriptions with consistency notes]
 [For villains: Include misguided visual guidelines]
 
-=== EXACT TEXT TO RENDER ===
+=== TEXT (v1 only) ===
+[For v1 cards, specify exact text to render]
 Title: "[Exact English title]"
 Hebrew Title: "[Exact Hebrew with nikud]"
-[For story cards:]
-Story Text: "[Exact 2-3 sentence description]"
-Roleplay: "Act it out: [Exact roleplay prompt]"
-Hebrew Keyword: "[Hebrew]" ([English]) in [color] badge
-[For connection cards:]
-Feeling Faces: [emoji] [Hebrew label] | [emoji] [Hebrew label] | ...
-Questions (NO "Question #:" prefixes - list questions directly):
-"[Exact question 1 text]"
-"[Exact question 2 text]"
-"[Exact question 3 text]"
-Bottom Banner: "Torah Talk: [Exact instruction]"
-[For tradition cards:]
-Story Connection: "[Exact 1-2 sentences]"
-Practice Description: "[Exact 1-2 sentences]"
-Child Action: "✨ [Exact invitation]"
-Hebrew Term: "[Hebrew]" • "[meaning]"
+[etc.]
+
+=== COMPOSITION ZONES (v2 only) ===
+[For v2 cards, NO text - specify zones only]
+Compose scene in lower 70% of image.
+Keep top 30% uncluttered for programmatic overlay.
+CRITICAL: Do NOT render any text, Hebrew, or titles in the image.
 
 === COMPOSITION ===
 Layout (top to bottom):

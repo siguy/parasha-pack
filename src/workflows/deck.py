@@ -106,6 +106,7 @@ class DeckWorkflow:
         self.deck_path.mkdir(parents=True, exist_ok=True)
         (self.deck_path / "images").mkdir(exist_ok=True)
         (self.deck_path / "references").mkdir(exist_ok=True)
+        (self.deck_path / "backs").mkdir(exist_ok=True)  # For v2 card backs
 
         # Save deck.json
         deck_file = self.deck_path / "deck.json"

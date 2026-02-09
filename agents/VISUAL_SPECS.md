@@ -234,9 +234,36 @@ Antagonists are **misguided**, not scary.
 
 ---
 
+## Overlay Zones (v2 Cards)
+
+For v2 cards, text is overlaid programmatically using PIL/Pillow after image generation.
+The image must leave designated zones uncluttered.
+
+| Card Type | Overlay Zone | Content | Background Treatment |
+|-----------|--------------|---------|---------------------|
+| Anchor | Top 20-25% | Hebrew parasha/holiday title | Simple gradient/sky |
+| Spotlight | Top 30% | Hebrew name + English name + emotion | Simple gradient |
+| Story | Bottom-left corner | Hebrew/English keyword badge | Scene continues, less detail |
+| Connection | Bottom 20% | 4 emojis (no labels) | Simple gradient |
+| Power Word | Top 30% | Hebrew word + English meaning | Simple gradient |
+| Tradition | Top 25% | Hebrew/English title | Simple gradient |
+
+### v2 Prompt Composition Instructions
+
+Each card type has specific composition instructions:
+
+- **Anchor**: "Compose the scene in the lower 70-80%. Keep top 20-25% uncluttered for Hebrew title overlay."
+- **Spotlight**: "Compose the portrait in the lower 70%. Keep top 30% uncluttered for name and emotion overlay."
+- **Story**: "Full-bleed scene. Keep bottom-left corner relatively simple for keyword badge overlay."
+- **Connection**: "Compose the illustration in the upper 80%. Keep bottom 20% simple for emoji row overlay."
+- **Power Word**: "Compose the illustration in the lower 70%. Keep top 30% uncluttered for Hebrew word overlay."
+- **Tradition**: "Compose the scene in the lower 75%. Keep top 25% uncluttered for title overlay."
+
+---
+
 ## Image Prompt Structure
 
-All prompts follow this template:
+### v1 Template (Legacy - Text in Image)
 
 ```
 A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
@@ -258,6 +285,38 @@ A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
 
 === COMPOSITION ===
 [Layout - NO percentages like "(12%)" - they render as text]
+
+=== FRAME ===
+[Border color, corners, icons]
+
+=== MOOD ===
+[Emotional tone]
+```
+
+### v2 Template (New - Programmatic Overlay)
+
+```
+A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+
+=== STYLE ===
+[Art style specifications]
+
+CRITICAL: Do NOT render any text in the image. No Hebrew, no English, no titles,
+no labels, no badges. Text will be added programmatically after generation.
+
+=== RESTRICTIONS ===
+[Safety rules - what NOT to show]
+
+=== CARD TYPE: [TYPE] ===
+[Card-specific requirements]
+
+=== CHARACTERS ===
+[Character descriptions - MUST match this document]
+
+=== COMPOSITION ZONES ===
+[Specify which areas to keep uncluttered for overlay]
+Compose the scene in the lower [X]% of the image.
+Keep the top [Y]% uncluttered with simple gradient/sky for text overlay.
 
 === FRAME ===
 [Border color, corners, icons]
