@@ -1,0 +1,302 @@
+# Content Writer Output
+# Parasha: Terumah
+# Generated: 2024-02-02
+# Input: 01_research.yaml, 02_structure.yaml
+
+card_content:
+  parasha: "Terumah"
+  parasha_he: "תְּרוּמָה"
+
+  # ============================================
+  # ANCHOR CARD
+  # ============================================
+  anchor:
+    card_id: "anchor_1"
+    card_type: "anchor"
+
+    title_en: "Parashat Terumah"
+    title_he: "פָּרָשַׁת תְּרוּמָה"
+
+    emotional_hook_en: |
+      This week is about GIVING! When you give something special
+      to help make something beautiful, it feels SO good inside!
+
+    symbol_description: |
+      Hands lifting up colorful gifts toward golden light.
+      Treasures include: shiny gold, purple and blue fabric, red yarn.
+      A heart shape formed by the arrangement. Warm, glowing feeling.
+      Community silhouettes in the background, all contributing.
+
+    teacher_script: |
+      This is Parashat Terumah! Can you say "Terumah"? Terumah!
+      It means a special gift that you give from your HEART.
+      This week, the Jewish people are going to build something
+      SO special - and everyone gets to help! When we give
+      something to help others, it makes us feel really good
+      inside. Put your hand on your heart - that's where
+      the good feeling is!
+
+  # ============================================
+  # STORY CARDS
+  # ============================================
+  story_1:
+    card_id: "story_1"
+    card_type: "story"
+    sequence_number: 1
+
+    title_en: "A Special Request"
+    title_he: "בַּקָּשָׁה מְיֻחֶדֶת"
+
+    description_en: |
+      God asks Moses for help. "Tell the people to bring gifts
+      from their hearts. We are going to build something special!"
+
+    hebrew_keyword: "לב"
+    hebrew_keyword_nikud: "לֵב"
+    english_key_word: "Heart"
+
+    roleplay_prompt: "Act it out: Put your hand on your heart - that's where giving comes from!"
+
+    emotional_reactions:
+      - "excited"
+      - "honored"
+
+    teacher_script: |
+      God said to Moses, "I have a very special job for the people.
+      Ask them to bring gifts - but not just any gifts. Gifts from
+      their HEARTS!" That means gifts they REALLY want to give.
+      Put your hand on your heart. Can you feel it? When we give
+      from our heart, it means we really, truly want to help!
+      Moses was so excited to tell everyone!
+
+  story_2:
+    card_id: "story_2"
+    card_type: "story"
+    sequence_number: 2
+
+    title_en: "Beautiful Gifts"
+    title_he: "מַתָּנוֹת יָפוֹת"
+
+    description_en: |
+      The people bring their treasures! Shiny gold! Sparkling silver!
+      Beautiful purple, blue, and red fabric! Everyone has something to give!
+
+    hebrew_keyword: "זהב"
+    hebrew_keyword_nikud: "זָהָב"
+    english_key_word: "Gold"
+
+    roleplay_prompt: "Act it out: Carry something precious very carefully and put it in the pile!"
+
+    emotional_reactions:
+      - "generous"
+      - "proud"
+      - "joyful"
+
+    teacher_script: |
+      When the people heard they could help, they were SO excited!
+      They brought their most beautiful things. Some people brought
+      shiny gold - ZAHAV! Some brought silver. Some brought beautiful
+      fabric - purple like grapes, blue like the sky, red like apples!
+      Let's pretend we're bringing something special. Pick up
+      something pretend that's very precious. Carry it carefully...
+      now put it gently in the pile. You're helping!
+
+  story_3:
+    card_id: "story_3"
+    card_type: "story"
+    sequence_number: 3
+
+    title_en: "Building Together"
+    title_he: "בּוֹנִים בְּיַחַד"
+
+    description_en: |
+      Everyone works together! Some people sew. Some people hammer.
+      Some people carry. When we all help, we can build amazing things!
+
+    hebrew_keyword: "יחד"
+    hebrew_keyword_nikud: "יַחַד"
+    english_key_word: "Together"
+
+    roleplay_prompt: "Act it out: Show me how YOU would help build - hammer, sew, carry, or paint!"
+
+    emotional_reactions:
+      - "hardworking"
+      - "connected"
+      - "proud"
+
+    teacher_script: |
+      Now it was time to BUILD! But one person couldn't do it alone.
+      They needed to work YACHAD - together! Some people knew how
+      to sew the beautiful fabrics. Some people knew how to hammer
+      and build with wood. Some people carried heavy things. Everyone
+      helped in their own special way! Let's all help build! Show me -
+      what job would YOU do? Hammer? (pound pound!) Sew? (pull the thread!)
+      Carry? (lift and walk!) Paint? (swish swish!) Great job, builders!
+
+  story_4:
+    card_id: "story_4"
+    card_type: "story"
+    sequence_number: 4
+    optional: true
+
+    title_en: "Look What We Made!"
+    title_he: "הִנֵּה מָה עָשִׂינוּ!"
+
+    description_en: |
+      The Mishkan is beautiful! It shines with gold and glows
+      with colors. Everyone helped make this special place!
+
+    hebrew_keyword: "משכן"
+    hebrew_keyword_nikud: "מִשְׁכָּן"
+    english_key_word: "Tabernacle"
+
+    roleplay_prompt: "Act it out: Step back, look up, and say WOW together!"
+
+    emotional_reactions:
+      - "amazed"
+      - "proud"
+      - "awestruck"
+
+    teacher_script: |
+      And when it was all done, everyone stepped back and looked.
+      The Mishkan - God's special house - was SO beautiful! It
+      sparkled with gold. The fabrics were purple and blue and red.
+      Everything was just right. And you know what? EVERYONE helped
+      make it. The people who brought gold, the people who brought
+      fabric, the people who sewed, the people who hammered - everyone!
+      Let's step back and look at our amazing work. Ready? Say it
+      with me: WOW! We did it TOGETHER!
+
+  # ============================================
+  # CONNECTION CARDS
+  # ============================================
+  connection_1:
+    card_id: "connection_1"
+    card_type: "connection"
+
+    title_en: "What Can I Give?"
+    title_he: "מָה אֲנִי יָכוֹל לָתֵת?"
+
+    questions:
+      - question_type: "personal"
+        question_en: "If we were building something special for our classroom, what would YOU bring to help?"
+        question_he: "אִם הָיִינוּ בּוֹנִים מַשֶּׁהוּ מְיֻחָד לַכִּתָּה, מָה הָיִיתָ מֵבִיא לַעֲזֹר?"
+
+      - question_type: "empathy"
+        question_en: "How do you think the people felt when they gave their special gifts?"
+        question_he: "אֵיךְ לְדַעְתְּךָ הִרְגִּישׁוּ הָאֲנָשִׁים כְּשֶׁנָּתְנוּ אֶת הַמַּתָּנוֹת שֶׁלָּהֶם?"
+
+      - question_type: "action"
+        question_en: "What's something special you have that you could share with someone?"
+        question_he: "מָה מַשֶּׁהוּ מְיֻחָד שֶׁיֵּשׁ לְךָ שֶׁתּוּכַל לַחֲלֹק עִם מִישֶׁהוּ?"
+
+    torah_talk_instruction: "Sit in a circle and share!"
+
+    feeling_faces:
+      - emoji: "🥹"
+        label_en: "Proud"
+      - emoji: "😊"
+        label_en: "Happy"
+      - emoji: "🤗"
+        label_en: "Generous"
+      - emoji: "😃"
+        label_en: "Excited"
+
+    teacher_script: |
+      Let's sit in our Torah Talk circle! In our story, everyone
+      brought something to help. Now I want to hear from YOU!
+      If we were building something special for our classroom -
+      maybe a cozy reading corner or a beautiful art wall -
+      what would YOU bring to help? Maybe crayons? A special pillow?
+      Your helping hands? Let's go around and share. And point to
+      a feeling face - how does it feel when you give something special?
+
+  connection_2:
+    card_id: "connection_2"
+    card_type: "connection"
+    optional: true
+
+    title_en: "Helping Together"
+    title_he: "עוֹזְרִים בְּיַחַד"
+
+    questions:
+      - question_type: "personal"
+        question_en: "Have you ever helped build or make something with other people? What did you make?"
+        question_he: "הַאִם פַּעַם עָזַרְתָּ לִבְנוֹת אוֹ לַעֲשׂוֹת מַשֶּׁהוּ עִם אֲנָשִׁים אֲחֵרִים?"
+
+      - question_type: "empathy"
+        question_en: "Why is it more fun to build something with friends than all alone?"
+        question_he: "לָמָּה יוֹתֵר כֵּיף לִבְנוֹת עִם חֲבֵרִים מֵאֲשֶׁר לְבַד?"
+
+      - question_type: "action"
+        question_en: "What's one way you can help at home or at school this week?"
+        question_he: "מָה דֶּרֶךְ אַחַת שֶׁאַתָּה יָכוֹל לַעֲזֹר בַּבַּיִת אוֹ בְּבֵית הַסֵּפֶר הַשָּׁבוּעַ?"
+
+    torah_talk_instruction: "Sit in a circle and share!"
+
+    feeling_faces:
+      - emoji: "😊"
+        label_en: "Happy"
+      - emoji: "🥹"
+        label_en: "Proud"
+      - emoji: "🤝"
+        label_en: "Helpful"
+      - emoji: "💪"
+        label_en: "Strong"
+
+    teacher_script: |
+      The Jewish people worked TOGETHER - yachad! Have you ever
+      built something with other people? Maybe you built a tall
+      tower with blocks with a friend. Or helped your family
+      cook dinner. Or made an art project with your class.
+      Tell us about it! What did you make? Who helped?
+      And here's a question: why is it more fun to build with
+      friends? Let's share our ideas!
+
+  # ============================================
+  # POWER WORD CARD
+  # ============================================
+  power_word:
+    card_id: "power_word_1"
+    card_type: "power_word"
+    optional: true
+
+    title_en: "Terumah - Gift"
+    title_he: "תְּרוּמָה"
+
+    hebrew_word: "תרומה"
+    hebrew_word_nikud: "תְּרוּמָה"
+    english_meaning: "Gift / Contribution"
+
+    torah_quote_en: "Tell the people to bring Me gifts - from everyone whose heart moves them."
+    torah_quote_he: "וְיִקְחוּ לִי תְּרוּמָה מֵאֵת כָּל אִישׁ אֲשֶׁר יִדְּבֶנּוּ לִבּוֹ"
+    torah_source: "Exodus 25:2"
+
+    example_sentence_en: "When you share your toys, that's a terumah - a gift from your heart!"
+    example_sentence_he: "כְּשֶׁאַתָּה מְשַׁתֵּף אֶת הַצַּעֲצוּעִים שֶׁלְּךָ, זוֹ תְּרוּמָה - מַתָּנָה מֵהַלֵּב!"
+
+    is_emotion_word: false
+
+    teacher_script: |
+      Our special Hebrew word today is TERUMAH! Can you say it?
+      Te-ru-MAH! It means a gift - but not just any gift.
+      A terumah is a gift you give because you WANT to, from your heart.
+      The Torah says the people brought gifts "from everyone whose
+      heart moved them." That means they felt the giving feeling
+      inside! When you share something because you want to help,
+      that's a terumah. Can you think of a terumah you gave?
+      Let's say it again: Terumah!
+
+# ============================================
+# TONE CHECK
+# ============================================
+tone_check:
+  all_sentences_under_15_words: true
+  emotions_specific_not_generic: true
+  # Used: excited, honored, generous, proud, joyful, hardworking,
+  #       connected, amazed, awestruck
+  roleplay_prompts_physical_and_doable: true
+  # All involve body movements doable in a circle
+  teacher_scripts_sound_natural: true
+  # Written as speech, includes pauses and interaction cues
+  no_condescending_language: true

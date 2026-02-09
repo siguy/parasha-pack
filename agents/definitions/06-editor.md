@@ -269,13 +269,32 @@ editorial_review:
 - [ ] Single clear focal point per card
 - [ ] Text readable at card size
 
-### Image Prompts (CRITICAL - causes visual artifacts)
+### Image Prompts (v1 - CRITICAL - causes visual artifacts)
 - [ ] NO percentages in COMPOSITION sections (e.g., "(12%)" renders as text)
 - [ ] NO "Question 1:", "Question 2:" labels (renders as text)
 - [ ] NO duplicate phrases in EXACT TEXT section (same text may render twice)
 - [ ] Character descriptions match reference sheets EXACTLY (including facial hair details)
 - [ ] Character descriptions are specific (e.g., "goatee with mustache" not just "beard")
 - [ ] ONLY include characters who should VISUALLY APPEAR (text mentions don't require visual presence)
+
+### Image Prompts (v2 - Composition Zones)
+- [ ] NO Hebrew text in prompts (all text overlaid programmatically)
+- [ ] NO English titles or labels in prompts
+- [ ] Composition zone specified for card type (top 20-30%, bottom-left, etc.)
+- [ ] Image composition leaves overlay zone uncluttered
+- [ ] Prompt includes explicit "Do NOT render any text" instruction
+
+### Front/Back Content (v2 Cards)
+- [ ] `front` object has all required fields for card type:
+  - Anchor: `hebrew_title`
+  - Spotlight: `hebrew_name`, `english_name`, `emotion_word_en`, `emotion_word_he`
+  - Story: `hebrew_keyword`, `english_keyword`
+  - Connection: `emojis` (list of 4)
+  - Power Word: `hebrew_word`, `english_meaning`
+  - Tradition: `hebrew_title`, `english_title`
+- [ ] `back` object has all educational content (descriptions, scripts, prompts)
+- [ ] Teacher script is complete and appropriate
+- [ ] Card back content renders correctly at 5x7
 
 ### Roleplay Prompts (Content Writer check)
 - [ ] Gender-neutral language (e.g., "royal wave" not "wave like a queen")

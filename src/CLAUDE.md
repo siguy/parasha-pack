@@ -8,14 +8,32 @@ Python modules for generating and managing Parasha Pack card decks.
 |--------|---------|
 | `workflows.py` | High-level reusable workflows for character/deck creation |
 | `generate_deck.py` | Create new deck templates |
-| `generate_images.py` | Generate card images via Gemini API |
+| `generate_images.py` | Generate raw card images to `raw/` directory via Gemini API |
 | `generate_references.py` | Generate character reference sheets |
 | `generate_with_consistency.py` | Generate consistent character images |
 | `card_prompts.py` | Build complete card prompts |
-| `image_prompts.py` | Image generation prompt templates |
-| `schema.py` | Data structures and type definitions |
+| `image_prompts.py` | Image generation prompt templates (v1 + v2) |
+| `schema.py` | Data structures and type definitions (v1 + v2) |
 | `sefaria_client.py` | Sefaria API integration |
 | `card_generator.py` | Print layout generation |
+| `overlay.py` | **DEPRECATED** - Text overlay now handled by Card Designer React components |
+| `card_back_generator.py` | **DEPRECATED** - Card backs now rendered by Card Designer React components |
+| `cleanup_prompts.py` | One-time migration script to remove text rendering from prompts |
+
+## Image Generation Flow (v2)
+
+```
+generate_images.py → raw/{card_id}.png (scene only, NO text)
+        ↓
+Card Designer React (card-designer/)
+        ↓
+    npm run export <deckId>
+        ↓
+    images/{card_id}.png (final fronts with text)
+    backs/{card_id}_back.png (teacher content backs)
+```
+
+**Key principle:** AI generates scene-only images. Text is rendered by React components.
 
 ---
 
@@ -168,8 +186,21 @@ python generate_images.py ../decks/yitro/deck.json --model flash
 **Options:**
 - `--card CARD_ID` - Generate only specific card
 - `--skip-existing` - Don't regenerate existing images
-- `--model` - Model to use (imagen, flash)
+- `--model` - Model to use: nano-banana (default, recommended), imagen, flash
 - `--api-key` - Override GEMINI_API_KEY env var
+- `--no-refs` - Disable character reference images (for debugging)
+
+### v2 Card Generation
+
+For v2 decks, images are generated to `raw/` without text. Use Card Designer for final output:
+
+```bash
+# Generate raw scene images (no text)
+python generate_images.py ../decks/purim/deck.json
+
+# Then use Card Designer for text overlay and card backs
+cd ../card-designer && npm run export purim -- --backs
+```
 
 ---
 
@@ -347,6 +378,84 @@ Creates 300 DPI PNG files with:
 - Proper bleed (0.125")
 - Safe zones
 - Card border styling
+
+---
+
+## overlay.py (v2)
+
+Programmatic text overlay for v2 card fronts using PIL/Pillow.
+
+### Functions
+
+**`overlay_card_front(image_path, card_type, front_data, output_path) -> bool`**
+- Overlays text on generated card image
+- Different zones per card type (top, bottom-left, etc.)
+- Supports Hebrew with nikud
+
+### CLI
+
+```bash
+# Process all v2 cards in a deck
+python overlay.py ../decks/purim/deck.json
+
+# Process specific card
+python overlay.py ../decks/purim/deck.json --card story_1
+```
+
+### Overlay Zones by Card Type
+
+| Card Type | Zone | Content |
+|-----------|------|---------|
+| Anchor | Top 20-25% | Hebrew parasha title |
+| Spotlight | Top 30% | Names + emotion |
+| Story | Bottom-left | Keyword badge |
+| Connection | Bottom 20% | 4 emojis |
+| Power Word | Top 30% | Hebrew + English |
+| Tradition | Top 25% | Titles |
+
+---
+
+## card_back_generator.py (v2)
+
+Generates 5x7 printable card backs for teacher content.
+
+### Functions
+
+**`generate_card_back(card_type, back_data, deck_meta, output_path) -> bool`**
+- Creates 1500x2100px (300 DPI) card back image
+- Template-based layout with sections
+
+### CLI
+
+```bash
+# Generate backs for all cards in deck
+python card_back_generator.py ../decks/purim/deck.json
+
+# Process specific card
+python card_back_generator.py ../decks/purim/deck.json --card story_1
+
+# Custom output directory
+python card_back_generator.py ../decks/purim/deck.json --output ../exports/backs
+```
+
+### Card Back Layout
+
+```
+┌─────────────────────────────────────────┐
+│  [Card Type Badge]        [Deck Name]   │
+│  ═══════════════════════════════════════│
+│  [Title - Hebrew & English]             │
+│  ───────────────────────────────────────│
+│  [Main Content Area]                    │
+│  - Description                          │
+│  - Questions (for connection cards)     │
+│  - Roleplay prompt                      │
+│  ───────────────────────────────────────│
+│  [Teacher Script]                       │
+│  ───────────────────────────────────────│
+│  [Session #]              [Card #/Total]│
+└─────────────────────────────────────────┘
+```
 
 ---
 

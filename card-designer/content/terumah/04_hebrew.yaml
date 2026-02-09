@@ -1,0 +1,191 @@
+# Hebrew Expert Output
+# Parasha: Terumah
+# Generated: 2024-02-02
+# Input: 03_content.yaml
+
+hebrew_content:
+  parasha: "Terumah"
+
+  # Parasha title
+  parasha_title:
+    hebrew: "תרומה"
+    hebrew_nikud: "תְּרוּמָה"
+    pronunciation_note: "te-ru-MAH (stress on last syllable)"
+
+  # ============================================
+  # ANCHOR CARD
+  # ============================================
+  anchor:
+    title_he: "פָּרָשַׁת תְּרוּמָה"
+    emotional_hook_he: |
+      הַשָּׁבוּעַ עַל נְתִינָה! כְּשֶׁאַתָּה נוֹתֵן מַשֶּׁהוּ מְיֻחָד
+      לַעֲזֹר לַעֲשׂוֹת מַשֶּׁהוּ יָפֶה, זֶה מַרְגִּישׁ כָּל כָּךְ טוֹב!
+
+  # ============================================
+  # STORY CARDS
+  # ============================================
+  story_cards:
+    story_1:
+      title_he: "בַּקָּשָׁה מְיֻחֶדֶת"
+      hebrew_keyword: "לב"
+      hebrew_keyword_nikud: "לֵב"
+      keyword_meaning: "Heart"
+      pronunciation_note: "LEV (rhymes with 'rev')"
+      usage_in_parasha: |
+        "אֲשֶׁר יִדְּבֶנּוּ לִבּוֹ" - whose heart moves them
+        The gifts must come from the heart, voluntarily.
+
+    story_2:
+      title_he: "מַתָּנוֹת יָפוֹת"
+      hebrew_keyword: "זהב"
+      hebrew_keyword_nikud: "זָהָב"
+      keyword_meaning: "Gold"
+      pronunciation_note: "za-HAV (stress on second syllable)"
+      usage_in_parasha: |
+        "זָהָב וָכֶסֶף וּנְחֹשֶׁת" - gold and silver and copper
+        First item listed in the gifts (Exodus 25:3).
+
+    story_3:
+      title_he: "בּוֹנִים בְּיַחַד"
+      hebrew_keyword: "יחד"
+      hebrew_keyword_nikud: "יַחַד"
+      keyword_meaning: "Together"
+      pronunciation_note: "YA-chad (stress on first syllable)"
+      usage_in_parasha: |
+        While "yachad" doesn't appear in this exact parasha,
+        it captures the communal spirit of the building project.
+        The Mishkan required everyone's contribution.
+
+    story_4:
+      title_he: "הִנֵּה מָה עָשִׂינוּ!"
+      hebrew_keyword: "משכן"
+      hebrew_keyword_nikud: "מִשְׁכָּן"
+      keyword_meaning: "Tabernacle (God's dwelling place)"
+      pronunciation_note: "mish-KAN (stress on second syllable)"
+      usage_in_parasha: |
+        "וְעָשׂוּ לִי מִקְדָּשׁ וְשָׁכַנְתִּי בְּתוֹכָם" (Exodus 25:8)
+        Root: ש-כ-נ meaning "to dwell"
+        The Mishkan is where God's presence dwells among the people.
+
+  # ============================================
+  # CONNECTION CARDS
+  # ============================================
+  connection_cards:
+    connection_1:
+      title_he: "מָה אֲנִי יָכוֹל לָתֵת?"
+      feeling_faces:
+        - emoji: "🥹"
+          label_he: "גֵּאֶה"
+          pronunciation: "ge-EH"
+        - emoji: "😊"
+          label_he: "שָׂמֵחַ"
+          pronunciation: "sa-ME-ach"
+        - emoji: "🤗"
+          label_he: "נָדִיב"
+          pronunciation: "na-DIV"
+        - emoji: "😃"
+          label_he: "נִרְגָּשׁ"
+          pronunciation: "nir-GASH"
+
+    connection_2:
+      title_he: "עוֹזְרִים בְּיַחַד"
+      feeling_faces:
+        - emoji: "😊"
+          label_he: "שָׂמֵחַ"
+          pronunciation: "sa-ME-ach"
+        - emoji: "🥹"
+          label_he: "גֵּאֶה"
+          pronunciation: "ge-EH"
+        - emoji: "🤝"
+          label_he: "עוֹזֵר"
+          pronunciation: "o-ZER"
+        - emoji: "💪"
+          label_he: "חָזָק"
+          pronunciation: "cha-ZAK"
+
+  # ============================================
+  # POWER WORD
+  # ============================================
+  power_word:
+    hebrew_word: "תרומה"
+    hebrew_word_nikud: "תְּרוּמָה"
+    english_meaning: "Gift / Contribution / Offering"
+
+    root:
+      letters: "ר-ו-מ"
+      meaning: "to lift up, to raise"
+      connection: |
+        When we give a terumah, we "lift up" our gift to a higher purpose.
+        The giver is also "lifted up" spiritually through the act of giving.
+
+    torah_source:
+      reference: "Exodus 25:2"
+      quote_he: "דַּבֵּר אֶל בְּנֵי יִשְׂרָאֵל וְיִקְחוּ לִי תְּרוּמָה"
+      quote_he_nikud: "דַּבֵּר֙ אֶל־בְּנֵ֣י יִשְׂרָאֵ֔ל וְיִקְחוּ־לִ֖י תְּרוּמָ֑ה"
+      quote_en: "Tell the Israelite people to bring Me gifts"
+      note: |
+        Interesting: The Hebrew says "take for Me" (yikchu li) not "give to Me."
+        Teaches that in giving, we actually receive.
+
+    example_sentence_he: "כְּשֶׁאַתָּה מְשַׁתֵּף אֶת הַצַּעֲצוּעִים שֶׁלְּךָ, זוֹ תְּרוּמָה!"
+
+    pronunciation_notes: |
+      te-ru-MAH
+      - 'te' as in 'tell'
+      - 'ru' as in 'rude'
+      - 'MAH' stress on this syllable, as in 'ma'
+      The 'ר' (resh) is soft, not rolled.
+
+  # ============================================
+  # ADDITIONAL VOCABULARY (for reference)
+  # ============================================
+  additional_vocabulary:
+    materials_mentioned:
+      - word_nikud: "זָהָב"
+        meaning: "gold"
+      - word_nikud: "כֶּסֶף"
+        meaning: "silver"
+      - word_nikud: "נְחֹשֶׁת"
+        meaning: "copper/bronze"
+      - word_nikud: "תְּכֵלֶת"
+        meaning: "blue (turquoise/sky blue)"
+      - word_nikud: "אַרְגָּמָן"
+        meaning: "purple"
+      - word_nikud: "תּוֹלַעַת שָׁנִי"
+        meaning: "crimson (scarlet)"
+      - word_nikud: "שֵׁשׁ"
+        meaning: "fine linen"
+      - word_nikud: "עֲצֵי שִׁטִּים"
+        meaning: "acacia wood"
+
+    key_phrases:
+      - phrase_nikud: "וְעָשׂוּ לִי מִקְדָּשׁ"
+        meaning: "And let them make Me a sanctuary"
+        source: "Exodus 25:8"
+      - phrase_nikud: "וְשָׁכַנְתִּי בְּתוֹכָם"
+        meaning: "And I will dwell among them"
+        source: "Exodus 25:8"
+        note: "Note: 'among THEM' not 'in IT' - God dwells among the people"
+
+# ============================================
+# VALIDATION
+# ============================================
+validation:
+  all_nikud_accurate: true
+  words_age_appropriate: true
+  # All keywords are short (1-2 syllables except mishkan)
+  # All are concrete nouns or simple concepts
+  torah_quotes_verified: true
+  # Verified against Sefaria
+  no_gods_name_written: true
+  # Used "God" in English, no יהוה in Hebrew
+  consistent_with_year_context: true
+  # No Hebrew words conflict with previously taught words
+
+notes_for_visual_director: |
+  Key visual Hebrew elements:
+  - תְּרוּמָה should appear prominently on Anchor and Power Word cards
+  - Story card keywords: לֵב, זָהָב, יַחַד, מִשְׁכָּן
+  - All Hebrew must have nikud
+  - Consider showing the colorful materials: תְּכֵלֶת (blue), אַרְגָּמָן (purple),
+    תּוֹלַעַת שָׁנִי (crimson) in Story 2

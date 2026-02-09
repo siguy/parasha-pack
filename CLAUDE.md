@@ -13,13 +13,13 @@ parasha-pack/
 ├── CLAUDE.md              # This file - project overview
 ├── agents/                # Agent system documentation (see agents/AGENTS.md)
 │   ├── AGENTS.md          # Agent roster and workflow
-│   ├── FRAMEWORK.md       # Card framework v2
-│   ├── YEAR_CONTEXT.yaml  # Continuity tracking across decks
+│   ├── CARD_SPECS.md      # Card structure (v1 vs v2 format)
 │   ├── STYLE_GUIDE.md     # Visual consistency rules
 │   └── definitions/       # Individual agent specifications
 ├── src/                   # Python source code (see src/CLAUDE.md)
 ├── decks/                 # Deck data and images (see decks/CLAUDE.md)
 ├── review-site/           # Web review interface (see review-site/CLAUDE.md)
+├── review-site-v2/        # V2 review site with front/back support
 ├── exports/               # Generated PDFs and print files
 ├── templates/             # Card layout templates
 ├── requirements.txt       # Python dependencies
@@ -60,8 +60,33 @@ This will:
 
 ```bash
 cd src
-python generate_images.py ../decks/yitro/deck.json
+# Generate raw images (scene only, no text) to raw/ directory
+python generate_images.py ../decks/purim/deck.json
 ```
+
+### 3b. Export Final Cards with Card Designer
+
+Card Designer renders text overlay using React components:
+
+```bash
+cd card-designer
+
+# Start dev server (if not running)
+npm run dev
+
+# Export fronts only (default)
+npm run export purim
+
+# Export fronts AND backs
+npm run export purim -- --backs
+
+# Export backs only
+npm run export purim -- --backs-only
+```
+
+Output:
+- `decks/purim/images/{card_id}.png` - Final card fronts with text overlay
+- `decks/purim/backs/{card_id}_back.png` - Teacher content backs
 
 ### 4. Review Cards
 
@@ -72,7 +97,7 @@ Open `review-site/index.html` in a browser to:
 
 ## Card Types (8-11 per deck)
 
-See [agents/FRAMEWORK.md](agents/FRAMEWORK.md) for full details.
+See [agents/CARD_SPECS.md](agents/CARD_SPECS.md) for full details.
 
 | Type | Count | Purpose |
 |------|-------|---------|
@@ -181,6 +206,18 @@ git add -A && git commit -m "Regenerate [deck name] images with [change descript
 
 Avoid manual `_v1`, `_v2` file copies. If you need to compare versions, use `git diff` or check out previous commits.
 
+## Workflow
+
+When implementing multi-step plans, break work into smaller commits and provide progress summaries after each major step.
+
+## Planning
+
+Before starting implementation tasks, confirm the workflow ordering and dependencies with the user.
+
+## Code Review
+
+For code reviews, output findings incrementally as files are read rather than waiting until all files are processed.
+
 ## Print Specifications
 
 - Card Size: 5" x 7" (127 x 178 mm)
@@ -188,3 +225,45 @@ Avoid manual `_v1`, `_v2` file copies. If you need to compare versions, use `git
 - Bleed: 0.125" (3mm)
 - Paper: 350gsm cardstock
 - Finish: Matte lamination
+
+## Card Format Versions
+
+### v1 (Legacy)
+- All content rendered in the generated image
+- Text included in image prompts via `=== EXACT TEXT TO RENDER ===`
+- Single-sided cards
+
+### v2 (Current - Card Designer)
+- **AI generates scene-only images** to `raw/` directory (no text in image)
+- **Card Designer (React)** renders text overlays and teacher content
+- **Card Front**: Full-bleed image with React-rendered text overlay
+- **Card Back**: 5x7 printable teacher content (scripts, activities, questions)
+- Image prompts use `=== COMPOSITION ZONES ===` for layout guidance
+- Supports double-sided printing
+
+**Directory Structure:**
+```
+decks/purim/
+├── deck.json
+├── raw/               # AI-generated images (no text)
+│   ├── story_1.png
+│   └── ...
+├── images/            # Final exports with text overlay
+│   ├── story_1.png
+│   └── ...
+├── backs/             # Teacher content backs
+│   ├── story_1_back.png
+│   └── ...
+└── references/
+```
+
+**Workflow:**
+```bash
+# 1. Generate raw images
+cd src && python generate_images.py ../decks/purim/deck.json
+
+# 2. Export with Card Designer
+cd card-designer && npm run export purim -- --backs
+```
+
+See [agents/CARD_SPECS.md](agents/CARD_SPECS.md) for full v2 schema.

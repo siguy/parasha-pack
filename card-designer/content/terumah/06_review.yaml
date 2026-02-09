@@ -1,0 +1,302 @@
+# Editor QA Review Output
+# Parasha: Terumah
+# Generated: 2024-02-02
+# Input: All previous agent outputs (01-05)
+
+editorial_review:
+  parasha: "Terumah"
+  review_date: "2024-02-02"
+
+  overall_assessment: "ready for human review"
+
+  # ============================================
+  # SAFETY CHECK (CRITICAL)
+  # ============================================
+  safety_check:
+    god_depiction:
+      status: "pass"
+      notes: |
+        All prompts use "warm golden light rays from clouds" for divine presence.
+        No human or physical form of God anywhere.
+        Story 1 correctly shows Moses receiving light/voice, not seeing God.
+
+    violence_check:
+      status: "pass"
+      notes: |
+        No violence in any card. All scenes are positive:
+        giving, building, collaborating, celebrating.
+
+    age_appropriate:
+      status: "pass"
+      notes: |
+        All content suitable for ages 4-6.
+        Complex construction details omitted (correctly).
+        Cherubim on the Ark not shown (correctly avoided).
+        Altar and sacrifices not included (correctly avoided).
+
+    modest_dress:
+      status: "pass"
+      notes: |
+        All character descriptions specify modest clothing.
+        Moses: robes and head covering.
+        Community: modest, earth-toned clothing.
+
+    no_gods_name:
+      status: "pass"
+      notes: |
+        No יהוה written anywhere.
+        Torah quotes use "God" in English.
+        Hebrew quotes selected carefully to avoid the name.
+
+  # ============================================
+  # CONTINUITY CHECK
+  # ============================================
+  continuity_check:
+    new_characters_have_reference_sheets:
+      status: "n/a"
+      notes: |
+        No new named characters introduced.
+        Community is generic (diverse group, not specific individuals).
+        This is appropriate for this parasha's theme.
+
+    returning_characters_match_references:
+      status: "pass"
+      notes: |
+        Moses uses reference from Yitro deck.
+        Description matches: blue/cream robes, head covering,
+        short beard with gray, wooden staff.
+
+    year_context_updates_documented:
+      status: "pass"
+      notes: |
+        Research document includes updates for YEAR_CONTEXT.yaml:
+        - New concepts: Mishkan, giving from heart, community building
+        - New Hebrew: תְּרוּמָה
+
+    builds_on_prior_knowledge:
+      status: "pass"
+      notes: |
+        Assumes kids know Moses (appropriate if following Yitro).
+        No assumptions about previous parshiyot content.
+        Starting fresh context works for this deck.
+
+  # ============================================
+  # CONSISTENCY CHECK
+  # ============================================
+  consistency_check:
+    character_appearance:
+      status: "pass"
+      notes: |
+        Moses described consistently in Story 1.
+        Community described with consistent diversity and warmth.
+
+    art_style:
+      status: "pass"
+      notes: |
+        All prompts follow STYLE_GUIDE specifications:
+        - 5:7 aspect ratio (1500x2100px)
+        - Cartoon style, thick outlines
+        - High contrast, max 5-7 elements
+        - Large expressive eyes
+
+    tone_of_voice:
+      status: "pass"
+      notes: |
+        All teacher scripts sound natural and conversational.
+        Consistent warm, encouraging tone throughout.
+        Age-appropriate vocabulary maintained.
+
+    hebrew_formatting:
+      status: "pass"
+      notes: |
+        All Hebrew includes nikud.
+        Spelling consistent.
+        Keywords verified against Sefaria.
+
+    card_backs:
+      status: "needs attention"
+      notes: |
+        Card back design noted as "needs creation" in visual doc.
+        Not blocking for human review, but needs design before print.
+
+  # ============================================
+  # EDUCATIONAL CHECK
+  # ============================================
+  educational_check:
+    story_flows_logically:
+      status: "pass"
+      notes: |
+        Good progression:
+        1. Request (invitation to give)
+        2. Bringing gifts (action)
+        3. Building together (collaboration)
+        4. Result (payoff)
+        Each builds on previous.
+
+    connection_questions_open_ended:
+      status: "pass"
+      notes: |
+        All questions invite discussion, not yes/no:
+        - "What would YOU bring?"
+        - "How do you think they felt?"
+        - "What can you share?"
+        Good mix of personal, empathy, and action questions.
+
+    roleplay_prompts_doable:
+      status: "pass"
+      notes: |
+        All physically achievable in a circle:
+        - Hand on heart (stationary)
+        - Carry something carefully (walking)
+        - Building motions (standing)
+        - Look up and say wow (group action)
+
+    session_fits_15_minutes:
+      status: "pass"
+      notes: |
+        Required cards: 12 minutes
+        - Anchor (2 min)
+        - Story 1-3 (6 min)
+        - Connection 1 (4 min)
+        Good buffer for transitions.
+
+    learning_objectives_achievable:
+      status: "pass"
+      notes: |
+        Objectives are clear and age-appropriate:
+        - Understand: everyone helped build
+        - Feel: pride in contributing
+        - Do: identify what they can give
+        These are achievable in one session.
+
+  # ============================================
+  # CLARITY CHECK
+  # ============================================
+  clarity_check:
+    confusing_elements:
+      status: "pass"
+      items: []
+      notes: |
+        No potentially confusing elements identified.
+        Construction details appropriately omitted.
+        Focus kept on simple giving/building theme.
+
+    competing_focal_points:
+      status: "pass"
+      items: []
+      notes: |
+        Each card has a clear primary focus:
+        - Anchor: hands lifting gifts
+        - Story 1: Moses receiving message
+        - Story 2: colorful procession
+        - Story 3: building activities
+        - Story 4: completed Mishkan
+        - Connections: children sharing/collaborating
+
+    text_readable:
+      status: "pass"
+      notes: |
+        Prompts specify room for text in compositions.
+        Hebrew keywords are short (1-2 syllables mostly).
+        Teacher scripts are concise.
+
+  # ============================================
+  # HEBREW ACCURACY
+  # ============================================
+  hebrew_check:
+    nikud_appears_complete:
+      status: "pass"
+      notes: |
+        All Hebrew words include full nikud.
+        Verified: תְּרוּמָה, לֵב, זָהָב, יַחַד, מִשְׁכָּן
+
+    obvious_errors:
+      status: "pass"
+      items: []
+      notes: "No errors detected in spot check."
+
+    recommend_native_review:
+      value: "yes"
+      notes: |
+        User's Hebrew is strong - recommend final verification
+        of nikud before image generation, especially for
+        feeling face labels and card titles.
+
+  # ============================================
+  # ISSUES SUMMARY
+  # ============================================
+  issues:
+    critical: []
+    # No critical issues found!
+
+    recommended:
+      - card_id: "all"
+        issue: "Card back design does not exist yet"
+        assigned_to: "Visual Director"
+        recommendation: |
+          Create card back design before print production.
+          Can proceed with image generation for fronts first.
+
+    minor:
+      - card_id: "story_3"
+        issue: "Hebrew keyword 'יַחַד' doesn't appear in this exact parasha"
+        assigned_to: "Hebrew Expert"
+        recommendation: |
+          Already noted in Hebrew output. The word captures the
+          communal spirit even if not literally in text.
+          Consider keeping or substituting with a word from the parasha
+          (e.g., וְעָשׂוּ - "they shall make").
+          Minor - current choice is pedagogically sound.
+
+      - card_id: "power_word_1"
+        issue: "Optional card - may not be used in short sessions"
+        assigned_to: "n/a"
+        recommendation: |
+          Consider integrating the word more into Anchor card
+          so it's always taught. Currently marked optional.
+
+  # ============================================
+  # FINAL STATUS
+  # ============================================
+  ready_for_human_review: true
+
+  blocking_issues_count: 0
+  recommended_issues_count: 1
+  minor_issues_count: 2
+
+  reviewer_notes: |
+    STRONG DECK. The contribution theme works well for this building parasha.
+
+    Highlights:
+    - Smart decision to skip Spotlight (community is the hero)
+    - Colorful materials make great visuals
+    - Roleplay prompts are engaging and doable
+    - Good energy arc from calm to active to reflective
+
+    Watch for:
+    - Card back needs design before printing
+    - Verify Hebrew nikud with user before generation
+
+    Ready for wife + teacher review!
+
+# ============================================
+# CHECKLIST FOR HUMAN REVIEW
+# ============================================
+human_review_checklist:
+  content:
+    - "Does the emotional core (giving from heart) feel right?"
+    - "Are the story cards in the right order?"
+    - "Do the roleplay prompts work for 18 kids in a circle?"
+    - "Are the connection questions engaging?"
+
+  hebrew:
+    - "Is the nikud correct on all words?"
+    - "Are the keywords appropriate for 4-6 year olds?"
+
+  visuals:
+    - "Do the image descriptions capture what you envision?"
+    - "Any characters or scenes that feel off?"
+
+  practical:
+    - "Does the 12-minute required session work for your classroom?"
+    - "Are the optional cards useful or unnecessary?"

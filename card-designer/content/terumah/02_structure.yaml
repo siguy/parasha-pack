@@ -1,0 +1,284 @@
+# Curriculum Designer Output
+# Parasha: Terumah
+# Generated: 2024-02-02
+# Input: 01_research.yaml
+
+deck_structure:
+  parasha: "Terumah"
+  parasha_he: "תְּרוּמָה"
+
+  # Inherited and confirmed
+  emotional_core: |
+    GIVING from the heart - the joy and pride of contributing
+    something special to build something beautiful together.
+
+  # Approach based on parasha type
+  deck_approach: "contribution"
+  # Not traditional narrative - focus on the giving/building theme
+
+  # Learning objectives
+  learning_objectives:
+    understand: |
+      The Jewish people built a special house for God by everyone
+      giving something. When we all help, we can build amazing things.
+
+    feel: |
+      Pride in contributing. Joy in giving. Connection to community.
+      "I can help too! What I have matters!"
+
+    do: |
+      - Identify something special they could contribute
+      - Practice the word "Terumah" (gift)
+      - Act out giving/contributing with enthusiasm
+      - Share about a time they helped build or create something
+
+  # Card type adjustments for this parasha
+  card_type_adjustments:
+    spotlight: "skip"
+    # Rationale: Moses is returning (kids know him), and the real
+    # "characters" are the community. No strong new individual to introduce.
+    # Use the slot for an extra Connection card instead.
+
+    story_cards: "contribution moments"
+    # Not traditional plot beats - show different gifts being brought
+    # and the community working together
+
+    connection_emphasis: "elevated"
+    # Personal connection (#1 priority) is perfect for this theme
+    # "What would YOU bring?" is the natural question
+
+    power_word: "include"
+    # Terumah is a great word - captures the whole parasha
+
+  # Session design
+  session_flow:
+    required_cards:
+      - card_id: "anchor_1"
+        type: "anchor"
+        minutes: 2
+        purpose: "Introduce theme of giving"
+
+      - card_id: "story_1"
+        type: "story"
+        minutes: 2
+        purpose: "God asks for gifts"
+
+      - card_id: "story_2"
+        type: "story"
+        minutes: 2
+        purpose: "People bring treasures"
+
+      - card_id: "story_3"
+        type: "story"
+        minutes: 2
+        purpose: "Working together"
+
+      - card_id: "connection_1"
+        type: "connection"
+        minutes: 4
+        purpose: "What would YOU give?"
+
+    total_required_minutes: 12
+
+    optional_cards:
+      - card_id: "story_4"
+        type: "story"
+        minutes: 2
+        purpose: "The beautiful result"
+        when_to_use: "If time allows, shows payoff of giving"
+
+      - card_id: "connection_2"
+        type: "connection"
+        minutes: 3
+        purpose: "Helping and teamwork"
+        when_to_use: "If deeper discussion wanted"
+
+      - card_id: "power_word_1"
+        type: "power_word"
+        minutes: 2
+        purpose: "Learn 'Terumah'"
+        when_to_use: "For Hebrew vocabulary focus"
+
+    total_with_optional: 19  # Won't use all
+
+    recommended_order: |
+      Anchor → Story 1 → Story 2 → Story 3 → Connection 1
+      (Optional: Story 4 before Connection if showing the "result")
+      (Optional: Connection 2 or Power Word at end if time)
+
+  # Energy arc
+  energy_arc: |
+    CALM (wonder) → BUILDING (excitement) → ACTIVE (movement) → REFLECTIVE (sharing)
+
+    - Anchor: Calm, wonder - "Something special is about to happen"
+    - Story 1: Building anticipation - "God is asking for help!"
+    - Story 2: Active energy - "Look at all these beautiful gifts!" (movement)
+    - Story 3: High energy - "Everyone working together!" (roleplay)
+    - Connection 1: Calm down - reflective discussion, sharing
+    - (Optional Story 4: Wonder - seeing the beautiful result)
+    - (Optional Power Word: Calm, focused learning)
+
+  # Card assignments
+  card_assignments:
+    anchor:
+      card_id: "anchor_1"
+      emotional_hook: |
+        This week is about GIVING! When you give something special
+        to help build something, it makes you feel SO proud!
+      symbol: |
+        A heart with a gift coming out of it, or hands offering
+        colorful treasures (gold, purple fabric, blue yarn) upward.
+        Warm golden light. Community silhouettes in background.
+      rationale: |
+        Sets up the emotional theme immediately. Kids understand
+        giving gifts. The heart-connection is key.
+
+    # NO SPOTLIGHT - using slot for extra Connection card
+
+    story_1:
+      card_id: "story_1"
+      moment: "God asks for gifts from the heart"
+      title: "A Special Request"
+      title_he: "בַּקָּשָׁה מְיֻחֶדֶת"
+      energy_level: "medium"
+      hebrew_keyword: "לֵב"
+      hebrew_keyword_meaning: "Heart"
+      roleplay: |
+        Put your hand on your heart. When we give from our HEART,
+        it means we REALLY want to give!
+      rationale: |
+        Opens the "story" - God asks, Moses listens. Introduces
+        the concept of giving from the heart (nediv lev).
+        Low-movement roleplay to start.
+
+    story_2:
+      card_id: "story_2"
+      moment: "People bring gold, silver, and beautiful colored fabrics"
+      title: "Beautiful Gifts"
+      title_he: "מַתָּנוֹת יָפוֹת"
+      energy_level: "high"
+      hebrew_keyword: "זָהָב"
+      hebrew_keyword_meaning: "Gold"
+      roleplay: |
+        Pretend you're carrying something SO special and beautiful!
+        Walk carefully and put it gently in the pile!
+      rationale: |
+        The most visual moment - colorful fabrics, shiny gold/silver.
+        Gets kids moving. Concrete items they can imagine.
+        Peak visual richness.
+
+    story_3:
+      card_id: "story_3"
+      moment: "Everyone works together to build"
+      title: "Building Together"
+      title_he: "בּוֹנִים בְּיַחַד"
+      energy_level: "high"
+      hebrew_keyword: "יַחַד"
+      hebrew_keyword_meaning: "Together"
+      roleplay: |
+        Let's build together! Pretend to hammer, sew, carry, paint!
+        Show me how YOU would help build!
+      rationale: |
+        Peak energy - physical movement, teamwork.
+        Kids can do any building action they imagine.
+        Emphasizes community effort.
+
+    story_4:
+      card_id: "story_4"
+      moment: "The beautiful Mishkan stands complete"
+      title: "Look What We Made!"
+      title_he: "הִנֵּה מָה עָשִׂינוּ!"
+      energy_level: "calm"
+      optional: true
+      hebrew_keyword: "מִשְׁכָּן"
+      hebrew_keyword_meaning: "Tabernacle (God's special house)"
+      roleplay: |
+        Stand back and look up like you're seeing something AMAZING!
+        Say "Wow!" together!
+      rationale: |
+        Payoff moment - seeing the result of everyone's contribution.
+        Brings energy back down. Wonder and pride.
+        Optional because parasha doesn't actually complete construction.
+
+    connection_1:
+      card_id: "connection_1"
+      theme: "What Can I Give?"
+      theme_he: "מָה אֲנִי יָכוֹל לָתֵת?"
+      personal_question: |
+        If we were building something special for our classroom,
+        what would YOU bring to help?
+      additional_questions:
+        - type: "empathy"
+          question: "How do you think the people felt when they brought their gifts?"
+        - type: "action"
+          question: "What's something special you have that you could share?"
+      placement_rationale: |
+        After the giving/building sequence, kids are primed to
+        think about their own contributions. Core learning moment.
+      feeling_faces:
+        - "proud"
+        - "happy"
+        - "excited"
+        - "generous"
+
+    connection_2:
+      card_id: "connection_2"
+      theme: "Helping Together"
+      theme_he: "עוֹזְרִים בְּיַחַד"
+      optional: true
+      personal_question: |
+        Have you ever helped build or make something with other people?
+        What did you make together?
+      additional_questions:
+        - type: "empathy"
+          question: "Why is it more fun to build with friends than alone?"
+        - type: "action"
+          question: "What can you do to help at home or at school?"
+      placement_rationale: |
+        Extends the theme to teamwork. Good for longer sessions
+        or if class is engaged in discussion.
+      feeling_faces:
+        - "happy"
+        - "proud"
+        - "helpful"
+        - "connected"
+
+    power_word:
+      card_id: "power_word_1"
+      word: "תרומה"
+      word_nikud: "תְּרוּמָה"
+      meaning: "Gift / Contribution"
+      optional: true
+      when_to_use: |
+        Use as extension if focusing on Hebrew vocabulary.
+        Can be woven into Anchor introduction instead.
+      rationale: |
+        Perfect word - it's the parasha name AND captures the theme.
+        Root means "to lift up" - giving lifts us and others.
+
+  # Teacher notes
+  teacher_notes: |
+    KEY THEME: Everyone has something to give. Giving feels good.
+
+    APPROACH: This parasha has no traditional "story" - it's building
+    instructions. We've reframed it as a community contribution story.
+    Focus on the JOY of giving, not the technical details.
+
+    VISUALS: This parasha is very colorful! Gold, silver, blue (תכלת),
+    purple (ארגמן), crimson (תולעת שני). Lean into the beautiful materials.
+
+    MOVEMENT: Story 2 and 3 have good roleplay opportunities.
+    Let kids move - carrying gifts, building motions.
+
+    DISCUSSION TIP: For Connection 1, you might bring a "contribution box"
+    and ask kids what they'd put in it. Makes it concrete.
+
+    OPTIONAL EXTENSION: If doing 2 sessions, Session 1 could be
+    Anchor → Story 1-2 → Connection 1, Session 2 could review + Story 3-4 + Power Word.
+
+    NOTE: We skipped Spotlight because Moses is a returning character
+    and the parasha is really about the COMMUNITY, not an individual hero.
+
+# Card count: 8 total (5 required + 3 optional)
+# Required session: ~12 minutes
+# Full session with 1-2 optional: ~15-17 minutes

@@ -1,0 +1,608 @@
+# Visual Director Output
+# Parasha: Terumah
+# Generated: 2024-02-02
+# Input: 03_content.yaml, 04_hebrew.yaml
+
+visual_direction:
+  parasha: "Terumah"
+  border_color: "#5c2d91"  # Covenant purple
+
+  # ============================================
+  # CHARACTER SPECIFICATIONS
+  # ============================================
+  character_specs:
+    moses:
+      is_new: false
+      reference_sheet_path: "decks/yitro/references/moses_identity.png"
+      this_week_notes: |
+        Moses appears in Story 1 receiving instructions.
+        Expression: INSPIRED, EXCITED - he's about to share good news.
+        Same clothing as Yitro deck: blue and cream robes, head covering, staff.
+
+    israelite_community:
+      is_new: true
+      needs_reference_sheet: false  # Generic community, not specific individuals
+      visual_description: |
+        Diverse group of Jewish people - men, women, children of various ages.
+        Modest, colorful clothing in earth tones and desert colors.
+        Warm skin tones ranging from light to dark brown.
+        Expressions: joyful, generous, hardworking, proud.
+        Include children in the crowd to help young viewers relate.
+
+  # ============================================
+  # CARD BACK
+  # ============================================
+  card_back:
+    design_exists: false
+    needs_creation: true
+    elements:
+      - "Parasha Packs logo (TBD)"
+      - "פָּרָשַׁת תְּרוּמָה / Parashat Terumah"
+      - "Decorative border matching covenant purple theme"
+      - "Subtle pattern of gifts/treasures"
+
+  # ============================================
+  # ANCHOR CARD
+  # ============================================
+  anchor:
+    card_id: "anchor_1"
+
+    composition: |
+      Central symbol dominates the card. Warm, inviting atmosphere.
+      Hebrew and English titles at top. Emotional hook at bottom.
+      Golden light radiating from above.
+
+    central_symbol: |
+      Multiple hands (diverse skin tones) lifting colorful treasures upward
+      toward warm golden light from above. The hands form a heart-like shape.
+      Treasures include: shiny gold items, purple fabric, blue yarn, red cloth.
+      Community silhouettes visible in soft background.
+
+    mood: "Warm, inviting, generous, communal"
+
+    colors: |
+      - Gold/amber light from above
+      - Purple (#5c2d91) as accent
+      - Blue (תכלת), purple (ארגמן), crimson (תולעת שני) in the gifts
+      - Warm skin tones on hands
+      - Soft cream/tan background
+
+    image_prompt: |
+      A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+
+      === STYLE ===
+      Vivid, high-contrast cartoon style suitable for ages 4-6.
+      - Characters: Rounded, friendly shapes. Large expressive features.
+      - Lines: Thick, clean black outlines (2-3px equivalent).
+      - Contrast: High contrast between foreground and background.
+      - Complexity: Maximum 5-7 distinct visual elements per scene.
+
+      Card Format: 5x7 inches (1500x2100px)
+      Corners: rounded (8-10px radius)
+
+      Colors:
+      - Main elements: Bold primary colors
+      - Background: Soft warm cream/tan gradient
+
+      === RESTRICTIONS ===
+      NEVER depict God in any human or physical form.
+      Use only: Warm golden light rays from above.
+      No scary elements. All imagery warm and inviting.
+
+      === CARD TYPE: ANCHOR (Parasha Introduction) ===
+
+      === CONTENT ===
+      Hebrew Title: "פָּרָשַׁת תְּרוּמָה" (large, centered, with nikud)
+      English Title: "Parashat Terumah" below Hebrew
+      Emotional Hook: "This week is about GIVING from the heart!"
+
+      === CENTRAL SYMBOL ===
+      Multiple hands (4-6 hands, diverse skin tones from light to dark brown)
+      lifting treasures upward toward golden light.
+
+      The treasures being lifted:
+      - Shiny gold coins/jewelry
+      - Purple fabric (rich grape purple)
+      - Blue yarn/cloth (sky blue)
+      - Red/crimson fabric
+
+      The hands arrange naturally to suggest a heart shape.
+      Warm golden light rays stream down from soft clouds above.
+      Faint silhouettes of community members in the background.
+
+      === COMPOSITION ===
+      Layout (top to bottom):
+      1. HEBREW TITLE (top 12%): "פָּרָשַׁת תְּרוּמָה" in beautiful Hebrew lettering
+      2. ENGLISH TITLE (5%): "Parashat Terumah" in friendly font
+      3. CENTRAL SYMBOL (60%): Hands lifting colorful treasures toward light
+      4. EMOTIONAL HOOK (15%): "This week is about GIVING from the heart!"
+      5. Small decorative hearts/sparkles around the edges
+
+      === FRAME ===
+      - Rounded corners (8-10px radius)
+      - Border: #5c2d91 Royal Purple (8px width)
+      - Heart icon in top-left corner
+
+      === MOOD ===
+      Warm, generous, communal, joyful. Children should feel:
+      "Giving is wonderful! Everyone can help!"
+
+  # ============================================
+  # STORY CARD 1
+  # ============================================
+  story_1:
+    card_id: "story_1"
+
+    scene_description: |
+      Moses receiving the request from God (shown as light/voice from above).
+      Moses looks inspired and excited, hand on heart.
+      Soft desert/mountain background suggesting Sinai.
+
+    characters_in_scene:
+      moses:
+        pose: "Standing, one hand on heart, looking upward with inspired expression"
+        expression: "Inspired, honored, excited to share the news"
+
+    emotion_to_convey: "Anticipation, being chosen for something special"
+
+    image_prompt: |
+      A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+
+      === STYLE ===
+      Vivid, high-contrast cartoon style suitable for ages 4-6.
+      - Characters: Rounded, friendly shapes. Large expressive eyes (20% of face).
+      - Lines: Thick, clean black outlines (2-3px equivalent).
+      - Emotion: Big, clear facial expressions visible from across classroom.
+
+      Card Format: 5x7 inches (1500x2100px)
+
+      === RESTRICTIONS ===
+      NEVER depict God in any human or physical form.
+      Show divine presence ONLY as warm golden light rays from clouds above.
+
+      === CARD TYPE: STORY (Key Moment #1) ===
+
+      === CHARACTER: MOSES ===
+      Friendly middle-aged man with warm brown skin and kind, gentle eyes.
+      Short dark beard with some gray. Blue and cream robes.
+      HEAD COVERING (cloth wrap/turban) - ALWAYS INCLUDE.
+      Wooden shepherd's staff resting nearby.
+
+      Expression: INSPIRED - eyes bright with excitement, gentle smile,
+      one hand placed on his heart. Looking upward toward the light.
+      He has just heard something wonderful!
+
+      === VISUAL DESCRIPTION ===
+      Moses stands in a desert/mountain setting (suggesting Sinai).
+      Warm golden light rays stream down from soft glowing clouds above.
+      Moses has one hand on his heart, looking up with an inspired, honored expression.
+      His posture shows he's receiving an important message.
+
+      Simple background: desert hills, blue sky, the mountain faintly visible.
+      Speech/thought suggesting divine words: soft glowing text or light swirls.
+
+      === COMPOSITION ===
+      Layout (top to bottom):
+      1. TITLE ZONE (top 10%): "A Special Request" / "בַּקָּשָׁה מְיֻחֶדֶת"
+      2. SEQUENCE NUMBER: #1 badge in corner
+      3. ACTION SCENE (center 55%):
+         - Golden light rays from above (divine presence)
+         - Moses center-frame, hand on heart, looking up
+         - Inspired, excited expression
+         - Desert/mountain background
+      4. HEBREW KEYWORD: "לֵב" (Heart) in decorative badge
+      5. TEXT ZONE (bottom 20%): Description and roleplay prompt
+
+      === FRAME ===
+      - Border: #FF4136 Red (8px width) - Story card color
+      - Lightning bolt icon in corner
+      - Sequence #1 badge
+
+      === MOOD ===
+      Inspirational, honored, anticipatory. Moses feels special to be asked.
+      Children should feel: "Something exciting is about to happen!"
+
+  # ============================================
+  # STORY CARD 2
+  # ============================================
+  story_2:
+    card_id: "story_2"
+
+    scene_description: |
+      Joyful scene of diverse Israelites bringing their treasures.
+      Focus on the COLORS and BEAUTY of the gifts.
+      People of all ages carrying gold, fabric, yarn.
+
+    characters_in_scene:
+      community:
+        description: "Diverse group - men, women, children carrying treasures"
+        expressions: "Joyful, proud, generous, excited"
+
+    emotion_to_convey: "Generosity, pride, joy of giving"
+
+    image_prompt: |
+      A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+
+      === STYLE ===
+      Vivid, high-contrast cartoon style suitable for ages 4-6.
+      - Characters: Rounded, friendly shapes. Large expressive eyes.
+      - Lines: Thick, clean black outlines.
+      - This scene should be COLORFUL and JOYFUL!
+
+      Card Format: 5x7 inches (1500x2100px)
+
+      === CARD TYPE: STORY (Key Moment #2) ===
+
+      === CHARACTERS: ISRAELITE COMMUNITY ===
+      Diverse group of Jewish people - show 5-7 individuals:
+      - A father carrying something gold (coins, jewelry, cup)
+      - A mother holding beautiful purple fabric
+      - A child carrying blue yarn excitedly
+      - An elderly person with silver items
+      - Another child with red/crimson cloth
+
+      All have warm skin tones (variety from light to dark brown).
+      Modest, colorful clothing in earth tones.
+      ALL have joyful, proud expressions - big smiles!
+
+      === VISUAL DESCRIPTION ===
+      A procession of people bringing their treasures.
+      The scene BURSTS with color:
+      - GOLD: shiny, gleaming gold items
+      - PURPLE: rich grape-purple fabric (ארגמן)
+      - BLUE: sky-blue yarn and cloth (תכלת)
+      - CRIMSON: deep red fabric (תולעת שני)
+
+      People walk toward a central collection area (can show pile of treasures).
+      Everyone is smiling, proud of what they're bringing.
+      A child in the foreground carries something with great care.
+      Warm sunlight. Festive, generous atmosphere.
+
+      === COMPOSITION ===
+      Layout (top to bottom):
+      1. TITLE ZONE (top 10%): "Beautiful Gifts" / "מַתָּנוֹת יָפוֹת"
+      2. SEQUENCE NUMBER: #2 badge
+      3. ACTION SCENE (center 55%):
+         - Colorful procession of people bringing gifts
+         - Emphasis on the COLORS of the treasures
+         - Joyful expressions on all faces
+         - Child in foreground for relatability
+      4. HEBREW KEYWORD: "זָהָב" (Gold) in decorative badge
+      5. TEXT ZONE (bottom 20%): Description and roleplay prompt
+
+      === FRAME ===
+      - Border: #FF4136 Red (8px width)
+      - Sequence #2 badge
+
+      === MOOD ===
+      Joyful, generous, colorful, celebratory!
+      Children should feel: "I want to bring something too!"
+
+  # ============================================
+  # STORY CARD 3
+  # ============================================
+  story_3:
+    card_id: "story_3"
+
+    scene_description: |
+      Community working together on building.
+      Show different tasks: sewing, hammering, carrying.
+      Teamwork and collaboration in action.
+
+    characters_in_scene:
+      community:
+        description: "People doing different building tasks together"
+        expressions: "Focused, happy, hardworking, collaborative"
+
+    emotion_to_convey: "Teamwork, purpose, pride in work"
+
+    image_prompt: |
+      A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+
+      === STYLE ===
+      Vivid, high-contrast cartoon style suitable for ages 4-6.
+      - Characters: Rounded, friendly shapes. Large expressive eyes.
+      - Lines: Thick, clean black outlines.
+      - Show MOVEMENT and ACTIVITY!
+
+      Card Format: 5x7 inches (1500x2100px)
+
+      === CARD TYPE: STORY (Key Moment #3) ===
+
+      === CHARACTERS: WORKING COMMUNITY ===
+      Show 5-6 people doing DIFFERENT building tasks:
+      - Someone SEWING beautiful fabric (pulling thread, focused)
+      - Someone HAMMERING wood (motion lines showing hammer movement)
+      - Two people CARRYING a wooden beam together
+      - Someone arranging/organizing materials
+      - A child helping by holding something or handing tools
+
+      Diverse group, all ages, warm skin tones.
+      Everyone looks happy while working - smiles, focused joy.
+
+      === VISUAL DESCRIPTION ===
+      A busy, happy construction scene.
+      The beginnings of a structure visible (wooden frames, fabric panels).
+
+      Action and movement throughout:
+      - Motion lines on the hammer
+      - Thread being pulled through fabric
+      - People lifting together
+
+      Materials visible: gold items, colorful fabrics, wooden beams.
+      Warm outdoor setting, sunny day.
+      Everyone working YACHAD (together) - show collaboration, not isolation.
+
+      === COMPOSITION ===
+      Layout (top to bottom):
+      1. TITLE ZONE (top 10%): "Building Together" / "בּוֹנִים בְּיַחַד"
+      2. SEQUENCE NUMBER: #3 badge
+      3. ACTION SCENE (center 55%):
+         - Multiple people doing different tasks
+         - Clear movement and activity
+         - Child participating
+         - Beginning of structure visible
+      4. HEBREW KEYWORD: "יַחַד" (Together) in decorative badge
+      5. TEXT ZONE (bottom 20%): Description and roleplay prompt
+
+      === FRAME ===
+      - Border: #FF4136 Red (8px width)
+      - Sequence #3 badge
+
+      === MOOD ===
+      Energetic, collaborative, purposeful, joyful work!
+      Children should feel: "I want to help too! What job can I do?"
+
+  # ============================================
+  # STORY CARD 4 (Optional)
+  # ============================================
+  story_4:
+    card_id: "story_4"
+
+    scene_description: |
+      The completed Mishkan stands beautiful and golden.
+      Community steps back in awe, admiring their work.
+      Wonder and pride at what they built together.
+
+    characters_in_scene:
+      community:
+        description: "People standing back, looking up at the Mishkan in awe"
+        expressions: "Amazed, proud, awestruck, joyful"
+
+    emotion_to_convey: "Awe, accomplishment, communal pride"
+
+    image_prompt: |
+      A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+
+      === STYLE ===
+      Vivid, high-contrast cartoon style suitable for ages 4-6.
+      - Characters: Rounded, friendly shapes. Large expressive eyes.
+      - Lines: Thick, clean black outlines.
+      - This scene should feel MAJESTIC and AWE-INSPIRING!
+
+      Card Format: 5x7 inches (1500x2100px)
+
+      === RESTRICTIONS ===
+      Show the Mishkan (Tabernacle) as a beautiful tent structure.
+      It should look special but NOT show the inside or the Ark.
+      Warm golden glow around it - divine presence as LIGHT only.
+
+      === CARD TYPE: STORY (Key Moment #4 - Optional) ===
+
+      === VISUAL DESCRIPTION ===
+      The completed Mishkan stands magnificent:
+      - Beautiful tent structure with golden accents
+      - Colorful fabric panels (purple, blue, crimson)
+      - Wooden framework visible
+      - Warm golden light glowing around/from it
+
+      In the foreground: Community members (5-6 people including children)
+      standing back and looking UP at their creation.
+      Poses of awe: hands on cheeks, pointing, embracing each other.
+      Expressions: amazed, proud, joyful tears, wonder.
+
+      A family (parent and child) in foreground - child pointing up excitedly.
+
+      === COMPOSITION ===
+      Layout (top to bottom):
+      1. TITLE ZONE (top 10%): "Look What We Made!" / "הִנֵּה מָה עָשִׂינוּ!"
+      2. SEQUENCE NUMBER: #4 badge
+      3. ACTION SCENE (center 55%):
+         - Mishkan in upper portion, glowing beautifully
+         - Community in lower portion, looking up in awe
+         - Family with child in foreground
+         - Wonder and pride on all faces
+      4. HEBREW KEYWORD: "מִשְׁכָּן" (Tabernacle) in decorative badge
+      5. TEXT ZONE (bottom 20%): Description and roleplay prompt
+
+      === FRAME ===
+      - Border: #FF4136 Red (8px width)
+      - Sequence #4 badge
+
+      === MOOD ===
+      Awe, wonder, accomplishment, communal pride!
+      Children should feel: "WOW! They did it! We can build amazing things together!"
+
+  # ============================================
+  # CONNECTION CARD 1
+  # ============================================
+  connection_1:
+    card_id: "connection_1"
+
+    visual_approach: |
+      Children in thoughtful/sharing poses. One child offering something.
+      Feeling faces prominent. Warm, inviting discussion atmosphere.
+
+    image_prompt: |
+      A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+
+      === STYLE ===
+      Vivid, high-contrast cartoon style suitable for ages 4-6.
+      - Characters: Rounded, friendly shapes. Large expressive eyes.
+      - Lines: Thick, clean black outlines.
+      - Mood: Calm, thoughtful, inviting for discussion.
+
+      Card Format: 5x7 inches (1500x2100px)
+
+      === CARD TYPE: CONNECTION (Discussion Card) ===
+
+      === CHARACTERS ===
+      2-3 children (ages 4-6 appearance) in thoughtful, sharing poses:
+      - One child holding out an object to share (toy, book, or craft item)
+      - One child with hand on chin, thinking
+      - One child smiling, looking at the sharing child
+
+      Diverse children, warm and relatable.
+      Simple clothing, modern/timeless style.
+
+      === VISUAL DESCRIPTION ===
+      Children in a circle-time type setting.
+      One child is offering/sharing something with a proud, generous expression.
+      Other children look thoughtful or appreciative.
+
+      Warm, soft background (could be classroom or home setting).
+      A small pile of "gifts" or shared items nearby.
+      Atmosphere of sharing and discussion.
+
+      === COMPOSITION ===
+      Layout (top to bottom):
+      1. TITLE ZONE (top 8%): "What Can I Give?" / "מָה אֲנִי יָכוֹל לָתֵת?"
+      2. SCENE (center 35%): Children in sharing/thinking poses
+      3. FEELING FACES ROW (12%):
+         🥹 Proud/גֵּאֶה | 😊 Happy/שָׂמֵחַ | 🤗 Generous/נָדִיב | 😃 Excited/נִרְגָּשׁ
+      4. QUESTIONS ZONE (35%): Three discussion questions in speech bubbles
+      5. TORAH TALK (bottom 10%): "Sit in a circle and share!"
+
+      === FRAME ===
+      - Border: #0074D9 Blue (8px width) - Connection card color
+      - Thought-bubble icon in corner
+
+      === MOOD ===
+      Warm, reflective, inviting. Children should feel safe to share.
+
+  # ============================================
+  # CONNECTION CARD 2 (Optional)
+  # ============================================
+  connection_2:
+    card_id: "connection_2"
+
+    visual_approach: |
+      Children working together on a project.
+      Teamwork visible. Warm collaborative atmosphere.
+
+    image_prompt: |
+      A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+
+      === STYLE ===
+      Vivid, high-contrast cartoon style suitable for ages 4-6.
+      Card Format: 5x7 inches (1500x2100px)
+
+      === CARD TYPE: CONNECTION (Discussion Card - Optional) ===
+
+      === VISUAL DESCRIPTION ===
+      2-3 children working TOGETHER on a project:
+      - Building with blocks
+      - Or making an art project together
+      - Or working on a puzzle
+
+      All contributing, all smiling.
+      Hands meeting in the middle of the activity.
+      Sense of collaboration and shared accomplishment.
+
+      === COMPOSITION ===
+      Layout (top to bottom):
+      1. TITLE: "Helping Together" / "עוֹזְרִים בְּיַחַד"
+      2. SCENE: Children collaborating on a project
+      3. FEELING FACES: 😊 Happy | 🥹 Proud | 🤝 Helpful | 💪 Strong
+      4. QUESTIONS: Three discussion questions
+      5. TORAH TALK: "Sit in a circle and share!"
+
+      === FRAME ===
+      - Border: #0074D9 Blue (8px width)
+
+      === MOOD ===
+      Collaborative, joyful, connected.
+
+  # ============================================
+  # POWER WORD CARD (Optional)
+  # ============================================
+  power_word:
+    card_id: "power_word_1"
+
+    visual_approach: |
+      Illustrate the concept of "terumah" (lifting up a gift).
+      Hands lifting something toward light.
+      The Hebrew word prominent and beautiful.
+
+    image_prompt: |
+      A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+
+      === STYLE ===
+      Vivid, high-contrast cartoon style suitable for ages 4-6.
+      Card Format: 5x7 inches (1500x2100px)
+
+      === RESTRICTIONS ===
+      - NO transliteration on the card
+      - NO QR codes
+      - NO Aleph icon in corner
+
+      === CARD TYPE: POWER WORD (Hebrew Vocabulary) ===
+
+      === CONTENT ===
+      Hebrew Word: "תְּרוּמָה" (large, with nikud)
+      English Meaning: "Gift / Contribution"
+      Torah Quote: "Tell the people to bring Me gifts..."
+      Example: "When you share, that's a terumah!"
+
+      === VISUAL DESCRIPTION ===
+      A child lifting up a gift (wrapped present or special object)
+      toward warm golden light from above.
+
+      The child has a proud, happy expression.
+      The gift seems to glow as it's lifted.
+      Motion lines or sparkles showing the "lifting up" action.
+
+      The Hebrew word תְּרוּמָה appears LARGE and beautiful,
+      perhaps integrated with the light rays.
+
+      === COMPOSITION ===
+      Layout (top to bottom):
+      1. HEBREW WORD (top 25%): "תְּרוּמָה" in large, beautiful Hebrew
+         - Decorative but readable
+         - NO transliteration
+      2. VISUAL (center 40%):
+         - Child lifting gift upward
+         - Golden light from above
+         - Proud, joyful expression
+      3. ENGLISH MEANING (10%): "GIFT" in bold, friendly font
+      4. TORAH QUOTE (10%): The quote in elegant text
+      5. EXAMPLE (10%): "When you share, that's a terumah!"
+
+      === FRAME ===
+      - Border: #2ECC40 Green (8px width) - Power Word color
+      - NO icon in corner
+
+      === MOOD ===
+      Educational and inspiring. Learning Hebrew is discovering treasure!
+
+  # ============================================
+  # CROSS-DECK CONSISTENCY
+  # ============================================
+  consistency_notes:
+    style_guide_followed: true
+    character_references_used:
+      - "Moses from Yitro deck (decks/yitro/references/moses_identity.png)"
+    new_references_needed:
+      - "None - community is generic, Moses exists"
+    color_palette_consistent: true
+    # Using covenant purple (#5c2d91) as deck border
+    # Card type colors: Red (story), Blue (connection), Green (power word)
+
+  pre_generation_checklist:
+    - "Moses matches reference sheet from Yitro"
+    - "Style consistent with STYLE_GUIDE"
+    - "Safety rules in all prompts (no God depiction)"
+    - "Compositions leave room for text"
+    - "Emotions readable at card size"
+    - "No God's name in any Hebrew text"
+    - "Colorful materials featured prominently (gold, purple, blue, crimson)"

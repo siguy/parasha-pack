@@ -7,17 +7,39 @@ Each subdirectory contains a complete card deck for one Torah portion (parasha).
 ```
 decks/
 ├── CLAUDE.md           # This file
-└── yitro/              # Example deck
+└── purim/              # Example deck
     ├── deck.json       # All card data and metadata
     ├── feedback.json   # Review comments and status
-    ├── images/         # Generated card images
+    ├── raw/            # AI-generated images (scene only, NO text)
     │   ├── anchor_1.png
-    │   ├── spotlight_1.png
+    │   ├── story_1.png
+    │   └── ...
+    ├── images/         # Final exports with text overlay (from Card Designer)
+    │   ├── anchor_1.png
+    │   ├── story_1.png
+    │   └── ...
+    ├── backs/          # Teacher content backs (from Card Designer)
+    │   ├── anchor_1_back.png
+    │   ├── story_1_back.png
     │   └── ...
     └── references/     # Character identity references
         ├── manifest.json
-        ├── moses_identity.png      # Single source of truth
-        └── yitro_identity.png
+        ├── esther_identity.png
+        └── mordechai_identity.png
+```
+
+## Image Flow
+
+1. **AI generates to `raw/`** - Scene-only images, no text baked in
+2. **Card Designer renders** - React components add text overlay
+3. **Export to `images/` and `backs/`** - Final print-ready files
+
+```bash
+# Generate raw images
+cd src && python generate_images.py ../decks/purim/deck.json
+
+# Export with Card Designer
+cd card-designer && npm run export purim -- --backs
 ```
 
 ## Creating a New Deck
@@ -163,6 +185,226 @@ This creates:
 }
 ```
 
+## v2 Card Format (Front/Back Separation)
+
+v2 cards separate content for children (front) and teachers (back). Text is overlaid programmatically after image generation.
+
+### Detecting v2 Cards
+
+```python
+def is_v2_card(card):
+    return "front" in card and "back" in card
+```
+
+### v2 Directory Structure
+
+```
+decks/purim/
+├── deck.json
+├── images/
+│   ├── anchor_1.png       # Image with overlaid text
+│   ├── story_1.png
+│   └── ...
+├── backs/                  # NEW: Teacher card backs
+│   ├── anchor_1_back.png
+│   ├── story_1_back.png
+│   └── ...
+└── references/
+```
+
+### v2 Card Schemas by Type
+
+**Anchor Card (v2)**
+```json
+{
+  "card_id": "anchor_1",
+  "card_type": "anchor",
+  "front": {
+    "overlay_zone": "top",
+    "hebrew_title": "פּוּרִים"
+  },
+  "back": {
+    "title_en": "Purim",
+    "title_he": "פּוּרִים",
+    "emotional_hook_en": "This week is about being brave!",
+    "emotional_hook_he": "השבוע על להיות אמיצים!",
+    "teacher_script": "Gather children in a circle..."
+  },
+  "image_prompt": "... === COMPOSITION ZONES === ...",
+  "image_path": "images/anchor_1.png"
+}
+```
+
+**Spotlight Card (v2)**
+```json
+{
+  "card_id": "spotlight_1",
+  "card_type": "spotlight",
+  "front": {
+    "overlay_zone": "top",
+    "hebrew_name": "אֶסְתֵּר",
+    "english_name": "Esther",
+    "emotion_word_en": "brave",
+    "emotion_word_he": "אַמִּיצָה"
+  },
+  "back": {
+    "title_en": "Queen Esther",
+    "title_he": "הַמַּלְכָּה אֶסְתֵּר",
+    "character_description_en": "Esther was a brave queen...",
+    "character_description_he": "אסתר הייתה מלכה אמיצה...",
+    "teacher_script": "This is Queen Esther! She's feeling..."
+  },
+  "image_prompt": "...",
+  "image_path": "images/spotlight_1.png"
+}
+```
+
+**Story Card (v2)** *(replaces Action Card)*
+```json
+{
+  "card_id": "story_1",
+  "card_type": "story",
+  "front": {
+    "overlay_zone": "bottom_left",
+    "hebrew_keyword": "מַלְכָּה",
+    "english_keyword": "Queen"
+  },
+  "back": {
+    "title_en": "Esther Becomes Queen",
+    "title_he": "אֶסְתֵּר נַעֲשֵׂית מַלְכָּה",
+    "sequence_number": 1,
+    "description_en": "The king chose Esther to be his new queen...",
+    "description_he": "הַמֶּלֶךְ בָּחַר בְּאֶסְתֵּר...",
+    "roleplay_prompt": "Put an imaginary crown on your head and give a royal wave!",
+    "teacher_script": "The king needed a new queen..."
+  },
+  "image_prompt": "...",
+  "image_path": "images/story_1.png"
+}
+```
+
+**Connection Card (v2)** *(replaces Thinker Card)*
+```json
+{
+  "card_id": "connection_1",
+  "card_type": "connection",
+  "front": {
+    "overlay_zone": "bottom",
+    "emojis": ["😊", "😢", "😨", "😮"]
+  },
+  "back": {
+    "title_en": "Being Brave",
+    "title_he": "לִהְיוֹת אַמִּיץ",
+    "questions": [
+      "Have you ever had to do something scary?",
+      "How did it feel to be brave?",
+      "Who helps you feel brave?"
+    ],
+    "feeling_faces": [
+      {"emoji": "😊", "label_he": "שָׂמֵחַ"},
+      {"emoji": "😢", "label_he": "עָצוּב"},
+      {"emoji": "😨", "label_he": "מְפֻחָד"},
+      {"emoji": "😮", "label_he": "מֻפְתָּע"}
+    ],
+    "torah_talk_instruction": "Sit in a circle and share!",
+    "teacher_script": "Let's talk about being brave..."
+  },
+  "image_prompt": "...",
+  "image_path": "images/connection_1.png"
+}
+```
+
+**Power Word Card (v2)**
+```json
+{
+  "card_id": "power_word_1",
+  "card_type": "power_word",
+  "front": {
+    "overlay_zone": "top",
+    "hebrew_word": "גִּבּוֹר",
+    "english_meaning": "Hero"
+  },
+  "back": {
+    "title_en": "Gibor - Hero",
+    "title_he": "גִּבּוֹר",
+    "transliteration": "Gibor",
+    "kid_friendly_explanation_en": "A hero is someone who helps others even when it's hard!",
+    "kid_friendly_explanation_he": "גיבור הוא מי שעוזר לאחרים גם כשזה קשה!",
+    "example_sentence_en": "Esther was a gibor when she spoke to the king.",
+    "example_sentence_he": "אסתר הייתה גיבורה כשדיברה עם המלך.",
+    "teacher_script": "Let's learn a special Hebrew word..."
+  },
+  "image_prompt": "...",
+  "image_path": "images/power_word_1.png"
+}
+```
+
+**Tradition Card (v2)** *(Holiday decks only)*
+```json
+{
+  "card_id": "tradition_1",
+  "card_type": "tradition",
+  "front": {
+    "overlay_zone": "top",
+    "hebrew_title": "מִשְׁלוֹחַ מָנוֹת",
+    "english_title": "Sending Gifts"
+  },
+  "back": {
+    "title_en": "Mishloach Manot",
+    "title_he": "מִשְׁלוֹחַ מָנוֹת",
+    "story_connection_en": "Because everyone shared joy in Esther's time...",
+    "story_connection_he": "כי כולם חלקו שמחה בימי אסתר...",
+    "practice_description_en": "We give baskets of treats to friends and neighbors!",
+    "practice_description_he": "אנחנו נותנים סלי מתנות לחברים ושכנים!",
+    "child_action_en": "Can you help pack a gift basket?",
+    "child_action_he": "?האם תוכלו לעזור לארוז סלת מתנות",
+    "hebrew_term": "מִשְׁלוֹחַ מָנוֹת",
+    "hebrew_term_meaning": "Sending portions (gifts)",
+    "teacher_script": "On Purim, we give gifts to friends..."
+  },
+  "image_prompt": "...",
+  "image_path": "images/tradition_1.png"
+}
+```
+
+### v2 Front Overlay Zones
+
+| Card Type | Zone | Content |
+|-----------|------|---------|
+| Anchor | Top 20-25% | Hebrew title |
+| Spotlight | Top 30% | Hebrew name, English name, emotion |
+| Story | Bottom-left | Hebrew/English keyword badge |
+| Connection | Bottom 20% | 4 emojis (no labels) |
+| Power Word | Top 30% | Hebrew word + English meaning |
+| Tradition | Top 25% | Hebrew/English title |
+
+### Generating v2 Cards
+
+```bash
+cd src
+
+# Full v2 pipeline: generate images + overlay + card backs
+python generate_images.py ../decks/purim/deck.json --with-overlay
+
+# Just apply overlays to existing images
+python generate_images.py ../decks/purim/deck.json --overlay-only
+
+# Just generate card backs
+python generate_images.py ../decks/purim/deck.json --backs-only
+
+# Generate raw images without overlay (debugging)
+python generate_images.py ../decks/purim/deck.json --no-overlay
+```
+
+### v2 Output Files
+
+| File | Size | Purpose |
+|------|------|---------|
+| `images/{card_id}.png` | 1500x2100 | Card front with overlaid text |
+| `backs/{card_id}_back.png` | 1500x2100 | Teacher card back (5x7 @ 300 DPI) |
+
+---
+
 ## feedback.json Structure
 
 ```json
@@ -275,7 +517,8 @@ python workflows.py character moses --deck ../decks/yitro --generate
    ```
 
 5. **Review in browser:**
-   - Open `review-site/index.html`
+   - v1 decks: Open `review-site/index.html`
+   - v2 decks: Open `review-site-v2/index.html` (supports front/back flip preview)
    - Add feedback for each card
    - Export feedback JSON
 
@@ -286,15 +529,28 @@ python workflows.py character moses --deck ../decks/yitro --generate
 
 ## Image Naming Convention
 
-Card images: `{card_id}.png`
+### v1 Cards
+
+Card images: `images/{card_id}.png`
 - `anchor_1.png`
 - `spotlight_1.png`, `spotlight_2.png`
 - `action_1.png` through `action_5.png`
 - `thinker_1.png`, `thinker_2.png`
 - `power_word_1.png`, `power_word_2.png`
 
-Reference sheets: `{character_key}_{type}.png`
+### v2 Cards
+
+Card fronts: `images/{card_id}.png`
+- `anchor_1.png`, `spotlight_1.png`, `story_1.png`, etc.
+
+Card backs: `backs/{card_id}_back.png`
+- `anchor_1_back.png`, `spotlight_1_back.png`, `story_1_back.png`, etc.
+
+### Reference Sheets
+
+Identity images: `references/{character_key}_identity.png`
 - `moses_identity.png`
-- `moses_expressions.png`
-- `moses_turnaround.png`
-- `moses_poses.png`
+- `esther_identity.png`
+- `haman_identity.png`
+
+**Note:** We only use identity sheets now. Expression, turnaround, and pose sheets are deprecated.
