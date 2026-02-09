@@ -1,0 +1,83 @@
+{
+  "research": {
+    "name_en": "Esther",
+    "name_he": "אֶסְתֵּר",
+    "biblical_refs": [
+      "Megillat Esther"
+    ],
+    "key_stories": [
+      "Becoming queen of Persia",
+      "Keeping her Jewish identity secret",
+      "Going to the king uninvited to save her people",
+      "Hosting banquets for the king and Haman"
+    ],
+    "personality_traits": [
+      "brave",
+      "kind",
+      "humble",
+      "wise",
+      "faithful"
+    ],
+    "relationships": {
+      "Mordechai": "cousin who raised her",
+      "Achashverosh": "husband, the king",
+      "Haman": "antagonist she confronted"
+    },
+    "emotional_moments": [
+      {
+        "event": "Keeping her secret",
+        "emotion": "nervous but determined"
+      },
+      {
+        "event": "Going to the king uninvited",
+        "emotion": "scared but brave"
+      },
+      {
+        "event": "Revealing her identity",
+        "emotion": "courageous"
+      },
+      {
+        "event": "Saving her people",
+        "emotion": "relieved and joyful"
+      }
+    ],
+    "age_appropriate_summary": "Esther was a brave queen with a big secret — she was Jewish! When her people needed help, she was SO brave and saved everyone."
+  },
+  "design": {
+    "key": "esther",
+    "name_en": "Esther",
+    "name_he": "אֶסְתֵּר",
+    "visual_description": "Young Jewish woman with warm olive skin and kind determined eyes",
+    "clothing": [
+      "Royal purple and blue flowing dress",
+      "Elegant modest head covering",
+      "Simple gold tiara"
+    ],
+    "distinguishing_features": [
+      "Large kind brown eyes",
+      "Long dark hair",
+      "Gentle determined expression",
+      "Warm approachable features"
+    ],
+    "props": [
+      "Royal scepter (occasionally)"
+    ],
+    "default_emotion": "kind",
+    "emotional_range": [
+      "brave",
+      "kind",
+      "humble",
+      "wise",
+      "faithful"
+    ],
+    "signature_poses": [
+      "Hand on heart, showing courage",
+      "Standing tall before the king",
+      "Kneeling in prayer",
+      "Arms open, embracing her people"
+    ],
+    "style_prompt": "Children's book cartoon character ESTHER:\n- Young Jewish woman with warm olive skin and kind determined eyes\n- Large kind brown eyes\n- Long dark hair\n- Gentle determined expression\n- Warm approachable features\n- Royal purple and blue flowing dress\n- Elegant modest head covering\n- Simple gold tiara\n- Royal scepter (occasionally)\n- Rounded, friendly cartoon style\n- Thick clean black outlines\n- Bold colors, simple shapes\n- LARGE expressive eyes (20% of face)"
+  },
+  "references": {},
+  "created_at": "2026-02-03T23:31:09.525808"
+}

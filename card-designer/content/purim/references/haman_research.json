@@ -1,0 +1,75 @@
+{
+  "research": {
+    "name_en": "Haman",
+    "name_he": "הָמָן",
+    "biblical_refs": [
+      "Megillat Esther"
+    ],
+    "key_stories": [
+      "Wanting everyone to bow to him",
+      "Getting jealous when Mordechai wouldn't bow",
+      "Making a bad plan because of jealousy",
+      "His plan being stopped"
+    ],
+    "personality_traits": [
+      "jealous",
+      "proud",
+      "misguided"
+    ],
+    "relationships": {
+      "Mordechai": "felt jealous of him",
+      "Achashverosh": "worked for the king",
+      "Esther": "didn't know her secret"
+    },
+    "emotional_moments": [
+      {
+        "event": "Mordechai not bowing",
+        "emotion": "jealous and hurt"
+      },
+      {
+        "event": "Making his plan",
+        "emotion": "frustrated"
+      },
+      {
+        "event": "Being caught",
+        "emotion": "embarrassed"
+      }
+    ],
+    "age_appropriate_summary": "Haman felt very jealous when someone wouldn't bow to him. His jealousy made him make bad choices. We can feel jealous sometimes, but we should make good choices."
+  },
+  "design": {
+    "key": "haman",
+    "name_en": "Haman",
+    "name_he": "הָמָן",
+    "visual_description": "Adult man with frustrated pouty expression - NOT scary",
+    "clothing": [
+      "DISTINCTIVE THREE-CORNERED HAT (like hamantaschen shape)",
+      "Persian-style clothing in MUTED dusty purple and gray-brown"
+    ],
+    "distinguishing_features": [
+      "Dark pointed goatee with connected mustache",
+      "Furrowed brow",
+      "Jealous expression (not angry)",
+      "Arms often crossed",
+      "Shoulders hunched"
+    ],
+    "props": [
+      "Three-cornered hat"
+    ],
+    "default_emotion": "kind",
+    "emotional_range": [
+      "jealous",
+      "proud",
+      "misguided"
+    ],
+    "signature_poses": [
+      "Arms crossed, looking jealous",
+      "Turned away, frustrated",
+      "Pouty face, upset",
+      "Looking embarrassed"
+    ],
+    "style_prompt": "Children's book cartoon character HAMAN:\n- Adult man with frustrated pouty expression - NOT scary\n- Dark pointed goatee with connected mustache\n- Furrowed brow\n- Jealous expression (not angry)\n- Arms often crossed\n- Shoulders hunched\n- DISTINCTIVE THREE-CORNERED HAT (like hamantaschen shape)\n- Persian-style clothing in MUTED dusty purple and gray-brown\n- Three-cornered hat\n- Rounded, friendly cartoon style\n- Thick clean black outlines\n- Bold colors, simple shapes\n- LARGE expressive eyes (20% of face)"
+  },
+  "references": {},
+  "created_at": "2026-02-03T23:30:22.233176"
+}

@@ -1,0 +1,14 @@
+{
+  "esther": {
+    "identity": "esther_identity.png"
+  },
+  "mordechai": {
+    "identity": "mordechai_identity.png"
+  },
+  "haman": {
+    "identity": "haman_identity.png"
+  },
+  "achashverosh": {
+    "identity": "achashverosh_identity.png"
+  }
+}

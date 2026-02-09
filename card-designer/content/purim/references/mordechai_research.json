@@ -1,0 +1,80 @@
+{
+  "research": {
+    "name_en": "Mordechai",
+    "name_he": "מׇרְדְּכַי",
+    "biblical_refs": [
+      "Megillat Esther"
+    ],
+    "key_stories": [
+      "Raising his cousin Esther",
+      "Refusing to bow to Haman",
+      "Discovering a plot against the king",
+      "Being honored by the king"
+    ],
+    "personality_traits": [
+      "wise",
+      "brave",
+      "faithful",
+      "protective",
+      "principled"
+    ],
+    "relationships": {
+      "Esther": "younger cousin he raised",
+      "Haman": "would not bow to him",
+      "Achashverosh": "saved his life"
+    },
+    "emotional_moments": [
+      {
+        "event": "Sending Esther to the king",
+        "emotion": "worried but hopeful"
+      },
+      {
+        "event": "Refusing to bow",
+        "emotion": "firm and faithful"
+      },
+      {
+        "event": "Being honored",
+        "emotion": "humble"
+      },
+      {
+        "event": "Celebrating victory",
+        "emotion": "grateful and joyful"
+      }
+    ],
+    "age_appropriate_summary": "Mordechai was like a wise grandpa who always knew what was right. He helped Esther be brave and stood up for what he believed."
+  },
+  "design": {
+    "key": "mordechai",
+    "name_en": "Mordechai",
+    "name_he": "מׇרְדְּכַי",
+    "visual_description": "Older Jewish man with wise grandfatherly presence",
+    "clothing": [
+      "Jewish head covering (kippah or cloth wrap)",
+      "Modest robes in earth tones - browns, creams, subtle blues"
+    ],
+    "distinguishing_features": [
+      "Full gray-brown beard",
+      "Kind wise eyes",
+      "Dignified posture",
+      "Grandfatherly warmth"
+    ],
+    "props": [],
+    "default_emotion": "kind",
+    "emotional_range": [
+      "wise",
+      "brave",
+      "faithful",
+      "protective",
+      "principled"
+    ],
+    "signature_poses": [
+      "Hands clasped peacefully",
+      "Standing tall, not bowing",
+      "Giving advice to Esther",
+      "Celebrating with raised hands"
+    ],
+    "style_prompt": "Children's book cartoon character MORDECHAI:\n- Older Jewish man with wise grandfatherly presence\n- Full gray-brown beard\n- Kind wise eyes\n- Dignified posture\n- Grandfatherly warmth\n- Jewish head covering (kippah or cloth wrap)\n- Modest robes in earth tones - browns, creams, subtle blues\n- Rounded, friendly cartoon style\n- Thick clean black outlines\n- Bold colors, simple shapes\n- LARGE expressive eyes (20% of face)"
+  },
+  "references": {},
+  "created_at": "2026-02-03T23:30:51.901447"
+}
