@@ -55,7 +55,8 @@ def load_reference_images(deck_path: Path) -> list:
     try:
         with open(manifest_path, 'r', encoding='utf-8') as f:
             manifest = json.load(f)
-    except Exception:
+    except Exception as e:
+        print(f"  -> Warning: failed to load manifest: {e}")
         return []
 
     image_parts = []

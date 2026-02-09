@@ -93,8 +93,6 @@ Future option: Add Feedback Coordinator agent if volume/complexity increases.
 
 ## Key Files
 
-- [FRAMEWORK.md](FRAMEWORK.md) - Card types, counts, session design
-- [YEAR_CONTEXT.yaml](YEAR_CONTEXT.yaml) - Character/concept/tradition continuity tracking
 - [STYLE_GUIDE.md](STYLE_GUIDE.md) - Visual consistency rules
 - [CARD_SPECS.md](CARD_SPECS.md) - Card structure (v1 vs v2 format)
 - [VISUAL_SPECS.md](VISUAL_SPECS.md) - Visual specs and overlay zones

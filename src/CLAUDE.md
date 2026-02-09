@@ -186,29 +186,20 @@ python generate_images.py ../decks/yitro/deck.json --model flash
 **Options:**
 - `--card CARD_ID` - Generate only specific card
 - `--skip-existing` - Don't regenerate existing images
-- `--model` - Model to use (imagen, flash)
+- `--model` - Model to use: nano-banana (default, recommended), imagen, flash
 - `--api-key` - Override GEMINI_API_KEY env var
-- `--with-overlay` - Apply text overlay for v2 cards after generation
-- `--overlay-only` - Only run overlay on existing images (no generation)
-- `--backs-only` - Only generate card backs (no image generation)
-- `--no-overlay` - Generate raw images without overlay (for debugging)
+- `--no-refs` - Disable character reference images (for debugging)
 
 ### v2 Card Generation
 
-For v2 decks with front/back separation:
+For v2 decks, images are generated to `raw/` without text. Use Card Designer for final output:
 
 ```bash
-# Full v2 pipeline: generate images + overlay + card backs
-python generate_images.py ../decks/purim/deck.json --with-overlay
+# Generate raw scene images (no text)
+python generate_images.py ../decks/purim/deck.json
 
-# Just apply overlays to existing images
-python generate_images.py ../decks/purim/deck.json --overlay-only
-
-# Just generate card backs
-python generate_images.py ../decks/purim/deck.json --backs-only
-
-# Generate raw images without overlay (debugging)
-python generate_images.py ../decks/purim/deck.json --no-overlay
+# Then use Card Designer for text overlay and card backs
+cd ../card-designer && npm run export purim -- --backs
 ```
 
 ---

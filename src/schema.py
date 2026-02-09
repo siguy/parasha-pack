@@ -20,9 +20,9 @@ class CardType(Enum):
     CONNECTION = "connection" # Renamed from THINKER
     POWER_WORD = "power_word"
     TRADITION = "tradition"   # Holiday-specific
-    # Legacy aliases
-    ACTION = "story"
-    THINKER = "connection"
+    # Legacy aliases (deprecated - kept for backward compatibility with old deck.json files)
+    ACTION = "story"      # Use STORY instead
+    THINKER = "connection"  # Use CONNECTION instead
 
 
 class OverlayZone(Enum):
