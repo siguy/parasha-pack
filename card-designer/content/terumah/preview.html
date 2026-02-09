@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terumah Deck Preview - For Review</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #5c2d91 0%, #7b4bb3 100%);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .header .hebrew-title {
+      font-size: 3rem;
+      font-family: 'Times New Roman', serif;
+      margin-bottom: 1rem;
+    }
+
+    .header .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .review-banner {
+      background: #d4edda;
+      border: 2px solid #28a745;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .summary {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .summary-box {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    .summary-box h2 {
+      color: #5c2d91;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #5c2d91;
+      padding-bottom: 0.5rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #5c2d91;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .cards-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: #5c2d91;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .card-header {
+      padding: 1rem 1.5rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-header.anchor { background: #5c2d91; }
+    .card-header.story { background: #FF4136; }
+    .card-header.connection { background: #0074D9; }
+    .card-header.power-word { background: #2ECC40; }
+
+    .card-title {
+      font-size: 1.3rem;
+    }
+
+    .card-title-he {
+      font-family: 'Times New Roman', serif;
+      font-size: 1.4rem;
+      margin-right: 0.5rem;
+    }
+
+    .card-badge {
+      background: rgba(255,255,255,0.2);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    .optional-badge {
+      background: #ffc107;
+      color: #333;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+    }
+
+    .card-image-panel {
+      position: sticky;
+      top: 1rem;
+      align-self: start;
+    }
+
+    .card-image {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .card-image:hover {
+      transform: scale(1.02);
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .card-section {
+      margin-bottom: 0;
+    }
+
+    .card-section h4 {
+      color: #666;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .hebrew-word {
+      font-family: 'Times New Roman', serif;
+      font-size: 1.8rem;
+      color: #5c2d91;
+      background: #f8f4fc;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 0.25rem;
+    }
+
+    .pronunciation {
+      font-style: italic;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .teacher-script {
+      background: #e8f4fd;
+      border-left: 4px solid #0074D9;
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+
+    .roleplay {
+      background: #fff3e0;
+      border-left: 4px solid #FF9800;
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .story-text {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      border-left: 4px solid #FF4136;
+    }
+
+    .questions-list {
+      list-style: none;
+    }
+
+    .questions-list li {
+      padding: 0.75rem;
+      background: #f8f9fa;
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #0074D9;
+    }
+
+    .question-type {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 0.25rem;
+    }
+
+    .feeling-faces {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .feeling-face {
+      text-align: center;
+      padding: 0.5rem 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .feeling-face .emoji {
+      font-size: 2rem;
+    }
+
+    .feeling-face .label {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .feeling-face .label-he {
+      font-family: 'Times New Roman', serif;
+      font-size: 1rem;
+      color: #5c2d91;
+    }
+
+    .visual-desc {
+      background: #f0f7f0;
+      border-left: 4px solid #2ECC40;
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Lightbox for full-size images */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    .session-flow {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .flow-step {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: white;
+    }
+
+    .flow-step.anchor { background: #5c2d91; }
+    .flow-step.story { background: #FF4136; }
+    .flow-step.connection { background: #0074D9; }
+    .flow-step.power-word { background: #2ECC40; }
+    .flow-step.optional { opacity: 0.6; }
+
+    .flow-arrow {
+      color: #999;
+    }
+
+    .checklist {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 2rem;
+    }
+
+    .checklist h2 {
+      color: #5c2d91;
+      margin-bottom: 1rem;
+    }
+
+    .checklist-section {
+      margin-bottom: 1rem;
+    }
+
+    .checklist-section h4 {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.5rem 0;
+    }
+
+    .checklist-item input {
+      margin-top: 0.25rem;
+    }
+
+    @media (max-width: 900px) {
+      .card-body {
+        grid-template-columns: 1fr;
+      }
+      .card-image-panel {
+        position: static;
+        text-align: center;
+      }
+      .card-image {
+        max-width: 300px;
+      }
+    }
+
+    @media print {
+      .header { break-after: avoid; }
+      .card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="hebrew-title">פָּרָשַׁת תְּרוּמָה</div>
+    <h1>Parashat Terumah</h1>
+    <div class="subtitle">Educational Card Deck Preview - Exodus 25:1-27:19</div>
+  </div>
+
+  <div class="review-banner">
+    Ready for Review: Content + Images - Click any image to enlarge
+  </div>
+
+  <div class="summary">
+    <div class="summary-box">
+      <h2>Deck Overview</h2>
+      <p><strong>Emotional Core:</strong> GIVING from the heart - the joy and pride of contributing something special to build something beautiful together.</p>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Total Cards</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Required</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Optional</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">~12</div>
+          <div class="stat-label">Min. Minutes</div>
+        </div>
+      </div>
+
+      <h4 style="margin-top: 1.5rem; color: #666;">Session Flow (Required Cards)</h4>
+      <div class="session-flow">
+        <span class="flow-step anchor">Anchor (2 min)</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step story">Story 1 (2 min)</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step story">Story 2 (2 min)</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step story">Story 3 (2 min)</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step connection">Connection (4 min)</span>
+      </div>
+
+      <h4 style="margin-top: 1rem; color: #666;">Optional Extensions</h4>
+      <div class="session-flow">
+        <span class="flow-step story optional">Story 4 (2 min)</span>
+        <span class="flow-step connection optional">Connection 2 (3 min)</span>
+        <span class="flow-step power-word optional">Power Word (2 min)</span>
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <h2>Hebrew Words This Week</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+        <div style="text-align: center;">
+          <div class="hebrew-word">תְּרוּמָה</div>
+          <div class="pronunciation">te-ru-MAH</div>
+          <div>Gift/Contribution</div>
+        </div>
+        <div style="text-align: center;">
+          <div class="hebrew-word">לֵב</div>
+          <div class="pronunciation">LEV</div>
+          <div>Heart</div>
+        </div>
+        <div style="text-align: center;">
+          <div class="hebrew-word">זָהָב</div>
+          <div class="pronunciation">za-HAV</div>
+          <div>Gold</div>
+        </div>
+        <div style="text-align: center;">
+          <div class="hebrew-word">יַחַד</div>
+          <div class="pronunciation">YA-chad</div>
+          <div>Together</div>
+        </div>
+        <div style="text-align: center;">
+          <div class="hebrew-word">מִשְׁכָּן</div>
+          <div class="pronunciation">mish-KAN</div>
+          <div>Tabernacle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards-container">
+    <h2 class="section-title">Anchor Card (Required)</h2>
+
+    <!-- ANCHOR CARD -->
+    <div class="card">
+      <div class="card-header anchor">
+        <div class="card-title">
+          <span class="card-title-he">פָּרָשַׁת תְּרוּמָה</span>
+          Parashat Terumah
+        </div>
+        <span class="card-badge">ANCHOR</span>
+      </div>
+      <div class="card-body">
+        <div class="card-image-panel">
+          <img src="images/anchor_1.png" alt="Anchor Card" class="card-image" onclick="openLightbox(this.src)">
+          <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem; text-align: center;">Click to enlarge</p>
+        </div>
+        <div class="card-content">
+          <div class="card-section">
+            <h4>Emotional Hook</h4>
+            <p style="font-size: 1.2rem; color: #5c2d91;">This week is about GIVING! When you give something special to help make something beautiful, it feels SO good inside!</p>
+          </div>
+
+          <div class="card-section">
+            <h4>Teacher Script</h4>
+            <div class="teacher-script">
+              This is Parashat Terumah! Can you say "Terumah"? Terumah!
+              It means a special gift that you give from your HEART.
+              This week, the Jewish people are going to build something
+              SO special - and everyone gets to help! When we give
+              something to help others, it makes us feel really good
+              inside. Put your hand on your heart - that's where
+              the good feeling is!
+            </div>
+          </div>
+
+          <div class="card-section">
+            <h4>Visual Description</h4>
+            <div class="visual-desc">
+              Hands lifting up colorful gifts toward golden light. Treasures include: shiny gold, purple and blue fabric, red yarn.
+              A heart shape formed by the arrangement. Warm, glowing feeling. Community silhouettes in the background, all contributing.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Story Cards (3 Required + 1 Optional)</h2>
+
+    <!-- STORY 1 -->
+    <div class="card">
+      <div class="card-header story">
+        <div class="card-title">
+          <span class="card-title-he">בַּקָּשָׁה מְיֻחֶדֶת</span>
+          #1: A Special Request
+        </div>
+        <span class="card-badge">STORY</span>
+      </div>
+      <div class="card-body">
+        <div class="card-image-panel">
+          <img src="images/story_1.png" alt="Story 1" class="card-image" onclick="openLightbox(this.src)">
+          <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem; text-align: center;">Click to enlarge</p>
+        </div>
+        <div class="card-content">
+          <div class="card-section">
+            <h4>Hebrew Keyword</h4>
+            <span class="hebrew-word">לֵב</span>
+            <span class="pronunciation">LEV - Heart</span>
+          </div>
+
+          <div class="card-section">
+            <h4>Story Text (on card)</h4>
+            <div class="story-text">God asks Moses for help. "Tell the people to bring gifts from their hearts. We are going to build something special!"</div>
+          </div>
+
+          <div class="card-section">
+            <h4>Roleplay Prompt (on card)</h4>
+            <div class="roleplay">Act it out: Put your hand on your heart - that's where giving comes from!</div>
+          </div>
+
+          <div class="card-section">
+            <h4>Teacher Script</h4>
+            <div class="teacher-script">
+              God said to Moses, "I have a very special job for the people.
+              Ask them to bring gifts - but not just any gifts. Gifts from
+              their HEARTS!" That means gifts they REALLY want to give.
+              Put your hand on your heart. Can you feel it? When we give
+              from our heart, it means we really, truly want to help!
+              Moses was so excited to tell everyone!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="card">
+      <div class="card-header story">
+        <div class="card-title">
+          <span class="card-title-he">מַתָּנוֹת יָפוֹת</span>
+          #2: Beautiful Gifts
+        </div>
+        <span class="card-badge">STORY</span>
+      </div>
+      <div class="card-body">
+        <div class="card-image-panel">
+          <img src="images/story_2.png" alt="Story 2" class="card-image" onclick="openLightbox(this.src)">
+          <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem; text-align: center;">Click to enlarge</p>
+        </div>
+        <div class="card-content">
+          <div class="card-section">
+            <h4>Hebrew Keyword</h4>
+            <span class="hebrew-word">זָהָב</span>
+            <span class="pronunciation">za-HAV - Gold</span>
+          </div>
+
+          <div class="card-section">
+            <h4>Story Text (on card)</h4>
+            <div class="story-text">The people bring their treasures! Shiny gold! Sparkling silver! Beautiful purple, blue, and red fabric! Everyone has something to give!</div>
+          </div>
+
+          <div class="card-section">
+            <h4>Roleplay Prompt (on card)</h4>
+            <div class="roleplay">Act it out: Carry something precious very carefully and put it in the pile!</div>
+          </div>
+
+          <div class="card-section">
+            <h4>Teacher Script</h4>
+            <div class="teacher-script">
+              When the people heard they could help, they were SO excited!
+              They brought their most beautiful things. Some people brought
+              shiny gold - ZAHAV! Some brought silver. Some brought beautiful
+              fabric - purple like grapes, blue like the sky, red like apples!
+              Let's pretend we're bringing something special. Pick up
+              something pretend that's very precious. Carry it carefully...
+              now put it gently in the pile. You're helping!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="card">
+      <div class="card-header story">
+        <div class="card-title">
+          <span class="card-title-he">בּוֹנִים בְּיַחַד</span>
+          #3: Building Together
+        </div>
+        <span class="card-badge">STORY</span>
+      </div>
+      <div class="card-body">
+        <div class="card-image-panel">
+          <img src="images/story_3.png" alt="Story 3" class="card-image" onclick="openLightbox(this.src)">
+          <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem; text-align: center;">Click to enlarge</p>
+        </div>
+        <div class="card-content">
+          <div class="card-section">
+            <h4>Hebrew Keyword</h4>
+            <span class="hebrew-word">יַחַד</span>
+            <span class="pronunciation">YA-chad - Together</span>
+          </div>
+
+          <div class="card-section">
+            <h4>Story Text (on card)</h4>
+            <div class="story-text">Everyone works together! Some people sew. Some people hammer. Some people carry. When we all help, we can build amazing things!</div>
+          </div>
+
+          <div class="card-section">
+            <h4>Roleplay Prompt (on card)</h4>
+            <div class="roleplay">Act it out: Show me how YOU would help build - hammer, sew, carry, or paint!</div>
+          </div>
+
+          <div class="card-section">
+            <h4>Teacher Script</h4>
+            <div class="teacher-script">
+              Now it was time to BUILD! But one person couldn't do it alone.
+              They needed to work YACHAD - together! Some people knew how
+              to sew the beautiful fabrics. Some people knew how to hammer
+              and build with wood. Some people carried heavy things. Everyone
+              helped in their own special way! Let's all help build! Show me -
+              what job would YOU do? Hammer? (pound pound!) Sew? (pull the thread!)
+              Carry? (lift and walk!) Paint? (swish swish!) Great job, builders!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 4 (OPTIONAL) -->
+    <div class="card">
+      <div class="card-header story">
+        <div class="card-title">
+          <span class="card-title-he">הִנֵּה מָה עָשִׂינוּ!</span>
+          #4: Look What We Made!
+        </div>
+        <span class="card-badge optional-badge">OPTIONAL</span>
+      </div>
+      <div class="card-body">
+        <div class="card-image-panel">
+          <img src="images/story_4.png" alt="Story 4" class="card-image" onclick="openLightbox(this.src)">
+          <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem; text-align: center;">Click to enlarge</p>
+        </div>
+        <div class="card-content">
+          <div class="card-section">
+            <h4>Hebrew Keyword</h4>
+            <span class="hebrew-word">מִשְׁכָּן</span>
+            <span class="pronunciation">mish-KAN - Tabernacle</span>
+          </div>
+
+          <div class="card-section">
+            <h4>Story Text (on card)</h4>
+            <div class="story-text">The Mishkan is beautiful! It shines with gold and glows with colors. Everyone helped make this special place!</div>
+          </div>
+
+          <div class="card-section">
+            <h4>Roleplay Prompt (on card)</h4>
+            <div class="roleplay">Act it out: Step back, look up, and say WOW together!</div>
+          </div>
+
+          <div class="card-section">
+            <h4>Teacher Script</h4>
+            <div class="teacher-script">
+              And when it was all done, everyone stepped back and looked.
+              The Mishkan - God's special house - was SO beautiful! It
+              sparkled with gold. The fabrics were purple and blue and red.
+              Everything was just right. And you know what? EVERYONE helped
+              make it. The people who brought gold, the people who brought
+              fabric, the people who sewed, the people who hammered - everyone!
+              Let's step back and look at our amazing work. Ready? Say it
+              with me: WOW! We did it TOGETHER!
+            </div>
+          </div>
+
+          <div class="card-section">
+            <h4>When to Use</h4>
+            <p style="color: #666; font-style: italic;">If time allows, shows the payoff of everyone's giving.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Connection Cards (1 Required + 1 Optional)</h2>
+
+    <!-- CONNECTION 1 -->
+    <div class="card">
+      <div class="card-header connection">
+        <div class="card-title">
+          <span class="card-title-he">מָה אֲנִי יָכוֹל לָתֵת?</span>
+          What Can I Give?
+        </div>
+        <span class="card-badge">CONNECTION</span>
+      </div>
+      <div class="card-body">
+        <div class="card-image-panel">
+          <img src="images/connection_1.png" alt="Connection 1" class="card-image" onclick="openLightbox(this.src)">
+          <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem; text-align: center;">Click to enlarge</p>
+        </div>
+        <div class="card-content">
+          <div class="card-section">
+            <h4>Discussion Questions (on card)</h4>
+            <ul class="questions-list">
+              <li>
+                <div class="question-type">Personal</div>
+                If we were building something special for our classroom, what would YOU bring to help?
+              </li>
+              <li>
+                <div class="question-type">Empathy</div>
+                How do you think the people felt when they gave their special gifts?
+              </li>
+              <li>
+                <div class="question-type">Action</div>
+                What's something special you have that you could share with someone?
+              </li>
+            </ul>
+          </div>
+
+          <div class="card-section">
+            <h4>Feeling Faces (on card - Hebrew only)</h4>
+            <div class="feeling-faces">
+              <div class="feeling-face">
+                <div class="emoji">🥹</div>
+                <div class="label-he">גֵּאֶה</div>
+                <div class="label">Proud</div>
+              </div>
+              <div class="feeling-face">
+                <div class="emoji">😊</div>
+                <div class="label-he">שָׂמֵחַ</div>
+                <div class="label">Happy</div>
+              </div>
+              <div class="feeling-face">
+                <div class="emoji">🤗</div>
+                <div class="label-he">נָדִיב</div>
+                <div class="label">Generous</div>
+              </div>
+              <div class="feeling-face">
+                <div class="emoji">😃</div>
+                <div class="label-he">נִרְגָּשׁ</div>
+                <div class="label">Excited</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-section">
+            <h4>Teacher Script</h4>
+            <div class="teacher-script">
+              Let's sit in our Torah Talk circle! In our story, everyone
+              brought something to help. Now I want to hear from YOU!
+              If we were building something special for our classroom -
+              maybe a cozy reading corner or a beautiful art wall -
+              what would YOU bring to help? Maybe crayons? A special pillow?
+              Your helping hands? Let's go around and share. And point to
+              a feeling face - how does it feel when you give something special?
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONNECTION 2 (OPTIONAL) -->
+    <div class="card">
+      <div class="card-header connection">
+        <div class="card-title">
+          <span class="card-title-he">עוֹזְרִים בְּיַחַד</span>
+          Helping Together
+        </div>
+        <span class="card-badge optional-badge">OPTIONAL</span>
+      </div>
+      <div class="card-body">
+        <div class="card-image-panel">
+          <img src="images/connection_2.png" alt="Connection 2" class="card-image" onclick="openLightbox(this.src)">
+          <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem; text-align: center;">Click to enlarge</p>
+        </div>
+        <div class="card-content">
+          <div class="card-section">
+            <h4>Discussion Questions (on card)</h4>
+            <ul class="questions-list">
+              <li>
+                <div class="question-type">Personal</div>
+                Have you ever helped build or make something with other people? What did you make?
+              </li>
+              <li>
+                <div class="question-type">Empathy</div>
+                Why is it more fun to build something with friends than all alone?
+              </li>
+              <li>
+                <div class="question-type">Action</div>
+                What's one way you can help at home or at school this week?
+              </li>
+            </ul>
+          </div>
+
+          <div class="card-section">
+            <h4>Feeling Faces (on card - Hebrew only)</h4>
+            <div class="feeling-faces">
+              <div class="feeling-face">
+                <div class="emoji">😊</div>
+                <div class="label-he">שָׂמֵחַ</div>
+                <div class="label">Happy</div>
+              </div>
+              <div class="feeling-face">
+                <div class="emoji">🥹</div>
+                <div class="label-he">גֵּאֶה</div>
+                <div class="label">Proud</div>
+              </div>
+              <div class="feeling-face">
+                <div class="emoji">🤝</div>
+                <div class="label-he">עוֹזֵר</div>
+                <div class="label">Helpful</div>
+              </div>
+              <div class="feeling-face">
+                <div class="emoji">💪</div>
+                <div class="label-he">חָזָק</div>
+                <div class="label">Strong</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-section">
+            <h4>Teacher Script</h4>
+            <div class="teacher-script">
+              The Jewish people worked TOGETHER - yachad! Have you ever
+              built something with other people? Maybe you built a tall
+              tower with blocks with a friend. Or helped your family
+              cook dinner. Or made an art project with your class.
+              Tell us about it! What did you make? Who helped?
+              And here's a question: why is it more fun to build with
+              friends? Let's share our ideas!
+            </div>
+          </div>
+
+          <div class="card-section">
+            <h4>When to Use</h4>
+            <p style="color: #666; font-style: italic;">If deeper discussion wanted or longer session available.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Power Word Card (Optional)</h2>
+
+    <!-- POWER WORD -->
+    <div class="card">
+      <div class="card-header power-word">
+        <div class="card-title">
+          <span class="card-title-he">תְּרוּמָה</span>
+          Terumah - Gift
+        </div>
+        <span class="card-badge optional-badge">OPTIONAL</span>
+      </div>
+      <div class="card-body">
+        <div class="card-image-panel">
+          <img src="images/power_word_1.png" alt="Power Word" class="card-image" onclick="openLightbox(this.src)">
+          <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem; text-align: center;">Click to enlarge</p>
+        </div>
+        <div class="card-content">
+          <div class="card-section">
+            <h4>Hebrew Word</h4>
+            <span class="hebrew-word" style="font-size: 2.5rem;">תְּרוּמָה</span>
+            <div class="pronunciation" style="margin-top: 0.5rem;">te-ru-MAH - Gift / Contribution</div>
+          </div>
+
+          <div class="card-section">
+            <h4>Torah Source (on card)</h4>
+            <p><strong>Exodus 25:2:</strong> "Tell the people to bring Me gifts - from everyone whose heart moves them."</p>
+          </div>
+
+          <div class="card-section">
+            <h4>Example for Kids (on card)</h4>
+            <p style="font-size: 1.1rem;">"When you share your toys, that's a terumah - a gift from your heart!"</p>
+          </div>
+
+          <div class="card-section">
+            <h4>Teacher Script</h4>
+            <div class="teacher-script">
+              Our special Hebrew word today is TERUMAH! Can you say it?
+              Te-ru-MAH! It means a gift - but not just any gift.
+              A terumah is a gift you give because you WANT to, from your heart.
+              The Torah says the people brought gifts "from everyone whose
+              heart moved them." That means they felt the giving feeling
+              inside! When you share something because you want to help,
+              that's a terumah. Can you think of a terumah you gave?
+              Let's say it again: Terumah!
+            </div>
+          </div>
+
+          <div class="card-section">
+            <h4>When to Use</h4>
+            <p style="color: #666; font-style: italic;">For Hebrew vocabulary focus. Can also integrate into Anchor card introduction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVIEW CHECKLIST -->
+    <div class="checklist">
+      <h2>Review Checklist</h2>
+      <p style="margin-bottom: 1rem; color: #666;">Please review and check off each item. Add notes at the bottom.</p>
+
+      <div class="checklist-section">
+        <h4>Content</h4>
+        <div class="checklist-item">
+          <input type="checkbox" id="c1">
+          <label for="c1">Does the emotional core (giving from heart) feel right?</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c2">
+          <label for="c2">Are the story cards in the right order?</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c3">
+          <label for="c3">Do the roleplay prompts work for 18 kids in a circle?</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c4">
+          <label for="c4">Are the connection questions engaging?</label>
+        </div>
+      </div>
+
+      <div class="checklist-section">
+        <h4>Hebrew</h4>
+        <div class="checklist-item">
+          <input type="checkbox" id="h1">
+          <label for="h1">Is the nikud (vowels) correct on all words?</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="h2">
+          <label for="h2">Are the keywords appropriate for 4-6 year olds?</label>
+        </div>
+      </div>
+
+      <div class="checklist-section">
+        <h4>Card Images</h4>
+        <div class="checklist-item">
+          <input type="checkbox" id="v1">
+          <label for="v1">Does each card image match the text content on the left?</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="v2">
+          <label for="v2">Are the Hebrew words rendered correctly on the cards?</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="v3">
+          <label for="v3">Is the visual style consistent across all cards?</label>
+        </div>
+      </div>
+
+      <div class="checklist-section">
+        <h4>Practical</h4>
+        <div class="checklist-item">
+          <input type="checkbox" id="p1">
+          <label for="p1">Does the 12-minute required session work for your classroom?</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="p2">
+          <label for="p2">Are the optional cards useful or unnecessary?</label>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <h4>Notes & Feedback</h4>
+        <textarea style="width: 100%; height: 150px; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; margin-top: 0.5rem;" placeholder="Add any feedback, changes, or questions here..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; padding: 2rem; color: #999; font-size: 0.9rem;">
+    Generated by Parasha Packs Agent System - Terumah Deck v2 (with images)
+  </div>
+
+  <!-- Lightbox for full-size images -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Full size">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+# Parasha Scholar Research Output
+# Parasha: Terumah
+# Generated: 2024-02-02
+
+parasha_research:
+  name_en: "Terumah"
+  name_he: "תְּרוּמָה"
+  ref: "Exodus 25:1-27:19"
+  book: "Exodus"
+
+  # Core emotional focus
+  emotional_core: |
+    GIVING from the heart. The joy and pride of contributing something
+    special to build something beautiful together. "I helped make this!"
+
+  connection_hook: |
+    Every child has something special they can give. When we share what
+    we have - our things, our talents, our help - we feel proud and happy.
+    The Jewish people built something amazing because EVERYONE brought
+    something. Even kids can help build something important!
+
+  # Parasha type assessment
+  parasha_type: "building"
+  narrative_potential: "low"
+
+  # For low-narrative parshiyot
+  if_low_narrative:
+    core_concept: |
+      Building the Mishkan (God's special house) through voluntary gifts.
+      The word "Terumah" means to lift up - when we give, we lift ourselves up too.
+
+    tangible_hook: |
+      Turn the abstract building instructions into a story of community
+      contribution. Focus on WHAT people brought (beautiful, colorful things)
+      and HOW it felt to give, not the technical construction details.
+
+    scenario_ideas:
+      - "If we were building something special for our classroom, what would YOU bring?"
+      - "What's something you're really good at that you could share?"
+      - "How do you feel when you help make something?"
+
+  # Key story moments (contribution-focused, not construction-focused)
+  key_moments:
+    - moment: "God asks for gifts from the heart"
+      characters: ["Moses", "God (voice only)"]
+      emotion: "anticipation, invitation"
+      connection_potential: |
+        Being asked to help with something important feels special.
+        "Will you help me?" is exciting to hear.
+      visual_potential: "medium"
+      notes: "Show Moses receiving the request, looking thoughtful and honored"
+
+    - moment: "People bring gold and silver"
+      characters: ["Israelites - diverse group"]
+      emotion: "generosity, pride"
+      connection_potential: |
+        Bringing your best/favorite thing to share. The feeling of
+        putting something precious into a collection.
+      visual_potential: "high"
+      notes: "Colorful, joyful scene of people carrying shiny treasures"
+
+    - moment: "People bring beautiful colored fabrics"
+      characters: ["Israelites - including children"]
+      emotion: "creativity, contribution"
+      connection_potential: |
+        Kids can relate to bringing art supplies, fabric, craft materials.
+        Different colors = different people contributing different things.
+      visual_potential: "high"
+      notes: "Purple, blue, crimson yarns - very visually rich"
+
+    - moment: "Everyone works together building"
+      characters: ["Israelites working as community"]
+      emotion: "teamwork, purpose"
+      connection_potential: |
+        Working together on a class project, building with blocks together.
+        Many hands make the work lighter.
+      visual_potential: "high"
+      notes: "Community scene, everyone doing their part"
+
+    - moment: "The beautiful Mishkan is complete (preview)"
+      characters: ["Community admiring the result"]
+      emotion: "awe, pride, accomplishment"
+      connection_potential: |
+        The feeling of stepping back and seeing something you helped create.
+        "WE made this together!"
+      visual_potential: "high"
+      notes: "Can show completed tabernacle exterior, golden and beautiful"
+
+  # Character analysis
+  main_character:
+    name_en: "Moses"
+    name_he: "מֹשֶׁה"
+    why_relatable: |
+      Moses receives the instructions and shares them with the people.
+      He's like a teacher organizing a big class project - helping
+      everyone know how they can contribute.
+    key_emotion: "inspired"
+    notes: "Returning character - kids know him from Yitro"
+
+  secondary_character:
+    name_en: "The Jewish People (as community)"
+    name_he: "בְּנֵי יִשְׂרָאֵל"
+    role_in_story: |
+      The real heroes of this parasha are the PEOPLE who gave.
+      Men, women, and children all contributed. Show diverse community.
+    notes: "Focus on community rather than individual secondary character"
+
+  # Discussion seeds for Connection cards
+  discussion_seeds:
+    - "Have you ever given something special to help with a project? How did it feel?"
+    - "What's something YOU are good at that you could share to help others?"
+    - "When everyone helps, what can we build together that one person couldn't build alone?"
+    - "How do you feel when someone asks for YOUR help with something important?"
+
+  # Hebrew vocabulary recommendation
+  hebrew_word:
+    word: "תרומה"
+    word_nikud: "תְּרוּמָה"
+    meaning: "Gift / Contribution / Offering"
+    why_this_word: |
+      It's the name of the parasha and captures the core theme.
+      Root means "to lift up" - when we give, we lift ourselves and others.
+    torah_source: "Exodus 25:2 - 'Take for Me a terumah (gift)'"
+    alternative_words:
+      - word: "לֵב"
+        word_nikud: "לֵב"
+        meaning: "Heart"
+        why: "The gifts were from 'everyone whose heart moved them'"
+
+  # Safety notes
+  avoid:
+    - "Detailed construction measurements (boring for kids)"
+    - "The cherubim on the ark (could be confusing - winged creatures)"
+    - "The altar and sacrifices (too complex, appears at end of reading)"
+    - "Any attempt to visualize God"
+
+  # Continuity tracking
+  continuity:
+    year_context_checked: true
+
+    characters_this_week:
+      new_characters: []  # No new named individuals
+
+      returning_characters:
+        - name: "Moses"
+          last_appearance: "Yitro (assumed)"
+          reference_sheet_exists: true
+          what_changed: |
+            Moses is now receiving building instructions rather than
+            receiving the commandments. Same devoted leader, now
+            organizing a big community project.
+
+    # To add to YEAR_CONTEXT.yaml after deck complete
+    year_context_updates:
+      new_characters_to_add: []
+      new_concepts_to_add:
+        - "The Mishkan (God's special house/tent)"
+        - "Giving from the heart (nediv lev)"
+        - "Building something together as a community"
+      new_hebrew_words_to_add:
+        - word: "תְּרוּמָה"
+          meaning: "Gift/Contribution"
+
+# Sources consulted:
+# - Sefaria API (Exodus 25:1-27:19)
+# - Aleph Beta (https://www.alephbeta.org/parshat-terumah)
+# - Chabad Kids (https://www.chabad.org/kids/article_cdo/aid/2327942)
+# - My Jewish Learning (https://www.myjewishlearning.com/torah-portions/parashat-terumah/)
+# - Cleveland Jewish News (https://www.clevelandjewishnews.com/features/religious_life/torah/the-power-of-giving-a-lesson-from-parshat-terumah/)

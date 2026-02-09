@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans:
+    var(--font-assistant), var(--font-geist-sans), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-hebrew: var(--font-heebo), sans-serif;
+  
+  --font-fredoka: var(--font-fredoka), sans-serif;
+  --font-mali: var(--font-mali), cursive;
+  --font-patrick: var(--font-patrick), cursive;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-hebrew);
+}

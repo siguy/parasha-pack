@@ -1,0 +1,13 @@
+{
+  "fontFamily": "font-fredoka",
+  "imageHeightPercent": 80,
+  "descriptionFontSize": 16,
+  "titleFontSize": 41,
+  "titleColor": "#ffffff",
+  "descriptionBgColor": "#ef4444",
+  "footerBgColor": "#fbbcbc",
+  "containerPadding": 8,
+  "keywordFontSize": 27,
+  "theme": "immersive-cinematic",
+  "elementPositions": {}
+}
