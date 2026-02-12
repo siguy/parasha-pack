@@ -55,7 +55,7 @@ export function SpotlightCard({ card, deckId, config, onConfigChange }: Spotligh
             
             {/* Center Top: Character Names */}
             <div className="absolute top-3 left-0 right-0 flex justify-center pointer-events-none">
-                 <DraggableElement id="spotlight-names" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto">
+                 <DraggableElement id="spotlight-names" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
                     <div className="drop-shadow-lg flex flex-col items-center">
                          <FitText
                             maxSize={96}

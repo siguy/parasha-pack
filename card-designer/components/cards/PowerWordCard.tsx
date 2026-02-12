@@ -55,7 +55,7 @@ export function PowerWordCard({ card, deckId, config, onConfigChange }: PowerWor
             
             {/* Center Top: Word & Meaning */}
             <div className="absolute top-[6%] left-0 right-0 flex justify-center pointer-events-none">
-                 <DraggableElement id="power-word-group" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto">
+                 <DraggableElement id="power-word-group" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
                     <div className="drop-shadow-xl flex flex-col items-center w-full">
                          <FitText
                             maxSize={120}

@@ -55,7 +55,7 @@ export function TraditionCard({ card, deckId, config, onConfigChange }: Traditio
             
             {/* Center Top: Titles */}
             <div className="absolute top-[8%] left-0 right-0 flex justify-center pointer-events-none">
-                 <DraggableElement id="tradition-titles" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto">
+                 <DraggableElement id="tradition-titles" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
                     <div className="drop-shadow-xl flex flex-col items-center gap-2 w-full">
                          <FitText
                             maxSize={110}
