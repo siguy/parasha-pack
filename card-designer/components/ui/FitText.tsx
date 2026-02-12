@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 
 interface FitTextProps {
   children: string;
@@ -16,8 +16,8 @@ interface FitTextProps {
 
 /**
  * Dynamically scales text to fill its container width.
- * Starts at maxSize, measures natural width, scales down until text fits in one line.
- * Works with Hebrew (RTL) and English text.
+ * Uses Canvas API for measurement — works correctly for RTL Hebrew text
+ * without DOM layout dependencies.
  */
 export function FitText({
   children,
@@ -29,19 +29,32 @@ export function FitText({
 }: FitTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
-  const [fontSize, setFontSize] = useState(maxSize);
+  const [fontSize, setFontSize] = useState(minSize);
 
-  useEffect(() => {
+  const measure = useCallback(() => {
     const container = containerRef.current;
     const text = textRef.current;
-    if (!container || !text) return;
+    if (!container || !text || !children) return;
 
-    const availableWidth = container.offsetWidth - padding * 2;
+    const availableWidth = container.clientWidth - padding * 2;
     if (availableWidth <= 0) return;
 
-    // Measure at max size to get natural width
-    text.style.fontSize = `${maxSize}px`;
-    const naturalWidth = text.scrollWidth;
+    // Get computed font properties from the rendered element
+    const computed = window.getComputedStyle(text);
+    const fontFamily = computed.fontFamily;
+    const fontWeight = computed.fontWeight;
+
+    // Use Canvas API to measure text width at maxSize.
+    // Canvas measureText works correctly for Hebrew/RTL text
+    // and doesn't depend on DOM overflow or layout context.
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    ctx.font = `${fontWeight} ${maxSize}px ${fontFamily}`;
+    const naturalWidth = ctx.measureText(children).width;
+
+    if (naturalWidth <= 0) return;
 
     if (naturalWidth <= availableWidth) {
       setFontSize(maxSize);
@@ -51,6 +64,30 @@ export function FitText({
       setFontSize(Math.max(minSize, scaled));
     }
   }, [children, maxSize, minSize, padding]);
+
+  useEffect(() => {
+    const run = () => {
+      requestAnimationFrame(() => {
+        measure();
+      });
+    };
+
+    // Wait for fonts to load — critical for Hebrew fonts
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(run);
+    } else {
+      run();
+    }
+
+    // Re-measure when container resizes
+    const observer = new ResizeObserver(() => {
+      measure();
+    });
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    return () => observer.disconnect();
+  }, [children, measure]);
 
   return (
     <div

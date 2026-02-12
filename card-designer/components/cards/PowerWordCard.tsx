@@ -66,7 +66,7 @@ export function PowerWordCard({ card, deckId, config, onConfigChange }: PowerWor
                                 textShadow: '3px 3px 0px #000',
                             }}
                          >
-                            {card.hebrew_word || ''}
+                            {card.hebrew_word_nikud || card.hebrew_word || ''}
                          </FitText>
                          <div className="bg-black/40 backdrop-blur-sm px-4 py-1 rounded-full mt-2">
                              <h2 className="text-xl font-bold text-white uppercase tracking-[0.2em]">
