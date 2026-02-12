@@ -21,6 +21,7 @@ The deck creation process is broken into specialized roles (agents), each with s
 | 4   | [Hebrew Expert](definitions/04-hebrew-expert.md)             | Biblical Hebrew, nikud                    | Hebrew content      |
 | 5   | [Visual Director](definitions/05-visual-director.md)         | Art direction, consistency                | Image prompts       |
 | 5b  | [Card Designer](definitions/09-card-designer.md)             | Card composition, front/back layout       | Final card images   |
+| 5c  | [Designer Agent](definitions/09b-designer-agent.md)          | Visual pipeline orchestration             | Exported cards      |
 | 6   | [Editor](definitions/06-editor.md)                           | Quality assurance                         | QA review           |
 | 7   | [Print Producer](definitions/07-print-producer.md)           | Print production                          | Print-ready files   |
 | 8   | [Web Producer](definitions/08-web-producer.md)               | Mobile web                                | Teacher guide site  |
