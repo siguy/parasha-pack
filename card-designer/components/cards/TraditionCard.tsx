@@ -6,6 +6,7 @@ import { CardFrame } from './CardFrame';
 import { cn } from '@/lib/utils';
 import { LayoutConfig, DEFAULT_LAYOUT_CONFIG } from '@/types/editor';
 import { DraggableElement } from '../editor/DraggableElement';
+import { FitText } from '../ui/FitText';
 
 interface TraditionCardProps {
   card: TraditionCardData;
@@ -55,15 +56,18 @@ export function TraditionCard({ card, deckId, config, onConfigChange }: Traditio
             {/* Center Top: Titles */}
             <div className="absolute top-[8%] left-0 right-0 flex justify-center pointer-events-none">
                  <DraggableElement id="tradition-titles" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto">
-                    <div className="text-center drop-shadow-xl flex flex-col items-center gap-2">
-                         <h1 
-                            className="font-black font-hebrew text-5xl text-white leading-tight"
-                            style={{ 
-                                textShadow: '0px 2px 10px rgba(0,0,0,0.5)' 
+                    <div className="drop-shadow-xl flex flex-col items-center gap-2 w-full">
+                         <FitText
+                            maxSize={110}
+                            minSize={40}
+                            padding={40}
+                            className="font-black font-hebrew text-white"
+                            style={{
+                                textShadow: '0px 2px 10px rgba(0,0,0,0.5)',
                             }}
                          >
-                            {card.hebrew_title}
-                         </h1>
+                            {card.hebrew_title || ''}
+                         </FitText>
                          <div className="border-t-2 border-white/50 w-32" />
                          <h2 className="text-2xl font-bold text-white tracking-wide uppercase drop-shadow-md font-serif italic">
                             {card.english_title}

@@ -6,6 +6,7 @@ import { CardFrame } from './CardFrame';
 import { cn } from '@/lib/utils';
 import { LayoutConfig, DEFAULT_LAYOUT_CONFIG } from '@/types/editor';
 import { DraggableElement } from '../editor/DraggableElement';
+import { FitText } from '../ui/FitText';
 
 interface AnchorCardProps {
   card: AnchorCardData;
@@ -54,18 +55,19 @@ export function AnchorCard({ card, deckId, config, onConfigChange }: AnchorCardP
             {/* Top Centered Hebrew Title */}
             <div className="absolute top-[10%] left-0 right-0 flex justify-center">
                 <DraggableElement id="anchor-title" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto">
-                    <div 
-                        className="text-center drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]"
-                    >
-                         <h1 
-                            className="font-black font-hebrew text-5xl leading-tight"
-                            style={{ 
+                    <div className="drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]">
+                         <FitText
+                            maxSize={120}
+                            minSize={48}
+                            padding={48}
+                            className="font-black font-hebrew"
+                            style={{
                                 color: borderColor,
-                                textShadow: '2px 2px 0px white, -2px -2px 0px white, 2px -2px 0px white, -2px 2px 0px white' // Outline effect
+                                textShadow: '2px 2px 0px white, -2px -2px 0px white, 2px -2px 0px white, -2px 2px 0px white',
                             }}
                          >
-                            {card.hebrew_title || card.title_he}
-                         </h1>
+                            {card.hebrew_title || card.title_he || ''}
+                         </FitText>
                     </div>
                 </DraggableElement>
             </div>

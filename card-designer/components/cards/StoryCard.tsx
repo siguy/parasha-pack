@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { Star, Heart, Zap, Drama } from 'lucide-react';
 import { LayoutConfig, DEFAULT_LAYOUT_CONFIG } from '@/types/editor';
 import { DraggableElement } from '../editor/DraggableElement';
+import { FitText } from '../ui/FitText';
 
 interface StoryCardProps {
   card: CardData;
@@ -344,18 +345,21 @@ function ImmersiveCinematicLayout({ card, deckId, activeConfig, borderColor, cle
                 <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
             </div>
 
-            {/* Top: Title (smaller) */}
+            {/* Top: Title */}
             <div className="absolute top-3 left-0 right-0 z-10 flex justify-center pointer-events-none">
-                <DraggableElement id="title-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto">
-                    <div className="text-center drop-shadow-lg flex flex-col items-center">
-                        <h1 
-                            className="font-black font-hebrew text-2xl text-white leading-none"
-                            style={{ 
-                                textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000' 
+                <DraggableElement id="title-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto w-full">
+                    <div className="drop-shadow-lg flex flex-col items-center">
+                        <FitText
+                            maxSize={72}
+                            minSize={28}
+                            padding={32}
+                            className="font-black font-hebrew text-white"
+                            style={{
+                                textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000',
                             }}
                         >
-                            {card.title_he}
-                        </h1>
+                            {card.title_he || ''}
+                        </FitText>
                         <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
                             {card.title_en}
                         </h2>
@@ -410,18 +414,21 @@ function ImmersiveCleanLayout({ card, deckId, activeConfig, borderColor, cleanRo
                 <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
             </div>
 
-            {/* Top: Title (smaller) */}
+            {/* Top: Title */}
             <div className="absolute top-3 left-0 right-0 z-10 flex justify-center pointer-events-none">
-                <DraggableElement id="title-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto">
-                    <div className="text-center drop-shadow-lg flex flex-col items-center">
-                        <h1 
-                            className="font-black font-hebrew text-2xl text-white leading-none"
-                            style={{ 
-                                textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000' 
+                <DraggableElement id="title-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto w-full">
+                    <div className="drop-shadow-lg flex flex-col items-center">
+                        <FitText
+                            maxSize={72}
+                            minSize={28}
+                            padding={32}
+                            className="font-black font-hebrew text-white"
+                            style={{
+                                textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000',
                             }}
                         >
-                            {card.title_he}
-                        </h1>
+                            {card.title_he || ''}
+                        </FitText>
                         <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
                             {card.title_en}
                         </h2>

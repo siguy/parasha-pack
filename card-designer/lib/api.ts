@@ -20,14 +20,17 @@ export async function getDeck(deckId: string): Promise<DeckData | null> {
 
     // Flatten front/back data for easier consumption in components
     if (data.cards) {
-      data.cards = data.cards.map((card: any) => ({
-        ...card,
-        ...(card.front || {}),
-        ...(card.back || {}),
-        // Normalize image_path to always use raw/ for Card Designer
-        // (components render text overlay, export saves to images/)
-        image_path: normalizeImagePath(card.image_path, card.card_id),
-      }));
+      data.cards = data.cards.map((card: any) => {
+        const merged = {
+          ...card,
+          ...(card.front || {}),
+          ...(card.back || {}),
+          // Normalize image_path to always use raw/ for Card Designer
+          // (components render text overlay, export saves to images/)
+          image_path: normalizeImagePath(card.image_path, card.card_id),
+        };
+        return normalizeFieldNames(merged);
+      });
     }
 
     return data as DeckData;
@@ -35,6 +38,58 @@ export async function getDeck(deckId: string): Promise<DeckData | null> {
     console.error(`Error loading deck ${deckId}:`, error);
     return null;
   }
+}
+
+/**
+ * Map legacy deck.json field names to what React components expect.
+ * Only sets a field if not already present (front/back data takes priority).
+ */
+function normalizeFieldNames(card: any): any {
+  const normalized = { ...card };
+
+  // Spotlight: character_name → hebrew_name/english_name, emotion_label → emotion_word
+  if (card.card_type === 'spotlight') {
+    if (!normalized.hebrew_name && normalized.character_name_he) {
+      normalized.hebrew_name = normalized.character_name_he;
+    }
+    if (!normalized.english_name && normalized.character_name_en) {
+      normalized.english_name = normalized.character_name_en;
+    }
+    if (!normalized.emotion_word_he && normalized.emotion_label_he) {
+      normalized.emotion_word_he = normalized.emotion_label_he;
+    }
+    if (!normalized.emotion_word_en && normalized.emotion_label_en) {
+      normalized.emotion_word_en = normalized.emotion_label_en;
+    }
+  }
+
+  // Story: description_en → english_description
+  if (card.card_type === 'story') {
+    if (!normalized.english_description && normalized.description_en) {
+      normalized.english_description = normalized.description_en;
+    }
+  }
+
+  // Connection: feeling_faces[].emoji → emojis[]
+  if (card.card_type === 'connection') {
+    if (!normalized.emojis && normalized.feeling_faces) {
+      normalized.emojis = normalized.feeling_faces
+        .map((f: any) => f.emoji)
+        .filter(Boolean);
+    }
+  }
+
+  // Tradition/Anchor: title_he → hebrew_title, title_en → english_title
+  if (card.card_type === 'tradition' || card.card_type === 'anchor') {
+    if (!normalized.hebrew_title && normalized.title_he) {
+      normalized.hebrew_title = normalized.title_he;
+    }
+    if (!normalized.english_title && normalized.title_en) {
+      normalized.english_title = normalized.title_en;
+    }
+  }
+
+  return normalized;
 }
 
 /**

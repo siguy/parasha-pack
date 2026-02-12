@@ -6,6 +6,7 @@ import { CardFrame } from './CardFrame';
 import { cn } from '@/lib/utils';
 import { LayoutConfig, DEFAULT_LAYOUT_CONFIG } from '@/types/editor';
 import { DraggableElement } from '../editor/DraggableElement';
+import { FitText } from '../ui/FitText';
 
 interface PowerWordCardProps {
   card: PowerWordCardData;
@@ -55,15 +56,18 @@ export function PowerWordCard({ card, deckId, config, onConfigChange }: PowerWor
             {/* Center Top: Word & Meaning */}
             <div className="absolute top-[6%] left-0 right-0 flex justify-center pointer-events-none">
                  <DraggableElement id="power-word-group" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto">
-                    <div className="text-center drop-shadow-xl flex flex-col items-center">
-                         <h1 
-                            className="font-black font-hebrew text-6xl text-white leading-tight"
-                            style={{ 
-                                textShadow: '3px 3px 0px #000' 
+                    <div className="drop-shadow-xl flex flex-col items-center w-full">
+                         <FitText
+                            maxSize={120}
+                            minSize={48}
+                            padding={40}
+                            className="font-black font-hebrew text-white"
+                            style={{
+                                textShadow: '3px 3px 0px #000',
                             }}
                          >
-                            {card.hebrew_word}
-                         </h1>
+                            {card.hebrew_word || ''}
+                         </FitText>
                          <div className="bg-black/40 backdrop-blur-sm px-4 py-1 rounded-full mt-2">
                              <h2 className="text-xl font-bold text-white uppercase tracking-[0.2em]">
                                 {card.english_meaning}

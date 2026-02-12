@@ -6,6 +6,7 @@ import { CardFrame } from './CardFrame';
 import { cn } from '@/lib/utils';
 import { LayoutConfig, DEFAULT_LAYOUT_CONFIG } from '@/types/editor';
 import { DraggableElement } from '../editor/DraggableElement';
+import { FitText } from '../ui/FitText';
 
 interface SpotlightCardProps {
   card: SpotlightCardData;
@@ -55,15 +56,18 @@ export function SpotlightCard({ card, deckId, config, onConfigChange }: Spotligh
             {/* Center Top: Character Names */}
             <div className="absolute top-3 left-0 right-0 flex justify-center pointer-events-none">
                  <DraggableElement id="spotlight-names" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto">
-                    <div className="text-center drop-shadow-lg flex flex-col items-center">
-                         <h1 
-                            className="font-black font-hebrew text-4xl text-white leading-none"
-                            style={{ 
-                                textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000' 
+                    <div className="drop-shadow-lg flex flex-col items-center">
+                         <FitText
+                            maxSize={96}
+                            minSize={40}
+                            padding={32}
+                            className="font-black font-hebrew text-white"
+                            style={{
+                                textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000',
                             }}
                          >
-                            {card.hebrew_name}
-                         </h1>
+                            {card.hebrew_name || ''}
+                         </FitText>
                          <h2 className="text-xl font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
                             {card.english_name}
                          </h2>

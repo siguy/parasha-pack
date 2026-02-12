@@ -6,6 +6,7 @@ import { CardFrame } from './CardFrame';
 import { cn } from '@/lib/utils';
 import { LayoutConfig, DEFAULT_LAYOUT_CONFIG } from '@/types/editor';
 import { DraggableElement } from '../editor/DraggableElement';
+import { FitText } from '../ui/FitText';
 
 interface ConnectionCardProps {
   card: ConnectionCardData;
@@ -52,17 +53,20 @@ export function ConnectionCard({ card, deckId, config, onConfigChange }: Connect
 
         {/* Top: Title */}
         <div className="absolute top-3 left-0 right-0 z-10 flex justify-center pointer-events-none">
-            <DraggableElement id="title-group" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto">
-                <div className="text-center drop-shadow-lg flex flex-col items-center">
-                    <h1
-                        className="font-black font-hebrew text-2xl leading-none"
+            <DraggableElement id="title-group" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
+                <div className="drop-shadow-lg flex flex-col items-center">
+                    <FitText
+                        maxSize={72}
+                        minSize={28}
+                        padding={32}
+                        className="font-black font-hebrew"
                         style={{
                             color: borderColor,
-                            textShadow: '2px 2px 4px rgba(0,0,0,0.5), -1px -1px 0 rgba(255,255,255,0.3)'
+                            textShadow: '2px 2px 4px rgba(0,0,0,0.5), -1px -1px 0 rgba(255,255,255,0.3)',
                         }}
                     >
                         {card.title_he || 'חִבּוּר'}
-                    </h1>
+                    </FitText>
                     <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
                         {card.title_en || 'CONNECTION'}
                     </h2>
