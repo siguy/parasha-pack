@@ -1,17 +1,17 @@
 /**
  * SpotlightCardBack - Teacher content for Spotlight (character) cards
  *
- * Displays:
- * - Character name (Hebrew + English) with emotion
- * - Character description
- * - Teaching moment (for villain/misguided cards)
- * - Teacher script
+ * SAY: teacher_script
+ * DO: emotion expression + teaching_moment_en
+ * ASK: discussion_prompts
+ * TIP: teacher_tip
  */
 'use client';
 
 import React from 'react';
 import { SpotlightCardData } from '@/types/card';
 import { CardBackFrame } from './CardBackFrame';
+import { BackSection } from './BackSection';
 
 interface SpotlightCardBackProps {
   card: SpotlightCardData;
@@ -20,14 +20,17 @@ interface SpotlightCardBackProps {
 
 export function SpotlightCardBack({ card, deckName }: SpotlightCardBackProps) {
   const borderColor = card.border_color || '#d4a84b';
-
-  // Use various field names for compatibility
-  const hebrewName = card.hebrew_name || card.character_name_he || card.title_he;
   const englishName = card.english_name || card.character_name_en || card.title_en;
-  const emotionHe = card.emotion_word_he || card.emotion_label_he;
-  const emotionEn = card.emotion_word_en;
-  const description = card.character_description_he || (card as any).character_description_en;
-  const teachingMoment = (card as any).teaching_moment_en;
+  const emotionEn = card.emotion_word_en || card.emotion_label_en;
+
+  // Build the DO THIS content
+  const doContent: string[] = [];
+  if (emotionEn) {
+    doContent.push(`Show children a "${emotionEn.toLowerCase()}" expression and have them mirror it.`);
+  }
+  if (card.teaching_moment_en) {
+    doContent.push(card.teaching_moment_en);
+  }
 
   return (
     <div id={`card-${card.card_id}-back`} className="w-full h-full">
@@ -35,76 +38,80 @@ export function SpotlightCardBack({ card, deckName }: SpotlightCardBackProps) {
         cardType="spotlight"
         deckName={deckName}
         borderColor={borderColor}
+        transitionLine={card.transition_line}
       >
-        {/* Title Section */}
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex flex-col">
-            <h1 className="font-black font-hebrew text-4xl text-slate-800 leading-tight">
-              {hebrewName}
-            </h1>
-            <h2 className="text-xl font-bold text-slate-600">
-              {englishName}
-            </h2>
-          </div>
-
-          {/* Emotion Badge */}
-          {(emotionHe || emotionEn) && (
-            <div
-              className="px-4 py-2 rounded-full text-white font-bold shadow-md flex flex-col items-center"
+        {/* Compact Title Line with Emotion Badge */}
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-xl font-bold text-slate-800 leading-tight">
+            {englishName}
+          </h2>
+          {emotionEn && (
+            <span
+              className="px-3 py-1 rounded-full text-white text-xs font-bold uppercase tracking-wide"
               style={{ backgroundColor: borderColor }}
             >
-              {emotionHe && (
-                <span className="font-hebrew text-lg">{emotionHe}</span>
-              )}
-              {emotionEn && (
-                <span className="text-xs uppercase tracking-wide opacity-90">{emotionEn}</span>
-              )}
-            </div>
+              {emotionEn}
+            </span>
           )}
         </div>
 
-        <div className="border-t border-slate-300 mb-4" />
-
-        {/* Character Description */}
-        {description && (
-          <div className="mb-4">
-            <h3 className="font-bold text-slate-500 text-xs uppercase tracking-wider mb-2">
-              About This Character
-            </h3>
-            <p className="text-slate-700 leading-relaxed">
-              {description}
-            </p>
-          </div>
-        )}
-
-        {/* Teaching Moment (for misguided characters) */}
-        {teachingMoment && (
-          <div
-            className="rounded-xl p-4 mb-4 border-l-4"
-            style={{
-              backgroundColor: `${borderColor}10`,
-              borderLeftColor: borderColor,
-            }}
+        <div className="flex-1 flex flex-col gap-2.5 min-h-0">
+          {/* SAY THIS - Teacher Script */}
+          <BackSection
+            icon="💬"
+            label="Say This"
+            borderColor={borderColor}
+            large
           >
-            <h3 className="font-bold text-slate-700 text-sm mb-2">
-              Teaching Moment
-            </h3>
-            <p className="text-slate-600 italic">
-              {teachingMoment}
-            </p>
-          </div>
-        )}
+            <p className="text-slate-700">{card.teacher_script}</p>
+          </BackSection>
 
-        {/* Teacher Script */}
-        <div className="flex-1 flex flex-col min-h-0">
-          <h3 className="font-bold text-slate-500 text-xs uppercase tracking-wider mb-2">
-            Teacher Script
-          </h3>
-          <div className="flex-1 bg-white rounded-lg p-4 shadow-inner border border-slate-200 overflow-auto">
-            <p className="text-slate-700 leading-relaxed text-sm">
-              {card.teacher_script}
-            </p>
-          </div>
+          {/* DO THIS - Emotion + Teaching Moment */}
+          {doContent.length > 0 && (
+            <BackSection
+              icon="🎯"
+              label="Do This"
+              borderColor={borderColor}
+              tintColor={`${borderColor}10`}
+            >
+              {doContent.map((text, i) => (
+                <p key={i} className={`text-slate-700 ${i === 0 ? 'font-medium' : 'italic mt-1.5'}`}>
+                  {text}
+                </p>
+              ))}
+            </BackSection>
+          )}
+
+          {/* ASK THIS - Discussion Prompts */}
+          {card.discussion_prompts && card.discussion_prompts.length > 0 && (
+            <BackSection
+              icon="❓"
+              label="Ask This"
+              borderColor={borderColor}
+              tintColor="#0074d915"
+            >
+              <ul className="text-slate-700 space-y-1.5">
+                {card.discussion_prompts.map((q, i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="text-slate-400 flex-shrink-0">•</span>
+                    <span>{q}</span>
+                  </li>
+                ))}
+              </ul>
+            </BackSection>
+          )}
+
+          {/* TIP */}
+          {card.teacher_tip && (
+            <BackSection
+              icon="💡"
+              label="Tip"
+              borderColor={borderColor}
+              tintColor="#f59e0b15"
+            >
+              <p className="text-slate-700">{card.teacher_tip}</p>
+            </BackSection>
+          )}
         </div>
       </CardBackFrame>
     </div>

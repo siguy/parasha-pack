@@ -1,16 +1,17 @@
 /**
  * AnchorCardBack - Teacher content for Anchor cards
  *
- * Displays:
- * - Parasha/Holiday name (Hebrew + English)
- * - Emotional hook (Hebrew + English)
- * - Teacher script (gathering prompt)
+ * SAY: teacher_script
+ * DO: emotional_hook_en (read aloud)
+ * ASK: discussion_prompts
+ * TIP: teacher_tip
  */
 'use client';
 
 import React from 'react';
 import { AnchorCardData } from '@/types/card';
 import { CardBackFrame } from './CardBackFrame';
+import { BackSection } from './BackSection';
 
 interface AnchorCardBackProps {
   card: AnchorCardData;
@@ -19,14 +20,8 @@ interface AnchorCardBackProps {
 
 export function AnchorCardBack({ card, deckName }: AnchorCardBackProps) {
   const borderColor = card.border_color || '#5c2d91';
-
-  // Get title from various fields
-  const hebrewTitle = card.hebrew_title || card.title_he;
   const englishTitle = card.title_en;
-
-  // Get emotional hook from various fields
-  const emotionalHookEn = (card as any).emotional_hook_en;
-  const emotionalHookHe = card.emotional_hook_he || (card as any).emotional_hook_he;
+  const hebrewTitle = card.hebrew_title || card.title_he;
 
   return (
     <div id={`card-${card.card_id}-back`} className="w-full h-full">
@@ -34,51 +29,73 @@ export function AnchorCardBack({ card, deckName }: AnchorCardBackProps) {
         cardType="anchor"
         deckName={deckName}
         borderColor={borderColor}
+        transitionLine={card.transition_line}
       >
-        {/* Title Section - Large and Prominent */}
-        <div className="text-center mb-6">
-          <h1 className="font-black font-hebrew text-5xl text-slate-800 leading-tight mb-2">
-            {hebrewTitle}
-          </h1>
-          <h2 className="text-2xl font-bold text-slate-600 uppercase tracking-wide">
+        {/* Compact Title Line */}
+        <div className="flex items-center gap-3 mb-3">
+          <h2 className="text-xl font-bold text-slate-800 leading-tight">
             {englishTitle}
           </h2>
+          {hebrewTitle && (
+            <span className="font-hebrew text-lg text-slate-500">{hebrewTitle}</span>
+          )}
         </div>
 
-        <div className="border-t border-slate-300 mb-6" />
-
-        {/* Emotional Hook */}
-        {(emotionalHookEn || emotionalHookHe) && (
-          <div
-            className="rounded-xl p-6 mb-6 text-center"
-            style={{ backgroundColor: `${borderColor}15` }}
+        <div className="flex-1 flex flex-col gap-2.5 min-h-0">
+          {/* SAY THIS - Teacher Script */}
+          <BackSection
+            icon="💬"
+            label="Say This"
+            borderColor={borderColor}
+            large
           >
-            <h3 className="font-bold text-slate-700 text-sm uppercase tracking-wider mb-3">
-              Emotional Hook
-            </h3>
-            {emotionalHookEn && (
-              <p className="text-slate-800 text-lg font-medium leading-relaxed mb-3">
-                "{emotionalHookEn}"
-              </p>
-            )}
-            {emotionalHookHe && (
-              <p className="text-slate-600 font-hebrew text-base leading-relaxed" dir="rtl">
-                "{emotionalHookHe}"
-              </p>
-            )}
-          </div>
-        )}
+            <p className="text-slate-700">{card.teacher_script}</p>
+          </BackSection>
 
-        {/* Teacher Script */}
-        <div className="flex-1 flex flex-col min-h-0">
-          <h3 className="font-bold text-slate-500 text-xs uppercase tracking-wider mb-2">
-            Gathering Script
-          </h3>
-          <div className="flex-1 bg-white rounded-lg p-5 shadow-inner border border-slate-200 overflow-auto">
-            <p className="text-slate-700 leading-relaxed">
-              {card.teacher_script}
-            </p>
-          </div>
+          {/* DO THIS - Emotional Hook */}
+          {card.emotional_hook_en && (
+            <BackSection
+              icon="🎯"
+              label="Do This"
+              borderColor={borderColor}
+              tintColor={`${borderColor}10`}
+            >
+              <p className="text-slate-700 font-medium italic">
+                Read aloud: "{card.emotional_hook_en}"
+              </p>
+            </BackSection>
+          )}
+
+          {/* ASK THIS - Discussion Prompts */}
+          {card.discussion_prompts && card.discussion_prompts.length > 0 && (
+            <BackSection
+              icon="❓"
+              label="Ask This"
+              borderColor={borderColor}
+              tintColor="#0074d915"
+            >
+              <ul className="text-slate-700 space-y-1.5">
+                {card.discussion_prompts.map((q, i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="text-slate-400 flex-shrink-0">•</span>
+                    <span>{q}</span>
+                  </li>
+                ))}
+              </ul>
+            </BackSection>
+          )}
+
+          {/* TIP */}
+          {card.teacher_tip && (
+            <BackSection
+              icon="💡"
+              label="Tip"
+              borderColor={borderColor}
+              tintColor="#f59e0b15"
+            >
+              <p className="text-slate-700">{card.teacher_tip}</p>
+            </BackSection>
+          )}
         </div>
       </CardBackFrame>
     </div>

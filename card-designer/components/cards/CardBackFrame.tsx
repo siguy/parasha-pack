@@ -11,6 +11,7 @@ interface CardBackFrameProps {
   cardType: string;
   deckName: string;
   borderColor: string;
+  transitionLine?: string;
   className?: string;
   children: React.ReactNode;
 }
@@ -28,6 +29,7 @@ export function CardBackFrame({
   cardType,
   deckName,
   borderColor,
+  transitionLine,
   className,
   children,
 }: CardBackFrameProps) {
@@ -70,11 +72,17 @@ export function CardBackFrame({
         {children}
       </div>
 
-      {/* Footer - Decorative bottom bar */}
+      {/* Footer - Transition line or decorative bar */}
       <div
-        className="flex-none h-3"
-        style={{ backgroundColor: borderColor }}
-      />
+        className="flex-none flex items-center justify-center px-6"
+        style={{ backgroundColor: borderColor, minHeight: transitionLine ? undefined : '12px' }}
+      >
+        {transitionLine && (
+          <p className="text-white/90 text-xs italic text-center py-2 leading-tight">
+            {transitionLine}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

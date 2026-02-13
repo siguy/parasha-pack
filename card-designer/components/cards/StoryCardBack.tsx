@@ -1,17 +1,17 @@
 /**
  * StoryCardBack - Teacher content for Story cards
  *
- * Displays:
- * - Title (Hebrew + English) with sequence number
- * - Description
- * - Roleplay prompt box
- * - Teacher script
+ * SAY: teacher_script
+ * DO: roleplay_prompt
+ * ASK: discussion_prompts
+ * TIP: teacher_tip
  */
 'use client';
 
 import React from 'react';
 import { StoryCardData } from '@/types/card';
 import { CardBackFrame } from './CardBackFrame';
+import { BackSection } from './BackSection';
 
 interface StoryCardBackProps {
   card: StoryCardData;
@@ -27,72 +27,78 @@ export function StoryCardBack({ card, deckName }: StoryCardBackProps) {
         cardType="story"
         deckName={deckName}
         borderColor={borderColor}
+        transitionLine={card.transition_line}
       >
-        {/* Title Section */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex flex-col">
-            <h1 className="font-black font-hebrew text-3xl text-slate-800 leading-tight">
-              {card.title_he}
-            </h1>
-            <h2 className="text-lg font-bold text-slate-600">
-              {card.title_en}
-            </h2>
-          </div>
-          {/* Sequence Badge */}
+        {/* Compact Title Line with Sequence Badge */}
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-xl font-bold text-slate-800 leading-tight">
+            {card.title_en}
+          </h2>
           {card.sequence_number && (
-            <div
-              className="w-14 h-14 rounded-full flex items-center justify-center text-white font-black text-2xl shadow-md"
+            <span
+              className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-base flex-shrink-0"
               style={{ backgroundColor: borderColor }}
             >
               #{card.sequence_number}
-            </div>
+            </span>
           )}
         </div>
 
-        <div className="border-t border-slate-300 mb-4" />
-
-        {/* Description */}
-        <div className="mb-4">
-          <p className="text-slate-700 text-base leading-relaxed">
-            {card.english_description}
-          </p>
-          {card.description_he && (
-            <p className="text-slate-600 text-sm font-hebrew mt-2 leading-relaxed" dir="rtl">
-              {card.description_he}
-            </p>
-          )}
-        </div>
-
-        {/* Roleplay Prompt */}
-        {card.roleplay_prompt && (
-          <div
-            className="rounded-xl p-4 mb-4"
-            style={{ backgroundColor: `${borderColor}15` }}
+        <div className="flex-1 flex flex-col gap-2.5 min-h-0">
+          {/* SAY THIS - Teacher Script */}
+          <BackSection
+            icon="💬"
+            label="Say This"
+            borderColor={borderColor}
+            large
           >
-            <div className="flex items-start gap-3">
-              <span className="text-2xl">*</span>
-              <div>
-                <h3 className="font-bold text-slate-800 text-sm uppercase tracking-wide mb-1">
-                  Act it Out!
-                </h3>
-                <p className="text-slate-700 font-medium italic">
-                  {card.roleplay_prompt.replace(/^Act it out:\s*/i, '')}
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
+            <p className="text-slate-700">{card.teacher_script}</p>
+          </BackSection>
 
-        {/* Teacher Script */}
-        <div className="flex-1 flex flex-col min-h-0">
-          <h3 className="font-bold text-slate-500 text-xs uppercase tracking-wider mb-2">
-            Teacher Script
-          </h3>
-          <div className="flex-1 bg-white rounded-lg p-4 shadow-inner border border-slate-200 overflow-auto">
-            <p className="text-slate-700 leading-relaxed text-sm">
-              {card.teacher_script}
-            </p>
-          </div>
+          {/* DO THIS - Roleplay Prompt */}
+          {card.roleplay_prompt && (
+            <BackSection
+              icon="🎯"
+              label="Do This"
+              borderColor={borderColor}
+              tintColor={`${borderColor}10`}
+            >
+              <p className="text-slate-700 font-medium">
+                {card.roleplay_prompt.replace(/^Act it out:\s*/i, '')}
+              </p>
+            </BackSection>
+          )}
+
+          {/* ASK THIS - Discussion Prompts */}
+          {card.discussion_prompts && card.discussion_prompts.length > 0 && (
+            <BackSection
+              icon="❓"
+              label="Ask This"
+              borderColor={borderColor}
+              tintColor="#0074d915"
+            >
+              <ul className="text-slate-700 space-y-1.5">
+                {card.discussion_prompts.map((q, i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="text-slate-400 flex-shrink-0">•</span>
+                    <span>{q}</span>
+                  </li>
+                ))}
+              </ul>
+            </BackSection>
+          )}
+
+          {/* TIP */}
+          {card.teacher_tip && (
+            <BackSection
+              icon="💡"
+              label="Tip"
+              borderColor={borderColor}
+              tintColor="#f59e0b15"
+            >
+              <p className="text-slate-700">{card.teacher_tip}</p>
+            </BackSection>
+          )}
         </div>
       </CardBackFrame>
     </div>
