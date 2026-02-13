@@ -7,13 +7,13 @@ Python modules for generating and managing Parasha Pack card decks.
 | Module | Purpose |
 |--------|---------|
 | `workflows.py` | High-level reusable workflows for character/deck creation |
-| `generate_deck.py` | Create new deck templates |
-| `generate_images.py` | Generate raw card images to `raw/` directory via Gemini API |
+| `generate_deck.py` | Create new v2 deck templates (story, connection, tradition card types) |
+| `generate_images.py` | Generate raw card images to `raw/`; assembles system prompt layers via `build_generation_prompt()` |
 | `generate_references.py` | Generate character reference sheets |
 | `generate_with_consistency.py` | Generate consistent character images |
-| `card_prompts.py` | Build complete card prompts |
-| `image_prompts.py` | Image generation prompt templates (v1 + v2) |
-| `schema.py` | Data structures and type definitions (v1 + v2) |
+| `card_prompts.py` | **DEPRECATED** — old prompt generator (embeds borders/text in prompts) |
+| `image_prompts.py` | System constants (style, safety, composition) + scene-only `build_*_v2()` templates |
+| `schema.py` | Data structures, type definitions, and card schemas |
 | `sefaria_client.py` | Sefaria API integration |
 | `card_generator.py` | Print layout generation |
 | `overlay.py` | **DEPRECATED** - Text overlay now handled by Card Designer React components |
@@ -23,17 +23,24 @@ Python modules for generating and managing Parasha Pack card decks.
 ## Image Generation Flow (v2)
 
 ```
-generate_images.py → raw/{card_id}.png (scene only, NO text)
+deck.json image_prompt (pure scene description)
+        ↓
+build_generation_prompt() layers style + safety + composition + rules
+        ↓
+    raw/{card_id}.png (scene only, NO text, NO borders)
         ↓
 Card Designer React (card-designer/)
         ↓
     npm run export <deckId>
         ↓
-    images/{card_id}.png (final fronts with text)
+    images/{card_id}.png (final fronts with text + borders)
     backs/{card_id}_back.png (teacher content backs)
 ```
 
-**Key principle:** AI generates scene-only images. Text is rendered by React components.
+**Key principles:**
+- AI generates scene-only images. Text and borders are rendered by React components.
+- Deck prompts are **pure scene descriptions** — no composition, no rules.
+- `build_generation_prompt()` layers style, safety, composition, and rules at generation time.
 
 ---
 
@@ -145,20 +152,23 @@ python workflows.py list parshiyot
 
 ## generate_deck.py
 
-Creates new deck templates with placeholder cards.
+Creates new v2 deck templates with placeholder cards.
 
 ### Functions
 
-**`create_deck_template(parasha_name, parasha_he, ref, theme, border_color) -> dict`**
-- Creates 12-card deck structure
+**`create_deck_template(parasha_name, parasha_he, ref, theme, border_color, is_holiday) -> dict`**
+- Standard deck: 10 cards (1 anchor, 2 spotlight, 4 story, 2 connection, 1 power_word)
+- Holiday deck: +3 tradition cards = 13 cards
+- v2 field names throughout
 - Returns dict ready for JSON serialization
 
 ### CLI
 
 ```bash
-python generate_deck.py                    # Uses current parasha from Sefaria
-python generate_deck.py --parasha "Yitro"  # Specific parasha
-python generate_deck.py --output ../decks/yitro  # Custom output path
+python generate_deck.py                              # Current parasha from Sefaria
+python generate_deck.py --parasha "Yitro"            # Specific parasha
+python generate_deck.py --parasha "Purim" --holiday  # Holiday deck (adds tradition cards)
+python generate_deck.py --output ../decks/yitro      # Custom output path
 ```
 
 ---
@@ -262,21 +272,46 @@ python generate_images.py ../decks/purim/deck.json --no-refs
 
 ---
 
-## card_prompts.py
+## Prompt Assembly System
 
-Builds complete card prompts with all styling and safety rules.
+All system concerns are defined once and layered automatically at generation time by `build_generation_prompt()` in `generate_images.py`.
 
-### Functions
+### How It Works
 
-**`build_anchor_prompt(deck, card) -> str`**
-**`build_spotlight_prompt(deck, card) -> str`**
-**`build_action_prompt(deck, card) -> str`**
-**`build_thinker_prompt(deck, card) -> str`**
-**`build_power_word_prompt(deck, card) -> str`**
+1. **Deck prompts** (`deck.json` `image_prompt`) are pure scene descriptions — no style, safety, composition, or rules
+2. **At generation time**, `build_generation_prompt(scene_prompt, card_type)` assembles:
+   1. `STYLE_ANCHORS_V2` — children's illustration style, cultural context, anatomy rules
+   2. `SAFETY_PROMPT` — content restrictions (no God in human form, no violence, etc.)
+   3. Scene description — from deck.json, passed through unchanged
+   4. `COMPOSITION_GUIDANCE[card_type]` — per-card-type cinematography (headroom, subject placement, shadow)
+   5. `COMPOSITION_SUFFIX` — universal no-border, no-text rules
+3. **The model** interprets cinematography language natively (where the subject IS, not where text will go)
 
-Each function:
-- Takes deck metadata and card data
-- Returns complete prompt with style, safety rules, and layout specs
+### Card Type Composition
+
+| Card Type | Subject Position | Open Space |
+|-----------|-----------------|------------|
+| Anchor | Center-low | Headroom above (for title) |
+| Spotlight | Chest-up portrait, center | Headroom above, shadow lower-left |
+| Story | Action center-right | Headroom above, shadow lower-left |
+| Connection | Upper two-thirds | Simple floor/gradient below |
+| Tradition | Center-low, grounded | Golden glow/warm haze above |
+| Power Word | Center-low, heroic angle | Bright sky/light above |
+
+### Key Files
+
+- **`image_prompts.py`**: `STYLE_ANCHORS_V2`, `SAFETY_PROMPT`, `COMPOSITION_GUIDANCE`, `COMPOSITION_SUFFIX` + scene-only `build_*_v2()` template functions
+- **`generate_images.py`**: `build_generation_prompt()` — assembles all layers
+
+---
+
+## card_prompts.py (DEPRECATED)
+
+Old prompt generator that embeds borders, text zones, and layout instructions in image prompts. Incompatible with current pipeline where AI generates scene-only images and Card Designer renders text.
+
+For new decks, use:
+- `image_prompts.py` `build_*_v2()` functions for scene-only prompt templates
+- Or write scene descriptions directly in `deck.json` `image_prompt` fields
 
 ---
 
@@ -284,24 +319,14 @@ Each function:
 
 Data structures and type definitions.
 
-### Card Types
+### Card Structure
 
 ```python
-from schema import AnchorCard, SpotlightCard, ActionCard, ThinkerCard, PowerWordCard
+from schema import CardV2, Deck
 
-# All inherit from BaseCard with:
-# card_id, card_type, title_en, title_he, image_prompt, image_path, teacher_script
+# CardV2: front/back separation
+# card_id, card_type, front (dict), back (dict), image_prompt, session, optional
 ```
-
-**AnchorCard:** `emotional_hook_en/he`, `symbol_description`, `border_color`
-
-**SpotlightCard:** `character_name_en/he`, `emotion_label`, `character_trait`, `character_description_en/he`
-
-**ActionCard:** `sequence_number`, `hebrew_key_word`, `hebrew_key_word_nikud`, `english_description`, `roleplay_prompt`, `emotional_reactions`
-
-**ThinkerCard:** `questions` (list), `torah_talk_instruction`, `feeling_faces`
-
-**PowerWordCard:** `hebrew_word`, `hebrew_word_nikud`, `transliteration`, `english_meaning`, `example_sentence_en/he`, `is_emotion_word`
 
 ### Deck
 
@@ -315,8 +340,6 @@ deck = Deck(
     border_color="#5c2d91",
     theme="covenant"
 )
-deck.add_card(some_card)
-json_str = deck.to_json()
 ```
 
 ### Constants

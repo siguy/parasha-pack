@@ -4,7 +4,7 @@ Educational Torah portion card decks for preschool/kindergarten (ages 4-6).
 
 ## Project Overview
 
-This project creates illustrated card decks for each weekly Torah portion (parasha). Each deck contains 12 cards that teach the story through characters, actions, discussion questions, and Hebrew vocabulary.
+This project creates illustrated card decks for each weekly Torah portion (parasha). Each deck contains 10-13 cards that teach the story through characters, narrative moments, discussion questions, and Hebrew vocabulary.
 
 ## Directory Structure
 
@@ -13,7 +13,7 @@ parasha-pack/
 ├── CLAUDE.md              # This file - project overview
 ├── agents/                # Agent system documentation (see agents/AGENTS.md)
 │   ├── AGENTS.md          # Agent roster and workflow
-│   ├── CARD_SPECS.md      # Card structure (v1 vs v2 format)
+│   ├── CARD_SPECS.md      # Card type specifications
 │   ├── STYLE_GUIDE.md     # Visual consistency rules
 │   └── definitions/       # Individual agent specifications
 ├── src/                   # Python source code (see src/CLAUDE.md)
@@ -37,9 +37,9 @@ python workflows.py deck "Beshalach" --output ../decks/beshalach
 
 This will:
 - Research the parasha (themes, characters, events)
-- Create deck.json with 12 card templates
+- Create deck.json with 10 placeholder cards (13 for holiday decks with `--holiday`)
 - Create feedback.json for review tracking
-- Create images/ and references/ directories
+- Create raw/, images/, and references/ directories
 
 ### 2. Create a New Character
 
@@ -95,19 +95,18 @@ Open `review-site/index.html` in a browser to:
 - Add feedback by category
 - Export feedback for revision requests
 
-## Card Types (8-11 per deck)
+## Card Types
 
-See [agents/CARD_SPECS.md](agents/CARD_SPECS.md) for full details.
+Standard deck: 10 cards. Holiday decks add 3 tradition cards = 13 cards.
 
 | Type | Count | Purpose |
 |------|-------|---------|
-| Anchor | 1 | Parasha introduction with emotional hook |
-| Spotlight | 0-2 | Character introductions (new or returning) |
-| Story | 3-4 | Key narrative moments with roleplay prompts |
-| Connection | 2-3 | "Have you ever..." discussion questions |
-| Power Word | 0-1 | Hebrew vocabulary |
-
-**Note:** Deck composition is flexible based on parasha type (narrative, law-based, building, ritual).
+| Anchor | 1 | Parasha/holiday introduction with emotional hook |
+| Spotlight | 2 | Character portraits with emotion |
+| Story | 4 | Key narrative moments with roleplay prompts |
+| Connection | 2 | "Have you ever..." discussion questions |
+| Tradition | 3 | Holiday practices (holiday decks only) |
+| Power Word | 1 | Hebrew vocabulary |
 
 ## Agent-Based Workflow
 
@@ -226,20 +225,14 @@ For code reviews, output findings incrementally as files are read rather than wa
 - Paper: 350gsm cardstock
 - Finish: Matte lamination
 
-## Card Format Versions
+## Card Format
 
-### v1 (Legacy)
-- All content rendered in the generated image
-- Text included in image prompts via `=== EXACT TEXT TO RENDER ===`
-- Single-sided cards
-
-### v2 (Current - Card Designer)
 - **AI generates scene-only images** to `raw/` directory (no text in image)
+- **`build_generation_prompt()`** layers style, safety, composition, and rules at generation time
 - **Card Designer (React)** renders text overlays and teacher content
 - **Card Front**: Full-bleed image with React-rendered text overlay
 - **Card Back**: 5x7 printable teacher content (scripts, activities, questions)
-- Image prompts use `=== COMPOSITION ZONES ===` for layout guidance
-- Supports double-sided printing
+- Image prompts in deck.json are **pure scene descriptions** — no style, composition, or rules
 
 **Directory Structure:**
 ```
@@ -259,11 +252,9 @@ decks/purim/
 
 **Workflow:**
 ```bash
-# 1. Generate raw images
+# 1. Generate raw images (scene-only, system layers added automatically)
 cd src && python generate_images.py ../decks/purim/deck.json
 
 # 2. Export with Card Designer
 cd card-designer && npm run export purim -- --backs
 ```
-
-See [agents/CARD_SPECS.md](agents/CARD_SPECS.md) for full v2 schema.

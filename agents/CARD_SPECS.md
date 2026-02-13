@@ -253,67 +253,20 @@ See [/decks/CLAUDE.md](../decks/CLAUDE.md) for full JSON examples of each card t
 
 ---
 
-## Card Format: v1 vs v2
+## Card Format
 
-### v1 (Legacy) - All Content on Front
+AI generates scene-only images. Card Designer (React) renders text overlays and card backs.
 
-Text is rendered in the generated image. All content visible on card front.
+- Image prompts in deck.json are **pure scene descriptions** (no style, no composition, no rules)
+- `build_generation_prompt()` layers style, safety, composition, and rules at generation time
+- Card Designer renders text overlay on fronts and teacher content on backs
 
-```json
-{
-  "card_id": "story_1",
-  "card_type": "story",
-  "title_en": "Esther Becomes Queen",
-  "title_he": "אֶסְתֵּר נַעֲשֵׂית מַלְכָּה",
-  "description_en": "The king chose Esther...",
-  "roleplay_prompt": "Act it out: Put an imaginary crown...",
-  "teacher_script": "The king needed a new queen...",
-  "image_prompt": "... === EXACT TEXT TO RENDER === ...",
-  "image_path": "images/story_1.png"
-}
-```
-
-### v2 (New) - Front/Back Separation
-
-Text is overlaid programmatically. Content separated for children (front) and teachers (back).
-
-```json
-{
-  "card_id": "story_1",
-  "card_type": "story",
-  "front": {
-    "overlay_zone": "bottom_left",
-    "hebrew_keyword": "מַלְכָּה",
-    "english_keyword": "Queen"
-  },
-  "back": {
-    "title_en": "Esther Becomes Queen",
-    "title_he": "אֶסְתֵּר נַעֲשֵׂית מַלְכָּה",
-    "description_en": "The king chose Esther to be his new queen...",
-    "description_he": "הַמֶּלֶךְ בָּחַר בְּאֶסְתֵּר...",
-    "roleplay_prompt": "Act it out: Put an imaginary crown on your head...",
-    "teacher_script": "The king needed a new queen..."
-  },
-  "image_prompt": "... === COMPOSITION ZONES === ...",
-  "image_path": "images/story_1.png"
-}
-```
-
-### v2 Front Fields by Card Type
-
-| Card Type | Front Fields |
-|-----------|--------------|
-| Anchor | `hebrew_title` |
-| Spotlight | `hebrew_name`, `english_name`, `emotion_word_en`, `emotion_word_he` |
-| Story | `hebrew_keyword`, `english_keyword` |
-| Connection | `emojis` (list of 4 emoji characters) |
-| Power Word | `hebrew_word`, `english_meaning` |
-| Tradition | `hebrew_title`, `english_title` |
-
-### v2 Output Files
+### Output Files
 
 | File | Size | Purpose |
 |------|------|---------|
-| `images/{card_id}.png` | 1500x2100 | Raw generated image (no text) |
-| `images/{card_id}_front.png` | 1500x2100 | Image with overlaid text |
-| `backs/{card_id}_back.png` | 1500x2100 | 5x7 teacher card back |
+| `raw/{card_id}.png` | 1500x2100 | Scene-only AI image (no text) |
+| `images/{card_id}.png` | 1500x2100 | Card front with text overlay |
+| `backs/{card_id}_back.png` | 1500x2100 | Teacher card back (5x7 @ 300 DPI) |
+
+See [/decks/CLAUDE.md](../decks/CLAUDE.md) for full JSON examples of each card type.

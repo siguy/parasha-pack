@@ -37,7 +37,7 @@ The Visual Director owns character consistency across all cards.
 2. **Identity Generation:** Generate 2+ identity reference versions
    - Each version should interpret the design slightly differently
    - Use the same text prompt for all versions
-   - Output: `{character}_identity_v1.png`, `{character}_identity_v2.png`
+   - Output: `{character}_identity_a.png`, `{character}_identity_b.png`
 
 3. **User Review Checkpoint:** Present versions to user for selection
    - User selects preferred version
@@ -107,168 +107,76 @@ visual_direction:
   # Card back (if not yet created or needs update)
   card_back:
     design_exists: [yes/no]
-    design_path: "templates/card_back_v1.png"
+    design_path: "card-designer/components/cards/*Back.tsx"
     needs_update: [yes/no]
     update_notes: |
       [If needs update - what to change]
 
-  # Individual card images
+  # Individual card images — scene-only prompts
+  # (style, safety, composition, rules injected by build_generation_prompt())
   card_images:
     anchor:
       card_id: "anchor_1"
-      composition: |
-        [Layout description - what goes where]
-      central_symbol: |
-        [The main visual element and how it should look]
-      mood: |
-        [Emotional tone - e.g., "warm, inviting, wonder"]
-      colors: |
-        [Palette notes for this card]
+      central_symbol: "[The main visual element]"
+      mood: "[Emotional tone]"
       image_prompt: |
-        A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+        [Scene-only description — what to draw, not how]
 
-        === STYLE ===
-        [Full art style specifications from STYLE_GUIDE]
-
-        === RESTRICTIONS ===
-        [Safety rules - what NOT to show]
-
-        === CARD TYPE: ANCHOR ===
-        [Card-specific requirements]
-
-        === CONTENT ===
-        [What to show - title, symbol, text]
-
-        === COMPOSITION ===
-        [Detailed layout - percentages, positions]
-
-        === FRAME ===
-        [Border color, corner radius, icons]
-
-        === MOOD ===
-        [Emotional tone to convey]
-
-    spotlight: # if included
+    spotlight_1:
       card_id: "spotlight_1"
-      character_pose: |
-        [What the character is doing]
-      expression: |
-        [Specific emotion to show]
-      background: |
-        [Setting/environment]
+      character_pose: "[What the character is doing]"
+      expression: "[Specific emotion]"
+      background: "[Setting/environment]"
       image_prompt: |
-        [Full detailed prompt]
+        [Scene-only description]
 
-    # Villain Spotlight (holiday decks)
-    spotlight_villain: # if included
+    # Villain spotlight (holiday decks)
+    spotlight_villain:
       card_id: "spotlight_3"
-      character_pose: |
-        [Closed/defensive posture - crossed arms, turned slightly away]
-      expression: |
-        [Frustrated, jealous, confused - NOT menacing or scary]
-      background: |
-        [Neutral or muted background - NOT dark or ominous]
+      character_pose: "[Closed/defensive posture]"
+      expression: "[Frustrated, jealous — NOT menacing]"
       villain_visual_checklist:
         - [ ] Expression shows frustration/jealousy, not anger
         - [ ] Colors are muted, not dark/scary
         - [ ] Posture is closed/defensive, not aggressive
-        - [ ] No skulls, shadows, or scary imagery
         - [ ] Overall feel is "misguided person" not "villain"
       image_prompt: |
-        [Full detailed prompt with villain guidelines embedded]
+        [Scene-only description following villain guidelines]
 
     story_1:
       card_id: "story_1"
-      scene_description: |
-        [What's happening in this scene]
-      characters_in_scene: |
-        [Who is present, what each is doing]
-      emotion_to_convey: |
-        [Primary feeling to show]
-      action_moment: |
-        [If movement, what kind]
+      scene_description: "[What's happening]"
+      characters_in_scene: "[Who is present]"
+      emotion_to_convey: "[Primary feeling]"
       image_prompt: |
-        [Full detailed prompt]
+        [Scene-only description]
 
-    story_2:
-      card_id: "story_2"
-      # [same structure]
-      image_prompt: |
-        [Full detailed prompt]
-
-    story_3: # if included
-      card_id: "story_3"
-      # [same structure]
-      image_prompt: |
-        [Full detailed prompt]
-
-    story_4: # if included
-      card_id: "story_4"
-      # [same structure]
-      image_prompt: |
-        [Full detailed prompt]
-
-    # Additional story cards for holiday decks
-    story_5: # holiday decks
-      card_id: "story_5"
-      # [same structure]
-      image_prompt: |
-        [Full detailed prompt]
-
-    story_6: # holiday decks, if included
-      card_id: "story_6"
-      # [same structure]
-      image_prompt: |
-        [Full detailed prompt]
+    # (story_2 through story_6 follow same structure)
 
     connection_1:
       card_id: "connection_1"
-      visual_approach: |
-        [How to visualize a discussion card - characters thinking?
-        feeling faces prominent? abstract representation?]
+      visual_approach: "[How to visualize discussion]"
       image_prompt: |
-        [Full detailed prompt]
+        [Scene-only description]
 
-    connection_2: # if included
-      card_id: "connection_2"
-      visual_approach: "[...]"
-      image_prompt: "[...]"
-
-    power_word: # if included
+    power_word:
       card_id: "power_word_1"
-      visual_approach: |
-        [How to illustrate this concept/word]
+      visual_approach: "[How to illustrate this word]"
       image_prompt: |
-        [Full detailed prompt]
+        [Scene-only description]
 
     # TRADITION CARDS (holiday decks only)
-    tradition_1: # holiday decks
+    tradition_1:
       card_id: "tradition_1"
-      visual_approach: |
-        [Show people DOING the ritual - family/community scene]
-      scene_description: |
-        [What the practice looks like in action]
-      mood: |
-        [Warm, celebratory, inviting - NOT instructional]
-      lighting: |
-        [Warm, golden - candlelight feeling when appropriate]
-      characters_in_scene: |
-        [Can include illustrated children participating]
+      visual_approach: "[Show people DOING the ritual]"
+      mood: "[Warm, celebratory, inviting]"
       tradition_visual_checklist:
         - [ ] Shows community/family doing practice together
         - [ ] Warm, golden color palette
         - [ ] Celebratory but calm mood
         - [ ] Children shown participating
-        - [ ] NOT instructional diagram style
       image_prompt: |
-        [Full detailed prompt with tradition guidelines]
-
-    tradition_2: # holiday decks, if included
-      card_id: "tradition_2"
-      visual_approach: "[...]"
-      scene_description: "[...]"
-      mood: "[...]"
-      image_prompt: "[...]"
+        [Scene-only description]
 
   # For non-narrative parshiyot
   visual_approach_notes:
@@ -306,162 +214,31 @@ visual_direction:
     - [ ] Tradition cards have warm, celebratory mood (holiday)
 ```
 
-## Card Format Versions
+## Image Prompt Format
 
-### v1 (Legacy): Exact Text in Prompts
+Image prompts in deck.json are **pure scene descriptions** — what to draw, not how to draw it.
 
-**For v1 cards**, ALL text that appears on the card MUST be specified EXACTLY in the prompt.
+`build_generation_prompt()` in `generate_images.py` automatically layers:
+1. Style anchors (children's illustration)
+2. Safety rules (no God in human form, etc.)
+3. Scene description (from deck.json — passed through unchanged)
+4. Per-card-type composition guidance (cinematography language)
+5. Critical rules (no text, no borders)
 
-DO specify the exact text:
-- `TEXT ZONE: "God asks Moses for help. Tell the people to bring gifts from their hearts."` ✓
-- `ROLEPLAY STRIP: "Act it out: Put your hand on your heart!"` ✓
-- `HEBREW KEYWORD: "לֵב" (Heart) in red badge` ✓
+**The Visual Director writes scene-only prompts.** No style, safety, composition, or rules.
 
-The AI will render EXACTLY what you specify. If you give vague instructions, it will invent text.
-
-### v2 (New): Composition Zones Only
-
-**For v2 cards**, text is overlaid PROGRAMMATICALLY after image generation.
-
-**CRITICAL: v2 prompts must NOT include any text to render.**
-
-Instead, specify **composition zones** - areas to keep uncluttered for overlay:
-
-| Card Type | Composition Zone | Description |
-|-----------|-----------------|-------------|
-| Anchor | Top 20-25% | Keep uncluttered for Hebrew title overlay |
-| Spotlight | Top 30% | Keep uncluttered for name + emotion overlay |
-| Story | Bottom-left corner | Keep relatively simple for keyword badge |
-| Connection | Bottom 20% | Keep simple gradient for emoji row |
-| Power Word | Top 30% | Keep uncluttered for Hebrew word overlay |
-| Tradition | Top 25% | Keep uncluttered for title overlay |
-
-**Example v2 prompt section:**
+Example scene prompt:
 ```
-=== COMPOSITION ZONES ===
-Compose the scene in the lower 70-75% of the image.
-Keep the top 25% uncluttered with simple gradient/sky for programmatic text overlay.
-The Hebrew title and English title will be overlaid in the top zone.
+Esther in the palace throne room, being crowned by King Achashverosh.
+She looks calm but determined. Golden light streams through tall arched windows.
 Do NOT render any text in the image.
 ```
 
-## Card Type Templates
+## Card Layout Reference
 
-Each card type has a CONSISTENT template. Use these exact specifications to ensure uniformity across all cards of the same type.
+Card Designer (React) renders all text overlay and layout. The Visual Director only needs to know where open space should be for text readability. See `agents/VISUAL_SPECS.md` for composition guidance per card type.
 
-### STORY CARD Template
-```
-┌─────────────────────────────────────────┐
-│ ⚡ [ENGLISH TITLE]                  #[N] │  ← Red title bar, white text
-│    [HEBREW TITLE]                       │    Lightning icon, sequence badge
-├─────────────────────────────────────────┤
-│                                         │
-│                                         │
-│           ILLUSTRATION                  │  ← 60% of card
-│           (characters, scene)           │
-│                                         │
-│                        ┌───────────┐    │
-│                        │ [HEBREW]  │    │  ← Keyword badge (bottom right of art)
-│                        │ [English] │    │
-│                        └───────────┘    │
-├─────────────────────────────────────────┤
-│  [Story description text - 2-3 lines]   │  ← Cream background text zone
-│                                         │
-│  ★ Act it out: [Roleplay prompt]        │  ← Star icon, accent color
-└─────────────────────────────────────────┘
-```
-
-### CONNECTION CARD Template
-```
-┌─────────────────────────────────────────┐
-│      [ENGLISH TITLE]                    │  ← Blue title bar
-│      [HEBREW TITLE]                     │
-├─────────────────────────────────────────┤
-│                                         │
-│         ILLUSTRATION                    │  ← 35% of card (smaller)
-│         (children thinking/sharing)     │
-│                                         │
-├─────────────────────────────────────────┤
-│  😊    😢    😨    😮                   │  ← Feeling faces row
-│ [HE]  [HE]  [HE]  [HE]                  │    Hebrew labels ONLY on card
-├─────────────────────────────────────────┤
-│ ┌─────┐ ┌─────┐ ┌─────┐                 │  ← Question bubbles (3 colors)
-│ │  1  │ │  2  │ │  3  │                 │
-│ │[Q1] │ │[Q2] │ │[Q3] │                 │
-│ └─────┘ └─────┘ └─────┘                 │
-├─────────────────────────────────────────┤
-│   Torah Talk: [instruction]             │  ← Bottom banner
-└─────────────────────────────────────────┘
-```
-
-### ANCHOR CARD Template (Full Bleed)
-```
-┌─────────────────────────────────────────┐
-│                                         │
-│      [HEBREW PARASHA/HOLIDAY TITLE]     │  ← Large, centered
-│      [English Title]                    │
-│                                         │
-│                                         │
-│                                         │
-│         CENTRAL SYMBOL                  │  ← Main illustration
-│         (full bleed artwork)            │
-│                                         │
-│                                         │
-│                                         │
-│   "[Emotional hook text]"               │  ← Bottom text zone
-│                                         │
-└─────────────────────────────────────────┘
-  ↑ Theme border color
-```
-
-### POWER WORD CARD Template (Full Bleed)
-```
-┌─────────────────────────────────────────┐
-│                                         │
-│         [LARGE HEBREW WORD]             │  ← Prominent, with nikud
-│              [meaning]                  │
-│                                         │
-│                                         │
-│         ILLUSTRATION                    │  ← Concept visualization
-│         (child demonstrating word)      │
-│                                         │
-│                                         │
-│   "[Torah quote - English only]"        │  ← Keep fonts simple
-│   — [Source]                            │
-│                                         │
-│   "[Example sentence for kids]"         │
-│                                         │
-└─────────────────────────────────────────┘
-  ↑ Green border
-```
-
-### TRADITION CARD Template (Holiday Only)
-```
-┌─────────────────────────────────────────┐
-│      [ENGLISH TITLE]                    │  ← Warm gold/amber title bar
-│      [HEBREW TITLE]                     │
-├─────────────────────────────────────────┤
-│                                         │
-│         ILLUSTRATION                    │  ← 50% of card
-│         (the practice in action -       │    Show people DOING the ritual
-│          family/community scene)        │    Warm, inviting atmosphere
-│                                         │
-├─────────────────────────────────────────┤
-│ ┌─────────────────────────────────────┐ │
-│ │ "[Story connection - why we do      │ │  ← Story connection box
-│ │   this, 1-2 sentences]"             │ │    Subtle background color
-│ └─────────────────────────────────────┘ │
-├─────────────────────────────────────────┤
-│                                         │
-│ "[Practice description - what we do]"   │  ← Main text area
-│                                         │
-│ ✨ "[Child action invitation]"          │  ← Sparkle icon (not star)
-│                                         │    Gentle, inviting
-├─────────────────────────────────────────┤
-│   [HEBREW TERM]  •  [meaning]           │  ← Bottom vocab bar
-└─────────────────────────────────────────┘
-  ↑ Gold/amber border (tradition color)
-```
+**Key principle:** AI generates scene-only images. `build_generation_prompt()` adds composition guidance (e.g., "leave headroom above subject") so the AI leaves space for Card Designer text overlay.
 
 **Tradition card visual notes:**
 - **Color**: Warm gold/amber palette (distinct from Story red, Connection blue)
@@ -469,7 +246,6 @@ Each card type has a CONSISTENT template. Use these exact specifications to ensu
 - **Illustration**: Show community/family doing the practice together
 - **Lighting**: Warm, golden (candlelight feeling when appropriate)
 - **Characters**: Can include illustrated children participating
-- **Icon**: Sparkle (✨) not lightning bolt or star
 
 ## Villain Visual Guidelines (Holiday Decks)
 
@@ -501,62 +277,35 @@ VILLAIN CHARACTER: Haman
 
 ## Image Prompt Structure
 
-All prompts should follow this template:
+Image prompts in deck.json are **pure scene descriptions** — what to draw, not how to draw it.
+
+`build_generation_prompt()` in `generate_images.py` automatically layers system concerns (style, safety, composition, rules) at generation time. The Visual Director only writes scene content.
+
+### Scene Prompt Template
 
 ```
-A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+[Character name/description]:
+[Visual appearance details — reinforces reference images]
 
-=== STYLE ===
-Vivid, high-contrast cartoon style suitable for ages 4-6.
-- Characters: Rounded, friendly shapes. Large expressive eyes (20% of face).
-- Lines: Thick, clean black outlines (2-3px equivalent).
-- Complexity: Maximum 5-7 distinct visual elements per scene.
+[Scene description — what is happening, where, who is involved]
+[Key visual elements — 5-7 maximum]
+[Character emotions and body language]
 
-Card Format: 5x7 inches (1500x2100px)
-Corners: rounded (8-10px radius)
+[Emotional tone — what viewers should feel]
+```
 
-Colors:
-- Main elements: Bold primary colors (#FF4136, #0074D9, #FFDC00, #2ECC40)
-- Backgrounds: Soft pastels (#FFE5E5, #E5F0FF, #FFFBE5, #E5FFE5)
+### Example
 
-=== RESTRICTIONS ===
-NEVER depict God in any human or physical form.
-NEVER write God's name in Hebrew (יהוה).
-Use only: Warm golden/white light rays from above, glowing soft clouds.
-[Additional restrictions as needed]
+```
+ESTHER:
+Young Jewish woman, warm olive skin, large kind brown eyes.
+Royal purple dress, simple gold tiara.
 
-=== CARD TYPE: [TYPE] ===
-[Type-specific requirements - use templates above]
+Esther standing before the king's throne, hand raised to speak.
+Tall stone pillars frame the scene. Golden light from high windows.
+Courtiers watch with surprise. Rich tapestries on walls.
 
-=== CHARACTERS ===
-[Full character descriptions with consistency notes]
-[For villains: Include misguided visual guidelines]
-
-=== TEXT (v1 only) ===
-[For v1 cards, specify exact text to render]
-Title: "[Exact English title]"
-Hebrew Title: "[Exact Hebrew with nikud]"
-[etc.]
-
-=== COMPOSITION ZONES (v2 only) ===
-[For v2 cards, NO text - specify zones only]
-Compose scene in lower 70% of image.
-Keep top 30% uncluttered for programmatic overlay.
-CRITICAL: Do NOT render any text, Hebrew, or titles in the image.
-
-=== COMPOSITION ===
-Layout (top to bottom):
-1. [ZONE 1] (top X%): [Content with EXACT text]
-2. [ZONE 2] (X%): [Content with EXACT text]
-[etc. - match the card type template]
-
-=== FRAME ===
-- Rounded corners (8-10px radius)
-- Border: [COLOR] (8px width)
-- [Icon] in top-left corner
-
-=== MOOD ===
-[Emotional tone. What should viewers feel?]
+Brave and determined. A quiet courage that changes everything.
 ```
 
 ## Success Criteria

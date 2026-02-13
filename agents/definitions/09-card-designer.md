@@ -32,22 +32,22 @@ Instead of manual design in tools like Photoshop, we use programmatic layouts:
 
 ### Completed (Fronts + Backs)
 
-- **Story / Action Card** (`StoryCard.tsx` / `StoryCardBack.tsx`):
+- **Story Card** (`StoryCard.tsx` / `StoryCardBack.tsx`):
   - Features: Header bar, bottom narrative zone, dynamic keyword badge.
   - Layouts: Standard, Immersive, Immersive-Floating, Immersive-Cinematic, Immersive-Clean, Scrapbook.
-  - Title: FitText (72px max in cinematic/clean layouts).
+  - Title: Fixed 28px with line wrapping (no FitText — titles are multi-word phrases).
 - **Spotlight Card** (`SpotlightCard.tsx` / `SpotlightCardBack.tsx`):
-  - Features: FitText Hebrew name (96px max), bottom emotion badge.
+  - Features: FitText Hebrew name (56px max, 46px min), bottom emotion badge.
   - Style: Full-bleed high impact.
 - **Connection Card** (`ConnectionCard.tsx` / `ConnectionCardBack.tsx`):
-  - Features: FitText title (72px max), full-width emoji strip.
+  - Features: FitText title (48px max, 38px min), full-width emoji strip.
   - Emojis auto-extracted from `feeling_faces[].emoji` via field mapping.
 - **Anchor Card** (`AnchorCard.tsx` / `AnchorCardBack.tsx`):
-  - Features: FitText Hebrew title (120px max) with white outline effect.
+  - Features: FitText Hebrew title (80px max, 64px min) with white outline effect.
 - **Tradition Card** (`TraditionCard.tsx` / `TraditionCardBack.tsx`):
-  - Features: FitText Hebrew title (110px max), English subtitle, separator line.
+  - Features: FitText Hebrew title (48px max, 38px min), English subtitle.
 - **Power Word Card** (`PowerWordCard.tsx` / `PowerWordCardBack.tsx`):
-  - Features: FitText Hebrew word (120px max), English meaning pill badge.
+  - Features: FitText Hebrew word (56px max, 46px min), English meaning text.
 
 ## Field Name Mapping
 

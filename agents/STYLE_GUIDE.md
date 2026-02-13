@@ -58,7 +58,7 @@
 - Consistent border treatment matching card type
 - Background pattern or color (TBD)
 
-**Template:** `templates/card_back_v1.png` (to be created)
+**Rendered by:** Card Designer React components (see `card-designer/components/cards/*Back.tsx`)
 
 ## Character Design Principles
 
@@ -138,32 +138,37 @@ Before finalizing a new character identity:
 
 ## Image Prompt Structure
 
-All image prompts should follow this structure:
+Image prompts in `deck.json` are **pure scene descriptions** — what to draw, not how to draw it.
 
+`build_generation_prompt()` in `generate_images.py` automatically layers:
+1. Style anchors (children's illustration, cultural context, anatomy rules)
+2. Safety rules (no God in human form, no violence, modest dress)
+3. Scene description (from deck.json — passed through unchanged)
+4. Per-card-type composition guidance (cinematography language for subject placement)
+5. Critical rules (no text, no borders)
+
+**Scene prompt format:**
 ```
-=== STYLE ===
-[Art style specifications]
+[Character name/description]
+[Visual appearance — reinforces reference images]
 
-=== RESTRICTIONS ===
-[Safety rules - what NOT to show]
+[Scene description — what is happening, where, who is involved]
+[Key visual elements — 5-7 maximum]
+[Character emotions and body language]
 
-=== CARD TYPE: [TYPE] ===
-[Card-specific requirements]
+[Emotional tone — what viewers should feel]
+```
 
-=== CONTENT ===
-[What to show]
+**Example:**
+```
+Esther standing before the king's throne, hand raised to speak.
+Young Jewish woman, warm olive skin, large kind brown eyes.
+Royal purple dress, simple gold tiara.
 
-=== CHARACTERS ===
-[Character descriptions with consistency notes]
+Tall stone pillars frame the scene. Golden light from high windows.
+Courtiers watch with surprise. Rich tapestries on walls.
 
-=== COMPOSITION ===
-[Layout specifications]
-
-=== FRAME ===
-[Border, corners, icons]
-
-=== MOOD ===
-[Emotional tone]
+Brave and determined. A quiet courage that changes everything.
 ```
 
 ## Cross-Deck Consistency Checklist

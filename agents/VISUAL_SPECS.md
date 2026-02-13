@@ -263,76 +263,33 @@ Each card type has specific composition instructions:
 
 ## Image Prompt Structure
 
-### v1 Template (Legacy - Text in Image)
+Image prompts in deck.json are **pure scene descriptions** — what to draw, not how to draw it. System concerns (style, safety, composition, rules) are layered automatically by `build_generation_prompt()` in `generate_images.py`.
+
+### deck.json prompt (scene-only)
 
 ```
-A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
+Esther in the palace throne room, being crowned by King Achashverosh.
+She looks calm but determined. Golden light streams through tall arched windows.
+Courtiers watch from the sides. Rich fabrics and royal furnishings.
 
-=== STYLE ===
-[Art style specifications]
-
-=== RESTRICTIONS ===
-[Safety rules - what NOT to show]
-
-=== CARD TYPE: [TYPE] ===
-[Card-specific requirements]
-
-=== CHARACTERS ===
-[Character descriptions - MUST match this document]
-
-=== EXACT TEXT TO RENDER ===
-[Precise text that will appear on card]
-
-=== COMPOSITION ===
-[Layout - NO percentages like "(12%)" - they render as text]
-
-=== FRAME ===
-[Border color, corners, icons]
-
-=== MOOD ===
-[Emotional tone]
+Warm, hopeful. A new chapter begins.
 ```
 
-### v2 Template (New - Programmatic Overlay)
+### What `build_generation_prompt()` adds automatically
 
-```
-A vertical children's educational card in 5:7 aspect ratio (1500x2100 pixels).
-
-=== STYLE ===
-[Art style specifications]
-
-CRITICAL: Do NOT render any text in the image. No Hebrew, no English, no titles,
-no labels, no badges. Text will be added programmatically after generation.
-
-=== RESTRICTIONS ===
-[Safety rules - what NOT to show]
-
-=== CARD TYPE: [TYPE] ===
-[Card-specific requirements]
-
-=== CHARACTERS ===
-[Character descriptions - MUST match this document]
-
-=== COMPOSITION ZONES ===
-[Specify which areas to keep uncluttered for overlay]
-Compose the scene in the lower [X]% of the image.
-Keep the top [Y]% uncluttered with simple gradient/sky for text overlay.
-
-=== FRAME ===
-[Border color, corners, icons]
-
-=== MOOD ===
-[Emotional tone]
-```
+1. `STYLE_ANCHORS_V2` — Children's illustration style, cultural context, anatomy rules
+2. `SAFETY_PROMPT` — Content restrictions (no God in human form, etc.)
+3. Scene description — passed through unchanged from deck.json
+4. `COMPOSITION_GUIDANCE[card_type]` — Per-card-type cinematography
+5. `COMPOSITION_SUFFIX` — No text, no borders rules
 
 ### Prompt Gotchas
 
 | Issue | Solution |
 |-------|----------|
-| Percentages render as text | Use words: "top third", "center", "bottom quarter" |
-| Question labels render | NO "Question 1:" prefixes |
-| Duplicate text appears twice | Check for repeated phrases in EXACT TEXT section |
-| Wrong character appears | Only include refs for characters IN the scene |
+| Wrong character appears | Only include character refs in manifest for characters IN the deck |
+| Scene too busy | Keep to 5-7 visual elements maximum |
+| Text appears in image | Check that scene prompt has no `=== STYLE ===` or other system sections |
 
 ---
 

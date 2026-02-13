@@ -269,20 +269,12 @@ editorial_review:
 - [ ] Single clear focal point per card
 - [ ] Text readable at card size
 
-### Image Prompts (v1 - CRITICAL - causes visual artifacts)
-- [ ] NO percentages in COMPOSITION sections (e.g., "(12%)" renders as text)
-- [ ] NO "Question 1:", "Question 2:" labels (renders as text)
-- [ ] NO duplicate phrases in EXACT TEXT section (same text may render twice)
-- [ ] Character descriptions match reference sheets EXACTLY (including facial hair details)
-- [ ] Character descriptions are specific (e.g., "goatee with mustache" not just "beard")
-- [ ] ONLY include characters who should VISUALLY APPEAR (text mentions don't require visual presence)
-
-### Image Prompts (v2 - Composition Zones)
-- [ ] NO Hebrew text in prompts (all text overlaid programmatically)
-- [ ] NO English titles or labels in prompts
-- [ ] Composition zone specified for card type (top 20-30%, bottom-left, etc.)
-- [ ] Image composition leaves overlay zone uncluttered
-- [ ] Prompt includes explicit "Do NOT render any text" instruction
+### Image Prompts (Scene-Only)
+- [ ] Prompts are pure scene descriptions (no `=== STYLE ===`, `=== RESTRICTIONS ===`, etc.)
+- [ ] No style, safety, composition, or rules in prompts (injected by `build_generation_prompt()`)
+- [ ] Character descriptions match reference sheets (specific details like facial hair)
+- [ ] ONLY include characters who should VISUALLY APPEAR
+- [ ] 5-7 visual elements maximum per scene
 
 ### Front/Back Content (v2 Cards)
 - [ ] `front` object has all required fields for card type:

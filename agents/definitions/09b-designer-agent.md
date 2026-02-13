@@ -39,9 +39,10 @@ deck.json → generate raw images → raw/{card_id}.png
 - Border radius: 8-10px (24px in CSS for round corners)
 
 ### Typography
-- **FitText** for all primary titles — dynamically scales to fill available width
+- **FitText** for primary titles — dynamically scales within narrow min/max ranges per card type
+- **Story cards** use fixed 28px with line wrapping (not FitText — titles are multi-word phrases)
 - Font family: Fredoka (primary), Hebrew font for RTL text
-- Title sizes: 48-120px (FitText auto-scales within range)
+- Title sizes: 38-80px (FitText auto-scales within range per card type)
 - Subtitle/body: 14-24px fixed sizes
 
 ### Color System (Border Colors by Card Type)
@@ -59,13 +60,13 @@ deck.json → generate raw images → raw/{card_id}.png
 
 | Card Type | Title Zone | Content Zone | Notes |
 |-----------|-----------|--------------|-------|
-| Anchor | Top 10-15% | Full bleed image | Title over image with white outline |
-| Spotlight | Top 5% | Full bleed | Hebrew name + English, emotion badge bottom-left |
-| Story (Cinematic/Clean) | Top 3% | Full bleed | Title + subtitle top, keyword bottom-left |
-| Story (Standard) | Header bar | Split image/text | Colored header bar, keyword badge, description zone |
-| Connection | Top 3% | Full bleed | Title top, emoji strip bottom |
-| Tradition | Top 8% | Full bleed | Hebrew + English title, separator line |
-| Power Word | Top 6% | Full bleed | Large Hebrew word, English meaning pill |
+| Anchor | Top 10-15% | Full bleed image | FitText 80/64px, white outline effect |
+| Spotlight | Top 5% | Full bleed | FitText 56/46px, emotion badge bottom-left |
+| Story (Cinematic/Clean) | Top 3% | Full bleed | Fixed 28px wrapping, keyword bottom-left |
+| Story (Standard) | Header bar | Split image/text | Header bar, keyword badge, description zone |
+| Connection | Top 3% | Full bleed | FitText 48/38px white title, emoji strip bottom |
+| Tradition | Top 3% | Full bleed | FitText 48/38px, English subtitle |
+| Power Word | Top 6% | Full bleed | FitText 56/46px Hebrew word, English meaning |
 
 ### Hebrew Text Handling
 - Always use `font-hebrew` class for Hebrew text

@@ -95,22 +95,17 @@ Future option: Add Feedback Coordinator agent if volume/complexity increases.
 ## Key Files
 
 - [STYLE_GUIDE.md](STYLE_GUIDE.md) - Visual consistency rules
-- [CARD_SPECS.md](CARD_SPECS.md) - Card structure (v1 vs v2 format)
-- [VISUAL_SPECS.md](VISUAL_SPECS.md) - Visual specs and overlay zones
+- [CARD_SPECS.md](CARD_SPECS.md) - Card type specifications
+- [VISUAL_SPECS.md](VISUAL_SPECS.md) - Visual specs and composition guidance
 
-## Card Format Versions
+## Card Format
 
-| Version         | Description               | Image Prompts          | Text Overlay       |
-| --------------- | ------------------------- | ---------------------- | ------------------ |
-| **v1** (legacy) | All content on card front | Include EXACT TEXT     | Rendered in image  |
-| **v2** (new)    | Front/back separation     | Composition zones only | Programmatic (PIL) |
-
-**v2 Benefits:**
-
-- Teachers can read back content without children seeing
-- Cleaner card fronts (full-bleed images)
-- Programmatic Hebrew with proper nikud support
-- Separate print files for double-sided printing
+- AI generates **scene-only images** to `raw/` (no text, no borders)
+- `build_generation_prompt()` layers style, safety, composition, and rules at generation time
+- **Card Designer (React)** renders text overlay and teacher content
+- Card fronts: full-bleed images with React-rendered text
+- Card backs: 5x7 printable teacher content (scripts, activities, questions)
+- Image prompts in deck.json are **pure scene descriptions**
 
 ## Updating This Documentation
 

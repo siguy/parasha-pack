@@ -4,15 +4,104 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Scene-Only Architecture
+
+All system concerns (style, safety, composition, rules) are now layered automatically at generation time. Content creators only write scene descriptions.
+
+- **`generate_images.py`**: `inject_composition_guidance()` → `build_generation_prompt()` — now layers ALL 5 system concerns onto scene prompts:
+  1. Style anchors (children's illustration style)
+  2. Safety rules (no God in human form, etc.)
+  3. Scene description (from deck.json, passed through unchanged)
+  4. Per-card-type composition (cinematography language)
+  5. Critical rules (no text, no borders)
+- **`image_prompts.py`**: All 7 `build_*_v2()` functions rewritten to return **scene-only** descriptions (stripped style, safety, composition sections that are now injected by `build_generation_prompt()`)
+- **`card_prompts.py`**: Deprecated — v1 prompt generator that embeds borders/text/layout in prompts. Kept for reference only.
+- **`generate_deck.py`**: Full rewrite to v2 card types:
+  - `action` → `story`, `thinker` → `connection`
+  - Added `tradition` cards via `--holiday` flag
+  - v2 field names throughout (emotion_label_en/he, english_key_word, emojis, etc.)
+  - Creates `raw/`, `images/`, `references/` directories
+  - Version bumped to "2.0"
+
+### Card Title Sizing Consistency
+
+Narrowed FitText min/max ranges so cards of the same type render at consistent sizes.
+
+| Card Type | maxSize | minSize | padding | Notes |
+|-----------|---------|---------|---------|-------|
+| Spotlight | 96→56 | 40→46 | 32→40 | |
+| Tradition | →48 | →38 | →36 | Matched connection card |
+| Power Word | →56 | →46 | →40 | Matched spotlight card |
+| Anchor | 120→80 | 48→64 | 48 | |
+| Connection | 72→48 | 28→38 | 32→36 | |
+| Story | — | — | — | Replaced FitText with fixed 28px wrapping |
+
+Additional layout changes:
+- **TraditionCard**: Matched connection card layout (position, fonts), removed separator line
+- **PowerWordCard**: Matched spotlight layout, removed pill container for English
+- **StoryCard**: Fixed 28px wrapping text replaces FitText (multi-word titles wrap instead of overflowing)
+
+### Fixed
+
+- **Connection card title color**: `borderColor` (blue) → `'white'`
+- **Anchor card nikud visibility**: `WebkitTextStroke` 1.5px + `paintOrder: stroke fill` + multi-directional glow
+- **Story card title overflow**: Story 3 & 4 Hebrew titles no longer overflow
+- **Power Word redundant text**: "Hero / Brave One" → "Hero" in deck.json
+
+### Purim Deck
+
+- Rewrote all 16 `image_prompt` fields to pure scene descriptions
+- Regenerated all 16 raw images (no borders, no text)
+- Old images backed up to `decks/purim/raw-v1-borders/`
+
+---
+
+### Legacy Code Removal
+
+Removed all v1 artifacts — the codebase is now v2-only.
+
+#### `src/schema.py`
+- Removed `OverlayZone` enum and `OVERLAY_SPECS` dict (overlay handled by Card Designer)
+- Removed `overlay_zone` field from all Front dataclasses
+- Removed legacy card classes: `BaseCard`, `AnchorCard`, `SpotlightCard`, `ActionCard`, `ThinkerCard`, `PowerWordCard`
+- Removed old `Deck` class (v1.0 with `mitzvah_connection`); replaced with v2.0 `Deck` accepting `CardV2`
+- Removed unused `ConnectionQuestion` dataclass (was `ThinkerQuestion`)
+- Removed `ACTION`/`THINKER` legacy aliases from `CardType`
+
+#### `src/image_prompts.py`
+- Removed `STYLE_ANCHORS` constant (replaced by `STYLE_ANCHORS_V2`)
+- Removed `get_overlay_spec()` function
+- Removed 6 legacy prompt builders: `build_anchor_prompt`, `build_spotlight_prompt`, `build_action_prompt`, `build_thinker_prompt`, `build_power_word_prompt`, `build_divine_presence_prompt` (~300 lines)
+
+#### `src/__init__.py`
+- Complete rewrite: exports only v2 types (`CardV2`, `Deck`, `build_*_v2()`)
+- Version `"1.0.0"` → `"2.0.0"`
+
+#### `src/workflows/deck.py`
+- Removed `mitzvah_connection` assignment
+- Feedback version `"1.0"` → `"2.0"`
+
+#### `src/generate_deck.py`
+- Removed "replaces v1" comments
+
 ### Code Quality Improvements
 
 #### Error Handling
 - `generate_images.py`: Added warning log for silent manifest load failures (was swallowing exceptions)
 
-#### Documentation Fixes
-- Removed dead references to deleted `FRAMEWORK.md` and `YEAR_CONTEXT.yaml` from `agents/AGENTS.md`
+#### Documentation Reconciliation
+
+All 3 documentation layers (code-level, agent pipeline, project-level) now consistently describe the v2 scene-only architecture.
+
+- **`agents/AGENT_PIPELINE.md`**: Full rewrite — removed `=== EXACT TEXT TO RENDER ===` section, keyword badge placement, Hebrew spelling notes for image rendering. Added scene-only prompt rules, `build_generation_prompt()` documentation, assembly step, and reference to Yitro pipeline example.
+- **`agents/definitions/05-visual-director.md`**: Removed old card type ASCII templates (showed text zones baked into images). Replaced with reference to VISUAL_SPECS.md for composition. Simplified YAML output template to scene-only prompts.
+- **`agents/STYLE_GUIDE.md`**: Replaced old prompt structure (`=== STYLE ===`, `=== RESTRICTIONS ===`, etc.) with scene-only prompt format and `build_generation_prompt()` documentation.
+- **`agents/definitions/06-editor.md`**: Updated image prompt checklist to reflect scene-only approach.
+- **`agents/definitions/09-card-designer.md`**: Updated FitText values to match current implementation, removed "Action" card name.
+- **`agents/definitions/09b-designer-agent.md`**: Updated typography and layout zone tables with current FitText ranges.
+- Removed dead references to `FRAMEWORK.md` and `YEAR_CONTEXT.yaml` from `agents/AGENTS.md`
 - Updated `src/CLAUDE.md` CLI documentation to match actual `generate_images.py` flags
-- Added deprecation comments to legacy `CardType` aliases (`ACTION`, `THINKER`) in `schema.py`
+- Updated `decks/CLAUDE.md`: consolidated and verified against actual codebase
 
 ---
 
