@@ -17,9 +17,9 @@ Quality assurance specialist who reviews the complete deck for consistency, accu
 
 ## Knowledge Resources
 
-- [FRAMEWORK.md](../FRAMEWORK.md) - card requirements
-- [STYLE_GUIDE.md](../STYLE_GUIDE.md) - visual standards and safety rules
-- [YEAR_CONTEXT.yaml](../YEAR_CONTEXT.yaml) - continuity tracking
+- [CARD_SPECS.md](../CARD_SPECS.md) - card type specifications
+- [VISUAL_SPECS.md](../VISUAL_SPECS.md) - visual standards and safety rules
+- [LESSONS_LEARNED.md](../LESSONS_LEARNED.md) - common mistakes to catch
 - Research document (to verify accuracy)
 - All previous agent outputs
 

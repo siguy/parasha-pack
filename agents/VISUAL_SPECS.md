@@ -234,10 +234,9 @@ Antagonists are **misguided**, not scary.
 
 ---
 
-## Overlay Zones (v2 Cards)
+## Composition Zones
 
-For v2 cards, text is overlaid programmatically using PIL/Pillow after image generation.
-The image must leave designated zones uncluttered.
+Card Designer (React) renders text overlay on raw images. The AI-generated image must leave designated zones uncluttered for text readability.
 
 | Card Type | Overlay Zone | Content | Background Treatment |
 |-----------|--------------|---------|---------------------|
@@ -248,16 +247,9 @@ The image must leave designated zones uncluttered.
 | Power Word | Top 30% | Hebrew word + English meaning | Simple gradient |
 | Tradition | Top 25% | Hebrew/English title | Simple gradient |
 
-### v2 Prompt Composition Instructions
+### Composition Guidance (injected automatically)
 
-Each card type has specific composition instructions:
-
-- **Anchor**: "Compose the scene in the lower 70-80%. Keep top 20-25% uncluttered for Hebrew title overlay."
-- **Spotlight**: "Compose the portrait in the lower 70%. Keep top 30% uncluttered for name and emotion overlay."
-- **Story**: "Full-bleed scene. Keep bottom-left corner relatively simple for keyword badge overlay."
-- **Connection**: "Compose the illustration in the upper 80%. Keep bottom 20% simple for emoji row overlay."
-- **Power Word**: "Compose the illustration in the lower 70%. Keep top 30% uncluttered for Hebrew word overlay."
-- **Tradition**: "Compose the scene in the lower 75%. Keep top 25% uncluttered for title overlay."
+`build_generation_prompt()` adds per-card-type composition guidance using cinematography language. The Visual Director does NOT include these in scene prompts — they are layered automatically at generation time.
 
 ---
 

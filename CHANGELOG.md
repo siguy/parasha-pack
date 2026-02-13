@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Agent Pipeline Refactor
+
+Cleaned up the entire agent system: consistent numbering, complete definitions, no dead code, no phantom references.
+
+#### Added
+- Agent definitions for `01-torah-scholar.md`, `02-curriculum-designer.md`, `03-content-writer.md`, `04-hebrew-expert.md` (previously referenced but never written)
+- `sync-deck.sh` — copies `decks/{id}/` to `card-designer/content/{id}/` (establishes `decks/` as single source of truth for deck data)
+
+#### Changed
+- Agent numbering: `09-card-designer.md` + `09b-designer-agent.md` merged into `07-card-designer.md`
+- Agent roster is now 7 agents (01-07), removed aspirational Print Producer (07) and Web Producer (08)
+- `VISUAL_SPECS.md` is now the single visual spec doc (absorbed STYLE_GUIDE.md content)
+- `src/CLAUDE.md` rewritten to document only active modules
+- `CLAUDE.md` updated with correct directory structure, agent references, sync-deck.sh workflow
+
+#### Removed
+- `agents/STYLE_GUIDE.md` — duplicate of VISUAL_SPECS.md (80% overlap)
+- `agents/definitions/09-card-designer.md` and `09b-designer-agent.md` — replaced by `07-card-designer.md`
+- All references to phantom files: `FRAMEWORK.md`, `YEAR_CONTEXT.yaml`
+
+#### Archived (moved to `src/archive/`)
+- `card_prompts.py`, `overlay.py`, `card_back_generator.py`, `card_generator.py`, `generate_with_consistency.py`
+- `card-designer/scripts/generate_images.py`, `generate_fresh_art.py`, `prepare_hybrid_prompts.py`
+
+---
+
 ### Scene-Only Architecture
 
 All system concerns (style, safety, composition, rules) are now layered automatically at generation time. Content creators only write scene descriptions.

@@ -13,15 +13,19 @@ parasha-pack/
 ├── CLAUDE.md              # This file - project overview
 ├── agents/                # Agent system documentation (see agents/AGENTS.md)
 │   ├── AGENTS.md          # Agent roster and workflow
+│   ├── AGENT_PIPELINE.md  # Detailed pipeline with YAML schemas
 │   ├── CARD_SPECS.md      # Card type specifications
-│   ├── STYLE_GUIDE.md     # Visual consistency rules
-│   └── definitions/       # Individual agent specifications
+│   ├── VISUAL_SPECS.md    # Visual specs, characters, safety rules
+│   ├── LESSONS_LEARNED.md # Patterns and gotchas
+│   └── definitions/       # Individual agent specs (01-07)
 ├── src/                   # Python source code (see src/CLAUDE.md)
+│   └── archive/           # Deprecated v1 code (do not use)
+├── card-designer/         # Next.js React app for text overlay + export
 ├── decks/                 # Deck data and images (see decks/CLAUDE.md)
-├── review-site/           # Web review interface (see review-site/CLAUDE.md)
-├── review-site-v2/        # V2 review site with front/back support
-├── exports/               # Generated PDFs and print files
-├── templates/             # Card layout templates
+│   ├── purim/             # Active deck
+│   └── archive/           # Archived decks (beshalach, mishpatim, terumah, tetzaveh, yitro)
+├── review-site/           # Web review interface
+├── sync-deck.sh           # Sync deck data to Card Designer
 ├── requirements.txt       # Python dependencies
 └── README.md              # User-facing documentation
 ```
@@ -64,15 +68,13 @@ cd src
 python generate_images.py ../decks/purim/deck.json
 ```
 
-### 3b. Export Final Cards with Card Designer
-
-Card Designer renders text overlay using React components:
+### 4. Export Final Cards with Card Designer
 
 ```bash
-cd card-designer
+# Sync deck data to Card Designer
+./sync-deck.sh purim
 
-# Start dev server (if not running)
-npm run dev
+cd card-designer
 
 # Export fronts only (default)
 npm run export purim
@@ -88,7 +90,7 @@ Output:
 - `decks/purim/images/{card_id}.png` - Final card fronts with text overlay
 - `decks/purim/backs/{card_id}_back.png` - Teacher content backs
 
-### 4. Review Cards
+### 5. Review Cards
 
 Open `review-site/index.html` in a browser to:
 - View all cards with images
@@ -110,11 +112,12 @@ Standard deck: 10 cards. Holiday decks add 3 tradition cards = 13 cards.
 
 ## Agent-Based Workflow
 
-Deck creation uses a multi-agent workflow. See [agents/AGENTS.md](agents/AGENTS.md) for:
-- Agent roster and responsibilities
-- Workflow diagram
-- Human checkpoint process
-- Continuity tracking
+Deck creation uses a 7-agent pipeline. See [agents/AGENTS.md](agents/AGENTS.md) for:
+- Agent roster (01 Torah Scholar through 07 Card Designer)
+- Workflow diagram with checkpoints
+- Human review process
+
+See [agents/AGENT_PIPELINE.md](agents/AGENT_PIPELINE.md) for detailed YAML schemas.
 
 ## Safety Rules for Image Generation
 
@@ -123,14 +126,6 @@ Deck creation uses a multi-agent workflow. See [agents/AGENTS.md](agents/AGENTS.
 - No scary monsters
 - All characters dressed modestly
 - Age-appropriate for 4-6 year olds
-
-## Adding New Research Data
-
-To add a new character or parasha to the research database:
-
-1. Open `src/workflows.py`
-2. Add entry to `CHARACTER_DATABASE` or `PARASHA_DATABASE`
-3. Include: biblical refs, key stories, traits, emotional moments
 
 ## Common Tasks
 
@@ -143,6 +138,8 @@ To add a new character or parasha to the research database:
 | Create character refs | `python workflows.py character yitro -d ../decks/yitro -g` |
 | Generate all images | `python generate_images.py ../decks/yitro/deck.json` |
 | Generate single image | `python generate_images.py ../decks/yitro/deck.json --card spotlight_1` |
+| Sync deck to Card Designer | `./sync-deck.sh purim` |
+| Export final cards | `cd card-designer && npm run export purim -- --backs` |
 
 ## Environment Variables
 
@@ -150,11 +147,6 @@ The `GEMINI_API_KEY` is stored in `.env` in the project root. Load it before run
 
 ```bash
 source .env && export GEMINI_API_KEY
-```
-
-Or set directly:
-```bash
-export GEMINI_API_KEY=your_api_key_here
 ```
 
 ## Image Generation Model
@@ -182,8 +174,6 @@ Character consistency is achieved through **identity references**:
 1. **Single Source of Truth:** Each character has ONE identity image (`{character}_identity.png`)
 2. **Automatic Reference Passing:** When generating cards, the identity image is base64-encoded and passed to the API alongside the text prompt
 3. **Prompt Reinforcement:** Card prompts should still include character descriptions to reinforce visual features
-
-**Why identity-only?** Previously we generated 4 reference types (identity, expressions, turnaround, poses). Each was generated independently from text, producing inconsistent interpretations of the same character. Now we generate ONE identity and use it as the reference for ALL card generations.
 
 **Character Review Workflow:**
 1. Generate 2+ identity versions for new characters
@@ -234,6 +224,15 @@ For code reviews, output findings incrementally as files are read rather than wa
 - **Card Back**: 5x7 printable teacher content (scripts, activities, questions)
 - Image prompts in deck.json are **pure scene descriptions** — no style, composition, or rules
 
+**Deck Data Flow:**
+```
+decks/{id}/deck.json  ← single source of truth
+        ↓
+./sync-deck.sh {id}   ← copies to card-designer/content/{id}/
+        ↓
+Card Designer reads from content/{id}/
+```
+
 **Directory Structure:**
 ```
 decks/purim/
@@ -255,6 +254,9 @@ decks/purim/
 # 1. Generate raw images (scene-only, system layers added automatically)
 cd src && python generate_images.py ../decks/purim/deck.json
 
-# 2. Export with Card Designer
+# 2. Sync to Card Designer
+./sync-deck.sh purim
+
+# 3. Export with Card Designer
 cd card-designer && npm run export purim -- --backs
 ```

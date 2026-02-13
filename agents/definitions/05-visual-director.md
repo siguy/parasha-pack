@@ -17,9 +17,9 @@ Art director for children's educational materials. Creates detailed image prompt
 
 ## Knowledge Resources
 
-- [STYLE_GUIDE.md](../STYLE_GUIDE.md) - art style, colors, safety rules
+- [VISUAL_SPECS.md](../VISUAL_SPECS.md) - art style, colors, safety rules
+- [CARD_SPECS.md](../CARD_SPECS.md) - card type specifications
 - Character identity references (in deck references/ folders)
-- [YEAR_CONTEXT.yaml](../YEAR_CONTEXT.yaml) - existing character designs
 - Card layout specifications
 
 ## Character Identity Workflow (CRITICAL)

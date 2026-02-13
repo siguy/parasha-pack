@@ -9,10 +9,10 @@ Quick navigation for the Parasha Pack agent-based workflow.
 | I want to... | Go to... |
 |--------------|----------|
 | Understand the workflow | [AGENTS.md](AGENTS.md) |
+| See the full pipeline | [AGENT_PIPELINE.md](AGENT_PIPELINE.md) |
 | See card types and structure | [CARD_SPECS.md](CARD_SPECS.md) |
 | Find visual/character specs | [VISUAL_SPECS.md](VISUAL_SPECS.md) |
 | See what each agent does | [definitions/](definitions/) |
-| Track cross-deck continuity | [YEAR_CONTEXT.yaml](YEAR_CONTEXT.yaml) |
 | Review lessons learned | [LESSONS_LEARNED.md](LESSONS_LEARNED.md) |
 
 ---
@@ -27,8 +27,7 @@ Quick navigation for the Parasha Pack agent-based workflow.
 | 4 | Hebrew Expert | Hebrew text, nikud, translations | [04-hebrew-expert.md](definitions/04-hebrew-expert.md) |
 | 5 | Visual Director | Character design, image prompts | [05-visual-director.md](definitions/05-visual-director.md) |
 | 6 | Editor | QA, safety, consistency | [06-editor.md](definitions/06-editor.md) |
-| 7 | Print Producer | Print-ready files | [07-print-producer.md](definitions/07-print-producer.md) |
-| 8 | Web Producer | Teacher guide site | [08-web-producer.md](definitions/08-web-producer.md) |
+| 7 | Card Designer | Card assembly, text overlay, export | [07-card-designer.md](definitions/07-card-designer.md) |
 
 ---
 
@@ -45,11 +44,12 @@ Quick navigation for the Parasha Pack agent-based workflow.
       ↓
 [Character Identity Generation] → identity refs
       ↓ ← CHECKPOINT: Review 2+ identity versions
-[Card Image Generation] → card images
+[Card Image Generation] → raw scene images
+      ↓
+[Card Designer] → text overlay + export
       ↓
 [Editor] → QA review
       ↓ ← CHECKPOINT: Review complete deck
-[Print Producer] + [Web Producer] → final outputs
 ```
 
 ---
@@ -81,12 +81,10 @@ Three human review points in the workflow:
 ```
 agents/
 ├── README.md           # This file - start here
-├── AGENTS.md           # Workflow details
+├── AGENTS.md           # Workflow details and agent roster
+├── AGENT_PIPELINE.md   # Detailed pipeline with YAML schemas
 ├── CARD_SPECS.md       # Card types (single source of truth)
 ├── VISUAL_SPECS.md     # Visual specs (single source of truth)
-├── FRAMEWORK.md        # Extended framework details
-├── STYLE_GUIDE.md      # Brief style reference
-├── YEAR_CONTEXT.yaml   # Cross-deck continuity
 ├── LESSONS_LEARNED.md  # Patterns and gotchas
 └── definitions/        # Individual agent specs
     ├── 01-torah-scholar.md
@@ -95,8 +93,7 @@ agents/
     ├── 04-hebrew-expert.md
     ├── 05-visual-director.md
     ├── 06-editor.md
-    ├── 07-print-producer.md
-    └── 08-web-producer.md
+    └── 07-card-designer.md
 ```
 
 ---
@@ -105,15 +102,13 @@ agents/
 
 | Task | Steps |
 |------|-------|
-| Create new deck | Start with Torah Scholar → follow workflow |
-| Add new character | Visual Director designs → generate 2+ identities → user selects |
-| Fix card issue | Check Editor checklist → route to appropriate agent |
-| Update continuity | Edit YEAR_CONTEXT.yaml after deck completion |
+| Create new deck | Start with Torah Scholar -> follow workflow |
+| Add new character | Visual Director designs -> generate 2+ identities -> user selects |
+| Fix card issue | Check Editor checklist -> route to appropriate agent |
 
 ---
 
 ## Maintenance
 
-- **After each deck:** Update YEAR_CONTEXT.yaml with new characters/concepts
 - **After discovering patterns:** Add to LESSONS_LEARNED.md
 - **If specs change:** Update CARD_SPECS.md or VISUAL_SPECS.md (single source of truth)

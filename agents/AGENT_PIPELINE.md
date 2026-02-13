@@ -217,7 +217,7 @@ Character reference images from `references/manifest.json` are automatically inc
 
 ---
 
-## Agent 09: Card Designer (Compositor)
+## Agent 07: Card Designer (Compositor)
 
 **Input:** Raw images from `raw/`, card content from `deck.json`
 **Output:** Final card images in `images/` and `backs/`
@@ -267,7 +267,6 @@ Before regenerating card images, verify:
 ## Reference
 
 - Working pipeline example: `decks/archive/yitro/pipeline/` (6 YAML files)
-- Agent definitions: `agents/definitions/`
+- Agent definitions: `agents/definitions/` (01 through 07)
 - Card type specs: `agents/CARD_SPECS.md`
 - Visual specs: `agents/VISUAL_SPECS.md`
-- Style guide: `agents/STYLE_GUIDE.md`
