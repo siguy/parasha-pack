@@ -80,6 +80,17 @@ parasha_research:
         meaning: "Joy"
         for_card: "story_1"
 
+  story_world: |
+    Historical/geographic setting for this deck's story cards
+    (anchor, spotlight, story, power_word). Describe the physical
+    world: architecture, landscape, clothing, lighting, palette.
+    Examples:
+      - Purim: "Ancient Persian Empire, city of Shushan..."
+      - Yitro: "Sinai desert, Israelite camp, goat-hair tents..."
+      - Bereishit: "Garden of Eden, lush paradise..."
+    This does NOT apply to connection/tradition cards (they use
+    the global modern Orthodox Jewish community setting).
+
   avoid:
     - "Any depiction of God in human form"
     - "Writing God's name (יהוה)"
@@ -108,6 +119,7 @@ See `decks/archive/yitro/pipeline/01-parasha-research.yaml` for a complete outpu
 3. **Safety always** — Flag anything that needs careful framing (death, villains, miracles).
 4. **Hebrew accuracy** — All Hebrew must include nikud. Verify letter counts.
 5. **Connection seeds** — Write 4-5 open-ended discussion questions for Connection cards.
+6. **Story world** — Define the historical/geographic setting for this deck. This anchors visual consistency across all story-world cards (anchor, spotlight, story, power_word).
 
 ## Handoff
 

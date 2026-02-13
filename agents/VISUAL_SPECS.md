@@ -267,13 +267,25 @@ Courtiers watch from the sides. Rich fabrics and royal furnishings.
 Warm, hopeful. A new chapter begins.
 ```
 
+### Two Visual Worlds
+
+Cards exist in one of two visual "worlds":
+
+| World | Card Types | Source | Description |
+|-------|-----------|--------|-------------|
+| **Story World** | anchor, spotlight, story, power_word | `deck.json "story_world"` | Historical/holiday setting (per-deck). E.g., ancient Persia for Purim, Sinai desert for Yitro. |
+| **Modern World** | connection, tradition | `MODERN_WORLD_STYLE` constant | Modern Orthodox Jewish community. Same across all decks. |
+
+The Torah Scholar determines the story world setting as part of research. It is stored in `deck.json` as the `story_world` field.
+
 ### What `build_generation_prompt()` adds automatically
 
-1. `STYLE_ANCHORS_V2` — Children's illustration style, cultural context, anatomy rules
-2. `SAFETY_PROMPT` — Content restrictions (no God in human form, etc.)
-3. Scene description — passed through unchanged from deck.json
-4. `COMPOSITION_GUIDANCE[card_type]` — Per-card-type cinematography
-5. `COMPOSITION_SUFFIX` — No text, no borders rules
+1. `STYLE_ANCHORS_V2` — Children's illustration style, anatomy rules
+2. **World style** — `MODERN_WORLD_STYLE` for connection/tradition, `story_world` for all others
+3. `SAFETY_PROMPT` — Content restrictions (no God in human form, etc.)
+4. Scene description — passed through unchanged from deck.json
+5. `COMPOSITION_GUIDANCE[card_type]` — Per-card-type cinematography
+6. `COMPOSITION_SUFFIX` — No text, no borders rules
 
 ### Prompt Gotchas
 

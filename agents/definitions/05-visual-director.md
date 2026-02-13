@@ -214,18 +214,31 @@ visual_direction:
     - [ ] Tradition cards have warm, celebratory mood (holiday)
 ```
 
+## Two Visual Worlds
+
+Cards exist in one of two visual "worlds." The Visual Director must write scene prompts appropriate to each:
+
+| World | Card Types | Setting Source | Notes |
+|-------|-----------|---------------|-------|
+| **Story World** | anchor, spotlight, story, power_word | `deck.json "story_world"` | Historical/holiday specific. Set by Torah Scholar. |
+| **Modern World** | connection, tradition | `MODERN_WORLD_STYLE` constant | Modern Orthodox Jewish community. Same across all decks. |
+
+- **Story world prompts** should describe scenes in the historical setting (e.g., Persian palace, Sinai desert) without repeating the story_world description — it's injected automatically.
+- **Modern world prompts** should describe scenes in a modern Jewish classroom (connection) or community (tradition) — the `MODERN_WORLD_STYLE` is injected automatically.
+
 ## Image Prompt Format
 
 Image prompts in deck.json are **pure scene descriptions** — what to draw, not how to draw it.
 
 `build_generation_prompt()` in `generate_images.py` automatically layers:
 1. Style anchors (children's illustration)
-2. Safety rules (no God in human form, etc.)
-3. Scene description (from deck.json — passed through unchanged)
-4. Per-card-type composition guidance (cinematography language)
-5. Critical rules (no text, no borders)
+2. **World style** — `MODERN_WORLD_STYLE` for connection/tradition, `story_world` for all others
+3. Safety rules (no God in human form, etc.)
+4. Scene description (from deck.json — passed through unchanged)
+5. Per-card-type composition guidance (cinematography language)
+6. Critical rules (no text, no borders)
 
-**The Visual Director writes scene-only prompts.** No style, safety, composition, or rules.
+**The Visual Director writes scene-only prompts.** No style, safety, composition, world, or rules.
 
 Example scene prompt:
 ```

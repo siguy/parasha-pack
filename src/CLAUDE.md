@@ -10,7 +10,7 @@ Python modules for generating and managing Parasha Pack card decks.
 | `generate_deck.py` | Create new deck templates (story, connection, tradition card types) |
 | `generate_images.py` | Generate raw card images to `raw/`; assembles system prompt layers via `build_generation_prompt()` |
 | `generate_references.py` | Generate character identity reference sheets |
-| `image_prompts.py` | System constants (style, safety, composition) + scene-only `build_*_v2()` templates |
+| `image_prompts.py` | System constants (style, safety, composition, world styles) + scene-only `build_*_v2()` templates |
 | `schema.py` | Data structures, type definitions, and card schemas |
 | `sefaria_client.py` | Sefaria API integration |
 | `config.py` | Configuration constants |
@@ -22,7 +22,7 @@ Deprecated v1 code lives in `archive/` for reference. Do not use for new decks.
 ```
 deck.json image_prompt (pure scene description)
         ↓
-build_generation_prompt() layers style + safety + composition + rules
+build_generation_prompt() layers style + world + safety + composition + rules
         ↓
     raw/{card_id}.png (scene only, NO text, NO borders)
         ↓
@@ -37,7 +37,7 @@ Card Designer React (card-designer/)
 **Key principles:**
 - AI generates scene-only images. Text and borders are rendered by React components.
 - Deck prompts are **pure scene descriptions** — no composition, no rules.
-- `build_generation_prompt()` layers style, safety, composition, and rules at generation time.
+- `build_generation_prompt()` layers style, world setting, safety, composition, and rules at generation time.
 
 ---
 
@@ -150,11 +150,12 @@ python generate_references.py --character moses
 
 `build_generation_prompt()` in `generate_images.py` assembles all system layers at generation time:
 
-1. `STYLE_ANCHORS_V2` — children's illustration style, cultural context, anatomy rules
-2. `SAFETY_PROMPT` — content restrictions (no God in human form, no violence, etc.)
-3. Scene description — from deck.json, passed through unchanged
-4. `COMPOSITION_GUIDANCE[card_type]` — per-card-type cinematography
-5. `COMPOSITION_SUFFIX` — universal no-border, no-text rules
+1. `STYLE_ANCHORS_V2` — children's illustration style, anatomy rules
+2. **World style** — `MODERN_WORLD_STYLE` for connection/tradition cards (modern Orthodox Jewish community, same across all decks), or `story_world` from deck.json for all other cards (per-deck historical setting)
+3. `SAFETY_PROMPT` — content restrictions (no God in human form, no violence, etc.)
+4. Scene description — from deck.json, passed through unchanged
+5. `COMPOSITION_GUIDANCE[card_type]` — per-card-type cinematography
+6. `COMPOSITION_SUFFIX` — universal no-border, no-text rules
 
 ### Card Type Composition
 

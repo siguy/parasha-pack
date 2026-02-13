@@ -7,7 +7,7 @@ This document defines the agent pipeline for creating card decks. Each agent has
 1. **NEVER GUESS** - Each agent must use data from the pipeline YAML files, not assumptions
 2. **VERIFY HEBREW SPELLING** - Always double-check Hebrew letter counts and spelling
 3. **NO OLD DATA** - Do not reference old deck structures; use only the current pipeline files
-4. **SCENE-ONLY PROMPTS** - Image prompts are pure scene descriptions. Style, safety, composition, and rules are injected automatically by `build_generation_prompt()`
+4. **SCENE-ONLY PROMPTS** - Image prompts are pure scene descriptions. Style, world, safety, composition, and rules are injected automatically by `build_generation_prompt()`
 5. **TEXT RENDERED BY CARD DESIGNER** - AI never renders text. All text overlay is done by React components in the Card Designer
 
 ---
@@ -147,7 +147,9 @@ This document defines the agent pipeline for creating card decks. Each agent has
 - Manage character identity references
 - Create pre-generation checklist
 
-**Scene-Only Prompts:** The Visual Director writes what to draw, not how to draw it. `build_generation_prompt()` automatically layers style, safety, composition, and rules at generation time.
+**Scene-Only Prompts:** The Visual Director writes what to draw, not how to draw it. `build_generation_prompt()` automatically layers style, world setting, safety, composition, and rules at generation time.
+
+**Two Visual Worlds:** Connection + tradition cards use a global `MODERN_WORLD_STYLE` (modern Orthodox Jewish community). All other cards use the per-deck `story_world` from deck.json (e.g., ancient Persia for Purim).
 
 **Character Specs Must Include:**
 
@@ -211,10 +213,12 @@ cd src && python generate_images.py ../decks/{deck}/deck.json
 
 # build_generation_prompt() automatically layers:
 # 1. Style anchors (children's illustration)
-# 2. Safety rules (no God in human form, etc.)
-# 3. Scene description (from deck.json — passed through unchanged)
-# 4. Per-card-type composition (cinematography language)
-# 5. Critical rules (no text, no borders)
+# 2. World style (MODERN_WORLD_STYLE for connection/tradition,
+#    story_world from deck.json for all others)
+# 3. Safety rules (no God in human form, etc.)
+# 4. Scene description (from deck.json — passed through unchanged)
+# 5. Per-card-type composition (cinematography language)
+# 6. Critical rules (no text, no borders)
 ```
 
 Character reference images from `references/manifest.json` are automatically included.

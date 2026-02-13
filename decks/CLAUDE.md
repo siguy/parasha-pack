@@ -68,6 +68,7 @@ This creates:
   "ref": "",
   "border_color": "#8B5CF6",
   "theme": "celebration",
+  "story_world": "Ancient Persian Empire, city of Shushan...",
   "version": "2.0",
   "target_age": "4-6",
   "card_count": 16,
@@ -233,6 +234,17 @@ Note: Connection cards do NOT have `discussion_prompts` — they use `questions[
 }
 ```
 
+## Two Visual Worlds
+
+Cards exist in one of two visual "worlds," injected automatically by `build_generation_prompt()`:
+
+| World | Card Types | Source | Description |
+|-------|-----------|--------|-------------|
+| **Story World** | anchor, spotlight, story, power_word | `deck.json "story_world"` field | Historical/holiday setting, per-deck. E.g., ancient Persia for Purim. |
+| **Modern World** | connection, tradition | `MODERN_WORLD_STYLE` in `image_prompts.py` | Modern Orthodox Jewish community. Same across all decks. |
+
+The `story_world` field is a top-level string in deck.json describing the historical/geographic setting for the deck's story cards. The Torah Scholar determines this as part of research.
+
 ## Image Prompt Rules
 
 Image prompts in deck.json should be **pure scene descriptions** — what to draw, not how to draw it.
@@ -245,6 +257,7 @@ Image prompts in deck.json should be **pure scene descriptions** — what to dra
 
 **DO NOT include:**
 - Style instructions (`=== STYLE ===`) — injected automatically
+- World/setting instructions (`=== WORLD ===`) — injected automatically from `story_world` or `MODERN_WORLD_STYLE`
 - Safety rules (`=== RESTRICTIONS ===`) — injected automatically
 - Composition guidance (`=== COMPOSITION ===`) — injected automatically
 - Border/frame instructions — rendered by Card Designer
