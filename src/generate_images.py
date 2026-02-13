@@ -33,7 +33,7 @@ def is_v2_card(card: dict) -> bool:
     return "front" in card and "back" in card
 
 
-def build_generation_prompt(scene_prompt: str, card_type: str) -> str:
+def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str = "") -> str:
     """
     Build a complete generation prompt by layering system concerns onto a scene description.
 
@@ -41,17 +41,23 @@ def build_generation_prompt(scene_prompt: str, card_type: str) -> str:
     what to draw, not how to draw it. This function adds all system layers:
 
     1. Style anchors     — visual consistency (children's illustration style)
-    2. Safety rules      — content restrictions (no God in human form, etc.)
-    3. Scene description  — from deck.json (passed through unchanged)
-    4. Composition        — per-card-type cinematography (where to place subjects)
-    5. Critical rules     — universal (no text, no borders)
+    2. World style       — MODERN_WORLD_STYLE for connection/tradition,
+                           story_world (from deck.json) for all other card types
+    3. Safety rules      — content restrictions (no God in human form, etc.)
+    4. Scene description  — from deck.json (passed through unchanged)
+    5. Composition        — per-card-type cinematography (where to place subjects)
+    6. Critical rules     — universal (no text, no borders)
 
-    All system concerns are defined in image_prompts.py and applied here.
-    To change style, safety, or composition: update image_prompts.py once.
+    Two visual "worlds" exist:
+      - Modern World (connection + tradition): modern Orthodox Jewish community,
+        same across all decks. Defined in MODERN_WORLD_STYLE constant.
+      - Story World (anchor, spotlight, story, power_word): historical/holiday
+        setting specific to this deck. Defined in deck.json "story_world" field.
 
     Args:
         scene_prompt: Scene-only image prompt from deck.json
         card_type: Card type (anchor, spotlight, story, etc.)
+        story_world: Per-deck historical setting (from deck.json "story_world")
 
     Returns:
         Complete prompt with all system layers applied
@@ -60,28 +66,38 @@ def build_generation_prompt(scene_prompt: str, card_type: str) -> str:
         from image_prompts import (
             STYLE_ANCHORS_V2, SAFETY_PROMPT,
             COMPOSITION_GUIDANCE, COMPOSITION_SUFFIX,
+            MODERN_WORLD_STYLE,
         )
     except ImportError:
         # Fallback if image_prompts not available
         return scene_prompt
 
+    # Card types that use the modern world vs story world
+    modern_world_cards = {"connection", "tradition"}
+
     parts = []
 
-    # 1. Style anchors
+    # 1. Style anchors (all cards)
     parts.append(f"=== STYLE ===\n{STYLE_ANCHORS_V2.strip()}")
 
-    # 2. Safety rules
+    # 2. World style (modern or story, based on card type)
+    if card_type in modern_world_cards:
+        parts.append(MODERN_WORLD_STYLE.strip())
+    elif story_world:
+        parts.append(f"=== WORLD: STORY SETTING ===\n{story_world.strip()}\n\nAll scenes should feel like they belong in this world. Consistent architecture, clothing, lighting, and color palette throughout.")
+
+    # 3. Safety rules
     parts.append(f"=== SAFETY RULES ===\n{SAFETY_PROMPT}")
 
-    # 3. Scene description (from deck.json — passed through unchanged)
+    # 4. Scene description (from deck.json — passed through unchanged)
     parts.append(f"=== SCENE ===\n{scene_prompt.strip()}")
 
-    # 4. Per-card-type composition guidance
+    # 5. Per-card-type composition guidance
     guidance = COMPOSITION_GUIDANCE.get(card_type, "")
     if guidance:
         parts.append(guidance.strip())
 
-    # 5. Universal critical rules (no text, no borders)
+    # 6. Universal critical rules (no text, no borders)
     parts.append(COMPOSITION_SUFFIX.strip())
 
     return "\n\n".join(parts)
@@ -346,8 +362,9 @@ def main():
     raw_dir = deck_path.parent / "raw"
     raw_dir.mkdir(exist_ok=True)
 
-    # Get deck name
+    # Get deck name and story world
     deck_name = deck.get('parasha_en') or deck.get('holiday_en') or 'Unknown'
+    story_world = deck.get('story_world', '')
 
     print(f"Generating images for: {deck_name}")
     print(f"Output directory: {raw_dir}")
@@ -392,9 +409,9 @@ def main():
             skip_count += 1
             continue
 
-        # Build full prompt: scene description + style + safety + composition + rules
+        # Build full prompt: scene description + world + style + safety + composition + rules
         card_type = card.get("card_type", "")
-        prompt = build_generation_prompt(raw_prompt, card_type)
+        prompt = build_generation_prompt(raw_prompt, card_type, story_world=story_world)
 
         # Get title for display
         if is_v2_card(card):

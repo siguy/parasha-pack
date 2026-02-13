@@ -94,17 +94,46 @@ ANATOMY REQUIREMENTS:
 - Hands have exactly 5 fingers each
 - Correct proportions - no extra limbs or merged body parts
 
-CULTURAL CONTEXT:
-- This is for a JEWISH school (preschool/kindergarten ages 4-6)
-- When showing children: Jewish children in a Jewish school setting
-- Boys wear kippot (head coverings)
-- Girls wear modest skirts or dresses (girls do NOT wear kippot)
-- Classroom scenes should look like a Jewish preschool/gan
-- Do NOT put any Hebrew letters or text on walls, posters, or signs - Hebrew will be wrong
-
 CRITICAL: Do NOT render any text in the image. No Hebrew, no English, no titles,
 no labels, no badges. Text will be added programmatically after generation.
 The image should be purely visual.
+Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
+"""
+
+
+# =============================================================================
+# WORLD STYLES (injected based on card type)
+# =============================================================================
+# Two visual "worlds" exist across all decks:
+#   1. MODERN WORLD — connection + tradition cards (same across all decks)
+#   2. STORY WORLD — anchor, spotlight, story, power_word (per-deck, from deck.json)
+
+MODERN_WORLD_STYLE = """
+=== WORLD: MODERN ORTHODOX JEWISH COMMUNITY ===
+Setting: Modern-day Jewish community. Warm, welcoming, colorful environments.
+
+PEOPLE — ADULTS:
+- Men: knit/srugah kippah, button-down shirt or polo, khakis. Clean-cut, approachable.
+- Women: no hair covering. Casual modest dress — knee-length skirts or dresses,
+  sleeves to elbow or longer. Colorful, modern. No pants on women.
+- Overall: warm, diverse, friendly. Real community feel.
+
+PEOPLE — CHILDREN:
+- Boys: kippot (knit/srugah style). Tzitzit strings sometimes visible, sometimes not.
+- Girls: modest dresses or skirts. Girls do NOT wear kippot.
+- All children: bright, colorful clothing. Happy, engaged expressions.
+
+CLASSROOM SCENES (connection cards):
+- Co-ed — boys and girls together
+- Warm and colorful: bright walls, rug/carpet area, cubbies, play areas
+- Jewish preschool/gan feel
+- No Hebrew text on walls or posters (it will be wrong if AI generates it)
+
+SYNAGOGUE/COMMUNITY SCENES (tradition cards):
+- Classic shul elements: aron kodesh (ark), ner tamid (eternal light)
+- Bright and child-friendly, not dark or imposing
+- Mechitza optional and subtle if present
+- Warm, welcoming community gathering feel
 """
 
 # Safety rules as string
