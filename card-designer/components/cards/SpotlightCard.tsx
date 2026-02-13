@@ -54,13 +54,13 @@ export function SpotlightCard({ card, deckId, config, onConfigChange }: Spotligh
         <div className="relative z-10 h-full w-full pointer-events-none p-6">
             
             {/* Center Top: Character Names */}
-            <div className="absolute top-3 left-0 right-0 flex justify-center pointer-events-none">
+            <div className="absolute top-[5%] left-0 right-0 flex justify-center pointer-events-none">
                  <DraggableElement id="spotlight-names" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
                     <div className="drop-shadow-lg flex flex-col items-center">
                          <FitText
-                            maxSize={96}
-                            minSize={40}
-                            padding={32}
+                            maxSize={56}
+                            minSize={46}
+                            padding={40}
                             className="font-black font-hebrew text-white"
                             style={{
                                 textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000',

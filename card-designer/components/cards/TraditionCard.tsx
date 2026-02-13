@@ -54,22 +54,21 @@ export function TraditionCard({ card, deckId, config, onConfigChange }: Traditio
         <div className="relative z-10 h-full w-full pointer-events-none p-6">
             
             {/* Center Top: Titles */}
-            <div className="absolute top-[8%] left-0 right-0 flex justify-center pointer-events-none">
+            <div className="absolute top-3 left-0 right-0 flex justify-center pointer-events-none">
                  <DraggableElement id="tradition-titles" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
-                    <div className="drop-shadow-xl flex flex-col items-center gap-2 w-full">
+                    <div className="drop-shadow-lg flex flex-col items-center">
                          <FitText
-                            maxSize={110}
-                            minSize={40}
-                            padding={40}
+                            maxSize={48}
+                            minSize={38}
+                            padding={36}
                             className="font-black font-hebrew text-white"
                             style={{
-                                textShadow: '0px 2px 10px rgba(0,0,0,0.5)',
+                                textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000',
                             }}
                          >
                             {card.hebrew_title || ''}
                          </FitText>
-                         <div className="border-t-2 border-white/50 w-32" />
-                         <h2 className="text-2xl font-bold text-white tracking-wide uppercase drop-shadow-md font-serif italic">
+                         <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
                             {card.english_title}
                          </h2>
                     </div>

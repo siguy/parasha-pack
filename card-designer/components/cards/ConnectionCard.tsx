@@ -56,13 +56,13 @@ export function ConnectionCard({ card, deckId, config, onConfigChange }: Connect
             <DraggableElement id="title-group" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
                 <div className="drop-shadow-lg flex flex-col items-center">
                     <FitText
-                        maxSize={72}
-                        minSize={28}
-                        padding={32}
+                        maxSize={48}
+                        minSize={38}
+                        padding={36}
                         className="font-black font-hebrew"
                         style={{
-                            color: borderColor,
-                            textShadow: '2px 2px 4px rgba(0,0,0,0.5), -1px -1px 0 rgba(255,255,255,0.3)',
+                            color: 'white',
+                            textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000',
                         }}
                     >
                         {card.title_he || 'חִבּוּר'}

@@ -54,25 +54,23 @@ export function PowerWordCard({ card, deckId, config, onConfigChange }: PowerWor
         <div className="relative z-10 h-full w-full pointer-events-none p-6">
             
             {/* Center Top: Word & Meaning */}
-            <div className="absolute top-[6%] left-0 right-0 flex justify-center pointer-events-none">
+            <div className="absolute top-[5%] left-0 right-0 flex justify-center pointer-events-none">
                  <DraggableElement id="power-word-group" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
-                    <div className="drop-shadow-xl flex flex-col items-center w-full">
+                    <div className="drop-shadow-lg flex flex-col items-center w-full">
                          <FitText
-                            maxSize={120}
-                            minSize={48}
+                            maxSize={56}
+                            minSize={46}
                             padding={40}
                             className="font-black font-hebrew text-white"
                             style={{
-                                textShadow: '3px 3px 0px #000',
+                                textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000',
                             }}
                          >
                             {card.hebrew_word_nikud || card.hebrew_word || ''}
                          </FitText>
-                         <div className="bg-black/40 backdrop-blur-sm px-4 py-1 rounded-full mt-2">
-                             <h2 className="text-xl font-bold text-white uppercase tracking-[0.2em]">
-                                {card.english_meaning}
-                             </h2>
-                         </div>
+                         <h2 className="text-xl font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
+                            {card.english_meaning}
+                         </h2>
                     </div>
                 </DraggableElement>
             </div>

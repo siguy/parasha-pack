@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils';
 import { Star, Heart, Zap, Drama } from 'lucide-react';
 import { LayoutConfig, DEFAULT_LAYOUT_CONFIG } from '@/types/editor';
 import { DraggableElement } from '../editor/DraggableElement';
-import { FitText } from '../ui/FitText';
 
 interface StoryCardProps {
   card: CardData;
@@ -348,18 +347,17 @@ function ImmersiveCinematicLayout({ card, deckId, activeConfig, borderColor, cle
             {/* Top: Title */}
             <div className="absolute top-3 left-0 right-0 z-10 flex justify-center pointer-events-none">
                 <DraggableElement id="title-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto w-full">
-                    <div className="drop-shadow-lg flex flex-col items-center">
-                        <FitText
-                            maxSize={72}
-                            minSize={28}
-                            padding={32}
-                            className="font-black font-hebrew text-white"
+                    <div className="drop-shadow-lg flex flex-col items-center px-6">
+                        <span
+                            className="font-black font-hebrew text-white text-center"
                             style={{
+                                fontSize: '28px',
+                                lineHeight: 1.2,
                                 textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000',
                             }}
                         >
                             {card.title_he || ''}
-                        </FitText>
+                        </span>
                         <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
                             {card.title_en}
                         </h2>
@@ -371,18 +369,18 @@ function ImmersiveCinematicLayout({ card, deckId, activeConfig, borderColor, cle
             <div className="absolute bottom-6 left-6 pointer-events-none">
                  <DraggableElement id="keyword-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto">
                     <div className="flex flex-col items-start">
-                        <span 
-                            className="font-black text-2xl leading-none font-hebrew drop-shadow-lg"
-                            style={{ 
+                        <span
+                            className="font-black text-3xl leading-none font-hebrew drop-shadow-lg"
+                            style={{
                                 color: borderColor,
                                 textShadow: '2px 2px 4px rgba(0,0,0,0.5), -1px -1px 0 rgba(255,255,255,0.3)'
                             }}
                         >
                             {card.hebrew_key_word_nikud || card.hebrew_key_word}
                         </span>
-                        <span 
+                        <span
                             className="text-sm uppercase font-extrabold tracking-widest mt-1 drop-shadow-md"
-                            style={{ 
+                            style={{
                                 color: 'white',
                                 textShadow: '1px 1px 3px rgba(0,0,0,0.5)'
                             }}
@@ -398,14 +396,14 @@ function ImmersiveCinematicLayout({ card, deckId, activeConfig, borderColor, cle
 
 function ImmersiveCleanLayout({ card, deckId, activeConfig, borderColor, cleanRoleplay, onPositionUpdate }: any) {
     return (
-        <CardFrame 
-            borderColor={borderColor} 
+        <CardFrame
+            borderColor={borderColor}
             className="relative w-full h-full overflow-hidden shadow-2xl"
         >
             {/* Full Background Image */}
             <div className="absolute inset-0 z-0">
-                 <img 
-                    src={`/api/images?deck=${deckId}&path=${card.image_path}`} 
+                 <img
+                    src={`/api/images?deck=${deckId}&path=${card.image_path}`}
                     alt={card.title_en}
                     className="w-full h-full object-cover"
                 />
@@ -417,18 +415,17 @@ function ImmersiveCleanLayout({ card, deckId, activeConfig, borderColor, cleanRo
             {/* Top: Title */}
             <div className="absolute top-3 left-0 right-0 z-10 flex justify-center pointer-events-none">
                 <DraggableElement id="title-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto w-full">
-                    <div className="drop-shadow-lg flex flex-col items-center">
-                        <FitText
-                            maxSize={72}
-                            minSize={28}
-                            padding={32}
-                            className="font-black font-hebrew text-white"
+                    <div className="drop-shadow-lg flex flex-col items-center px-6">
+                        <span
+                            className="font-black font-hebrew text-white text-center"
                             style={{
+                                fontSize: '28px',
+                                lineHeight: 1.2,
                                 textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000',
                             }}
                         >
                             {card.title_he || ''}
-                        </FitText>
+                        </span>
                         <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
                             {card.title_en}
                         </h2>
@@ -440,18 +437,18 @@ function ImmersiveCleanLayout({ card, deckId, activeConfig, borderColor, cleanRo
             <div className="absolute bottom-6 left-6 pointer-events-none">
                  <DraggableElement id="keyword-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto">
                     <div className="flex flex-col items-start">
-                        <span 
-                            className="font-black text-2xl leading-none font-hebrew drop-shadow-lg"
-                            style={{ 
+                        <span
+                            className="font-black text-3xl leading-none font-hebrew drop-shadow-lg"
+                            style={{
                                 color: borderColor,
                                 textShadow: '2px 2px 4px rgba(0,0,0,0.5), -1px -1px 0 rgba(255,255,255,0.3)'
                             }}
                         >
                             {card.hebrew_key_word_nikud || card.hebrew_key_word}
                         </span>
-                        <span 
+                        <span
                             className="text-sm uppercase font-extrabold tracking-widest mt-1 drop-shadow-md"
-                            style={{ 
+                            style={{
                                 color: 'white',
                                 textShadow: '1px 1px 3px rgba(0,0,0,0.5)'
                             }}
