@@ -32,18 +32,18 @@ export function PowerWordCardBack({ card, deckName }: PowerWordCardBackProps) {
         transitionLine={card.transition_line}
       >
         {/* Compact Title Line with Hebrew Word + Meaning */}
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xl font-bold text-slate-800 leading-tight">
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-2xl font-bold text-slate-800 leading-tight">
             {card.title_en}
           </h2>
           {hebrewWord && (
-            <span className="font-hebrew text-2xl font-bold text-slate-700">
+            <span className="font-hebrew text-3xl font-bold text-slate-700">
               {hebrewWord}
             </span>
           )}
         </div>
 
-        <div className="flex-1 flex flex-col gap-2.5 min-h-0">
+        <div className="flex flex-col gap-4">
           {/* SAY THIS - Teacher Script */}
           <BackSection
             icon="💬"

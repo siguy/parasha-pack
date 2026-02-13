@@ -41,13 +41,13 @@ export function SpotlightCardBack({ card, deckName }: SpotlightCardBackProps) {
         transitionLine={card.transition_line}
       >
         {/* Compact Title Line with Emotion Badge */}
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xl font-bold text-slate-800 leading-tight">
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-2xl font-bold text-slate-800 leading-tight">
             {englishName}
           </h2>
           {emotionEn && (
             <span
-              className="px-3 py-1 rounded-full text-white text-xs font-bold uppercase tracking-wide"
+              className="px-3 py-1 rounded-full text-white text-sm font-bold uppercase tracking-wide"
               style={{ backgroundColor: borderColor }}
             >
               {emotionEn}
@@ -55,7 +55,7 @@ export function SpotlightCardBack({ card, deckName }: SpotlightCardBackProps) {
           )}
         </div>
 
-        <div className="flex-1 flex flex-col gap-2.5 min-h-0">
+        <div className="flex flex-col gap-4">
           {/* SAY THIS - Teacher Script */}
           <BackSection
             icon="💬"

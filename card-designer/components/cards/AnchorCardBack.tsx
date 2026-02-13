@@ -32,16 +32,16 @@ export function AnchorCardBack({ card, deckName }: AnchorCardBackProps) {
         transitionLine={card.transition_line}
       >
         {/* Compact Title Line */}
-        <div className="flex items-center gap-3 mb-3">
-          <h2 className="text-xl font-bold text-slate-800 leading-tight">
+        <div className="flex items-center gap-3 mb-5">
+          <h2 className="text-2xl font-bold text-slate-800 leading-tight">
             {englishTitle}
           </h2>
           {hebrewTitle && (
-            <span className="font-hebrew text-lg text-slate-500">{hebrewTitle}</span>
+            <span className="font-hebrew text-xl text-slate-500">{hebrewTitle}</span>
           )}
         </div>
 
-        <div className="flex-1 flex flex-col gap-2.5 min-h-0">
+        <div className="flex flex-col gap-4">
           {/* SAY THIS - Teacher Script */}
           <BackSection
             icon="💬"
@@ -61,7 +61,7 @@ export function AnchorCardBack({ card, deckName }: AnchorCardBackProps) {
               tintColor={`${borderColor}10`}
             >
               <p className="text-slate-700 font-medium italic">
-                Read aloud: "{card.emotional_hook_en}"
+                Read aloud: &ldquo;{card.emotional_hook_en}&rdquo;
               </p>
             </BackSection>
           )}

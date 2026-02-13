@@ -32,13 +32,13 @@ export function ConnectionCardBack({ card, deckName }: ConnectionCardBackProps) 
         transitionLine={card.transition_line}
       >
         {/* Compact Title Line */}
-        <div className="mb-3">
-          <h2 className="text-xl font-bold text-slate-800 leading-tight">
+        <div className="mb-5">
+          <h2 className="text-2xl font-bold text-slate-800 leading-tight">
             {card.title_en}
           </h2>
         </div>
 
-        <div className="flex-1 flex flex-col gap-2.5 min-h-0">
+        <div className="flex flex-col gap-4">
           {/* SAY THIS - Torah Talk Instruction + Teacher Script */}
           <BackSection
             icon="💬"

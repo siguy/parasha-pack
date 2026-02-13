@@ -32,17 +32,17 @@ export function BackSection({
       }}
     >
       {/* Section Header */}
-      <div className="flex items-center gap-2 px-3 pt-2.5 pb-1">
-        <span className="text-base leading-none">{icon}</span>
+      <div className="flex items-center gap-2 px-5 pt-4 pb-1">
+        <span className="text-lg leading-none">{icon}</span>
         <span
-          className="font-bold text-xs uppercase tracking-wider"
+          className="font-bold text-sm uppercase tracking-wider"
           style={{ color: borderColor }}
         >
           {label}
         </span>
       </div>
       {/* Section Content */}
-      <div className={`px-3 pb-2.5 ${large ? 'text-lg leading-relaxed' : 'text-base leading-relaxed'}`}>
+      <div className={`px-5 pb-4 ${large ? 'text-xl leading-relaxed' : 'text-lg leading-relaxed'}`}>
         {children}
       </div>
     </div>

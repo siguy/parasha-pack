@@ -95,6 +95,10 @@ This document defines the agent pipeline for creating card decks. Each agent has
 
 - All card content with `card_id` matching structure
 - `teacher_script` for each card
+- `teacher_tip` for each card (1 actionable sentence)
+- `transition_line` for each card (thematic, reusable)
+- `discussion_prompts` for each card except connection (2 open-ended questions)
+- `pronunciation_guide` for power_word cards (syllable breakdown + rhymes-with)
 - `roleplay_prompt` for story cards
 - `questions` array for connection cards (no numbering!)
 

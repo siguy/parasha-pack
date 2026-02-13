@@ -93,6 +93,9 @@ This creates:
   "image_prompt": "A golden crown sitting on a royal purple velvet cushion...",
   "image_path": "raw/anchor_1.png",
   "teacher_script": "Gather children in a circle...",
+  "teacher_tip": "Have children close their eyes while you describe the crown.",
+  "transition_line": "Now let's meet the characters in our story!",
+  "discussion_prompts": ["What do you think a queen's secret could be?", "When have you had a really big feeling inside?"],
   "session": 1
 }
 ```
@@ -115,6 +118,9 @@ This creates:
   "image_prompt": "Character portrait of Esther...",
   "image_path": "raw/spotlight_1.png",
   "teacher_script": "This is Queen Esther!...",
+  "teacher_tip": "Ask children to show you a brave face, then a nervous face.",
+  "transition_line": "Let's meet another important person in our story!",
+  "discussion_prompts": ["What do you notice about how Esther looks?", "Have you ever kept something special about yourself quiet?"],
   "session": 1
 }
 ```
@@ -136,6 +142,9 @@ This creates:
   "image_prompt": "Esther in the palace throne room...",
   "image_path": "raw/story_1.png",
   "teacher_script": "The king needed a new queen...",
+  "teacher_tip": "Whisper 'shhh' when you mention the secret — children love the dramatic effect.",
+  "transition_line": "Let's find out what happens next!",
+  "discussion_prompts": ["How would it feel to live in a beautiful palace?", "What would be hard about keeping a really big secret?"],
   "session": 1
 }
 ```
@@ -164,9 +173,13 @@ This creates:
   "image_prompt": "Children sitting in a circle on a colorful rug...",
   "image_path": "raw/connection_1.png",
   "teacher_script": "Let's talk about being brave...",
+  "teacher_tip": "Share your own brave moment first to model vulnerability.",
+  "transition_line": "You are all so brave for sharing!",
   "session": 2
 }
 ```
+
+Note: Connection cards do NOT have `discussion_prompts` — they use `questions[]` instead.
 
 ### Tradition Card (3 per holiday deck)
 ```json
@@ -187,6 +200,9 @@ This creates:
   "image_prompt": "Warm golden scene of families packing colorful baskets...",
   "image_path": "raw/tradition_1.png",
   "teacher_script": "On Purim, we give gifts to friends...",
+  "teacher_tip": "Have small baskets or bags ready for children to practice packing.",
+  "transition_line": "There's another special Purim tradition to discover!",
+  "discussion_prompts": ["Who would you like to give a gift basket to?", "How does it feel when someone gives you a surprise gift?"],
   "session": 2
 }
 ```
@@ -209,6 +225,10 @@ This creates:
   "image_prompt": "Esther standing tall in the throne room...",
   "image_path": "raw/power_word_1.png",
   "teacher_script": "Let's learn a special Hebrew word...",
+  "teacher_tip": "Have children repeat 'I am a gibor!' three times, louder each time.",
+  "transition_line": "Now you know an amazing Hebrew word!",
+  "discussion_prompts": ["Who is a gibor in your life?", "What is one brave thing you could do this week?"],
+  "pronunciation_guide": "Gee-BOR. Rhymes with 'dinosaur'!",
   "session": 2
 }
 ```

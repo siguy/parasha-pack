@@ -30,13 +30,13 @@ export function StoryCardBack({ card, deckName }: StoryCardBackProps) {
         transitionLine={card.transition_line}
       >
         {/* Compact Title Line with Sequence Badge */}
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xl font-bold text-slate-800 leading-tight">
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-2xl font-bold text-slate-800 leading-tight">
             {card.title_en}
           </h2>
           {card.sequence_number && (
             <span
-              className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-base flex-shrink-0"
+              className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
               style={{ backgroundColor: borderColor }}
             >
               #{card.sequence_number}
@@ -44,7 +44,7 @@ export function StoryCardBack({ card, deckName }: StoryCardBackProps) {
           )}
         </div>
 
-        <div className="flex-1 flex flex-col gap-2.5 min-h-0">
+        <div className="flex flex-col gap-4">
           {/* SAY THIS - Teacher Script */}
           <BackSection
             icon="💬"
