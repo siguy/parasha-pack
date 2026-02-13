@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Two-World Visual Consistency System
+
+Cards now exist in one of two visual "worlds," each injected automatically by `build_generation_prompt()`:
+
+| World | Card Types | Source |
+|-------|-----------|--------|
+| **Story World** | anchor, spotlight, story, power_word | `deck.json "story_world"` field (per-deck) |
+| **Modern World** | connection, tradition | `MODERN_WORLD_STYLE` constant (global) |
+
+#### Added
+- `MODERN_WORLD_STYLE` constant in `image_prompts.py` — Modern Orthodox Jewish community conventions (men in knit kippot/casual clothes, women without head coverings in modest dresses, co-ed colorful classrooms, welcoming shul with classic elements)
+- `story_world` field in `deck.json` — per-deck historical/geographic setting for story-world cards
+- Purim `story_world`: ancient Persian Empire, city of Shushan
+
+#### Changed
+- `build_generation_prompt()` now accepts `story_world` parameter, 5 layers → 6 layers (new world style layer between style anchors and safety rules)
+- Cultural context removed from `STYLE_ANCHORS_V2` (now lives in world-specific blocks where it's more targeted)
+- Purim `story_2` image prompt updated: added busy public street scene with market stalls and townspeople
+- Torah Scholar definition: now outputs `story_world` as part of research
+- Visual Director definition: documents two-world system and which card types belong to which world
+
+#### Fixed
+- Tradition cards showing girls with kippot (modern world style now explicitly states "girls do NOT wear kippot")
+- Inconsistent settings across cards (Persian palace scenes vs generic backgrounds now unified via story_world)
+- Story card 2 (Mordechai refusing to bow) now clearly set in public marketplace
+
+---
+
 ### Agent Pipeline Refactor
 
 Cleaned up the entire agent system: consistent numbering, complete definitions, no dead code, no phantom references.
@@ -34,12 +62,7 @@ Cleaned up the entire agent system: consistent numbering, complete definitions, 
 
 All system concerns (style, safety, composition, rules) are now layered automatically at generation time. Content creators only write scene descriptions.
 
-- **`generate_images.py`**: `inject_composition_guidance()` → `build_generation_prompt()` — now layers ALL 5 system concerns onto scene prompts:
-  1. Style anchors (children's illustration style)
-  2. Safety rules (no God in human form, etc.)
-  3. Scene description (from deck.json, passed through unchanged)
-  4. Per-card-type composition (cinematography language)
-  5. Critical rules (no text, no borders)
+- **`generate_images.py`**: `inject_composition_guidance()` → `build_generation_prompt()` — now layers system concerns onto scene prompts (see Two-World System above for current 6-layer architecture)
 - **`image_prompts.py`**: All 7 `build_*_v2()` functions rewritten to return **scene-only** descriptions (stripped style, safety, composition sections that are now injected by `build_generation_prompt()`)
 - **`card_prompts.py`**: Deprecated — v1 prompt generator that embeds borders/text/layout in prompts. Kept for reference only.
 - **`generate_deck.py`**: Full rewrite to v2 card types:
