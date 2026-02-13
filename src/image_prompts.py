@@ -2,19 +2,80 @@
 Gemini image generation prompt templates for Parasha Pack.
 Ensures consistent visual style across all cards.
 
-Version 2.0: No text rendered in images - text is overlaid programmatically.
-Images focus on scene composition with reserved zones for text overlay.
+AI generates scene-only images. Text and borders are rendered by Card Designer (React).
+System constants (style, safety, composition) are layered by build_generation_prompt()
+in generate_images.py at generation time.
 """
 
 from typing import Optional, List
-from schema import CHARACTER_DESIGNS, IMAGE_SAFETY_RULES, OVERLAY_SPECS
+from schema import CHARACTER_DESIGNS, IMAGE_SAFETY_RULES
+
+
+# =============================================================================
+# COMPOSITION GUIDANCE (injected at generation time per card type)
+# =============================================================================
+# These use natural cinematography language so the model understands
+# composition through subject placement rather than "leave space for text."
+
+COMPOSITION_GUIDANCE = {
+    "anchor": """
+=== COMPOSITION ===
+Subject (symbol/object) positioned in the center-to-lower portion of the frame.
+Generous headroom above — atmospheric space, sky, ceiling glow, or gradient above the subject.
+The upper portion of the frame should be visually calm: soft gradient, ambient light, or simple environment.
+Think of this as a movie poster where the title would sit at the top — give it that kind of open, cinematic space above.""",
+
+    "spotlight": """
+=== COMPOSITION ===
+Character portrait framed from chest up, face centered in the middle of the frame.
+Generous headroom — palace ceiling, archways, sky, or atmospheric haze visible above the character's head.
+The top of the frame should feel open and calm: architectural detail fading into shadow, or sky.
+Lower-left corner should be darker or in shadow — ground, dark fabric, or shadow pooling there.
+Character looks slightly right of center, creating natural breathing room on the left side.""",
+
+    "story": """
+=== COMPOSITION ===
+Scene action positioned in the center and right side of the frame.
+Generous headroom — ceiling, sky, or atmospheric space above the characters' heads.
+The top of the frame should be visually calm: architecture fading up, sky, or warm ambient light.
+Lower-left corner should be darker or simpler — ground shadow, dark foreground element, or negative space.
+Think of a film still where the action is center-right and the lower-left has a moody shadow.""",
+
+    "connection": """
+=== COMPOSITION ===
+Characters positioned in the upper two-thirds of the frame.
+The bottom of the frame should be simple and calm — a soft floor, rug edge, or gentle gradient.
+Think of a photo taken from slightly above, looking down at children sitting, with floor visible at the bottom.
+Warm, even lighting throughout. No busy details in the lower 20% of the image.""",
+
+    "tradition": """
+=== COMPOSITION ===
+Scene grounded in the center-to-lower portion of the frame.
+Generous headroom — warm golden glow, ceiling, hanging decorations, or ambient light above.
+The top of the frame should glow warmly but be visually simple: golden light, soft bokeh, or warm haze.
+Think of a photo shot at a warm holiday gathering where you see the ceiling lights above the scene.""",
+
+    "power_word": """
+=== COMPOSITION ===
+Character or concept positioned in the center-to-lower portion of the frame.
+Generous headroom — bright sky, warm glow, or atmospheric space above.
+The top of the frame should be open and luminous: bright light, sky, or soft radiance.
+Think of a heroic low-angle shot looking slightly up at the subject, with sky/light above.""",
+}
+
+# Shared suffix appended to all prompts at generation time
+COMPOSITION_SUFFIX = """
+=== CRITICAL RULES ===
+DO NOT include any border, frame, or rounded corners in the image.
+DO NOT render any text, titles, labels, Hebrew letters, or words anywhere in the image.
+The image should be PURELY visual — all text and borders are added separately by software."""
 
 
 # =============================================================================
 # BASE STYLE TEMPLATES
 # =============================================================================
 
-# Base style anchors for all images (v2 - explicitly no text)
+# Base style anchors for all images (no text — text rendered by Card Designer)
 STYLE_ANCHORS_V2 = """
 Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
 
@@ -46,19 +107,6 @@ no labels, no badges. Text will be added programmatically after generation.
 The image should be purely visual.
 """
 
-# Legacy style (for backward compatibility)
-STYLE_ANCHORS = """
-Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
-Visual characteristics:
-- Bold primary colors (red, blue, yellow, green) for foreground elements
-- Soft pastel colors (pink, light blue, cream, mint) for backgrounds
-- Rounded, friendly character designs with large expressive eyes
-- Thick, clean black outlines
-- Simple shapes with minimal clutter (3-4 main elements maximum)
-- Warm, inviting atmosphere
-- No text in the image
-"""
-
 # Safety rules as string
 SAFETY_PROMPT = "\n".join(f"- {rule}" for rule in IMAGE_SAFETY_RULES)
 
@@ -71,14 +119,18 @@ def get_character_style(character_key: str) -> str:
     return ""
 
 
-def get_overlay_spec(card_type: str) -> dict:
-    """Get overlay specification for a card type."""
-    return OVERLAY_SPECS.get(card_type, {})
-
-
 # =============================================================================
-# VERSION 2 PROMPT BUILDERS (No text rendering)
+# SCENE PROMPT BUILDERS (scene descriptions only)
 # =============================================================================
+# These produce SCENE-ONLY prompts suitable for deck.json image_prompt fields.
+# Style, safety, composition, and critical rules are added automatically
+# by generate_images.py's build_generation_prompt() at generation time.
+#
+# Usage:
+#   prompt = build_anchor_prompt_v2(...)    # Scene-only prompt
+#   # Store in deck.json as image_prompt
+#   # generate_images.py adds all system layers when generating
+
 
 def build_anchor_prompt_v2(
     parasha_name: str,
@@ -86,46 +138,22 @@ def build_anchor_prompt_v2(
     emotional_tone: str,
 ) -> str:
     """
-    Build a v2 image prompt for an Anchor card.
-
-    No text will be rendered - top 20-25% is reserved for Hebrew title overlay.
+    Build a scene-only prompt for an Anchor card.
 
     Args:
         parasha_name: Name of the parasha (for context, not rendered)
         symbol_description: Description of the central symbol
         emotional_tone: The emotional tone to convey
     """
-    spec = get_overlay_spec("anchor")
+    return f"""\
+Full-bleed illustration for a children's educational card introducing "{parasha_name}".
 
-    prompt = f"""
-Create a full-bleed illustration for a children's educational card.
-
-=== STYLE ===
-{STYLE_ANCHORS_V2}
-
-=== SAFETY RULES ===
-{SAFETY_PROMPT}
-
-=== SCENE ===
 Central Symbol: {symbol_description}
+The symbol should be iconic and memorable — large, simple, immediately recognizable.
+Glowing or radiant quality. Background supports but doesn't compete.
+
 Emotional Tone: {emotional_tone}
-
-=== COMPOSITION ===
-{spec.get('composition_hint', '')}
-
-- The top 20-25% should be a simple, uncluttered area (gradient, sky, or soft glow)
-  This zone will have Hebrew text overlaid programmatically.
-- The central symbol should be positioned in the middle-to-lower portion of the card
-- Use the full width - this is a full-bleed image
-- Background should support but not compete with the central symbol
-- Light rays or glowing effects can extend into the upper zone, but keep it simple
-
-Aspect ratio: 5:7 portrait. Full-bleed illustration extending to all edges.
-
-=== MOOD ===
-Iconic, memorable, and emotionally resonant. The image should make children go "Wow!"
-"""
-    return prompt.strip()
+The image should make children go "Wow!" — iconic, memorable, emotionally resonant."""
 
 
 def build_spotlight_prompt_v2(
@@ -135,9 +163,7 @@ def build_spotlight_prompt_v2(
     scene_context: str = "",
 ) -> str:
     """
-    Build a v2 image prompt for a Spotlight card.
-
-    No text will be rendered - top 30% is reserved for name and emotion overlay.
+    Build a scene-only prompt for a Spotlight (character portrait) card.
 
     Args:
         character_key: Key from CHARACTER_DESIGNS
@@ -145,43 +171,23 @@ def build_spotlight_prompt_v2(
         emotion: The emotion the character should display
         scene_context: Optional context for the background
     """
-    spec = get_overlay_spec("spotlight")
     character_style = get_character_style(character_key) or character_description
+    context_line = f"\nBackground setting: {scene_context}" if scene_context else ""
 
-    prompt = f"""
-Create a character portrait illustration for a children's educational card.
+    additional = ""
+    if character_description and character_description != character_style:
+        additional = f"\nAdditional context: {character_description}"
 
-=== STYLE ===
-{STYLE_ANCHORS_V2}
+    return f"""\
+Character portrait illustration for a children's educational card.
 
-=== SAFETY RULES ===
-{SAFETY_PROMPT}
+Character: {character_style}{additional}
 
-=== CHARACTER ===
-{character_style}
+Emotion: {emotion}
+Face should clearly show the emotion with large expressive eyes and clear mouth expression.
+Body language reinforces the emotion. Expression readable from across a classroom.{context_line}
 
-{f"Additional context: {character_description}" if character_description and character_description != character_style else ""}
-
-Emotion to Display: {emotion}
-- Face should clearly show the emotion (large expressive eyes, clear mouth expression)
-- Body language should reinforce the emotion
-- Expression should be readable from across a classroom
-
-=== COMPOSITION ===
-{spec.get('composition_hint', '')}
-
-- The top 30% should be a simple, uncluttered area (gradient or soft background)
-  This zone will have the character's name and emotion word overlaid.
-- Character portrait from waist up, positioned in the center-to-lower portion
-- Face should be the focal point, clearly visible
-- Background suggests the setting but doesn't compete: {scene_context if scene_context else "simple desert/indoor scene"}
-
-Aspect ratio: 5:7 portrait. Full-bleed illustration extending to all edges.
-
-=== MOOD ===
-Warm, inviting. This character should feel like someone children want to know.
-"""
-    return prompt.strip()
+Warm, inviting. This character should feel like someone children want to know."""
 
 
 def build_story_prompt_v2(
@@ -191,9 +197,7 @@ def build_story_prompt_v2(
     sequence_context: str = "",
 ) -> str:
     """
-    Build a v2 image prompt for a Story card.
-
-    No text will be rendered - bottom-left corner reserved for keyword badge overlay.
+    Build a scene-only prompt for a Story (action moment) card.
 
     Args:
         scene_description: Description of the scene/action
@@ -201,8 +205,6 @@ def build_story_prompt_v2(
         key_elements: 2-4 key visual elements in the scene
         sequence_context: Where this fits in the story sequence
     """
-    spec = get_overlay_spec("story")
-
     # Build character descriptions
     character_prompts = []
     for char in characters:
@@ -214,19 +216,12 @@ def build_story_prompt_v2(
 
     characters_text = "\n".join(character_prompts) if character_prompts else "- Generic characters appropriate to the scene"
     elements_text = "\n".join(f"- {elem}" for elem in key_elements[:4])
+    context_line = f"\nStory Context: {sequence_context}" if sequence_context else ""
 
-    prompt = f"""
-Create an action scene illustration for a children's educational card.
+    return f"""\
+Action scene illustration for a children's educational card.
 
-=== STYLE ===
-{STYLE_ANCHORS_V2}
-
-=== SAFETY RULES ===
-{SAFETY_PROMPT}
-
-=== SCENE ===
-{scene_description}
-{f"Story Context: {sequence_context}" if sequence_context else ""}
+{scene_description}{context_line}
 
 Characters in Scene:
 {characters_text}
@@ -234,22 +229,7 @@ Characters in Scene:
 Key Visual Elements:
 {elements_text}
 
-=== COMPOSITION ===
-{spec.get('composition_hint', '')}
-
-- This is a FULL-BLEED scene - use the entire card
-- The BOTTOM-LEFT CORNER should have a relatively simple area (about 15-20% of card width)
-  This is where a keyword badge will be overlaid programmatically.
-- Main action should be in the center or center-right of the image
-- Keep the scene dynamic but not chaotic
-- 5-7 visual elements maximum
-
-Aspect ratio: 5:7 portrait. Full-bleed illustration extending to all edges.
-
-=== MOOD ===
-Dynamic, engaging. Capture the key emotional moment of this scene.
-"""
-    return prompt.strip()
+Dynamic, engaging. Capture the key emotional moment of this scene."""
 
 
 def build_connection_prompt_v2(
@@ -257,54 +237,26 @@ def build_connection_prompt_v2(
     scene_description: str = "",
 ) -> str:
     """
-    Build a v2 image prompt for a Connection (discussion) card.
-
-    No text will be rendered - bottom 20% reserved for emoji row overlay.
+    Build a scene-only prompt for a Connection (discussion) card.
 
     Args:
         theme: The theme being explored
         scene_description: Optional scene description (default: children in discussion)
     """
-    spec = get_overlay_spec("connection")
-
-    default_scene = "2-3 diverse children in thoughtful, wondering poses - one with hand on chin thinking, one looking up curiously, one pondering with finger to lips"
+    default_scene = "2-3 diverse children in thoughtful, wondering poses — one with hand on chin thinking, one looking up curiously, one pondering with finger to lips"
     scene = scene_description if scene_description else default_scene
 
-    prompt = f"""
-Create an illustration for a children's discussion/thinking card.
+    return f"""\
+Illustration for a children's discussion/thinking card.
 
-=== STYLE ===
-{STYLE_ANCHORS_V2}
-
-=== SAFETY RULES ===
-{SAFETY_PROMPT}
-
-=== SCENE ===
 Theme: {theme}
 Visual: {scene}
 
-The illustration should convey:
-- Peaceful, reflective mood
-- Characters in "wondering" poses (hand on chin, looking up, etc.)
-- Safe space for sharing feelings
-- Warm, inviting atmosphere
+Characters in "wondering" poses — hand on chin, looking up, contemplating.
+Peaceful, reflective mood. Safe space for sharing feelings.
+Soft, warm lighting. Simple background that doesn't distract.
 
-=== COMPOSITION ===
-{spec.get('composition_hint', '')}
-
-- The BOTTOM 20% should be a simple, uncluttered area (gradient or solid soft color)
-  This zone will have emoji faces overlaid programmatically.
-- Main illustration in the upper 80% of the card
-- Characters should be clearly visible but not crowded
-- Soft, warm lighting throughout
-- Simple background that doesn't distract
-
-Aspect ratio: 5:7 portrait. Full-bleed illustration extending to all edges.
-
-=== MOOD ===
-Calm, curious, inviting. Children should feel safe to share their thoughts.
-"""
-    return prompt.strip()
+Calm, curious, inviting. Children should feel safe to share their thoughts."""
 
 
 def build_power_word_prompt_v2(
@@ -313,54 +265,26 @@ def build_power_word_prompt_v2(
     is_emotion_word: bool = False,
 ) -> str:
     """
-    Build a v2 image prompt for a Power Word vocabulary card.
-
-    No text will be rendered - top 30% reserved for Hebrew word and meaning overlay.
+    Build a scene-only prompt for a Power Word vocabulary card.
 
     Args:
         english_meaning: English translation (for context, not rendered)
         visual_representation: How to visually represent the word
         is_emotion_word: Whether this is an emotion vocabulary word
     """
-    spec = get_overlay_spec("power_word")
-
     emotion_note = ""
     if is_emotion_word:
-        emotion_note = """
-Since this represents an emotion word, show a character clearly displaying this emotion.
-The facial expression and body language should make the emotion unmistakable.
-"""
+        emotion_note = "\nSince this represents an emotion word, show a character clearly displaying this emotion. The facial expression and body language should make the emotion unmistakable."
 
-    prompt = f"""
-Create an illustration for a children's vocabulary card about "{english_meaning}".
+    return f"""\
+Illustration for a children's vocabulary card about "{english_meaning}".
 
-=== STYLE ===
-{STYLE_ANCHORS_V2}
+Visual Concept: {visual_representation}{emotion_note}
 
-=== SAFETY RULES ===
-{SAFETY_PROMPT}
+One central element that clearly represents the concept.
+Very simple, focused composition. Bright, engaging colors.
 
-=== VISUAL CONCEPT ===
-{visual_representation}
-
-{emotion_note}
-
-=== COMPOSITION ===
-{spec.get('composition_hint', '')}
-
-- The TOP 30% should be a simple, uncluttered area (gradient, sky, or soft glow)
-  This zone will have the Hebrew word and English meaning overlaid.
-- Main illustration in the lower 70% of the card
-- One central element that clearly represents the concept
-- Very simple, focused composition
-- Bright, engaging colors
-
-Aspect ratio: 5:7 portrait. Full-bleed illustration extending to all edges.
-
-=== MOOD ===
-Educational but fun! The concept should be immediately clear from the image alone.
-"""
-    return prompt.strip()
+Educational but fun! The concept should be immediately clear from the image alone."""
 
 
 def build_tradition_prompt_v2(
@@ -369,70 +293,41 @@ def build_tradition_prompt_v2(
     scene_description: str = "",
 ) -> str:
     """
-    Build a v2 image prompt for a Tradition card (holiday decks).
-
-    No text will be rendered - top 25% reserved for title overlay.
+    Build a scene-only prompt for a Tradition card (holiday decks).
 
     Args:
         tradition_name: Name of the tradition (for context, not rendered)
         practice_description: What the practice looks like
         scene_description: Optional specific scene description
     """
-    spec = get_overlay_spec("tradition")
-
-    default_scene = "Family or community joyfully participating in the practice together, warm golden lighting"
+    default_scene = "Family or community joyfully participating in the practice together"
     scene = scene_description if scene_description else default_scene
 
-    prompt = f"""
-Create a warm, celebratory illustration for a children's tradition card.
+    return f"""\
+Warm, celebratory illustration for a children's tradition card about "{tradition_name}".
 
-=== STYLE ===
-{STYLE_ANCHORS_V2}
-
-Use a WARM GOLDEN color palette - this should feel like candlelight or sunset.
-Colors: warm ambers, soft golds, cream, warm browns
-
-=== SAFETY RULES ===
-{SAFETY_PROMPT}
-
-=== SCENE ===
 Practice: {practice_description}
 Visual: {scene}
 
-Show people DOING the practice together - community/family scene.
-Include children participating. Warm, inviting atmosphere.
+Show people DOING the practice together — community/family scene.
+Include children participating. Warm golden color palette — candlelight, sunset feeling.
+Warm ambers, soft golds, cream, warm browns.
 
-=== COMPOSITION ===
-{spec.get('composition_hint', '')}
-
-- The TOP 25% should be a simple, uncluttered area (warm gradient or soft golden glow)
-  This zone will have the tradition title overlaid.
-- Main scene in the lower 75% of the card
-- Community/family togetherness feeling
-- Warm, golden lighting throughout
-- NOT instructional or diagram-like - show the joy of the practice
-
-Aspect ratio: 5:7 portrait. Full-bleed illustration extending to all edges.
-
-=== MOOD ===
-Warm, celebratory, joyful. The practice should look inviting and fun to participate in.
-"""
-    return prompt.strip()
+NOT instructional or diagram-like — show the joy of the practice.
+Warm, celebratory, joyful. The practice should look inviting and fun."""
 
 
 def build_divine_presence_prompt_v2(
     scene_description: str,
     manifestation_type: str = "light_rays",
-    overlay_zone: str = "top_25",
 ) -> str:
     """
-    Build a v2 prompt for scenes involving divine presence.
-    Never depicts God in human form - uses abstract representations.
+    Build a scene-only prompt for scenes involving divine presence.
+    Never depicts God in human form — uses abstract representations.
 
     Args:
         scene_description: The scene context
         manifestation_type: How to show divine presence
-        overlay_zone: Where text will be overlaid
     """
     manifestations = {
         "light_rays": "golden light rays streaming down from above, warm and gentle",
@@ -444,320 +339,20 @@ def build_divine_presence_prompt_v2(
 
     divine_visual = manifestations.get(manifestation_type, manifestations["light_rays"])
 
-    # Determine composition based on overlay zone
-    if overlay_zone == "top_25" or overlay_zone == "top_30":
-        composition_hint = "Compose the scene in the lower 70-75%. The divine light can extend into the top area but keep it simple for text overlay."
-    else:
-        composition_hint = "Full-bleed scene. Keep the specified overlay zone relatively simple."
+    return f"""\
+Illustration showing a scene of divine presence for children.
 
-    prompt = f"""
-Create an illustration showing a scene of divine presence for children.
-
-=== STYLE ===
-{STYLE_ANCHORS_V2}
-
-=== SAFETY RULES ===
 CRITICAL: Do NOT depict God as a person or human figure.
 Use only abstract representations: light, clouds, or symbolic imagery.
-{SAFETY_PROMPT}
 
-=== SCENE ===
 {scene_description}
 
 Divine Presence: {divine_visual}
-
-=== COMPOSITION ===
-{composition_hint}
-
-- The divine presence should feel warm, loving, and safe (not scary)
-- Light should be golden/warm, not harsh
-- Characters in the scene should look awed but not frightened
-- Create a sense of wonder and majesty
-
-Aspect ratio: 5:7 portrait. Full-bleed illustration extending to all edges.
-
-=== MOOD ===
-Awe-inspiring, wondrous, sacred but not scary. Children should feel amazed, not afraid.
-"""
-    return prompt.strip()
-
-
-# =============================================================================
-# LEGACY PROMPT BUILDERS (v1 - for backward compatibility)
-# =============================================================================
-
-def build_anchor_prompt(
-    parasha_name: str,
-    symbol_description: str,
-    emotional_tone: str,
-    border_color: str,
-) -> str:
-    """
-    Build an image prompt for an Anchor card (legacy v1).
-
-    Args:
-        parasha_name: Name of the parasha
-        symbol_description: Description of the central symbol
-        emotional_tone: The emotional tone to convey
-        border_color: Hex color for thematic border
-    """
-    prompt = f"""
-Create an illustration for a children's educational card introducing "{parasha_name}".
-
-Central Element:
-{symbol_description}
-
-Emotional Tone: {emotional_tone}
-
-{STYLE_ANCHORS}
-
-Important:
-- The image should be iconic and memorable
-- Central symbol should be large and clear
-- Use light rays or glowing effects to convey significance
-- Background should be simple and not distract from the symbol
-- Leave space at the bottom for text overlay
-
-{SAFETY_PROMPT}
-"""
-    return prompt.strip()
-
-
-def build_spotlight_prompt(
-    character_key: str,
-    emotion: str,
-    scene_context: str = "",
-    additional_details: str = "",
-) -> str:
-    """
-    Build an image prompt for a Spotlight (character) card (legacy v1).
-
-    Args:
-        character_key: Key from CHARACTER_DESIGNS
-        emotion: The emotion the character should display
-        scene_context: Optional context for the scene
-        additional_details: Any additional visual details
-    """
-    character_style = get_character_style(character_key)
-
-    prompt = f"""
-Create a character portrait illustration for a children's educational card.
-
-Character: {character_style}
-
-Emotion to Display: {emotion}
-The character's face and body language should clearly show they are feeling {emotion}.
-- Make the facial expression very clear and readable
-- Eyes and mouth should strongly convey the emotion
-- Body posture should match the emotional state
-
-{f"Scene Context: {scene_context}" if scene_context else ""}
-{f"Additional Details: {additional_details}" if additional_details else ""}
-
-{STYLE_ANCHORS}
-
-Important:
-- Character should fill most of the frame (portrait style)
-- Face should be clearly visible and expressive
-- Background should be simple, suggesting the setting
-- Leave space at the bottom for text overlay
-
-{SAFETY_PROMPT}
-"""
-    return prompt.strip()
-
-
-def build_action_prompt(
-    scene_description: str,
-    characters: list,
-    emotional_reactions: list,
-    key_elements: list,
-    sequence_context: str = "",
-) -> str:
-    """
-    Build an image prompt for an Action card (legacy v1).
-
-    Args:
-        scene_description: Description of the scene/action
-        characters: List of character keys involved
-        emotional_reactions: Emotions characters should display
-        key_elements: 2-4 key visual elements in the scene
-        sequence_context: Where this fits in the story sequence
-    """
-    # Build character descriptions
-    character_prompts = []
-    for i, char_key in enumerate(characters):
-        char_style = get_character_style(char_key)
-        emotion = emotional_reactions[i] if i < len(emotional_reactions) else "engaged"
-        character_prompts.append(f"- {char_style}, looking {emotion}")
-
-    characters_text = "\n".join(character_prompts)
-    elements_text = "\n".join(f"- {elem}" for elem in key_elements[:4])
-
-    prompt = f"""
-Create an action scene illustration for a children's educational card.
-
-Scene: {scene_description}
-{f"Story Context: {sequence_context}" if sequence_context else ""}
-
-Characters in Scene:
-{characters_text}
-
-Key Visual Elements (show these clearly):
-{elements_text}
-
-{STYLE_ANCHORS}
-
-Important:
-- Show action and movement
-- Characters should be clearly reacting emotionally to the scene
-- Keep composition simple with 3-4 main elements
-- Dynamic but not chaotic
-- Leave space at the bottom for text overlay
-
-{SAFETY_PROMPT}
-"""
-    return prompt.strip()
-
-
-def build_thinker_prompt(
-    theme: str,
-    characters: list,
-    wondering_context: str,
-) -> str:
-    """
-    Build an image prompt for a Thinker card (legacy v1).
-
-    Args:
-        theme: The theme being explored
-        characters: Characters to show in wondering poses
-        wondering_context: What they might be thinking about
-    """
-    character_prompts = []
-    for char_key in characters:
-        char_style = get_character_style(char_key)
-        character_prompts.append(f"- {char_style}, with a thoughtful, wondering expression")
-
-    characters_text = "\n".join(character_prompts)
-
-    prompt = f"""
-Create an illustration for a children's discussion/thinking card.
-
-Theme: {theme}
-Context: {wondering_context}
-
-Characters:
-{characters_text}
-
-The characters should appear to be:
-- Deep in thought
-- Looking curious or contemplative
-- Perhaps looking at each other or at something meaningful
-- Showing a mix of emotions (wonder, curiosity, reflection)
-
-{STYLE_ANCHORS}
-
-Important:
-- Peaceful, reflective mood
-- Characters in "wondering" poses (hand on chin, looking up, etc.)
-- Soft, warm lighting
-- Simple background that doesn't distract
-- Leave significant space at the bottom for questions overlay
-
-{SAFETY_PROMPT}
-"""
-    return prompt.strip()
-
-
-def build_power_word_prompt(
-    hebrew_word: str,
-    english_meaning: str,
-    visual_representation: str,
-    is_emotion_word: bool = False,
-) -> str:
-    """
-    Build an image prompt for a Power Word vocabulary card (legacy v1).
-
-    Args:
-        hebrew_word: The Hebrew word (without nikud for prompt)
-        english_meaning: English translation
-        visual_representation: How to visually represent the word
-        is_emotion_word: Whether this is an emotion vocabulary word
-    """
-    emotion_note = ""
-    if is_emotion_word:
-        emotion_note = """
-Since this is an emotion word, show a character clearly displaying this emotion.
-The facial expression and body language should make the emotion unmistakable.
-"""
-
-    prompt = f"""
-Create an illustration for a Hebrew vocabulary card teaching the word "{english_meaning}".
-
-Visual Representation:
-{visual_representation}
-
-{emotion_note}
-
-{STYLE_ANCHORS}
-
-Important:
-- The concept should be immediately clear from the image alone
-- Very simple, focused composition
-- One central element that represents the word
-- Bright, engaging colors
-- Leave space for the Hebrew word at top and English at bottom
-
-{SAFETY_PROMPT}
-"""
-    return prompt.strip()
-
-
-def build_divine_presence_prompt(
-    scene_description: str,
-    manifestation_type: str = "light_rays",
-) -> str:
-    """
-    Build a prompt for scenes involving divine presence (legacy v1).
-    Never depicts God in human form - uses abstract representations.
-
-    Args:
-        scene_description: The scene context
-        manifestation_type: How to show divine presence
-            Options: "light_rays", "clouds", "hands_from_above", "pillar_of_fire", "pillar_of_cloud"
-    """
-    manifestations = {
-        "light_rays": "golden light rays streaming down from above, warm and gentle",
-        "clouds": "soft, glowing clouds with light emanating from within",
-        "hands_from_above": "gentle hands emerging from clouds above, made of light",
-        "pillar_of_fire": "a magnificent pillar of warm, non-threatening fire reaching up to the sky",
-        "pillar_of_cloud": "a tall, majestic pillar of soft white cloud",
-    }
-
-    divine_visual = manifestations.get(manifestation_type, manifestations["light_rays"])
-
-    prompt = f"""
-Create an illustration showing a scene of divine presence for children.
-
-Scene: {scene_description}
-
-Divine Presence Representation:
-{divine_visual}
-
-CRITICAL: Do NOT depict God as a person or human figure.
-Use only abstract representations: light, clouds, or symbolic imagery.
-
-{STYLE_ANCHORS}
-
-Important:
-- The divine presence should feel warm, loving, and safe (not scary)
-- Light should be golden/warm, not harsh
-- Characters in the scene should look awed but not frightened
-- Create a sense of wonder and majesty
-
-{SAFETY_PROMPT}
-"""
-    return prompt.strip()
+The divine presence should feel warm, loving, and safe (not scary).
+Light should be golden/warm, not harsh.
+Characters in the scene should look awed but not frightened.
+
+Awe-inspiring, wondrous, sacred but not scary. Children should feel amazed, not afraid."""
 
 
 # =============================================================================
@@ -765,14 +360,14 @@ Important:
 # =============================================================================
 
 if __name__ == "__main__":
-    print("=== V2 ANCHOR CARD PROMPT ===")
+    print("=== ANCHOR CARD PROMPT ===")
     print(build_anchor_prompt_v2(
         parasha_name="Yitro",
         symbol_description="Two stone tablets with rounded tops, glowing with warm golden light rays streaming from clouds above",
         emotional_tone="awe, wonder, and reverence",
     ))
 
-    print("\n\n=== V2 SPOTLIGHT CARD PROMPT ===")
+    print("\n\n=== SPOTLIGHT CARD PROMPT ===")
     print(build_spotlight_prompt_v2(
         character_key="moshe",
         character_description="Moses with kind eyes, head covering, blue and cream robes",
@@ -780,7 +375,7 @@ if __name__ == "__main__":
         scene_context="desert setting with people waiting",
     ))
 
-    print("\n\n=== V2 STORY CARD PROMPT ===")
+    print("\n\n=== STORY CARD PROMPT ===")
     print(build_story_prompt_v2(
         scene_description="Moses and Yitro embracing in a joyful reunion",
         characters=[
@@ -795,7 +390,7 @@ if __name__ == "__main__":
         sequence_context="The moment when Yitro arrives to visit Moses",
     ))
 
-    print("\n\n=== V2 CONNECTION CARD PROMPT ===")
+    print("\n\n=== CONNECTION CARD PROMPT ===")
     print(build_connection_prompt_v2(
         theme="Being Brave",
         scene_description="Children sitting in a circle, some with hands raised, sharing their feelings",

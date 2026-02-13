@@ -1,12 +1,18 @@
 """
-Complete Card Prompt Generator for Parasha Pack
+DEPRECATED — v1 card prompt generator.
 
-Generates full card images (not just illustrations) with:
-- Borders and frames
-- Title zones
-- Text zones
-- Character continuity
-- Age-appropriate styling
+This module generates v1-style prompts that embed borders, text zones, and layout
+instructions directly in the image prompt. This is incompatible with the current
+v2 pipeline where:
+  - AI generates scene-only images (no text, no borders)
+  - Card Designer (React) renders all text overlays and borders
+  - generate_images.py auto-injects style, safety, composition at generation time
+
+For new decks, use:
+  - image_prompts.py build_*_v2() functions for scene-only prompt templates
+  - Or write scene descriptions directly in deck.json image_prompt fields
+
+Kept for reference only. Do not use for new deck creation.
 """
 
 from typing import Optional

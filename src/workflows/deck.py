@@ -92,9 +92,6 @@ class DeckWorkflow:
             border_color=self.research_data.border_color,
         )
 
-        # Enhance with research data
-        self.deck_data["mitzvah_connection"] = self.research_data.child_friendly_lesson
-
         # Determine output path
         if output_dir:
             self.deck_path = Path(output_dir)
@@ -106,7 +103,7 @@ class DeckWorkflow:
         self.deck_path.mkdir(parents=True, exist_ok=True)
         (self.deck_path / "images").mkdir(exist_ok=True)
         (self.deck_path / "references").mkdir(exist_ok=True)
-        (self.deck_path / "backs").mkdir(exist_ok=True)  # For v2 card backs
+        (self.deck_path / "backs").mkdir(exist_ok=True)
 
         # Save deck.json
         deck_file = self.deck_path / "deck.json"
@@ -116,7 +113,7 @@ class DeckWorkflow:
         # Save empty feedback.json
         feedback = {
             "parasha": self.research_data.name_en,
-            "deck_version": "1.0",
+            "deck_version": "2.0",
             "review_date": None,
             "cards": [],
             "global_feedback": ""

@@ -33,6 +33,60 @@ def is_v2_card(card: dict) -> bool:
     return "front" in card and "back" in card
 
 
+def build_generation_prompt(scene_prompt: str, card_type: str) -> str:
+    """
+    Build a complete generation prompt by layering system concerns onto a scene description.
+
+    Deck prompts (image_prompt in deck.json) should be PURE SCENE DESCRIPTIONS —
+    what to draw, not how to draw it. This function adds all system layers:
+
+    1. Style anchors     — visual consistency (children's illustration style)
+    2. Safety rules      — content restrictions (no God in human form, etc.)
+    3. Scene description  — from deck.json (passed through unchanged)
+    4. Composition        — per-card-type cinematography (where to place subjects)
+    5. Critical rules     — universal (no text, no borders)
+
+    All system concerns are defined in image_prompts.py and applied here.
+    To change style, safety, or composition: update image_prompts.py once.
+
+    Args:
+        scene_prompt: Scene-only image prompt from deck.json
+        card_type: Card type (anchor, spotlight, story, etc.)
+
+    Returns:
+        Complete prompt with all system layers applied
+    """
+    try:
+        from image_prompts import (
+            STYLE_ANCHORS_V2, SAFETY_PROMPT,
+            COMPOSITION_GUIDANCE, COMPOSITION_SUFFIX,
+        )
+    except ImportError:
+        # Fallback if image_prompts not available
+        return scene_prompt
+
+    parts = []
+
+    # 1. Style anchors
+    parts.append(f"=== STYLE ===\n{STYLE_ANCHORS_V2.strip()}")
+
+    # 2. Safety rules
+    parts.append(f"=== SAFETY RULES ===\n{SAFETY_PROMPT}")
+
+    # 3. Scene description (from deck.json — passed through unchanged)
+    parts.append(f"=== SCENE ===\n{scene_prompt.strip()}")
+
+    # 4. Per-card-type composition guidance
+    guidance = COMPOSITION_GUIDANCE.get(card_type, "")
+    if guidance:
+        parts.append(guidance.strip())
+
+    # 5. Universal critical rules (no text, no borders)
+    parts.append(COMPOSITION_SUFFIX.strip())
+
+    return "\n\n".join(parts)
+
+
 def load_reference_images(deck_path: Path) -> list:
     """
     Load ALL character reference images from the deck's manifest.
@@ -170,7 +224,7 @@ def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspe
 
 def generate_image_imagen(prompt: str, api_key: str, output_path: str) -> bool:
     """
-    Generate an image using Google Imagen 4.0 model (legacy).
+    Generate an image using Google Imagen 4.0 model (not recommended).
     Note: Prefer nano-banana for better children's book style results.
     """
     url = f"https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key={api_key}"
@@ -332,11 +386,15 @@ def main():
             skip_count += 1
             continue
 
-        prompt = card.get("image_prompt", "")
-        if not prompt:
+        raw_prompt = card.get("image_prompt", "")
+        if not raw_prompt:
             print(f"[SKIP] {card_id} - no prompt")
             skip_count += 1
             continue
+
+        # Build full prompt: scene description + style + safety + composition + rules
+        card_type = card.get("card_type", "")
+        prompt = build_generation_prompt(raw_prompt, card_type)
 
         # Get title for display
         if is_v2_card(card):

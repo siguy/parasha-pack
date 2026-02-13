@@ -7,12 +7,7 @@ card decks for preschool/kindergarten classrooms (ages 4-6).
 
 from .schema import (
     CardType,
-    BaseCard,
-    AnchorCard,
-    SpotlightCard,
-    ActionCard,
-    ThinkerCard,
-    PowerWordCard,
+    CardV2,
     Deck,
     FEELING_FACES,
     CHARACTER_DESIGNS,
@@ -27,25 +22,21 @@ from .sefaria_client import (
 )
 
 from .image_prompts import (
-    build_anchor_prompt,
-    build_spotlight_prompt,
-    build_action_prompt,
-    build_thinker_prompt,
-    build_power_word_prompt,
-    build_divine_presence_prompt,
+    build_anchor_prompt_v2,
+    build_spotlight_prompt_v2,
+    build_story_prompt_v2,
+    build_connection_prompt_v2,
+    build_power_word_prompt_v2,
+    build_tradition_prompt_v2,
+    build_divine_presence_prompt_v2,
     get_character_style,
 )
 
-__version__ = "1.0.0"
+__version__ = "2.0.0"
 __all__ = [
     # Schema
     "CardType",
-    "BaseCard",
-    "AnchorCard",
-    "SpotlightCard",
-    "ActionCard",
-    "ThinkerCard",
-    "PowerWordCard",
+    "CardV2",
     "Deck",
     "FEELING_FACES",
     "CHARACTER_DESIGNS",
@@ -55,12 +46,13 @@ __all__ = [
     "fetch_current_parasha",
     "fetch_parasha_text",
     "get_border_color",
-    # Image Prompts
-    "build_anchor_prompt",
-    "build_spotlight_prompt",
-    "build_action_prompt",
-    "build_thinker_prompt",
-    "build_power_word_prompt",
-    "build_divine_presence_prompt",
+    # Image Prompts (scene-only builders)
+    "build_anchor_prompt_v2",
+    "build_spotlight_prompt_v2",
+    "build_story_prompt_v2",
+    "build_connection_prompt_v2",
+    "build_power_word_prompt_v2",
+    "build_tradition_prompt_v2",
+    "build_divine_presence_prompt_v2",
     "get_character_style",
 ]

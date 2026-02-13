@@ -1,9 +1,9 @@
 """
 Data schema definitions for Parasha Pack card decks.
 
-Version 2.0: Front/Back separation for teacher-friendly cards.
-- Card fronts: Minimal text overlay on full-bleed images
-- Card backs: 5x7 printable templates with teacher content
+Front/back separation for teacher-friendly cards:
+- Card fronts: Scene-only AI images with React text overlay
+- Card backs: 5x7 printable teacher content rendered by Card Designer
 """
 
 from dataclasses import dataclass, field, asdict
@@ -20,53 +20,6 @@ class CardType(Enum):
     CONNECTION = "connection" # Renamed from THINKER
     POWER_WORD = "power_word"
     TRADITION = "tradition"   # Holiday-specific
-    # Legacy aliases (deprecated - kept for backward compatibility with old deck.json files)
-    ACTION = "story"      # Use STORY instead
-    THINKER = "connection"  # Use CONNECTION instead
-
-
-class OverlayZone(Enum):
-    """Zones where text can be overlaid on card fronts."""
-    TOP_20 = "top_20"           # Top 20% of card
-    TOP_25 = "top_25"           # Top 25% of card
-    TOP_30 = "top_30"           # Top 30% of card
-    BOTTOM_20 = "bottom_20"     # Bottom 20% of card
-    BOTTOM_LEFT = "bottom_left" # Bottom-left corner badge
-
-
-# Overlay zone specifications per card type
-OVERLAY_SPECS = {
-    "anchor": {
-        "zone": OverlayZone.TOP_25,
-        "content": ["hebrew_title"],
-        "composition_hint": "Compose the scene in the lower 75-80%. Keep top 20-25% uncluttered for Hebrew title overlay."
-    },
-    "spotlight": {
-        "zone": OverlayZone.TOP_30,
-        "content": ["hebrew_name", "english_name", "emotion_word_en", "emotion_word_he"],
-        "composition_hint": "Compose the portrait in the lower 70%. Keep top 30% uncluttered for name and emotion overlay."
-    },
-    "story": {
-        "zone": OverlayZone.BOTTOM_LEFT,
-        "content": ["hebrew_keyword", "english_keyword"],
-        "composition_hint": "Full-bleed scene. Keep bottom-left corner relatively simple for keyword badge overlay."
-    },
-    "connection": {
-        "zone": OverlayZone.BOTTOM_20,
-        "content": ["emojis"],
-        "composition_hint": "Compose the illustration in the upper 80%. Keep bottom 20% simple for emoji row overlay."
-    },
-    "power_word": {
-        "zone": OverlayZone.TOP_30,
-        "content": ["hebrew_word", "english_meaning"],
-        "composition_hint": "Compose the illustration in the lower 70%. Keep top 30% uncluttered for Hebrew word overlay."
-    },
-    "tradition": {
-        "zone": OverlayZone.TOP_25,
-        "content": ["hebrew_title", "english_title"],
-        "composition_hint": "Compose the scene in the lower 75%. Keep top 25% uncluttered for title overlay."
-    },
-}
 
 
 class EmotionCategory(Enum):
@@ -89,7 +42,7 @@ EMOTIONS = {
     ],
 }
 
-# Feeling faces for Thinker cards
+# Feeling faces for Connection cards
 FEELING_FACES = [
     {"emoji": "😊", "label_en": "Happy", "label_he": "שָׂמֵחַ"},
     {"emoji": "😢", "label_en": "Sad", "label_he": "עָצוּב"},
@@ -100,23 +53,14 @@ FEELING_FACES = [
 ]
 
 
-@dataclass
-class ThinkerQuestion:
-    """A perspective-taking question for Thinker cards."""
-    question_type: str  # "emotional_empathy", "cognitive_empathy", "connection"
-    question_en: str
-    question_he: str
-
-
 # =============================================================================
-# FRONT/BACK CARD STRUCTURE (v2.0)
+# FRONT/BACK CARD STRUCTURE
 # =============================================================================
 
 @dataclass
 class AnchorFront:
     """Front overlay content for Anchor cards."""
     hebrew_title: str  # Parasha/holiday name in Hebrew
-    overlay_zone: str = "top_25"
 
 
 @dataclass
@@ -138,7 +82,6 @@ class SpotlightFront:
     english_name: str
     emotion_word_en: str
     emotion_word_he: str
-    overlay_zone: str = "top_30"
 
 
 @dataclass
@@ -162,7 +105,6 @@ class StoryFront:
     """Front overlay content for Story cards."""
     hebrew_keyword: str      # With nikud
     english_keyword: str
-    overlay_zone: str = "bottom_left"
 
 
 @dataclass
@@ -185,7 +127,6 @@ class StoryBack:
 class ConnectionFront:
     """Front overlay content for Connection cards."""
     emojis: List[str]  # List of 4 emoji characters
-    overlay_zone: str = "bottom_20"
 
 
 @dataclass
@@ -204,7 +145,6 @@ class PowerWordFront:
     """Front overlay content for Power Word cards."""
     hebrew_word: str      # With nikud
     english_meaning: str
-    overlay_zone: str = "top_30"
 
 
 @dataclass
@@ -231,7 +171,6 @@ class TraditionFront:
     """Front overlay content for Tradition cards."""
     hebrew_title: str
     english_title: str
-    overlay_zone: str = "top_25"
 
 
 @dataclass
@@ -252,17 +191,17 @@ class TraditionBack:
 
 
 # =============================================================================
-# CARD V2 STRUCTURE (with front/back separation)
+# CARD STRUCTURE (front/back separation)
 # =============================================================================
 
 @dataclass
 class CardV2:
     """
-    Version 2 card structure with front/back separation.
+    Card structure with front/back separation.
 
-    - front: Minimal text for programmatic overlay
+    - front: Minimal text for React overlay (Card Designer)
     - back: Full content for teacher's printable card back
-    - image_prompt: Scene composition only (no text to render)
+    - image_prompt: Scene description only (no text to render)
     """
     card_id: str
     card_type: str
@@ -305,15 +244,13 @@ class CardV2:
 
 
 def extract_front_fields(card: dict, card_type: str) -> dict:
-    """Extract front overlay fields from a legacy card."""
+    """Extract front overlay fields from a card."""
     if card_type == "anchor":
         return {
-            "overlay_zone": "top_25",
             "hebrew_title": card.get("title_he", ""),
         }
     elif card_type == "spotlight":
         return {
-            "overlay_zone": "top_30",
             "hebrew_name": card.get("character_name_he", ""),
             "english_name": card.get("character_name_en", ""),
             "emotion_word_en": card.get("emotion_label_en", card.get("emotion_label", "")),
@@ -321,27 +258,22 @@ def extract_front_fields(card: dict, card_type: str) -> dict:
         }
     elif card_type == "story":
         return {
-            "overlay_zone": "bottom_left",
             "hebrew_keyword": card.get("hebrew_key_word_nikud", card.get("hebrew_key_word", "")),
             "english_keyword": card.get("english_key_word", ""),
         }
     elif card_type == "connection":
-        # Extract just emojis from feeling_faces
         feeling_faces = card.get("feeling_faces", [])
         emojis = [f.get("emoji", "") for f in feeling_faces[:4]]
         return {
-            "overlay_zone": "bottom_20",
             "emojis": emojis,
         }
     elif card_type == "power_word":
         return {
-            "overlay_zone": "top_30",
             "hebrew_word": card.get("hebrew_word_nikud", card.get("hebrew_word", "")),
             "english_meaning": card.get("english_meaning", ""),
         }
     elif card_type == "tradition":
         return {
-            "overlay_zone": "top_25",
             "hebrew_title": card.get("title_he", ""),
             "english_title": card.get("title_en", ""),
         }
@@ -430,110 +362,22 @@ def extract_back_fields(card: dict, card_type: str) -> dict:
     return back
 
 
-# =============================================================================
-# LEGACY CARD CLASSES (v1.0 - kept for backward compatibility)
-# =============================================================================
-
-@dataclass
-class BaseCard:
-    """Base class for all card types."""
-    card_id: str
-    card_type: str
-    title_en: str
-    title_he: str
-    image_prompt: str
-    image_path: Optional[str] = None
-    teacher_script: str = ""
-
-    def to_dict(self) -> dict:
-        """Convert to dictionary for JSON serialization."""
-        return asdict(self)
-
-
-@dataclass
-class AnchorCard(BaseCard):
-    """The Anchor card - introduces parasha and sets emotional tone."""
-    emotional_hook_en: str = ""
-    emotional_hook_he: str = ""
-    symbol_description: str = ""
-    border_color: str = "#5c2d91"  # Default royal purple
-
-    def __post_init__(self):
-        self.card_type = CardType.ANCHOR.value
-
-
-@dataclass
-class SpotlightCard(BaseCard):
-    """Spotlight card - character introduction."""
-    character_name_en: str = ""
-    character_name_he: str = ""
-    emotion_label: str = ""  # e.g., "happy", "proud"
-    character_trait: str = ""
-    character_description_en: str = ""
-    character_description_he: str = ""
-
-    def __post_init__(self):
-        self.card_type = CardType.SPOTLIGHT.value
-
-
-@dataclass
-class ActionCard(BaseCard):
-    """Action card - plot moments with sequence and roleplay."""
-    sequence_number: int = 0
-    hebrew_key_word: str = ""
-    hebrew_key_word_nikud: str = ""
-    english_description: str = ""
-    roleplay_prompt: str = ""
-    emotional_reactions: list = field(default_factory=list)
-
-    def __post_init__(self):
-        self.card_type = CardType.ACTION.value
-
-
-@dataclass
-class ThinkerCard(BaseCard):
-    """Thinker card - discussion and emotional connection."""
-    questions: list = field(default_factory=list)  # List of ThinkerQuestion dicts
-    torah_talk_instruction: str = "Sit in a circle and share!"
-    feeling_faces: list = field(default_factory=lambda: FEELING_FACES.copy())
-
-    def __post_init__(self):
-        self.card_type = CardType.THINKER.value
-
-
-@dataclass
-class PowerWordCard(BaseCard):
-    """Power Word card - Hebrew vocabulary."""
-    hebrew_word: str = ""
-    hebrew_word_nikud: str = ""
-    transliteration: str = ""
-    english_meaning: str = ""
-    example_sentence_en: str = ""
-    example_sentence_he: str = ""
-    is_emotion_word: bool = False
-    audio_qr_url: Optional[str] = None
-
-    def __post_init__(self):
-        self.card_type = CardType.POWER_WORD.value
-
-
 @dataclass
 class Deck:
-    """A complete card deck for a parasha."""
+    """A complete card deck for a parasha or holiday."""
     parasha_en: str
     parasha_he: str
     ref: str
     border_color: str
     theme: str
-    version: str = "1.0"
+    version: str = "2.0"
     cards: list = field(default_factory=list)
 
     # Deck metadata
     target_age: str = "4-6"
     card_count: int = 0
-    mitzvah_connection: str = ""
 
-    def add_card(self, card: BaseCard):
+    def add_card(self, card: CardV2):
         """Add a card to the deck."""
         self.cards.append(card.to_dict())
         self.card_count = len(self.cards)

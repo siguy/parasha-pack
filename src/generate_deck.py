@@ -1,193 +1,219 @@
 #!/usr/bin/env python3
 """
-Generate a new card deck for the current parasha.
+Generate a new card deck template for a parasha or holiday.
 
-This script:
-1. Fetches the current parasha from Sefaria API
-2. Creates a deck template with appropriate theming
-3. Outputs the deck structure for manual content creation
+Creates a deck.json with placeholder cards using v2 card types.
+Image prompts should be SCENE DESCRIPTIONS ONLY — style, safety,
+composition, and rules are injected automatically by generate_images.py.
 
 Usage:
-    python generate_deck.py [--parasha NAME] [--output PATH]
+    python generate_deck.py                          # Current parasha from Sefaria
+    python generate_deck.py --parasha "Yitro"        # Specific parasha
+    python generate_deck.py --parasha "Purim" --holiday  # Holiday deck (adds tradition cards)
+    python generate_deck.py --output ../decks/yitro  # Custom output path
 """
 
 import argparse
 import json
 import os
-from datetime import datetime
 
 from sefaria_client import fetch_current_parasha, get_border_color, PARASHA_THEMES
-from schema import (
-    Deck,
-    AnchorCard,
-    SpotlightCard,
-    ActionCard,
-    ThinkerCard,
-    PowerWordCard,
-    FEELING_FACES,
-)
+from schema import FEELING_FACES
 
 
-def create_deck_template(parasha_name: str, parasha_he: str, ref: str, theme: str, border_color: str) -> dict:
+def create_deck_template(
+    parasha_name: str,
+    parasha_he: str,
+    ref: str,
+    theme: str,
+    border_color: str,
+    is_holiday: bool = False,
+) -> dict:
     """
-    Create a deck template with placeholder cards.
+    Create a v2 deck template with placeholder cards.
 
-    Args:
-        parasha_name: English name of the parasha
-        parasha_he: Hebrew name of the parasha
-        ref: Scripture reference
-        theme: Theme category
-        border_color: Hex color for borders
+    Card types:
+      - anchor: Parasha/holiday introduction
+      - spotlight: Character portraits
+      - story: Key narrative moments
+      - connection: Discussion questions
+      - tradition: Holiday practices (holiday decks only)
+      - power_word: Hebrew vocabulary
 
-    Returns:
-        Dictionary representing the deck
+    Image prompts should be SCENE DESCRIPTIONS ONLY.
+    generate_images.py adds style, safety, composition, and rules at generation time.
     """
-    deck = {
+    deck_meta = {
         "parasha_en": parasha_name,
         "parasha_he": parasha_he,
         "ref": ref,
         "border_color": border_color,
         "theme": theme,
-        "version": "1.0",
+        "version": "2.0",
         "target_age": "4-6",
         "card_count": 0,
-        "mitzvah_connection": "",
         "cards": []
     }
 
-    # Add template cards
+    if is_holiday:
+        deck_meta["holiday_en"] = parasha_name
+        deck_meta["holiday_he"] = parasha_he
 
-    # 1. Anchor Card
-    anchor = {
+    cards = deck_meta["cards"]
+
+    # --- Anchor Card (1) ---
+    cards.append({
         "card_id": "anchor_1",
         "card_type": "anchor",
         "title_en": parasha_name,
         "title_he": parasha_he,
-        "emotional_hook_en": "This week is about feeling [EMOTION]!",
+        "emotional_hook_en": "[Opening hook — 'Have you ever...' or 'Today we meet...']",
         "emotional_hook_he": "",
-        "symbol_description": "[DESCRIBE CENTRAL SYMBOL]",
+        "symbol_description": "[Central symbol that represents this parasha/holiday]",
         "border_color": border_color,
+        # Scene-only prompt. Style/safety/composition injected at generation time.
         "image_prompt": "",
         "image_path": None,
-        "teacher_script": ""
-    }
-    deck["cards"].append(anchor)
+        "teacher_script": "",
+        "session": 1,
+    })
 
-    # 2-3. Spotlight Cards (2 characters)
+    # --- Spotlight Cards (2) ---
     for i in range(1, 3):
-        spotlight = {
+        cards.append({
             "card_id": f"spotlight_{i}",
             "card_type": "spotlight",
-            "title_en": f"[CHARACTER {i} NAME]",
+            "title_en": f"[Character {i} English Name]",
             "title_he": "",
             "character_name_en": "",
             "character_name_he": "",
-            "emotion_label": "[happy/proud/brave/etc]",
-            "character_trait": "",
+            "emotion_label_en": "[brave/caring/wise/etc]",
+            "emotion_label_he": "",
             "character_description_en": "",
             "character_description_he": "",
+            "teaching_moment_en": "",
+            "border_color": border_color,
             "image_prompt": "",
             "image_path": None,
-            "teacher_script": ""
-        }
-        deck["cards"].append(spotlight)
+            "teacher_script": "",
+            "session": 1,
+        })
 
-    # 4-8. Action Cards (5 scenes)
-    for i in range(1, 6):
-        action = {
-            "card_id": f"action_{i}",
-            "card_type": "action",
-            "title_en": f"[SCENE {i} TITLE]",
+    # --- Story Cards (4) ---
+    for i in range(1, 5):
+        cards.append({
+            "card_id": f"story_{i}",
+            "card_type": "story",
+            "title_en": f"[Scene {i} Title]",
             "title_he": "",
             "sequence_number": i,
             "hebrew_key_word": "",
             "hebrew_key_word_nikud": "",
+            "english_key_word": "",
             "english_description": "",
-            "roleplay_prompt": "Act it out: [ACTION]!",
-            "emotional_reactions": [],
+            "roleplay_prompt": "[Act it out: ...]",
+            "border_color": border_color,
             "image_prompt": "",
             "image_path": None,
-            "teacher_script": ""
-        }
-        deck["cards"].append(action)
+            "teacher_script": "",
+            "session": 1,
+        })
 
-    # 9-10. Thinker Cards (2 discussion cards)
+    # --- Connection Cards (2) ---
     for i in range(1, 3):
-        thinker = {
-            "card_id": f"thinker_{i}",
-            "card_type": "thinker",
-            "title_en": f"[DISCUSSION THEME {i}]",
+        cards.append({
+            "card_id": f"connection_{i}",
+            "card_type": "connection",
+            "title_en": f"[Discussion Theme {i}]",
             "title_he": "",
             "questions": [
                 {
-                    "question_type": "emotional_empathy",
+                    "question_type": "personal",
+                    "question_en": "Have you ever...?",
+                    "question_he": "",
+                },
+                {
+                    "question_type": "empathy",
                     "question_en": "How do you think [character] felt when...?",
-                    "question_he": ""
+                    "question_he": "",
                 },
-                {
-                    "question_type": "cognitive_empathy",
-                    "question_en": "Why do you think [character] did...?",
-                    "question_he": ""
-                },
-                {
-                    "question_type": "connection",
-                    "question_en": "Have you ever felt...? What did you do?",
-                    "question_he": ""
-                }
             ],
-            "torah_talk_instruction": "Sit in a circle and share!",
-            "feeling_faces": FEELING_FACES,
+            "emojis": ["😊", "😢", "😮", "💪"],
+            "border_color": border_color,
             "image_prompt": "",
             "image_path": None,
-            "teacher_script": ""
-        }
-        deck["cards"].append(thinker)
+            "teacher_script": "",
+            "session": 2,
+        })
 
-    # 11-12. Power Word Cards (2 vocabulary words)
-    for i in range(1, 3):
-        power_word = {
-            "card_id": f"power_word_{i}",
-            "card_type": "power_word",
-            "title_en": f"[WORD {i}] - [MEANING]",
-            "title_he": "",
-            "hebrew_word": "",
-            "hebrew_word_nikud": "",
-            "transliteration": "",
-            "english_meaning": "",
-            "example_sentence_en": "",
-            "example_sentence_he": "",
-            "is_emotion_word": False,
-            "audio_qr_url": None,
-            "image_prompt": "",
-            "image_path": None,
-            "teacher_script": ""
-        }
-        deck["cards"].append(power_word)
+    # --- Tradition Cards (holiday decks only) ---
+    if is_holiday:
+        for i in range(1, 4):
+            cards.append({
+                "card_id": f"tradition_{i}",
+                "card_type": "tradition",
+                "title_en": f"[Tradition {i} Name]",
+                "title_he": "",
+                "story_connection_en": "[How this tradition connects to the story]",
+                "story_connection_he": "",
+                "practice_description_en": "[What we do for this tradition]",
+                "practice_description_he": "",
+                "child_action_en": "[How a child can participate]",
+                "child_action_he": "",
+                "hebrew_term": "",
+                "hebrew_term_meaning": "",
+                "border_color": border_color,
+                "image_prompt": "",
+                "image_path": None,
+                "teacher_script": "",
+                "session": 2,
+            })
 
-    deck["card_count"] = len(deck["cards"])
-    return deck
+    # --- Power Word Card (1) ---
+    cards.append({
+        "card_id": "power_word_1",
+        "card_type": "power_word",
+        "title_en": "[Word] - [Meaning]",
+        "title_he": "",
+        "hebrew_word": "",
+        "hebrew_word_nikud": "",
+        "english_meaning": "",
+        "example_sentence_en": "",
+        "example_sentence_he": "",
+        "kid_friendly_explanation_en": "",
+        "kid_friendly_explanation_he": "",
+        "border_color": border_color,
+        "image_prompt": "",
+        "image_path": None,
+        "teacher_script": "",
+        "session": 2,
+    })
+
+    deck_meta["card_count"] = len(cards)
+    return deck_meta
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate a card deck template for a Torah portion"
+        description="Generate a card deck template for a Torah portion or holiday"
     )
     parser.add_argument(
-        "--parasha",
-        type=str,
-        help="Parasha name (if not specified, fetches current from Sefaria)"
+        "--parasha", type=str,
+        help="Parasha/holiday name (if not specified, fetches current from Sefaria)"
     )
     parser.add_argument(
-        "--output",
-        type=str,
+        "--output", type=str,
         help="Output directory path"
+    )
+    parser.add_argument(
+        "--holiday", action="store_true",
+        help="Create a holiday deck (adds tradition cards)"
     )
 
     args = parser.parse_args()
 
     # Get parasha info
     if args.parasha:
-        # Use provided parasha name
         parasha_name = args.parasha
         theme = PARASHA_THEMES.get(parasha_name, "covenant")
         border_color = get_border_color(parasha_name, "")
@@ -195,7 +221,6 @@ def main():
         ref = ""
         print(f"Creating deck for: {parasha_name}")
     else:
-        # Fetch current parasha from Sefaria
         print("Fetching current parasha from Sefaria API...")
         parasha = fetch_current_parasha()
 
@@ -221,13 +246,13 @@ def main():
         ref=ref,
         theme=theme,
         border_color=border_color,
+        is_holiday=args.holiday,
     )
 
     # Determine output path
     if args.output:
         output_dir = args.output
     else:
-        # Create in decks directory
         safe_name = parasha_name.lower().replace("'", "").replace(" ", "_")
         output_dir = os.path.join(
             os.path.dirname(os.path.dirname(__file__)),
@@ -235,9 +260,11 @@ def main():
             safe_name
         )
 
-    # Create output directory
+    # Create output directories
     os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "raw"), exist_ok=True)
     os.makedirs(os.path.join(output_dir, "images"), exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "references"), exist_ok=True)
 
     # Write deck.json
     deck_path = os.path.join(output_dir, "deck.json")
@@ -248,7 +275,7 @@ def main():
     # Write empty feedback.json
     feedback = {
         "parasha": parasha_name,
-        "deck_version": "1.0",
+        "deck_version": "2.0",
         "review_date": None,
         "cards": [],
         "global_feedback": ""
@@ -258,14 +285,21 @@ def main():
         json.dump(feedback, f, indent=2, ensure_ascii=False)
     print(f"Created feedback file: {feedback_path}")
 
-    print(f"\nDeck template created with {deck['card_count']} placeholder cards.")
-    print("Edit deck.json to fill in the content for each card.")
-    print("\nCard structure:")
-    print("  1 Anchor card (parasha introduction)")
-    print("  2 Spotlight cards (character introductions)")
-    print("  5 Action cards (story sequence)")
-    print("  2 Thinker cards (discussion questions)")
-    print("  2 Power Word cards (vocabulary)")
+    # Summary
+    card_types = {}
+    for card in deck["cards"]:
+        t = card["card_type"]
+        card_types[t] = card_types.get(t, 0) + 1
+
+    print(f"\nDeck template created with {deck['card_count']} placeholder cards:")
+    for card_type, count in card_types.items():
+        print(f"  {count} {card_type} card{'s' if count > 1 else ''}")
+
+    print(f"\nNext steps:")
+    print(f"  1. Fill in card content in {deck_path}")
+    print(f"  2. Write scene-only image prompts (no style/composition/rules)")
+    print(f"  3. python generate_images.py {deck_path}")
+    print(f"  4. cd ../card-designer && npm run export {os.path.basename(output_dir)}")
 
 
 if __name__ == "__main__":
