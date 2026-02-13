@@ -288,6 +288,16 @@ editorial_review:
 - [ ] Teacher script is complete and appropriate
 - [ ] Card back content renders correctly at 5x7
 
+### Card Backs (SAY/DO/ASK/TIP Structure)
+- [ ] All cards have `teacher_tip` — 1 actionable sentence (not vague)
+- [ ] All cards have `transition_line` — thematic, works in any card order
+- [ ] All cards except Connection have `discussion_prompts` — 2 open-ended questions
+- [ ] Power Word card has `pronunciation_guide` — syllable breakdown + rhymes-with
+- [ ] Teacher tips are concrete classroom advice (not "Make it fun!")
+- [ ] Transition lines are generic (not card-specific like "Now we'll meet X")
+- [ ] Discussion prompts are open-ended (no yes/no, no numbering)
+- [ ] Pronunciation guide uses format: "Syllable-BREAK. Rhymes with 'word'!"
+
 ### Roleplay Prompts (Content Writer check)
 - [ ] Gender-neutral language (e.g., "royal wave" not "wave like a queen")
 - [ ] Physical and doable in classroom

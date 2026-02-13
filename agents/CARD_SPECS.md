@@ -253,6 +253,51 @@ See [/decks/CLAUDE.md](../decks/CLAUDE.md) for full JSON examples of each card t
 
 ---
 
+## Card Back Structure (SAY / DO / ASK / TIP)
+
+Every card back follows a consistent 4-section layout for teacher usability:
+
+| Section | Label | Purpose | Space |
+|---------|-------|---------|-------|
+| **SAY THIS** | White bg | Teacher script — what to read aloud | ~35% |
+| **DO THIS** | Tinted bg | Activity or action for the moment | ~20% |
+| **ASK THIS** | Light blue tint | Discussion prompts (2 open-ended questions) | ~25% |
+| **TIP** | Light amber tint | 1 actionable teacher tip | ~15% |
+
+Plus a compact title line at top and a transition line footer.
+
+### Section Mapping by Card Type
+
+| Card Type | SAY THIS | DO THIS | ASK THIS | TIP |
+|-----------|----------|---------|----------|-----|
+| **Anchor** | `teacher_script` | `emotional_hook_en` (read aloud) | `discussion_prompts` | `teacher_tip` |
+| **Spotlight** | `teacher_script` | emotion expression + `teaching_moment_en` | `discussion_prompts` | `teacher_tip` |
+| **Story** | `teacher_script` | `roleplay_prompt` | `discussion_prompts` | `teacher_tip` |
+| **Connection** | `torah_talk_instruction` | feeling_faces (emoji grid) | `questions[]` (EN only) | `teacher_tip` |
+| **Tradition** | `teacher_script` | `child_action_en` | `discussion_prompts` | `teacher_tip` |
+| **Power Word** | `teacher_script` | `pronunciation_guide` | `discussion_prompts` | `teacher_tip` |
+
+### Required Fields (All Cards)
+
+- `teacher_tip` — 1 actionable sentence of classroom management or pedagogy advice
+- `transition_line` — thematic bridge displayed in footer, works in any card order
+
+### Required Fields (Per Type)
+
+- **All except Connection:** `discussion_prompts` — array of 2 open-ended questions
+- **Power Word only:** `pronunciation_guide` — syllable breakdown + "Rhymes with" hint
+
+### Design Tokens
+
+- SAY: white background, largest section, `text-lg` font
+- DO: `${borderColor}10` tint background, `text-base` font
+- ASK: light blue tint `#0074d915`, `text-base` font
+- TIP: light amber tint `#f59e0b15`, `text-base` font
+- Each section has a 4px left border accent in the card's border color
+- Transition line: small italic centered text in footer bar
+
+---
+
 ## Card Format
 
 AI generates scene-only images. Card Designer (React) renders text overlays and card backs.
