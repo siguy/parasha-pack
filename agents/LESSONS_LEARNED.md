@@ -86,6 +86,8 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Front/back viewport mismatch by design** — Fronts render at 500x700 CSS @ 3x device scale (matches design editor). Backs render at 1500x2100 CSS @ 1x (print-calibrated fonts). Don't unify them — they were designed at different resolutions.
 - **All card types use FitText for titles** — Including Story cards. No hardcoded pixel font sizes for titles. Keywords/emotion badges use fixed Tailwind classes (`text-3xl` / `text-sm`).
 - **Clear `.next` cache after component changes** — `rm -rf card-designer/.next` before re-exporting, or the old compiled components may be served.
+- **Hebrew nikud needs lineHeight ≥ 1.3** — Nikud marks sit below the baseline. `lineHeight: 1.1` clips them; `1.3` gives enough room. Also use `overflow: visible` on the FitText container, never `hidden`.
+- **English subtitle gap mt-2 minimum** — `mt-1` (4px) crowds nikud from below. Use `mt-2` (8px) on all English text that appears directly below Hebrew FitText titles.
 
 ### Generation Provenance
 - **Every generation is logged** — `raw/generations.jsonl` records card_id, timestamp, model, full assembled prompt, character refs used, and success/failure. Append-only.

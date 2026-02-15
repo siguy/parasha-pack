@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Hebrew Nikud Fix
+
+Fixed nikud (vowel marks) getting clipped below Hebrew title text.
+
+#### Fixed
+- **FitText overflow:** Changed `overflow: hidden` → `overflow: visible` to stop clipping nikud descenders below the baseline.
+- **FitText lineHeight:** Increased from `1.1` → `1.3` — Hebrew with nikud needs more vertical space than Latin text.
+- **English subtitle spacing:** `mt-1` → `mt-2` on all cards with English text below Hebrew FitText title.
+
+---
+
 ### Export Pipeline & FitText Overhaul
 
 Fixed export viewport mismatch and unified title sizing across all card types.

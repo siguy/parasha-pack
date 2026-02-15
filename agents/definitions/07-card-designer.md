@@ -86,6 +86,9 @@ Each card type also has a `*Back.tsx` component for teacher content.
 ### Typography
 - **FitText** for primary titles — dynamically scales within min/max ranges per card type
 - **All card types** use FitText for Hebrew titles (including Story cards)
+- **FitText lineHeight:** `1.3` (not 1.1) — Hebrew nikud marks extend below the baseline and need extra vertical space
+- **FitText overflow:** `visible` (not hidden) — prevents clipping of nikud descenders
+- **English subtitle spacing:** `mt-2` below Hebrew FitText titles — gives breathing room for nikud
 - **Keywords/emotion badges** use fixed `text-3xl` / `text-sm` spans (left-aligned, bottom-left)
 - Font family: Fredoka (primary), Hebrew font for RTL text
 
