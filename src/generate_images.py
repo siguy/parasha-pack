@@ -36,7 +36,8 @@ def is_v2_card(card: dict) -> bool:
 
 
 def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str = "",
-                            character_refs_loaded: list = None) -> str:
+                            character_refs_loaded: list = None,
+                            manifest: dict = None) -> str:
     """
     Build a complete generation prompt by layering system concerns onto a scene description.
 
@@ -101,8 +102,9 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
 
     # 4b. When character ref images are loaded, tell model to prioritize them
     if character_refs_loaded:
+        _manifest = manifest or {}
         ref_names = ", ".join(
-            CHARACTER_LABELS.get(key, key.title()) for key in character_refs_loaded
+            get_character_label(key, _manifest) for key in character_refs_loaded
         )
         parts.append(
             f"=== CHARACTER REFERENCES ===\n"
@@ -166,16 +168,17 @@ def save_prompt_sidecar(deck_path: Path, card_id: str, full_prompt: str) -> None
         f.write(full_prompt)
 
 
-# Character name mappings for clearer labels in reference image prompts
-CHARACTER_LABELS = {
-    "esther": "Esther (Queen Esther)",
-    "mordechai": "Mordechai",
-    "haman": "Haman (the villain)",
-    "achashverosh": "King Achashverosh (the king)",
-    "moses": "Moses",
-    "miriam": "Miriam",
-    "yitro": "Yitro",
-}
+def get_character_label(character_key: str, manifest: dict) -> str:
+    """Derive human-readable label from manifest entry or key name.
+
+    Reads optional 'label' field from manifest. Falls back to title-cased key.
+    Only call for character entries — non-character keys (style_hero) are skipped
+    by the caller before reaching this function.
+    """
+    entry = manifest.get(character_key, {})
+    if isinstance(entry, dict):
+        return entry.get("label", character_key.replace("_", " ").title())
+    return character_key.replace("_", " ").title()
 
 
 def _load_image_as_part(image_path: Path) -> dict:
@@ -266,7 +269,7 @@ def load_reference_images(deck_path: Path, characters_in_scene: list = None,
             identity_path = refs_dir / identity_file
             if identity_path.exists():
                 try:
-                    label = CHARACTER_LABELS.get(character, character.title())
+                    label = get_character_label(character, manifest)
                     image_parts.append({
                         "text": f"Character reference for {label}:"
                     })
@@ -391,6 +394,16 @@ def main():
     deck_name = deck.get('parasha_en') or deck.get('holiday_en') or 'Unknown'
     story_world = deck.get('story_world', '')
 
+    # Load manifest once for character labels
+    manifest_path = deck_path.parent / "references" / "manifest.json"
+    manifest = {}
+    if manifest_path.exists():
+        try:
+            with open(manifest_path, 'r', encoding='utf-8') as f:
+                manifest = json.load(f)
+        except Exception:
+            pass
+
     print(f"Generating images for: {deck_name}")
     print(f"Output directory: {raw_dir}")
     print(f"Model: nano-banana-pro")
@@ -458,6 +471,7 @@ def main():
         prompt = build_generation_prompt(
             raw_prompt, card_type, story_world=story_world,
             character_refs_loaded=loaded_char_keys,
+            manifest=manifest,
         )
 
         # Save prompt sidecar for quick debugging
