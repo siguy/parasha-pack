@@ -23,6 +23,31 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **A/B test with `--no-hero`** — Compare with and without hero to verify it helps before relying on it.
 - **Hero creation** — Generate 2-3 representative scenes, pick the one with the best style for the deck. Save as `references/style_hero.png` and add to manifest.
 
+### Prompt Detail Level
+- **Stage directions, not descriptions** — "He shakes his head NO" produces better results than "refusing to bow." Write prompts like a movie director, not a caption writer.
+- **Background characters need actions** — "Other people in the crowd ARE bowing low to the ground" not just "people in background." Scenes with crowd energy look more alive.
+- **Visual storytelling devices work** — Thought bubbles, dramatic size contrast (one person standing while others bow), symbolic props (crumpled papers, broken seals) add narrative depth to static images.
+- **Emotional punch lines in ALL-CAPS** — "PURE JOY!" and "THE CLIMAX!" at the end of prompts produce more energetic images than flat descriptions.
+- **v1 prompts were richer than v2** — When moving to scene-only architecture, prompts got stripped too aggressively. System layers handle style/safety/composition, but scene descriptions still need maximum detail and energy.
+
+### Tradition Card Prompts (Modern World)
+- **Specific people doing specific things** — "dad arranging fruit in a basket" not "family gathered." Name the actions.
+- **Props must be identifiable** — hamantaschen, groggers, megillah scroll, masks, gift baskets. The viewer should be able to name 4+ objects in the scene.
+- **Children participate, not watch** — Kids shaking groggers, packing baskets, twirling in costumes. Active verbs.
+- **Domestic/community detail sells the world** — Kitchen items, wall calendars, children's drawings, pendant lights. These small details make the Modern World feel real.
+
+### Spotlight Card Prompts
+- **Signature gesture, not just expression** — "hands clasped peacefully in front" or "scratching his head" gives the model a physical action to anchor.
+- **Background tells the world** — Through an archway: palm trees, market stalls, domed buildings. The background should place the character in Shushan (or whatever story world).
+- **Personality line in the mood section** — "like a favorite grandfather" or "a princess with a secret" gives the model character direction beyond visual appearance.
+
+### Connection Card Prompts (Modern World)
+- **Every child needs a role** — One is TALKING (leaning forward), one LISTENING (chin on hands), one THINKING (looking up). Generic "children sitting in a circle" produces stock illustrations.
+- **The classroom must be lived-in** — Children's drawings taped to walls, picture books on shelves, a teddy bear, a plant on the windowsill. These details sell "their classroom" vs. any classroom.
+- **Never show a child truly alone** — Connection_2 (intimate) should have a friend nearby or comfort object + warm setting. "Safe to share" not "lonely child."
+- **Warm golden afternoon light** — Not bright overhead. The lighting should feel like the coziest part of the school day.
+- **The rug/nook is their SPECIAL SPOT** — Describe specific colors and textures. A braided rug with red/blue/yellow rings, or big floor cushions in warm colors. It should feel familiar.
+
 ### Character Consistency
 - **Identity reference + text description together** - Both are needed; reference image alone isn't enough
 - **Specific features in every prompt** - "dark pointed goatee with connected mustache" not just "beard"

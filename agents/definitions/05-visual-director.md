@@ -316,30 +316,120 @@ Image prompts in deck.json are **pure scene descriptions** — what to draw, not
 
 ### Scene Prompt Template
 
+Write scene prompts like **stage directions for a movie**, not static descriptions. Every prompt needs:
+
+1. **Character blocks** — Appearance details that reinforce reference images
+2. **Specific actions** — What each character is DOING (verbs, not adjectives). "He shakes his head NO" not "he refuses to bow"
+3. **Visual storytelling devices** — Thought bubbles, split scenes, contrast (one person standing while others bow), symbolic elements
+4. **Crowd/environment energy** — What background characters are doing, market stalls, decorations, instruments. Scenes should feel ALIVE
+5. **Emotional punch line** — ALL-CAPS emphasis for the core feeling. Tell the model how to make the viewer FEEL
+
 ```
-[Character name/description]:
-[Visual appearance details — reinforces reference images]
+[CHARACTER NAME]:
+[Visual appearance — skin, hair, clothing, accessories]
+[SPECIFIC ACTION — what they are physically doing right now]
 
-[Scene description — what is happening, where, who is involved]
-[Key visual elements — 5-7 maximum]
-[Character emotions and body language]
+[SECOND CHARACTER (if present)]:
+[Visual appearance]
+[SPECIFIC ACTION]
 
-[Emotional tone — what viewers should feel]
+[Scene description — location, what is happening moment-by-moment]
+[Character A is doing X. Character B is doing Y in response.]
+[Background characters: what are THEY doing? Bowing? Cheering? Watching?]
+[Environment details: market stalls, tapestries, light sources, decorations]
+[Visual storytelling device: thought bubble, dramatic size contrast, symbolic element]
+[Specific props and objects in the scene]
+[Lighting and atmosphere]
+
+[EMOTIONAL PUNCH LINE in caps — what should the viewer FEEL?]
 ```
 
-### Example
+### Example — WEAK (too vague)
+
+```
+ESTHER:
+Young Jewish woman, royal purple dress.
+
+Esther standing before the king's throne, hand raised to speak.
+Tall stone pillars frame the scene. Golden light from high windows.
+
+Brave and determined.
+```
+
+### Example — STRONG (stage directions)
 
 ```
 ESTHER:
 Young Jewish woman, warm olive skin, large kind brown eyes.
-Royal purple dress, simple gold tiara.
+Long dark hair with elegant modest head covering.
+Royal purple and blue flowing dress, simple gold tiara.
+Her right hand is pressed over her heart. Her left hand reaches slightly forward.
+Eyes wide, jaw set with determination despite visible fear.
 
-Esther standing before the king's throne, hand raised to speak.
-Tall stone pillars frame the scene. Golden light from high windows.
-Courtiers watch with surprise. Rich tapestries on walls.
+ACHASHVEROSH:
+Adult man, large ornate Persian crown, fancy red and gold royal robes.
+Big bushy beard, wide surprised eyes. Seated on golden throne with lion armrests.
+He leans forward with surprise — he wasn't expecting this!
 
-Brave and determined. A quiet courage that changes everything.
+Esther takes a brave step forward into the grand throne room.
+She's about to speak the most important words of her life!
+Royal guards with spears visible in the background, watching.
+Dramatic light shafts streaming down from high arched windows above.
+Ornate Persian columns frame the scene. Rich tapestries on the walls.
+The throne room feels HUGE — Esther looks small but brave against it.
+Dark polished floor in the lower-left corner.
+
+THE CLIMAX! Maximum tension and courage. Esther's bravest moment.
+The whole story comes down to this.
 ```
+
+### Card-Type-Specific Prompt Guidance
+
+**Spotlight cards** — These are character introductions, not just portraits. Include:
+- A **signature gesture** (hands clasped, hand near heart, scratching head, arms crossed)
+- **Detailed clothing** with specific embroidery, jewelry, accessories, fabric colors
+- **Setting through the background** that places the character in their world (archway showing the city, palace interior, market street)
+- A **personality line** that tells the model WHO this person is ("like a favorite grandfather", "a princess with a secret", "a king who needs help thinking")
+
+**Story cards** — Action scenes. Must include:
+- **Stage directions** for every character (verbs: "shakes his head NO", "takes a brave step forward", "points angrily")
+- **Crowd behavior** when relevant (people bowing, cheering, watching)
+- **Visual storytelling devices** (thought bubbles, dramatic size contrast, symbolic props)
+- **Environmental energy** (market stalls with goods, confetti, instruments, decorations)
+
+**Tradition cards (Modern World)** — Community/family scenes. Must include:
+- **Specific people doing specific things** — not "family gathered" but "dad arranging fruit in a basket, mom placing hamantaschen on a tray, boy reaching for candy"
+- **Specific props** visible and identifiable — hamantaschen, groggers, megillah scroll, costumes, gift baskets, cellophane wrap
+- **Domestic/community detail** — kitchen items, synagogue decorations, furniture, wall art, lighting fixtures
+- **Children actively participating** — not just watching, but doing (shaking, packing, twirling, laughing)
+- **Negative constraints** when needed — "Do NOT include Haman" for tradition_1
+
+**Connection cards (Modern World)** — These are discussion/feelings cards. The image should make the viewer feel safe and invited. Calmer than story cards but NOT generic:
+- **Every child has a specific gesture and role** — one is TALKING (leaning forward, mouth open), one is LISTENING (chin on hands, wide eyes), one is THINKING (looking up), one is warming up (arms around knees, shy smile). No generic "sitting in a circle."
+- **The classroom is LIVED-IN** — children's drawings on walls, picture books on low shelves, a teddy bear or stuffed animal, a small plant, afternoon light through a window. These details make it feel like THEIR room, not a stock classroom.
+- **The rug/nook is their SPECIAL SPOT** — a braided circle-time rug with specific colors, or a reading nook with big floor cushions. It should feel familiar and safe — like the best part of the school day.
+- **Warm golden light** — afternoon sun, soft and cozy. NOT bright overhead fluorescent.
+- **connection_1 pattern (group)**: 4-6 children in a circle, each with a distinct gesture and expression. Focus on the sharing dynamic — one child telling a story, others reacting.
+- **connection_2 pattern (intimate)**: 1-2 children in a quieter moment. If one child, add a comfort object (stuffed animal) AND a friend nearby. Never show a child truly alone — the message is "safe to share feelings," not "lonely."
+- **Negative constraint**: Do NOT include story characters (Esther, Mordechai, etc.). These are generic modern children.
+
+**Power Word cards** — Character demonstrating a concept:
+- **Heroic framing** — character looks powerful, capable, determined
+- **One clear central concept** visually embodied
+- Keep it focused — fewer background elements than story cards
+
+### Prompt Quality Checklist
+
+Before finalizing each scene prompt, verify:
+- [ ] Every character has a **specific physical action** (not just an emotion label)
+- [ ] Background has **life** — other people doing things, objects, environmental detail
+- [ ] At least one **visual storytelling device** (contrast, thought bubble, dramatic scale, symbolic prop)
+- [ ] Emotional tone line uses **strong, punchy language** with caps for emphasis
+- [ ] Prompt reads like a **movie scene description**, not a stock photo caption
+- [ ] **Tradition cards**: At least 4 specific, nameable props visible in the scene
+- [ ] **Spotlight cards**: Character has a signature gesture, not just a facial expression
+- [ ] **Connection cards**: Every child has a distinct gesture/role (talking, listening, thinking) — no generic circles
+- [ ] **Connection cards**: Classroom has lived-in details (drawings on walls, books, plants, afternoon light)
 
 ## Success Criteria
 
