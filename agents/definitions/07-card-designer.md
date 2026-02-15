@@ -62,7 +62,7 @@ cd card-designer && npm run export {deckId} -- --backs-only
 
 | Card Type | Component | Title System | maxSize | minSize | padding | Notes |
 |-----------|-----------|-------------|---------|---------|---------|-------|
-| Anchor | AnchorCard.tsx | FitText | 120 | 80 | 16 | White outline effect |
+| Anchor | AnchorCard.tsx | FitText | 160 | 80 | 12 | White outline + letterSpacing 0.4em |
 | Spotlight | SpotlightCard.tsx | FitText | 80 | 56 | 21 | Emotion badge bottom-left |
 | Story | StoryCard.tsx | FitText | 72 | 32 | 19 | 6 layout variants |
 | Connection | ConnectionCard.tsx | FitText | 72 | 48 | 19 | Emoji strip bottom |

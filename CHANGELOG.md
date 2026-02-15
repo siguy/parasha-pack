@@ -4,14 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-### Hebrew Nikud Fix
+### Hebrew Nikud & Anchor Spacing Fix
 
-Fixed nikud (vowel marks) getting clipped below Hebrew title text.
+Fixed nikud clipping, anchor card letter-spacing, and story_3 composition conflict.
 
 #### Fixed
 - **FitText overflow:** Changed `overflow: hidden` → `overflow: visible` to stop clipping nikud descenders below the baseline.
 - **FitText lineHeight:** Increased from `1.1` → `1.3` — Hebrew with nikud needs more vertical space than Latin text.
 - **English subtitle spacing:** `mt-1` → `mt-2` on all cards with English text below Hebrew FitText title.
+- **Anchor card shuruq visibility:** `letterSpacing: 0.4em` so dots inside letters (shuruq, dagesh) aren't covered by adjacent letters. maxSize bumped to 160, padding reduced to 12.
+- **Story 3 thought bubble:** Moved from "above head" (title zone conflict) to center-right at chest height. Added explicit "top 30% must be EMPTY" in prompt. Added `mordechai` to `characters_in_scene` so his ref is loaded for the thought bubble.
+- **Ref-first prompting refined:** "pose only" was too aggressive — 2-3 key identity anchors (hat shape, beard style, clothing colors) needed even when refs are loaded.
 
 ---
 
@@ -30,7 +33,7 @@ Fixed export viewport mismatch and unified title sizing across all card types.
 
 | Card Type | maxSize | minSize | padding |
 |-----------|---------|---------|---------|
-| Anchor | 120 | 80 | 16 |
+| Anchor | 160 | 80 | 12 |
 | Spotlight | 80 | 56 | 21 |
 | Story | 72 | 32 | 19 |
 | Connection | 72 | 48 | 19 |

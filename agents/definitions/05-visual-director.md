@@ -66,14 +66,22 @@ When generating card images:
 - When ref images are loaded, the system adds a hint to prioritize them for appearance
 - Use `--no-refs` flag to disable (for debugging only)
 
-**CRITICAL: Refs loaded → minimal text.** When character refs are loaded, verbose appearance descriptions DILUTE the ref rather than reinforcing it. The model tries to reconcile both and lands somewhere generic.
+**CRITICAL: Refs loaded → minimal text + identity anchors.** When character refs are loaded, verbose appearance descriptions DILUTE the ref rather than reinforcing it. The model tries to reconcile both and lands somewhere generic. However, pure "pose only" is too aggressive — include 2-3 key identity anchors (most distinctive features: hat shape, beard style, clothing colors) to reinforce the ref.
 
 | Refs loaded? | Character text should include |
 |---|---|
-| **Yes** (character in `characters_in_scene`) | Pose, action, emotion ONLY. No appearance. |
+| **Yes** (character in `characters_in_scene`) | Pose, action, emotion + **2-3 key identity anchors** (hat shape, beard style, clothing colors). No full appearance blocks. |
 | **No** (no ref available) | Full appearance description (face, clothing, colors, features) |
 
 **More characters = simpler each.** With 3 refs in one scene, the model has less attention per character. Keep scene descriptions lean — describe the story beat, not the staging.
+
+**Identity anchors example (refs loaded):**
+```
+Haman — THREE-CORNERED HAT (hamantaschen shape), dark pointed goatee,
+dusty purple and gray-brown robes — sitting hunched on a cushion,
+arms crossed tight, pouty frustrated frown.
+```
+Three identity anchors (hat, beard, robes) + pose/emotion. No skin tone, eye color, or other traits the ref already communicates.
 
 ### characters_in_scene (REQUIRED for all cards)
 
@@ -81,10 +89,12 @@ Every card MUST include `characters_in_scene` — a list of character keys whose
 
 Rules:
 - **Spotlight cards**: Single character key (e.g., `["esther"]`)
-- **Story cards**: Only characters actually depicted in the scene
+- **Story cards**: ALL characters actually depicted — including those in thought bubbles, dream sequences, or secondary visual elements
 - **Connection/tradition cards**: Empty list `[]` (generic children, no story characters)
 - **Anchor cards**: Empty list `[]` (symbol only)
 - **Power word cards**: Character demonstrating the word (if any)
+
+**Thought bubble gotcha:** If Character A thinks about Character B in a thought bubble, BOTH must be in `characters_in_scene`. Without B's ref, the model invents a generic figure.
 
 The generation script uses this to filter reference images: only the listed characters' identity images are passed to the API. An empty list means no character references are loaded.
 
@@ -326,7 +336,8 @@ Image prompts in deck.json are **pure scene descriptions** — what to draw, not
 
 `build_generation_prompt()` injects per-card-type composition guidance automatically (see `image_prompts.py`). The Visual Director does NOT write composition instructions — but scene prompts must NOT conflict with the composition layer:
 
-- **All card types** reserve the **upper portion** of the frame for text overlay (title, Hebrew). Scene prompts should keep the upper area **calm and open** — warm gradients, soft glow, sky, atmospheric light. Push architectural details and busy elements to the SIDES and LOWER areas.
+- **All card types** reserve the **upper 25-30%** of the frame for text overlay (title, Hebrew). Scene prompts should keep the upper area **calm and open** — warm gradients, soft glow, sky, atmospheric light. Push architectural details and busy elements to the SIDES and LOWER areas.
+- **Floating elements (thought bubbles, banners, speech balloons) must stay BELOW the title zone** — position at chest/belly height or lower. Add explicit constraints like "The entire TOP 30% of the frame must be EMPTY" when floating elements are involved.
 - **Anchor/Power Word** — subject center-to-lower, luminous/atmospheric space above
 - **Spotlight** — face centered, headroom above, darker lower-left
 - **Story** — action center-right, headroom above, darker lower-left
@@ -341,7 +352,7 @@ Write scene prompts like **stage directions for a movie**, not static descriptio
 
 When character refs ARE loaded (most story-world cards):
 1. **Story beat first** — One sentence: what is happening in this scene?
-2. **Character actions** — What each character is DOING (pose, gesture, emotion). NO appearance.
+2. **Character identity anchors + actions** — 2-3 key visual anchors (hat, beard, robes) PLUS what each character is DOING (pose, gesture, emotion). No full appearance blocks.
 3. **Environment** — Minimal but specific. Use the same architectural vocabulary as other cards in the deck (e.g., "ornate Persian archways, warm sandstone").
 4. **Props and details** — Specific objects that tell the story (goblets, scrolls, banners)
 
@@ -446,7 +457,7 @@ The STRONG version is 8 lines vs 17. Three character refs do the appearance work
 ### Prompt Quality Checklist
 
 Before finalizing each scene prompt, verify:
-- [ ] **Ref-first check**: If character refs are loaded, does the prompt have appearance blocks? REMOVE THEM. Pose/emotion only.
+- [ ] **Ref-first check**: If character refs are loaded, does the prompt have full appearance blocks? TRIM to 2-3 identity anchors + pose/emotion. Keep hat shape, beard style, clothing colors. Remove skin tone, eye color, generic traits.
 - [ ] **Attention budget**: More than 2 characters? Keep scene description extra lean — fewer props, simpler environment
 - [ ] Every character has a **specific physical action** (not just an emotion label)
 - [ ] Background has **life** — other people doing things, objects, environmental detail
@@ -461,7 +472,9 @@ Before finalizing each scene prompt, verify:
 - [ ] **Anchor cards**: Upper frame is atmospheric/calm (gradient, glow) — not busy architecture
 - [ ] **Power Word cards**: Character is DOING something that embodies the word — not just a static pose
 - [ ] **Power Word cards**: Upper frame is luminous and open for Hebrew word overlay
-- [ ] **ALL cards**: No detailed architecture or busy elements in the top 25% of the frame (text overlay zone)
+- [ ] **ALL cards**: No detailed architecture or busy elements in the top 25-30% of the frame (text overlay zone)
+- [ ] **ALL cards**: No floating elements (thought bubbles, banners, speech balloons) in the top 30% — position at chest height or lower
+- [ ] **ALL cards**: `characters_in_scene` includes ALL depicted characters — even those inside thought bubbles or secondary visual elements
 
 ## Success Criteria
 

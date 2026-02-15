@@ -7,7 +7,7 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 ### Character References
 - **`characters_in_scene` controls ref loading** — Each card has a `characters_in_scene` list in deck.json. Only listed characters' refs are loaded. Empty list `[]` means no character refs (tradition/connection cards). `null`/absent = load all (backwards compatible).
 - **Solved: villain in tradition cards** — Previously all refs were passed to every card. Now tradition_1 gets `characters_in_scene: []` so Haman's ref is never loaded.
-- **Lean prompts with refs** — When character ref images are loaded, the system tells the model to prioritize them for appearance and use text for pose/action only.
+- **Lean prompts with refs** — When character ref images are loaded, use text for pose/action + 2-3 identity anchors (see "Ref-First Prompting" section below). Don't include full appearance blocks.
 - **One identity per character** - Multiple reference sheets generated from text produce inconsistent results
 - **Character review checkpoint** - Always generate 2+ identity versions for new characters and have user select before proceeding
 
@@ -43,7 +43,8 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Keep upper frame luminous** — The Hebrew word and English meaning overlay at the top. Warm radiance, not detailed architecture.
 
 ### Composition Awareness (All Card Types)
-- **Top 25% of frame is text overlay zone** — Title, Hebrew, emotion labels all go here. Scene prompts must keep this area CALM: gradients, glow, sky, atmospheric light. Never put detailed architecture or busy elements there.
+- **Top 25-30% of frame is text overlay zone** — Title, Hebrew, emotion labels all go here. Scene prompts must keep this area CALM: gradients, glow, sky, atmospheric light. Never put detailed architecture or busy elements there.
+- **Floating elements (thought bubbles, banners, speech balloons) must stay BELOW the title zone** — Position them at chest/belly height or lower. If the prompt says "thought bubble above his head," it WILL overlap the title text overlay. Explicit constraint: "The entire TOP 30% of the frame must be EMPTY."
 - **Push detail to sides and below** — Columns, archways, furniture, props go to left/right edges and lower frame. The model can still show rich environments without cluttering the text zone.
 - **Scene prompts should COMPLEMENT composition guidance, not fight it** — `build_generation_prompt()` injects composition per card type. If your scene describes "tall columns filling the frame" and the system says "generous headroom," they conflict.
 
@@ -68,13 +69,15 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 ### Pipeline Cross-Reference (CRITICAL)
 - **Visual Director must read teacher_script** — Story_4 was missing Haman because the Visual Director wrote "Esther approaches the king" without checking the teacher script, which describes the banquet reveal scene where Haman is present. Always cross-reference the Content Writer's narrative when composing scene prompts.
 - **characters_in_scene must match the prompt** — If the prompt mentions King Achashverosh placing a crown, his identity ref must be loaded. Story_1 had the king in the prompt but only `["esther"]` in characters_in_scene, so the model invented a generic king.
+- **characters_in_scene includes thought bubble characters** — If a character appears inside a thought bubble, dream sequence, or any secondary visual element, they MUST be in `characters_in_scene`. Story_3 had Mordechai in Haman's thought bubble but only `["haman"]` in the list — the model invented a generic figure for the thought bubble.
 - **Every boy in Modern World cards needs a kippah** — MODERN_WORLD_STYLE says "Boys: kippot" but this is a general instruction. Scene prompts must explicitly specify "wearing a kippah" for each boy described, or the model may skip some.
 - **Megillah/scroll direction** — AI models render text on scrolls facing the viewer by default. Add "scroll faces TOWARD the reader, text NOT visible to viewer" to prevent backwards text.
 - **No hard horizontal lines in anchor cards** — Describing rooms with walls/ceilings creates visible edges in the upper frame. Use "floating in darkness" or "seamless gradient" instead of interior architecture.
 
 ### Character Consistency (Ref-First Prompting)
 - **Less text = better ref fidelity** — When character refs are loaded, verbose appearance descriptions DILUTE the ref rather than reinforcing it. The model tries to reconcile text + image and lands somewhere generic.
-- **Refs loaded → pose and emotion only** — Strip character blocks to action/emotion. "Standing tall, shaking his head NO" not "Older Jewish man, warm brown skin, kind wise eyes, full gray-brown beard..."
+- **Refs loaded → pose + 2-3 identity anchors** — Strip character blocks to action/emotion PLUS 2-3 key visual anchors (most distinctive features). "THREE-CORNERED HAT, dark pointed goatee, dusty purple robes — sitting hunched, arms crossed tight." Pure "pose only" was too aggressive — identity drifted without reinforcement.
+- **Identity anchors = most distinctive features** — Hat shape, beard style, clothing colors. Pick the 2-3 things that make this character instantly recognizable. Skip generic traits (skin tone, eye color) that the ref already communicates.
 - **No refs → full appearance description needed** — Without a ref image, the text IS the only guide. Be specific: "dark pointed goatee with connected mustache" not just "beard."
 - **More characters = simpler each** — With 3 refs in one scene, the model has less attention per character. Keep scene text lean so the refs get priority.
 - **Scene complexity competes with character fidelity** — Simpler environments (fewer market stalls, crowd members, architectural details) = better character matching. The model has a fixed attention budget.
@@ -88,6 +91,7 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Clear `.next` cache after component changes** — `rm -rf card-designer/.next` before re-exporting, or the old compiled components may be served.
 - **Hebrew nikud needs lineHeight ≥ 1.3** — Nikud marks sit below the baseline. `lineHeight: 1.1` clips them; `1.3` gives enough room. Also use `overflow: visible` on the FitText container, never `hidden`.
 - **English subtitle gap mt-2 minimum** — `mt-1` (4px) crowds nikud from below. Use `mt-2` (8px) on all English text that appears directly below Hebrew FitText titles.
+- **Anchor card letter-spacing for nikud dots** — Hebrew characters with internal dots (shuruq/vav, dagesh) get covered by adjacent letters when displayed large with heavy stroke/shadow effects. Use `letterSpacing: 0.4em` on AnchorCard to give each letter breathing room. Other card types at smaller sizes don't need this.
 
 ### Generation Provenance
 - **Every generation is logged** — `raw/generations.jsonl` records card_id, timestamp, model, full assembled prompt, character refs used, and success/failure. Append-only.
