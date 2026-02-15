@@ -58,9 +58,9 @@ export function TraditionCard({ card, deckId, config, onConfigChange }: Traditio
                  <DraggableElement id="tradition-titles" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
                     <div className="drop-shadow-lg flex flex-col items-center">
                          <FitText
-                            maxSize={48}
-                            minSize={38}
-                            padding={36}
+                            maxSize={72}
+                            minSize={48}
+                            padding={19}
                             className="font-black font-hebrew text-white"
                             style={{
                                 textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000',

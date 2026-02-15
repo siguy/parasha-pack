@@ -122,9 +122,15 @@ async function exportCard(
     ? `${BASE_URL}/export/${deckId}/${cardId}/back`
     : `${BASE_URL}/export/${deckId}/${cardId}`;
 
+  // Fronts: 500x700 CSS @ 3x scale — matches the design editor where
+  // overlays were designed (500x700 preview + pixelRatio:3 = 1500x2100).
+  // Backs: 1500x2100 CSS @ 1x — backs use print-calibrated font sizes.
+  const cssWidth = side === 'front' ? 500 : CARD_WIDTH;
+  const cssHeight = side === 'front' ? 700 : CARD_HEIGHT;
+  const scaleFactor = side === 'front' ? 3 : 1;
   const context = await browser.newContext({
-    viewport: { width: CARD_WIDTH, height: CARD_HEIGHT },
-    deviceScaleFactor: 1,
+    viewport: { width: cssWidth, height: cssHeight },
+    deviceScaleFactor: scaleFactor,
   });
   const page = await context.newPage();
 
@@ -139,7 +145,7 @@ async function exportCard(
 
     await page.screenshot({
       path: outputPath,
-      clip: { x: 0, y: 0, width: CARD_WIDTH, height: CARD_HEIGHT },
+      clip: { x: 0, y: 0, width: cssWidth, height: cssHeight },
     });
 
     const sideLabel = side === 'back' ? '(back)' : '';

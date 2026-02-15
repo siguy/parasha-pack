@@ -1,8 +1,10 @@
 /**
- * Export page for rendering a single card FRONT at full print resolution.
+ * Export page for rendering a single card FRONT at print resolution.
  * URL: /export/{deckId}/{cardId}
  *
- * Renders the card front at exactly 1500x2100 pixels (5x7 @ 300 DPI).
+ * Renders at 500x700 CSS pixels — the Playwright export script captures
+ * this with deviceScaleFactor:3 to produce 1500x2100 physical pixels.
+ * This matches the design editor viewport where overlays were designed.
  */
 
 import { getDeck } from '@/lib/api';
@@ -46,8 +48,8 @@ export default async function ExportCardPage({ params }: PageProps) {
   return (
     <div
       style={{
-        width: '1500px',
-        height: '2100px',
+        width: '500px',
+        height: '700px',
         backgroundColor: 'white',
         overflow: 'hidden',
       }}

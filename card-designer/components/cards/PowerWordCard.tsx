@@ -58,9 +58,9 @@ export function PowerWordCard({ card, deckId, config, onConfigChange }: PowerWor
                  <DraggableElement id="power-word-group" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
                     <div className="drop-shadow-lg flex flex-col items-center w-full">
                          <FitText
-                            maxSize={56}
-                            minSize={46}
-                            padding={40}
+                            maxSize={80}
+                            minSize={56}
+                            padding={21}
                             className="font-black font-hebrew text-white"
                             style={{
                                 textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000',

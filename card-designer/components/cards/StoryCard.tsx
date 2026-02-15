@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { Star, Heart, Zap, Drama } from 'lucide-react';
 import { LayoutConfig, DEFAULT_LAYOUT_CONFIG } from '@/types/editor';
 import { DraggableElement } from '../editor/DraggableElement';
+import { FitText } from '../ui/FitText';
 
 interface StoryCardProps {
   card: CardData;
@@ -347,17 +348,18 @@ function ImmersiveCinematicLayout({ card, deckId, activeConfig, borderColor, cle
             {/* Top: Title */}
             <div className="absolute top-3 left-0 right-0 z-10 flex justify-center pointer-events-none">
                 <DraggableElement id="title-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto w-full">
-                    <div className="drop-shadow-lg flex flex-col items-center px-6">
-                        <span
-                            className="font-black font-hebrew text-white text-center"
+                    <div className="drop-shadow-lg flex flex-col items-center">
+                        <FitText
+                            maxSize={72}
+                            minSize={32}
+                            padding={19}
+                            className="font-black font-hebrew text-white"
                             style={{
-                                fontSize: '28px',
-                                lineHeight: 1.2,
                                 textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000',
                             }}
                         >
                             {card.title_he || ''}
-                        </span>
+                        </FitText>
                         <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
                             {card.title_en}
                         </h2>
@@ -365,7 +367,7 @@ function ImmersiveCinematicLayout({ card, deckId, activeConfig, borderColor, cle
                 </DraggableElement>
             </div>
 
-            {/* Bottom Left: Keyword (no container, red Hebrew + white English) */}
+            {/* Bottom Left: Keyword (matches Spotlight emotion badge) */}
             <div className="absolute bottom-6 left-6 pointer-events-none">
                  <DraggableElement id="keyword-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto">
                     <div className="flex flex-col items-start">
@@ -415,17 +417,18 @@ function ImmersiveCleanLayout({ card, deckId, activeConfig, borderColor, cleanRo
             {/* Top: Title */}
             <div className="absolute top-3 left-0 right-0 z-10 flex justify-center pointer-events-none">
                 <DraggableElement id="title-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto w-full">
-                    <div className="drop-shadow-lg flex flex-col items-center px-6">
-                        <span
-                            className="font-black font-hebrew text-white text-center"
+                    <div className="drop-shadow-lg flex flex-col items-center">
+                        <FitText
+                            maxSize={72}
+                            minSize={32}
+                            padding={19}
+                            className="font-black font-hebrew text-white"
                             style={{
-                                fontSize: '28px',
-                                lineHeight: 1.2,
                                 textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000',
                             }}
                         >
                             {card.title_he || ''}
-                        </span>
+                        </FitText>
                         <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
                             {card.title_en}
                         </h2>
@@ -433,7 +436,7 @@ function ImmersiveCleanLayout({ card, deckId, activeConfig, borderColor, cleanRo
                 </DraggableElement>
             </div>
 
-            {/* Bottom Left: Keyword (no container, Story-card style) */}
+            {/* Bottom Left: Keyword (matches Spotlight emotion badge) */}
             <div className="absolute bottom-6 left-6 pointer-events-none">
                  <DraggableElement id="keyword-group" config={activeConfig} onUpdate={onPositionUpdate} className="pointer-events-auto">
                     <div className="flex flex-col items-start">

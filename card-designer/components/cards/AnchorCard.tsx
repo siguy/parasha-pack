@@ -57,9 +57,9 @@ export function AnchorCard({ card, deckId, config, onConfigChange }: AnchorCardP
                 <DraggableElement id="anchor-title" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
                     <div className="drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]">
                          <FitText
-                            maxSize={80}
-                            minSize={64}
-                            padding={48}
+                            maxSize={120}
+                            minSize={80}
+                            padding={16}
                             className="font-black font-hebrew"
                             style={{
                                 color: borderColor,

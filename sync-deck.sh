@@ -29,6 +29,12 @@ cp "${SRC}/deck.json" "${DEST}/deck.json"
 # Sync feedback.json if it exists
 [ -f "${SRC}/feedback.json" ] && cp "${SRC}/feedback.json" "${DEST}/feedback.json"
 
+# Sync raw/ images
+if [ -d "${SRC}/raw" ]; then
+  mkdir -p "${DEST}/raw"
+  cp "${SRC}/raw/"*.png "${DEST}/raw/" 2>/dev/null || true
+fi
+
 # Sync references/ directory if it exists
 if [ -d "${SRC}/references" ]; then
   mkdir -p "${DEST}/references"

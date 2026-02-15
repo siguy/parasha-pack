@@ -56,9 +56,9 @@ export function ConnectionCard({ card, deckId, config, onConfigChange }: Connect
             <DraggableElement id="title-group" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
                 <div className="drop-shadow-lg flex flex-col items-center">
                     <FitText
-                        maxSize={48}
-                        minSize={38}
-                        padding={36}
+                        maxSize={72}
+                        minSize={48}
+                        padding={19}
                         className="font-black font-hebrew"
                         style={{
                             color: 'white',
