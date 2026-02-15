@@ -1,4 +1,8 @@
 {
+  "style_hero": {
+    "identity": "style_hero.png",
+    "description": "Persian palace throne room, golden light, ornate arches, purple and gold palette"
+  },
   "esther": {
     "identity": "esther_identity.png"
   },

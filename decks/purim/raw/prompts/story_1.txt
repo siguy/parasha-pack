@@ -1,0 +1,65 @@
+=== STYLE ===
+Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
+
+Visual characteristics:
+- Bold primary colors (red, blue, yellow, green) for foreground elements
+- Soft pastel colors (pink, light blue, cream, mint) for backgrounds
+- Rounded, friendly character designs with large expressive eyes
+- Thick, clean black outlines (2-3px equivalent)
+- Simple shapes with minimal clutter (5-7 main elements maximum)
+- Warm, inviting atmosphere
+- Clean, crisp illustration - NO grain, noise, film texture, or visual artifacts
+- Smooth color fills with no stippling or dithering
+
+ANATOMY REQUIREMENTS:
+- All humans must have exactly 2 arms and 2 legs
+- Hands have exactly 5 fingers each
+- Correct proportions - no extra limbs or merged body parts
+
+CRITICAL: Do NOT render any text in the image. No Hebrew, no English, no titles,
+no labels, no badges. Text will be added programmatically after generation.
+The image should be purely visual.
+Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
+
+=== WORLD: STORY SETTING ===
+Ancient Persian Empire, city of Shushan (Susa). Ornate sandstone palace with Persian arches, mosaic tiles, carved stone columns. Lush palace gardens with date palms, pomegranate trees, flowing fountains. Desert climate — warm golden light, deep blue sky. Persian court aesthetic: flowing robes, turbans, ornate Persian-style crowns, rich textiles in golds, deep purples, and royal blues. Think Persepolis, NOT biblical Israel. Warm sandstone, polished marble floors, hanging tapestries, oil lamps. City streets have market stalls, stone buildings, Persian archways.
+
+All scenes should feel like they belong in this world. Consistent architecture, clothing, lighting, and color palette throughout.
+
+=== SAFETY RULES ===
+- NEVER depict God in human form - use light rays, clouds, or hands from above
+- No graphic violence or death
+- No scary monsters
+- All characters dressed modestly
+- Friendly, approachable expressions on all characters
+- Age-appropriate content for 4-6 year olds
+
+=== SCENE ===
+ESTHER:
+Young Jewish woman, warm olive skin, large kind brown eyes.
+Long dark hair with elegant modest head covering.
+Royal purple and blue flowing dress, simple gold tiara.
+
+Esther in the palace throne room, a golden crown being placed on her head by a hand reaching in from the side. Scene in center-right of frame.
+She looks up at the crown with wide eyes — beautiful but slightly nervous. This is a big moment!
+Warm palace interior with tall pillars and soft golden light.
+High vaulted ceiling visible above, fading into warm amber haze.
+Dark marble floor with shadow pooling in the lower-left corner.
+
+Magical, exciting, but with a hint of nervousness. A new chapter begins.
+
+=== CHARACTER REFERENCES ===
+Reference images provided for: Esther (Queen Esther).
+For these characters, prioritize the reference images for appearance (face, clothing, coloring). Use the text description above for pose, action, and emotion only.
+
+=== COMPOSITION ===
+Scene action positioned in the center and right side of the frame.
+Generous headroom — ceiling, sky, or atmospheric space above the characters' heads.
+The top of the frame should be visually calm: architecture fading up, sky, or warm ambient light.
+Lower-left corner should be darker or simpler — ground shadow, dark foreground element, or negative space.
+Think of a film still where the action is center-right and the lower-left has a moody shadow.
+
+=== CRITICAL RULES ===
+DO NOT include any border, frame, or rounded corners in the image.
+DO NOT render any text, titles, labels, Hebrew letters, or words anywhere in the image.
+The image should be PURELY visual — all text and borders are added separately by software.
