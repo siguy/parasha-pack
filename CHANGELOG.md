@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Export Pipeline & FitText Overhaul
+
+Fixed export viewport mismatch and unified title sizing across all card types.
+
+#### Fixed
+- **Export viewport:** Fronts now render at 500x700 CSS with `deviceScaleFactor: 3` (matches design editor). Previously rendered at 1500x2100 CSS @ 1x, making text 3x too small.
+- **sync-deck.sh:** Now copies `raw/` images to Card Designer (was missing, causing stale images in exports).
+- **Next.js dev indicator:** Disabled via `devIndicators: false` — no more "N" badge in exports.
+
+#### Changed
+- **Story cards:** Switched from hardcoded 28px titles to FitText (dynamic scaling). All 6 card types now use FitText for Hebrew titles.
+- **FitText sizing:** Increased maxSize and reduced padding across all card types for bolder titles:
+
+| Card Type | maxSize | minSize | padding |
+|-----------|---------|---------|---------|
+| Anchor | 120 | 80 | 16 |
+| Spotlight | 80 | 56 | 21 |
+| Story | 72 | 32 | 19 |
+| Connection | 72 | 48 | 19 |
+| Tradition | 72 | 48 | 19 |
+| Power Word | 80 | 56 | 21 |
+
+- **Keywords/emotion badges:** Story and Spotlight cards now use identical left-aligned `text-3xl` / `text-sm` layout (bottom-left).
+- **Backs unchanged:** Still render at 1500x2100 CSS @ 1x with print-calibrated font sizes.
+
+---
+
 ### Card Back Redesign
 
 Print-calibrated teacher content backs with clearer labels and layout.

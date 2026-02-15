@@ -81,6 +81,12 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Spatial directions are unreliable** — LEFT/RIGHT/SEPARATE consume model attention without reliable results. Describe the story relationship ("crowd bowing before Haman, Mordechai the only one standing") and let the model compose.
 - **Pose can affect consistency** — Unusual poses (sitting vs standing) may cause appearance drift
 
+### Export Pipeline
+- **sync-deck.sh must run before export** — Copies deck.json, raw/ images, and references/ to `card-designer/content/`. Without this, exports use stale images.
+- **Front/back viewport mismatch by design** — Fronts render at 500x700 CSS @ 3x device scale (matches design editor). Backs render at 1500x2100 CSS @ 1x (print-calibrated fonts). Don't unify them — they were designed at different resolutions.
+- **All card types use FitText for titles** — Including Story cards. No hardcoded pixel font sizes for titles. Keywords/emotion badges use fixed Tailwind classes (`text-3xl` / `text-sm`).
+- **Clear `.next` cache after component changes** — `rm -rf card-designer/.next` before re-exporting, or the old compiled components may be served.
+
 ### Generation Provenance
 - **Every generation is logged** — `raw/generations.jsonl` records card_id, timestamp, model, full assembled prompt, character refs used, and success/failure. Append-only.
 - **Prompt sidecars for debugging** — `raw/prompts/{card_id}.txt` saves the full prompt in human-readable form. Overwritten each run (JSONL is the durable record).

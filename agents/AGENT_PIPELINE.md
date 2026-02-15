@@ -239,11 +239,16 @@ Character reference images from `references/manifest.json` are automatically inc
 **Technical Details:**
 
 - **Z-index layering:** z-0 (background image), z-10 (gradients), z-30 (text)
-- **FitText:** Dynamic title scaling within min/max size ranges per card type
+- **FitText:** All card types use FitText for dynamic Hebrew title scaling (min/max ranges per type)
+- **Keywords/emotion badges:** Fixed `text-3xl` / `text-sm` spans, left-aligned bottom-left (same on Story + Spotlight)
 - **Fonts:** Fredoka (UI), Hebrew font (RTL), Patrick Hand (notes)
 - **Gradients:** `bg-gradient-to-b` (top) and `bg-gradient-to-t` (bottom) for text readability
+- **Export viewport:** Fronts render at 500x700 CSS @ 3x scale (matches design editor). Backs render at 1500x2100 CSS @ 1x (print-calibrated fonts).
 
 ```bash
+# Sync deck data + raw images to Card Designer
+./sync-deck.sh {deckId}
+
 # Export fronts and backs
 cd card-designer && npm run export {deckId} -- --backs
 ```

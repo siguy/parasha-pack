@@ -44,6 +44,9 @@ decks/
 # Generate raw images (system layers added automatically)
 cd src && python generate_images.py ../decks/purim/deck.json
 
+# Sync deck data + raw images to Card Designer
+./sync-deck.sh purim
+
 # Export with Card Designer
 cd card-designer && npm run export purim -- --backs
 ```
@@ -325,9 +328,12 @@ python generate_images.py ../decks/purim/deck.json --no-refs
 # Backup existing images before regenerating
 python generate_images.py ../decks/purim/deck.json --backup
 
-# Export with Card Designer
+# Sync + export with Card Designer
+./sync-deck.sh purim
 cd card-designer && npm run export purim -- --backs
 ```
+
+**Export rendering:** Fronts render at 500x700 CSS with 3x device scale (matches design editor where overlays were designed). Backs render at 1500x2100 CSS with 1x scale (print-calibrated fonts).
 
 ---
 

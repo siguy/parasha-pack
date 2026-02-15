@@ -27,6 +27,7 @@ Visual pipeline operator who takes raw scene images and deck content, then produ
 
 ```
 deck.json → generate raw images → raw/{card_id}.png
+         → sync-deck.sh {deckId}  (copies deck.json, raw/, references/)
          → Card Designer preview → adjust layout/typography
          → export → images/{card_id}.png + backs/{card_id}_back.png
          → screenshot review → iterate or approve
@@ -37,6 +38,9 @@ deck.json → generate raw images → raw/{card_id}.png
 ```bash
 # Generate raw images
 cd src && python generate_images.py ../decks/{deck}/deck.json
+
+# Sync deck data + raw images to Card Designer
+./sync-deck.sh {deckId}
 
 # Start Card Designer dev server
 cd card-designer && npm run dev
@@ -56,14 +60,14 @@ cd card-designer && npm run export {deckId} -- --backs-only
 
 ## Card Components
 
-| Card Type | Component | Title System | Notes |
-|-----------|-----------|-------------|-------|
-| Story | StoryCard.tsx | Fixed 28px wrapping | 6 layout variants |
-| Spotlight | SpotlightCard.tsx | FitText 56/46px | Emotion badge bottom-left |
-| Connection | ConnectionCard.tsx | FitText 48/38px | Emoji strip bottom |
-| Anchor | AnchorCard.tsx | FitText 80/64px | White outline effect |
-| Tradition | TraditionCard.tsx | FitText 48/38px | English subtitle |
-| Power Word | PowerWordCard.tsx | FitText 56/46px | English meaning text |
+| Card Type | Component | Title System | maxSize | minSize | padding | Notes |
+|-----------|-----------|-------------|---------|---------|---------|-------|
+| Anchor | AnchorCard.tsx | FitText | 120 | 80 | 16 | White outline effect |
+| Spotlight | SpotlightCard.tsx | FitText | 80 | 56 | 21 | Emotion badge bottom-left |
+| Story | StoryCard.tsx | FitText | 72 | 32 | 19 | 6 layout variants |
+| Connection | ConnectionCard.tsx | FitText | 72 | 48 | 19 | Emoji strip bottom |
+| Tradition | TraditionCard.tsx | FitText | 72 | 48 | 19 | English subtitle |
+| Power Word | PowerWordCard.tsx | FitText | 80 | 56 | 21 | English meaning text |
 
 Each card type also has a `*Back.tsx` component for teacher content.
 
@@ -81,8 +85,13 @@ Each card type also has a `*Back.tsx` component for teacher content.
 
 ### Typography
 - **FitText** for primary titles — dynamically scales within min/max ranges per card type
-- **Story cards** use fixed 28px with line wrapping (not FitText)
+- **All card types** use FitText for Hebrew titles (including Story cards)
+- **Keywords/emotion badges** use fixed `text-3xl` / `text-sm` spans (left-aligned, bottom-left)
 - Font family: Fredoka (primary), Hebrew font for RTL text
+
+### Export Rendering
+- **Fronts:** Rendered at 500x700 CSS pixels with `deviceScaleFactor: 3` (= 1500x2100 output). This matches the design editor viewport where overlays were designed.
+- **Backs:** Rendered at 1500x2100 CSS pixels with `deviceScaleFactor: 1`. Backs use print-calibrated font sizes designed for this resolution.
 
 ### Color System (Border Colors by Card Type)
 

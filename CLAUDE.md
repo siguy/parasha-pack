@@ -71,7 +71,7 @@ python generate_images.py ../decks/purim/deck.json
 ### 4. Export Final Cards with Card Designer
 
 ```bash
-# Sync deck data to Card Designer
+# Sync deck data + raw images to Card Designer
 ./sync-deck.sh purim
 
 cd card-designer
@@ -87,8 +87,10 @@ npm run export purim -- --backs-only
 ```
 
 Output:
-- `decks/purim/images/{card_id}.png` - Final card fronts with text overlay
-- `decks/purim/backs/{card_id}_back.png` - Teacher content backs
+- `decks/purim/images/{card_id}.png` - Final card fronts with text overlay (1500x2100)
+- `decks/purim/backs/{card_id}_back.png` - Teacher content backs (1500x2100)
+
+**Export rendering:** Fronts render at 500x700 CSS with 3x device scale (matches design editor). Backs render at 1500x2100 CSS with 1x scale (print-calibrated fonts).
 
 ### 5. Review Cards
 
@@ -221,9 +223,10 @@ For code reviews, output findings incrementally as files are read rather than wa
 - **AI generates scene-only images** to `raw/` directory (no text in image)
 - **`build_generation_prompt()`** layers style, safety, composition, and rules at generation time
 - **Card Designer (React)** renders text overlays and teacher content
-- **Card Front**: Full-bleed image with React-rendered text overlay
+- **Card Front**: Full-bleed image with React-rendered text overlay (all titles use FitText dynamic scaling)
 - **Card Back**: 5x7 printable teacher content (scripts, activities, questions)
 - Image prompts in deck.json are **pure scene descriptions** — no style, composition, or rules
+- **Export resolution**: Fronts render at 500x700 CSS @ 3x scale = 1500x2100 output. Backs render at 1500x2100 CSS @ 1x.
 
 **Deck Data Flow:**
 ```
