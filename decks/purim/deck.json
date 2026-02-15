@@ -203,7 +203,7 @@
       "description_en": "Haman felt SO jealous that Mordechai wouldn't bow. His jealousy grew bigger and bigger. He made a plan to hurt all the Jewish people. That was wrong!",
       "description_he": "הָמָן הִרְגִּישׁ כָּל כָּךְ קַנַּאי שֶׁמׇרְדְּכַי לֹא הִשְׁתַּחֲוָה. הַקִּנְאָה שֶׁלּוֹ גָּדְלָה וְגָדְלָה. הוּא עָשָׂה תָּכְנִית לְהַזִּיק לְכָל הַיְּהוּדִים. זֶה הָיָה לֹא נָכוֹן!",
       "roleplay_prompt": "Act it out: Make a jealous, pouty face and cross your arms!",
-      "image_prompt": "HAMAN:\nAdult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.\nDISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape).\nPouty frustrated expression (NOT scary or angry).\nPersian clothing in MUTED dusty purple and gray-brown.\nArms crossed defensively, shoulders slightly hunched.\n\nSplit scene showing Haman's jealousy growing into a bad choice.\nHaman center-right, sitting hunched on a cushion, arms crossed tight, furrowed brow.\nHe's stewing — pouty like a child who didn't get their way.\nA small thought cloud above his head showing ONE clear figure: Mordechai standing tall with arms at his sides, refusing to bow. Just Mordechai alone in the thought cloud — simple and clear.\nCrumpled papers and a scroll with a broken seal scattered on the floor around him.\nMuted, washed-out room with dusty stone walls and a single arched window.\nWarm but dim light — NOT dark or scary, just gloomy and sad.\nDark floor and shadow in the lower-left corner.\n\nA teaching moment about jealousy leading to bad choices. NOT scary — kids should recognize the feeling, not be frightened. \"This is what happens when jealousy takes over.\"",
+      "image_prompt": "Haman — THREE-CORNERED HAT (hamantaschen shape), dark pointed goatee, dusty purple and gray-brown robes — sitting hunched on a cushion, arms crossed tight, pouty frustrated frown. NOT scary, just jealous and sulky like a child who didn't get their way.\n\nA LARGE thought bubble to the RIGHT of Haman, positioned LOW — at chest/belly height, in the CENTER-RIGHT of the frame. NOT near the top of the image. Inside the thought bubble: Mordechai standing tall with arms at his sides, refusing to bow. The thought bubble should be prominent. The entire TOP 30% of the frame must be EMPTY — just wall, ceiling, or atmospheric space.\n\nCrumpled papers and a scroll on the floor. Simple stone room, single arched window. Warm dim light — gloomy but not scary.\nDark floor and shadow in the lower-left corner.",
       "image_path": "raw/story_3.png",
       "teacher_script": "Uh oh. Haman was SO jealous and angry that Mordechai wouldn't bow. His jealousy grew and grew until he made a VERY bad choice. He decided he wanted to hurt all the Jewish people! That was SO wrong. Can you make a jealous, pouty face like Haman? Cross your arms... Now — is that a good choice? NO! Haman needed to stop and think.",
       "teacher_tip": "Pause after 'Is that a good choice?' and let children shout 'NO!' together.",
@@ -214,7 +214,8 @@
       ],
       "session": 1,
       "characters_in_scene": [
-        "haman"
+        "haman",
+        "mordechai"
       ]
     },
     {

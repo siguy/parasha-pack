@@ -35,26 +35,15 @@ All scenes should feel like they belong in this world. Consistent architecture, 
 - Age-appropriate content for 4-6 year olds
 
 === SCENE ===
-HAMAN:
-Adult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.
-DISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape).
-Pouty frustrated expression (NOT scary or angry).
-Persian clothing in MUTED dusty purple and gray-brown.
-Arms crossed defensively, shoulders slightly hunched.
+Haman — THREE-CORNERED HAT (hamantaschen shape), dark pointed goatee, dusty purple and gray-brown robes — sitting hunched on a cushion, arms crossed tight, pouty frustrated frown. NOT scary, just jealous and sulky like a child who didn't get their way.
 
-Split scene showing Haman's jealousy growing into a bad choice.
-Haman center-right, sitting hunched on a cushion, arms crossed tight, furrowed brow.
-He's stewing — pouty like a child who didn't get their way.
-A small thought cloud above his head showing ONE clear figure: Mordechai standing tall with arms at his sides, refusing to bow. Just Mordechai alone in the thought cloud — simple and clear.
-Crumpled papers and a scroll with a broken seal scattered on the floor around him.
-Muted, washed-out room with dusty stone walls and a single arched window.
-Warm but dim light — NOT dark or scary, just gloomy and sad.
+A LARGE thought bubble to the RIGHT of Haman, positioned LOW — at chest/belly height, in the CENTER-RIGHT of the frame. NOT near the top of the image. Inside the thought bubble: Mordechai standing tall with arms at his sides, refusing to bow. The thought bubble should be prominent. The entire TOP 30% of the frame must be EMPTY — just wall, ceiling, or atmospheric space.
+
+Crumpled papers and a scroll on the floor. Simple stone room, single arched window. Warm dim light — gloomy but not scary.
 Dark floor and shadow in the lower-left corner.
 
-A teaching moment about jealousy leading to bad choices. NOT scary — kids should recognize the feeling, not be frightened. "This is what happens when jealousy takes over."
-
 === CHARACTER REFERENCES ===
-Reference images provided for: Haman (the villain).
+Reference images provided for: Mordechai, Haman (the villain).
 For these characters, prioritize the reference images for appearance (face, clothing, coloring). Use the text description above for pose, action, and emotion only.
 
 === COMPOSITION ===
