@@ -360,7 +360,7 @@ function ImmersiveCinematicLayout({ card, deckId, activeConfig, borderColor, cle
                         >
                             {card.title_he || ''}
                         </FitText>
-                        <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
+                        <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-2 opacity-90 drop-shadow-md">
                             {card.title_en}
                         </h2>
                     </div>
@@ -429,7 +429,7 @@ function ImmersiveCleanLayout({ card, deckId, activeConfig, borderColor, cleanRo
                         >
                             {card.title_he || ''}
                         </FitText>
-                        <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
+                        <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-2 opacity-90 drop-shadow-md">
                             {card.title_en}
                         </h2>
                     </div>

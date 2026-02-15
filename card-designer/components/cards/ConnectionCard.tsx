@@ -67,7 +67,7 @@ export function ConnectionCard({ card, deckId, config, onConfigChange }: Connect
                     >
                         {card.title_he || 'חִבּוּר'}
                     </FitText>
-                    <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
+                    <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-2 opacity-90 drop-shadow-md">
                         {card.title_en || 'CONNECTION'}
                     </h2>
                 </div>

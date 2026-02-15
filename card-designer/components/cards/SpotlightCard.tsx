@@ -68,7 +68,7 @@ export function SpotlightCard({ card, deckId, config, onConfigChange }: Spotligh
                          >
                             {card.hebrew_name || ''}
                          </FitText>
-                         <h2 className="text-xl font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
+                         <h2 className="text-xl font-bold text-white uppercase tracking-widest mt-2 opacity-90 drop-shadow-md">
                             {card.english_name}
                          </h2>
                     </div>

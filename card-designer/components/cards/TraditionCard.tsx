@@ -68,7 +68,7 @@ export function TraditionCard({ card, deckId, config, onConfigChange }: Traditio
                          >
                             {card.hebrew_title || ''}
                          </FitText>
-                         <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-1 opacity-90 drop-shadow-md">
+                         <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-2 opacity-90 drop-shadow-md">
                             {card.english_title}
                          </h2>
                     </div>

@@ -93,7 +93,7 @@ export function FitText({
     <div
       ref={containerRef}
       className={className}
-      style={{ width: '100%', overflow: 'hidden', ...style }}
+      style={{ width: '100%', overflow: 'visible', ...style }}
     >
       <span
         ref={textRef}
@@ -101,7 +101,7 @@ export function FitText({
           fontSize: `${fontSize}px`,
           whiteSpace: 'nowrap',
           display: 'block',
-          lineHeight: 1.1,
+          lineHeight: 1.3,
           textAlign: 'center',
           padding: `0 ${padding}px`,
         }}
