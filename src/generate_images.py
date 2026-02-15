@@ -357,6 +357,7 @@ def main():
     parser.add_argument("--skip-existing", action="store_true", help="Skip cards that already have images")
     parser.add_argument("--no-refs", action="store_true", help="Disable character reference images")
     parser.add_argument("--no-hero", action="store_true", help="Skip style hero reference image")
+    parser.add_argument("--variants", type=int, default=1, help="Generate N variants per card (e.g. --variants 3)")
     parser.add_argument("--backup", action="store_true", help="Backup existing images before overwriting")
 
     args = parser.parse_args()
@@ -477,32 +478,41 @@ def main():
         # Save prompt sidecar for quick debugging
         save_prompt_sidecar(deck_path, card_id, prompt)
 
-        # Generate image
-        result = generate_image_nano_banana(prompt, api_key, str(output_path), reference_images=reference_images)
-        success = result["success"]
+        # Generate image(s) — loop for --variants N
+        num_variants = args.variants
+        for variant_num in range(1, num_variants + 1):
+            if num_variants > 1:
+                variant_path = raw_dir / f"{card_id}_v{variant_num}.png"
+                print(f"  variant {variant_num}/{num_variants}...")
+            else:
+                variant_path = output_path
 
-        # Log every generation attempt
-        model_name = "nano-banana-pro"
-        log_generation(deck_path, card_id, model_name, prompt, loaded_char_keys, success)
+            result = generate_image_nano_banana(prompt, api_key, str(variant_path), reference_images=reference_images)
+            success = result["success"]
 
-        if success:
-            print(f"  -> Saved: {output_path.name}")
-            success_count += 1
+            # Log every generation attempt
+            model_name = "nano-banana-pro"
+            log_generation(deck_path, card_id, model_name, prompt, loaded_char_keys, success)
 
-            # Update deck with image path (raw/ for scene-only images)
-            card["image_path"] = f"raw/{card_id}.png"
-        else:
-            fail_count += 1
+            if success:
+                print(f"  -> Saved: {variant_path.name}")
+                success_count += 1
+            else:
+                fail_count += 1
 
-        # Rate limiting - wait between requests
-        time.sleep(2)
+            # Rate limiting - wait between requests
+            time.sleep(2)
+
+        # Update deck with canonical image path (raw/ for scene-only images)
+        card["image_path"] = f"raw/{card_id}.png"
 
     # Save updated deck with image paths
     with open(deck_path, 'w', encoding='utf-8') as f:
         json.dump(deck, f, indent=2, ensure_ascii=False)
 
     print("-" * 50)
-    print(f"Complete! Success: {success_count}, Skipped: {skip_count}, Failed: {fail_count}")
+    label = "images" if args.variants == 1 else f"images ({args.variants} variants per card)"
+    print(f"Complete! Success: {success_count} {label}, Skipped: {skip_count}, Failed: {fail_count}")
 
     if backup_dir:
         backed_up = list(backup_dir.glob("*.png"))
