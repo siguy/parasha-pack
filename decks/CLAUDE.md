@@ -26,8 +26,9 @@ decks/
     │   ├── anchor_1_back.png
     │   ├── story_1_back.png
     │   └── ...
-    └── references/     # Character identity references
+    └── references/     # Character + style references
         ├── manifest.json
+        ├── style_hero.png         # Style anchor for story-world cards (optional)
         ├── esther_identity.png
         └── mordechai_identity.png
 ```
@@ -370,6 +371,10 @@ all card image generations to maintain consistency.
 
 ```json
 {
+  "style_hero": {
+    "identity": "style_hero.png",
+    "description": "Persian palace throne room, golden light, ornate arches"
+  },
   "esther": {
     "identity": "esther_identity.png"
   },
@@ -378,6 +383,8 @@ all card image generations to maintain consistency.
   }
 }
 ```
+
+The `style_hero` entry is optional. When present, its image is loaded as the first reference for story-world cards (anchor, spotlight, story, power_word) to anchor art style, color palette, and rendering quality. Modern-world cards skip it.
 
 ### Character Review Workflow
 

@@ -17,6 +17,12 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Check for duplicate phrases** - Same phrase appearing twice in prompt may render twice on image
 - **Exact text matters** - The AI renders EXACTLY what you specify; vague instructions cause invented text
 
+### Style Consistency
+- **Style hero anchors the deck's look** — A single representative image (`references/style_hero.png`) passed as the first reference to all story-world cards. Locks in art style, color palette, and rendering quality.
+- **Story-world only** — Modern-world cards (connection, tradition) don't get the hero. They use `MODERN_WORLD_STYLE` text constant.
+- **A/B test with `--no-hero`** — Compare with and without hero to verify it helps before relying on it.
+- **Hero creation** — Generate 2-3 representative scenes, pick the one with the best style for the deck. Save as `references/style_hero.png` and add to manifest.
+
 ### Character Consistency
 - **Identity reference + text description together** - Both are needed; reference image alone isn't enough
 - **Specific features in every prompt** - "dark pointed goatee with connected mustache" not just "beard"

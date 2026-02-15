@@ -166,6 +166,18 @@ Every generation is logged to `raw/generations.jsonl` (append-only JSONL, 6 fiel
 
 Cards include a `characters_in_scene` field in deck.json that controls which character ref images are loaded. `load_reference_images()` filters by this list. Empty list `[]` = no refs loaded (for tradition/connection cards). `null`/absent = load all (backwards compatible).
 
+### Style Hero Reference
+
+If `references/manifest.json` contains a `style_hero` entry, its image is loaded as the **first** reference for all story-world cards (anchor, spotlight, story, power_word). The hero provides a visual anchor for art style, color palette, and rendering quality. Modern-world cards (connection, tradition) skip the hero — they use `MODERN_WORLD_STYLE` text instead.
+
+```bash
+# Generate with hero (default when manifest has style_hero)
+python generate_images.py ../decks/purim/deck.json
+
+# Skip hero for A/B comparison
+python generate_images.py ../decks/purim/deck.json --no-hero
+```
+
 ### Card Type Composition
 
 | Card Type | Subject Position | Open Space |

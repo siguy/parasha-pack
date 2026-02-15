@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Image Generation Pipeline v2 — Phase B
+
+Style hero reference for visual consistency across story-world cards.
+
+#### Added
+- **Style hero support** — `load_reference_images()` loads `style_hero` from manifest as the first reference image for story-world cards (anchor, spotlight, story, power_word). Provides a visual anchor for art style, color palette, and rendering quality.
+- **`--no-hero` flag** — Skip style hero for A/B comparison during testing.
+- **`STORY_WORLD_CARDS` constant** — Defines which card types receive the hero reference.
+
+#### Changed
+- `load_reference_images()` accepts `card_type` and `no_hero` parameters
+- Non-character manifest entries (`style_hero*`) skipped during character ref loading
+- Extracted `_load_image_as_part()` helper for shared image loading logic
+
+---
+
 ### Image Generation Pipeline v2 — Phase A
 
 Generation provenance, selective character refs, and lean prompts.

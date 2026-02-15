@@ -177,28 +177,41 @@ CHARACTER_LABELS = {
 }
 
 
-def load_reference_images(deck_path: Path, characters_in_scene: list = None) -> tuple:
-    """
-    Load character reference images from the deck's manifest.
+def _load_image_as_part(image_path: Path) -> dict:
+    """Load an image file and return it as an API-compatible inline data part."""
+    with open(image_path, 'rb') as f:
+        image_data = base64.b64encode(f.read()).decode('utf-8')
+    return {
+        "inlineData": {
+            "mimeType": "image/png",
+            "data": image_data
+        }
+    }
 
-    When characters_in_scene is provided, only loads references for those characters.
-    When None, loads ALL references (backwards compatible).
-    When empty list [], loads no character references.
+
+# Card types that belong to the story world (receive style hero)
+STORY_WORLD_CARDS = {"anchor", "spotlight", "story", "power_word"}
+
+
+def load_reference_images(deck_path: Path, characters_in_scene: list = None,
+                          card_type: str = "", no_hero: bool = False) -> tuple:
+    """
+    Load reference images from the deck's manifest: style hero + character refs.
+
+    Style hero is loaded first (for story-world cards only) as a visual anchor,
+    then character refs filtered by characters_in_scene.
 
     Args:
         deck_path: Path to deck.json
         characters_in_scene: List of character keys to load, None for all, [] for none
+        card_type: Card type (determines whether style hero is loaded)
+        no_hero: If True, skip style hero even for story-world cards
 
     Returns:
         Tuple of (image_parts, loaded_char_keys):
-          - image_parts: List of image parts for API payload
+          - image_parts: List of image parts for API payload (style hero first, then chars)
           - loaded_char_keys: List of character keys that were loaded
     """
-    # Empty list means explicitly no characters — skip loading entirely
-    if characters_in_scene is not None and len(characters_in_scene) == 0:
-        print("  -> References: none (no characters in scene)")
-        return [], []
-
     refs_dir = deck_path.parent / "references"
     manifest_path = refs_dir / "manifest.json"
 
@@ -215,7 +228,35 @@ def load_reference_images(deck_path: Path, characters_in_scene: list = None) -> 
     image_parts = []
     loaded_chars = []
 
+    # 1. Style hero — loaded first as visual anchor for story-world cards
+    if not no_hero and card_type in STORY_WORLD_CARDS:
+        hero_data = manifest.get("style_hero")
+        if hero_data:
+            hero_file = hero_data.get("identity", "")
+            hero_path = refs_dir / hero_file
+            if hero_path.exists():
+                try:
+                    image_parts.append({
+                        "text": "Style reference — match this art style, color palette, and rendering quality:"
+                    })
+                    image_parts.append(_load_image_as_part(hero_path))
+                    print(f"  -> Style hero: {hero_file}")
+                except Exception as e:
+                    print(f"  -> Warning: failed to load style hero: {e}")
+
+    # 2. Character refs — filtered by characters_in_scene
+    # Empty list means explicitly no characters
+    if characters_in_scene is not None and len(characters_in_scene) == 0:
+        if not image_parts:
+            print("  -> References: none (no characters in scene)")
+        else:
+            print("  -> Characters: none (no characters in scene)")
+        return image_parts, loaded_chars
+
     for character, data in manifest.items():
+        # Skip non-character entries (style_hero, etc.)
+        if character.startswith("style_hero"):
+            continue
         # Filter by characters_in_scene if provided
         if characters_in_scene is not None and character not in characters_in_scene:
             continue
@@ -224,20 +265,11 @@ def load_reference_images(deck_path: Path, characters_in_scene: list = None) -> 
             identity_path = refs_dir / identity_file
             if identity_path.exists():
                 try:
-                    with open(identity_path, 'rb') as f:
-                        image_data = base64.b64encode(f.read()).decode('utf-8')
-
-                    # Add text label BEFORE the image so model knows who it is
                     label = CHARACTER_LABELS.get(character, character.title())
                     image_parts.append({
                         "text": f"Character reference for {label}:"
                     })
-                    image_parts.append({
-                        "inlineData": {
-                            "mimeType": "image/png",
-                            "data": image_data
-                        }
-                    })
+                    image_parts.append(_load_image_as_part(identity_path))
                     loaded_chars.append(character)
                 except Exception as e:
                     print(f"  -> Failed to load {character} reference: {e}")
@@ -245,11 +277,11 @@ def load_reference_images(deck_path: Path, characters_in_scene: list = None) -> 
     # Add instruction after all references
     if image_parts:
         image_parts.append({
-            "text": "Use the above character references for visual consistency. Now generate:"
+            "text": "Use the above references for visual consistency. Now generate:"
         })
 
     if loaded_chars:
-        print(f"  -> References: {', '.join(loaded_chars)}")
+        print(f"  -> Characters: {', '.join(loaded_chars)}")
 
     return image_parts, loaded_chars
 
@@ -413,6 +445,7 @@ def main():
     parser.add_argument("--skip-existing", action="store_true", help="Skip cards that already have images")
     parser.add_argument("--model", choices=["nano-banana", "imagen", "flash"], default="nano-banana", help="Model to use (nano-banana recommended)")
     parser.add_argument("--no-refs", action="store_true", help="Disable character reference images")
+    parser.add_argument("--no-hero", action="store_true", help="Skip style hero reference image")
 
     args = parser.parse_args()
 
@@ -504,7 +537,8 @@ def main():
         if args.model == "nano-banana" and not args.no_refs:
             characters_in_scene = card.get("characters_in_scene")  # None if absent
             reference_images, loaded_char_keys = load_reference_images(
-                deck_path, characters_in_scene=characters_in_scene
+                deck_path, characters_in_scene=characters_in_scene,
+                card_type=card_type, no_hero=args.no_hero,
             )
 
         # Build full prompt: scene + world + style + safety + composition + rules + ref hints

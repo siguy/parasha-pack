@@ -138,6 +138,7 @@ See [agents/AGENT_PIPELINE.md](agents/AGENT_PIPELINE.md) for detailed YAML schem
 | Create character refs | `python workflows.py character yitro -d ../decks/yitro -g` |
 | Generate all images | `python generate_images.py ../decks/yitro/deck.json` |
 | Generate single image | `python generate_images.py ../decks/yitro/deck.json --card spotlight_1` |
+| Generate without style hero | `python generate_images.py ../decks/yitro/deck.json --no-hero` |
 | Sync deck to Card Designer | `./sync-deck.sh purim` |
 | Export final cards | `cd card-designer && npm run export purim -- --backs` |
 
