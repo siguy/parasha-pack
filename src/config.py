@@ -132,101 +132,6 @@ If depicting divine presence:
 """
 
 # =============================================================================
-# CHARACTER DESIGNS
-# =============================================================================
-
-CHARACTER_DESIGNS = {
-    "moses": {
-        "name": "Moses",
-        "name_he": "מֹשֶׁה",
-        "description": """Friendly middle-aged man with warm brown skin and kind, gentle eyes. Short dark beard with some gray showing he's experienced. Wears simple blue and cream robes with a HEAD COVERING (cloth wrap or simple turban). Often holds a wooden shepherd's staff. Has a calm, patient expression.""",
-        "key_features": [
-            "Kind gentle eyes",
-            "Short beard with touch of gray",
-            "HEAD COVERING (cloth wrap/turban) - ALWAYS INCLUDE",
-            "Wooden shepherd's staff",
-            "Blue and cream robes",
-            "Calm caring expression",
-        ],
-    },
-    "yitro": {
-        "name": "Yitro/Jethro",
-        "name_he": "יִתְרוֹ",
-        "description": """Wise elderly man with long flowing white/gray beard. Warm twinkling eyes that show wisdom and kindness. Wears earth-toned desert robes (browns, tans). Has a gentle grandfatherly smile. May have a walking stick.""",
-        "key_features": [
-            "Long flowing white/gray beard",
-            "Twinkling wise eyes",
-            "Grandfatherly warm smile",
-            "Earth-toned desert robes",
-            "Optional walking stick",
-        ],
-    },
-    "esther": {
-        "name": "Esther",
-        "name_he": "אֶסְתֵּר",
-        "description": """Young Jewish woman with warm olive skin and kind determined eyes. Long dark hair with elegant modest head covering. Royal purple and blue flowing dress, simple gold tiara. Gentle, determined expression.""",
-        "key_features": [
-            "Large kind brown eyes",
-            "Long dark hair",
-            "Elegant modest head covering",
-            "Royal purple and blue dress",
-            "Simple gold tiara",
-            "Gentle determined expression",
-        ],
-    },
-    "mordechai": {
-        "name": "Mordechai",
-        "name_he": "מׇרְדְּכַי",
-        "description": """Older Jewish man with wise grandfatherly presence. Full gray-brown beard, kind wise eyes, dignified posture. Jewish head covering (kippah or cloth wrap). Modest robes in earth tones (browns, creams, subtle blues).""",
-        "key_features": [
-            "Full gray-brown beard",
-            "Kind wise eyes",
-            "Dignified posture",
-            "Jewish head covering",
-            "Earth-toned robes",
-            "Grandfatherly warmth",
-        ],
-    },
-    "haman": {
-        "name": "Haman",
-        "name_he": "הָמָן",
-        "description": """Adult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE. DISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape). Pouty frustrated expression, furrowed brow (NOT scary or angry). Persian clothing in MUTED dusty purple and gray-brown. Arms crossed defensively.""",
-        "key_features": [
-            "DARK POINTED GOATEE WITH CONNECTED MUSTACHE",
-            "THREE-CORNERED HAT (hamantaschen shape)",
-            "Pouty frustrated expression (NOT scary)",
-            "Muted dusty purple and gray-brown clothing",
-            "Arms crossed, shoulders hunched",
-        ],
-        "villain": True,
-    },
-    "achashverosh": {
-        "name": "King Achashverosh",
-        "name_he": "אֲחַשְׁוֵרוֹשׁ",
-        "description": """King with confused bewildered expression - somewhat comedic. Large ornate crown. Royal Persian robes in golds and reds. Bewildered look, eyebrows often raised, distracted expression.""",
-        "key_features": [
-            "Large ornate crown",
-            "Confused bewildered expression",
-            "Royal Persian robes (golds, reds)",
-            "Somewhat cartoonish",
-            "NOT scary - just distracted",
-        ],
-        "misguided": True,
-    },
-    "israelites": {
-        "name": "The Israelites",
-        "name_he": "בְּנֵי יִשְׂרָאֵל",
-        "description": """A diverse group of friendly-looking people - men, women, and children. Wear simple robes in warm earth tones and soft colors. Faces show a mix of emotions appropriate to the scene. Include families together.""",
-        "key_features": [
-            "Diverse ages (children, adults, elderly)",
-            "Simple modest clothing",
-            "Warm, relatable expressions",
-            "Show as community/group",
-        ],
-    },
-}
-
-# =============================================================================
 # IMAGE GENERATION
 # =============================================================================
 
@@ -242,6 +147,11 @@ ASPECT_RATIOS = {
 # HELPER FUNCTIONS
 # =============================================================================
 
+# CHARACTER_DESIGNS consolidated into schema.py as single source of truth.
+# Import from there for character data.
+from schema import CHARACTER_DESIGNS
+
+
 def get_border_color(card_type: str) -> str:
     """Get the border color hex for a card type."""
     return CARD_TYPE_BORDERS.get(card_type, {}).get("color", "#5C2D91")
@@ -252,7 +162,7 @@ def get_character_description(character_key: str) -> str:
     char = CHARACTER_DESIGNS.get(character_key.lower())
     if not char:
         return ""
-    return char["description"]
+    return char.get("description", "")
 
 
 def get_character_features(character_key: str) -> list:
