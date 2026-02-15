@@ -1,10 +1,10 @@
 /**
  * PowerWordCardBack - Teacher content for Power Word (vocabulary) cards
  *
- * SAY: teacher_script
- * DO: pronunciation_guide
- * ASK: discussion_prompts
- * TIP: teacher_tip
+ * Teacher's Script: teacher_script (grows to fill)
+ * Act it Out: pronunciation_guide
+ * Ask: discussion_prompts (optional)
+ * Tip: teacher_tip
  */
 'use client';
 
@@ -31,79 +31,77 @@ export function PowerWordCardBack({ card, deckName }: PowerWordCardBackProps) {
         borderColor={borderColor}
         transitionLine={card.transition_line}
       >
-        {/* Compact Title Line with Hebrew Word + Meaning */}
-        <div className="flex items-center justify-between mb-5">
-          <h2 className="text-2xl font-bold text-slate-800 leading-tight">
+        {/* Card Title - 18pt + Hebrew Word */}
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-[75px] font-bold text-slate-800 leading-tight">
             {card.title_en}
           </h2>
           {hebrewWord && (
-            <span className="font-hebrew text-3xl font-bold text-slate-700">
+            <span className="font-hebrew text-[100px] font-bold text-slate-700">
               {hebrewWord}
             </span>
           )}
         </div>
 
-        <div className="flex flex-col gap-4">
-          {/* SAY THIS - Teacher Script */}
+        {/* Teacher's Script (grows to fill) */}
+        <BackSection
+          icon="💬"
+          label="Teacher's Script"
+          borderColor={borderColor}
+          grow
+        >
+          <p className="text-slate-700">{card.teacher_script}</p>
+        </BackSection>
+
+        {/* Act it Out - Pronunciation Guide */}
+        {card.pronunciation_guide && (
           <BackSection
-            icon="💬"
-            label="Say This"
+            icon="🎭"
+            label="Act it Out"
             borderColor={borderColor}
-            large
+            tintColor={`${borderColor}15`}
           >
-            <p className="text-slate-700">{card.teacher_script}</p>
-          </BackSection>
-
-          {/* DO THIS - Pronunciation Guide */}
-          {card.pronunciation_guide && (
-            <BackSection
-              icon="🎯"
-              label="Do This"
-              borderColor={borderColor}
-              tintColor={`${borderColor}10`}
-            >
-              <p className="text-slate-700 font-medium text-lg">
-                {card.pronunciation_guide}
+            <p className="text-slate-700 font-bold text-[67px]">
+              {card.pronunciation_guide}
+            </p>
+            {englishMeaning && (
+              <p className="text-slate-500 text-[50px] mt-2">
+                Meaning: {englishMeaning}
               </p>
-              {englishMeaning && (
-                <p className="text-slate-500 text-sm mt-1">
-                  Meaning: {englishMeaning}
-                </p>
-              )}
-            </BackSection>
-          )}
+            )}
+          </BackSection>
+        )}
 
-          {/* ASK THIS - Discussion Prompts */}
-          {card.discussion_prompts && card.discussion_prompts.length > 0 && (
-            <BackSection
-              icon="❓"
-              label="Ask This"
-              borderColor={borderColor}
-              tintColor="#0074d915"
-            >
-              <ul className="text-slate-700 space-y-1.5">
-                {card.discussion_prompts.map((q, i) => (
-                  <li key={i} className="flex gap-2">
-                    <span className="text-slate-400 flex-shrink-0">•</span>
-                    <span>{q}</span>
-                  </li>
-                ))}
-              </ul>
-            </BackSection>
-          )}
+        {/* Discussion Prompts (optional) */}
+        {card.discussion_prompts && card.discussion_prompts.length > 0 && (
+          <BackSection
+            icon="❓"
+            label="Ask"
+            borderColor={borderColor}
+            tintColor="#0074d920"
+          >
+            <ul className="text-slate-700 space-y-2">
+              {card.discussion_prompts.map((q, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="text-slate-400 flex-shrink-0">•</span>
+                  <span>{q}</span>
+                </li>
+              ))}
+            </ul>
+          </BackSection>
+        )}
 
-          {/* TIP */}
-          {card.teacher_tip && (
-            <BackSection
-              icon="💡"
-              label="Tip"
-              borderColor={borderColor}
-              tintColor="#f59e0b15"
-            >
-              <p className="text-slate-700">{card.teacher_tip}</p>
-            </BackSection>
-          )}
-        </div>
+        {/* Tip */}
+        {card.teacher_tip && (
+          <BackSection
+            icon="💡"
+            label="Tip"
+            borderColor={borderColor}
+            tintColor="#f59e0b20"
+          >
+            <p className="text-slate-700">{card.teacher_tip}</p>
+          </BackSection>
+        )}
       </CardBackFrame>
     </div>
   );

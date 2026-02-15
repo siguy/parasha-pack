@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Card Back Redesign
+
+Print-calibrated teacher content backs with clearer labels and layout.
+
+#### Changed
+- **Font sizes**: Switched from Tailwind classes to explicit pixel values for 300 DPI print (`text-[50px]` header, `text-[58px]` body, `text-[67px]` labels, `text-[75px]` titles)
+- **Section labels**: "Say This" → "Teacher's Script", "Do This" → "Act it Out" (🎯→🎭), "Ask This" → "Ask"
+- **BackSection**: `large` prop → `grow` prop (flex-1) — Teacher's Script fills available space
+- **CardBackFrame**: Thicker border (8→12px), larger rounding (24→32px), icon badges removed from header
+- **Hebrew titles** added to spotlight and connection card backs
+- **Deck view** now renders both front and back for each card
+- **Tint opacity** slightly increased for better section differentiation
+- Re-exported all 16 Purim card backs
+
+---
+
 ### Ref-First Prompting
 
 When character identity refs are loaded, verbose appearance descriptions in prompts dilute ref fidelity. Simpler prompts = better character consistency.

@@ -52,10 +52,18 @@ export default async function DeckPage({ params }: PageProps) {
         <CardGrid>
           {deck.cards.map((card) => (
              <div key={card.card_id} className="flex flex-col gap-3 items-center">
-                <CardFactory card={card} deckId={deckId} config={config} />
+                <CardFactory card={card} deckId={deckId} config={config} side="front" />
                 <div className="text-center w-full flex items-center justify-between px-2">
-                  <span className="text-xs font-mono text-gray-400">{card.card_id}</span>
+                  <span className="text-xs font-mono text-gray-400">{card.card_id} (Front)</span>
                   <ExportControls cardId={card.card_id} />
+                </div>
+                
+                {/* Render Back for visualization */}
+                <div className="mt-4">
+                  <CardFactory card={card} deckId={deckId} config={config} side="back" />
+                  <div className="text-center w-full px-2">
+                    <span className="text-xs font-mono text-gray-400">{card.card_id} (Back)</span>
+                  </div>
                 </div>
              </div>
           ))}

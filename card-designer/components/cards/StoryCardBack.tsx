@@ -1,10 +1,10 @@
 /**
  * StoryCardBack - Teacher content for Story cards
  *
- * SAY: teacher_script
- * DO: roleplay_prompt
- * ASK: discussion_prompts
- * TIP: teacher_tip
+ * Teacher's Script: teacher_script (grows to fill)
+ * Act it Out: roleplay_prompt
+ * Ask: discussion_prompts (optional)
+ * Tip: teacher_tip
  */
 'use client';
 
@@ -29,77 +29,80 @@ export function StoryCardBack({ card, deckName }: StoryCardBackProps) {
         borderColor={borderColor}
         transitionLine={card.transition_line}
       >
-        {/* Compact Title Line with Sequence Badge */}
-        <div className="flex items-center justify-between mb-5">
-          <h2 className="text-2xl font-bold text-slate-800 leading-tight">
-            {card.title_en}
-          </h2>
-          {card.sequence_number && (
-            <span
-              className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
-              style={{ backgroundColor: borderColor }}
-            >
-              #{card.sequence_number}
-            </span>
+        {/* Card Title - English + number left, Hebrew right */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4 min-w-0">
+            <h2 className="text-[75px] font-bold text-slate-800 leading-tight">
+              {card.title_en}
+            </h2>
+            {card.sequence_number && (
+              <span
+                className="w-[80px] h-[80px] rounded-full flex items-center justify-center text-white font-bold text-[50px] flex-shrink-0"
+                style={{ backgroundColor: borderColor }}
+              >
+                #{card.sequence_number}
+              </span>
+            )}
+          </div>
+          {card.title_he && (
+            <span className="font-hebrew text-[58px] text-slate-500 flex-shrink-0 text-right">{card.title_he}</span>
           )}
         </div>
 
-        <div className="flex flex-col gap-4">
-          {/* SAY THIS - Teacher Script */}
+        {/* Teacher's Script (grows to fill) */}
+        <BackSection
+          icon="💬"
+          label="Teacher's Script"
+          borderColor={borderColor}
+          grow
+        >
+          <p className="text-slate-700">{card.teacher_script}</p>
+        </BackSection>
+
+        {/* Act it Out - Roleplay Prompt */}
+        {card.roleplay_prompt && (
           <BackSection
-            icon="💬"
-            label="Say This"
+            icon="🎭"
+            label="Act it Out"
             borderColor={borderColor}
-            large
+            tintColor={`${borderColor}15`}
           >
-            <p className="text-slate-700">{card.teacher_script}</p>
+            <p className="text-slate-700 font-medium">
+              {card.roleplay_prompt.replace(/^Act it out:\s*/i, '')}
+            </p>
           </BackSection>
+        )}
 
-          {/* DO THIS - Roleplay Prompt */}
-          {card.roleplay_prompt && (
-            <BackSection
-              icon="🎯"
-              label="Do This"
-              borderColor={borderColor}
-              tintColor={`${borderColor}10`}
-            >
-              <p className="text-slate-700 font-medium">
-                {card.roleplay_prompt.replace(/^Act it out:\s*/i, '')}
-              </p>
-            </BackSection>
-          )}
+        {/* Discussion Prompts (optional) */}
+        {card.discussion_prompts && card.discussion_prompts.length > 0 && (
+          <BackSection
+            icon="❓"
+            label="Ask"
+            borderColor={borderColor}
+            tintColor="#0074d920"
+          >
+            <ul className="text-slate-700 space-y-2">
+              {card.discussion_prompts.map((q, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="text-slate-400 flex-shrink-0">•</span>
+                  <span>{q}</span>
+                </li>
+              ))}
+            </ul>
+          </BackSection>
+        )}
 
-          {/* ASK THIS - Discussion Prompts */}
-          {card.discussion_prompts && card.discussion_prompts.length > 0 && (
-            <BackSection
-              icon="❓"
-              label="Ask This"
-              borderColor={borderColor}
-              tintColor="#0074d915"
-            >
-              <ul className="text-slate-700 space-y-1.5">
-                {card.discussion_prompts.map((q, i) => (
-                  <li key={i} className="flex gap-2">
-                    <span className="text-slate-400 flex-shrink-0">•</span>
-                    <span>{q}</span>
-                  </li>
-                ))}
-              </ul>
-            </BackSection>
-          )}
-
-          {/* TIP */}
-          {card.teacher_tip && (
-            <BackSection
-              icon="💡"
-              label="Tip"
-              borderColor={borderColor}
-              tintColor="#f59e0b15"
-            >
-              <p className="text-slate-700">{card.teacher_tip}</p>
-            </BackSection>
-          )}
-        </div>
+        {/* Tip */}
+        {card.teacher_tip && (
+          <BackSection
+            icon="💡"
+            label="Tip"
+            borderColor={borderColor}
+            tintColor="#f59e0b20"
+          >
+            <p className="text-slate-700">{card.teacher_tip}</p>
+          </BackSection>
+        )}
       </CardBackFrame>
     </div>
   );
