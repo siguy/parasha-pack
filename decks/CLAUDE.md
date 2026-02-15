@@ -322,6 +322,9 @@ python generate_images.py ../decks/purim/deck.json --skip-existing
 # Without character references (debugging)
 python generate_images.py ../decks/purim/deck.json --no-refs
 
+# Backup existing images before regenerating
+python generate_images.py ../decks/purim/deck.json --backup
+
 # Export with Card Designer
 cd card-designer && npm run export purim -- --backs
 ```

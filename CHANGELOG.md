@@ -4,6 +4,40 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Ref-First Prompting
+
+When character identity refs are loaded, verbose appearance descriptions in prompts dilute ref fidelity. Simpler prompts = better character consistency.
+
+#### Changed
+- **Visual Director agent**: Scene prompts now use ref-first approach — pose/action/emotion only when refs are loaded, full appearance only when no refs available
+- **LESSONS_LEARNED**: Replaced "ref + text both needed" with ref-first rules (less text = better fidelity, attention budget, no spatial stage directions)
+
+---
+
+### Prompt Enrichment & Image Regeneration
+
+All 16 Purim cards regenerated with enriched prompts. Two rounds of fixes based on visual review.
+
+#### Added
+- **`--backup` flag** for `generate_images.py` — Creates `raw/backup_{timestamp}/` and copies existing images before overwriting via `shutil.copy2`
+- **Composition awareness** section in Visual Director — top 25% of frame is text overlay zone, scene prompts must keep it calm
+
+#### Changed
+- All 16 Purim `image_prompt` fields enriched with stage directions, specific actions, visual storytelling devices
+- Visual Director agent: added per-card-type prompt guidance (spotlight, story, tradition, connection, anchor, power word)
+- LESSONS_LEARNED: added sections for connection cards, anchor cards, power word cards, composition awareness, pipeline cross-reference
+
+#### Fixed
+- anchor_1: horizontal line from interior architecture → seamless gradient
+- story_1: king missing identity ref → added achashverosh to `characters_in_scene`
+- story_2: bowing direction, style drift, missing turban → simplified prompt, swapped character positions
+- story_3: cluttered thought cloud → simplified to single Mordechai figure
+- story_4: missing Haman in banquet scene → complete rewrite with all 3 characters; stripped appearance blocks for better ref fidelity
+- connection_1: boy missing kippah → added explicit kippah to scene description
+- tradition_1: megillah text facing wrong way → added scroll direction instruction
+
+---
+
 ### Image Generation Pipeline v2 — Phase B
 
 Style hero reference for visual consistency across story-world cards.

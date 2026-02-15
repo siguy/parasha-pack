@@ -123,6 +123,7 @@ python generate_images.py ../decks/yitro/deck.json              # Generate all
 python generate_images.py ../decks/yitro/deck.json --card spotlight_1  # Single card
 python generate_images.py ../decks/yitro/deck.json --skip-existing     # Skip existing
 python generate_images.py ../decks/yitro/deck.json --no-refs           # Without character refs
+python generate_images.py ../decks/yitro/deck.json --backup            # Backup existing before overwriting
 ```
 
 ### Reference Image Integration
