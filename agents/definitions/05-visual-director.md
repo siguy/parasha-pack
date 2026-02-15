@@ -57,15 +57,23 @@ The Visual Director owns character consistency across all cards.
 2. If exists: Copy or reference existing identity
 3. If not exists: Follow NEW character workflow
 
-### Reference Image Integration:
+### Reference Image Integration (Ref-First Prompting):
 
 When generating card images:
 - Identity images are automatically loaded from manifest.json
 - Images are base64-encoded and passed to the API
 - Only refs for characters listed in `characters_in_scene` are loaded (see below)
-- Text prompts should STILL include character descriptions to reinforce features
 - When ref images are loaded, the system adds a hint to prioritize them for appearance
 - Use `--no-refs` flag to disable (for debugging only)
+
+**CRITICAL: Refs loaded → minimal text.** When character refs are loaded, verbose appearance descriptions DILUTE the ref rather than reinforcing it. The model tries to reconcile both and lands somewhere generic.
+
+| Refs loaded? | Character text should include |
+|---|---|
+| **Yes** (character in `characters_in_scene`) | Pose, action, emotion ONLY. No appearance. |
+| **No** (no ref available) | Full appearance description (face, clothing, colors, features) |
+
+**More characters = simpler each.** With 3 refs in one scene, the model has less attention per character. Keep scene descriptions lean — describe the story beat, not the staging.
 
 ### characters_in_scene (REQUIRED for all cards)
 
@@ -329,72 +337,67 @@ Image prompts in deck.json are **pure scene descriptions** — what to draw, not
 
 ### Scene Prompt Template
 
-Write scene prompts like **stage directions for a movie**, not static descriptions. Every prompt needs:
+Write scene prompts like **stage directions for a movie**, not static descriptions. The key principle is: **tell the story, let the refs handle the faces.**
 
-1. **Character blocks** — Appearance details that reinforce reference images
-2. **Specific actions** — What each character is DOING (verbs, not adjectives). "He shakes his head NO" not "he refuses to bow"
-3. **Visual storytelling devices** — Thought bubbles, split scenes, contrast (one person standing while others bow), symbolic elements
-4. **Crowd/environment energy** — What background characters are doing, market stalls, decorations, instruments. Scenes should feel ALIVE
-5. **Emotional punch line** — ALL-CAPS emphasis for the core feeling. Tell the model how to make the viewer FEEL
+When character refs ARE loaded (most story-world cards):
+1. **Story beat first** — One sentence: what is happening in this scene?
+2. **Character actions** — What each character is DOING (pose, gesture, emotion). NO appearance.
+3. **Environment** — Minimal but specific. Use the same architectural vocabulary as other cards in the deck (e.g., "ornate Persian archways, warm sandstone").
+4. **Props and details** — Specific objects that tell the story (goblets, scrolls, banners)
 
-```
-[CHARACTER NAME]:
-[Visual appearance — skin, hair, clothing, accessories]
-[SPECIFIC ACTION — what they are physically doing right now]
-
-[SECOND CHARACTER (if present)]:
-[Visual appearance]
-[SPECIFIC ACTION]
-
-[Scene description — location, what is happening moment-by-moment]
-[Character A is doing X. Character B is doing Y in response.]
-[Background characters: what are THEY doing? Bowing? Cheering? Watching?]
-[Environment details: market stalls, tapestries, light sources, decorations]
-[Visual storytelling device: thought bubble, dramatic size contrast, symbolic element]
-[Specific props and objects in the scene]
-[Lighting and atmosphere]
-
-[EMOTIONAL PUNCH LINE in caps — what should the viewer FEEL?]
-```
-
-### Example — WEAK (too vague)
+When character refs are NOT loaded (connection, tradition, anchor):
+- Full appearance descriptions are needed since there are no refs to lean on
+- Be specific: "boy with dark skin wearing a colorful knit kippah" not "diverse children"
 
 ```
-ESTHER:
-Young Jewish woman, royal purple dress.
-
-Esther standing before the king's throne, hand raised to speak.
-Tall stone pillars frame the scene. Golden light from high windows.
-
-Brave and determined.
+[Scene description — what is happening in this moment]
+[Character A doing X. Character B doing Y in response.]
+[Background characters: what are THEY doing?]
+[Environment — minimal, matching deck vocabulary]
+[Key props and objects]
 ```
 
-### Example — STRONG (stage directions)
+### Example — WEAK (appearance blocks fight the refs)
 
 ```
 ESTHER:
 Young Jewish woman, warm olive skin, large kind brown eyes.
 Long dark hair with elegant modest head covering.
 Royal purple and blue flowing dress, simple gold tiara.
-Her right hand is pressed over her heart. Her left hand reaches slightly forward.
-Eyes wide, jaw set with determination despite visible fear.
 
 ACHASHVEROSH:
 Adult man, large ornate Persian crown, fancy red and gold royal robes.
 Big bushy beard, wide surprised eyes. Seated on golden throne with lion armrests.
-He leans forward with surprise — he wasn't expecting this!
 
-Esther takes a brave step forward into the grand throne room.
-She's about to speak the most important words of her life!
-Royal guards with spears visible in the background, watching.
+HAMAN:
+Adult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.
+DISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape).
+Muted dusty purple and gray-brown clothing.
+
+A grand banquet scene in the palace. Esther stands center, pointing directly at Haman.
+Her right hand points firmly at Haman. Her left hand is pressed over her heart.
+King Achashverosh on his throne to the left, leaning forward with SHOCK and ANGER.
+Haman on the right, SHRINKING BACK in terror. His hands are up defensively.
+A banquet table with goblets and platters visible in the foreground.
 Dramatic light shafts streaming down from high arched windows above.
-Ornate Persian columns frame the scene. Rich tapestries on the walls.
-The throne room feels HUGE — Esther looks small but brave against it.
-Dark polished floor in the lower-left corner.
-
-THE CLIMAX! Maximum tension and courage. Esther's bravest moment.
-The whole story comes down to this.
+Ornate Persian columns and rich tapestries on the walls.
 ```
+
+### Example — STRONG (refs carry appearance, text carries story)
+
+```
+A grand banquet scene in the palace.
+Esther stands center, pointing directly at Haman. Her left hand pressed over her heart.
+She is REVEALING the truth — "This is the man!"
+
+King Achashverosh on his throne to the left, leaning forward with shock.
+Haman on the right, shrinking back in terror, hands up defensively.
+
+A banquet table with goblets and platters in the foreground.
+Ornate Persian columns and rich tapestries on the walls.
+```
+
+The STRONG version is 8 lines vs 17. Three character refs do the appearance work. The prompt focuses entirely on the story beat — who is doing what, and how the scene feels.
 
 ### Card-Type-Specific Prompt Guidance
 
@@ -443,11 +446,13 @@ The whole story comes down to this.
 ### Prompt Quality Checklist
 
 Before finalizing each scene prompt, verify:
+- [ ] **Ref-first check**: If character refs are loaded, does the prompt have appearance blocks? REMOVE THEM. Pose/emotion only.
+- [ ] **Attention budget**: More than 2 characters? Keep scene description extra lean — fewer props, simpler environment
 - [ ] Every character has a **specific physical action** (not just an emotion label)
 - [ ] Background has **life** — other people doing things, objects, environmental detail
 - [ ] At least one **visual storytelling device** (contrast, thought bubble, dramatic scale, symbolic prop)
-- [ ] Emotional tone line uses **strong, punchy language** with caps for emphasis
 - [ ] Prompt reads like a **movie scene description**, not a stock photo caption
+- [ ] **No spatial stage directions** (LEFT/RIGHT/SEPARATE) — describe story relationships instead
 - [ ] **Tradition cards**: At least 4 specific, nameable props visible in the scene
 - [ ] **Spotlight cards**: Character has a signature gesture, not just a facial expression
 - [ ] **Connection cards**: Every child has a distinct gesture/role (talking, listening, thinking) — no generic circles

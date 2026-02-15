@@ -72,10 +72,14 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Megillah/scroll direction** — AI models render text on scrolls facing the viewer by default. Add "scroll faces TOWARD the reader, text NOT visible to viewer" to prevent backwards text.
 - **No hard horizontal lines in anchor cards** — Describing rooms with walls/ceilings creates visible edges in the upper frame. Use "floating in darkness" or "seamless gradient" instead of interior architecture.
 
-### Character Consistency
-- **Identity reference + text description together** - Both are needed; reference image alone isn't enough
-- **Specific features in every prompt** - "dark pointed goatee with connected mustache" not just "beard"
-- **Pose can affect consistency** - Unusual poses (sitting vs standing) may cause appearance drift
+### Character Consistency (Ref-First Prompting)
+- **Less text = better ref fidelity** — When character refs are loaded, verbose appearance descriptions DILUTE the ref rather than reinforcing it. The model tries to reconcile text + image and lands somewhere generic.
+- **Refs loaded → pose and emotion only** — Strip character blocks to action/emotion. "Standing tall, shaking his head NO" not "Older Jewish man, warm brown skin, kind wise eyes, full gray-brown beard..."
+- **No refs → full appearance description needed** — Without a ref image, the text IS the only guide. Be specific: "dark pointed goatee with connected mustache" not just "beard."
+- **More characters = simpler each** — With 3 refs in one scene, the model has less attention per character. Keep scene text lean so the refs get priority.
+- **Scene complexity competes with character fidelity** — Simpler environments (fewer market stalls, crowd members, architectural details) = better character matching. The model has a fixed attention budget.
+- **Spatial directions are unreliable** — LEFT/RIGHT/SEPARATE consume model attention without reliable results. Describe the story relationship ("crowd bowing before Haman, Mordechai the only one standing") and let the model compose.
+- **Pose can affect consistency** — Unusual poses (sitting vs standing) may cause appearance drift
 
 ### Generation Provenance
 - **Every generation is logged** — `raw/generations.jsonl` records card_id, timestamp, model, full assembled prompt, character refs used, and success/failure. Append-only.
