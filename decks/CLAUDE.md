@@ -13,7 +13,11 @@ decks/
     ├── raw/            # AI-generated images (scene only, NO text)
     │   ├── anchor_1.png
     │   ├── story_1.png
-    │   └── ...
+    │   ├── ...
+    │   ├── generations.jsonl  # Generation log (append-only provenance)
+    │   └── prompts/           # Full assembled prompts (human-readable sidecars)
+    │       ├── anchor_1.txt
+    │       └── ...
     ├── images/         # Final exports with text overlay (from Card Designer)
     │   ├── anchor_1.png
     │   ├── story_1.png
@@ -91,6 +95,7 @@ This creates:
   "emotional_hook_he": "הֲאִם אֵי פַּעַם הָיִיתָ צָרִיךְ לִהְיוֹת מַמָּשׁ אַמִּיץ?",
   "symbol_description": "A golden crown with Star of David",
   "border_color": "#8B5CF6",
+  "characters_in_scene": [],
   "image_prompt": "A golden crown sitting on a royal purple velvet cushion...",
   "image_path": "raw/anchor_1.png",
   "teacher_script": "Gather children in a circle...",
@@ -116,6 +121,7 @@ This creates:
   "character_description_he": "אסתר הייתה מלכה אמיצה...",
   "teaching_moment_en": "Even when she was scared, Esther did the right thing.",
   "border_color": "#8B5CF6",
+  "characters_in_scene": ["esther"],
   "image_prompt": "Character portrait of Esther...",
   "image_path": "raw/spotlight_1.png",
   "teacher_script": "This is Queen Esther!...",
@@ -140,6 +146,7 @@ This creates:
   "english_description": "The king chose Esther to be his new queen.",
   "roleplay_prompt": "Put an imaginary crown on your head and give a royal wave!",
   "border_color": "#8B5CF6",
+  "characters_in_scene": ["esther"],
   "image_prompt": "Esther in the palace throne room...",
   "image_path": "raw/story_1.png",
   "teacher_script": "The king needed a new queen...",
@@ -171,6 +178,7 @@ This creates:
   ],
   "emojis": ["😊", "😢", "😮", "💪"],
   "border_color": "#8B5CF6",
+  "characters_in_scene": [],
   "image_prompt": "Children sitting in a circle on a colorful rug...",
   "image_path": "raw/connection_1.png",
   "teacher_script": "Let's talk about being brave...",
@@ -198,6 +206,7 @@ Note: Connection cards do NOT have `discussion_prompts` — they use `questions[
   "hebrew_term": "מִשְׁלוֹחַ מָנוֹת",
   "hebrew_term_meaning": "Sending portions (gifts)",
   "border_color": "#8B5CF6",
+  "characters_in_scene": [],
   "image_prompt": "Warm golden scene of families packing colorful baskets...",
   "image_path": "raw/tradition_1.png",
   "teacher_script": "On Purim, we give gifts to friends...",
@@ -223,6 +232,7 @@ Note: Connection cards do NOT have `discussion_prompts` — they use `questions[
   "kid_friendly_explanation_en": "A hero helps others even when it's hard!",
   "kid_friendly_explanation_he": "",
   "border_color": "#8B5CF6",
+  "characters_in_scene": ["esther"],
   "image_prompt": "Esther standing tall in the throne room...",
   "image_path": "raw/power_word_1.png",
   "teacher_script": "Let's learn a special Hebrew word...",
@@ -264,11 +274,35 @@ Image prompts in deck.json should be **pure scene descriptions** — what to dra
 - Text rendering instructions — rendered by Card Designer
 - Aspect ratio — handled by generation config
 
+## Selective Character References
+
+Each card includes `characters_in_scene` — a list of character keys whose identity reference images are loaded during generation. This prevents wrong characters from appearing (e.g., Haman in tradition cards).
+
+| Card Type | characters_in_scene | Rationale |
+|-----------|-------------------|-----------|
+| Anchor | `[]` | Symbol only, no characters |
+| Spotlight | `["character_key"]` | Single featured character |
+| Story | `["char1", "char2"]` | Only characters depicted |
+| Connection | `[]` | Generic children |
+| Tradition | `[]` | Generic community |
+| Power Word | `["character_key"]` | Character demonstrating word |
+
+## Generation Provenance
+
+Every image generation is tracked:
+
+- **`raw/generations.jsonl`** — Append-only log. One JSON line per generation with card_id, timestamp, model, full_prompt, character_refs, success.
+- **`raw/prompts/{card_id}.txt`** — Human-readable full assembled prompt. Overwritten each run (JSONL is the durable record).
+
+To reproduce an image: find the entry in `generations.jsonl`, copy the `full_prompt`, and re-run with the same refs.
+
 ## Output Files
 
 | File | Size | Purpose |
 |------|------|---------|
 | `raw/{card_id}.png` | 1500x2100 | Scene-only AI image (no text) |
+| `raw/generations.jsonl` | — | Generation provenance log |
+| `raw/prompts/{card_id}.txt` | — | Full assembled prompt (debug) |
 | `images/{card_id}.png` | 1500x2100 | Card front with text overlay |
 | `backs/{card_id}_back.png` | 1500x2100 | Teacher card back (5x7 @ 300 DPI) |
 

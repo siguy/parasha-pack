@@ -22,6 +22,7 @@ import time
 import urllib.request
 import urllib.error
 import base64
+from datetime import datetime, timezone
 from pathlib import Path
 
 # PIL overlay system is deprecated - text overlay now handled by Card Designer React components
@@ -33,7 +34,8 @@ def is_v2_card(card: dict) -> bool:
     return "front" in card and "back" in card
 
 
-def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str = "") -> str:
+def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str = "",
+                            character_refs_loaded: list = None) -> str:
     """
     Build a complete generation prompt by layering system concerns onto a scene description.
 
@@ -45,6 +47,7 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
                            story_world (from deck.json) for all other card types
     3. Safety rules      — content restrictions (no God in human form, etc.)
     4. Scene description  — from deck.json (passed through unchanged)
+    4b. Ref hint         — when character refs are loaded, tell model to prioritize them
     5. Composition        — per-card-type cinematography (where to place subjects)
     6. Critical rules     — universal (no text, no borders)
 
@@ -58,6 +61,9 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
         scene_prompt: Scene-only image prompt from deck.json
         card_type: Card type (anchor, spotlight, story, etc.)
         story_world: Per-deck historical setting (from deck.json "story_world")
+        character_refs_loaded: List of character keys with ref images loaded.
+            When provided, adds a hint to prioritize reference images over
+            inline text descriptions for character appearance.
 
     Returns:
         Complete prompt with all system layers applied
@@ -92,6 +98,19 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
     # 4. Scene description (from deck.json — passed through unchanged)
     parts.append(f"=== SCENE ===\n{scene_prompt.strip()}")
 
+    # 4b. When character ref images are loaded, tell model to prioritize them
+    if character_refs_loaded:
+        ref_names = ", ".join(
+            CHARACTER_LABELS.get(key, key.title()) for key in character_refs_loaded
+        )
+        parts.append(
+            f"=== CHARACTER REFERENCES ===\n"
+            f"Reference images provided for: {ref_names}.\n"
+            f"For these characters, prioritize the reference images for appearance "
+            f"(face, clothing, coloring). Use the text description above for pose, "
+            f"action, and emotion only."
+        )
+
     # 5. Per-card-type composition guidance
     guidance = COMPOSITION_GUIDANCE.get(card_type, "")
     if guidance:
@@ -103,47 +122,103 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
     return "\n\n".join(parts)
 
 
-def load_reference_images(deck_path: Path) -> list:
+def log_generation(deck_path: Path, card_id: str, model: str, full_prompt: str,
+                   character_refs: list, success: bool) -> None:
     """
-    Load ALL character reference images from the deck's manifest.
+    Append a generation record to the deck's JSONL log.
 
-    Always passes all character identities to ensure consistency across cards.
-    Each image is labeled with text so the model knows which character it represents.
+    Each line is a self-contained JSON object with 6 fields.
+    The log is append-only — never overwritten, never rotated at current scale.
 
     Args:
         deck_path: Path to deck.json
+        card_id: Card being generated
+        model: Model name (e.g. "nano-banana-pro")
+        full_prompt: Complete assembled prompt (all layers)
+        character_refs: List of character keys whose refs were passed
+        success: Whether the generation succeeded
+    """
+    log_path = deck_path.parent / "raw" / "generations.jsonl"
+    record = {
+        "card_id": card_id,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "model": model,
+        "full_prompt": full_prompt,
+        "character_refs": character_refs,
+        "success": success,
+    }
+    with open(log_path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+def save_prompt_sidecar(deck_path: Path, card_id: str, full_prompt: str) -> None:
+    """
+    Save the full assembled prompt as a human-readable sidecar file.
+
+    Overwritten each run — the JSONL log is the durable record.
+    Useful for quick debugging without parsing JSONL.
+    """
+    prompts_dir = deck_path.parent / "raw" / "prompts"
+    prompts_dir.mkdir(exist_ok=True)
+    prompt_path = prompts_dir / f"{card_id}.txt"
+    with open(prompt_path, "w", encoding="utf-8") as f:
+        f.write(full_prompt)
+
+
+# Character name mappings for clearer labels in reference image prompts
+CHARACTER_LABELS = {
+    "esther": "Esther (Queen Esther)",
+    "mordechai": "Mordechai",
+    "haman": "Haman (the villain)",
+    "achashverosh": "King Achashverosh (the king)",
+    "moses": "Moses",
+    "miriam": "Miriam",
+    "yitro": "Yitro",
+}
+
+
+def load_reference_images(deck_path: Path, characters_in_scene: list = None) -> tuple:
+    """
+    Load character reference images from the deck's manifest.
+
+    When characters_in_scene is provided, only loads references for those characters.
+    When None, loads ALL references (backwards compatible).
+    When empty list [], loads no character references.
+
+    Args:
+        deck_path: Path to deck.json
+        characters_in_scene: List of character keys to load, None for all, [] for none
 
     Returns:
-        List of image parts for API payload (alternating text labels and images)
+        Tuple of (image_parts, loaded_char_keys):
+          - image_parts: List of image parts for API payload
+          - loaded_char_keys: List of character keys that were loaded
     """
+    # Empty list means explicitly no characters — skip loading entirely
+    if characters_in_scene is not None and len(characters_in_scene) == 0:
+        print("  -> References: none (no characters in scene)")
+        return [], []
+
     refs_dir = deck_path.parent / "references"
     manifest_path = refs_dir / "manifest.json"
 
     if not manifest_path.exists():
-        return []
+        return [], []
 
     try:
         with open(manifest_path, 'r', encoding='utf-8') as f:
             manifest = json.load(f)
     except Exception as e:
         print(f"  -> Warning: failed to load manifest: {e}")
-        return []
+        return [], []
 
     image_parts = []
     loaded_chars = []
 
-    # Character name mappings for clearer labels
-    character_labels = {
-        "esther": "Esther (Queen Esther)",
-        "mordechai": "Mordechai",
-        "haman": "Haman (the villain)",
-        "achashverosh": "King Achashverosh (the king)",
-        "moses": "Moses",
-        "miriam": "Miriam",
-        "yitro": "Yitro",
-    }
-
     for character, data in manifest.items():
+        # Filter by characters_in_scene if provided
+        if characters_in_scene is not None and character not in characters_in_scene:
+            continue
         identity_file = data.get("identity", "")
         if identity_file:
             identity_path = refs_dir / identity_file
@@ -153,7 +228,7 @@ def load_reference_images(deck_path: Path) -> list:
                         image_data = base64.b64encode(f.read()).decode('utf-8')
 
                     # Add text label BEFORE the image so model knows who it is
-                    label = character_labels.get(character, character.title())
+                    label = CHARACTER_LABELS.get(character, character.title())
                     image_parts.append({
                         "text": f"Character reference for {label}:"
                     })
@@ -176,10 +251,10 @@ def load_reference_images(deck_path: Path) -> list:
     if loaded_chars:
         print(f"  -> References: {', '.join(loaded_chars)}")
 
-    return image_parts
+    return image_parts, loaded_chars
 
 
-def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspect_ratio: str = "3:4", reference_images: list = None) -> bool:
+def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspect_ratio: str = "3:4", reference_images: list = None) -> dict:
     """
     Generate an image using Nano Banana Pro model (best for children's book style).
 
@@ -191,7 +266,7 @@ def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspe
         reference_images: Optional list of reference image parts for character consistency
 
     Returns:
-        True if successful, False otherwise
+        Dict with 'success' (bool) and 'prompt' (str) keys
     """
     url = f"https://generativelanguage.googleapis.com/v1beta/models/nano-banana-pro-preview:generateContent?key={api_key}"
 
@@ -224,18 +299,18 @@ def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspe
                         if image_data:
                             with open(output_path, 'wb') as f:
                                 f.write(base64.b64decode(image_data))
-                            return True
+                            return {"success": True, "prompt": prompt}
 
         print(f"  No image in response")
-        return False
+        return {"success": False, "prompt": prompt}
 
     except urllib.error.HTTPError as e:
         error_body = e.read().decode() if e.fp else ""
         print(f"  HTTP Error {e.code}: {error_body[:200]}")
-        return False
+        return {"success": False, "prompt": prompt}
     except Exception as e:
         print(f"  Error: {e}")
-        return False
+        return {"success": False, "prompt": prompt}
 
 
 def generate_image_imagen(prompt: str, api_key: str, output_path: str) -> bool:
@@ -409,9 +484,7 @@ def main():
             skip_count += 1
             continue
 
-        # Build full prompt: scene description + world + style + safety + composition + rules
         card_type = card.get("card_type", "")
-        prompt = build_generation_prompt(raw_prompt, card_type, story_world=story_world)
 
         # Get title for display
         if is_v2_card(card):
@@ -422,15 +495,37 @@ def main():
         print(f"[GEN] {card_id}: {title}...")
 
         # Load reference images for character consistency (nano-banana only)
+        # characters_in_scene controls which refs are loaded:
+        #   None  = load all refs (backwards compatible, field absent)
+        #   []    = load no refs (tradition/connection cards)
+        #   ["esther", "mordechai"] = load only those refs
         reference_images = []
+        loaded_char_keys = []
         if args.model == "nano-banana" and not args.no_refs:
-            reference_images = load_reference_images(deck_path)
+            characters_in_scene = card.get("characters_in_scene")  # None if absent
+            reference_images, loaded_char_keys = load_reference_images(
+                deck_path, characters_in_scene=characters_in_scene
+            )
+
+        # Build full prompt: scene + world + style + safety + composition + rules + ref hints
+        prompt = build_generation_prompt(
+            raw_prompt, card_type, story_world=story_world,
+            character_refs_loaded=loaded_char_keys,
+        )
+
+        # Save prompt sidecar for quick debugging
+        save_prompt_sidecar(deck_path, card_id, prompt)
 
         # Generate image
         if args.model == "nano-banana":
-            success = generate_fn(prompt, api_key, str(output_path), reference_images=reference_images)
+            result = generate_fn(prompt, api_key, str(output_path), reference_images=reference_images)
+            success = result["success"]
         else:
             success = generate_fn(prompt, api_key, str(output_path))
+
+        # Log every generation attempt
+        model_name = "nano-banana-pro" if args.model == "nano-banana" else args.model
+        log_generation(deck_path, card_id, model_name, prompt, loaded_char_keys, success)
 
         if success:
             print(f"  -> Saved: {output_path.name}")

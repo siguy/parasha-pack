@@ -62,8 +62,23 @@ The Visual Director owns character consistency across all cards.
 When generating card images:
 - Identity images are automatically loaded from manifest.json
 - Images are base64-encoded and passed to the API
+- Only refs for characters listed in `characters_in_scene` are loaded (see below)
 - Text prompts should STILL include character descriptions to reinforce features
+- When ref images are loaded, the system adds a hint to prioritize them for appearance
 - Use `--no-refs` flag to disable (for debugging only)
+
+### characters_in_scene (REQUIRED for all cards)
+
+Every card MUST include `characters_in_scene` — a list of character keys whose reference images should be loaded. This prevents wrong characters from appearing (e.g., the villain showing up in tradition cards).
+
+Rules:
+- **Spotlight cards**: Single character key (e.g., `["esther"]`)
+- **Story cards**: Only characters actually depicted in the scene
+- **Connection/tradition cards**: Empty list `[]` (generic children, no story characters)
+- **Anchor cards**: Empty list `[]` (symbol only)
+- **Power word cards**: Character demonstrating the word (if any)
+
+The generation script uses this to filter reference images: only the listed characters' identity images are passed to the API. An empty list means no character references are loaded.
 
 ## Input
 
@@ -119,6 +134,7 @@ visual_direction:
       card_id: "anchor_1"
       central_symbol: "[The main visual element]"
       mood: "[Emotional tone]"
+      characters_in_scene: []  # Anchors are symbol-only, no characters
       image_prompt: |
         [Scene-only description — what to draw, not how]
 
@@ -127,6 +143,7 @@ visual_direction:
       character_pose: "[What the character is doing]"
       expression: "[Specific emotion]"
       background: "[Setting/environment]"
+      characters_in_scene: ["character_key"]  # Single featured character
       image_prompt: |
         [Scene-only description]
 
@@ -146,7 +163,7 @@ visual_direction:
     story_1:
       card_id: "story_1"
       scene_description: "[What's happening]"
-      characters_in_scene: "[Who is present]"
+      characters_in_scene: ["character_key_1", "character_key_2"]  # Used to filter ref images
       emotion_to_convey: "[Primary feeling]"
       image_prompt: |
         [Scene-only description]
@@ -156,12 +173,14 @@ visual_direction:
     connection_1:
       card_id: "connection_1"
       visual_approach: "[How to visualize discussion]"
+      characters_in_scene: []  # Connection cards show generic children
       image_prompt: |
         [Scene-only description]
 
     power_word:
       card_id: "power_word_1"
       visual_approach: "[How to illustrate this word]"
+      characters_in_scene: ["character_key"]  # Character demonstrating the word
       image_prompt: |
         [Scene-only description]
 
@@ -170,6 +189,7 @@ visual_direction:
       card_id: "tradition_1"
       visual_approach: "[Show people DOING the ritual]"
       mood: "[Warm, celebratory, inviting]"
+      characters_in_scene: []  # Tradition cards show generic community
       tradition_visual_checklist:
         - [ ] Shows community/family doing practice together
         - [ ] Warm, golden color palette

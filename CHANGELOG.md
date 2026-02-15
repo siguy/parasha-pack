@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Image Generation Pipeline v2 — Phase A
+
+Generation provenance, selective character refs, and lean prompts.
+
+#### Added
+- **Generation logging** — `raw/generations.jsonl` records every generation attempt (card_id, timestamp, model, full assembled prompt, character refs used, success/failure). Append-only JSONL.
+- **Prompt sidecars** — `raw/prompts/{card_id}.txt` saves the full assembled prompt in human-readable form for quick debugging.
+- **`characters_in_scene` field** — Each card in deck.json lists which characters are depicted. Controls which reference images are loaded during generation. Empty list `[]` = no refs (tradition/connection cards).
+- **Lean prompt hints** — When character ref images are loaded, `build_generation_prompt()` adds a hint telling the model to prioritize reference images for appearance and use text for pose/action only.
+
+#### Changed
+- `generate_image_nano_banana()` returns a dict (`{success, prompt}`) instead of a bool
+- `load_reference_images()` returns a tuple `(image_parts, loaded_char_keys)` and accepts `characters_in_scene` filter
+- `CHARACTER_LABELS` moved to module-level constant
+- `build_generation_prompt()` accepts `character_refs_loaded` parameter for ref hints
+
+#### Fixed
+- Villain (Haman) appearing in tradition cards — tradition/connection cards now receive zero character refs via `characters_in_scene: []`
+
+---
+
 ### Two-World Visual Consistency System
 
 Cards now exist in one of two visual "worlds," each injected automatically by `build_generation_prompt()`:

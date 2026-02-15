@@ -154,8 +154,17 @@ python generate_references.py --character moses
 2. **World style** — `MODERN_WORLD_STYLE` for connection/tradition cards (modern Orthodox Jewish community, same across all decks), or `story_world` from deck.json for all other cards (per-deck historical setting)
 3. `SAFETY_PROMPT` — content restrictions (no God in human form, no violence, etc.)
 4. Scene description — from deck.json, passed through unchanged
+4b. **Ref hint** — when character ref images are loaded, tells model to prioritize refs for appearance
 5. `COMPOSITION_GUIDANCE[card_type]` — per-card-type cinematography
 6. `COMPOSITION_SUFFIX` — universal no-border, no-text rules
+
+### Generation Provenance
+
+Every generation is logged to `raw/generations.jsonl` (append-only JSONL, 6 fields: card_id, timestamp, model, full_prompt, character_refs, success). Full assembled prompts also saved to `raw/prompts/{card_id}.txt` for quick debugging.
+
+### Selective Character References
+
+Cards include a `characters_in_scene` field in deck.json that controls which character ref images are loaded. `load_reference_images()` filters by this list. Empty list `[]` = no refs loaded (for tradition/connection cards). `null`/absent = load all (backwards compatible).
 
 ### Card Type Composition
 

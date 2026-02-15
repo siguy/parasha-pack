@@ -5,8 +5,9 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 ## Image Generation
 
 ### Character References
-- **Only include references for characters IN the scene** - If a card mentions a character by name in text but they shouldn't appear visually, the reference image may cause them to appear anyway (e.g., tradition_1 mentioning "Haman" in text caused Haman to appear reading the megillah)
-- **Workaround for text-only mentions** - Add explicit exclusion in SCENE section: "Do NOT include [character] in this image" and "GENERIC ADULT (NOT a story character)"
+- **`characters_in_scene` controls ref loading** — Each card has a `characters_in_scene` list in deck.json. Only listed characters' refs are loaded. Empty list `[]` means no character refs (tradition/connection cards). `null`/absent = load all (backwards compatible).
+- **Solved: villain in tradition cards** — Previously all refs were passed to every card. Now tradition_1 gets `characters_in_scene: []` so Haman's ref is never loaded.
+- **Lean prompts with refs** — When character ref images are loaded, the system tells the model to prioritize them for appearance and use text for pose/action only.
 - **One identity per character** - Multiple reference sheets generated from text produce inconsistent results
 - **Character review checkpoint** - Always generate 2+ identity versions for new characters and have user select before proceeding
 
@@ -20,6 +21,11 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Identity reference + text description together** - Both are needed; reference image alone isn't enough
 - **Specific features in every prompt** - "dark pointed goatee with connected mustache" not just "beard"
 - **Pose can affect consistency** - Unusual poses (sitting vs standing) may cause appearance drift
+
+### Generation Provenance
+- **Every generation is logged** — `raw/generations.jsonl` records card_id, timestamp, model, full assembled prompt, character refs used, and success/failure. Append-only.
+- **Prompt sidecars for debugging** — `raw/prompts/{card_id}.txt` saves the full prompt in human-readable form. Overwritten each run (JSONL is the durable record).
+- **To reproduce an image** — Find the generation in `generations.jsonl`, copy the `full_prompt` value, and re-run with the same character refs.
 
 ## Content Writing
 
