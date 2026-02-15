@@ -319,14 +319,14 @@ cd src && python generate_images.py ../decks/purim/deck.json
 # Generate specific card
 python generate_images.py ../decks/purim/deck.json --card story_1
 
+# Generate 3 variants of a card (pick winner, rename to {card_id}.png)
+python generate_images.py ../decks/purim/deck.json --card story_1 --variants 3
+
 # Skip existing images
 python generate_images.py ../decks/purim/deck.json --skip-existing
 
 # Without character references (debugging)
 python generate_images.py ../decks/purim/deck.json --no-refs
-
-# Backup existing images before regenerating
-python generate_images.py ../decks/purim/deck.json --backup
 
 # Sync + export with Card Designer
 ./sync-deck.sh purim

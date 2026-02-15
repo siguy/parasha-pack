@@ -123,14 +123,20 @@ python generate_images.py ../decks/yitro/deck.json              # Generate all
 python generate_images.py ../decks/yitro/deck.json --card spotlight_1  # Single card
 python generate_images.py ../decks/yitro/deck.json --skip-existing     # Skip existing
 python generate_images.py ../decks/yitro/deck.json --no-refs           # Without character refs
-python generate_images.py ../decks/yitro/deck.json --backup            # Backup existing before overwriting
+python generate_images.py ../decks/yitro/deck.json --variants 3        # Generate 3 variants per card
+python generate_images.py ../decks/yitro/deck.json --card story_1 --variants 3  # 3 variants of one card
 ```
 
 ### Reference Image Integration
 
 1. Reads `references/manifest.json` in the deck directory
-2. Scans prompt for character names, loads matching identity PNGs
-3. Base64-encodes and passes alongside text prompt to API
+2. Filters by `characters_in_scene` field in each card (selective loading)
+3. Base64-encodes identity PNGs and passes alongside text prompt to API
+4. Labels derived from manifest at runtime via `get_character_label()`
+
+### Variant Generation
+
+`--variants N` generates N images per card, named `{card_id}_v{N}.png`. Each variant is logged separately in `generations.jsonl`. Selection workflow: pick the winner from `raw/`, rename to `{card_id}.png`, delete variants.
 
 ---
 

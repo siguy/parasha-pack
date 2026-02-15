@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Image Generation Pipeline v2 — Cleanup & Variants
+
+Deleted dead code, consolidated duplicates, added multi-variant generation.
+
+#### Added
+- **`--variants N` flag** for `generate_images.py` — Generates N images per card, named `{card_id}_v{N}.png`. Each variant logged separately in `generations.jsonl`. Selection is manual: pick the winner, rename to `{card_id}.png`, delete the rest.
+
+#### Changed
+- **`CHARACTER_LABELS` → dynamic** — Labels now derived from `manifest.json` at runtime via `get_character_label()`. Adding characters to new decks no longer requires Python code changes.
+- **`CHARACTER_DESIGNS` consolidated** — Single source of truth in `schema.py` (merged from both `schema.py` and `config.py`). All fields preserved: `name`, `name_he`, `description`, `key_features`, `style_prompt`.
+
+#### Removed
+- **Dead generation functions** — `generate_image_imagen()` (~40 lines) and `generate_image_gemini_flash()` (~46 lines) deleted. `--model` flag removed. nano-banana is the only code path.
+- **`--backup` flag** — Git is the versioning tool. Backup directory logic removed (`shutil` import, `backup_dir` setup, per-card copy, summary).
+- **Dead reference types** — `generate_references.py` stripped to identity-only generation. Removed expression, turnaround, and pose sheet generation (~170 lines).
+- **Net reduction:** ~280 lines removed across all files.
+
+---
+
 ### Hebrew Nikud & Anchor Spacing Fix
 
 Fixed nikud clipping, anchor card letter-spacing, and story_3 composition conflict.

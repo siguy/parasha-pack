@@ -140,6 +140,7 @@ See [agents/AGENT_PIPELINE.md](agents/AGENT_PIPELINE.md) for detailed YAML schem
 | Create character refs | `python workflows.py character yitro -d ../decks/yitro -g` |
 | Generate all images | `python generate_images.py ../decks/yitro/deck.json` |
 | Generate single image | `python generate_images.py ../decks/yitro/deck.json --card spotlight_1` |
+| Generate 3 variants | `python generate_images.py ../decks/yitro/deck.json --card story_1 --variants 3` |
 | Generate without style hero | `python generate_images.py ../decks/yitro/deck.json --no-hero` |
 | Sync deck to Card Designer | `./sync-deck.sh purim` |
 | Export final cards | `cd card-designer && npm run export purim -- --backs` |
@@ -154,18 +155,10 @@ source .env && export GEMINI_API_KEY
 
 ## Image Generation Model
 
-**ALWAYS use nano-banana-pro** (the default). Never use imagen or other models.
+**nano-banana-pro** is the only model. There is no `--model` flag — it's hardcoded.
 
 ```bash
-# Correct (default)
 python generate_images.py ../decks/purim/deck.json
-
-# Also correct (explicit)
-python generate_images.py ../decks/purim/deck.json --model nano-banana
-
-# WRONG - never use these
-# python generate_images.py --model imagen  # DON'T USE
-# python generate_images.py --model flash   # DON'T USE
 ```
 
 Character reference images are automatically included from `references/manifest.json` when generating cards. Use `--no-refs` to disable if needed.

@@ -93,10 +93,17 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **English subtitle gap mt-2 minimum** — `mt-1` (4px) crowds nikud from below. Use `mt-2` (8px) on all English text that appears directly below Hebrew FitText titles.
 - **Anchor card letter-spacing for nikud dots** — Hebrew characters with internal dots (shuruq/vav, dagesh) get covered by adjacent letters when displayed large with heavy stroke/shadow effects. Use `letterSpacing: 0.4em` on AnchorCard to give each letter breathing room. Other card types at smaller sizes don't need this.
 
+### Variant Exploration
+- **`--variants N` for comparison** — `python generate_images.py --card story_1 --variants 3` generates `story_1_v1.png`, `story_1_v2.png`, `story_1_v3.png`. Compare in Finder, pick the winner.
+- **Selection is manual** — Rename winner to `story_1.png`, delete variant files. No CLI command needed — `cp` and `rm` already exist.
+- **Works with `--card` for targeted exploration** — Generate variants of one problem card without re-running the whole deck.
+- **Git over backups** — Commit before regenerating. The `--backup` flag was removed because git provides better version history.
+
 ### Generation Provenance
 - **Every generation is logged** — `raw/generations.jsonl` records card_id, timestamp, model, full assembled prompt, character refs used, and success/failure. Append-only.
 - **Prompt sidecars for debugging** — `raw/prompts/{card_id}.txt` saves the full prompt in human-readable form. Overwritten each run (JSONL is the durable record).
 - **To reproduce an image** — Find the generation in `generations.jsonl`, copy the `full_prompt` value, and re-run with the same character refs.
+- **Variants each get a log entry** — Same prompt, different timestamps. Useful for tracking which variant was generated when.
 
 ## Content Writing
 
