@@ -38,30 +38,34 @@ All scenes should feel like they belong in this world. Consistent architecture, 
 ESTHER:
 Young Jewish woman, warm olive skin, large kind brown eyes.
 Long dark hair with elegant modest head covering.
-Royal purple and blue flowing dress, simple gold tiara.
+Royal purple and blue flowing dress with gold embroidery at the hem and cuffs.
+Simple gold tiara catching the light. Delicate gold earrings.
 
-Esther seated on a cushioned bench in the palace throne room.
-King Achashverosh standing beside her, gently placing a golden crown on her head.
-Esther looks up with wide nervous eyes — her hands clasped in her lap.
-She's beautiful but overwhelmed. This is the biggest moment of her life!
-Palace courtiers visible in background, watching the ceremony.
-Warm golden light streaming through tall Persian arched windows.
-Ornate mosaic tiles on the walls, rich tapestries hanging, oil lamps glowing.
-High vaulted ceiling fading into warm amber haze above.
-Dark polished marble floor with shadow pooling in the lower-left.
+Esther takes a brave step forward through a grand palace corridor.
+Her right hand presses against her heart — steadying herself.
+Her left hand is slightly extended forward, fingers spread, as if pushing through fear.
+Her chin is lifted, jaw set with determination. Her eyes are focused and bright.
+Her dress flows behind her with the motion of walking forward.
 
-Magical, exciting, but with a hint of nervousness. A fairy-tale moment with a secret underneath.
+She walks FROM shadow INTO warm golden light — the glow of the throne room ahead.
+Persian mosaic tile floor beneath her feet. Dark carved columns to either side at the edges.
+The golden light ahead washes over her face and dress, making her glow.
+Warm radiance fills the space above her — bright, open, luminous.
+
+She looks SMALL against the tall corridor — but her posture says she is READY.
+This is the bravest thing she has ever done.
+
+PURE COURAGE! The moment a hero steps forward into the unknown.
 
 === CHARACTER REFERENCES ===
-Reference images provided for: Esther (Queen Esther), King Achashverosh (the king).
+Reference images provided for: Esther (Queen Esther).
 For these characters, prioritize the reference images for appearance (face, clothing, coloring). Use the text description above for pose, action, and emotion only.
 
 === COMPOSITION ===
-Scene action positioned in the center and right side of the frame.
-Generous headroom — ceiling, sky, or atmospheric space above the characters' heads.
-The top of the frame should be visually calm: architecture fading up, sky, or warm ambient light.
-Lower-left corner should be darker or simpler — ground shadow, dark foreground element, or negative space.
-Think of a film still where the action is center-right and the lower-left has a moody shadow.
+Character or concept positioned in the center-to-lower portion of the frame.
+Generous headroom — bright sky, warm glow, or atmospheric space above.
+The top of the frame should be open and luminous: bright light, sky, or soft radiance.
+Think of a heroic low-angle shot looking slightly up at the subject, with sky/light above.
 
 === CRITICAL RULES ===
 DO NOT include any border, frame, or rounded corners in the image.

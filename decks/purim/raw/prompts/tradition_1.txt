@@ -1,0 +1,82 @@
+=== STYLE ===
+Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
+
+Visual characteristics:
+- Bold primary colors (red, blue, yellow, green) for foreground elements
+- Soft pastel colors (pink, light blue, cream, mint) for backgrounds
+- Rounded, friendly character designs with large expressive eyes
+- Thick, clean black outlines (2-3px equivalent)
+- Simple shapes with minimal clutter (5-7 main elements maximum)
+- Warm, inviting atmosphere
+- Clean, crisp illustration - NO grain, noise, film texture, or visual artifacts
+- Smooth color fills with no stippling or dithering
+
+ANATOMY REQUIREMENTS:
+- All humans must have exactly 2 arms and 2 legs
+- Hands have exactly 5 fingers each
+- Correct proportions - no extra limbs or merged body parts
+
+CRITICAL: Do NOT render any text in the image. No Hebrew, no English, no titles,
+no labels, no badges. Text will be added programmatically after generation.
+The image should be purely visual.
+Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
+
+=== WORLD: MODERN ORTHODOX JEWISH COMMUNITY ===
+Setting: Modern-day Jewish community. Warm, welcoming, colorful environments.
+
+PEOPLE — ADULTS:
+- Men: knit/srugah kippah, button-down shirt or polo, khakis. Clean-cut, approachable.
+- Women: no hair covering. Casual modest dress — knee-length skirts or dresses,
+  sleeves to elbow or longer. Colorful, modern. No pants on women.
+- Overall: warm, diverse, friendly. Real community feel.
+
+PEOPLE — CHILDREN:
+- Boys: kippot (knit/srugah style). Tzitzit strings sometimes visible, sometimes not.
+- Girls: modest dresses or skirts. Girls do NOT wear kippot.
+- All children: bright, colorful clothing. Happy, engaged expressions.
+
+CLASSROOM SCENES (connection cards):
+- Co-ed — boys and girls together
+- Warm and colorful: bright walls, rug/carpet area, cubbies, play areas
+- Jewish preschool/gan feel
+- No Hebrew text on walls or posters (it will be wrong if AI generates it)
+
+SYNAGOGUE/COMMUNITY SCENES (tradition cards):
+- Classic shul elements: aron kodesh (ark), ner tamid (eternal light)
+- Bright and child-friendly, not dark or imposing
+- Mechitza optional and subtle if present
+- Warm, welcoming community gathering feel
+
+=== SAFETY RULES ===
+- NEVER depict God in human form - use light rays, clouds, or hands from above
+- No graphic violence or death
+- No scary monsters
+- All characters dressed modestly
+- Friendly, approachable expressions on all characters
+- Age-appropriate content for 4-6 year olds
+
+=== SCENE ===
+A warm, cozy synagogue community room decorated for Purim.
+A friendly bearded man (generic community member, NOT a story character) stands in the center holding a megillah scroll open wide, reading aloud with an animated expression. The scroll faces TOWARD the reader — the viewer sees only the blank parchment back of the scroll, NOT the text side.
+Adults sit in chairs in a semicircle around him — grandparents, parents, smiling and holding small megillah booklets.
+Children sit cross-legged on the wooden floor in the foreground, grinning with excitement.
+Several kids are shaking colorful groggers (noisemakers) — red, blue, green.
+One boy covers his ears, laughing. A girl waves her grogger overhead.
+Festive Purim decorations hang from the ceiling: paper streamers in blue, purple, gold.
+Paper mask cutouts (crowns, stars) taped to the walls.
+Warm pendant lights glow golden above. Warm wooden floor below.
+
+Do NOT include Haman or any villain in this image. Show only positive, joyful community members.
+
+Joyful community celebration! The fun of making noise TOGETHER!
+
+=== COMPOSITION ===
+Scene grounded in the center-to-lower portion of the frame.
+Generous headroom — warm golden glow, ceiling, hanging decorations, or ambient light above.
+The top of the frame should glow warmly but be visually simple: golden light, soft bokeh, or warm haze.
+Think of a photo shot at a warm holiday gathering where you see the ceiling lights above the scene.
+
+=== CRITICAL RULES ===
+DO NOT include any border, frame, or rounded corners in the image.
+DO NOT render any text, titles, labels, Hebrew letters, or words anywhere in the image.
+The image should be PURELY visual — all text and borders are added separately by software.

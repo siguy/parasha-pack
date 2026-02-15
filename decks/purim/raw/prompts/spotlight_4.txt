@@ -35,33 +35,32 @@ All scenes should feel like they belong in this world. Consistent architecture, 
 - Age-appropriate content for 4-6 year olds
 
 === SCENE ===
-ESTHER:
-Young Jewish woman, warm olive skin, large kind brown eyes.
-Long dark hair with elegant modest head covering.
-Royal purple and blue flowing dress, simple gold tiara.
+KING ACHASHVEROSH:
+Adult man, somewhat cartoonish and comedic.
+Large ornate Persian crown with red jewel — slightly too big, tilting on his head.
+Fancy royal robes in rich reds and golds with blue sash.
+Big bushy dark beard, wide bewildered eyes, eyebrows raised high.
+One hand scratching his head under the crown. Other hand on his hip.
+Expression: confused, distracted — "Wait, what's going on?"
 
-Esther seated on a cushioned bench in the palace throne room.
-King Achashverosh standing beside her, gently placing a golden crown on her head.
-Esther looks up with wide nervous eyes — her hands clasped in her lap.
-She's beautiful but overwhelmed. This is the biggest moment of her life!
-Palace courtiers visible in background, watching the ceremony.
-Warm golden light streaming through tall Persian arched windows.
-Ornate mosaic tiles on the walls, rich tapestries hanging, oil lamps glowing.
-High vaulted ceiling fading into warm amber haze above.
-Dark polished marble floor with shadow pooling in the lower-left.
+King portrait framed from chest up, face centered.
+Behind him: the ornate Persian throne room — same architectural style as Esther's spotlight.
+Colorful geometric mosaic tiles on the walls. Ornate Persian arched doorway.
+Rich warm light from above. Jeweled decorations glinting.
+Dark throne room shadow at lower-left.
 
-Magical, exciting, but with a hint of nervousness. A fairy-tale moment with a secret underneath.
+Bumbling, confused, slightly SILLY — but not mean. A king who needs help thinking things through. Kids will giggle at him!
 
 === CHARACTER REFERENCES ===
-Reference images provided for: Esther (Queen Esther), King Achashverosh (the king).
+Reference images provided for: King Achashverosh (the king).
 For these characters, prioritize the reference images for appearance (face, clothing, coloring). Use the text description above for pose, action, and emotion only.
 
 === COMPOSITION ===
-Scene action positioned in the center and right side of the frame.
-Generous headroom — ceiling, sky, or atmospheric space above the characters' heads.
-The top of the frame should be visually calm: architecture fading up, sky, or warm ambient light.
-Lower-left corner should be darker or simpler — ground shadow, dark foreground element, or negative space.
-Think of a film still where the action is center-right and the lower-left has a moody shadow.
+Character portrait framed from chest up, face centered in the middle of the frame.
+Generous headroom — palace ceiling, archways, sky, or atmospheric haze visible above the character's head.
+The top of the frame should feel open and calm: architectural detail fading into shadow, or sky.
+Lower-left corner should be darker or in shadow — ground, dark fabric, or shadow pooling there.
+Character looks slightly right of center, creating natural breathing room on the left side.
 
 === CRITICAL RULES ===
 DO NOT include any border, frame, or rounded corners in the image.

@@ -35,25 +35,32 @@ All scenes should feel like they belong in this world. Consistent architecture, 
 - Age-appropriate content for 4-6 year olds
 
 === SCENE ===
-ESTHER:
-Young Jewish woman, warm olive skin, large kind brown eyes.
-Long dark hair with elegant modest head covering.
-Royal purple and blue flowing dress, simple gold tiara.
+MORDECHAI:
+Older Jewish man, warm brown skin, kind wise eyes.
+Full gray-brown beard, dignified posture.
+Jewish head covering (cloth wrap). Modest robes in earth tones — browns, creams, subtle blues.
+Standing TALL and STRAIGHT, arms at his sides, chin up. He shakes his head NO.
 
-Esther seated on a cushioned bench in the palace throne room.
-King Achashverosh standing beside her, gently placing a golden crown on her head.
-Esther looks up with wide nervous eyes — her hands clasped in her lap.
-She's beautiful but overwhelmed. This is the biggest moment of her life!
-Palace courtiers visible in background, watching the ceremony.
-Warm golden light streaming through tall Persian arched windows.
-Ornate mosaic tiles on the walls, rich tapestries hanging, oil lamps glowing.
-High vaulted ceiling fading into warm amber haze above.
-Dark polished marble floor with shadow pooling in the lower-left.
+HAMAN:
+Adult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.
+DISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape).
+Pouty frustrated expression, pointing angrily at Mordechai.
+Muted dusty purple and gray-brown clothing.
 
-Magical, exciting, but with a hint of nervousness. A fairy-tale moment with a secret underneath.
+Busy public street scene outside the palace gates in Shushan.
+Mordechai standing TALL and STRAIGHT center-right, dignified and calm.
+Haman on the left, pointing at Mordechai with frustration — "Why won't you bow?!"
+Other people in the crowd ARE bowing low to the ground TOWARD Haman, their faces and bodies angled toward the left side of the image where Haman stands.
+Mordechai is the ONLY one standing — he towers above the bowing crowd.
+Market stalls with colorful fruits and fabrics visible behind the crowd.
+Tall Persian stone gate archway rises above them all into bright blue sky.
+Townspeople watching from doorways and market stalls.
+Dark ground and shadow in the lower-left corner.
+
+Proud, dignified, brave. Mordechai is a hero for standing firm when everyone else bows.
 
 === CHARACTER REFERENCES ===
-Reference images provided for: Esther (Queen Esther), King Achashverosh (the king).
+Reference images provided for: Mordechai, Haman (the villain).
 For these characters, prioritize the reference images for appearance (face, clothing, coloring). Use the text description above for pose, action, and emotion only.
 
 === COMPOSITION ===

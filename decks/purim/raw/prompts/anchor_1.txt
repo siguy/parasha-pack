@@ -35,33 +35,23 @@ All scenes should feel like they belong in this world. Consistent architecture, 
 - Age-appropriate content for 4-6 year olds
 
 === SCENE ===
-ESTHER:
-Young Jewish woman, warm olive skin, large kind brown eyes.
-Long dark hair with elegant modest head covering.
-Royal purple and blue flowing dress, simple gold tiara.
+A magnificent golden crown resting on a plush royal purple velvet cushion with gold tassels at the corners.
 
-Esther seated on a cushioned bench in the palace throne room.
-King Achashverosh standing beside her, gently placing a golden crown on her head.
-Esther looks up with wide nervous eyes — her hands clasped in her lap.
-She's beautiful but overwhelmed. This is the biggest moment of her life!
-Palace courtiers visible in background, watching the ceremony.
-Warm golden light streaming through tall Persian arched windows.
-Ornate mosaic tiles on the walls, rich tapestries hanging, oil lamps glowing.
-High vaulted ceiling fading into warm amber haze above.
-Dark polished marble floor with shadow pooling in the lower-left.
+The crown is ornate and detailed — delicate gold filigree with tiny purple amethyst gems set around the band. A subtle Star of David is woven into the metalwork, barely visible unless you LOOK for it (like a hidden secret!). The gold is warm and burnished, glowing from within.
 
-Magical, exciting, but with a hint of nervousness. A fairy-tale moment with a secret underneath.
+A single dramatic beam of warm golden light streams down from above, illuminating ONLY the crown. Tiny golden dust motes and sparkles float in the light beam around the crown.
 
-=== CHARACTER REFERENCES ===
-Reference images provided for: Esther (Queen Esther), King Achashverosh (the king).
-For these characters, prioritize the reference images for appearance (face, clothing, coloring). Use the text description above for pose, action, and emotion only.
+The cushion floats in a sea of soft, warm darkness. No walls, no ceiling, no hard edges — just the crown in its spotlight. A faint blue curtain edge and the silhouette of a column are barely visible at the far left and right edges, but they fade into shadow. Nothing creates a horizontal line across the image.
+
+The ENTIRE upper portion of the frame is a seamless warm gradient — deep royal purple at the very top fading smoothly to rich amber around the light beam. Stars and tiny sparkles scattered throughout. NO ceiling, NO wall edge, NO hard lines. Just endless atmospheric glow above the crown.
+
+WONDER AND MYSTERY — whose crown is this? What secret does it hold? A magical, hushed moment — like finding treasure in the dark.
 
 === COMPOSITION ===
-Scene action positioned in the center and right side of the frame.
-Generous headroom — ceiling, sky, or atmospheric space above the characters' heads.
-The top of the frame should be visually calm: architecture fading up, sky, or warm ambient light.
-Lower-left corner should be darker or simpler — ground shadow, dark foreground element, or negative space.
-Think of a film still where the action is center-right and the lower-left has a moody shadow.
+Subject (symbol/object) positioned in the center-to-lower portion of the frame.
+Generous headroom above — atmospheric space, sky, ceiling glow, or gradient above the subject.
+The upper portion of the frame should be visually calm: soft gradient, ambient light, or simple environment.
+Think of this as a movie poster where the title would sit at the top — give it that kind of open, cinematic space above.
 
 === CRITICAL RULES ===
 DO NOT include any border, frame, or rounded corners in the image.

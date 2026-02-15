@@ -1,0 +1,84 @@
+=== STYLE ===
+Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
+
+Visual characteristics:
+- Bold primary colors (red, blue, yellow, green) for foreground elements
+- Soft pastel colors (pink, light blue, cream, mint) for backgrounds
+- Rounded, friendly character designs with large expressive eyes
+- Thick, clean black outlines (2-3px equivalent)
+- Simple shapes with minimal clutter (5-7 main elements maximum)
+- Warm, inviting atmosphere
+- Clean, crisp illustration - NO grain, noise, film texture, or visual artifacts
+- Smooth color fills with no stippling or dithering
+
+ANATOMY REQUIREMENTS:
+- All humans must have exactly 2 arms and 2 legs
+- Hands have exactly 5 fingers each
+- Correct proportions - no extra limbs or merged body parts
+
+CRITICAL: Do NOT render any text in the image. No Hebrew, no English, no titles,
+no labels, no badges. Text will be added programmatically after generation.
+The image should be purely visual.
+Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
+
+=== WORLD: MODERN ORTHODOX JEWISH COMMUNITY ===
+Setting: Modern-day Jewish community. Warm, welcoming, colorful environments.
+
+PEOPLE — ADULTS:
+- Men: knit/srugah kippah, button-down shirt or polo, khakis. Clean-cut, approachable.
+- Women: no hair covering. Casual modest dress — knee-length skirts or dresses,
+  sleeves to elbow or longer. Colorful, modern. No pants on women.
+- Overall: warm, diverse, friendly. Real community feel.
+
+PEOPLE — CHILDREN:
+- Boys: kippot (knit/srugah style). Tzitzit strings sometimes visible, sometimes not.
+- Girls: modest dresses or skirts. Girls do NOT wear kippot.
+- All children: bright, colorful clothing. Happy, engaged expressions.
+
+CLASSROOM SCENES (connection cards):
+- Co-ed — boys and girls together
+- Warm and colorful: bright walls, rug/carpet area, cubbies, play areas
+- Jewish preschool/gan feel
+- No Hebrew text on walls or posters (it will be wrong if AI generates it)
+
+SYNAGOGUE/COMMUNITY SCENES (tradition cards):
+- Classic shul elements: aron kodesh (ark), ner tamid (eternal light)
+- Bright and child-friendly, not dark or imposing
+- Mechitza optional and subtle if present
+- Warm, welcoming community gathering feel
+
+=== SAFETY RULES ===
+- NEVER depict God in human form - use light rays, clouds, or hands from above
+- No graphic violence or death
+- No scary monsters
+- All characters dressed modestly
+- Friendly, approachable expressions on all characters
+- Age-appropriate content for 4-6 year olds
+
+=== SCENE ===
+Six diverse children (ages 4-6) sitting cross-legged in a circle on a round, colorful braided rug with concentric rings of red, blue, yellow, and green.
+
+A girl with brown curly hair leans forward eagerly, one hand on her knee, mouth open mid-sentence — she is TELLING her story.
+A boy in a striped kippah has his hand raised high, fingers spread, bouncing slightly — he wants to share next!
+A boy with dark skin wearing a colorful knit kippah rests his chin on both hands, elbows on knees, listening with wide thoughtful eyes.
+A girl with a pink headband sits with her arms wrapped around her knees, smiling shyly — warming up to speak.
+Two more children sit attentively, one nodding, one with a hand on a friend's shoulder.
+
+The classroom behind them feels LIVED-IN and warm:
+A low wooden bookshelf with picture books and a teddy bear. Children's drawings taped to the wall (stick figures, a rainbow, a sun). A window with afternoon golden light streaming in, green trees visible outside. A small plant on the windowsill. Soft blue cubbies in the corner.
+
+The rug is THEIR special circle-time spot — it feels familiar and safe.
+Warm afternoon light fills the room. Hardwood floor around the rug.
+
+COZY AND SAFE — like the best part of the school day, when everyone gets to share.
+
+=== COMPOSITION ===
+Characters positioned in the upper two-thirds of the frame.
+The bottom of the frame should be simple and calm — a soft floor, rug edge, or gentle gradient.
+Think of a photo taken from slightly above, looking down at children sitting, with floor visible at the bottom.
+Warm, even lighting throughout. No busy details in the lower 20% of the image.
+
+=== CRITICAL RULES ===
+DO NOT include any border, frame, or rounded corners in the image.
+DO NOT render any text, titles, labels, Hebrew letters, or words anywhere in the image.
+The image should be PURELY visual — all text and borders are added separately by software.

@@ -65,6 +65,13 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Warm golden afternoon light** — Not bright overhead. The lighting should feel like the coziest part of the school day.
 - **The rug/nook is their SPECIAL SPOT** — Describe specific colors and textures. A braided rug with red/blue/yellow rings, or big floor cushions in warm colors. It should feel familiar.
 
+### Pipeline Cross-Reference (CRITICAL)
+- **Visual Director must read teacher_script** — Story_4 was missing Haman because the Visual Director wrote "Esther approaches the king" without checking the teacher script, which describes the banquet reveal scene where Haman is present. Always cross-reference the Content Writer's narrative when composing scene prompts.
+- **characters_in_scene must match the prompt** — If the prompt mentions King Achashverosh placing a crown, his identity ref must be loaded. Story_1 had the king in the prompt but only `["esther"]` in characters_in_scene, so the model invented a generic king.
+- **Every boy in Modern World cards needs a kippah** — MODERN_WORLD_STYLE says "Boys: kippot" but this is a general instruction. Scene prompts must explicitly specify "wearing a kippah" for each boy described, or the model may skip some.
+- **Megillah/scroll direction** — AI models render text on scrolls facing the viewer by default. Add "scroll faces TOWARD the reader, text NOT visible to viewer" to prevent backwards text.
+- **No hard horizontal lines in anchor cards** — Describing rooms with walls/ceilings creates visible edges in the upper frame. Use "floating in darkness" or "seamless gradient" instead of interior architecture.
+
 ### Character Consistency
 - **Identity reference + text description together** - Both are needed; reference image alone isn't enough
 - **Specific features in every prompt** - "dark pointed goatee with connected mustache" not just "beard"
