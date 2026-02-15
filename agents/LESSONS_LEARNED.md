@@ -30,6 +30,23 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Emotional punch lines in ALL-CAPS** — "PURE JOY!" and "THE CLIMAX!" at the end of prompts produce more energetic images than flat descriptions.
 - **v1 prompts were richer than v2** — When moving to scene-only architecture, prompts got stripped too aggressively. System layers handle style/safety/composition, but scene descriptions still need maximum detail and energy.
 
+### Anchor Card Prompts
+- **Material detail, not generic objects** — "delicate gold filigree with tiny purple amethyst gems" not "a golden crown." Rich textures make the symbol feel real and precious.
+- **Dramatic lighting sells the moment** — A single beam of light, golden dust motes, soft sparkles. The symbol should feel like a treasure being revealed.
+- **Mystery and narrative hook** — A hidden Star of David = hidden identity. The image should make kids ask "what IS that?"
+- **Keep upper frame atmospheric** — Warm gradient, soft glow, scattered stars above. Title text overlays there. Push architectural detail to the sides.
+
+### Power Word Card Prompts
+- **A heroic MOMENT, not a pose** — "takes a brave step forward, hand pressed to heart" not "standing tall and brave." The character must be DOING the word.
+- **Light transition as visual metaphor** — Character walking from shadow into golden light embodies courage/growth better than static radiance.
+- **Scale contrast** — Character looks small against a vast environment (tall corridor, open sky) but posture says STRENGTH. Visual tension embodies the concept.
+- **Keep upper frame luminous** — The Hebrew word and English meaning overlay at the top. Warm radiance, not detailed architecture.
+
+### Composition Awareness (All Card Types)
+- **Top 25% of frame is text overlay zone** — Title, Hebrew, emotion labels all go here. Scene prompts must keep this area CALM: gradients, glow, sky, atmospheric light. Never put detailed architecture or busy elements there.
+- **Push detail to sides and below** — Columns, archways, furniture, props go to left/right edges and lower frame. The model can still show rich environments without cluttering the text zone.
+- **Scene prompts should COMPLEMENT composition guidance, not fight it** — `build_generation_prompt()` injects composition per card type. If your scene describes "tall columns filling the frame" and the system says "generous headroom," they conflict.
+
 ### Tradition Card Prompts (Modern World)
 - **Specific people doing specific things** — "dad arranging fruit in a basket" not "family gathered." Name the actions.
 - **Props must be identifiable** — hamantaschen, groggers, megillah scroll, masks, gift baskets. The viewer should be able to name 4+ objects in the scene.

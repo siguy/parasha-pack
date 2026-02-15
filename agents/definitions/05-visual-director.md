@@ -314,6 +314,19 @@ Image prompts in deck.json are **pure scene descriptions** — what to draw, not
 
 `build_generation_prompt()` in `generate_images.py` automatically layers system concerns (style, safety, composition, rules) at generation time. The Visual Director only writes scene content.
 
+### Composition Awareness (IMPORTANT)
+
+`build_generation_prompt()` injects per-card-type composition guidance automatically (see `image_prompts.py`). The Visual Director does NOT write composition instructions — but scene prompts must NOT conflict with the composition layer:
+
+- **All card types** reserve the **upper portion** of the frame for text overlay (title, Hebrew). Scene prompts should keep the upper area **calm and open** — warm gradients, soft glow, sky, atmospheric light. Push architectural details and busy elements to the SIDES and LOWER areas.
+- **Anchor/Power Word** — subject center-to-lower, luminous/atmospheric space above
+- **Spotlight** — face centered, headroom above, darker lower-left
+- **Story** — action center-right, headroom above, darker lower-left
+- **Connection** — characters in upper two-thirds, simple floor below
+- **Tradition** — scene center-to-lower, warm golden glow above
+
+**Rule of thumb:** If your scene description puts detailed architecture, text, or busy elements in the top 25% of the frame, it will fight the text overlay. Describe that detail at the SIDES or below instead.
+
 ### Scene Prompt Template
 
 Write scene prompts like **stage directions for a movie**, not static descriptions. Every prompt needs:
@@ -413,10 +426,19 @@ The whole story comes down to this.
 - **connection_2 pattern (intimate)**: 1-2 children in a quieter moment. If one child, add a comfort object (stuffed animal) AND a friend nearby. Never show a child truly alone — the message is "safe to share feelings," not "lonely."
 - **Negative constraint**: Do NOT include story characters (Esther, Mordechai, etc.). These are generic modern children.
 
-**Power Word cards** — Character demonstrating a concept:
-- **Heroic framing** — character looks powerful, capable, determined
-- **One clear central concept** visually embodied
-- Keep it focused — fewer background elements than story cards
+**Anchor cards** — The deck's opening image. Must create a "Wow!" moment:
+- **One iconic symbol** described with rich material detail — not just "a crown" but "delicate gold filigree with tiny purple amethyst gems, a subtle Star of David woven into the metalwork"
+- **Dramatic lighting** — a single beam of light, warm glow, golden dust motes. The symbol should feel like a treasure being revealed.
+- **Atmospheric upper area** — the top of the frame must be calm and open (warm gradient, soft glow, scattered stars) because the title overlays there. Keep architectural details to the SIDES, not above.
+- **Mystery and narrative hook** — the image should make kids ask "what IS that?" Connect to the emotional hook (e.g., hidden Star of David = hidden identity).
+- **Minimal environment** — hints of setting (shadow of columns, edge of a curtain) but the symbol dominates. Everything else fades to soft shadow or warm glow.
+
+**Power Word cards** — Character demonstrating the concept through ACTION:
+- **A specific heroic moment, not a pose** — don't write "standing tall and brave." Write "takes a brave step forward through a grand corridor, hand pressed to her heart." The character should be DOING something that embodies the word.
+- **Light-to-dark or dark-to-light transition** — visual metaphor for courage, growth, or transformation. Character walking from shadow into golden light, or light breaking through behind them.
+- **Open luminous space above** — the Hebrew word and English meaning overlay at the top. Keep the upper frame bright and simple (warm radiance, sky, golden glow). Push architectural detail to the sides and below.
+- **Scale contrast** — character looks small against a large environment (tall corridor, vast sky) but their posture says STRENGTH. This visual tension embodies the word.
+- **Focused composition** — fewer background elements than story cards. One character, one clear concept, one powerful moment.
 
 ### Prompt Quality Checklist
 
@@ -430,6 +452,11 @@ Before finalizing each scene prompt, verify:
 - [ ] **Spotlight cards**: Character has a signature gesture, not just a facial expression
 - [ ] **Connection cards**: Every child has a distinct gesture/role (talking, listening, thinking) — no generic circles
 - [ ] **Connection cards**: Classroom has lived-in details (drawings on walls, books, plants, afternoon light)
+- [ ] **Anchor cards**: Symbol described with material detail (filigree, gems, textures) — not just "a crown"
+- [ ] **Anchor cards**: Upper frame is atmospheric/calm (gradient, glow) — not busy architecture
+- [ ] **Power Word cards**: Character is DOING something that embodies the word — not just a static pose
+- [ ] **Power Word cards**: Upper frame is luminous and open for Hebrew word overlay
+- [ ] **ALL cards**: No detailed architecture or busy elements in the top 25% of the frame (text overlay zone)
 
 ## Success Criteria
 
