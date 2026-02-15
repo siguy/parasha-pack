@@ -346,105 +346,12 @@ def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspe
         return {"success": False, "prompt": prompt}
 
 
-def generate_image_imagen(prompt: str, api_key: str, output_path: str) -> bool:
-    """
-    Generate an image using Google Imagen 4.0 model (not recommended).
-    Note: Prefer nano-banana for better children's book style results.
-    """
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key={api_key}"
-
-    payload = {
-        "instances": [{"prompt": prompt}],
-        "parameters": {
-            "sampleCount": 1,
-            "aspectRatio": "3:4",
-            "personGeneration": "allow_adult",
-            "safetySetting": "block_low_and_above"
-        }
-    }
-
-    try:
-        data = json.dumps(payload).encode('utf-8')
-        req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"}, method='POST')
-
-        with urllib.request.urlopen(req, timeout=120) as response:
-            result = json.loads(response.read().decode())
-
-        if "predictions" in result and len(result["predictions"]) > 0:
-            image_data = result["predictions"][0].get("bytesBase64Encoded")
-            if image_data:
-                with open(output_path, 'wb') as f:
-                    f.write(base64.b64decode(image_data))
-                return True
-
-        print(f"  No image in response: {result}")
-        return False
-
-    except urllib.error.HTTPError as e:
-        error_body = e.read().decode() if e.fp else ""
-        print(f"  HTTP Error {e.code}: {error_body[:200]}")
-        return False
-    except Exception as e:
-        print(f"  Error: {e}")
-        return False
-
-
-def generate_image_gemini_flash(prompt: str, api_key: str, output_path: str) -> bool:
-    """
-    Generate an image using Gemini Flash model with image generation.
-    """
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent?key={api_key}"
-
-    payload = {
-        "contents": [{
-            "parts": [{"text": f"Generate an image: {prompt}"}]
-        }],
-        "generationConfig": {
-            "responseModalities": ["IMAGE", "TEXT"]
-        }
-    }
-
-    headers = {"Content-Type": "application/json"}
-
-    try:
-        data = json.dumps(payload).encode('utf-8')
-        req = urllib.request.Request(url, data=data, headers=headers, method='POST')
-
-        with urllib.request.urlopen(req, timeout=120) as response:
-            result = json.loads(response.read().decode())
-
-        # Extract image from response
-        if "candidates" in result:
-            for candidate in result["candidates"]:
-                content = candidate.get("content", {})
-                for part in content.get("parts", []):
-                    if "inlineData" in part:
-                        image_data = part["inlineData"].get("data")
-                        if image_data:
-                            image_bytes = base64.b64decode(image_data)
-                            with open(output_path, 'wb') as f:
-                                f.write(image_bytes)
-                            return True
-
-        print(f"  No image in response")
-        return False
-
-    except urllib.error.HTTPError as e:
-        error_body = e.read().decode() if e.fp else ""
-        print(f"  HTTP Error {e.code}: {error_body[:200]}")
-        return False
-    except Exception as e:
-        print(f"  Error: {e}")
-        return False
-
-
 def main():
     parser = argparse.ArgumentParser(description="Generate images for Parasha Pack cards")
     parser.add_argument("deck_path", help="Path to deck.json file")
     parser.add_argument("--api-key", help="Gemini API key (or set GEMINI_API_KEY env var)")
     parser.add_argument("--card", help="Generate image for specific card ID only")
     parser.add_argument("--skip-existing", action="store_true", help="Skip cards that already have images")
-    parser.add_argument("--model", choices=["nano-banana", "imagen", "flash"], default="nano-banana", help="Model to use (nano-banana recommended)")
     parser.add_argument("--no-refs", action="store_true", help="Disable character reference images")
     parser.add_argument("--no-hero", action="store_true", help="Skip style hero reference image")
     parser.add_argument("--backup", action="store_true", help="Backup existing images before overwriting")
@@ -486,19 +393,11 @@ def main():
 
     print(f"Generating images for: {deck_name}")
     print(f"Output directory: {raw_dir}")
-    print(f"Model: {args.model}")
+    print(f"Model: nano-banana-pro")
     print("-" * 50)
     print("Note: Images are saved WITHOUT text overlay.")
     print("Use Card Designer (card-designer/) to render final cards with text.")
     print("-" * 50)
-
-    # Select generation function (nano-banana is default and recommended)
-    if args.model == "nano-banana":
-        generate_fn = generate_image_nano_banana
-    elif args.model == "imagen":
-        generate_fn = generate_image_imagen
-    else:
-        generate_fn = generate_image_gemini_flash
 
     # Track results
     success_count = 0
@@ -541,14 +440,14 @@ def main():
 
         print(f"[GEN] {card_id}: {title}...")
 
-        # Load reference images for character consistency (nano-banana only)
+        # Load reference images for character consistency
         # characters_in_scene controls which refs are loaded:
         #   None  = load all refs (backwards compatible, field absent)
         #   []    = load no refs (tradition/connection cards)
         #   ["esther", "mordechai"] = load only those refs
         reference_images = []
         loaded_char_keys = []
-        if args.model == "nano-banana" and not args.no_refs:
+        if not args.no_refs:
             characters_in_scene = card.get("characters_in_scene")  # None if absent
             reference_images, loaded_char_keys = load_reference_images(
                 deck_path, characters_in_scene=characters_in_scene,
@@ -565,14 +464,11 @@ def main():
         save_prompt_sidecar(deck_path, card_id, prompt)
 
         # Generate image
-        if args.model == "nano-banana":
-            result = generate_fn(prompt, api_key, str(output_path), reference_images=reference_images)
-            success = result["success"]
-        else:
-            success = generate_fn(prompt, api_key, str(output_path))
+        result = generate_image_nano_banana(prompt, api_key, str(output_path), reference_images=reference_images)
+        success = result["success"]
 
         # Log every generation attempt
-        model_name = "nano-banana-pro" if args.model == "nano-banana" else args.model
+        model_name = "nano-banana-pro"
         log_generation(deck_path, card_id, model_name, prompt, loaded_char_keys, success)
 
         if success:
