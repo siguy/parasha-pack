@@ -17,6 +17,7 @@ Get your API key at: https://aistudio.google.com/app/apikey
 import argparse
 import json
 import os
+import shutil
 import sys
 import time
 import urllib.request
@@ -446,6 +447,7 @@ def main():
     parser.add_argument("--model", choices=["nano-banana", "imagen", "flash"], default="nano-banana", help="Model to use (nano-banana recommended)")
     parser.add_argument("--no-refs", action="store_true", help="Disable character reference images")
     parser.add_argument("--no-hero", action="store_true", help="Skip style hero reference image")
+    parser.add_argument("--backup", action="store_true", help="Backup existing images before overwriting")
 
     args = parser.parse_args()
 
@@ -469,6 +471,14 @@ def main():
     # Setup output directory - raw/ for scene-only images
     raw_dir = deck_path.parent / "raw"
     raw_dir.mkdir(exist_ok=True)
+
+    # Setup backup directory if --backup flag set
+    backup_dir = None
+    if args.backup:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        backup_dir = raw_dir / f"backup_{timestamp}"
+        backup_dir.mkdir(exist_ok=True)
+        print(f"Backup directory: {backup_dir}")
 
     # Get deck name and story world
     deck_name = deck.get('parasha_en') or deck.get('holiday_en') or 'Unknown'
@@ -510,6 +520,10 @@ def main():
             print(f"[SKIP] {card_id} - image exists")
             skip_count += 1
             continue
+
+        # Backup existing image before overwriting
+        if backup_dir and output_path.exists():
+            shutil.copy2(output_path, backup_dir / output_path.name)
 
         raw_prompt = card.get("image_prompt", "")
         if not raw_prompt:
@@ -579,6 +593,14 @@ def main():
 
     print("-" * 50)
     print(f"Complete! Success: {success_count}, Skipped: {skip_count}, Failed: {fail_count}")
+
+    if backup_dir:
+        backed_up = list(backup_dir.glob("*.png"))
+        if backed_up:
+            print(f"\nBacked up {len(backed_up)} images to: {backup_dir}")
+        else:
+            # No images were backed up — remove empty directory
+            backup_dir.rmdir()
 
     if success_count > 0:
         print(f"\nRaw images saved to: {raw_dir}")
