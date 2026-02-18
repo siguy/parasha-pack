@@ -143,6 +143,9 @@ async function exportCard(
     // Give fonts and images time to load
     await page.waitForTimeout(500);
 
+    // Hide Next.js dev error overlay/toast if present
+    await page.addStyleTag({ content: 'nextjs-portal, [data-nextjs-toast], [data-nextjs-dialog-overlay] { display: none !important; }' });
+
     await page.screenshot({
       path: outputPath,
       clip: { x: 0, y: 0, width: cssWidth, height: cssHeight },

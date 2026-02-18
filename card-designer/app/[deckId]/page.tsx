@@ -2,6 +2,7 @@
 import { getDeck } from '@/lib/api';
 import { CardFactory } from '@/components/cards/CardFactory';
 import { CardGrid } from '@/components/layout/CardGrid';
+import { ScaledBack } from '@/components/layout/ScaledBack';
 import { ExportControls } from '@/components/ui/ExportControls';
 import { notFound } from 'next/navigation';
 
@@ -58,10 +59,12 @@ export default async function DeckPage({ params }: PageProps) {
                   <ExportControls cardId={card.card_id} />
                 </div>
                 
-                {/* Render Back for visualization */}
-                <div className="mt-4">
-                  <CardFactory card={card} deckId={deckId} config={config} side="back" />
-                  <div className="text-center w-full px-2">
+                {/* Render Back — 1500x2100 scaled to match front width */}
+                <div className="mt-4 w-full">
+                  <ScaledBack>
+                    <CardFactory card={card} deckId={deckId} config={config} side="back" />
+                  </ScaledBack>
+                  <div className="text-center w-full px-2 mt-1">
                     <span className="text-xs font-mono text-gray-400">{card.card_id} (Back)</span>
                   </div>
                 </div>

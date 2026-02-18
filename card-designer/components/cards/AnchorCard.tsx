@@ -41,12 +41,13 @@ export function AnchorCard({ card, deckId, config, onConfigChange }: AnchorCardP
       >
         {/* Full Bleed Image Background */}
          <div className="absolute inset-0 z-0 bg-slate-200">
-            <img 
-                src={`/api/images?deck=${deckId}&path=${card.image_path}`} 
+            <img
+                src={`/api/images?deck=${deckId}&path=${card.image_path}`}
                 alt={card.hebrew_title || "Anchor Card"}
                 className="w-full h-full object-cover"
             />
-             {/* Optional Overlay to help text readability if needed, though design doc says minimal text */}
+            {/* Gradient overlay for title readability */}
+            <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
         </div>
 
         {/* Content Layer */}
@@ -55,17 +56,17 @@ export function AnchorCard({ card, deckId, config, onConfigChange }: AnchorCardP
             {/* Top Centered Hebrew Title */}
             <div className="absolute top-[10%] left-0 right-0 flex justify-center">
                 <DraggableElement id="anchor-title" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
-                    <div className="drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]">
+                    <div className="drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]" style={{ transform: 'scale(1.25)', transformOrigin: 'center' }}>
                          <FitText
                             maxSize={160}
                             minSize={80}
-                            padding={12}
+                            padding={10}
                             className="font-black font-hebrew"
                             style={{
                                 color: borderColor,
                                 WebkitTextStroke: '1.5px white',
                                 paintOrder: 'stroke fill',
-                                letterSpacing: '0.4em',
+                                letterSpacing: '0.2em',
                                 textShadow: '0 0 6px white, 0 0 12px white, 0 0 20px white, 2px 2px 0px white, -2px -2px 0px white, 2px -2px 0px white, -2px 2px 0px white',
                             }}
                          >

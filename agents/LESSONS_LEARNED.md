@@ -91,7 +91,11 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Clear `.next` cache after component changes** — `rm -rf card-designer/.next` before re-exporting, or the old compiled components may be served.
 - **Hebrew nikud needs lineHeight ≥ 1.3** — Nikud marks sit below the baseline. `lineHeight: 1.1` clips them; `1.3` gives enough room. Also use `overflow: visible` on the FitText container, never `hidden`.
 - **English subtitle gap mt-2 minimum** — `mt-1` (4px) crowds nikud from below. Use `mt-2` (8px) on all English text that appears directly below Hebrew FitText titles.
-- **Anchor card letter-spacing for nikud dots** — Hebrew characters with internal dots (shuruq/vav, dagesh) get covered by adjacent letters when displayed large with heavy stroke/shadow effects. Use `letterSpacing: 0.4em` on AnchorCard to give each letter breathing room. Other card types at smaller sizes don't need this.
+- **Anchor card letter-spacing for nikud dots** — Hebrew characters with internal dots (shuruq/vav, dagesh) get covered by adjacent letters when displayed large with heavy stroke/shadow effects. Use `letterSpacing: 0.2em` on AnchorCard to give each letter breathing room. Other card types at smaller sizes don't need this.
+- **FitText accounts for CSS letter-spacing** — Canvas API measurement ignores CSS `letter-spacing` by default. FitText now reads `style.letterSpacing` (em and px units) and adds it to the Canvas measurement. Without this, text with letter-spacing overflows its container.
+- **FitText minSize is a soft floor** — The `minSize` prop is a preference, not a hard clamp. Text can shrink below minSize (absolute floor: 12px) to avoid overflow. Long Hebrew titles with nikud need room to breathe.
+- **Title gradient: h-44 from-black/50** — All card types use the same gradient spec at the top of the card for title readability. Standardized to `h-44 bg-gradient-to-b from-black/50 to-transparent`. Don't vary per card type — consistency makes the deck feel unified.
+- **Hide Next.js dev overlay in exports** — Playwright screenshots capture the dev error overlay ("1 issue" badge). The export script injects CSS to hide `nextjs-portal, [data-nextjs-toast], [data-nextjs-dialog-overlay]` before screenshotting.
 
 ### Variant Exploration
 - **`--variants N` for comparison** — `python generate_images.py --card story_1 --variants 3` generates `story_1_v1.png`, `story_1_v2.png`, `story_1_v3.png`. Compare in Finder, pick the winner.

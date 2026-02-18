@@ -46,8 +46,8 @@ export function TraditionCard({ card, deckId, config, onConfigChange }: Traditio
                 alt={card.english_title || "Tradition Card"}
                 className="w-full h-full object-cover"
             />
-            {/* Gradient Overlay for text visibility at top */}
-            <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+            {/* Gradient overlay for title readability */}
+            <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
         </div>
 
         {/* Content Layer */}

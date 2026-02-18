@@ -46,8 +46,8 @@ export function ConnectionCard({ card, deckId, config, onConfigChange }: Connect
                 alt="Connection Card"
                 className="w-full h-full object-cover"
             />
-            {/* Gradient overlays for text visibility */}
-            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/40 to-transparent pointer-events-none" />
+            {/* Gradient overlay for title readability */}
+            <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
         </div>
 

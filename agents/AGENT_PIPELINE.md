@@ -242,7 +242,7 @@ Character reference images from `references/manifest.json` are automatically inc
 - **FitText:** All card types use FitText for dynamic Hebrew title scaling (min/max ranges per type)
 - **Keywords/emotion badges:** Fixed `text-3xl` / `text-sm` spans, left-aligned bottom-left (same on Story + Spotlight)
 - **Fonts:** Fredoka (UI), Hebrew font (RTL), Patrick Hand (notes)
-- **Gradients:** `bg-gradient-to-b` (top) and `bg-gradient-to-t` (bottom) for text readability
+- **Title gradient:** All card types use `h-44 bg-gradient-to-b from-black/50 to-transparent` at the top for title readability (standardized across all 6 types). Additional `bg-gradient-to-t` (bottom) used on some types for keyword/badge readability.
 - **Export viewport:** Fronts render at 500x700 CSS @ 3x scale (matches design editor). Backs render at 1500x2100 CSS @ 1x (print-calibrated fonts).
 
 ```bash

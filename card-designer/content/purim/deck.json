@@ -10,6 +10,7 @@
   "card_count": 16,
   "sessions": 2,
   "emotional_core": "Hidden courage — being brave even when scared",
+  "story_world": "Ancient Persian Empire, city of Shushan (Susa). Ornate sandstone palace with Persian arches, mosaic tiles, carved stone columns. Lush palace gardens with date palms, pomegranate trees, flowing fountains. Desert climate — warm golden light, deep blue sky. Persian court aesthetic: flowing robes, turbans, ornate Persian-style crowns, rich textiles in golds, deep purples, and royal blues. Think Persepolis, NOT biblical Israel. Warm sandstone, polished marble floors, hanging tapestries, oil lamps. City streets have market stalls, stone buildings, Persian archways.",
   "cards": [
     {
       "card_id": "anchor_1",
@@ -20,7 +21,7 @@
       "emotional_hook_he": "הֲאִם אֵי פַּעַם הָיִיתָ צָרִיךְ לִהְיוֹת מַמָּשׁ, מַמָּשׁ אַמִּיץ? הַיּוֹם נִפְגֹּשׁ מַלְכָּה עִם סוֹד גָּדוֹל!",
       "symbol_description": "A golden crown with a subtle Star of David woven into its design, glowing softly. Represents Esther's hidden Jewish identity beneath her royal role.",
       "border_color": "#8B5CF6",
-      "image_prompt": "A golden crown sitting on a royal purple velvet cushion, center-low in the frame.\nA subtle Star of David is woven into the crown's design, glowing softly.\nSparkles and gentle light rays around the crown.\nAbove the crown: deep royal purple sky fading to warm amber, with scattered stars.\n\nMagical, mysterious, wonder. The crown glows with hidden meaning.",
+      "image_prompt": "A magnificent golden crown resting on a plush royal purple velvet cushion with gold tassels at the corners.\n\nThe crown is ornate and detailed — delicate gold filigree with tiny purple amethyst gems set around the band. A subtle Star of David is woven into the metalwork, barely visible unless you LOOK for it (like a hidden secret!). The gold is warm and burnished, glowing from within.\n\nA single dramatic beam of warm golden light streams down from above, illuminating ONLY the crown. Tiny golden dust motes and sparkles float in the light beam around the crown.\n\nThe cushion floats in a sea of soft, warm darkness. No walls, no ceiling, no hard edges — just the crown in its spotlight. A faint blue curtain edge and the silhouette of a column are barely visible at the far left and right edges, but they fade into shadow. Nothing creates a horizontal line across the image.\n\nThe ENTIRE upper portion of the frame is a seamless warm gradient — deep royal purple at the very top fading smoothly to rich amber around the light beam. Stars and tiny sparkles scattered throughout. NO ceiling, NO wall edge, NO hard lines. Just endless atmospheric glow above the crown.\n\nWONDER AND MYSTERY — whose crown is this? What secret does it hold? A magical, hushed moment — like finding treasure in the dark.",
       "image_path": "raw/anchor_1.png",
       "teacher_script": "Today we're going to hear an amazing story. It's about a queen named Esther who had a BIG secret. She was Jewish — just like us! — but nobody knew. When her people needed help, she had to be SO brave. Let's find out what happened!",
       "teacher_tip": "Have children close their eyes while you describe the crown. It builds anticipation.",
@@ -29,7 +30,8 @@
         "What do you think a queen's secret could be?",
         "When have you had a really big feeling inside?"
       ],
-      "session": 1
+      "session": 1,
+      "characters_in_scene": []
     },
     {
       "card_id": "spotlight_1",
@@ -42,7 +44,7 @@
       "emotion_label_he": "אַמִּיצָה",
       "character_description_en": "Esther was a young Jewish woman who became the queen. She kept her Jewish identity a secret. When her people needed help, she found her courage.",
       "character_description_he": "אֶסְתֵּר הָיְתָה אִשָּׁה יְהוּדִיָּה צְעִירָה שֶׁהָפְכָה לְמַלְכָּה. הִיא שָׁמְרָה אֶת זְהוּתָהּ הַיְּהוּדִית בְּסוֹד. כְּשֶׁעַמָּהּ הָיָה צָרִיךְ עֶזְרָה, הִיא מָצְאָה אֶת הָאֹמֶץ שֶׁלָּהּ.",
-      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress, simple gold tiara.\nGentle, brave expression.\n\nEsther portrait framed from chest up, face centered in the frame.\nPalace archways and golden ceiling visible above her head, fading into warm shadow.\nShe has a gentle but determined expression — kind and brave.\nWarm golden light from the right side. Dark shadow pooling in the lower-left.\n\nWarm, regal, kind. She's someone children will root for.",
+      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark wavy hair with elegant modest head covering.\nRoyal purple dress with ornate gold and blue embroidery at the neckline and cuffs.\nSimple gold tiara with small jewels. Delicate gold earrings.\nHands clasped gently in front of her, one hand near her heart.\nGentle, brave expression — a quiet smile that hides a secret.\n\nEsther portrait framed from chest up, face centered.\nBehind her: a grand Persian palace archway with intricate geometric patterns.\nRich blue curtain draped to one side. Ornate gold columns frame the arch.\nWarm golden light from the right illuminating her face.\nThe archway opens to a deeper palace room glowing with amber light.\nDark shadow pooling in the lower-left.\n\nWarm, regal, kind. She's someone children will INSTANTLY root for. A princess with a secret.",
       "image_path": "raw/spotlight_1.png",
       "teacher_script": "This is Esther. She became the queen! But she had a secret — she was Jewish, and nobody in the palace knew. Esther was nervous about her secret. But guess what? When it really mattered, she was SO brave. She's our hero!",
       "teacher_tip": "Ask children to show you a brave face, then a nervous face. Builds emotional vocabulary.",
@@ -51,7 +53,10 @@
         "What do you notice about how Esther looks?",
         "Have you ever kept something special about yourself quiet?"
       ],
-      "session": 1
+      "session": 1,
+      "characters_in_scene": [
+        "esther"
+      ]
     },
     {
       "card_id": "spotlight_2",
@@ -64,7 +69,7 @@
       "emotion_label_he": "חָכָם",
       "character_description_en": "Mordechai was Esther's older cousin. He raised her and always gave her good advice. He stood up for what was right, no matter what.",
       "character_description_he": "מׇרְדְּכַי הָיָה בֶּן הַדּוֹד הַמְּבֻגָּר שֶׁל אֶסְתֵּר. הוּא גִּדֵּל אוֹתָהּ וְתָמִיד נָתַן לָהּ עֵצוֹת טוֹבוֹת. הוּא עָמַד עַל מַה שֶּׁנָּכוֹן, לֹא מְשַׁנֶּה מָה.",
-      "image_prompt": "MORDECHAI:\nOlder Jewish man, warm brown skin, kind wise eyes.\nFull gray-brown beard, dignified posture.\nJewish head covering (kippah or cloth wrap).\nModest robes in earth tones - browns, creams, subtle blues.\n\nMordechai portrait framed from chest up, face centered in the frame.\nCity gate archway visible above his head, with blue sky and warm light beyond.\nHe has knowing eyes and a grandfatherly smile.\nWarm earth-toned light. Dark stone wall fading into shadow at the lower-left.\n\nWise, warm, protective. A grandfather figure children can trust.",
+      "image_prompt": "MORDECHAI:\nOlder Jewish man, warm brown skin, kind wise eyes with crow's feet.\nFull gray-brown beard, dignified tall posture.\nJewish head covering (cloth wrap in cream/white).\nModest layered robes in earth tones — brown outer robe, cream inner garment, subtle blue scarf.\nHands clasped peacefully in front of him. Grandfatherly warmth.\n\nMordechai portrait framed from chest up, face centered.\nBehind him: the great stone gate of Shushan with ornate blue tile border.\nThrough the archway: palm trees, domed buildings, and a warm market street visible in the distance.\nBright blue sky above the gate. Warm afternoon light.\nDark stone wall fading into shadow at the lower-left.\n\nWise, trustworthy, SOLID. Like a favorite grandfather who always knows the right thing to do.",
       "image_path": "raw/spotlight_2.png",
       "teacher_script": "This is Mordechai. He's like a wise uncle or grandpa. He helped raise Esther and always knew what to do. Mordechai was very brave too — he wouldn't bow down to anyone except God. He helped Esther be brave!",
       "teacher_tip": "Connect to children's lives by asking who gives THEM good advice.",
@@ -73,7 +78,10 @@
         "Who in your life gives you good advice?",
         "What makes someone wise?"
       ],
-      "session": 1
+      "session": 1,
+      "characters_in_scene": [
+        "mordechai"
+      ]
     },
     {
       "card_id": "spotlight_3",
@@ -88,7 +96,7 @@
       "character_description_en": "Haman worked for the king. He wanted everyone to bow down to him. When Mordechai wouldn't bow, Haman felt very jealous.",
       "character_description_he": "הָמָן עָבַד אֵצֶל הַמֶּלֶךְ. הוּא רָצָה שֶׁכֻּלָּם יִשְׁתַּחֲווּ לוֹ. כְּשֶׁמׇרְדְּכַי לֹא הִשְׁתַּחֲוָה, הָמָן הִרְגִּישׁ מְאוֹד קַנַּאי.",
       "teaching_moment_en": "Sometimes when we feel jealous, we want to do something mean. But that's not a good choice. We can talk about our feelings instead.",
-      "image_prompt": "HAMAN:\nAdult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.\nDISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape).\nPouty frustrated expression, furrowed brow (NOT scary).\nPersian clothing in MUTED dusty purple and gray.\nArms crossed, looking jealous and annoyed.\n\nHaman portrait framed from chest up, face centered in the frame.\nMuted palace courtyard visible above — washed-out dusty arches and pale sky.\nHe's frowning with arms crossed, looking away to the right.\nMuted, desaturated colors throughout. Dark ground shadow at lower-left.\n\nJealous and pouty. Not scary — just someone who needs to learn.",
+      "image_prompt": "HAMAN:\nAdult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.\nDISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape).\nPouty frustrated expression, furrowed brow, eyes narrowed with JEALOUSY (not rage).\nPersian clothing in MUTED dusty purple and gray-brown vest over lighter tunic.\nArms crossed defensively. Shoulders slightly hunched.\nLooking to the side with a jealous scowl — lip pushed out in a pout.\n\nHaman portrait framed from chest up, face centered.\nBehind him: a palace hallway with Persian arched windows.\nPalm trees visible through the windows — soft, warm, NOT dark or scary.\nThe background is neutral and warm — muted golds and tans.\nMuted, slightly desaturated colors throughout. NOT dark. NOT ominous.\nDark ground shadow at lower-left.\n\nJealous and pouty — like a kid who didn't get picked first. NOT SCARY. Kids should recognize the feeling, not be frightened.",
       "image_path": "raw/spotlight_3.png",
       "teacher_script": "This is Haman. He worked for the king and wanted everyone to bow down to him. But Mordechai said no — he only bows to God. That made Haman feel SO jealous. His jealousy grew and grew... and he made a very bad choice. Have you ever felt jealous? It's okay to feel that way, but Haman didn't make good choices with his feelings.",
       "teacher_tip": "Normalize the feeling of jealousy before discussing Haman's bad choice. Children need to know feelings are okay.",
@@ -97,7 +105,10 @@
         "What does it feel like inside when you are jealous?",
         "What could Haman have done instead of making a bad choice?"
       ],
-      "session": 2
+      "session": 2,
+      "characters_in_scene": [
+        "haman"
+      ]
     },
     {
       "card_id": "spotlight_4",
@@ -112,7 +123,7 @@
       "character_description_en": "King Achashverosh ruled a very big kingdom. He didn't always think before he decided things. He listened to Haman without asking enough questions.",
       "character_description_he": "הַמֶּלֶךְ אֲחַשְׁוֵרוֹשׁ שָׁלַט בְּמַמְלָכָה גְּדוֹלָה מְאוֹד. הוּא לֹא תָּמִיד חָשַׁב לִפְנֵי שֶׁהֶחְלִיט דְּבָרִים. הוּא הִקְשִׁיב לְהָמָן בְּלִי לִשְׁאֹל מַסְפִּיק שְׁאֵלוֹת.",
       "teaching_moment_en": "It's important to think before we decide. We should ask questions and not just say yes right away.",
-      "image_prompt": "KING ACHASHVEROSH:\nAdult man with confused, distracted expression.\nLarge ornate crown (slightly too big, tilted for comic effect).\nFancy royal robes — rich purples, golds, deep reds.\nBig bushy beard, wide confused eyes.\n\nKing Achashverosh portrait framed from chest up, face centered in the frame.\nOpulent throne room ceiling with gold and jewels visible above his head.\nHis crown tilts slightly. He scratches his head with a bewildered look.\nRich warm light from chandeliers above. Dark throne room shadow at lower-left.\n\nBumbling, confused, but not mean. A king who needs help making good choices.",
+      "image_prompt": "KING ACHASHVEROSH:\nAdult man, somewhat cartoonish and comedic.\nLarge ornate Persian crown with red jewel — slightly too big, tilting on his head.\nFancy royal robes in rich reds and golds with blue sash.\nBig bushy dark beard, wide bewildered eyes, eyebrows raised high.\nOne hand scratching his head under the crown. Other hand on his hip.\nExpression: confused, distracted — \"Wait, what's going on?\"\n\nKing portrait framed from chest up, face centered.\nBehind him: the ornate Persian throne room — same architectural style as Esther's spotlight.\nColorful geometric mosaic tiles on the walls. Ornate Persian arched doorway.\nRich warm light from above. Jeweled decorations glinting.\nDark throne room shadow at lower-left.\n\nBumbling, confused, slightly SILLY — but not mean. A king who needs help thinking things through. Kids will giggle at him!",
       "image_path": "raw/spotlight_4.png",
       "teacher_script": "This is King Achashverosh. He was the king! But you know what? He didn't always stop to think. When Haman told him a bad plan, the king just said yes without asking questions. That wasn't smart! We should always think first and ask questions. But don't worry — the king learns his lesson!",
       "teacher_tip": "Use a silly voice for the king to keep the mood light and age-appropriate.",
@@ -121,7 +132,10 @@
         "Why is it important to ask questions before deciding?",
         "What happens when you say yes too fast without thinking?"
       ],
-      "session": 2
+      "session": 2,
+      "characters_in_scene": [
+        "achashverosh"
+      ]
     },
     {
       "card_id": "story_1",
@@ -135,7 +149,7 @@
       "description_en": "The king chose Esther to be his new queen. She moved into the beautiful palace. But she kept her secret — she didn't tell anyone she was Jewish.",
       "description_he": "הַמֶּלֶךְ בָּחַר בְּאֶסְתֵּר לִהְיוֹת הַמַּלְכָּה הַחֲדָשָׁה שֶׁלּוֹ. הִיא עָבְרָה לְאַרְמוֹן הַיָּפֶה. אֲבָל הִיא שָׁמְרָה אֶת הַסּוֹד שֶׁלָּהּ — הִיא לֹא סִפְּרָה לְאַף אֶחָד שֶׁהִיא יְהוּדִיָּה.",
       "roleplay_prompt": "Act it out: Put an imaginary crown on your head and give a royal wave!",
-      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress, simple gold tiara.\n\nEsther in the palace, wearing or receiving her crown. Scene in center-right of frame.\nShe looks beautiful but slightly nervous — this is a big moment!\nWarm palace interior with tall pillars and soft golden light.\nHigh vaulted ceiling visible above, fading into warm amber haze.\nDark marble floor with shadow pooling in the lower-left corner.\n\nMagical, exciting, but with a hint of nervousness. A new chapter begins.",
+      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress, simple gold tiara.\n\nEsther seated on a cushioned bench in the palace throne room.\nKing Achashverosh standing beside her, gently placing a golden crown on her head.\nEsther looks up with wide nervous eyes — her hands clasped in her lap.\nShe's beautiful but overwhelmed. This is the biggest moment of her life!\nPalace courtiers visible in background, watching the ceremony.\nWarm golden light streaming through tall Persian arched windows.\nOrnate mosaic tiles on the walls, rich tapestries hanging, oil lamps glowing.\nHigh vaulted ceiling fading into warm amber haze above.\nDark polished marble floor with shadow pooling in the lower-left.\n\nMagical, exciting, but with a hint of nervousness. A fairy-tale moment with a secret underneath.",
       "image_path": "raw/story_1.png",
       "teacher_script": "The king needed a new queen, and he chose Esther! She was so beautiful and kind. She moved into the big palace and wore a shiny crown. But Esther had a secret — shhh! — she didn't tell anyone she was Jewish. Let's all put on our pretend crowns and wave like Queen Esther!",
       "teacher_tip": "Whisper 'shhh' when you mention the secret — children love the dramatic effect.",
@@ -144,7 +158,11 @@
         "How would it feel to live in a beautiful palace?",
         "What would be hard about keeping a really big secret?"
       ],
-      "session": 1
+      "session": 1,
+      "characters_in_scene": [
+        "esther",
+        "achashverosh"
+      ]
     },
     {
       "card_id": "story_2",
@@ -158,7 +176,7 @@
       "description_en": "Haman wanted everyone to bow down to him. But Mordechai said no! He stood tall and would not bow.",
       "description_he": "הָמָן רָצָה שֶׁכֻּלָּם יִשְׁתַּחֲווּ לוֹ. אֲבָל מׇרְדְּכַי אָמַר לֹא! הוּא עָמַד זָקוּף וְלֹא הִשְׁתַּחֲוָה.",
       "roleplay_prompt": "Act it out: Stand up straight and tall! Shake your head NO!",
-      "image_prompt": "MORDECHAI:\nOlder Jewish man, warm brown skin, kind wise eyes.\nFull gray-brown beard, dignified posture.\nJewish head covering. Modest robes in earth tones.\n\nHAMAN:\nAdult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.\nDISTINCTIVE THREE-CORNERED HAT (like hamantaschen).\nPouty frustrated expression. Muted dusty purple clothing.\n\nMordechai standing tall and dignified at the city gates, center-right of frame.\nHaman passing by on the left, looking frustrated that Mordechai won't bow.\nMordechai's posture is proud but peaceful — not aggressive.\nTall stone gate archway rises above them into blue sky.\nDark ground and shadow in the lower-left corner.\n\nDignified courage. Mordechai stands for what's right, calmly and firmly.",
+      "image_prompt": "MORDECHAI:\nOlder Jewish man, warm brown skin, kind wise eyes.\nFull gray-brown beard. Wrapped cloth turban on his head.\nModest robes in earth tones. Standing TALL, arms at his sides, chin up, shaking his head NO.\n\nHAMAN:\nAdult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.\nDISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape).\nPouty frustrated expression, pointing angrily at Mordechai.\nMuted dusty purple and gray-brown clothing.\n\nOutside the palace gates in Shushan — ornate Persian archways, warm sandstone.\nHaman stands by the gate on the left. A crowd of people kneeling and bowing before him.\nMordechai stands on the right, the ONLY one not bowing — tall, dignified, refusing.\nHaman points at Mordechai, furious that he won't bow.",
       "image_path": "raw/story_2.png",
       "teacher_script": "Haman walked through the streets and wanted everyone to bow down to him. But when he passed Mordechai, guess what happened? Mordechai stood up TALL. He shook his head and said NO! Mordechai only bows to God. Let's all stand up tall like Mordechai! Stand straight... now shake your head NO!",
       "teacher_tip": "Let every child stand up for this one. The physical movement helps them remember the lesson.",
@@ -167,7 +185,11 @@
         "Have you ever said no to something you thought was wrong?",
         "What makes Mordechai's choice so brave?"
       ],
-      "session": 1
+      "session": 1,
+      "characters_in_scene": [
+        "mordechai",
+        "haman"
+      ]
     },
     {
       "card_id": "story_3",
@@ -181,7 +203,7 @@
       "description_en": "Haman felt SO jealous that Mordechai wouldn't bow. His jealousy grew bigger and bigger. He made a plan to hurt all the Jewish people. That was wrong!",
       "description_he": "הָמָן הִרְגִּישׁ כָּל כָּךְ קַנַּאי שֶׁמׇרְדְּכַי לֹא הִשְׁתַּחֲוָה. הַקִּנְאָה שֶׁלּוֹ גָּדְלָה וְגָדְלָה. הוּא עָשָׂה תָּכְנִית לְהַזִּיק לְכָל הַיְּהוּדִים. זֶה הָיָה לֹא נָכוֹן!",
       "roleplay_prompt": "Act it out: Make a jealous, pouty face and cross your arms!",
-      "image_prompt": "HAMAN:\nAdult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.\nDISTINCTIVE THREE-CORNERED HAT (like hamantaschen).\nPouty frustrated expression (NOT scary or angry).\nPersian clothing in MUTED dusty purple and gray.\n\nHaman sitting alone in a room, looking jealous and making a bad plan. Center-right of frame.\nHis expression is pouty — like a child who didn't get their way.\nSmall crumpled papers scattered around him.\nMuted, washed-out room with dusty arched ceiling above.\nDark floor and shadow in the lower-left corner.\n\nA cautionary moment. \"This is what jealousy does.\" Not frightening — just sad.",
+      "image_prompt": "Haman — THREE-CORNERED HAT (hamantaschen shape), dark pointed goatee, dusty purple and gray-brown robes — sitting hunched on a cushion, arms crossed tight, pouty frustrated frown. NOT scary, just jealous and sulky like a child who didn't get their way.\n\nA LARGE thought bubble to the RIGHT of Haman, positioned LOW — at chest/belly height, in the CENTER-RIGHT of the frame. NOT near the top of the image. Inside the thought bubble: Mordechai standing tall with arms at his sides, refusing to bow. The thought bubble should be prominent. The entire TOP 30% of the frame must be EMPTY — just wall, ceiling, or atmospheric space.\n\nCrumpled papers and a scroll on the floor. Simple stone room, single arched window. Warm dim light — gloomy but not scary.\nDark floor and shadow in the lower-left corner.",
       "image_path": "raw/story_3.png",
       "teacher_script": "Uh oh. Haman was SO jealous and angry that Mordechai wouldn't bow. His jealousy grew and grew until he made a VERY bad choice. He decided he wanted to hurt all the Jewish people! That was SO wrong. Can you make a jealous, pouty face like Haman? Cross your arms... Now — is that a good choice? NO! Haman needed to stop and think.",
       "teacher_tip": "Pause after 'Is that a good choice?' and let children shout 'NO!' together.",
@@ -190,7 +212,11 @@
         "What could Haman have done with his jealous feelings instead?",
         "How can we stop ourselves from making bad choices when we're upset?"
       ],
-      "session": 1
+      "session": 1,
+      "characters_in_scene": [
+        "haman",
+        "mordechai"
+      ]
     },
     {
       "card_id": "story_4",
@@ -204,7 +230,7 @@
       "description_en": "Mordechai told Esther about Haman's bad plan. Esther was scared, but she knew what she had to do. She went to the king and told him her secret!",
       "description_he": "מׇרְדְּכַי סִפֵּר לְאֶסְתֵּר עַל הַתָּכְנִית הָרָעָה שֶׁל הָמָן. אֶסְתֵּר פָּחֲדָה, אֲבָל הִיא יָדְעָה מַה הִיא צְרִיכָה לַעֲשׂוֹת. הִיא הָלְכָה לַמֶּלֶךְ וְסִפְּרָה לוֹ אֶת הַסּוֹד שֶׁלָּהּ!",
       "roleplay_prompt": "Act it out: Take a deep breath and say 'I have something important to tell you!'",
-      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress, simple gold tiara.\n\nACHASHVEROSH:\nAdult man, large ornate crown, fancy royal robes.\nBig bushy beard, wide eyes.\n\nEsther taking a deep breath, gathering courage. She's center-right in the frame.\nApproaching the grand throne room — standing before the king.\nHer expression shows determination despite fear. Hand over heart.\nKing Achashverosh visible on his throne to the left, looking surprised.\nGrand throne room with high ceiling and dramatic light shafts from above.\nDark floor in the lower-left corner.\n\nThe climax! Tension and courage. Esther's bravest moment.",
+      "image_prompt": "A grand banquet scene in the palace.\nEsther stands center, pointing directly at Haman. Her left hand pressed over her heart.\nShe is REVEALING the truth — \"This is the man!\"\n\nKing Achashverosh on his throne to the left, leaning forward with shock.\nHaman on the right, shrinking back in terror, hands up defensively.\n\nA banquet table with goblets and platters in the foreground.\nOrnate Persian columns and rich tapestries on the walls.",
       "image_path": "raw/story_4.png",
       "teacher_script": "Mordechai ran to tell Esther about Haman's terrible plan. Esther was scared — really scared! But she knew she had to help. She took a deep breath and went to see the king. Then she said the bravest words: 'I have something important to tell you. I am Jewish!' Let's practice being brave like Esther. Take a deep breath... now say 'I have something important to tell you!'",
       "teacher_tip": "Practice the deep breath together three times before the roleplay. It grounds the children.",
@@ -213,7 +239,12 @@
         "What gives you courage when you need to speak up?",
         "How do you think Esther's heart felt in that moment?"
       ],
-      "session": 2
+      "session": 2,
+      "characters_in_scene": [
+        "esther",
+        "achashverosh",
+        "haman"
+      ]
     },
     {
       "card_id": "story_5",
@@ -227,7 +258,7 @@
       "description_en": "The king listened to Esther. He stopped Haman's bad plan! All the Jewish people were saved, and everyone celebrated!",
       "description_he": "הַמֶּלֶךְ הִקְשִׁיב לְאֶסְתֵּר. הוּא עָצַר אֶת הַתָּכְנִית הָרָעָה שֶׁל הָמָן! כָּל הַיְּהוּדִים נִצְּלוּ, וְכֻלָּם חָגְגוּ!",
       "roleplay_prompt": "Act it out: Jump up and cheer! The Jewish people were saved!",
-      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress, simple gold tiara. Joyful expression.\n\nMORDECHAI:\nOlder Jewish man, warm brown skin, kind wise eyes.\nFull gray-brown beard. Jewish head covering.\nModest robes in earth tones.\n\nCelebration! Esther and Mordechai together in center-right foreground, smiling hugely.\nJewish people in background cheering, hands raised.\nConfetti and festive streamers. Bright, warm colors everywhere.\nBright sky or festive canopy visible above. Dark festive ground at lower-left.\n\nPURE JOY! The payoff — let kids feel the celebration!",
+      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress, simple gold tiara.\nBEAMING with joy — the biggest smile, arms open wide!\n\nMORDECHAI:\nOlder Jewish man, warm brown skin, kind wise eyes.\nFull gray-brown beard. Jewish head covering.\nModest robes in earth tones. Clapping his hands with pride.\n\nCELEBRATION! Esther and Mordechai together in center foreground.\nEsther is dancing, her dress swirling. Mordechai claps beside her, eyes twinkling.\nBehind them: a crowd of Jewish people CHEERING — hands raised, some playing tambourines and lutes.\nChildren in the foreground dancing and throwing confetti.\nColorful festive banners and streamers hang from Persian archways above.\nBright warm colors EVERYWHERE — golds, purples, reds, blues.\nThe whole scene BURSTS with energy and relief.\nFestive canopy or palace ceiling visible above, decorated with flowers and garlands.\nDark festive ground at lower-left.\n\nPURE JOY! This is the payoff — the danger is over, everyone is saved!\nLet kids FEEL the celebration. Maximum energy, maximum happiness!",
       "image_path": "raw/story_5.png",
       "teacher_script": "When the king heard Esther's secret, he was so surprised! He loved Queen Esther. He stopped Haman's bad plan right away. The Jewish people were SAVED! Everyone was SO happy! They celebrated and danced and cheered! Let's celebrate too — jump up and down and cheer! YAY!",
       "teacher_tip": "Let the celebration go for a full 10 seconds — children need to release the built-up tension.",
@@ -236,7 +267,11 @@
         "How do you celebrate when something really good happens?",
         "What made this story have a happy ending?"
       ],
-      "session": 2
+      "session": 2,
+      "characters_in_scene": [
+        "esther",
+        "mordechai"
+      ]
     },
     {
       "card_id": "connection_1",
@@ -283,7 +318,7 @@
           "label_he": "גֵּאֶה"
         }
       ],
-      "image_prompt": "Diverse illustrated children sitting in a circle on a colorful rug, seen from slightly above.\nThoughtful, sharing expressions. Warm classroom or living room setting.\nSome children with hands raised, others listening carefully.\nThe scene fills the upper two-thirds. Colorful rug and warm floor visible below.\n\nSafe, warm, inclusive. A cozy circle where everyone's feelings matter.",
+      "image_prompt": "Six diverse children (ages 4-6) sitting cross-legged in a circle on a round, colorful braided rug with concentric rings of red, blue, yellow, and green.\n\nA girl with brown curly hair leans forward eagerly, one hand on her knee, mouth open mid-sentence — she is TELLING her story.\nA boy in a striped kippah has his hand raised high, fingers spread, bouncing slightly — he wants to share next!\nA boy with dark skin wearing a colorful knit kippah rests his chin on both hands, elbows on knees, listening with wide thoughtful eyes.\nA girl with a pink headband sits with her arms wrapped around her knees, smiling shyly — warming up to speak.\nTwo more children sit attentively, one nodding, one with a hand on a friend's shoulder.\n\nThe classroom behind them feels LIVED-IN and warm:\nA low wooden bookshelf with picture books and a teddy bear. Children's drawings taped to the wall (stick figures, a rainbow, a sun). A window with afternoon golden light streaming in, green trees visible outside. A small plant on the windowsill. Soft blue cubbies in the corner.\n\nThe rug is THEIR special circle-time spot — it feels familiar and safe.\nWarm afternoon light fills the room. Hardwood floor around the rug.\n\nCOZY AND SAFE — like the best part of the school day, when everyone gets to share.",
       "image_path": "raw/connection_1.png",
       "teacher_script": "Esther was really scared, but she was brave anyway. Let's sit in a circle and talk about being brave. Have YOU ever had to be brave, even when you were scared? Maybe speaking up, or trying something new? What helps you feel brave? Let's share with each other!",
       "teacher_tip": "Share your own brave moment first to model vulnerability. Children open up when adults go first.",
@@ -292,7 +327,8 @@
       "front": {
         "hebrew_title": "לִהְיוֹת אַמִּיץ",
         "english_title": "Being Brave"
-      }
+      },
+      "characters_in_scene": []
     },
     {
       "card_id": "connection_2",
@@ -339,7 +375,7 @@
           "label_he": "בָּטוּחַ"
         }
       ],
-      "image_prompt": "A child looking thoughtful, maybe hugging a stuffed animal.\nSitting on a soft cushion or window seat, seen from slightly above.\nWarm light coming in from a window. Soft, cozy feeling.\nThe child is in the upper portion. Soft floor or cushion visible below.\n\nGentle, safe. It's okay to have big feelings.",
+      "image_prompt": "Two children (ages 4-5) sitting together in a cozy reading nook in a classroom.\n\nA boy wearing a knit kippah sits cross-legged, hugging a soft blue stuffed elephant to his chest. His eyes look upward and to the side — he is THINKING about something important. His expression is gentle, maybe a tiny bit worried, but mostly thoughtful. He wears a colorful striped button-up shirt and jeans.\n\nNext to him, a girl with dark braids and a purple shirt sits with her knees pulled up, her chin resting on her arms. She LISTENS with kind, patient eyes — she is being a good friend. Her body leans slightly toward the boy, showing she cares.\n\nThey sit on big soft floor cushions in warm colors (orange, teal, mustard) arranged in a cozy nook. Behind them: a low bookshelf with colorful picture book spines visible, a soft knitted blanket draped over the shelf edge, a small potted plant. A window lets in warm golden afternoon light that makes everything glow. A children's drawing of a family is taped to the wall nearby.\n\nThe space feels like a SAFE CORNER — their special spot to talk about big feelings.\nWarm, soft lighting. Gentle and protected.\n\nTENDER AND SAFE — it's okay to have big feelings, especially with a friend nearby.",
       "image_path": "raw/connection_2.png",
       "teacher_script": "Esther had to keep a big secret for a long time. That can feel hard! Have you ever had a secret that felt too big to hold inside? Sometimes we need to talk to a grown-up we trust. Who do you talk to when you have big feelings? Let's share in our circle.",
       "teacher_tip": "If a child shares something sensitive, validate it warmly and follow up privately after circle time.",
@@ -349,7 +385,8 @@
       "front": {
         "hebrew_title": "סוֹדוֹת וּרְגָשׁוֹת",
         "english_title": "Secrets and Feelings"
-      }
+      },
+      "characters_in_scene": []
     },
     {
       "card_id": "tradition_1",
@@ -365,7 +402,7 @@
       "hebrew_term": "רַעֲשָׁן",
       "hebrew_term_meaning": "Grogger (noisemaker)",
       "border_color": "#D4A84B",
-      "image_prompt": "Family or community gathered in a warm synagogue, grounded in the lower portion of the frame.\nA friendly adult (generic, NOT a story character) reading from a scroll (megillah).\nChildren in foreground happily shaking colorful groggers (noisemakers).\nWarm golden ceiling lights and festive decorations hanging above.\nGolden ambient glow and warm ceiling space above the people.\n\nJoyful community celebration! The fun of making noise together.",
+      "image_prompt": "A warm, cozy synagogue community room decorated for Purim.\nA friendly bearded man (generic community member, NOT a story character) stands in the center holding a megillah scroll open wide, reading aloud with an animated expression. The scroll faces TOWARD the reader — the viewer sees only the blank parchment back of the scroll, NOT the text side.\nAdults sit in chairs in a semicircle around him — grandparents, parents, smiling and holding small megillah booklets.\nChildren sit cross-legged on the wooden floor in the foreground, grinning with excitement.\nSeveral kids are shaking colorful groggers (noisemakers) — red, blue, green.\nOne boy covers his ears, laughing. A girl waves her grogger overhead.\nFestive Purim decorations hang from the ceiling: paper streamers in blue, purple, gold.\nPaper mask cutouts (crowns, stars) taped to the walls.\nWarm pendant lights glow golden above. Warm wooden floor below.\n\nDo NOT include Haman or any villain in this image. Show only positive, joyful community members.\n\nJoyful community celebration! The fun of making noise TOGETHER!",
       "image_path": "raw/tradition_1.png",
       "teacher_script": "Remember how Haman made such a bad choice? Every year, when we read the Purim story and hear his name, we make LOTS of noise! We use a special noisemaker called a grogger. Can you say that? Gro-gger! It sounds like this — [shake grogger]. Let's practice! When I say 'Haman'... everyone shake! Ready? HAMAN! [let kids shake] Great job! That's how we celebrate Purim!",
       "teacher_tip": "If you don't have groggers, stomping feet and clapping hands works just as well.",
@@ -374,7 +411,8 @@
         "What is the loudest noise you can make?",
         "Why do you think we make noise when we hear Haman's name?"
       ],
-      "session": 2
+      "session": 2,
+      "characters_in_scene": []
     },
     {
       "card_id": "tradition_2",
@@ -390,7 +428,7 @@
       "hebrew_term": "תַּחְפּוֹשׂוֹת",
       "hebrew_term_meaning": "Costumes",
       "border_color": "#D4A84B",
-      "image_prompt": "Children dressed in colorful Purim costumes, grounded in the lower portion of the frame.\nA mix: someone dressed as a queen, a superhero, maybe an animal.\nJoyful expressions, showing off costumes to each other.\nFestive streamers and balloons hanging from above. Golden warm glow at the top.\n\nFun, festive, imaginative! Celebrates creativity and joy.",
+      "image_prompt": "A modern Jewish living room decorated for Purim. Warm, cozy, festive.\nFour children showing off their Purim costumes to each other:\n- A girl in a purple queen dress with a gold crown, holding a wand and twirling.\n- A boy in a banana costume, laughing with his arms out.\n- A younger boy as a red-caped superhero, hands on hips in a power pose.\n- A girl in a colorful patchwork dress with a headband, giggling.\nA plate of hamantaschen (triangle pastries) on a coffee table in the foreground.\nPurim masks scattered on the table — a purple mask, a gold mask.\nFestive streamers and balloons hanging from the ceiling.\nA couch and lamp visible in the background. Warm golden living room light.\n\nFUN, festive, IMAGINATIVE! Pure joy of playing dress-up. Kids should want to jump into this scene!",
       "image_path": "raw/tradition_2.png",
       "teacher_script": "Remember how Esther kept her Jewish identity hidden? It was like she was wearing an invisible costume! On Purim, we wear REAL costumes to remember Esther's secret. Some people dress as queens and kings. Some dress as animals or superheroes. Some wear silly costumes! If YOU could wear any Purim costume, what would you be? Let's share our ideas!",
       "teacher_tip": "Have a few costume props ready (crown, cape, silly hat) to pass around while discussing.",
@@ -400,7 +438,8 @@
         "Why do you think dressing up is part of Purim?"
       ],
       "session": 3,
-      "optional": true
+      "optional": true,
+      "characters_in_scene": []
     },
     {
       "card_id": "tradition_3",
@@ -416,7 +455,7 @@
       "hebrew_term": "מִשְׁלוֹחַ מָנוֹת",
       "hebrew_term_meaning": "Sending Gifts",
       "border_color": "#D4A84B",
-      "image_prompt": "Child handing a colorful gift basket to a friend at their door. Scene grounded low in the frame.\nBasket filled with treats — hamantaschen visible, fruits, wrapped goodies.\nBoth children smiling warmly. Warm home setting with a doorway.\nWarm golden light from above — porch light or sunshine. Open sky or warm glow above.\n\nGenerous, warm, sharing joy with others.",
+      "image_prompt": "A modern Jewish family kitchen — warm, bright, busy with Purim preparations.\nA dad in a kippah arranging fruit in a wicker basket on the left side of the table.\nA mom in a modest dress and apron placing hamantaschen (triangle pastries) on a tray.\nA young boy in a kippah excitedly reaching into a basket, grabbing a wrapped candy.\nA little girl in a striped dress holding up a plate of hamantaschen, proud of her work.\nThe kitchen table is covered with supplies: baskets, colorful cellophane wrap, ribbons, fruits, juice boxes, bags of treats.\nMultiple gift baskets in various stages of being packed.\nA window behind them shows green trees and warm sunlight.\nA calendar and children's drawings on the kitchen wall.\nWarm, bright kitchen lighting from above.\n\nGenerously warm, HOMEY, a real family doing something meaningful together. The joy of GIVING.",
       "image_path": "raw/tradition_3.png",
       "teacher_script": "When the Jewish people were saved, they were SO happy! They wanted to share that happy feeling with everyone. So they gave gifts of food to their friends and neighbors. On Purim, we do the same thing! We make baskets with treats and give them to people we care about. Who would YOU like to give a gift basket to?",
       "teacher_tip": "If possible, have the class make a simple mishloach manot together as a craft activity.",
@@ -426,7 +465,8 @@
         "How does it feel when someone gives you a surprise gift?"
       ],
       "session": 3,
-      "optional": true
+      "optional": true,
+      "characters_in_scene": []
     },
     {
       "card_id": "power_word_1",
@@ -440,7 +480,7 @@
       "example_sentence_he": "אֶסְתֵּר הָיְתָה גִּבּוֹרָה — הִיא הָיְתָה אַמִּיצָה גַּם כְּשֶׁהִיא פָּחֲדָה!",
       "kid_friendly_explanation_en": "A gibor is someone who does the right thing, even when it's hard or scary. YOU can be a gibor too!",
       "kid_friendly_explanation_he": "גִּבּוֹר הוּא מִישֶׁהוּ שֶׁעוֹשֶׂה אֶת הַדָּבָר הַנָּכוֹן, גַּם כְּשֶׁזֶה קָשֶׁה אוֹ מְפַחֵד. גַּם אַתָּה יָכוֹל לִהְיוֹת גִּבּוֹר!",
-      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress, simple gold tiara.\n\nEsther standing tall and brave in a heroic low-angle shot, looking slightly up at her.\nShe's in the center-lower portion of the frame, looking determined and strong.\nBright sky or warm golden radiance above her. Rays of light behind her.\nShe looks like a hero — confident, powerful, courageous.\n\nEmpowering! YOU can be brave too! Strength and courage.",
+      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress with gold embroidery at the hem and cuffs.\nSimple gold tiara catching the light. Delicate gold earrings.\n\nEsther takes a brave step forward through a grand palace corridor.\nHer right hand presses against her heart — steadying herself.\nHer left hand is slightly extended forward, fingers spread, as if pushing through fear.\nHer chin is lifted, jaw set with determination. Her eyes are focused and bright.\nHer dress flows behind her with the motion of walking forward.\n\nShe walks FROM shadow INTO warm golden light — the glow of the throne room ahead.\nPersian mosaic tile floor beneath her feet. Dark carved columns to either side at the edges.\nThe golden light ahead washes over her face and dress, making her glow.\nWarm radiance fills the space above her — bright, open, luminous.\n\nShe looks SMALL against the tall corridor — but her posture says she is READY.\nThis is the bravest thing she has ever done.\n\nPURE COURAGE! The moment a hero steps forward into the unknown.",
       "image_path": "raw/power_word_1.png",
       "teacher_script": "Let's learn a special Hebrew word: GIBOR. Can you say it? Gi-bor! It means 'hero' or 'brave one.' Esther was a gibor because she did the right thing even when she was scared. Guess what? YOU can be a gibor too! When you help someone, or try something new, or stand up for what's right — that's being a gibor. Let's all say it: 'I am a gibor!'",
       "teacher_tip": "Have children repeat 'I am a gibor!' three times, louder each time. End with a group cheer.",
@@ -451,7 +491,10 @@
       ],
       "pronunciation_guide": "Gee-BOR. Rhymes with 'dinosaur'!",
       "session": 3,
-      "optional": true
+      "optional": true,
+      "characters_in_scene": [
+        "esther"
+      ]
     }
   ]
 }

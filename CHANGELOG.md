@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Card Front Gradient & FitText Overhaul
+
+Standardized title readability gradients, fixed FitText measurement for letter-spacing, and cleaned up export pipeline.
+
+#### Added
+- **ScaledBack component** (`card-designer/components/layout/ScaledBack.tsx`) — Responsive wrapper that scales 1500x2100 back cards to fit any container width using ResizeObserver + CSS transform.
+
+#### Changed
+- **Title gradient standardized** — All 6 card types now use `h-44 bg-gradient-to-b from-black/50 to-transparent` at the top for title readability. Previously inconsistent (Anchor had none, others ranged from h-24/black40 to h-40/black60).
+- **PowerWord title matched to Tradition** — Position `top-3`, FitText maxSize 72, minSize 48, padding 19, English subtitle `text-sm` (was top-[5%], 80/56/21, text-xl).
+- **Anchor card title tuning** — letterSpacing 0.4em → 0.2em, padding 12 → 10, added `scale(1.25)` wrapper for larger title presence.
+
+#### Fixed
+- **FitText letter-spacing awareness** — Canvas measurement now accounts for CSS `letter-spacing` (em and px units). Previously ignored it, causing text to overflow when letterSpacing was set.
+- **FitText soft minSize** — Removed hard minSize floor that caused overflow on long titles. Now uses absolute floor of 12px, letting text shrink as far as needed to fit.
+- **Export dev overlay artifact** — Next.js error overlay ("1 issue" badge) captured in Playwright screenshots. Fixed by injecting CSS to hide `nextjs-portal` and related elements before screenshot.
+
+---
+
 ### Image Generation Pipeline v2 — Cleanup & Variants
 
 Deleted dead code, consolidated duplicates, added multi-variant generation.

@@ -62,12 +62,12 @@ cd card-designer && npm run export {deckId} -- --backs-only
 
 | Card Type | Component | Title System | maxSize | minSize | padding | Notes |
 |-----------|-----------|-------------|---------|---------|---------|-------|
-| Anchor | AnchorCard.tsx | FitText | 160 | 80 | 12 | White outline + letterSpacing 0.4em |
+| Anchor | AnchorCard.tsx | FitText | 160 | 80 | 10 | White outline + letterSpacing 0.2em + scale(1.25) |
 | Spotlight | SpotlightCard.tsx | FitText | 80 | 56 | 21 | Emotion badge bottom-left |
 | Story | StoryCard.tsx | FitText | 72 | 32 | 19 | 6 layout variants |
 | Connection | ConnectionCard.tsx | FitText | 72 | 48 | 19 | Emoji strip bottom |
 | Tradition | TraditionCard.tsx | FitText | 72 | 48 | 19 | English subtitle |
-| Power Word | PowerWordCard.tsx | FitText | 80 | 56 | 21 | English meaning text |
+| Power Word | PowerWordCard.tsx | FitText | 72 | 48 | 19 | English meaning (text-sm) |
 
 Each card type also has a `*Back.tsx` component for teacher content.
 
@@ -83,9 +83,16 @@ Each card type also has a `*Back.tsx` component for teacher content.
 - `z-10`: Middle layer (gradients, decorative elements)
 - `z-30`: Content layer (text, headers, footers)
 
+### Title Gradient Overlay
+- **All card types** use `h-44 bg-gradient-to-b from-black/50 to-transparent` at the top of the card for title readability
+- Positioned as `absolute inset-x-0 top-0` with `pointer-events-none`
+- Standardized across all 6 types — don't vary per card type
+
 ### Typography
 - **FitText** for primary titles — dynamically scales within min/max ranges per card type
 - **All card types** use FitText for Hebrew titles (including Story cards)
+- **FitText letter-spacing awareness** — Canvas measurement accounts for CSS `letter-spacing` (em and px units). Without this, text with letterSpacing overflows.
+- **FitText soft minSize** — minSize is a preference, not a hard clamp. Text can shrink below minSize (absolute floor: 12px) to avoid overflow on long titles.
 - **FitText lineHeight:** `1.3` (not 1.1) — Hebrew nikud marks extend below the baseline and need extra vertical space
 - **FitText overflow:** `visible` (not hidden) — prevents clipping of nikud descenders
 - **English subtitle spacing:** `mt-2` below Hebrew FitText titles — gives breathing room for nikud
@@ -95,6 +102,7 @@ Each card type also has a `*Back.tsx` component for teacher content.
 ### Export Rendering
 - **Fronts:** Rendered at 500x700 CSS pixels with `deviceScaleFactor: 3` (= 1500x2100 output). This matches the design editor viewport where overlays were designed.
 - **Backs:** Rendered at 1500x2100 CSS pixels with `deviceScaleFactor: 1`. Backs use print-calibrated font sizes designed for this resolution.
+- **Dev overlay hidden:** Export script injects CSS to hide `nextjs-portal, [data-nextjs-toast], [data-nextjs-dialog-overlay]` before screenshot to prevent dev artifacts in output.
 
 ### Color System (Border Colors by Card Type)
 

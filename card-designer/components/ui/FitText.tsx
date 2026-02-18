@@ -45,14 +45,25 @@ export function FitText({
     const fontWeight = computed.fontWeight;
 
     // Use Canvas API to measure text width at maxSize.
-    // Canvas measureText works correctly for Hebrew/RTL text
-    // and doesn't depend on DOM overflow or layout context.
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     ctx.font = `${fontWeight} ${maxSize}px ${fontFamily}`;
-    const naturalWidth = ctx.measureText(children).width;
+
+    // Account for CSS letter-spacing (Canvas ignores it by default)
+    let letterSpacingPx = 0;
+    const ls = style?.letterSpacing;
+    if (ls) {
+      if (typeof ls === 'string' && ls.endsWith('em')) {
+        letterSpacingPx = parseFloat(ls) * maxSize;
+      } else if (typeof ls === 'string' && ls.endsWith('px')) {
+        letterSpacingPx = parseFloat(ls);
+      }
+    }
+
+    const baseWidth = ctx.measureText(children).width;
+    const naturalWidth = baseWidth + letterSpacingPx * children.length;
 
     if (naturalWidth <= 0) return;
 
@@ -60,10 +71,12 @@ export function FitText({
       setFontSize(maxSize);
     } else {
       const scale = availableWidth / naturalWidth;
+      // Let text shrink as far as needed — never overflow.
+      // minSize is a soft preference, absolute floor is 12px.
       const scaled = Math.floor(maxSize * scale);
-      setFontSize(Math.max(minSize, scaled));
+      setFontSize(Math.max(12, scaled));
     }
-  }, [children, maxSize, minSize, padding]);
+  }, [children, maxSize, minSize, padding, style]);
 
   useEffect(() => {
     const run = () => {

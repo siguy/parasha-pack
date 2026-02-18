@@ -238,14 +238,16 @@ Antagonists are **misguided**, not scary.
 
 Card Designer (React) renders text overlay on raw images. The AI-generated image must leave designated zones uncluttered for text readability.
 
+All card types use a standardized title gradient: `h-44 bg-gradient-to-b from-black/50 to-transparent` at the top of the card. This ensures consistent title readability across the deck.
+
 | Card Type | Overlay Zone | Content | Background Treatment |
 |-----------|--------------|---------|---------------------|
-| Anchor | Top 20-25% | Hebrew parasha/holiday title | Simple gradient/sky |
-| Spotlight | Top 30% | Hebrew name + English name + emotion | Simple gradient |
-| Story | Bottom-left corner | Hebrew/English keyword badge | Scene continues, less detail |
-| Connection | Bottom 20% | 4 emojis (no labels) | Simple gradient |
-| Power Word | Top 30% | Hebrew word + English meaning | Simple gradient |
-| Tradition | Top 25% | Hebrew/English title | Simple gradient |
+| Anchor | Top 20-25% | Hebrew parasha/holiday title | Gradient overlay + simple sky |
+| Spotlight | Top 30% | Hebrew name + English name + emotion | Gradient overlay |
+| Story | Bottom-left corner | Hebrew/English keyword badge | Gradient overlay (top) + scene |
+| Connection | Bottom 20% | 4 emojis (no labels) | Gradient overlay (top) |
+| Power Word | Top 30% | Hebrew word + English meaning | Gradient overlay |
+| Tradition | Top 25% | Hebrew/English title | Gradient overlay |
 
 ### Composition Guidance (injected automatically)
 

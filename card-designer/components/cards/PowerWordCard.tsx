@@ -46,21 +46,21 @@ export function PowerWordCard({ card, deckId, config, onConfigChange }: PowerWor
                 alt={card.english_meaning || "Power Word Card"}
                 className="w-full h-full object-cover"
             />
-            {/* Gradient Overlay for text visibility at top */}
-            <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
+            {/* Gradient overlay for title readability */}
+            <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
         </div>
 
         {/* Content Layer */}
         <div className="relative z-10 h-full w-full pointer-events-none p-6">
             
             {/* Center Top: Word & Meaning */}
-            <div className="absolute top-[5%] left-0 right-0 flex justify-center pointer-events-none">
+            <div className="absolute top-3 left-0 right-0 flex justify-center pointer-events-none">
                  <DraggableElement id="power-word-group" config={activeConfig} onUpdate={handlePositionUpdate} className="pointer-events-auto w-full">
                     <div className="drop-shadow-lg flex flex-col items-center w-full">
                          <FitText
-                            maxSize={80}
-                            minSize={56}
-                            padding={21}
+                            maxSize={72}
+                            minSize={48}
+                            padding={19}
                             className="font-black font-hebrew text-white"
                             style={{
                                 textShadow: '2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000',
@@ -68,7 +68,7 @@ export function PowerWordCard({ card, deckId, config, onConfigChange }: PowerWor
                          >
                             {card.hebrew_word_nikud || card.hebrew_word || ''}
                          </FitText>
-                         <h2 className="text-xl font-bold text-white uppercase tracking-widest mt-2 opacity-90 drop-shadow-md">
+                         <h2 className="text-sm font-bold text-white uppercase tracking-widest mt-2 opacity-90 drop-shadow-md">
                             {card.english_meaning}
                          </h2>
                     </div>
