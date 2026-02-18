@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purim - Parasha Pack</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8f6f3;
+      color: #2d2a26;
+      padding: 0;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    header .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    header .he {
+      font-size: 2rem;
+      font-family: 'Times New Roman', serif;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Controls */
+    .controls {
+      text-align: center;
+      padding: 1rem;
+      background: white;
+      border-bottom: 1px solid #e5e2de;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .controls button {
+      background: #8B5CF6;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 0.25rem;
+    }
+    .controls button:hover { background: #7C3AED; }
+    .controls button.outline {
+      background: white;
+      color: #8B5CF6;
+      border: 2px solid #8B5CF6;
+    }
+    .controls button.outline:hover { background: #f5f0ff; }
+    .controls .print-hint {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 0.5rem;
+    }
+
+    /* Card grid */
+    .cards {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .card-pair {
+      margin-bottom: 3rem;
+      page-break-inside: avoid;
+    }
+
+    .card-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #8B5CF6;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #2d2a26;
+    }
+    .card-title .he {
+      font-family: 'Times New Roman', serif;
+      margin-left: 0.5rem;
+      color: #6D28D9;
+    }
+
+    .card-images {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .card-side {
+      flex: 1;
+      min-width: 0;
+    }
+    .card-side img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      display: block;
+    }
+    .card-side .label {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #999;
+      margin-top: 0.5rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #e5e2de;
+      margin: 0;
+    }
+
+    /* Session divider */
+    .session-header {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .session-header h2 {
+      font-size: 1.2rem;
+      color: #6D28D9;
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .card-images {
+        flex-direction: column;
+      }
+      header h1 { font-size: 2rem; }
+    }
+
+    /* Print styles */
+    @media print {
+      body { background: white; padding: 0; }
+      header, .controls, .session-header, .card-label, .card-title, .divider, .card-side .label { display: none; }
+
+      .cards { max-width: none; margin: 0; padding: 0; }
+      .card-pair { margin: 0; page-break-inside: avoid; }
+      .card-images {
+        flex-direction: column;
+        gap: 0;
+      }
+      .card-side {
+        page-break-after: always;
+        page-break-inside: avoid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 0.5in;
+      }
+      .card-side img {
+        border-radius: 0;
+        box-shadow: none;
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        object-fit: contain;
+      }
+    }
+
+    /* Print fronts only */
+    body.print-fronts .card-side.back { display: none; }
+    body.print-fronts .card-side.front { page-break-after: always; }
+
+    /* Print backs only */
+    body.print-backs .card-side.front { display: none; }
+    body.print-backs .card-side.back { page-break-after: always; }
+
+    /* Print paired (for double-sided) */
+    body.print-paired .card-images { flex-direction: column; gap: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="he">פּוּרִים</div>
+    <h1>Purim</h1>
+    <div class="subtitle">Parasha Pack &middot; 16 Cards &middot; Ages 4&ndash;6</div>
+  </header>
+
+  <div class="controls">
+    <button onclick="printAll()">Print All (double-sided)</button>
+    <button class="outline" onclick="printFronts()">Print Fronts Only</button>
+    <button class="outline" onclick="printBacks()">Print Backs Only</button>
+    <div class="print-hint">
+      For double-sided: use "Print All" and enable "Flip on short edge" in your printer settings
+    </div>
+  </div>
+
+  <div class="cards">
+
+    <!-- Session 1 -->
+    <div class="session-header"><h2>Session 1</h2></div>
+
+    <div class="card-pair">
+      <div class="card-label">Anchor</div>
+      <div class="card-title">Purim <span class="he">פּוּרִים</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/anchor_1.png" alt="Purim - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/anchor_1_back.png" alt="Purim - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Spotlight</div>
+      <div class="card-title">Queen Esther <span class="he">אֶסְתֵּר הַמַּלְכָּה</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/spotlight_1.png" alt="Queen Esther - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/spotlight_1_back.png" alt="Queen Esther - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Spotlight</div>
+      <div class="card-title">Mordechai <span class="he">מׇרְדְּכַי הַצַּדִּיק</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/spotlight_2.png" alt="Mordechai - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/spotlight_2_back.png" alt="Mordechai - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Story 1</div>
+      <div class="card-title">Esther Becomes Queen <span class="he">אֶסְתֵּר נַעֲשֵׂית מַלְכָּה</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/story_1.png" alt="Esther Becomes Queen - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/story_1_back.png" alt="Esther Becomes Queen - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Story 2</div>
+      <div class="card-title">Mordechai Stands Tall <span class="he">מׇרְדְּכַי עוֹמֵד זָקוּף</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/story_2.png" alt="Mordechai Stands Tall - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/story_2_back.png" alt="Mordechai Stands Tall - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Story 3</div>
+      <div class="card-title">Haman's Bad Choice <span class="he">הַבְּחִירָה הָרָעָה שֶׁל הָמָן</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/story_3.png" alt="Haman's Bad Choice - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/story_3_back.png" alt="Haman's Bad Choice - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div>
+
+    <!-- Session 2 -->
+    <div class="session-header"><h2>Session 2</h2></div>
+
+    <div class="card-pair">
+      <div class="card-label">Spotlight</div>
+      <div class="card-title">Haman <span class="he">הָמָן</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/spotlight_3.png" alt="Haman - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/spotlight_3_back.png" alt="Haman - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Spotlight</div>
+      <div class="card-title">King Achashverosh <span class="he">הַמֶּלֶךְ אֲחַשְׁוֵרוֹשׁ</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/spotlight_4.png" alt="King Achashverosh - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/spotlight_4_back.png" alt="King Achashverosh - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Story 4</div>
+      <div class="card-title">Esther's Brave Choice <span class="he">הַבְּחִירָה הָאַמִּיצָה שֶׁל אֶסְתֵּר</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/story_4.png" alt="Esther's Brave Choice - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/story_4_back.png" alt="Esther's Brave Choice - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Story 5</div>
+      <div class="card-title">The Happy Ending <span class="he">הַסּוֹף הַשָּׂמֵחַ</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/story_5.png" alt="The Happy Ending - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/story_5_back.png" alt="The Happy Ending - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Connection</div>
+      <div class="card-title">Being Brave <span class="he">לִהְיוֹת אַמִּיץ</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/connection_1.png" alt="Being Brave - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/connection_1_back.png" alt="Being Brave - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Tradition</div>
+      <div class="card-title">Shake the Grogger! <span class="he">רַעֲשָׁן</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/tradition_1.png" alt="Shake the Grogger! - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/tradition_1_back.png" alt="Shake the Grogger! - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div>
+
+    <!-- Session 3 (Optional) -->
+    <div class="session-header"><h2>Session 3 (Optional)</h2></div>
+
+    <div class="card-pair">
+      <div class="card-label">Connection</div>
+      <div class="card-title">Secrets and Feelings <span class="he">סוֹדוֹת וּרְגָשׁוֹת</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/connection_2.png" alt="Secrets and Feelings - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/connection_2_back.png" alt="Secrets and Feelings - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Tradition</div>
+      <div class="card-title">Dressing Up <span class="he">תַּחְפּוֹשׂוֹת</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/tradition_2.png" alt="Dressing Up - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/tradition_2_back.png" alt="Dressing Up - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Tradition</div>
+      <div class="card-title">Giving Gifts <span class="he">מִשְׁלוֹחַ מָנוֹת</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/tradition_3.png" alt="Giving Gifts - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/tradition_3_back.png" alt="Giving Gifts - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div><hr class="divider">
+
+    <div class="card-pair">
+      <div class="card-label">Power Word</div>
+      <div class="card-title">Gibor - Hero <span class="he">גִּבּוֹר</span></div>
+      <div class="card-images">
+        <div class="card-side front"><img src="../../decks/purim/images/power_word_1.png" alt="Gibor - Hero - Front" loading="lazy"><div class="label">Front</div></div>
+        <div class="card-side back"><img src="../../decks/purim/backs/power_word_1_back.png" alt="Gibor - Hero - Back" loading="lazy"><div class="label">Back (Teacher)</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function printAll() {
+      document.body.classList.remove('print-fronts', 'print-backs');
+      document.body.classList.add('print-paired');
+      window.print();
+      document.body.classList.remove('print-paired');
+    }
+    function printFronts() {
+      document.body.classList.remove('print-paired', 'print-backs');
+      document.body.classList.add('print-fronts');
+      window.print();
+      document.body.classList.remove('print-fronts');
+    }
+    function printBacks() {
+      document.body.classList.remove('print-paired', 'print-fronts');
+      document.body.classList.add('print-backs');
+      window.print();
+      document.body.classList.remove('print-backs');
+    }
+  </script>
+</body>
+</html>
