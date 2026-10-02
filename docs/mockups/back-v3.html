@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Back v3 Mockups</title>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Heebo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --ink: #1e293b;
+    --ink-2: #475569;
+    --page: #e7e2d9;
+    /* v3 palette — every color ≥4.5:1 with white AND with cream */
+    --anchor: #5B2D8E;
+    --spotlight: #7E601A;
+    --story: #B83227;
+    --connection: #1F5FA8;
+    --tradition: #0E7470;
+    --power: #2D7A3A;
+    --home: #A84B16;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); font-family: 'Assistant', sans-serif; color: var(--ink); }
+  header.page { max-width: 1180px; margin: 0 auto; padding: 32px 16px 8px; }
+  header.page h1 { margin: 0 0 6px; font-size: 28px; }
+  header.page p { margin: 4px 0; color: var(--ink-2); max-width: 760px; line-height: 1.45; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 14px 0 4px; font-size: 15px; }
+  .legend span b { color: var(--ink); }
+  .grid { max-width: 1180px; margin: 0 auto; padding: 16px; display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px; }
+  figure { margin: 0; }
+  figcaption { font-size: 14px; color: var(--ink-2); margin-top: 8px; line-height: 1.4; }
+  figcaption b { color: var(--ink); }
+
+  /* ---------- Card back (500x700 = 1/3 of 1500x2100 print) ---------- */
+  .card { --c: var(--story); width: 100%; max-width: 500px; aspect-ratio: 5/7; background: var(--cream);
+          border: 4px solid var(--c); border-radius: 10px; display: flex; flex-direction: column;
+          overflow: visible; box-shadow: 0 2px 10px rgba(0,0,0,.12); container-type: inline-size; }
+  .hdr { background: var(--c); color: #fff; display: flex; align-items: center; gap: 2.4cqw;
+         padding: 2.6cqw 4cqw; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 3.6cqw; }
+  .hdr svg { width: 5cqw; height: 5cqw; fill: #fff; flex: none; }
+  .hdr .meta { margin-left: auto; font-weight: 600; letter-spacing: .02em; text-transform: none; opacity: .95; }
+  .core { background: #fff; color: var(--c); border-radius: 99px; padding: .3cqw 1.8cqw; font-size: 3cqw; letter-spacing: .04em; }
+  .body { flex: 1; padding: 3.4cqw 4.4cqw 2cqw; display: flex; flex-direction: column; gap: 2.8cqw; }
+  .title { display: flex; align-items: baseline; justify-content: space-between; gap: 2cqw; }
+  .title h2 { margin: 0; font-size: 6.2cqw; line-height: 1.05; }
+  .title .he { font-family: 'Heebo', sans-serif; font-size: 5.2cqw; color: var(--ink-2); direction: rtl; }
+  .goal { display: flex; align-items: center; gap: 2cqw; font-size: 3.6cqw; color: var(--ink-2); }
+  .goal .value { margin-left: auto; color: var(--c); font-weight: 800; font-size: 3.2cqw; letter-spacing: .05em;
+                 border: .5cqw solid var(--c); border-radius: 99px; padding: .3cqw 2cqw; white-space: nowrap; }
+  .lbl { font-weight: 800; font-size: 3.3cqw; letter-spacing: .12em; color: var(--c); margin-bottom: 1cqw; }
+  .say { border-left: 1.4cqw solid var(--c); padding: .4cqw 0 .4cqw 3cqw; }
+  .say p { margin: 0; font-size: 4.6cqw; line-height: 1.42; }
+  .say p b { font-weight: 700; color: var(--ink); }
+  .cue { display: inline-block; font-style: italic; font-weight: 600; font-size: 3.7cqw; color: var(--c);
+         background: color-mix(in srgb, var(--c) 12%, transparent); border-radius: 1.4cqw; padding: 0 1.4cqw; margin: .3cqw 0; }
+  .cue::before { content: "▸ "; font-style: normal; }
+  .ask ul { margin: 0; padding: 0; list-style: none; }
+  .ask li { font-size: 4.3cqw; line-height: 1.35; padding-left: 4cqw; position: relative; margin-bottom: .6cqw; }
+  .ask li::before { content: "?"; position: absolute; left: 0; font-weight: 800; color: var(--c); }
+  .ask li.nv::before { content: "✋"; font-size: 3.4cqw; top: .4cqw; }
+  .heb { display: flex; align-items: center; gap: 2.6cqw; background: #fff; border-radius: 2cqw; padding: 2cqw 3cqw; }
+  .heb .w { font-family: 'Heebo', sans-serif; font-size: 7cqw; font-weight: 700; direction: rtl; color: var(--c); line-height: 1; }
+  .heb .t { font-size: 3.6cqw; line-height: 1.3; }
+  .heb .t b { font-size: 4cqw; }
+  .ftr { border-top: .4cqw dashed color-mix(in srgb, var(--c) 45%, transparent); margin: 0 4.4cqw; padding: 2cqw 0 2.6cqw;
+         display: flex; justify-content: space-between; gap: 2cqw; font-size: 3.3cqw; color: var(--ink-2); }
+  .ftr .next { font-style: italic; }
+  .ftr .guide { white-space: nowrap; font-weight: 600; }
+  .spacer { flex: 1; }
+
+  /* week strip (anchor) */
+  .week { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1cqw; }
+  .week div { background: #fff; border-radius: 1.6cqw; padding: 1.4cqw 1cqw; text-align: center; font-size: 3cqw; line-height: 1.25; }
+  .week b { display: block; color: var(--c); font-size: 3.2cqw; }
+
+  /* feeling faces (connection) — SVG, not emoji */
+  .faces { display: flex; justify-content: space-around; background: #fff; border-radius: 2cqw; padding: 1.6cqw; }
+  .faces figure { text-align: center; font-size: 3.2cqw; font-weight: 600; }
+  .faces svg { width: 11cqw; height: 11cqw; display: block; margin: 0 auto .6cqw; }
+
+  /* power word trio */
+  .trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.6cqw; text-align: center; }
+  .trio div { background: #fff; border-radius: 2cqw; padding: 2cqw 1cqw; font-size: 3.3cqw; line-height: 1.25; }
+  .trio .big { display: block; margin-bottom: .8cqw; font-family: 'Heebo', sans-serif; font-size: 6.6cqw; font-weight: 700; color: var(--c); direction: rtl; line-height: 1.1; }
+
+  /* home card */
+  .bi { display: grid; gap: 1.4cqw; }
+  .bi .en { font-size: 4.6cqw; font-weight: 700; line-height: 1.3; }
+  .bi .he2 { font-family: 'Heebo', sans-serif; direction: rtl; font-size: 4.4cqw; line-height: 1.45; color: var(--ink-2); }
+
+  /* before/after */
+  .compare { max-width: 1180px; margin: 8px auto 0; padding: 0 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+  .compare img { width: 100%; max-width: 500px; display: block; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+  h3.sec { max-width: 1180px; margin: 28px auto 0; padding: 0 16px; font-size: 20px; }
+  .notes { max-width: 1180px; margin: 0 auto; padding: 0 16px 48px; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+  .notes li { margin-bottom: 4px; }
+  .palette { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+  .palette span { color: #fff; padding: 4px 10px; border-radius: 6px; font-weight: 700; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-anchor" viewBox="0 0 24 24"><path d="M3 18h18l-1.5-10-4.5 4-3-7-3 7-4.5-4z"/></symbol>
+  <symbol id="i-spotlight" viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></symbol>
+  <symbol id="i-story" viewBox="0 0 24 24"><path d="M3 5c3-1 6-1 9 1 3-2 6-2 9-1v14c-3-1-6-1-9 1-3-2-6-2-9-1z"/></symbol>
+  <symbol id="i-connection" viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 018-2.8A4.5 4.5 0 0120 10c0 5.8-8 11-8 11z"/></symbol>
+  <symbol id="i-tradition" viewBox="0 0 24 24"><path d="M11 2c-1.5 2-1.5 3.5 0 4.5h2C14.5 5.5 14.5 4 13 2c0 1-1 1.5-1 2s-1-1-1-2zM10 8h4v12h3v2H7v-2h3z"/></symbol>
+  <symbol id="i-power" viewBox="0 0 24 24"><path d="M4 4h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9h-5v-6h-2v6H6v-9H3z"/></symbol>
+</svg>
+
+<header class="page">
+  <h1>Card Back v3: mockups</h1>
+  <p>All 7 back types for Purim, drawn at ⅓ of print size (the real card is 5×7 in, 1500×2100 px). Each one is written to fit the new word limits: a goal of 10 words or fewer, SAY in 50 words or fewer, and at most 2 questions. The teacher reads it top to bottom. Background, extra activities, and "what happened to Haman?" are in the printed teacher guide.</p>
+  <div class="legend">
+    <span><b>Bold</b> = what the teacher reads aloud</span>
+    <span><b style="color:var(--story)">▸ Colored chip</b> = what the teacher/children do</span>
+    <span><b>?</b> = question · <b>✋</b> = children can answer without words</span>
+    <span><b>★ CORE</b> = do this card if you're short on time</span>
+  </div>
+</header>
+
+<h3 class="sec">Before → after (Story 2)</h3>
+<div class="compare">
+  <figure>
+    <img src="../../decks/purim/backs/story_2_back.png" alt="Current v2 back for story 2">
+    <figcaption><b>Now (v2):</b> 4 boxes that look equally important (script, act it out, ask, tip), about 100–120 words. The act-out appears more than once and you can't tell what to read first.</figcaption>
+  </figure>
+  <figure>
+    <div class="card" style="--c:var(--story)">
+      <div class="hdr"><svg><use href="#i-story"/></svg>Story 2<span class="meta">~5 min</span><span class="core">★ CORE</span></div>
+      <div class="body">
+        <div class="title"><h2>Mordechai Stands Tall</h2><span class="he">מָרְדֳּכַי עוֹמֵד</span></div>
+        <div class="goal">🎯 Brave means doing what's right<span class="value">COURAGE</span></div>
+        <div class="say"><div class="lbl">SAY</div>
+          <p><b>Haman wanted EVERYONE to bow down to him.</b><br><span class="cue">Everyone bow!</span><br>
+          <b>But Mordechai said, "I am a Jew. I will not bow to you."</b><br><span class="cue">Stand up tall!</span><br>
+          <b>Mordechai… stood… TALL.</b> <span class="cue">Freeze!</span></p></div>
+        <div class="ask"><div class="lbl">ASK</div><ul>
+          <li>What did Mordechai do?</li>
+          <li class="nv">Show me how Mordechai stood!</li></ul></div>
+        <div class="heb"><span class="w">עוֹמֵד</span><span class="t"><b>o-MED</b> · "standing"<br>✋ Stand up straight, hands at sides</span></div>
+        <div class="spacer"></div>
+      </div>
+      <div class="ftr"><span class="next">▸ Uh-oh… Haman is NOT happy.</span><span class="guide">📖 Guide p.5 · Why not bow?</span></div>
+    </div>
+    <figcaption><b>v3:</b> 46 words. The actions sit inside the script. Questions go easy → open. The Sages' explanation ("he only bows to Hashem") moves to the guide, page 5, labeled as midrash.</figcaption>
+  </figure>
+</div>
+
+<h3 class="sec">All 7 back types</h3>
+<div class="grid">
+
+  <!-- ANCHOR -->
+  <figure>
+    <div class="card" style="--c:var(--anchor)">
+      <div class="hdr"><svg><use href="#i-anchor"/></svg>Anchor<span class="meta">~5 min</span><span class="core">★ CORE</span></div>
+      <div class="body">
+        <div class="title"><h2>Purim</h2><span class="he">פּוּרִים</span></div>
+        <div class="goal">🎯 Meet a queen with a brave secret<span class="value">COURAGE</span></div>
+        <div class="say"><div class="lbl">SAY</div>
+          <p><span class="cue">Hold the card up high</span><br><b>Look at this crown! Who wears a crown?</b><br>
+          <b>It belongs to Queen Esther. Esther had a big secret… and one day she had to be very, very brave.</b><br>
+          <span class="cue">Hands on hearts</span> <b>Let's find out!</b></p></div>
+        <div class="ask"><div class="lbl">ASK</div><ul>
+          <li>What do you see on the crown?</li>
+          <li>What do you think her secret is?</li></ul></div>
+        <div class="lbl" style="margin-bottom:-1cqw">THIS WEEK</div>
+        <div class="week">
+          <div><b>Day 1</b>This card + Esther, Mordechai</div>
+          <div><b>Day 2</b>Story 1–2</div>
+          <div><b>Day 3</b>Story 3 + Tradition</div>
+          <div><b>Day 4</b>Connection + Tradition</div>
+          <div><b>Day 5</b>Power word + Home card</div>
+        </div>
+        <div class="spacer"></div>
+      </div>
+      <div class="ftr"><span class="next">▸ Let's meet Queen Esther!</span><span class="guide">📖 Guide p.2</span></div>
+    </div>
+    <figcaption><b>Anchor:</b> 37 words. Only the anchor shows the week plan, so the other backs don't need to say which day they're for.</figcaption>
+  </figure>
+
+  <!-- SPOTLIGHT -->
+  <figure>
+    <div class="card" style="--c:var(--spotlight)">
+      <div class="hdr"><svg><use href="#i-spotlight"/></svg>Spotlight<span class="meta">~3 min</span><span class="core">★ CORE</span></div>
+      <div class="body">
+        <div class="title"><h2>Queen Esther</h2><span class="he">אֶסְתֵּר הַמַּלְכָּה</span></div>
+        <div class="goal">🎯 Brave can mean scared — and doing it anyway<span class="value">COURAGE</span></div>
+        <div class="say"><div class="lbl">SAY</div>
+          <p><span class="cue">Point to Esther's face</span><br><b>This is Queen Esther. Sometimes Esther felt a little scared…</b><br>
+          <span class="cue">Shaky hands</span><br><b>…but she was brave anyway!</b> <span class="cue">Strong arms!</span><br>
+          <b>Being brave means doing the right thing, even when you feel scared.</b></p></div>
+        <div class="ask"><div class="lbl">ASK</div><ul>
+          <li>How does Esther's face look?</li>
+          <li class="nv">Show me your brave face!</li></ul></div>
+        <div class="heb"><span class="w">אַמִּיצָה</span><span class="t"><b>a-mee-TZAH</b> · "brave" (girl)<br>boy: אַמִּיץ a-MEETZ · ✋ fists on hips</span></div>
+        <div class="spacer"></div>
+      </div>
+      <div class="ftr"><span class="next">▸ Esther had a cousin who helped her…</span><span class="guide">📖 Guide p.3</span></div>
+    </div>
+    <figcaption><b>Spotlight:</b> 37 words. The automatic "Show a ___ expression" line and the separate "teaching moment" are gone, and the feeling goes into the script. The Hebrew shows both the girl's and the boy's form.</figcaption>
+  </figure>
+
+  <!-- CONNECTION -->
+  <figure>
+    <div class="card" style="--c:var(--connection)">
+      <div class="hdr"><svg><use href="#i-connection"/></svg>Connection<span class="meta">~5 min</span></div>
+      <div class="body">
+        <div class="title"><h2>Being Brave</h2><span class="he">לִהְיוֹת אַמִּיצִים</span></div>
+        <div class="goal">🎯 Children name a time they were brave<span class="value">COURAGE</span></div>
+        <div class="say"><div class="lbl">SAY</div>
+          <p><b>Esther felt scared, and she was brave anyway.</b><br>
+          <span class="cue">Share one brave moment of your own</span><br>
+          <b>Now it's your turn. When were YOU brave?</b><br>
+          <span class="cue">Pass the card to whoever is sharing</span></p></div>
+        <div class="ask"><div class="lbl">ASK</div><ul>
+          <li>What did your body feel like?</li>
+          <li class="nv">Point to the face that shows how you felt!</li></ul></div>
+        <div class="faces">
+          <figure><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#FDE68A" stroke="#1e293b" stroke-width="1.5"/><circle cx="14" cy="16" r="2"/><circle cx="26" cy="16" r="2"/><ellipse cx="20" cy="28" rx="4" ry="5" fill="#1e293b"/></svg>scared</figure>
+          <figure><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#FDE68A" stroke="#1e293b" stroke-width="1.5"/><path d="M11 13l6 2M29 13l-6 2" stroke="#1e293b" stroke-width="2"/><circle cx="14" cy="18" r="2"/><circle cx="26" cy="18" r="2"/><path d="M13 27h14" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/></svg>brave</figure>
+          <figure><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#FDE68A" stroke="#1e293b" stroke-width="1.5"/><circle cx="14" cy="16" r="2"/><circle cx="26" cy="16" r="2"/><path d="M12 24q8 8 16 0" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/></svg>happy</figure>
+          <figure><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#FDE68A" stroke="#1e293b" stroke-width="1.5"/><path d="M11 16q3-3 6 0M23 16q3-3 6 0" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round"/><path d="M13 25q7 6 14 0" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/></svg>proud</figure>
+        </div>
+        <div class="spacer"></div>
+      </div>
+      <div class="ftr"><span class="next">▸ You are all so brave!</span><span class="guide">📖 Guide p.8 · if a child shares something hard</span></div>
+    </div>
+    <figcaption><b>Connection:</b> 28 words of SAY. The feeling faces are drawn shapes, not emoji, so they're free to print. Advice for when a child shares something sensitive goes in the guide.</figcaption>
+  </figure>
+
+  <!-- TRADITION -->
+  <figure>
+    <div class="card" style="--c:var(--tradition)">
+      <div class="hdr"><svg><use href="#i-tradition"/></svg>Tradition<span class="meta">~5 min</span><span class="core">★ CORE</span></div>
+      <div class="body">
+        <div class="title"><h2>Shake the Grogger!</h2><span class="he">רַעֲשָׁן</span></div>
+        <div class="goal">🎯 We listen to the Megillah — and drown out Haman<span class="value">COURAGE</span></div>
+        <div class="say"><div class="lbl">SAY</div>
+          <p><b>On Purim we listen to the Megillah, the story of Esther.</b><br>
+          <b>When we hear the name "Haman," we make noise so nobody can hear his name!</b><br>
+          <span class="cue">Say "Haman" — everyone shakes</span><br>
+          <b>When I say "Esther"… FREEZE!</b> <span class="cue">Repeat 3×</span></p></div>
+        <div class="ask"><div class="lbl">ASK</div><ul>
+          <li>What do we do when we hear "Haman"?</li>
+          <li class="nv">Show me your quietest freeze!</li></ul></div>
+        <div class="heb"><span class="w">רַעֲשָׁן</span><span class="t"><b>ra-a-SHAN</b> · "noise-maker"<br>✋ shake a fist next to your ear</span></div>
+        <div class="spacer"></div>
+      </div>
+      <div class="ftr"><span class="next">▸ What else do we do on Purim?</span><span class="guide">📖 Guide p.6 · no groggers? use claps</span></div>
+    </div>
+    <figcaption><b>Tradition (new teal):</b> 44 words. "FREEZE" gives the noise a clear stop, which reviewers of other card decks asked for. Tradition no longer shares a color with Spotlight.</figcaption>
+  </figure>
+
+  <!-- POWER WORD -->
+  <figure>
+    <div class="card" style="--c:var(--power)">
+      <div class="hdr"><svg><use href="#i-power"/></svg>Power Word<span class="meta">~3 min</span><span class="core">★ CORE</span></div>
+      <div class="body">
+        <div class="title"><h2>Gibor · Hero</h2><span class="he">גִּבּוֹר</span></div>
+        <div class="goal">🎯 Say, show, and use the word "gibor"<span class="value">COURAGE</span></div>
+        <div class="trio">
+          <div><span class="big">גִּבּוֹר</span>gee-BOR<br><b>boy hero</b></div>
+          <div><span class="big">גִּבּוֹרָה</span>gee-bo-RAH<br><b>girl hero</b></div>
+          <div><span style="font-size:8cqw;line-height:1.1;display:block">💪</span>gesture<br><b>strong arms</b></div>
+        </div>
+        <div class="say"><div class="lbl">SAY</div>
+          <p><b>Our Hebrew word is gibor. It means hero!</b> <span class="cue">Strong arms!</span><br>
+          <b>A girl hero is a giborah. Esther was a giborah!</b><br>
+          <b>Say it with me: gee-BOR!</b> <span class="cue">Louder… LOUDER!</span></p></div>
+        <div class="ask"><div class="lbl">ASK</div><ul>
+          <li>What does a gibor do?</li>
+          <li class="nv">Show me your gibor arms!</li></ul></div>
+        <div class="spacer"></div>
+      </div>
+      <div class="ftr"><span class="next">▸ Take "gibor" home this Shabbat!</span><span class="guide">📖 Guide p.9 · review: מֶלֶךְ, מַלְכָּה</span></div>
+    </div>
+    <figcaption><b>Power Word:</b> 31 words. Three boxes: the boy's form, the girl's form, and the hand gesture (a Montessori-style trio). The footer lists earlier Hebrew words to review.</figcaption>
+  </figure>
+
+  <!-- HOME -->
+  <figure>
+    <div class="card" style="--c:var(--home)">
+      <div class="hdr"><svg><use href="#i-home"/></svg>Take Home<span class="meta">for families</span></div>
+      <div class="body">
+        <div class="title"><h2>This Week: Purim</h2><span class="he">פּוּרִים</span></div>
+        <div class="goal">We learned about <b>&nbsp;courage&nbsp;</b> — אֹמֶץ לֵב<span class="value">COURAGE</span></div>
+        <div class="say"><div class="lbl">AT THE SHABBAT TABLE, ASK</div>
+          <div class="bi">
+            <div class="en">"When were you brave this week?"</div>
+            <div class="he2">״מָתַי הֱיִיתֶם אַמִּיצִים הַשָּׁבוּעַ?״</div>
+          </div></div>
+        <div class="heb"><span class="w">גִּבּוֹר</span><span class="t"><b>gee-BOR</b> · hero (girl: גִּבּוֹרָה)<br>Ask your child to show you the "gibor arms"!</span></div>
+        <div class="ask"><div class="lbl">TRY AT HOME</div><ul>
+          <li class="nv">Shake pots or keys whenever someone says "Haman."</li>
+          <li class="nv">Make a small treat bag for a neighbor (mishloach manot).</li></ul></div>
+        <div class="spacer"></div>
+      </div>
+      <div class="ftr"><span class="next">Shabbat Shalom! · שַׁבָּת שָׁלוֹם</span><span class="guide">Parasha Pack</span></div>
+    </div>
+    <figcaption><b>Home card (new):</b> written to families, with English and Hebrew. A school can copy it and send it home on Friday. Nothing like this exists in the decks today.</figcaption>
+  </figure>
+
+</div>
+
+<h3 class="sec">Design notes</h3>
+<div class="notes">
+  <div class="palette">
+    <span style="background:var(--anchor)">Anchor</span><span style="background:var(--spotlight)">Spotlight</span>
+    <span style="background:var(--story)">Story</span><span style="background:var(--connection)">Connection</span>
+    <span style="background:var(--tradition)">Tradition</span><span style="background:var(--power)">Power Word</span>
+    <span style="background:var(--home)">Home</span>
+  </div>
+  <ul>
+    <li><b>Colors:</b> every color is readable with white text and on the cream background (contrast of at least 4.5:1, the accessibility minimum). The current gold is 2.2:1. Tradition has its own teal now instead of sharing Spotlight's gold. Each card type also has its own icon, so color-blind teachers can tell Story (red) from Power Word (green).</li>
+    <li><b>Same look as today:</b> same cream background, colored header bar, Assistant font for English and Heebo for Hebrew, and the colored stripe on the left of the script. It's an update of the current back, not a new style.</li>
+    <li><b>Nothing gets cut off:</b> the export will stop with an error if any text doesn't fit, so a script can't be silently cut mid-sentence again.</li>
+    <li><b>Draft Hebrew:</b> the Hebrew on this page (especially the home card's Shabbat question) still needs your review.</li>
+    <li><b>Not shown yet:</b> fronts, print bleed, and the guide booklet. Those are later phases.</li>
+  </ul>
+</div>
+</body>
+</html>

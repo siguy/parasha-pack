@@ -13,7 +13,7 @@ Status: **Decisions made — Phase 1 ready to start**
 - [x] D6 Simon is sole checkpoint
 
 ## Phase 1 — Back v3 template + schema
-- [ ] 1.1 HTML mockups of v3 backs (6 types) → Simon approves
+- [~] 1.1 HTML mockups of v3 backs (7 types incl. home) — `docs/mockups/back-v3.html` — awaiting Simon approval
 - [ ] 1.2 `schemas/deck.v3.schema.json`
 - [ ] 1.3 `src/migrate_v2_to_v3.py`
 - [ ] 1.4 Single config-driven `CardBack.tsx`; remove overflow-hidden; bold/bracket parser; AA contrast

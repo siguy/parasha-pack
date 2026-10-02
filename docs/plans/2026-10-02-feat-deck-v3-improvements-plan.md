@@ -58,7 +58,7 @@ These are product/values calls, not engineering calls. I'll draft options; Simon
 
 - **D1. Card count standard.** Recommend: **10 standard / 12 holiday** (1 anchor, 2 spotlight,
   4 story, 1 connection, 1 power word, +1 "Shabbat table"/home card; holiday: 3 tradition
-  replace 1 story + 1 connection). Today: docs say 10/13, 8–16, 8–12; Purim has 16.
+  cards replace 1 story → 12). Today: docs say 10/13, 8–16, 8–12; Purim has 16.
 - **D2. Values spine.** A fixed list of ~12–15 middot that rotate through the year
   (e.g. chesed, ometz lev, emunah, hakarat hatov, anavah, shalom, tzedakah, kavod, achrayut,
   emet, savlanut, hachnasat orchim, simcha). Each deck gets exactly one.
