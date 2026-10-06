@@ -154,8 +154,11 @@ See [agents/AGENT_PIPELINE.md](agents/AGENT_PIPELINE.md) for detailed YAML schem
 | Generate without style plates | `python generate_images.py ../decks/yitro/deck.json --no-hero` |
 | Cheap drafts, then final | `python generate_images.py ../decks/yitro/deck.json --card story_1 --draft`, then `--final --from-draft ../decks/yitro/raw/drafts/story_1_d2.png` |
 | Identity sheet versions | `python generate_references.py --character adam --versions 2`, then `--accept v2` |
+| Check a deck for mistakes | `python3 src/validate_deck.py decks/bereshit/deck.json` (`--strict`, `--json`) |
 | Sync deck to Card Designer | `./sync-deck.sh purim` |
-| Export final cards | `cd card-designer && npm run export purim -- --backs --pdf` |
+| Export final cards | `cd card-designer && npm run export purim -- --backs --pdf` (runs the validator + overflow guard first) |
+| Card Designer unit tests | `cd card-designer && npm test` |
+| Python tests | `python3 -m pytest tests -q` |
 
 ## Environment Variables
 
