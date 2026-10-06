@@ -111,7 +111,7 @@
 .pp-front .ttl { position: absolute; top: 3.5%; left: 7.5%; right: 7.5%; text-align: center; color: #fff; }
 .pp-front .ttl .en {
   font-family: var(--font-fredoka), sans-serif; font-weight: 700; font-size: 10cqw; line-height: 1.02;
-  text-shadow: 0 .5cqw 0 rgba(0,0,0,.4); -webkit-text-stroke: .25cqw rgba(0,0,0,.25);
+  text-shadow: 0 .5cqw 0 rgba(0,0,0,.4); /* no -webkit-text-stroke: it draws the font's internal contour lines inside letters */
 }
 .pp-front .ttl .he {
   font-family: var(--font-heebo), sans-serif; font-weight: 700; font-size: 7cqw; direction: rtl; margin-top: 1cqw;
