@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### v3 Follow-ups
 
 #### Changed
+- `scripts/sync_to_hub.py`: publishes every teacher PDF (cards letter PDF, `print/<id>-guide.pdf`, all `extras/*.pdf`) to the hub's `public/parashapacks/<id>/materials/` and writes a `materials` list (title, description, file, size, pages, category) into the site deck JSON, for the deck page's "Teacher materials" section. The letter PDF moved from `<id>/<id>-letter.pdf` to `<id>/materials/`. Pilot forms (`docs/pilot/`) are not per-deck and are not published.
 - `scripts/sync_to_hub.py`: validator errors now stop the sync (exit 1, nothing written) instead of only warning. `--allow-invalid` publishes anyway (needed for Terumah until its v3 rewrite).
 - `src/generate_images.py`: a full-deck run skips `home` cards and cards with no `image_prompt` (info log) instead of sending the home card's "No art" note to the API.
 

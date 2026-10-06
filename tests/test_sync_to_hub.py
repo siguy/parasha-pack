@@ -61,12 +61,53 @@ def test_sync_copies_json_webp_pdf_and_index(tmp_path):
     with Image.open(out / "story_1_back.webp") as img:
         assert img.format == "WEBP"
         assert img.height == sync_to_hub.MAX_HEIGHT  # shrunk from 2000
-    assert (out / "demo-letter.pdf").exists()
+    assert (out / "materials" / "demo-letter.pdf").exists()
+    assert [m["file"] for m in site_deck["materials"]] == ["materials/demo-letter.pdf"]
+    assert site_deck["materials"][0]["category"] == "Cards"
 
     index = json.loads((hub / "app/parashapacks/decks/index.json").read_text())
     assert index == [entry]
     assert entry["card_count"] == 2 and entry["has_pdf"] and entry["status"] == "done"
     assert entry["cover"] == "anchor_1" and entry["missing_images"] == 0
+
+
+def make_pdf(path: Path, pages: int) -> None:
+    from pypdf import PdfWriter
+    path.parent.mkdir(parents=True, exist_ok=True)
+    writer = PdfWriter()
+    for _ in range(pages):
+        writer.add_blank_page(width=612, height=792)
+    with path.open("wb") as f:
+        writer.write(f)
+
+
+def test_teacher_materials_are_published_and_listed(tmp_path):
+    repo, hub = tmp_path / "repo", tmp_path / "hub"
+    (hub / "app").mkdir(parents=True)
+    deck_dir = repo / "decks" / "demo"
+    make_deck(deck_dir, "demo", ["anchor_1"])
+    (deck_dir / "extras.yaml").write_text("bingo:\n  boards: 8\n")
+    make_pdf(deck_dir / "print" / "demo-letter.pdf", 4)
+    make_pdf(deck_dir / "print" / "demo-guide.pdf", 3)
+    make_pdf(deck_dir / "print" / "demo-5x7.pdf", 4)  # print-shop file: not a teacher material
+    make_pdf(deck_dir / "extras" / "match.pdf", 2)
+    make_pdf(deck_dir / "extras" / "bingo.pdf", 11)
+    make_pdf(deck_dir / "extras" / "new_game.pdf", 1)  # unknown activity still gets published
+
+    sync_to_hub.sync_deck("demo", repo, hub, {})
+
+    materials = json.loads((hub / "app/parashapacks/decks/demo.json").read_text())["materials"]
+    assert [m["file"] for m in materials] == [
+        "materials/demo-letter.pdf", "materials/demo-guide.pdf",
+        "materials/bingo.pdf", "materials/match.pdf", "materials/new_game.pdf"]
+    assert [m["category"] for m in materials] == ["Cards", "Teacher guide", "Activities", "Activities", "Activities"]
+    bingo = materials[2]
+    assert bingo["title"] == "Bingo: 8 boards + calling cards" and bingo["pages"] == 11
+    assert bingo["size"] == (deck_dir / "extras" / "bingo.pdf").stat().st_size
+    assert materials[4]["title"] == "New game" and materials[4]["description"]
+    for m in materials:
+        assert (hub / "public/parashapacks/demo" / m["file"]).exists()
+    assert not (hub / "public/parashapacks/demo/materials/demo-5x7.pdf").exists()
 
 
 def test_missing_images_warn_and_archive_decks_are_found(tmp_path):
@@ -79,6 +120,7 @@ def test_missing_images_warn_and_archive_decks_are_found(tmp_path):
     entry = sync_to_hub.sync_deck("old", repo, hub, {})
     assert entry["missing_images"] == 3
     assert entry["has_pdf"] is False
+    assert json.loads((hub / "app/parashapacks/decks/old.json").read_text())["materials"] == []
     assert (hub / "public/parashapacks/old/anchor_1.webp").exists()
 
 
