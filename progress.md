@@ -12,8 +12,8 @@ _Last updated: 2026-10-05_
 ## Version control (one PR per main feature)
 | Branch | PR | Status |
 |---|---|---|
-| `docs/deck-v3-plan` | Plan, policies, research decisions, mockups, progress | open (see PR list) |
-| `fix/image-model-nano-banana-2` | Nano Banana 2 + `--size` flag | open, with known issues (below) |
+| `docs/deck-v3-plan` | [#3](https://github.com/siguy/parasha-pack/pull/3): plan, policies, mockups, progress | open, docs only |
+| `fix/image-model-nano-banana-2` | [#4](https://github.com/siguy/parasha-pack/pull/4): Nano Banana 2 + `--size` flag | open; follow-up fixes for issues 1–3 in progress (separate worktree `.claude/worktrees/fix-image-model`) |
 | `claude/torah-deck-improvements-40976f` | Original session branch (holds everything). Superseded by the two branches above; do not open a PR from it. | — |
 
 Rules: branch from `main` as `<type>/<short-description>`. When a feature depends on an unmerged PR, branch from that PR's branch and say so in the PR body. Squash on merge (Simon's default). Every PR body has a **Known issues / not working** section.
@@ -34,7 +34,7 @@ Rules: branch from `main` as `<type>/<short-description>`. When a feature depend
 - **Mockups:**
   - `docs/mockups/back-v3.html`: Purim, 7 back types at 5×7, before/after comparison.
   - `docs/mockups/bereshit-v3.html`: all 10 Bereshit backs at letter size, 3 fronts with title-zone and 5:7-crop guides, and the same design at 5×7. Checked in the browser: no overflow; aspect ratios 1.294 (letter) and 1.381 (5×7 with bleed) are correct. **Waiting for Simon's approval.**
-- **Step 2.6, image model fix (commit e893645):**
+- **Step 2.6, image model fix (PR #4, commit 15090e8):**
   - The model now comes from `GEMINI_IMAGE_MODEL`, defaulting to `gemini-3.1-flash-image`.
   - `--size 512|1K|2K|4K`, default 2K.
   - Skips the model's interim "thought" images; timeout raised to 300s.
@@ -53,7 +53,7 @@ Rules: branch from `main` as `<type>/<short-description>`. When a feature depend
 
 ## Next steps (in order)
 1. Simon reviews `docs/mockups/bereshit-v3.html` (and checks the Hebrew flagged on the page).
-2. Fix the known issues 1–3 on the `fix/image-model-nano-banana-2` branch.
+2. Fix the known issues 1–3 on the `fix/image-model-nano-banana-2` branch (a subagent is working on this; check PR #4 for status).
 3. Phase 1.2–1.5: v3 schema, migration script, single `CardBack.tsx`, letter/5×7 PDF export. New branch `feat/card-back-v3`.
 4. Phase 2: validator, export guard, tests (`feat/deck-validator`).
 5. Then Phase 3 → 9 as in `tasks/todo.md`.
