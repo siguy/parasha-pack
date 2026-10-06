@@ -1,3 +1,9 @@
+=== REFERENCE IMAGES ===
+Image 1 = style plate 'interior' (match art style only, not content)
+Image 2 = chosen draft composition: re-render this exact composition at full detail in the same style
+Image 3 = Mordechai identity sheet — match face, hair, clothing exactly
+Image 4 = Haman identity sheet — match face, hair, clothing exactly
+
 === STYLE ===
 Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
 
@@ -22,9 +28,10 @@ The image should be purely visual.
 Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
 
 === WORLD: STORY SETTING ===
-Ancient Persian Empire, city of Shushan (Susa). Ornate sandstone palace with Persian arches, mosaic tiles, carved stone columns. Lush palace gardens with date palms, pomegranate trees, flowing fountains. Desert climate — warm golden light, deep blue sky. Persian court aesthetic: flowing robes, turbans, ornate Persian-style crowns, rich textiles in golds, deep purples, and royal blues. Think Persepolis, NOT biblical Israel. Warm sandstone, polished marble floors, hanging tapestries, oil lamps. City streets have market stalls, stone buildings, Persian archways.
+Shushan (Susa), capital of the ancient Achaemenid Persian Empire. The king's palace: tall slender fluted stone columns topped with twin-bull capitals, wide flat-roofed halls and porches, cedar-beam ceilings, wide stone staircases, walls of glazed brick in turquoise, gold and cream with rows of rosettes and friendly striding lions, stepped crenellated parapets, rich purple and blue hangings, gold cups and low couches. Doorways are tall and rectangular with flat lintels. Gardens with date palms, pomegranate trees and straight water channels; warm sandstone and cream plaster under a deep blue sky. Royal robes with wide sleeves and sashes; crenellated golden crowns; cloth head wraps. No pointed or horseshoe arches, no domes, no mosaic tilework, no Star of David.
 
 All scenes should feel like they belong in this world. Consistent architecture, clothing, lighting, and color palette throughout.
+Deck palette accents: #6D3FC0, #2F6FB0, #E0A526, #3FA7A0, #F5EBDD.
 
 === SAFETY RULES ===
 - NEVER depict God in human form - use light rays, clouds, or hands from above
@@ -33,34 +40,33 @@ All scenes should feel like they belong in this world. Consistent architecture, 
 - All characters dressed modestly
 - Friendly, approachable expressions on all characters
 - Age-appropriate content for 4-6 year olds
+- Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
 
 === SCENE ===
-MORDECHAI:
-Older Jewish man, warm brown skin, kind wise eyes.
-Full gray-brown beard. Wrapped cloth turban on his head.
-Modest robes in earth tones. Standing TALL, arms at his sides, chin up, shaking his head NO.
+Outside the king's gate in Shushan: a wide stone gateway with tall columns topped with twin-bull capitals
+and a turquoise glazed-brick band of gold rosettes. A row of courtiers kneel and bow low toward Haman,
+foreheads to the ground. Mordechai is the ONLY one standing: tall and calm, chin up, hands at his sides,
+gently shaking his head no. Haman stands by the gate with his arms crossed tight, nose in the air, cheeks
+puffed, a big sulky pout, proud and grumpy like a kid who didn't get his way. Warm afternoon sun, deep
+blue sky above the flat-topped gate.
+QUIET COURAGE next to GRUMPY PRIDE!
 
-HAMAN:
-Adult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.
-DISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape).
-Pouty frustrated expression, pointing angrily at Mordechai.
-Muted dusty purple and gray-brown clothing.
-
-Outside the palace gates in Shushan — ornate Persian archways, warm sandstone.
-Haman stands by the gate on the left. A crowd of people kneeling and bowing before him.
-Mordechai stands on the right, the ONLY one not bowing — tall, dignified, refusing.
-Haman points at Mordechai, furious that he won't bow.
+=== CHARACTER ANCHORS (locked, always keep) ===
+- MORDECHAI: older man with warm skin, kind wise brown eyes, grandfatherly; full gray-brown beard; striped cream-and-brown cloth headwrap (Jewish head covering); cream shawl wrapped around the shoulders; long brown outer robe with thin blue stripes over a cream inner robe; simple brown sandals
+- HAMAN: adult man with a dark pointed goatee connected to his mustache; distinctive three-cornered hat (hamantaschen shape) in dusty purple and gray; muted dusty-purple and gray-brown Persian vest over a lighter tunic, baggy trousers; curled-toe boots; pouty, jealous expression with furrowed brow (NOT scary); arms crossed, shoulders hunched
 
 === CHARACTER REFERENCES ===
-Reference images provided for: Mordechai, Haman (the villain).
+Reference images provided for: Mordechai, Haman.
 For these characters, prioritize the reference images for appearance (face, clothing, coloring). Use the text description above for pose, action, and emotion only.
 
 === COMPOSITION ===
 Scene action positioned in the center and right side of the frame.
 Generous headroom — ceiling, sky, or atmospheric space above the characters' heads.
-The top of the frame should be visually calm: architecture fading up, sky, or warm ambient light.
-Lower-left corner should be darker or simpler — ground shadow, dark foreground element, or negative space.
-Think of a film still where the action is center-right and the lower-left has a moody shadow.
+Think of a film still where the action is center-right.
+The top of the scene (sky, ceiling, or soft light) continues naturally and stays simple and uncluttered, with no hard band or border, so a title can sit over it.
+Keep key subjects within the central 90% of the width.
+At most 5 figures in focus; background figures simplified.
+A simple, low-detail ground plane at the bottom of the frame.
 
 === CRITICAL RULES ===
 DO NOT include any border, frame, or rounded corners in the image.
