@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bereshit Deck v3 Mockups</title>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Fredoka:wght@500;600;700&family=Heebo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8; --ink: #1e293b; --ink-2: #475569; --page: #e7e2d9;
+    --anchor: #5B2D8E; --spotlight: #7E601A; --story: #B83227; --connection: #1F5FA8;
+    --tradition: #0E7470; --power: #2D7A3A; --home: #A84B16;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); font-family: 'Assistant', sans-serif; color: var(--ink); }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+  header.page { padding: 32px 0 8px; }
+  h1 { margin: 0 0 6px; font-size: 28px; }
+  header p, .lead { margin: 4px 0; color: var(--ink-2); max-width: 820px; line-height: 1.45; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 14px 0 4px; font-size: 15px; }
+  h2.sec { margin: 34px 0 6px; font-size: 21px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 30px 26px; margin-top: 14px; }
+  figure { margin: 0; }
+  figcaption { font-size: 14px; color: var(--ink-2); margin-top: 8px; line-height: 1.4; }
+  figcaption b { color: var(--ink); }
+  .toggle { margin: 10px 0 0; font-size: 15px; display: flex; gap: 8px; align-items: center; }
+
+  /* ---------- PAPER: letter sheet (8.5x11) with 0.3" white margin ---------- */
+  .paper { width: 100%; max-width: 440px; aspect-ratio: 8.5 / 11; background: #fff; padding: 3.53%;
+           box-shadow: 0 2px 12px rgba(0,0,0,.14); border-radius: 2px; position: relative; }
+  /* 5x7 vendor sheet: 5.25x7.25 incl. 0.125" bleed; dashed = trim line */
+  .paper.p57 { aspect-ratio: 5.25 / 7.25; padding: 0; max-width: 340px; }
+  .paper.p57 .card { border-radius: 0; }
+  .paper.p57::after { content: ""; position: absolute; inset: 2.38% ; border: 1.5px dashed #e11d48; pointer-events: none; }
+
+  /* ---------- CARD BACK ---------- */
+  .card { --c: var(--story); width: 100%; height: 100%; background: var(--cream); border: .9cqw solid var(--c);
+          border-radius: 1.6cqw; display: flex; flex-direction: column; container-type: inline-size; overflow: visible; }
+  .paper > .card { container-type: inline-size; }
+  .hdr { background: var(--c); color: #fff; display: flex; align-items: center; gap: 2.2cqw;
+         padding: 2.2cqw 4cqw; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 3.4cqw; }
+  .hdr svg { width: 4.6cqw; height: 4.6cqw; fill: #fff; flex: none; }
+  .hdr .meta { margin-left: auto; font-weight: 600; letter-spacing: .02em; text-transform: none; }
+  .core { background: #fff; color: var(--c); border-radius: 99px; padding: .2cqw 1.6cqw; font-size: 2.8cqw; }
+  .body { flex: 1; padding: 2.8cqw 4.2cqw 1.4cqw; display: flex; flex-direction: column; gap: 2.2cqw; min-height: 0; }
+  .title { display: flex; align-items: baseline; justify-content: space-between; gap: 2cqw; }
+  .title h3 { margin: 0; font-size: 5.8cqw; line-height: 1.05; }
+  .title .he { font-family: 'Heebo', sans-serif; font-size: 5cqw; color: var(--ink-2); direction: rtl; white-space: nowrap; }
+  .goal { display: flex; align-items: center; gap: 1.6cqw; font-size: 3.4cqw; color: var(--ink-2); }
+  .value { margin-left: auto; color: var(--c); font-weight: 800; font-size: 2.7cqw; letter-spacing: .05em;
+           border: .45cqw solid var(--c); border-radius: 99px; padding: .2cqw 1.8cqw; white-space: nowrap; }
+  .lbl { font-weight: 800; font-size: 3cqw; letter-spacing: .12em; color: var(--c); margin-bottom: .8cqw; }
+  .say { border-left: 1.3cqw solid var(--c); padding: .2cqw 0 .2cqw 2.8cqw; }
+  .say p { margin: 0; font-size: 4.3cqw; line-height: 1.38; }
+  .say b { font-weight: 700; color: var(--ink); }
+  .cue { display: inline-block; font-style: italic; font-weight: 600; font-size: 3.4cqw; color: var(--c);
+         background: color-mix(in srgb, var(--c) 12%, transparent); border-radius: 1.2cqw; padding: 0 1.2cqw; margin: .2cqw 0; }
+  .cue::before { content: "▸ "; font-style: normal; }
+  .ask ul { margin: 0; padding: 0; list-style: none; }
+  .ask li { font-size: 4cqw; line-height: 1.32; padding-left: 3.8cqw; position: relative; margin-bottom: .4cqw; }
+  .ask li::before { content: "?"; position: absolute; left: 0; font-weight: 800; color: var(--c); }
+  .ask li.nv::before { content: "✋"; font-size: 3.1cqw; top: .4cqw; }
+  .heb { display: flex; align-items: center; gap: 2.4cqw; background: #fff; border-radius: 1.8cqw; padding: 1.6cqw 2.8cqw; }
+  .heb .w { font-family: 'Heebo', sans-serif; font-size: 6.4cqw; font-weight: 700; direction: rtl; color: var(--c); line-height: 1; }
+  .heb .t { font-size: 3.3cqw; line-height: 1.3; }
+  .heb .t b { font-size: 3.7cqw; }
+  .ftr { border-top: .35cqw dashed color-mix(in srgb, var(--c) 45%, transparent); margin: 0 4.2cqw; padding: 1.6cqw 0 2cqw;
+         display: flex; justify-content: space-between; gap: 2cqw; font-size: 3cqw; color: var(--ink-2); }
+  .ftr .next { font-style: italic; }
+  .ftr .guide { white-space: nowrap; font-weight: 600; }
+  .spacer { flex: 1; }
+  .week { display: grid; grid-template-columns: repeat(5, 1fr); gap: .9cqw; }
+  .week div { background: #fff; border-radius: 1.4cqw; padding: 1.2cqw .8cqw; text-align: center; font-size: 2.8cqw; line-height: 1.22; }
+  .week b { display: block; color: var(--c); font-size: 3cqw; }
+  .faces { display: flex; justify-content: space-around; background: #fff; border-radius: 1.8cqw; padding: 1.4cqw; }
+  .faces figure { text-align: center; font-size: 3cqw; font-weight: 600; }
+  .faces svg { width: 10cqw; height: 10cqw; display: block; margin: 0 auto .5cqw; }
+  .trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.4cqw; text-align: center; }
+  .trio div { background: #fff; border-radius: 1.8cqw; padding: 1.8cqw 1cqw; font-size: 3.1cqw; line-height: 1.25; }
+  .trio .big { display: block; margin-bottom: .6cqw; font-family: 'Heebo', sans-serif; font-size: 7cqw; font-weight: 700; color: var(--c); line-height: 1.1; }
+  .bi { display: grid; gap: 1.2cqw; }
+  .bi .en { font-size: 4.4cqw; font-weight: 700; line-height: 1.3; }
+  .bi .he2 { font-family: 'Heebo', sans-serif; direction: rtl; font-size: 4.2cqw; line-height: 1.45; color: var(--ink-2); }
+
+  /* ---------- CARD FRONT ---------- */
+  .front { position: relative; width: 100%; height: 100%; border-radius: 1.6cqw; overflow: hidden;
+           border: .9cqw solid var(--c); container-type: inline-size; background: #222; }
+  .front svg.art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .front .shade { position: absolute; left: 0; right: 0; top: 0; height: 34%;
+                  background: linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,0)); }
+  .front .ttl { position: absolute; top: 3.5%; left: 7.5%; right: 7.5%; text-align: center; color: #fff; }
+  .front .ttl .en { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 10cqw; line-height: 1.02;
+                    text-shadow: 0 .5cqw 1.6cqw rgba(0,0,0,.45); -webkit-text-stroke: .25cqw rgba(0,0,0,.25); }
+  .front .ttl .he { font-family: 'Heebo', sans-serif; font-weight: 700; font-size: 7cqw; direction: rtl; margin-top: 1cqw;
+                    text-shadow: 0 .4cqw 1.2cqw rgba(0,0,0,.5); }
+  .front:has(.num) .ttl { left: 15%; right: 15%; }
+  .front:has(.num) .ttl .en { font-size: 8.6cqw; }
+  .front .chip { position: absolute; bottom: 3%; left: 3%; display: flex; align-items: center; gap: 1.4cqw; background: var(--c);
+                 color: #fff; border-radius: 99px; padding: 1cqw 2.6cqw 1cqw 1.6cqw; font-weight: 800; font-size: 3.2cqw;
+                 letter-spacing: .06em; text-transform: uppercase; border: .4cqw solid #fff; }
+  .front .chip svg { width: 4.4cqw; height: 4.4cqw; fill: #fff; }
+  .front .num { position: absolute; top: 3%; right: 3%; width: 11cqw; height: 11cqw; border-radius: 50%; background: #fff;
+                color: var(--c); font-family: 'Fredoka'; font-weight: 700; font-size: 6.4cqw; display: grid; place-items: center;
+                border: .7cqw solid var(--c); }
+  .front .kw { position: absolute; bottom: 3%; right: 3%; background: #fff; border-radius: 2cqw; padding: .8cqw 2.4cqw;
+               font-family: 'Heebo'; font-weight: 700; font-size: 6cqw; color: var(--c); direction: rtl; border: .4cqw solid var(--c); }
+  .front .kw small { font-family: 'Assistant'; font-size: 3cqw; color: var(--ink-2); display: block; text-align: center; direction: ltr; }
+  /* guides: title zone + 5:7 crop */
+  .guides .front::before { content: "title zone (top 22%)"; position: absolute; left: 0; right: 0; top: 0; height: 22%;
+          border-bottom: 2px dashed #facc15; color: #facc15; font: 700 11px Assistant; padding: 4px; z-index: 5; }
+  .guides .front::after { content: "5:7 crop"; position: absolute; top: 0; bottom: 0; left: 3.9%; right: 3.9%;
+          border-left: 2px dashed #22d3ee; border-right: 2px dashed #22d3ee; color: #22d3ee; font: 700 11px Assistant;
+          display: flex; align-items: flex-end; justify-content: center; padding-bottom: 14%; z-index: 5; pointer-events: none; }
+
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .notes { font-size: 15px; line-height: 1.55; color: var(--ink-2); padding-bottom: 60px; }
+  .notes li { margin-bottom: 5px; }
+  .flag { background: #fff7d6; border: 1px solid #f2d36b; border-radius: 8px; padding: 10px 14px; margin: 12px 0; font-size: 15px; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-anchor" viewBox="0 0 24 24"><path d="M3 18h18l-1.5-10-4.5 4-3-7-3 7-4.5-4z"/></symbol>
+  <symbol id="i-spotlight" viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></symbol>
+  <symbol id="i-story" viewBox="0 0 24 24"><path d="M3 5c3-1 6-1 9 1 3-2 6-2 9-1v14c-3-1-6-1-9 1-3-2-6-2-9-1z"/></symbol>
+  <symbol id="i-connection" viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 018-2.8A4.5 4.5 0 0120 10c0 5.8-8 11-8 11z"/></symbol>
+  <symbol id="i-power" viewBox="0 0 24 24"><path d="M4 4h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9h-5v-6h-2v6H6v-9H3z"/></symbol>
+  <symbol id="face-happy" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#FDE68A" stroke="#1e293b" stroke-width="1.5"/><circle cx="14" cy="16" r="2" fill="#1e293b"/><circle cx="26" cy="16" r="2" fill="#1e293b"/><path d="M12 24q8 8 16 0" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="face-proud" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#FDE68A" stroke="#1e293b" stroke-width="1.5"/><path d="M11 16q3-3 6 0M23 16q3-3 6 0" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round"/><path d="M13 25q7 6 14 0" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="face-calm" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#FDE68A" stroke="#1e293b" stroke-width="1.5"/><path d="M11 17h6M23 17h6" stroke="#1e293b" stroke-width="2" stroke-linecap="round"/><path d="M15 26q5 3 10 0" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="face-excited" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#FDE68A" stroke="#1e293b" stroke-width="1.5"/><circle cx="14" cy="15" r="2.6" fill="#1e293b"/><circle cx="26" cy="15" r="2.6" fill="#1e293b"/><path d="M11 23h18q-1 9-9 9t-9-9z" fill="#1e293b"/></symbol>
+</svg>
+
+<div class="wrap">
+<header class="page">
+  <h1>Bereshit: v3 card mockups (letter size)</h1>
+  <p>This is the whole Bereshit deck (10 cards) printed on 8.5×11. The white edge is the 0.3" page margin, so a home printer can print the full card and nobody has to cut anything. Each card is one sheet: art on the front, the teacher back on the reverse. Art below is a placeholder; real art comes in Phase 6.</p>
+  <div class="legend">
+    <span><b>Bold</b> = the teacher reads it aloud</span>
+    <span><b style="color:var(--story)">▸ Chip</b> = the teacher or children do it</span>
+    <span><b>?</b> question · <b>✋</b> children can answer without words</span>
+    <span><b>★ CORE</b> = do this card if time is short</span>
+  </div>
+</header>
+
+<h2 class="sec">1 · Fronts (what the children see)</h2>
+<p class="lead">The title sits in the calm top band of the art. A type chip at bottom-left tells the teacher the card type without relying on color. Story cards have a number at top-right so the deck works as a sequencing game, and a Hebrew word badge at bottom-right.</p>
+<label class="toggle"><input type="checkbox" id="g" checked> Show guides: yellow = title zone (art stays calm here), cyan = 5:7 crop (key subjects stay inside it)</label>
+<div class="grid guides" id="fronts">
+  <figure>
+    <div class="paper"><div class="front" style="--c:var(--anchor)">
+      <svg class="art" viewBox="0 0 100 129" preserveAspectRatio="xMidYMid slice">
+        <defs><radialGradient id="ga" cx="50%" cy="62%" r="70%"><stop offset="0" stop-color="#fff7c2"/><stop offset=".25" stop-color="#ffd166"/><stop offset=".6" stop-color="#3b2a6e"/><stop offset="1" stop-color="#0d0b24"/></radialGradient></defs>
+        <rect width="100" height="129" fill="url(#ga)"/>
+        <g stroke="#fff3b0" stroke-width="1.6" opacity=".85">
+          <line x1="50" y1="80" x2="50" y2="40"/><line x1="50" y1="80" x2="20" y2="52"/><line x1="50" y1="80" x2="80" y2="52"/><line x1="50" y1="80" x2="12" y2="80"/><line x1="50" y1="80" x2="88" y2="80"/></g>
+        <circle cx="50" cy="80" r="12" fill="#fffbe6" stroke="#1e293b" stroke-width="1.2"/>
+        <path d="M0 112 Q25 104 50 110 T100 106 V129 H0z" fill="#1d1a3a"/>
+      </svg>
+      <div class="shade"></div>
+      <div class="ttl"><div class="en">In the Beginning</div><div class="he">בְּרֵאשִׁית</div></div>
+      <div class="chip"><svg><use href="#i-anchor"/></svg>Anchor</div>
+    </div></div>
+    <figcaption><b>Anchor:</b> light breaking through the dark. Hashem is shown only as light, never as a figure.</figcaption>
+  </figure>
+
+  <figure>
+    <div class="paper"><div class="front" style="--c:var(--story)">
+      <svg class="art" viewBox="0 0 100 129" preserveAspectRatio="xMidYMid slice">
+        <rect width="100" height="70" fill="#9bd7f5"/><circle cx="78" cy="38" r="8" fill="#ffe066" stroke="#1e293b" stroke-width="1"/>
+        <path d="M0 70 H100 V95 H0z" fill="#4fa3e0"/><path d="M0 78 q8 -3 16 0 t16 0 t16 0 t16 0 t16 0 t20 0" stroke="#fff" stroke-width="1" fill="none"/>
+        <path d="M0 92 Q30 82 60 90 T100 86 V129 H0z" fill="#7cc46b" stroke="#1e293b" stroke-width="1"/>
+        <rect x="44" y="70" width="5" height="22" fill="#8b5a2b" stroke="#1e293b" stroke-width=".8"/><circle cx="46.5" cy="66" r="12" fill="#3f9b4b" stroke="#1e293b" stroke-width="1"/>
+        <g fill="#ff7aa2" stroke="#1e293b" stroke-width=".6"><circle cx="22" cy="104" r="3"/><circle cx="30" cy="110" r="3"/><circle cx="70" cy="106" r="3"/><circle cx="78" cy="112" r="3"/></g>
+      </svg>
+      <div class="shade"></div>
+      <div class="ttl"><div class="en">Light, Sky &amp; Land</div><div class="he">אוֹר, שָׁמַיִם וַאֲדָמָה</div></div>
+      <div class="num">1</div>
+      <div class="chip"><svg><use href="#i-story"/></svg>Story</div>
+      <div class="kw">אוֹר<small>or · light</small></div>
+    </div></div>
+    <figcaption><b>Story 1 (Days 1–3):</b> Story 2 reuses this same landscape and fills it with sun, moon, fish, birds and animals, so children can see the world filling up.</figcaption>
+  </figure>
+
+  <figure>
+    <div class="paper"><div class="front" style="--c:var(--power)">
+      <svg class="art" viewBox="0 0 100 129" preserveAspectRatio="xMidYMid slice">
+        <defs><linearGradient id="gp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a8"/><stop offset="1" stop-color="#b8e6a0"/></linearGradient></defs>
+        <rect width="100" height="129" fill="url(#gp)"/>
+        <path d="M0 100 Q50 88 100 100 V129 H0z" fill="#6cbf5a" stroke="#1e293b" stroke-width="1"/>
+        <g transform="translate(36 54)" stroke="#1e293b" stroke-width="1.4" fill="#f5c58a">
+          <rect x="4" y="16" width="22" height="26" rx="5"/><rect x="9" y="-6" width="9" height="26" rx="4.5"/></g>
+        <g fill="#ffd23f" stroke="#1e293b" stroke-width=".8"><path d="M18 40l2 4 4 .5-3 3 .8 4-3.8-2-3.8 2 .8-4-3-3 4-.5z"/><path d="M80 48l2 4 4 .5-3 3 .8 4-3.8-2-3.8 2 .8-4-3-3 4-.5z"/></g>
+      </svg>
+      <div class="shade"></div>
+      <div class="ttl"><div class="en">Tov · Good!</div><div class="he">טוֹב</div></div>
+      <div class="chip"><svg><use href="#i-power"/></svg>Power Word</div>
+    </div></div>
+    <figcaption><b>Power word:</b> the gesture (thumbs up) is the picture, so the art teaches the motion the children make.</figcaption>
+  </figure>
+</div>
+
+<h2 class="sec">2 · All 10 backs (what the teacher reads)</h2>
+<p class="lead">At letter size the type is about 30% larger than on 5×7, so a teacher holding the card up can still read it. Every back keeps to the v3 limits: goal ≤10 words, SAY ≤50 words, at most 2 questions.</p>
+<div class="grid" id="backs">
+
+  <!-- ANCHOR -->
+  <figure><div class="paper"><div class="card" style="--c:var(--anchor)">
+    <div class="hdr"><svg><use href="#i-anchor"/></svg>Anchor<span class="meta">~5 min</span><span class="core">★ CORE</span></div>
+    <div class="body">
+      <div class="title"><h3>In the Beginning</h3><span class="he">בְּרֵאשִׁית</span></div>
+      <div class="goal">🎯 Hashem made a beautiful world for us<span class="value">CARING FOR THE WORLD</span></div>
+      <div class="say"><div class="lbl">SAY</div><p>
+        <b>At the very beginning, there was nothing at all. Just dark.</b> <span class="cue">Everyone cover your eyes</span><br>
+        <b>Then Hashem said, "Let there be light!"</b> <span class="cue">Open your eyes: WOW!</span><br>
+        <b>This week we'll see everything Hashem made.</b></p></div>
+      <div class="ask"><div class="lbl">ASK</div><ul><li>What do you see in this picture?</li><li>What do you think Hashem made next?</li></ul></div>
+      <div class="lbl" style="margin-bottom:-1cqw">THIS WEEK</div>
+      <div class="week">
+        <div><b>Day 1</b>This card + Story 1</div><div><b>Day 2</b>Story 2 + Adam</div><div><b>Day 3</b>Chava + Story 4</div>
+        <div><b>Day 4</b>Connection</div><div><b>Day 5</b>Story 3 Shabbat + Tov + Home</div></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="ftr"><span class="next">▸ What did Hashem make first?</span><span class="guide">📖 Guide p.2</span></div>
+  </div></div><figcaption><b>Anchor:</b> 35 words. Shabbat (Story 3) falls on Friday so it leads into the real Shabbat.</figcaption></figure>
+
+  <!-- SPOTLIGHT ADAM -->
+  <figure><div class="paper"><div class="card" style="--c:var(--spotlight)">
+    <div class="hdr"><svg><use href="#i-spotlight"/></svg>Spotlight<span class="meta">~3 min</span><span class="core">★ CORE</span></div>
+    <div class="body">
+      <div class="title"><h3>Adam</h3><span class="he">אָדָם</span></div>
+      <div class="goal">🎯 Adam's job: take care of the garden<span class="value">CARING FOR THE WORLD</span></div>
+      <div class="say"><div class="lbl">SAY</div><p>
+        <span class="cue">Point to Adam</span> <b>This is Adam, the very first person!</b><br>
+        <b>Hashem made Adam from the earth</b> <span class="cue">Scoop up pretend dirt</span><br>
+        <b>and gave him a big job: take care of the garden.</b> <span class="cue">Water the plants!</span></p></div>
+      <div class="ask"><div class="lbl">ASK</div><ul><li>What is Adam doing?</li><li class="nv">Show me how you'd water a flower!</li></ul></div>
+      <div class="heb"><span class="w">אֲדָמָה</span><span class="t"><b>a-da-MAH</b> · "earth" (sounds like Adam!)<br>✋ cup your hands, scoop the earth</span></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="ftr"><span class="next">▸ But Adam was all alone…</span><span class="guide">📖 Guide p.4</span></div>
+  </div></div><figcaption><b>Spotlight, Adam:</b> 33 words. Pairs אָדָם with אֲדָמָה, a word link 5-year-olds enjoy.</figcaption></figure>
+
+  <!-- SPOTLIGHT CHAVA -->
+  <figure><div class="paper"><div class="card" style="--c:var(--spotlight)">
+    <div class="hdr"><svg><use href="#i-spotlight"/></svg>Spotlight<span class="meta">~3 min</span></div>
+    <div class="body">
+      <div class="title"><h3>Chava</h3><span class="he">חַוָּה</span></div>
+      <div class="goal">🎯 Adam and Chava help each other<span class="value">CARING FOR THE WORLD</span></div>
+      <div class="say"><div class="lbl">SAY</div><p>
+        <b>Adam was alone. Hashem said, "It is not good to be alone."</b> <span class="cue">Sad face…</span><br>
+        <b>So Hashem made Chava!</b> <span class="cue">…happy face!</span><br>
+        <b>Now Adam and Chava could help each other take care of the garden.</b> <span class="cue">High-five a friend</span></p></div>
+      <div class="ask"><div class="lbl">ASK</div><ul><li>How does Chava's face look?</li><li class="nv">Show me a helping hand!</li></ul></div>
+      <div class="heb"><span class="w">עוֹזְרִים</span><span class="t"><b>oz-RIM</b> · "helping" (together)<br>✋ hook your pinkies with a friend</span></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="ftr"><span class="next">▸ Then Hashem brought the animals…</span><span class="guide">📖 Guide p.5</span></div>
+  </div></div><figcaption><b>Spotlight, Chava:</b> 37 words. Uses the plural form so it works for any group of children.</figcaption></figure>
+
+  <!-- STORY 1 -->
+  <figure><div class="paper"><div class="card" style="--c:var(--story)">
+    <div class="hdr"><svg><use href="#i-story"/></svg>Story 1<span class="meta">~5 min</span><span class="core">★ CORE</span></div>
+    <div class="body">
+      <div class="title"><h3>Light, Sky &amp; Land</h3><span class="he">יָמִים א׳–ג׳</span></div>
+      <div class="goal">🎯 Days 1–3: light, sky, land and plants<span class="value">CARING FOR THE WORLD</span></div>
+      <div class="say"><div class="lbl">SAY</div><p>
+        <b>Day 1: light!</b> <span class="cue">Open hands wide</span>
+        <b>Day 2: the sky up high</b> <span class="cue">Reach up!</span> <b>and water down low.</b> <span class="cue">Wiggle like waves</span><br>
+        <b>Day 3: dry land, with trees and flowers!</b> <span class="cue">Grow like a tree</span><br>
+        <b>And Hashem saw it was… TOV!</b> <span class="cue">Thumbs up!</span></p></div>
+      <div class="ask"><div class="lbl">ASK</div><ul><li>What did Hashem make first?</li><li class="nv">Show me how a tree grows!</li></ul></div>
+      <div class="heb"><span class="w">אוֹר</span><span class="t"><b>OR</b> · "light"<br>✋ fists, then open wide like a sunburst</span></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="ftr"><span class="next">▸ But the sky was still empty…</span><span class="guide">📖 Guide p.6</span></div>
+  </div></div><figcaption><b>Story 1:</b> 28 words, with a movement for every day. "TOV + thumbs up" repeats on every creation card.</figcaption></figure>
+
+  <!-- STORY 2 -->
+  <figure><div class="paper"><div class="card" style="--c:var(--story)">
+    <div class="hdr"><svg><use href="#i-story"/></svg>Story 2<span class="meta">~5 min</span><span class="core">★ CORE</span></div>
+    <div class="body">
+      <div class="title"><h3>Sun, Fish &amp; Animals</h3><span class="he">יָמִים ד׳–ו׳</span></div>
+      <div class="goal">🎯 Days 4–6: sky lights, fish, birds, animals, people<span class="value">CARING FOR THE WORLD</span></div>
+      <div class="say"><div class="lbl">SAY</div><p>
+        <b>Day 4: the sun, the moon, and twinkly stars!</b> <span class="cue">Twinkle fingers</span><br>
+        <b>Day 5: fish that swim</b> <span class="cue">Swim hands</span> <b>and birds that fly!</b> <span class="cue">Flap!</span><br>
+        <b>Day 6: animals and people!</b> <span class="cue">Your favorite animal sound</span><br>
+        <b>And Hashem saw it was… TOV!</b> <span class="cue">Thumbs up!</span></p></div>
+      <div class="ask"><div class="lbl">ASK</div><ul><li>What swims in the water?</li><li class="nv">Show me your favorite animal!</li></ul></div>
+      <div class="heb"><span class="w">דָּג</span><span class="t"><b>DAG</b> · "fish"<br>✋ palms together, swim them forward</span></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="ftr"><span class="next">▸ Now meet the very first person!</span><span class="guide">📖 Guide p.7</span></div>
+  </div></div><figcaption><b>Story 2:</b> 32 words. The front art is Story 1's landscape, now full of life.</figcaption></figure>
+
+  <!-- STORY 3 -->
+  <figure><div class="paper"><div class="card" style="--c:var(--story)">
+    <div class="hdr"><svg><use href="#i-story"/></svg>Story 3<span class="meta">~5 min</span><span class="core">★ CORE</span></div>
+    <div class="body">
+      <div class="title"><h3>Day 7: Shabbat</h3><span class="he">יוֹם הַשְּׁבִיעִי</span></div>
+      <div class="goal">🎯 Hashem rested and made Shabbat special<span class="value">CARING FOR THE WORLD</span></div>
+      <div class="say"><div class="lbl">SAY</div><p>
+        <b>Hashem made the whole world in six days.</b> <span class="cue">Count fingers: 1… 6!</span><br>
+        <b>On the seventh day, Hashem rested.</b> <span class="cue">Head on hands, shhh…</span><br>
+        <b>Hashem made that day special. We call it… Shabbat!</b> <span class="cue">Light pretend candles</span></p></div>
+      <div class="ask"><div class="lbl">ASK</div><ul><li>What did Hashem do on day 7?</li><li class="nv">Show me how we rest!</li></ul></div>
+      <div class="heb"><span class="w">שַׁבָּת</span><span class="t"><b>sha-BAT</b> · "Shabbat, the rest day"<br>✋ circle hands, then cover eyes</span></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="ftr"><span class="next">▸ Shabbat Shalom!</span><span class="guide">📖 Guide p.8</span></div>
+  </div></div><figcaption><b>Story 3:</b> 30 words. Taught on Friday, Day 5 of the week plan.</figcaption></figure>
+
+  <!-- STORY 4 -->
+  <figure><div class="paper"><div class="card" style="--c:var(--story)">
+    <div class="hdr"><svg><use href="#i-story"/></svg>Story 4<span class="meta">~5 min</span></div>
+    <div class="body">
+      <div class="title"><h3>Adam Names the Animals</h3><span class="he">שֵׁמוֹת</span></div>
+      <div class="goal">🎯 Adam cares for every creature<span class="value">CARING FOR THE WORLD</span></div>
+      <div class="say"><div class="lbl">SAY</div><p>
+        <b>Hashem brought all the animals to Adam,</b> <span class="cue">Point to the animals</span><br>
+        <b>and Adam gave each one a name! "You are a LION!"</b> <span class="cue">Roar!</span> <b>"You are a BIRD!"</b> <span class="cue">Tweet!</span><br>
+        <b>Adam's job was to take care of them all.</b></p></div>
+      <div class="ask"><div class="lbl">ASK</div><ul><li>Which animals do you see?</li><li>What name would you give this animal?</li></ul></div>
+      <div class="heb"><span class="w">אַרְיֵה</span><span class="t"><b>ar-YEH</b> · "lion"<br>✋ claws up, soft roar</span></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="ftr"><span class="next">▸ How can WE take care of the world?</span><span class="guide">📖 Guide p.9 · the garden &amp; the tree</span></div>
+  </div></div><figcaption><b>Story 4:</b> 37 words. The snake and the fruit appear only in the guide (p.9), as the hard-text policy says.</figcaption></figure>
+
+  <!-- CONNECTION -->
+  <figure><div class="paper"><div class="card" style="--c:var(--connection)">
+    <div class="hdr"><svg><use href="#i-connection"/></svg>Connection<span class="meta">~5 min</span></div>
+    <div class="body">
+      <div class="title"><h3>Taking Care of Our World</h3><span class="he">שׁוֹמְרִים</span></div>
+      <div class="goal">🎯 Each child names one way to help<span class="value">CARING FOR THE WORLD</span></div>
+      <div class="say"><div class="lbl">SAY</div><p>
+        <b>Adam took care of the garden. We can take care of Hashem's world too!</b><br>
+        <span class="cue">Share one way you do it</span><br>
+        <b>How can YOU take care of the world?</b> <span class="cue">Pass the card to whoever is sharing</span></p></div>
+      <div class="ask"><div class="lbl">ASK</div><ul><li>What could you do for a plant or an animal?</li><li class="nv">Point to how helping feels!</li></ul></div>
+      <div class="faces">
+        <figure><svg><use href="#face-happy"/></svg>happy</figure><figure><svg><use href="#face-proud"/></svg>proud</figure>
+        <figure><svg><use href="#face-calm"/></svg>calm</figure><figure><svg><use href="#face-excited"/></svg>excited</figure></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="ftr"><span class="next">▸ That's how we say TOV!</span><span class="guide">📖 Guide p.10</span></div>
+  </div></div><figcaption><b>Connection:</b> 27 words. The feeling faces are drawn shapes, so there's no emoji license to worry about when printing.</figcaption></figure>
+
+  <!-- POWER WORD -->
+  <figure><div class="paper"><div class="card" style="--c:var(--power)">
+    <div class="hdr"><svg><use href="#i-power"/></svg>Power Word<span class="meta">~3 min</span><span class="core">★ CORE</span></div>
+    <div class="body">
+      <div class="title"><h3>Tov · Good</h3><span class="he">טוֹב</span></div>
+      <div class="goal">🎯 Say, show, and use the word "tov"<span class="value">CARING FOR THE WORLD</span></div>
+      <div class="trio">
+        <div><span class="big" dir="rtl">טוֹב</span>TOHV<br><b>good</b></div>
+        <div><span class="big">👍</span>gesture<br><b>thumbs up</b></div>
+        <div><span class="big" style="font-family:Fredoka">×7</span>Hashem said it<br><b>7 times!</b></div></div>
+      <div class="say"><div class="lbl">SAY</div><p>
+        <b>Our Hebrew word is TOV. It means good!</b> <span class="cue">Thumbs up!</span><br>
+        <b>Every time Hashem made something, Hashem saw it was… TOV!</b><br>
+        <b>Let's count 7 TOVs!</b> <span class="cue">Count on fingers: tov, tov, tov…</span></p></div>
+      <div class="ask"><div class="lbl">ASK</div><ul><li>What is something tov in our classroom?</li><li class="nv">Show me your tov thumbs!</li></ul></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="ftr"><span class="next">▸ Take "tov" home this Shabbat!</span><span class="guide">📖 Guide p.11 · review: אוֹר, שַׁבָּת</span></div>
+  </div></div><figcaption><b>Power word:</b> 26 words. Counting to 7 ties together the days, math, and the word.</figcaption></figure>
+
+  <!-- HOME -->
+  <figure><div class="paper"><div class="card" style="--c:var(--home)">
+    <div class="hdr"><svg><use href="#i-home"/></svg>Take Home<span class="meta">for families</span></div>
+    <div class="body">
+      <div class="title"><h3>This Week: Bereshit</h3><span class="he">בְּרֵאשִׁית</span></div>
+      <div class="goal">We learned about <b>&nbsp;caring for Hashem's world</b><span class="value">CARING FOR THE WORLD</span></div>
+      <div class="say"><div class="lbl">AT THE SHABBAT TABLE, ASK</div><div class="bi">
+        <div class="en">"What is your favorite thing Hashem made?"</div>
+        <div class="he2">״מָה הַדָּבָר הָאָהוּב עֲלֵיכֶם שֶׁה׳ בָּרָא?״</div></div></div>
+      <div class="heb"><span class="w">טוֹב</span><span class="t"><b>TOV</b> · "good"<br>Ask your child to show you the "tov thumbs"!</span></div>
+      <div class="ask"><div class="lbl">TRY AT HOME</div><ul>
+        <li class="nv">Go on a "tov walk": find 7 things Hashem made. <i>(Shabbat-friendly)</i></li>
+        <li class="nv">Water a plant together. <i>(before Shabbat)</i></li></ul></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="ftr"><span class="next">Shabbat Shalom! · שַׁבָּת שָׁלוֹם</span><span class="guide">Parasha Pack</span></div>
+  </div></div><figcaption><b>Home card:</b> each activity is tagged as Shabbat-friendly or before Shabbat.</figcaption></figure>
+</div>
+
+<h2 class="sec">3 · The same design at 5×7 (optional vendor print)</h2>
+<p class="lead">The same component exported in 5×7 mode. The red dashed line is the trim line; past it is the 0.125" bleed for a print shop. Nothing is redesigned: sizes scale with the card.</p>
+<div class="pair" style="max-width:720px; margin-top:14px">
+  <figure><div class="paper p57" id="p57back"></div><figcaption><b>Story 1 back at 5×7</b></figcaption></figure>
+  <figure><div class="paper p57" id="p57front"></div><figcaption><b>Story 1 front at 5×7</b>: the art is cropped to the cyan lines shown above.</figcaption></figure>
+</div>
+
+<h2 class="sec">Notes &amp; open items</h2>
+<div class="notes">
+  <div class="flag"><b>Hebrew for you to check:</b> the home-card question ״מָה הַדָּבָר הָאָהוּב עֲלֵיכֶם שֶׁה׳ בָּרָא?״, the Chava gesture word עוֹזְרִים, and the connection title שׁוֹמְרִים. I wrote plural forms on purpose so they work for any group of children.</div>
+  <ul>
+    <li><b>Guide page numbers</b> follow the planned letter-size booklet layout (p.2 week plan, p.4–5 spotlights, p.6–9 stories, p.10 connection, p.11 power word). The validator will check every back's "Guide p.N" against that layout.</li>
+    <li><b>Week plan:</b> Shabbat (Story 3) is taught on Friday, right before Shabbat. Story 4 (naming the animals) comes earlier, on Day 3, alongside Chava.</li>
+    <li><b>Snake and fruit:</b> not on any card. Guide p.9 gives the teacher a calm, scripted answer if a child asks.</li>
+    <li><b>Placeholder art:</b> the fronts use simple drawings only to show where the title zone and crop lines fall. Real art comes from Nano Banana 2 in Phase 6.</li>
+  </ul>
+</div>
+</div>
+
+<script>
+  // copy Story 1 back + front into the 5x7 frames (same markup, different paper)
+  const backs = document.querySelectorAll('#backs .card');
+  const story1Back = [...backs].find(c => c.querySelector('h3').textContent.startsWith('Light'));
+  document.getElementById('p57back').appendChild(story1Back.cloneNode(true));
+  const story1Front = [...document.querySelectorAll('#fronts .front')][1];
+  document.getElementById('p57front').appendChild(story1Front.cloneNode(true));
+  document.getElementById('g').addEventListener('change', e =>
+    document.getElementById('fronts').classList.toggle('guides', e.target.checked));
+</script>
+</body>
+</html>
