@@ -1,0 +1,611 @@
+{
+  "id": "bereshit",
+  "version": "3.0",
+  "parasha_en": "Bereshit",
+  "parasha_he": "בְּרֵאשִׁית",
+  "holiday": false,
+  "ref": "Genesis 1:1–6:8",
+  "value": {
+    "en": "Caring for the world",
+    "he": "שְׁמִירָה עַל הָעוֹלָם",
+    "kid_phrase": "caring for Hashem's world",
+    "gesture": "TODO: gesture for the value"
+  },
+  "palette": [
+    "#1E3A5F",
+    "#E0A526",
+    "#4F9A4A",
+    "#9BD7F5",
+    "#FFF4D6"
+  ],
+  "web_theme": {
+    "primary": "#1E3A5F",
+    "secondary": "#4F9A4A",
+    "accent": "#E0A526",
+    "wash": "#FFF8E7"
+  },
+  "story_world": "The newly created world and Gan Eden: soft rolling green hills, clear rivers, fruit trees and flowers, gentle friendly animals, warm golden light. Adam and Chava wear simple, modest, full-coverage tunics. Hashem is never shown as a figure, only as light.",
+  "week_plan": [
+    {
+      "day": 1,
+      "label": "This card + Story 1",
+      "cards": [
+        "anchor_1",
+        "story_1"
+      ]
+    },
+    {
+      "day": 2,
+      "label": "Story 2 + Adam",
+      "cards": [
+        "story_2",
+        "spotlight_1"
+      ]
+    },
+    {
+      "day": 3,
+      "label": "Chava + Story 4",
+      "cards": [
+        "spotlight_2",
+        "story_4"
+      ]
+    },
+    {
+      "day": 4,
+      "label": "Connection",
+      "cards": [
+        "connection_1"
+      ]
+    },
+    {
+      "day": 5,
+      "label": "Story 3 Shabbat + Tov + Home",
+      "cards": [
+        "story_3",
+        "power_word_1",
+        "home_1"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "card_id": "anchor_1",
+      "card_type": "anchor",
+      "title_en": "In the Beginning",
+      "title_he": "בְּרֵאשִׁית",
+      "characters_in_scene": [],
+      "image_prompt": "TODO placeholder: warm light breaking through deep darkness, rays spreading over a dark empty world.",
+      "image_path": "raw/anchor_1.png",
+      "back": {
+        "objective": "Hashem made a beautiful world for us",
+        "say": "**At the very beginning, there was nothing at all. Just dark.** [Everyone cover your eyes]\n**Then Hashem said, \"Let there be light!\"** [Open your eyes: WOW!]\n**This week we'll see everything Hashem made.**",
+        "ask": [
+          {
+            "text": "What do you see in this picture?",
+            "type": "wh"
+          },
+          {
+            "text": "What do you think Hashem made next?",
+            "type": "open"
+          }
+        ],
+        "minutes": 5,
+        "core": true,
+        "transition": "What did Hashem make first?",
+        "guide_ref": {
+          "page": 2
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
+          "refs": []
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "TODO",
+          "do": "TODO",
+          "join": "TODO"
+        },
+        "extend": "TODO",
+        "tip": "TODO"
+      }
+    },
+    {
+      "card_id": "spotlight_1",
+      "card_type": "spotlight",
+      "title_en": "Adam",
+      "title_he": "אָדָם",
+      "characters_in_scene": [
+        "adam"
+      ],
+      "image_prompt": "TODO placeholder: Adam in a simple modest tunic, kneeling to water flowers in a lush garden.",
+      "image_path": "raw/spotlight_1.png",
+      "back": {
+        "objective": "Adam's job: take care of the garden",
+        "say": "[Point to Adam] **This is Adam, the very first person!**\n**Hashem made Adam from the earth** [Scoop up pretend dirt]\n**and gave him a big job: take care of the garden.** [Water the plants!]",
+        "ask": [
+          {
+            "text": "What is Adam doing?",
+            "type": "wh"
+          },
+          {
+            "text": "Show me how you'd water a flower!",
+            "type": "nonverbal"
+          }
+        ],
+        "hebrew": {
+          "word": "אֲדָמָה",
+          "translit": "a-da-MAH",
+          "meaning": "earth",
+          "note": "sounds like Adam!",
+          "gesture": "cup your hands, scoop the earth"
+        },
+        "minutes": 3,
+        "core": true,
+        "transition": "But Adam was all alone…",
+        "guide_ref": {
+          "page": 4
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
+          "refs": []
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "TODO",
+          "do": "TODO",
+          "join": "TODO"
+        },
+        "extend": "TODO",
+        "tip": "TODO"
+      }
+    },
+    {
+      "card_id": "spotlight_2",
+      "card_type": "spotlight",
+      "title_en": "Chava",
+      "title_he": "חַוָּה",
+      "characters_in_scene": [
+        "chava",
+        "adam"
+      ],
+      "image_prompt": "TODO placeholder: Chava in a simple modest tunic, smiling, tending a garden with Adam.",
+      "image_path": "raw/spotlight_2.png",
+      "back": {
+        "objective": "Adam and Chava help each other",
+        "say": "**Adam was alone. Hashem said, \"It is not good to be alone.\"** [Sad face…]\n**So Hashem made Chava!** […happy face!]\n**Now Adam and Chava could help each other take care of the garden.** [High-five a friend]",
+        "ask": [
+          {
+            "text": "How does Chava's face look?",
+            "type": "wh"
+          },
+          {
+            "text": "Show me a helping hand!",
+            "type": "nonverbal"
+          }
+        ],
+        "hebrew": {
+          "word": "עוֹזְרִים",
+          "translit": "oz-RIM",
+          "meaning": "helping",
+          "note": "together",
+          "gesture": "hook your pinkies with a friend"
+        },
+        "minutes": 3,
+        "core": false,
+        "transition": "Then Hashem brought the animals…",
+        "guide_ref": {
+          "page": 5
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
+          "refs": []
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "TODO",
+          "do": "TODO",
+          "join": "TODO"
+        },
+        "extend": "TODO",
+        "tip": "TODO"
+      }
+    },
+    {
+      "card_id": "story_1",
+      "card_type": "story",
+      "title_en": "Light, Sky & Land",
+      "title_he": "אוֹר, שָׁמַיִם וַאֲדָמָה",
+      "characters_in_scene": [],
+      "image_prompt": "TODO placeholder: a bright new world with blue sky, sparkling water, green hills, one tree and flowers.",
+      "image_path": "raw/story_1.png",
+      "sequence_number": 1,
+      "hebrew_keyword": {
+        "word": "אוֹר",
+        "translit": "or",
+        "meaning": "light"
+      },
+      "back": {
+        "objective": "Days 1–3: light, sky, land and plants",
+        "title_he": "יָמִים א׳–ג׳",
+        "say": "**Day 1: light!** [Open hands wide] **Day 2: the sky up high** [Reach up!] **and water down low.** [Wiggle like waves]\n**Day 3: dry land, with trees and flowers!** [Grow like a tree]\n**And Hashem saw it was… TOV!** [Thumbs up!]",
+        "ask": [
+          {
+            "text": "What did Hashem make first?",
+            "type": "recall"
+          },
+          {
+            "text": "Show me how a tree grows!",
+            "type": "nonverbal"
+          }
+        ],
+        "hebrew": {
+          "word": "אוֹר",
+          "translit": "OR",
+          "meaning": "light",
+          "gesture": "fists, then open wide like a sunburst"
+        },
+        "minutes": 5,
+        "core": true,
+        "transition": "But the sky was still empty…",
+        "guide_ref": {
+          "page": 6
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
+          "refs": []
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "TODO",
+          "do": "TODO",
+          "join": "TODO"
+        },
+        "extend": "TODO",
+        "tip": "TODO"
+      }
+    },
+    {
+      "card_id": "story_2",
+      "card_type": "story",
+      "title_en": "Sun, Fish & Animals",
+      "title_he": "יָמִים ד׳–ו׳",
+      "characters_in_scene": [],
+      "image_prompt": "TODO placeholder: the same landscape as story 1, now filled with sun, moon, stars, fish, birds and animals.",
+      "image_path": "raw/story_2.png",
+      "sequence_number": 2,
+      "hebrew_keyword": {
+        "word": "דָּג",
+        "translit": "dag",
+        "meaning": "fish"
+      },
+      "back": {
+        "objective": "Days 4–6: sky lights, fish, birds, animals, people",
+        "say": "**Day 4: the sun, the moon, and twinkly stars!** [Twinkle fingers]\n**Day 5: fish that swim** [Swim hands] **and birds that fly!** [Flap!]\n**Day 6: animals and people!** [Your favorite animal sound]\n**And Hashem saw it was… TOV!** [Thumbs up!]",
+        "ask": [
+          {
+            "text": "What swims in the water?",
+            "type": "wh"
+          },
+          {
+            "text": "Show me your favorite animal!",
+            "type": "nonverbal"
+          }
+        ],
+        "hebrew": {
+          "word": "דָּג",
+          "translit": "DAG",
+          "meaning": "fish",
+          "gesture": "palms together, swim them forward"
+        },
+        "minutes": 5,
+        "core": true,
+        "transition": "Now meet the very first person!",
+        "guide_ref": {
+          "page": 7
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
+          "refs": []
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "TODO",
+          "do": "TODO",
+          "join": "TODO"
+        },
+        "extend": "TODO",
+        "tip": "TODO"
+      }
+    },
+    {
+      "card_id": "story_3",
+      "card_type": "story",
+      "title_en": "Day 7: Shabbat",
+      "title_he": "יוֹם הַשְּׁבִיעִי",
+      "characters_in_scene": [],
+      "image_prompt": "TODO placeholder: a calm, golden peaceful world at rest, soft evening light.",
+      "image_path": "raw/story_3.png",
+      "sequence_number": 3,
+      "hebrew_keyword": {
+        "word": "שַׁבָּת",
+        "translit": "sha-bat",
+        "meaning": "Shabbat"
+      },
+      "back": {
+        "objective": "Hashem rested and made Shabbat special",
+        "say": "**Hashem made the whole world in six days.** [Count fingers: 1… 6!]\n**On the seventh day, Hashem rested.** [Head on hands, shhh…]\n**Hashem made that day special. We call it… Shabbat!** [Light pretend candles]",
+        "ask": [
+          {
+            "text": "What did Hashem do on day 7?",
+            "type": "recall"
+          },
+          {
+            "text": "Show me how we rest!",
+            "type": "nonverbal"
+          }
+        ],
+        "hebrew": {
+          "word": "שַׁבָּת",
+          "translit": "sha-BAT",
+          "meaning": "Shabbat, the rest day",
+          "gesture": "circle hands, then cover eyes"
+        },
+        "minutes": 5,
+        "core": true,
+        "transition": "Shabbat Shalom!",
+        "guide_ref": {
+          "page": 8
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
+          "refs": []
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "TODO",
+          "do": "TODO",
+          "join": "TODO"
+        },
+        "extend": "TODO",
+        "tip": "TODO"
+      }
+    },
+    {
+      "card_id": "story_4",
+      "card_type": "story",
+      "title_en": "Adam Names the Animals",
+      "title_he": "שֵׁמוֹת",
+      "characters_in_scene": [
+        "adam"
+      ],
+      "image_prompt": "TODO placeholder: Adam in a modest tunic surrounded by friendly animals (lion, birds, deer) in the garden.",
+      "image_path": "raw/story_4.png",
+      "sequence_number": 4,
+      "hebrew_keyword": {
+        "word": "אַרְיֵה",
+        "translit": "ar-yeh",
+        "meaning": "lion"
+      },
+      "back": {
+        "objective": "Adam cares for every creature",
+        "say": "**Hashem brought all the animals to Adam,** [Point to the animals]\n**and Adam gave each one a name! \"You are a LION!\"** [Roar!] **\"You are a BIRD!\"** [Tweet!]\n**Adam's job was to take care of them all.**",
+        "ask": [
+          {
+            "text": "Which animals do you see?",
+            "type": "wh"
+          },
+          {
+            "text": "What name would you give this animal?",
+            "type": "open"
+          }
+        ],
+        "hebrew": {
+          "word": "אַרְיֵה",
+          "translit": "ar-YEH",
+          "meaning": "lion",
+          "gesture": "claws up, soft roar"
+        },
+        "minutes": 5,
+        "core": false,
+        "transition": "How can WE take care of the world?",
+        "guide_ref": {
+          "page": 9,
+          "note": "the garden & the tree"
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
+          "refs": []
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "TODO",
+          "do": "TODO",
+          "join": "TODO"
+        },
+        "extend": "TODO",
+        "tip": "TODO"
+      }
+    },
+    {
+      "card_id": "connection_1",
+      "card_type": "connection",
+      "title_en": "Taking Care of Our World",
+      "title_he": "שׁוֹמְרִים",
+      "characters_in_scene": [],
+      "image_prompt": "TODO placeholder: modern diverse preschool children watering plants and feeding a bird in a schoolyard garden.",
+      "image_path": "raw/connection_1.png",
+      "back": {
+        "objective": "Each child names one way to help",
+        "say": "**Adam took care of the garden. We can take care of Hashem's world too!**\n[Share one way you do it]\n**How can YOU take care of the world?** [Pass the card to whoever is sharing]",
+        "ask": [
+          {
+            "text": "What could you do for a plant or an animal?",
+            "type": "open"
+          },
+          {
+            "text": "Point to how helping feels!",
+            "type": "nonverbal"
+          }
+        ],
+        "faces": [
+          "happy",
+          "proud",
+          "calm",
+          "excited"
+        ],
+        "minutes": 5,
+        "core": false,
+        "transition": "That's how we say TOV!",
+        "guide_ref": {
+          "page": 10
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
+          "refs": []
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "TODO",
+          "do": "TODO",
+          "join": "TODO"
+        },
+        "extend": "TODO",
+        "tip": "TODO"
+      }
+    },
+    {
+      "card_id": "power_word_1",
+      "card_type": "power_word",
+      "title_en": "Tov · Good!",
+      "title_he": "טוֹב",
+      "characters_in_scene": [],
+      "image_prompt": "TODO placeholder: a big friendly thumbs-up hand on a warm sunny background with little stars.",
+      "image_path": "raw/power_word_1.png",
+      "back": {
+        "objective": "Say, show, and use the word \"tov\"",
+        "trio": [
+          {
+            "big": "טוֹב",
+            "line1": "TOHV",
+            "line2": "good"
+          },
+          {
+            "big": "👍",
+            "line1": "gesture",
+            "line2": "thumbs up"
+          },
+          {
+            "big": "×7",
+            "line1": "Hashem said it",
+            "line2": "7 times!"
+          }
+        ],
+        "say": "**Our Hebrew word is TOV. It means good!** [Thumbs up!]\n**Every time Hashem made something, Hashem saw it was… TOV!**\n**Let's count 7 TOVs!** [Count on fingers: tov, tov, tov…]",
+        "ask": [
+          {
+            "text": "What is something tov in our classroom?",
+            "type": "open"
+          },
+          {
+            "text": "Show me your tov thumbs!",
+            "type": "nonverbal"
+          }
+        ],
+        "minutes": 3,
+        "core": true,
+        "transition": "Take \"tov\" home this Shabbat!",
+        "guide_ref": {
+          "page": 11,
+          "note": "review: אוֹר, שַׁבָּת"
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
+          "refs": []
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "TODO",
+          "do": "TODO",
+          "join": "TODO"
+        },
+        "extend": "TODO",
+        "tip": "TODO"
+      }
+    },
+    {
+      "card_id": "home_1",
+      "card_type": "home",
+      "title_en": "This Week: Bereshit",
+      "title_he": "בְּרֵאשִׁית",
+      "characters_in_scene": [],
+      "image_prompt": "No art needed: the home card front is drawn by the Card Designer.",
+      "image_path": "raw/home_1.png",
+      "back": {
+        "objective": "We learned about **caring for Hashem's world**",
+        "shabbat_question": {
+          "en": "\"What is your favorite thing Hashem made?\"",
+          "he": "״מָה הַדָּבָר הָאָהוּב עֲלֵיכֶם שֶׁה׳ בָּרָא?״"
+        },
+        "hebrew": {
+          "word": "טוֹב",
+          "translit": "TOV",
+          "meaning": "good",
+          "gesture": "Ask your child to show you the \"tov thumbs\"!"
+        },
+        "try_at_home": [
+          {
+            "text": "Go on a \"tov walk\": find 7 things Hashem made.",
+            "tag": "shabbat-friendly"
+          },
+          {
+            "text": "Water a plant together.",
+            "tag": "before-shabbat"
+          }
+        ],
+        "transition": "Shabbat Shalom! · שַׁבָּת שָׁלוֹם"
+      },
+      "guide": {
+        "pshat": {
+          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
+          "refs": []
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "TODO",
+          "do": "TODO",
+          "join": "TODO"
+        },
+        "extend": "TODO",
+        "tip": "TODO"
+      }
+    }
+  ]
+}
