@@ -26,6 +26,9 @@ decks/
     │   ├── anchor_1_back.png
     │   ├── story_1_back.png
     │   └── ...
+    ├── print/          # Print PDFs (from Card Designer --pdf)
+    │   ├── purim-letter.pdf
+    │   └── purim-5x7.pdf
     └── references/     # Character + style references
         ├── manifest.json
         ├── style_hero.png         # Style anchor for story-world cards (optional)
@@ -38,7 +41,7 @@ decks/
 1. **AI generates to `raw/`** — Scene-only images, no text baked in
 2. **`build_generation_prompt()`** — Layers style, safety, composition, and rules at generation time
 3. **Card Designer renders** — React components add text overlay
-4. **Export to `images/` and `backs/`** — Final print-ready files
+4. **Export to `images/`, `backs/` and `print/`** — PNGs for the web, PDFs for printing
 
 ```bash
 # Generate raw images (system layers added automatically)
@@ -47,8 +50,9 @@ cd src && python generate_images.py ../decks/purim/deck.json
 # Sync deck data + raw images to Card Designer
 ./sync-deck.sh purim
 
-# Export with Card Designer
-cd card-designer && npm run export purim -- --backs
+# Export with Card Designer (PNGs + duplex PDF, letter by default)
+cd card-designer && npm run export purim -- --backs --pdf
+cd card-designer && npm run export purim -- --format 5x7 --backs --pdf
 ```
 
 ## Creating a New Deck
@@ -60,6 +64,9 @@ python generate_deck.py --parasha "Purim" --holiday         # Holiday deck (13 c
 python generate_deck.py --output ../decks/beshalach         # Custom output path
 ```
 
+> **Note:** `generate_deck.py` still writes a **v2** template. Until it is updated, start a new
+> deck by copying `decks/bereshit/deck.json` (v3), or run `python src/migrate_v2_to_v3.py` on the template.
+
 This creates:
 - `deck.json` — Template with placeholder cards
 - `feedback.json` — Empty feedback structure
@@ -67,186 +74,108 @@ This creates:
 - `images/` — Directory for final exports
 - `references/` — Directory for character sheets
 
-## deck.json Structure
+## deck.json Structure (v3)
+
+The full rules live in [`schemas/deck.v3.schema.json`](../schemas/deck.v3.schema.json).
+`decks/bereshit/deck.json` is the reference example. Older v2 decks are converted with
+`python src/migrate_v2_to_v3.py decks/<id>/deck.json` (a mechanical move of fields; it lists
+everything it could not map). The Card Designer only reads v3.
 
 ```json
 {
-  "parasha_en": "Purim",
-  "parasha_he": "פּוּרִים",
-  "ref": "",
-  "border_color": "#8B5CF6",
-  "theme": "celebration",
-  "story_world": "Ancient Persian Empire, city of Shushan...",
-  "version": "2.0",
-  "target_age": "4-6",
-  "card_count": 16,
-  "holiday_en": "Purim",
-  "holiday_he": "פּוּרִים",
-  "cards": [...]
+  "id": "bereshit",
+  "version": "3.0",
+  "parasha_en": "Bereshit",
+  "parasha_he": "בְּרֵאשִׁית",
+  "holiday": false,
+  "ref": "Genesis 1:1–6:8",
+  "value": { "en": "Caring for the world", "he": "…", "kid_phrase": "caring for Hashem's world", "gesture": "…" },
+  "palette": ["#1E3A5F", "#E0A526", "#4F9A4A", "#9BD7F5", "#FFF4D6"],
+  "web_theme": { "primary": "#1E3A5F", "secondary": "#4F9A4A", "accent": "#E0A526", "wash": "#FFF8E7" },
+  "story_world": "The newly created world and Gan Eden…",
+  "week_plan": [ { "day": 1, "label": "This card + Story 1", "cards": ["anchor_1", "story_1"] } ],
+  "cards": [ … ]
 }
 ```
 
-## Card Schemas by Type
+- `value.en` is printed in the pill on every back. `value.kid_phrase` is how we say it to children.
+- `palette` (5 colors) colors the placeholder fronts and, later, the art prompts. `web_theme` is for the hub.
+- `week_plan` is printed as the THIS WEEK strip on the anchor back.
 
-### Anchor Card (1 per deck)
-```json
-{
-  "card_id": "anchor_1",
-  "card_type": "anchor",
-  "title_en": "Purim",
-  "title_he": "פּוּרִים",
-  "emotional_hook_en": "Have you ever had to be really, really brave?",
-  "emotional_hook_he": "הֲאִם אֵי פַּעַם הָיִיתָ צָרִיךְ לִהְיוֹת מַמָּשׁ אַמִּיץ?",
-  "symbol_description": "A golden crown with Star of David",
-  "border_color": "#8B5CF6",
-  "characters_in_scene": [],
-  "image_prompt": "A golden crown sitting on a royal purple velvet cushion...",
-  "image_path": "raw/anchor_1.png",
-  "teacher_script": "Gather children in a circle...",
-  "teacher_tip": "Have children close their eyes while you describe the crown.",
-  "transition_line": "Now let's meet the characters in our story!",
-  "discussion_prompts": ["What do you think a queen's secret could be?", "When have you had a really big feeling inside?"],
-  "session": 1
-}
-```
+## Card Structure (v3)
 
-### Spotlight Card (2 per deck)
-```json
-{
-  "card_id": "spotlight_1",
-  "card_type": "spotlight",
-  "title_en": "Queen Esther",
-  "title_he": "אֶסְתֵּר",
-  "character_name_en": "Queen Esther",
-  "character_name_he": "אֶסְתֵּר",
-  "emotion_label_en": "brave",
-  "emotion_label_he": "אַמִּיצָה",
-  "character_description_en": "Esther was a brave queen...",
-  "character_description_he": "אסתר הייתה מלכה אמיצה...",
-  "teaching_moment_en": "Even when she was scared, Esther did the right thing.",
-  "border_color": "#8B5CF6",
-  "characters_in_scene": ["esther"],
-  "image_prompt": "Character portrait of Esther...",
-  "image_path": "raw/spotlight_1.png",
-  "teacher_script": "This is Queen Esther!...",
-  "teacher_tip": "Ask children to show you a brave face, then a nervous face.",
-  "transition_line": "Let's meet another important person in our story!",
-  "discussion_prompts": ["What do you notice about how Esther looks?", "Have you ever kept something special about yourself quiet?"],
-  "session": 1
-}
-```
+Every card has the same shape. Card types: `anchor`, `spotlight`, `story`, `connection`,
+`tradition`, `power_word`, `home`.
 
-### Story Card (4 per deck)
 ```json
 {
   "card_id": "story_1",
   "card_type": "story",
-  "title_en": "Esther Becomes Queen",
-  "title_he": "אֶסְתֵּר נַעֲשֵׂית מַלְכָּה",
-  "sequence_number": 1,
-  "hebrew_key_word": "מלכה",
-  "hebrew_key_word_nikud": "מַלְכָּה",
-  "english_key_word": "Queen",
-  "english_description": "The king chose Esther to be his new queen.",
-  "roleplay_prompt": "Put an imaginary crown on your head and give a royal wave!",
-  "border_color": "#8B5CF6",
-  "characters_in_scene": ["esther"],
-  "image_prompt": "Esther in the palace throne room...",
+  "title_en": "Light, Sky & Land",
+  "title_he": "אוֹר, שָׁמַיִם וַאֲדָמָה",
+  "characters_in_scene": [],
+  "image_prompt": "Scene only: no style, text or layout rules",
   "image_path": "raw/story_1.png",
-  "teacher_script": "The king needed a new queen...",
-  "teacher_tip": "Whisper 'shhh' when you mention the secret — children love the dramatic effect.",
-  "transition_line": "Let's find out what happens next!",
-  "discussion_prompts": ["How would it feel to live in a beautiful palace?", "What would be hard about keeping a really big secret?"],
-  "session": 1
+  "sequence_number": 1,
+  "hebrew_keyword": { "word": "אוֹר", "translit": "or", "meaning": "light" },
+  "back": {
+    "objective": "Days 1–3: light, sky, land and plants",
+    "title_he": "יָמִים א׳–ג׳",
+    "say": "**Day 1: light!** [Open hands wide]\n**And Hashem saw it was… TOV!** [Thumbs up!]",
+    "ask": [ { "text": "What did Hashem make first?", "type": "recall" },
+             { "text": "Show me how a tree grows!", "type": "nonverbal" } ],
+    "hebrew": { "word": "אוֹר", "translit": "OR", "meaning": "light", "gesture": "fists, then open wide" },
+    "minutes": 5,
+    "core": true,
+    "transition": "But the sky was still empty…",
+    "guide_ref": { "page": 6 }
+  },
+  "guide": {
+    "pshat": { "text": "…", "refs": ["Genesis 1:3"] },
+    "sages": [ { "text": "Our Sages teach…", "source": "…" } ],
+    "hard_questions": [ { "q": "…", "answer": "…", "redirect": "…" } ],
+    "adapt": { "see": "…", "do": "…", "join": "…" },
+    "extend": "…",
+    "tip": "…"
+  }
 }
 ```
 
-### Connection Card (2 per deck)
-```json
-{
-  "card_id": "connection_1",
-  "card_type": "connection",
-  "title_en": "Being Brave",
-  "title_he": "לִהְיוֹת אַמִּיץ",
-  "questions": [
-    {
-      "question_type": "personal",
-      "question_en": "Have you ever had to do something scary?",
-      "question_he": ""
-    },
-    {
-      "question_type": "empathy",
-      "question_en": "How do you think Esther felt when she went to the king?",
-      "question_he": ""
-    }
-  ],
-  "emojis": ["😊", "😢", "😮", "💪"],
-  "border_color": "#8B5CF6",
-  "characters_in_scene": [],
-  "image_prompt": "Children sitting in a circle on a colorful rug...",
-  "image_path": "raw/connection_1.png",
-  "teacher_script": "Let's talk about being brave...",
-  "teacher_tip": "Share your own brave moment first to model vulnerability.",
-  "transition_line": "You are all so brave for sharing!",
-  "session": 2
-}
-```
+**`back`** is what is printed on the teacher side:
 
-Note: Connection cards do NOT have `discussion_prompts` — they use `questions[]` instead.
+| Field | Printed as | Budget |
+|---|---|---|
+| `objective` | 🎯 goal line (may use `**bold**`) | ≤10 words |
+| `say` | **SAY** block. `**bold**` = read aloud, `[cue]` = action chip, newline = line break | ≤50 words |
+| `ask[]` | **ASK** list. `type`: `recall`, `wh`, `open`, `distancing`, `nonverbal` (nonverbal gets a ✋ marker) | ≤2 questions, ≤12 words each |
+| `hebrew` | Hebrew strip: word, translit, "meaning" (note), ✋ gesture | |
+| `minutes`, `core` | header: "~5 min", "★ CORE" | |
+| `transition` | footer, left ("▸ …") | |
+| `guide_ref` | footer, right ("Guide p.6 · note") | |
+| `title_he` | optional: Hebrew beside the back title when it differs from the front | |
 
-### Tradition Card (3 per holiday deck)
-```json
-{
-  "card_id": "tradition_1",
-  "card_type": "tradition",
-  "title_en": "Mishloach Manot",
-  "title_he": "מִשְׁלוֹחַ מָנוֹת",
-  "story_connection_en": "Because everyone shared joy in Esther's time...",
-  "story_connection_he": "כי כולם חלקו שמחה בימי אסתר...",
-  "practice_description_en": "We give baskets of treats to friends!",
-  "practice_description_he": "אנחנו נותנים סלי מתנות לחברים!",
-  "child_action_en": "Can you help pack a gift basket?",
-  "child_action_he": "",
-  "hebrew_term": "מִשְׁלוֹחַ מָנוֹת",
-  "hebrew_term_meaning": "Sending portions (gifts)",
-  "border_color": "#8B5CF6",
-  "characters_in_scene": [],
-  "image_prompt": "Warm golden scene of families packing colorful baskets...",
-  "image_path": "raw/tradition_1.png",
-  "teacher_script": "On Purim, we give gifts to friends...",
-  "teacher_tip": "Have small baskets or bags ready for children to practice packing.",
-  "transition_line": "There's another special Purim tradition to discover!",
-  "discussion_prompts": ["Who would you like to give a gift basket to?", "How does it feel when someone gives you a surprise gift?"],
-  "session": 2
-}
-```
+Type-specific extras inside `back`:
 
-### Power Word Card (1 per deck)
-```json
-{
-  "card_id": "power_word_1",
-  "card_type": "power_word",
-  "title_en": "Gibor - Hero",
-  "title_he": "גִּבּוֹר",
-  "hebrew_word": "גיבור",
-  "hebrew_word_nikud": "גִּבּוֹר",
-  "english_meaning": "Hero",
-  "example_sentence_en": "Esther was a gibor when she spoke to the king.",
-  "example_sentence_he": "אסתר הייתה גיבורה כשדיברה עם המלך.",
-  "kid_friendly_explanation_en": "A hero helps others even when it's hard!",
-  "kid_friendly_explanation_he": "",
-  "border_color": "#8B5CF6",
-  "characters_in_scene": ["esther"],
-  "image_prompt": "Esther standing tall in the throne room...",
-  "image_path": "raw/power_word_1.png",
-  "teacher_script": "Let's learn a special Hebrew word...",
-  "teacher_tip": "Have children repeat 'I am a gibor!' three times, louder each time.",
-  "transition_line": "Now you know an amazing Hebrew word!",
-  "discussion_prompts": ["Who is a gibor in your life?", "What is one brave thing you could do this week?"],
-  "pronunciation_guide": "Gee-BOR. Rhymes with 'dinosaur'!",
-  "session": 2
-}
-```
+- **power_word:** `trio` — exactly 3 boxes `{big, line1, line2}` (word / gesture / fact)
+- **connection:** `faces` — up to 4 of `happy, proud, calm, excited, scared, brave, sad, surprised` (drawn as SVG)
+- **story:** `sequence_number` (card level, required) and `hebrew_keyword` (card level, front badge)
+- **home:** the back is different: `objective`, `shabbat_question {en, he}`, `hebrew`, `try_at_home [{text, tag: "shabbat-friendly" | "before-shabbat"}]`, `transition`. No art needed: if `raw/home_1.png` is missing the Card Designer draws its own front.
+
+**`guide`** is never printed on the card; it feeds the teacher guide booklet (Phase 8).
+
+Word budgets are not enforced by the JSON schema; the validator (Phase 2) checks them.
+The migrated Purim and Terumah decks are over budget on purpose (content gets rewritten later).
+
+## Print Formats
+
+Defined once in `card-designer/print_formats.json`:
+
+| Format | Sheet | Card | Notes |
+|---|---|---|---|
+| `letter` (default) | 8.5×11" | 7.9×10.4" inside a 0.3" white margin | home/school printer, duplex, no cutting |
+| `5x7` | 5.25×7.25" | 5×7" trim | print shop: 0.125" bleed in the card color, keep text 0.25" inside the trim |
+
+The same components render both; all sizes are relative to the card width (`cqw`).
 
 ## Two Visual Worlds
 
@@ -307,8 +236,11 @@ To reproduce an image: find the entry in `generations.jsonl`, copy the `full_pro
 | `raw/{card_id}.png` | 1500x2100 | Scene-only AI image (no text) |
 | `raw/generations.jsonl` | — | Generation provenance log |
 | `raw/prompts/{card_id}.txt` | — | Full assembled prompt (debug) |
-| `images/{card_id}.png` | 1500x2100 | Card front with text overlay |
-| `backs/{card_id}_back.png` | 1500x2100 | Teacher card back (5x7 @ 300 DPI) |
+| `images/{card_id}.png` | 2375x3125 | Card front, letter card area @ 300 DPI (no paper margin) |
+| `backs/{card_id}_back.png` | 2375x3125 | Teacher card back, letter @ 300 DPI |
+| `images/5x7/…`, `backs/5x7/…` | 1500x2100 | Same, 5x7 trim size (`--format 5x7`) |
+| `print/{id}-letter.pdf` | 8.5x11 pages | Duplex PDF: front1, back1, front2, back2… (flip on long edge) |
+| `print/{id}-5x7.pdf` | 5.25x7.25 pages | Vendor PDF with 0.125" bleed |
 
 ## Generating Cards
 
