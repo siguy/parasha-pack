@@ -138,7 +138,7 @@ Order: **00 Series Planner** → 01 Torah Scholar (reads the research cache and 
   - **Decision gate at the 6.4 test print.** If letter looks soft, either upscale 2× locally with Real-ESRGAN (free, illustration model) or switch only the finals to 4K ($0.151).
   - The upscaler is an optional `--upscale` export step.
 - 5.1b CMYK soft-proof script for the 5×7 vendor target only (FOGRA39/GRACoL). It flags out-of-gamut purple and blue.
-- 5.0 **Styling system v2** (all 10 adopted by Simon, 2026-10-05):
+- 5.0 **Styling system v2** (all 10 adopted by Simon, 2026-10-05). **Keep the current art style unchanged** (Simon, 2026-10-05): the existing Purim look worked. The style plates are made *from* the current Purim art so they reproduce it. Leave `STYLE_ANCHORS_V2` as it is, apart from the specific fixes in 5.2. These 10 changes are about consistency and process; none of them changes the look.
   1. **Series style plates**: 3–4 images with no characters (landscape, interior, object close-up, modern classroom), passed with every generation. They replace the per-deck `style_hero`. The text style card shrinks to specifics: line weight, flat color with one soft gradient, eye style, head:body about 1:3, lighting.
   2. **Per-deck 5-color palette** in deck.json. It drives both the prompts and the hub's `web_theme`, so print and web match.
   3. **Crops that work for both sizes**: the top 22% is calm for the title; key subjects sit in the central 90% of the width (letter 0.77 / 5:7 0.714); a simple ground plane replaces the lower-left shadow.

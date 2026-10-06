@@ -29,7 +29,7 @@ Rules: branch from `main` as `<type>/<short-description>`. When a feature depend
   - Modern Orthodox framing
   - the teacher booklet is letter size
   - Nano Banana 2 at 2K
-  - all 10 styling changes adopted
+  - all 10 styling changes adopted (process and consistency only; **the art style stays the same as Purim**)
 - **Policies (drafts adopted):** `docs/policies/values-spine.md`, `docs/policies/hard-text-policy.md`.
 - **Mockups:**
   - `docs/mockups/back-v3.html`: Purim, 7 back types at 5×7, before/after comparison.
