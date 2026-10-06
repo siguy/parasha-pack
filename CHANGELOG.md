@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Deck Validator, Hebrew Gender Check, Export Overflow Guard (Phase 2)
+
+#### Added
+- **`src/validate_deck.py`** — checks a v3 deck: JSON Schema, word budgets (objective ≤10, say ≤50 spoken words, cues ≤25, ask ≤2×12), card count and types (10 standard / 12 holiday), characters vs. the library (≤4 per card, named characters listed), nikud, unpointed/pointed match, **Hebrew grammatical gender vs. character gender**, deck-order words in transitions, non-scene prompt terms, God depiction, guide page numbers. `--strict`, `--json`; exit 1 on errors; failures logged to `project.log`.
+- **`src/hebrew_gender.yaml`** — 12 masculine/feminine pairs (אַמִּיץ/אַמִּיצָה …) plus fallback character genders.
+- **`guide_layout.yaml`** — fixed letter-size teacher-guide page map for standard and holiday decks (D5).
+- **Export guard** in `card-designer/scripts/export-deck.ts` — runs the validator first (`--skip-validate`), then fails the export on any `.pp-card .body` overflow or text outside the safe zone, listing card/side/format/px (`--allow-overflow`).
+- Schema: optional deck `story_world_setting`, card `style_plate` and `continuity_ref`.
+- Tests: `tests/test_validate_deck.py` + fixtures (valid deck, broken deck, tiny character library); `card-designer/lib/markup.test.ts` (`npm test`, Node's built-in runner via tsx).
+- `jsonschema` and `PyYAML` in `requirements.txt`.
+
+#### Changed
+- 5×7 front titles start at 5% (were 3.5%): the guard found them 2px above the safe line. `decks/bereshit/print/bereshit-5x7.pdf` re-exported.
+- review-site deck registry moved to `decks/registry.json` (where `app.js` looks), paths relative to `decks/`, Bereshit added.
+- review-site `/api/resume` returns a clear "not supported" error instead of launching the nonexistent `workflows deck --auto --resume`.
+
+#### Removed
+- `decks/purim/raw-v1-borders/`, `*_pre_hero.png` (decks + card-designer content), `decks/archive/yitro/deck_v1_backup.json`, `decks/archive/approval_stats.yaml`.
+
+---
+
 ### Styling System v2: Style Plates, Labeled References, Draft → Final (Deck v3 Phase 5.0–5.3, 3.2)
 
 The art style is unchanged (Simon: keep the Purim look). These changes are about consistency and process.

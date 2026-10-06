@@ -12,6 +12,16 @@
  *   --pdf                 Also write decks/<id>/print/<id>-<format>.pdf
  *                         (all cards, pages ordered front1, back1, front2, back2...
  *                         for duplex printing, flip on long edge)
+ *   --skip-validate       Don't run src/validate_deck.py first
+ *   --allow-overflow      Report overflowing text but export anyway
+ *
+ * Export guard (runs every time, before anything is written):
+ *   1. The Python deck validator must report 0 errors (skip with --skip-validate).
+ *   2. Layout check on /print/<id>?format=...: every back's text section must fit
+ *      (.pp-card .body scrollHeight <= clientHeight + 1px), and every piece of text
+ *      must sit inside the format's safe zone (letter: 0.3" margin; 5x7: 0.25"
+ *      inside the trim line). Any problem fails the export with card id, side,
+ *      format and how many px it is over (export anyway with --allow-overflow).
  *
  * Examples:
  *   npm run export bereshit -- --backs --pdf
@@ -31,7 +41,7 @@
  */
 
 import { chromium, Browser, Page } from 'playwright';
-import { spawn, ChildProcess } from 'child_process';
+import { spawn, spawnSync, ChildProcess } from 'child_process';
 import { readFileSync, existsSync, mkdirSync } from 'fs';
 import path from 'path';
 import formats from '../print_formats.json';
@@ -154,6 +164,109 @@ async function exportPdf(browser: Browser, deckId: string, format: FormatId) {
   console.log(`\n✓ PDF (${format}, duplex order front/back): ${outPath}`);
 }
 
+
+// ---------------------------------------------------------------- export guard
+
+/** Find the source deck.json the validator should check (decks/<id> or decks/archive/<id>). */
+function sourceDeckPath(deckId: string): string | null {
+  const repoRoot = path.join(__dirname, '../..');
+  for (const dir of [path.join(repoRoot, 'decks', deckId), path.join(repoRoot, 'decks', 'archive', deckId)]) {
+    if (existsSync(path.join(dir, 'deck.json'))) return path.join(dir, 'deck.json');
+  }
+  return null;
+}
+
+/** Run src/validate_deck.py. Returns true when the deck has no errors. */
+function runValidator(deckId: string): boolean {
+  const repoRoot = path.join(__dirname, '../..');
+  const deckPath = sourceDeckPath(deckId) ?? path.join(__dirname, '../content', deckId, 'deck.json');
+  console.log(`\nValidating ${path.relative(repoRoot, deckPath)}...`);
+  const result = spawnSync('python3', [path.join(repoRoot, 'src', 'validate_deck.py'), deckPath], {
+    cwd: repoRoot,
+    stdio: 'inherit',
+  });
+  if (result.error) {
+    console.error(`✗ Could not run python3 src/validate_deck.py: ${result.error.message}`);
+    return false;
+  }
+  return result.status === 0;
+}
+
+interface LayoutProblem {
+  card: string;
+  side: string;
+  kind: 'overflow' | 'safe-zone';
+  px: number;
+  text?: string;
+}
+
+/** Inches from the sheet edge that text must stay inside. */
+function safeInsetIn(format: FormatId): number {
+  const f = formats.formats[format] as { margin_in?: number; bleed_in: number; safe_in?: number };
+  // letter: the white paper margin. 5x7: the bleed (to the trim line) + the safe zone inside it.
+  return f.margin_in ?? f.bleed_in + (f.safe_in ?? 0);
+}
+
+/**
+ * Render every card side and measure it in the browser:
+ *   - overflow: a back's .body section is taller than its box
+ *   - safe-zone: some text is closer to the sheet edge than the safe inset
+ */
+async function checkLayout(browser: Browser, deckId: string, format: FormatId): Promise<LayoutProblem[]> {
+  const [pageW] = formats.formats[format].page_in;
+  const page = await openPrintView(browser, `${BASE_URL}/print/${deckId}?format=${format}`, pageW, 1);
+  const problems = await page.evaluate(
+    ({ insetPx }) => {
+      const found: LayoutProblem[] = [];
+      const sheets = Array.from(document.querySelectorAll<HTMLElement>('.pp-print-page'));
+      // Nothing rendered means nothing was measured: treat it as a failure, not a pass
+      if (sheets.length === 0) found.push({ card: '(none)', side: '-', kind: 'overflow', px: 0, text: 'no .pp-print-page found' });
+      for (const sheet of sheets) {
+        const card = sheet.dataset.card ?? '?';
+        const side = sheet.dataset.side ?? '?';
+
+        for (const body of Array.from(sheet.querySelectorAll<HTMLElement>('.pp-card .body'))) {
+          const over = body.scrollHeight - body.clientHeight;
+          if (over > 1) found.push({ card, side, kind: 'overflow', px: over });
+        }
+
+        const r = sheet.getBoundingClientRect();
+        const safe = { left: r.left + insetPx, right: r.right - insetPx, top: r.top + insetPx, bottom: r.bottom - insetPx };
+        let worst = 0;
+        let worstText = '';
+        const walker = document.createTreeWalker(sheet, NodeFilter.SHOW_TEXT);
+        for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+          const text = node.textContent?.trim();
+          if (!text) continue;
+          const range = document.createRange();
+          range.selectNodeContents(node);
+          for (const box of Array.from(range.getClientRects())) {
+            if (box.width === 0 || box.height === 0) continue;
+            const out = Math.max(safe.left - box.left, box.right - safe.right, safe.top - box.top, box.bottom - safe.bottom);
+            if (out > worst) {
+              worst = out;
+              worstText = text;
+            }
+          }
+        }
+        if (worst > 1) found.push({ card, side, kind: 'safe-zone', px: Math.round(worst), text: worstText.slice(0, 40) });
+      }
+      return found;
+    },
+    { insetPx: safeInsetIn(format) * CSS_DPI }
+  );
+  await page.context().close();
+  return problems;
+}
+
+function printLayoutProblems(problems: LayoutProblem[], format: FormatId) {
+  console.error(`\n✗ Layout check (${format}): ${problems.length} problem(s)`);
+  for (const p of problems) {
+    const what = p.kind === 'overflow' ? `text overflows its section by ${p.px}px` : `text ${p.px}px outside the safe zone`;
+    console.error(`  ${p.card.padEnd(14)} ${p.side.padEnd(6)} ${format.padEnd(7)} ${what}${p.text ? ` ("${p.text}")` : ''}`);
+  }
+}
+
 // ---------------------------------------------------------------- CLI
 
 const args = process.argv.slice(2);
@@ -161,7 +274,7 @@ const deckId = args.find((a, i) => !a.startsWith('--') && args[i - 1] !== '--for
 const formatArg = args.includes('--format') ? args[args.indexOf('--format') + 1] : formats.default;
 
 if (!deckId || !(formatArg in formats.formats)) {
-  console.error('Usage: npm run export <deckId> -- [--format letter|5x7] [--backs|--backs-only|--fronts-only] [--pdf]');
+  console.error('Usage: npm run export <deckId> -- [--format letter|5x7] [--backs|--backs-only|--fronts-only] [--pdf] [--skip-validate] [--allow-overflow]');
   console.error('Example: npm run export bereshit -- --backs --pdf');
   process.exit(1);
 }
@@ -169,6 +282,8 @@ const format = formatArg as FormatId;
 const wantBacks = args.includes('--backs') || args.includes('--backs-only');
 const wantFronts = !args.includes('--backs-only');
 const wantPdf = args.includes('--pdf');
+const skipValidate = args.includes('--skip-validate');
+const allowOverflow = args.includes('--allow-overflow');
 
 async function main() {
   const deckPath = path.join(__dirname, '../content', deckId!, 'deck.json');
@@ -184,9 +299,30 @@ async function main() {
   console.log(`\nExporting ${deckId}: ${deck.cards.length} cards, format ${format}`);
   console.log(`  PNG fronts: ${wantFronts ? 'yes' : 'no'}  PNG backs: ${wantBacks ? 'yes' : 'no'}  PDF: ${wantPdf ? 'yes' : 'no'}`);
 
+  if (skipValidate) {
+    console.log('\n⚠ Skipping the deck validator (--skip-validate)');
+  } else if (!runValidator(deckId!)) {
+    console.error('\n✗ Export stopped: the deck validator found errors. Fix them, or pass --skip-validate.');
+    process.exit(1);
+  }
+
   const server = await startDevServer();
   const browser = await chromium.launch();
+  let failed = false;
   try {
+    const problems = await checkLayout(browser, deckId!, format);
+    if (problems.length === 0) {
+      console.log(`\n✓ Layout check (${format}): no overflow, all text inside the safe zone`);
+    } else {
+      printLayoutProblems(problems, format);
+      if (!allowOverflow) {
+        console.error('\n✗ Export stopped: shorten the text above, or pass --allow-overflow to export anyway.');
+        failed = true;
+        return;
+      }
+      console.error('⚠ Exporting anyway (--allow-overflow)');
+    }
+
     if (wantFronts) await exportPngs(browser, deckId!, deck, format, 'front');
     if (wantBacks) await exportPngs(browser, deckId!, deck, format, 'back');
     if (wantPdf) await exportPdf(browser, deckId!, format);
@@ -198,6 +334,7 @@ async function main() {
       stopServer(server);
     }
   }
+  if (failed) process.exit(1);
 }
 
 main().catch((error) => {
