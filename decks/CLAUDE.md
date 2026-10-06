@@ -7,33 +7,25 @@ Each subdirectory contains a complete card deck for one Torah portion (parasha) 
 ```
 decks/
 ├── CLAUDE.md           # This file
-└── purim/              # Example deck
-    ├── deck.json       # All card data and metadata
-    ├── feedback.json   # Review comments and status
-    ├── raw/            # AI-generated images (scene only, NO text)
-    │   ├── anchor_1.png
-    │   ├── story_1.png
-    │   ├── ...
-    │   ├── generations.jsonl  # Generation log (append-only provenance)
-    │   └── prompts/           # Full assembled prompts (human-readable sidecars)
-    │       ├── anchor_1.txt
-    │       └── ...
-    ├── images/         # Final exports with text overlay (from Card Designer)
-    │   ├── anchor_1.png
-    │   ├── story_1.png
-    │   └── ...
-    ├── backs/          # Teacher content backs (from Card Designer)
-    │   ├── anchor_1_back.png
-    │   ├── story_1_back.png
-    │   └── ...
-    ├── print/          # Print PDFs (from Card Designer --pdf)
-    │   ├── purim-letter.pdf
-    │   └── purim-5x7.pdf
-    └── references/     # Character + style references
-        ├── manifest.json
-        ├── style_hero.png         # Style anchor for story-world cards (optional)
-        ├── esther_identity.png
-        └── mordechai_identity.png
+├── registry.json       # Deck list for review-site (hand-maintained)
+├── bereshit/           # Active deck: the v3 reference example (standard, 10 cards)
+│   ├── deck.json       # All card data (assembled from pipeline/; never hand-edit)
+│   ├── feedback.json   # Review comments (drafted by the Editor)
+│   ├── pipeline/       # One YAML per agent: 00-series … 06-editor
+│   ├── raw/            # AI-generated images (scene only, NO text), 1792x2400 at 2K
+│   │   ├── story_1.png …
+│   │   ├── drafts/            # 1K drafts {card}_d1.png, _d2.png + contact sheet (runners-up kept)
+│   │   ├── generations.jsonl  # Generation log (append-only provenance)
+│   │   └── prompts/           # Full assembled prompts (human-readable sidecars)
+│   ├── images/         # Card fronts from the Card Designer (gitignored for Bereshit; rebuild with export)
+│   ├── backs/          # Teacher backs from the Card Designer (gitignored for Bereshit)
+│   ├── print/          # bereshit-letter.pdf, bereshit-5x7.pdf, bereshit-guide.pdf, previews/
+│   ├── extras.yaml     # Extras data (vocab, bingo, I-spy, ...)
+│   ├── guide.yaml      # Booklet-only text (how to use, family letter)
+│   └── extras/         # Extras PDFs, art/, items/, previews/
+├── purim/              # v3 holiday deck (12 cards); same layout, no extras/guide yet
+│   └── references/     # Legacy per-deck refs (manifest.json, style_hero.png); characters now in characters/
+└── archive/            # beshalach, mishpatim, terumah, tetzaveh, yitro (older formats)
 ```
 
 ## Image Flow
@@ -57,22 +49,18 @@ cd card-designer && npm run export purim -- --format 5x7 --backs --pdf
 
 ## Creating a New Deck
 
+New decks are built by the v3 agent pipeline: each agent writes `decks/{id}/pipeline/<step>.yaml`
+and `assemble_deck.py` merges them into deck.json (then runs the validator).
+
 ```bash
-cd src
-python generate_deck.py --parasha "Beshalach"              # Standard parasha deck (10 cards)
-python generate_deck.py --parasha "Purim" --holiday         # Holiday deck (13 cards)
-python generate_deck.py --output ../decks/beshalach         # Custom output path
+python3 src/assemble_deck.py decks/{id}            # write deck.json
+python3 src/assemble_deck.py decks/{id} --dry-run  # check only
 ```
 
-> **Note:** `generate_deck.py` still writes a **v2** template. Until it is updated, start a new
-> deck by copying `decks/bereshit/deck.json` (v3), or run `python src/migrate_v2_to_v3.py` on the template.
+Steps, owners and commands: `agents/AGENT_PIPELINE.md`. Worked example: `decks/bereshit/pipeline/`.
 
-This creates:
-- `deck.json` — Template with placeholder cards
-- `feedback.json` — Empty feedback structure
-- `raw/` — Directory for AI-generated scene images
-- `images/` — Directory for final exports
-- `references/` — Directory for character sheets
+> `src/generate_deck.py` and `python -m workflows deck` are **legacy**: they still write a v2 template
+> (13 cards for a holiday). Don't use them for new decks.
 
 ## deck.json Structure (v3)
 
@@ -164,8 +152,8 @@ Type-specific extras inside `back`:
 **`guide`** is never printed on the card; it feeds the teacher guide booklet (Phase 8).
 
 Word budgets are not enforced by the JSON schema; the validator checks them.
-The migrated Purim and Terumah decks are over budget on purpose (content gets rewritten later),
-so they fail validation until rewritten.
+Bereshit and Purim (rebuilt on the v3 pipeline) pass with 0 errors. The migrated archive deck
+Terumah is still over budget, so it fails validation until rewritten.
 
 Optional fields used by the image pipeline: deck `story_world_setting` (`outdoor`|`indoor`),
 card `style_plate` (`landscape`|`interior`|`object`|`classroom`) and card `continuity_ref`
@@ -178,7 +166,7 @@ python3 src/validate_deck.py decks/bereshit/deck.json   # from the repo root
 ```
 
 Errors must be fixed before export; warnings are worth a look. See `src/CLAUDE.md` for the full
-list of checks. Bereshit passes with 0 errors (its warnings are the TODO stubs).
+list of checks. Bereshit and Purim pass with 0 errors and 0 warnings.
 
 ## Teacher Guide Page Map (`guide_layout.yaml`)
 
@@ -268,7 +256,7 @@ Each card includes `characters_in_scene` — a list of character keys whose iden
 
 Every image generation is tracked:
 
-- **`raw/generations.jsonl`** — Append-only log. One JSON line per generation with card_id, timestamp, model, full_prompt, character_refs, success.
+- **`raw/generations.jsonl`** — Append-only log. One JSON line per generation with card_id, timestamp, model, image_size, prompt_version, full_prompt, character_refs, references, output_file, success.
 - **`raw/prompts/{card_id}.txt`** — Human-readable full assembled prompt. Overwritten each run (JSONL is the durable record).
 
 To reproduce an image: find the entry in `generations.jsonl`, copy the `full_prompt`, and re-run with the same refs.
@@ -277,7 +265,8 @@ To reproduce an image: find the entry in `generations.jsonl`, copy the `full_pro
 
 | File | Size | Purpose |
 |------|------|---------|
-| `raw/{card_id}.png` | 1500x2100 | Scene-only AI image (no text) |
+| `raw/{card_id}.png` | 1792x2400 (2K, 3:4) | Scene-only AI image (no text) |
+| `raw/drafts/{card_id}_d{n}.png` | 896x1200 (1K) | Cheap drafts; the runner-up stays here |
 | `raw/generations.jsonl` | — | Generation provenance log |
 | `raw/prompts/{card_id}.txt` | — | Full assembled prompt (debug) |
 | `images/{card_id}.png` | 2375x3125 | Card front, letter card area @ 300 DPI (no paper margin) |
@@ -297,21 +286,22 @@ cd src && python generate_images.py ../decks/purim/deck.json
 # Generate specific card
 python generate_images.py ../decks/purim/deck.json --card story_1
 
-# Generate 3 variants of a card (pick winner, rename to {card_id}.png)
-python generate_images.py ../decks/purim/deck.json --card story_1 --variants 3
-
-# Skip existing images
-python generate_images.py ../decks/purim/deck.json --skip-existing
+# Two cheap 1K drafts, then the 2K final from the chosen draft
+python generate_images.py ../decks/purim/deck.json --card story_1 --draft
+python generate_images.py ../decks/purim/deck.json --final --from-draft ../decks/purim/raw/drafts/story_1_d2.png
 
 # Without character references (debugging)
-python generate_images.py ../decks/purim/deck.json --no-refs
+python generate_images.py ../decks/purim/deck.json --card story_1 --no-refs
 
 # Sync + export with Card Designer
 ./sync-deck.sh purim
-cd card-designer && npm run export purim -- --backs
+cd card-designer && npm run export purim -- --backs --pdf
 ```
 
-**Export rendering:** Fronts render at 500x700 CSS with 3x device scale (matches design editor where overlays were designed). Backs render at 1500x2100 CSS with 1x scale (print-calibrated fonts).
+Pass `--card` for single cards: the script does not skip the home card (it has no art).
+
+**Export rendering:** every side is rendered from `/print/{id}?format=…` at the exact paper size, and
+PNGs are captured at 300 DPI (letter 2375x3125, 5x7 1500x2100).
 
 ---
 
@@ -319,9 +309,8 @@ cd card-designer && npm run export purim -- --backs
 
 ```json
 {
-  "parasha": "Purim",
-  "deck_version": "2.0",
-  "review_date": "2024-01-15",
+  "deck_id": "purim",
+  "review_date": "2026-10-06",
   "cards": [
     {
       "card_id": "spotlight_1",
@@ -344,81 +333,26 @@ cd card-designer && npm run export purim -- --backs
 
 **Priority levels:** low, medium, high
 
-**Status values:** pending, approved, needs_revision
+**Status values:** pending, needs_review, approved, needs_revision
 
-## references/ Directory
+The 06 Editor drafts this file (v3 decks use `deck_id`; older decks have `parasha` + `deck_version`).
 
-Contains character identity reference sheets for visual consistency.
+## references/ Directory (legacy)
 
-**Important:** We generate ONLY the identity sheet per character (portrait + full body).
-This single image is the source of truth for character appearance and is passed to
-all card image generations to maintain consistency.
-
-### manifest.json
-
-```json
-{
-  "style_hero": {
-    "identity": "style_hero.png",
-    "description": "Persian palace throne room, golden light, ornate arches"
-  },
-  "esther": {
-    "identity": "esther_identity.png"
-  },
-  "mordechai": {
-    "identity": "mordechai_identity.png"
-  }
-}
-```
-
-The `style_hero` entry is optional. When present, its image is loaded as the first reference for story-world cards (anchor, spotlight, story, power_word) to anchor art style, color palette, and rendering quality. Modern-world cards skip it.
-
-### Character Review Workflow
-
-Before finalizing a new character identity:
-
-1. **Generate versions:** Create 2+ identity variants
-2. **User review:** Present versions for selection
-3. **Finalize:** Rename selected version to canonical name (e.g., `haman_identity.png`)
-4. **Update manifest:** Ensure manifest.json points to canonical file
-
-```bash
-cd src
-python workflows.py character moses --deck ../decks/yitro --generate
-```
+Characters now live in the shared library `characters/{key}/` (see `characters/README.md`), and
+the series style comes from `style/plates/`. A deck's `references/` folder is only a fallback:
+`manifest.json` entries are used (with a warning) for a character missing from the library, and
+`style_hero.png` only when `style/plates/` is empty. Purim and the archived decks still have one.
 
 ## Workflow: Creating a Complete Deck
 
-1. **Create deck structure:**
-   ```bash
-   python generate_deck.py --parasha "Beshalach"
-   ```
-
-2. **Research and edit deck.json:**
-   - Fill in card content (titles, descriptions, prompts)
-   - Write scene-only image prompts
-   - Add Hebrew text with nikud
-   - Write teacher scripts
-
-3. **Create character references:**
-   ```bash
-   python workflows.py character miriam --deck ../decks/beshalach --generate
-   ```
-
-4. **Generate card images:**
-   ```bash
-   python generate_images.py ../decks/beshalach/deck.json
-   ```
-
-5. **Export with Card Designer:**
-   ```bash
-   cd card-designer && npm run export beshalach -- --backs
-   ```
-
-6. **Review and iterate:**
-   - Open Card Designer dev server to preview
-   - Add feedback to feedback.json
-   - Regenerate images as needed
+1. **Pipeline 00 → 03** (plan, research, structure, sensitivity ★, content), then `python3 src/assemble_deck.py decks/{id}`
+2. **New characters:** `characters/{key}/character.yaml`, then `generate_references.py --character {key} --versions 2` and `--accept vN` ★
+3. **05 Visual Director** → assemble → `generate_images.py --card … --draft` for each card
+4. **05b Image QA** picks ★ → `--final --from-draft …` → assemble
+5. **06 Editor** (validator must pass)
+6. **Export:** `./sync-deck.sh {id} && cd card-designer && npm run export {id} -- --backs --pdf`
+7. **Extras + guide** (below), then `python3 scripts/sync_to_hub.py {id}`
 
 ## Printable Extras
 

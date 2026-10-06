@@ -10,6 +10,8 @@ For documentation, see: ../agents/VISUAL_SPECS.md and ../agents/CARD_SPECS.md
 # =============================================================================
 # PRINT SPECIFICATIONS
 # =============================================================================
+# v2 leftovers (5x7 only). The v3 print sizes (letter default, 5x7 vendor) live in
+# card-designer/print_formats.json; nothing in the v3 pipeline reads these.
 
 CARD_WIDTH = 1500  # pixels at 300 DPI
 CARD_HEIGHT = 2100  # pixels at 300 DPI

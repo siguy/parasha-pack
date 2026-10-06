@@ -67,16 +67,17 @@ Think: Colorful children's book illustration meets educational flashcard.
 
 ## Print Specifications
 
-| Spec | Value |
-|------|-------|
-| Card Size | 5" x 7" (127 x 178 mm) |
-| Resolution | 300 DPI |
-| Pixel Size | 1500 x 2100 px |
-| Bleed | 0.125" (3mm / 38px) |
-| Corner Radius | 8-10px |
-| Border Width | 8px |
-| Paper | 350gsm cardstock |
-| Finish | Matte lamination |
+Defined once in `card-designer/print_formats.json`.
+
+| Spec | Letter (default) | 5x7 (optional vendor) |
+|------|------------------|-----------------------|
+| Sheet | 8.5" x 11" | 5.25" x 7.25" (5x7 trim + 0.125" bleed) |
+| Margin / safe zone | 0.3" white margin, no bleed | bleed in the card color, text 0.25" inside the trim |
+| Printer | home/school, duplex, flip on long edge, "actual size" | print shop (cardstock, matte) |
+| Card PNG @ 300 DPI | 2375 x 3125 px | 1500 x 2100 px |
+| Raw AI art | 1792 x 2400 px (2K, 3:4) | same art, cropped |
+
+Keep key subjects in the central 90% of the width so the art works for both crops.
 
 ---
 
@@ -292,7 +293,7 @@ and (when `PP_SPEND_LEDGER` is set) to the spend ledger, which refuses calls pas
 
 | Issue | Solution |
 |-------|----------|
-| Wrong character appears | Only include character refs in manifest for characters IN the deck |
+| Wrong character appears | List only the characters actually in the scene in `characters_in_scene` |
 | Scene too busy | Keep to 5-7 visual elements maximum |
 | Text appears in image | Check that scene prompt has no `=== STYLE ===` or other system sections |
 
@@ -303,4 +304,4 @@ and (when `PP_SPEND_LEDGER` is set) to the spend ledger, which refuses calls pas
 - Character library: `characters/{key}/character.yaml` + `characters/{key}/identity.png`
 - Style plates + style config: `style/plates/*.png`, `style/style_config.yaml`
 - Deck manifest (legacy style hero, legacy character fallback): `decks/{deck}/references/manifest.json`
-- Card images: `decks/{deck}/images/{card_id}.png`
+- Raw art: `decks/{deck}/raw/{card_id}.png`; card images: `decks/{deck}/images/{card_id}.png`
