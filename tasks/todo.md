@@ -93,4 +93,4 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [ ] 8.10 Classroom pilot kit
 
 ## Phase 9 — Purim retrofit (later)
-- [ ] 9.1 Content + Hebrew fixes, 12 cards, regenerate at letter
+- [x] 9.1 Content + Hebrew fixes, 12 cards, regenerated at 2K (#13); follow-ups: compress PDFs, recompose spotlight_2
