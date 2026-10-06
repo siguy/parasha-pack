@@ -31,6 +31,8 @@ npm run export {id} -- --backs-only                  # PNG backs only
 | 5×7 PNGs | `decks/{id}/images/5x7/`, `decks/{id}/backs/5x7/` |
 | Duplex PDF | `decks/{id}/print/{id}-letter.pdf` (or `-5x7.pdf`); pages front1, back1, front2… flip on long edge |
 
+After writing a PDF the export runs `scripts/compress_pdf.py` (art re-encoded as JPEG q88, same pixels/DPI, ~57 MB → ~6 MB; best-effort, skip with `--no-compress`).
+
 Formats come from `card-designer/print_formats.json`: **letter** = 8.5×11", 0.3" white margin, no bleed
 (default, home/school printer); **5×7** = 5.25×7.25" with 0.125" bleed and a 0.25" safe zone (vendor print).
 Every page is rendered from one route, `/print/{id}?format=…&side=…`, using `CardBack.tsx` for all back types.
