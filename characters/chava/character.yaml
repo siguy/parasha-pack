@@ -9,8 +9,9 @@ role: hero
 canonical: true
 version: 1
 identity: identity.png
+identity_version: 3
 visual_anchors:
-  - young adult woman with olive skin
+  - grown-up young woman (about 25 years old) with olive skin; adult proportions and height matching Adam — clearly a grown woman, not a girl or teen
   - long dark wavy hair, loosely tied back
   - simple modest sage-green tunic dress, full coverage, long sleeves, ankle length
   - barefoot or simple sandals
@@ -28,9 +29,11 @@ source_notes: >
   the approach (Modern Orthodox modesty, plan decision D3). Identity sheet generated
   2026-10-05 with generate_references.py (Nano Banana 2, 2K, 16:9, style plate
   landscape as Image 1): 3-angle turnaround plus happy/curious/caring/surprised row,
-  no captions. Chosen identity_v2 (longer, closer to ankle-length dress, hair tied
-  back as anchored, matches Adam v2's proportions and cream background); runner-up
-  in alternates/identity_v1.png (dress mid-calf, hair mostly loose).
+  no captions. v1 and v2 both read as a young girl next to an adult Adam, so the
+  coordinator added an explicit "grown-up young woman, adult proportions matching
+  Adam" anchor and generated v3. Chosen identity_v3: clearly adult, modest
+  ankle-length dress, sandals. Alternates: alternates/identity_v2.png (previous
+  pick, looks childlike) and alternates/identity_v1.png (dress mid-calf, hair loose).
 research:
   biblical_refs: ["Genesis 2:18-25", "Genesis 3:20"]
   key_stories:

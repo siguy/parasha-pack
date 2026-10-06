@@ -97,11 +97,35 @@ def character_folder(key: str, library_dir=None) -> Path:
     return Path(library_dir or character_library.LIBRARY_DIR) / character_library.resolve_key(key, library_dir)
 
 
+def accepted_version(folder: Path) -> int:
+    """The version number that was promoted to identity.png (from `identity_version:` in character.yaml), or 0."""
+    yaml_path = folder / "character.yaml"
+    if yaml_path.exists():
+        match = re.search(r"^identity_version:\s*(\d+)", yaml_path.read_text(encoding="utf-8"), flags=re.M)
+        if match:
+            return int(match.group(1))
+    return 0
+
+
 def next_version(folder: Path) -> int:
-    """1 + the highest identity_vN.png already in the folder or its alternates/ (so numbers never repeat)."""
+    """
+    1 + the highest version number already used, so numbers never repeat. Counts identity_vN.png in the
+    folder and alternates/, AND the accepted version (it was renamed to identity.png, so its file name is gone).
+    """
     numbers = [int(m.group(1)) for p in list(folder.glob("identity_v*.png")) + list(folder.glob("alternates/identity_v*.png"))
                if (m := VERSION_PATTERN.search(p.name))]
+    numbers.append(accepted_version(folder))
     return max(numbers, default=0) + 1
+
+
+def set_yaml_identity_version(yaml_path: Path, number: int) -> None:
+    """Record which version became identity.png (adds the line under `identity:` if missing)."""
+    text = yaml_path.read_text(encoding="utf-8")
+    if re.search(r"^identity_version:", text, flags=re.M):
+        text = re.sub(r"^identity_version:.*$", f"identity_version: {number}", text, count=1, flags=re.M)
+    else:
+        text = re.sub(r"^(identity:.*)$", rf"\1\nidentity_version: {number}", text, count=1, flags=re.M)
+    yaml_path.write_text(text, encoding="utf-8")
 
 
 def generate_identity_versions(key: str, api_key: str, versions: int = 2, style_plate: str = DEFAULT_STYLE_PLATE,
@@ -177,6 +201,7 @@ def accept_version(key: str, version, library_dir=None) -> Path:
         print(f"  {other.name} -> alternates/")
 
     set_yaml_identity(folder / "character.yaml", "identity.png")
+    set_yaml_identity_version(folder / "character.yaml", number)
     print(f"{key}: identity_v{number}.png is now identity.png")
     return current
 
