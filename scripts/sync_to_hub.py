@@ -16,7 +16,13 @@ Archived decks (decks/archive/<id>/) work too.
 
 Usage (from the repo root):
   python3 scripts/sync_to_hub.py bereshit --hub /Users/simonbrief/simonbrief-hub-parashapacks
-  python3 scripts/sync_to_hub.py bereshit purim terumah          # uses HUB_DIR from .env
+  python3 scripts/sync_to_hub.py bereshit purim                  # uses HUB_DIR from .env
+  python3 scripts/sync_to_hub.py terumah --allow-invalid          # publish a deck that fails validation
+
+Every deck is checked with src/validate_deck.py first. If the validator reports
+errors, the sync stops (exit code 1) before anything is written to the hub.
+--allow-invalid publishes anyway (with a warning). Terumah needs it for now: it is
+a v2 deck migrated to v3 and still fails the v3 checks (see todos/).
 
 Missing images or a missing PDF are logged as warnings; the sync carries on.
 Run the Card Designer export first:  cd card-designer && npm run export <id> -- --backs --pdf
@@ -35,6 +41,7 @@ from PIL import Image
 
 REPO = Path(__file__).resolve().parent.parent
 PROJECT_LOG = REPO / "project.log"
+VALIDATOR = REPO / "src" / "validate_deck.py"
 
 WEBP_QUALITY = 82
 MAX_HEIGHT = 1600  # px; the exports are 3125 tall, far more than any screen needs
@@ -88,17 +95,32 @@ def find_file(roots: list[Path], relative: str) -> Path | None:
     return None
 
 
-def run_validator(repo: Path, deck_json: Path) -> None:
-    """Run src/validate_deck.py if it exists. Problems are warnings, not stops."""
-    validator = repo / "src" / "validate_deck.py"
-    if not validator.exists():
-        logger.warning("  validate_deck.py not found; skipping validation")
-        return
-    result = subprocess.run([sys.executable, str(validator), str(deck_json)], capture_output=True, text=True)
-    if result.returncode == 0:
-        logger.info("  validation passed")
-    else:
-        logger.warning("  validation reported problems (continuing):\n%s", (result.stdout + result.stderr).strip())
+def run_validator(deck_json: Path) -> tuple[bool, str]:
+    """Run src/validate_deck.py on a deck. Returns (passed?, the validator's output)."""
+    result = subprocess.run([sys.executable, str(VALIDATOR), str(deck_json)], capture_output=True, text=True)
+    return result.returncode == 0, (result.stdout + result.stderr).strip()
+
+
+def decks_are_valid(deck_ids: list[str], repo: Path, allow_invalid: bool) -> bool:
+    """Validate every deck before anything is copied, so a bad deck never half-publishes.
+
+    Returns False if any deck fails and allow_invalid is off. Decks that can't be
+    found are left for sync_deck to warn about.
+    """
+    all_ok = True
+    for deck_id in deck_ids:
+        deck_json = find_file(deck_roots(repo, deck_id), "deck.json")
+        if deck_json is None:
+            continue
+        passed, output = run_validator(deck_json)
+        if passed:
+            logger.info("[%s] validation passed", deck_id)
+        elif allow_invalid:
+            logger.warning("[%s] validation failed; publishing anyway (--allow-invalid):\n%s", deck_id, output)
+        else:
+            logger.error("[%s] validation failed:\n%s", deck_id, output)
+            all_ok = False
+    return all_ok
 
 
 def to_webp(src: Path, dest: Path) -> None:
@@ -160,14 +182,16 @@ def index_entry(deck: dict, has_pdf: bool, missing: int, status: str) -> dict:
 
 
 def sync_deck(deck_id: str, repo: Path, hub: Path, series_status: dict[str, str]) -> dict | None:
-    """Copy one deck into the hub. Returns its index.json entry, or None if the deck is not found."""
+    """Copy one deck into the hub. Returns its index.json entry, or None if the deck is not found.
+
+    Validation happens earlier, in decks_are_valid().
+    """
     roots = deck_roots(repo, deck_id)
     deck_json = find_file(roots, "deck.json")
     if deck_json is None:
         logger.warning("[%s] no deck.json in decks/%s or decks/archive/%s; skipped", deck_id, deck_id, deck_id)
         return None
     logger.info("[%s] deck: %s", deck_id, deck_json.relative_to(repo))
-    run_validator(repo, deck_json)
 
     deck = json.loads(deck_json.read_text())
 
@@ -226,6 +250,8 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Publish decks to the simonbrief-hub site.")
     parser.add_argument("deck_ids", nargs="+", help="deck ids, e.g. bereshit purim")
     parser.add_argument("--hub", help="path to the simonbrief-hub checkout (default: HUB_DIR in .env)")
+    parser.add_argument("--allow-invalid", action="store_true",
+                        help="publish even if src/validate_deck.py reports errors (e.g. terumah)")
     args = parser.parse_args(argv)
 
     hub_dir = args.hub or read_env_hub()
@@ -238,6 +264,10 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     series_status = load_series_status(REPO)
+    if not decks_are_valid(args.deck_ids, REPO, args.allow_invalid):
+        logger.error("Stopped before publishing anything. Fix the deck(s) or pass --allow-invalid.")
+        return 1
+
     entries = [e for e in (sync_deck(d, REPO, hub, series_status) for d in args.deck_ids) if e]
     if not entries:
         logger.error("No decks synced")

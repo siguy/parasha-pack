@@ -90,7 +90,7 @@ def test_missing_visual_step_uses_placeholders(deck_dir):
     assert any("05-visual.yaml not written" in w for w in report.warnings)
 
 
-def test_validator_runs_when_present(deck_dir, tmp_path, monkeypatch):
+def test_validator_runs_after_writing(deck_dir, tmp_path, monkeypatch):
     fake = tmp_path / "validate_deck.py"
     fake.write_text("import sys; print('checked', sys.argv[1]); sys.exit(0)\n")
     monkeypatch.setattr(assemble_deck, "VALIDATOR", fake)
