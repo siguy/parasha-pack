@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parasha-pack/schemas/pipeline/06-editor.schema.json",
+  "title": "Pipeline step 06: Editor",
+  "description": "decks/<id>/pipeline/06-editor.yaml. Scored rubric (agents/rubrics/editor.yaml), validator result, issues routed to agents, pass/fail.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent", "deck_id", "rubric", "validator", "sections", "weighted_percent", "pass", "issues"],
+  "properties": {
+    "agent": { "const": "06-editor" },
+    "deck_id": { "type": "string" },
+    "rubric": { "type": "string", "description": "agents/rubrics/editor.yaml" },
+    "rubric_version": { "type": "string" },
+    "validator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ran", "passed"],
+      "properties": {
+        "ran": { "type": "boolean", "description": "false only when src/validate_deck.py does not exist yet" },
+        "command": { "type": "string" },
+        "passed": { "type": ["boolean", "null"] },
+        "summary": { "type": "string" }
+      }
+    },
+    "sections": {
+      "type": "object",
+      "description": "section id (content, torah_accuracy, hebrew, art, print) -> criterion scores",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["scores"],
+        "properties": {
+          "scores": { "type": "object", "additionalProperties": { "enum": [0, 1, 2] }, "minProperties": 1 },
+          "notes": { "type": "string" }
+        }
+      },
+      "minProperties": 1
+    },
+    "weighted_percent": { "type": "number", "minimum": 0, "maximum": 100 },
+    "pass": { "type": "boolean" },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["card_id", "severity", "section", "issue", "route_to", "fix"],
+        "properties": {
+          "card_id": { "type": "string", "description": "A card_id, or 'deck' for deck-wide issues" },
+          "severity": { "enum": ["critical", "recommended", "minor"] },
+          "section": { "type": "string" },
+          "issue": { "type": "string" },
+          "route_to": { "type": "string", "description": "Agent file, e.g. 03-content-writer" },
+          "fix": { "type": "string" }
+        }
+      }
+    },
+    "feedback_json": { "type": "string", "description": "Path of the feedback.json draft written for the review site" }
+  }
+}

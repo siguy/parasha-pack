@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parasha-pack/schemas/pipeline/02-structure.schema.json",
+  "title": "Pipeline step 02: Curriculum Designer",
+  "description": "decks/<id>/pipeline/02-structure.yaml. Card list, ★core cards, minutes, 5-day week plan, story world. Card-type counts (D1) are checked by src/assemble_deck.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent", "deck_id", "holiday", "focal_incident", "story_world", "story_world_setting", "learning_objectives", "week_plan", "cards"],
+  "properties": {
+    "agent": { "const": "02-curriculum-designer" },
+    "deck_id": { "type": "string" },
+    "holiday": { "type": "boolean" },
+    "focal_incident": { "type": "string", "description": "The ONE moment the whole deck builds toward, with its verse ref" },
+    "story_world": { "type": "string", "description": "Setting text shared by all story-world image prompts" },
+    "story_world_setting": { "enum": ["outdoor", "indoor"], "description": "Picks the style plate for spotlight + story cards" },
+    "learning_objectives": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["understand", "feel", "do"],
+      "properties": { "understand": { "type": "string" }, "feel": { "type": "string" }, "do": { "type": "string" } }
+    },
+    "week_plan": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["day", "label", "cards"],
+        "properties": {
+          "day": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "label": { "type": "string" },
+          "cards": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+        }
+      }
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["card_id", "card_type", "title_en", "purpose", "core", "minutes", "refs"],
+        "properties": {
+          "card_id": { "type": "string", "pattern": "^[a-z_]+_[0-9]+$" },
+          "card_type": { "enum": ["anchor", "spotlight", "story", "connection", "tradition", "power_word", "home"] },
+          "title_en": { "type": "string", "description": "Working title; the Content Writer may polish it" },
+          "purpose": { "type": "string" },
+          "core": { "type": "boolean", "description": "★ = do this card even when time is short" },
+          "minutes": { "type": "integer", "minimum": 0, "description": "0 only for the home card" },
+          "sequence_number": { "type": "integer", "minimum": 1 },
+          "characters": { "type": "array", "items": { "type": "string" } },
+          "refs": { "type": "array", "items": { "type": "string" }, "description": "Verses this card teaches (empty for modern-world cards)" }
+        },
+        "if": { "properties": { "card_type": { "const": "story" } } },
+        "then": { "required": ["sequence_number"] }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "holiday": { "const": true } } },
+      "then": { "properties": { "cards": { "minItems": 12, "maxItems": 12 } } },
+      "else": { "properties": { "cards": { "minItems": 10, "maxItems": 10 } } }
+    }
+  ]
+}
