@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Deck v3 — Letter-Size Cards, Single CardBack, Duplex PDF Export (Phase 1)
+
+#### Added
+- **`schemas/deck.v3.schema.json`** — v3 deck format: deck `value`, `palette`, `web_theme`, `week_plan`; each card has a `back` (objective, say with `**bold**`/`[cue]` markup, ask with types, hebrew, minutes, core, transition, guide_ref, plus trio/faces/home extras) and a `guide` (pshat, sages, hard questions, adapt, extend, tip). No field aliases.
+- **`src/migrate_v2_to_v3.py`** — mechanical v2 → v3 migration (rewrites in place, lists every field it could not map). Run on Purim and Terumah; both are over the v3 word budgets until rewritten.
+- **`decks/bereshit/deck.json`** — first v3 deck (10 cards incl. home card), content from `docs/mockups/bereshit-v3.html`. Guide fields and image prompts are TODO stubs.
+- **`card-designer/print_formats.json`** — `letter` (default, 8.5×11, 0.3" margin) and `5x7` (5.25×7.25 with 0.125" bleed, 0.25" safe zone).
+- **Export `--format letter|5x7` and `--pdf`** — duplex PDF (front1, back1, front2…) to `decks/<id>/print/<id>-<format>.pdf` via Playwright `page.pdf()`; PNGs at 300 DPI.
+- **`/print/[deckId]`** page (one sheet per page) used by both PDF and PNG export.
+- SVG type icons and feeling faces; drawn home-card front; palette placeholder for cards without art.
+
+#### Changed
+- **One `CardBack.tsx` and one `CardFront.tsx`** replace the 12 per-type components; per-type differences live in `lib/cardTypes.ts`. v3 palette (AA contrast; Tradition is now teal).
+- All card sizes in container units (`cqw`) so one layout serves letter, 5×7 and screen.
+- Card text is never clipped (`overflow-hidden` removed); over-budget backs spill visibly.
+- `types/card.ts` / `lib/api.ts` read v3 only; the home page lists decks from `content/` (no hardcoded `terumah`).
+- `sync-deck.sh` uses `rsync -a --delete` for `raw/` and `references/` and runs from any directory.
+- Title shadows on fronts have no blur (blurred shadows print as black boxes in macOS Preview).
+
+#### Removed
+- v2-only design editor (`app/design/*`, `components/editor/*`, `app/api/config`, `layout_settings.json`), `FitText`, `ExportControls`, `ScaledBack`, `CardBackFrame`, `BackSection`, `app/export/*`.
+
+---
+
 ### Card Front Gradient & FitText Overhaul
 
 Standardized title readability gradients, fixed FitText measurement for letter-spacing, and cleaned up export pipeline.
