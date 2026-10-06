@@ -36,3 +36,8 @@ project.log
 decks/bereshit/images/
 decks/bereshit/backs/
 card-designer/content/bereshit/raw/
+
+# Printable extras: rebuilt every run (src/generate_activities.py)
+decks/*/extras/build/
+*.raw.png
+*.tmp.png
