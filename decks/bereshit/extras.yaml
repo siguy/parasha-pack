@@ -1,0 +1,197 @@
+# Bereshit printable extras: the data behind bingo, I-spy, match-it and Listen & Do.
+#
+# Read by src/generate_items.py (item art) and src/generate_activities.py (PDFs).
+# Checked against schemas/extras.schema.json before anything is built.
+#
+# Transliteration: the STRESSED syllable is in CAPS (sha-MA-yim).
+# Item art lives in items/shared/{id}/ (generic, reused by other decks) or, when
+# `deck_specific: true`, in decks/bereshit/extras/items/{id}/.
+
+deck_id: bereshit
+
+vocab:
+  - id: light
+    en: light
+    he: אוֹר
+    translit: OR
+    item_prompt: a single bright burst of warm golden light, a round glowing center with short straight rays all around it, like a sparkle (not a sun, no face)
+  - id: sky
+    en: sky
+    he: שָׁמַיִם
+    translit: sha-MA-yim
+    item_prompt: a round patch of light blue sky with two fluffy white clouds in it, shaped like a soft circle
+  - id: water
+    en: water
+    he: מַיִם
+    translit: MA-yim
+    item_prompt: one curling blue water wave with a few round water drops splashing above it
+  - id: tree
+    en: tree
+    he: עֵץ
+    translit: ETZ
+    item_prompt: one leafy green tree with a round crown, a brown trunk and three red fruits
+  - id: flower
+    en: flower
+    he: פֶּרַח
+    translit: PE-rach
+    item_prompt: one pink flower with five round petals, a yellow center, a green stem and two leaves
+  - id: sun
+    en: sun
+    he: שֶׁמֶשׁ
+    translit: SHE-mesh
+    item_prompt: one bright yellow sun with short rounded rays and a gentle smiling face
+  - id: moon
+    en: moon
+    he: יָרֵחַ
+    translit: ya-RE-ach
+    item_prompt: one pale yellow crescent moon with a sleepy, gentle smiling face
+  - id: star
+    en: star
+    he: כּוֹכָב
+    translit: ko-CHAV
+    item_prompt: one chunky golden five-pointed star with rounded points
+  - id: fish
+    en: fish
+    he: דָּג
+    translit: DAG
+    item_prompt: one friendly orange fish with big round eyes, a smile and a fan-shaped tail, seen from the side
+  - id: bird
+    en: bird
+    he: צִפּוֹר
+    translit: tzi-POR
+    item_prompt: ONE single small round blue bird (only one head, one beak, one body) with a yellow beak and little wings, standing, seen from the side facing right
+  - id: lion
+    en: lion
+    he: אַרְיֵה
+    translit: ar-YEH
+    item_prompt: one cuddly friendly lion cub sitting, with a fluffy round orange mane, a big smile and closed mouth, like a plush toy
+  - id: snake
+    en: snake
+    he: נָחָשׁ
+    translit: na-CHASH
+    deck_specific: true
+    item_prompt: one friendly smiling green snake coiled in a loose S shape, big round happy eyes, closed smiling mouth, no fangs, no tongue, cute and silly like a toy, not scary
+
+free_space:
+  id: shabbat_candles
+  en: Shabbat candles
+  he: נֵרוֹת שַׁבָּת
+  translit: ne-ROT sha-BAT
+  item_prompt: two white Shabbat candles with small warm flames in two simple silver candlesticks, side by side
+
+bingo:
+  boards: 10
+  max_shared: 6
+  simulations: 2000
+  candidates: 300
+  target_median_first_win: [5, 8]
+  max_avg_simultaneous_winners: 2.0
+  win_rule: corners        # corners | line | blackout (see src/bingo.py for why)
+
+ispy:
+  background_prompt: >-
+    An empty, peaceful Gan Eden garden landscape seen from the side, filling the whole square
+    frame. The top 35% is open light blue sky with two or three small soft clouds. The middle
+    band is soft rolling green hills and a wide grassy meadow with a few small bushes, plenty of
+    open grass. The bottom 30% is a wide calm blue pond that stretches across the full width.
+    Low detail, large calm areas of flat color, so small pictures can be placed on top.
+    NO animals, NO people, NO fish, NO birds, NO flowers, NO stars, NO sun, NO moon,
+    NO trees in the foreground, NO text.
+  # Where each kind of item may be placed (fractions of the scene height, top = 0).
+  zones:
+    sky: [0.03, 0.33]
+    land: [0.36, 0.67]
+    water: [0.72, 0.97]
+  item_zones:
+    star: sky
+    bird: sky
+    sun: sky
+    moon: sky
+    flower: land
+    tree: land
+    lion: land
+    snake: land
+    fish: water
+  easy:
+    targets: {fish: 4, star: 3, bird: 2, flower: 5, snake: 1}
+  challenge:
+    targets: {fish: 6, star: 5, bird: 4, flower: 6, snake: 2}
+    distractors: {tree: 2, lion: 1, moon: 1}
+
+match:
+  modes: [pic_pic, pic_word]
+  pairs: 6
+  sets:
+    pic_pic: [sun, moon, fish, bird, tree, flower]
+    pic_word: [lion, snake, star, water, light, sky]
+  # Bonus: which creation goes with which day (Bereshit 1).
+  bonus_days:
+    - {day: 1, he: יוֹם א׳, item: light}
+    - {day: 2, he: יוֹם ב׳, item: sky}
+    - {day: 3, he: יוֹם ג׳, item: tree}
+    - {day: 4, he: יוֹם ד׳, item: sun}
+    - {day: 5, he: יוֹם ה׳, item: fish}
+    - {day: 6, he: יוֹם ו׳, item: lion}
+
+listen_do:
+  # The scene is one line-art picture. pos = [x, y, w, h] as fractions of the scene
+  # (x, y = top-left corner), measured on the generated scene (extras/art/listen_do_scene.png)
+  # so the answer key lines up. Re-measure if the scene is regenerated.
+  scene_prompt: >-
+    A simple Gan Eden garden coloring page, landscape. One big leafy tree with a round crown
+    on the left side. One round sun with short rays in the top right corner of the sky. One
+    small fluffy cloud in the top middle of the sky. A small river running across the bottom
+    of the picture from left to right. One big flower with five petals growing on the grass in
+    the middle. One round rock on the grass on the right side. Lots of empty white space
+    between the objects. No animals, no people, no fish, no birds, no text.
+  objects:
+    - {id: tree, he: עֵץ, translit: ETZ, en: tree, pos: [0.02, 0.02, 0.44, 0.76]}
+    - {id: sun, he: שֶׁמֶשׁ, translit: SHE-mesh, en: sun, pos: [0.73, 0.02, 0.25, 0.32]}
+    - {id: cloud, en: cloud, pos: [0.48, 0.06, 0.21, 0.14]}
+    - {id: flower, en: flower, pos: [0.49, 0.42, 0.17, 0.38]}
+    - {id: rock, en: rock, pos: [0.74, 0.65, 0.23, 0.22]}
+    - {id: river, en: river, pos: [0.25, 0.78, 0.45, 0.22]}
+  steps:
+    # Level 1: one step, or two steps that go together.
+    - level: 1
+      text: "Find the עֵץ (ETZ), tree. ⏸ Color the עֵץ green."
+      expected: [{object: tree, action: color, color: green}]
+    - level: 1
+      text: "Color the שֶׁמֶשׁ (SHE-mesh), sun, yellow."
+      expected: [{object: sun, action: color, color: yellow}]
+    - level: 1
+      text: "Find the river. ⏸ Draw a דָּג (DAG), fish, swimming in it."
+      expected: [{object: river, action: draw, label: "fish"}]
+    # Level 2: two steps, then one 3-step direction where the steps don't go together.
+    - level: 2
+      text: "Color the cloud blue, ⏸ then draw rain under the cloud."
+      expected: [{object: cloud, action: color, color: blue}, {object: cloud, action: draw, label: "rain"}]
+    - level: 2
+      text: "Color the flower red, ⏸ put an X on the rock, ⏸ then draw a שֶׁמֶשׁ (SHE-mesh), sun, in box 1."
+      expected:
+        - {object: flower, action: color, color: red}
+        - {object: rock, action: mark, label: "X"}
+        - {object: box_1, action: draw, label: "sun"}
+    - level: 2
+      text: "In box 2, draw a עֵץ (ETZ), tree, with one apple."
+      expected: [{object: box_2, action: draw, label: "tree + 1 apple"}]
+
+# Coloring + sequence (plan 8.5): the 4 story cards as line art (src/coloring.py).
+coloring:
+  cards: [story_1, story_2, story_3, story_4]       # in story order (= the dots 1-4)
+  page_order: [story_3, story_1, story_4, story_2]  # shuffled on the cut page, so ordering is a real puzzle
+  # Days 1-7 strip for 6-year-olds, built from the item line art (no AI calls).
+  days_strip:
+    - {day: 1, he: יוֹם א׳, items: [light]}
+    - {day: 2, he: יוֹם ב׳, items: [sky, water]}
+    - {day: 3, he: יוֹם ג׳, items: [tree, flower]}
+    - {day: 4, he: יוֹם ד׳, items: [sun, moon]}
+    - {day: 5, he: יוֹם ה׳, items: [fish, bird]}
+    - {day: 6, he: יוֹם ו׳, items: [lion]}
+    - {day: 7, he: שַׁבָּת, items: [shabbat_candles]}
+
+# Sequencing game (plan 8.7): mini story cards + a control strip.
+sequencing:
+  cards: [story_1, story_2, story_3, story_4]
+  copies: 2                                  # two children (or two teams) play at once
+  easy_subset: [story_1, story_3, story_4]   # age 4: three cards only

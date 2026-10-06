@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Printable Extras, Part B: Coloring + Sequence, Sequencing Game, Teacher Guide Booklet, Pilot Kit (Phase 8.5, 8.7, 8.8, 8.10)
+
+#### Added
+- **`src/coloring.py`**: story-card line art via one Gemini edit call per card on `raw/story_N.png` (1K, thick outlines, ≤12 large regions asked for), cleaned with Pillow (threshold 200, MinFilter 5). Saved once to `decks/{id}/extras/art/coloring/`; `--redo` + `--hint` for a remake, `--contact-sheet`, `count_regions()` QA metric, cut-grid geometry helpers (`grid_cells`, `cut_lines`, `fits_on_page`).
+- **`coloring.pdf`** (3 pages): 2×2 line-art panels 3.75×4.5" in shuffled order with thick straight cut lines, Hebrew-over-English captions and 1–4 dot self-check tabs; a "story path" glue sheet with numbered, dotted boxes and arrows; a Days 1–7 strip for 6-year-olds built from the item line art (no AI).
+- **`sequencing.pdf`** (2 pages): 8 mini story cards 2.5×3.5" (two sets, composed from the raw art + titles so there's no number badge to give the order away), a "draw your favorite part" blank, a control strip in story order, and a rules card with Age 4 (3-card easy subset) / 5 / 6 ("what's missing?" hints from each card's Hebrew keyword) variations.
+- `extras.yaml` + schema: `coloring` (cards, page order, days strip) and `sequencing` (cards, copies, easy subset) sections, cross-checked in `extras_data.py`.
+- **`src/build_guide.py`** + `templates/guide/booklet.html` + `decks/bereshit/guide.yaml`: the 16-page letter teacher guide booklet `decks/bereshit/print/bereshit-guide.pdf`, laid out exactly per `guide_layout.yaml` (cover/how to use, week at a glance + anchor, parasha in brief, one page per card, if-they-ask, UDL adaptations, extras index, photocopiable family letter, sources). Fails on any page overflow or layout gap; verifies with pypdf that the page count equals the layout and each card's footer is on its `guide_ref.page`; compresses with `scripts/compress_pdf.py`; PNG previews in `print/previews/`. The family letter copies the 02b hard-question script word for word.
+- **`docs/pilot/`**: protocol README (3 classes × Bereshit + Noach, privacy rules, measures, signal → action table), `kit.yaml`, `daily_tick_grid.pdf` and `teacher_feedback_form.pdf` (8 questions) built by `src/build_pilot_kit.py`, `results_template.yaml`.
+- `tests/test_coloring_guide.py` (16 tests): cut-line geometry, caption/instruction limits, line-art binarization, region counting, booklet page map vs guide_refs, PDF page check, family-letter script match, pilot kit.
+
+### Printable Extras, Part A: Item Art, Bingo, I-spy, Match-it, Listen & Do (Phase 8.1–8.4, 8.6)
+
+#### Added
+- **`decks/bereshit/extras.yaml`** + **`schemas/extras.schema.json`**: 12 vocab items (Hebrew with nikud, CAPS-stress transliteration, item prompts), Shabbat-candles free space, bingo settings, I-spy zones and counts, match sets, Listen & Do objects and Level 1/2 directions. `src/extras_data.py` validates it (schema + cross-checks such as ≤3 Hebrew words in Listen & Do).
+- **`src/generate_items.py`**: per item a 1K color picture (object plate as labeled style ref), a line-art version via a Gemini edit call, cleaned to pure black/white with Pillow, and a transparent cutout. Shared items in `items/shared/`, deck-specific ones in `decks/{id}/extras/items/`. Reuses existing files; `--redo`, `--dry-run`, `--contact-sheet`.
+- **`src/generate_activities.py`** (Jinja2 templates in `templates/activities/`, Playwright → letter PDFs, PyMuPDF page-1 previews, overflow + font check):
+  - **Bingo** (`src/bingo.py`): 10 seeded 3×3 boards, any two share ≤6 items; 2000 simulated games per candidate set. Win rule **4 corners** (3-in-a-row with a free center wins on call 2–3). Bereshit: median first win 7, 1.19 simultaneous winners. Calling cards 4 per page.
+  - **I-spy** (`src/ispy.py`): AI background + item cutouts placed in code, so counts are exact: Easy 15 targets, Challenge 23 + 4 distractors; key strip, answer key, coloring version.
+  - **Match-it**: Set A picture↔picture, Set B picture↔Hebrew word, bonus Set C day↔creation; 12 × 2.5" cards per page, star-pattern backs.
+  - **Listen & Do**: line-art scene, 2 drawing boxes, teacher script (Level 1/2, ⏸ wait markers, Hebrew echo), drawn answer keys.
+- `docs/extras.md` (teachers + Simon), `tests/test_extras.py`.
+- `requirements.txt`: Jinja2, numpy, playwright, PyMuPDF.
+
 ### Print PDF Compression
 
 #### Added

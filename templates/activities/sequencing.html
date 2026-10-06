@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block style %}
+  .page.abs { padding: 0; display: block; }
+  .top { position: absolute; left: 0.5in; right: 0.5in; top: 0.35in; }
+  .top header.sheet { height: 0.62in; margin-bottom: 0.04in; }
+  .top .inst { font-size: 10.5pt; line-height: 1.25; }
+  .top .inst b { color: var(--navy); }
+  /* Mini card: the story art with no number on it, title band at the bottom */
+  .mini { position: absolute; padding: 0.12in; }
+  .mini .face { width: 100%; height: 100%; border-radius: 0.1in; overflow: hidden; position: relative;
+                border: 2px solid var(--navy); background: var(--cream); }
+  .mini .face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .mini .band { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.92);
+                padding: 0.05in 0.06in 0.06in; text-align: center; line-height: 1.05; border-top: 2px solid var(--gold); }
+  .mini .band .he { display: block; font-size: 13pt; font-weight: 700; color: var(--navy); }
+  .mini .band .en { display: block; font-family: 'Fredoka', sans-serif; font-size: 10pt; font-weight: 600; color: var(--ink); }
+  .mini.blank .face { background: #fff; display: flex; align-items: center; justify-content: center; text-align: center;
+                      font-family: 'Fredoka', sans-serif; color: var(--ink-2); font-size: 12pt; padding: 0.2in; border-style: dashed; }
+  .cut { position: absolute; border: 0 dashed var(--cut); }
+  .cut.v { border-left-width: 2px; width: 0; transform: translateX(-1px); }
+  .cut.h { border-top-width: 2px; height: 0; transform: translateY(-1px); }
+  .scissors { position: absolute; font-size: 14pt; line-height: 1; background: #fff; padding: 0 2px; color: #444; }
+  /* Control strip: the right order, to check against (Montessori "control of error") */
+  .control { position: absolute; left: 0.5in; top: 8.6in; width: 7.5in; height: 2.05in;
+             border: 2px dashed var(--cut); padding: 0.08in 0.14in; }
+  .control h3 { margin: 0 0 0.04in; font-family: 'Fredoka', sans-serif; font-size: 11pt; color: var(--navy); }
+  .control .row { display: flex; align-items: center; justify-content: space-between; }
+  .control figure { margin: 0; width: 1.45in; text-align: center; }
+  .control img { width: 1.0in; height: 1.4in; object-fit: cover; border-radius: 0.06in; border: 2px solid var(--navy); }
+  .control figcaption { font-size: 8.5pt; font-weight: 700; color: var(--ink); line-height: 1.1; }
+  .control .n { font-family: 'Fredoka', sans-serif; font-size: 13pt; font-weight: 700; color: var(--navy); margin-right: 3px; }
+  .control .arr { font-size: 18pt; color: var(--gold); font-weight: 800; }
+  /* Rules card */
+  .rules { position: absolute; left: 0.5in; top: 5.2in; width: 7.5in; height: 5.4in; border: 2px dashed var(--cut);
+           padding: 0.18in 0.25in; font-size: 11pt; line-height: 1.32; }
+  .rules h2 { font-family: 'Fredoka', sans-serif; color: var(--navy); margin: 0 0 0.06in; font-size: 17pt; }
+  .rules h4 { font-family: 'Fredoka', sans-serif; color: var(--navy); margin: 0.1in 0 0.02in; font-size: 12.5pt; }
+  .rules p, .rules ul { margin: 0 0 0.04in; }
+  .rules ul { padding-left: 0.22in; }
+  .rules .age { display: inline-block; background: var(--gold); color: #fff; border-radius: 0.06in; padding: 0 6px;
+                font-weight: 800; margin-right: 4px; }
+  .rules .he { font-weight: 700; color: var(--navy); }
+{% endblock %}
+{% block body %}
+{% for cells in pages %}{% set page_no = loop.index0 %}
+<section class="page abs">
+  <div class="top">
+    {% set heading = "Story order game" if page_no == 0 else "Story order game · rules" %}{% set sub = "" %}{% include "_header.html" %}
+    {% if page_no == 0 %}<div class="inst"><b>Teacher:</b> {{ instructions }}</div>{% endif %}
+  </div>
+  {% for cell, m in cells %}
+  <div class="mini{% if m.blank %} blank{% endif %}" style="left: {{ cell.x }}in; top: {{ cell.y }}in; width: {{ cell.w }}in; height: {{ cell.h }}in;">
+    {% if m.blank %}<div class="face">Draw your favorite part of the story!</div>
+    {% else %}<div class="face"><img src="{{ m.img }}" alt=""><div class="band"><span class="he" lang="he">{{ m.he }}</span><span class="en">{{ m.en }}</span></div></div>{% endif %}
+  </div>
+  {% endfor %}
+  {% for x1, y1, x2, y2 in lines[page_no] %}
+    {% if x1 == x2 %}<div class="cut v" style="left: {{ x1 }}in; top: {{ y1 }}in; height: {{ (y2 - y1)|round(4) }}in;"></div>
+    {% else %}<div class="cut h" style="left: {{ x1 }}in; top: {{ y1 }}in; width: {{ (x2 - x1)|round(4) }}in;"></div>{% endif %}
+  {% endfor %}
+  <div class="scissors" style="left: {{ lines[page_no][0][0] - 0.32 }}in; top: {{ lines[page_no][0][1] + 0.2 }}in;">✂</div>
+
+  {% if page_no == 0 %}
+  <div class="control">
+    <h3>Control strip: the right order (cut off and keep face down until the child checks)</h3>
+    <div class="row">
+      {% for c in control %}
+      <figure><img src="{{ c.img }}" alt=""><figcaption><span class="n">{{ c.n }}</span>{{ c.en }}</figcaption></figure>
+      {% if not loop.last %}<span class="arr">→</span>{% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="rules">
+    <h2>How to play</h2>
+    <p>Mix up one set of {{ n_cards }} cards. The child lays them in a row, left to right, and tells the story:
+       “First…, then…, next…, last…”. Then turn over the control strip and check together.
+       Two sets let two children (or two teams) play side by side.</p>
+    <h4><span class="age">Age 4</span> Three cards</h4>
+    <ul><li>Use only {{ easy|join(", ") }}. Say “first, next, last”.</li>
+        <li>Lay the control strip face up at first, so it is a matching game.</li></ul>
+    <h4><span class="age">Age 5</span> All {{ n_cards }} cards</h4>
+    <ul><li>Control strip face down. Child orders all {{ n_cards }}, then checks.</li>
+        <li>Retell each card with its movement from the story (tree arms, swim hands, rest…).</li></ul>
+    <h4><span class="age">Age 6</span> What’s missing?</h4>
+    <ul><li>Lay out all {{ n_cards }} in order. Children close their eyes; take one away. Which card is missing?</li>
+        <li>If they need a hint:
+          <ul>{% for h in hints %}<li><b>{{ h.en }}:</b> {{ h.hint|safe }}</li>{% endfor %}</ul></li>
+        <li>Harder: mix both sets and play memory (match the twins), then put one set in order.</li></ul>
+  </div>
+  {% endif %}
+</section>
+{% endfor %}
+{% endblock %}
