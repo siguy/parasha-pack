@@ -1,0 +1,52 @@
+# Editor rubric (agent 06). Read by agents/definitions/06-editor.md.
+#
+# Score every criterion 0, 1 or 2 (2 = fine, 1 = minor problem, 0 = wrong).
+# weighted_percent = sum over sections of (section score / section max) * weight.  Weights add to 100.
+#
+# PASS = all of:
+#   - src/validate_deck.py passes (when the script exists)
+#   - no criterion marked blocking: true scored 0
+#   - no issue with severity "critical"
+#   - weighted_percent >= pass_percent
+
+version: "1.0"
+scale: [0, 1, 2]
+pass_percent: 80
+
+sections:
+  - id: content
+    weight: 30
+    criteria:
+      - {id: budgets, blocking: true, check: "objective <=10 words, say <=50 spoken words, ask <=2 questions of <=12 words"}
+      - {id: say_markup, check: "**bold** = read aloud, [cue] = action; reads naturally out loud in under a minute"}
+      - {id: asks_open, check: "Open questions (no yes/no, no 'Question 1:' labels); a nonverbal option on at least 2 cards"}
+      - {id: transitions, check: "Transitions never name card order ('next', 'Story 2', 'now we meet X')"}
+      - {id: middah_thread, check: "Anchor objective and the home card both name the deck middah"}
+      - {id: core_and_week, check: "★core cards alone make a complete 15-minute lesson; week_plan uses every card once"}
+      - {id: guide_complete, check: "Every card has guide pshat (with refs), adapt see/do/join, extend, tip; guide_ref page exists in guide_layout.yaml"}
+  - id: torah_accuracy
+    weight: 25
+    criteria:
+      - {id: pshat_cited, blocking: true, check: "Every story claim traces to a 01-research claim with a verse ref"}
+      - {id: midrash_labeled, blocking: true, check: "Midrash is only in guide.sages or says 'Our Sages teach…', with a source"}
+      - {id: sensitivity_followed, blocking: true, check: "Every 02b verdict was followed (guide-only topics are absent from cards; reframes used)"}
+      - {id: hashem_language, check: "Hashem protects, helps and loves; never scary; God's name never written"}
+  - id: hebrew
+    weight: 20
+    criteria:
+      - {id: nikud, blocking: true, check: "Nikud on every Hebrew vocabulary word and title; letters counted, finals correct"}
+      - {id: gender, blocking: true, check: "Verbs/adjectives agree with the character's gender (characters/{key}/character.yaml)"}
+      - {id: second_person, check: "Class-facing Hebrew uses plural/inclusive forms, not masculine singular"}
+      - {id: translit, check: "Transliteration on every word, stressed syllable in CAPS (a-da-MAH)"}
+  - id: art
+    weight: 15
+    criteria:
+      - {id: image_qa_pass, blocking: true, check: "Every chosen image passed agents/rubrics/image_qa.yaml (05b-image-qa.yaml)"}
+      - {id: consistency, check: "Characters look the same across all cards; same style as the plates"}
+      - {id: prompts_scene_only, check: "image_prompt fields are scene-only; characters_in_scene lists everyone drawn (<=4)"}
+  - id: print
+    weight: 10
+    criteria:
+      - {id: export_clean, blocking: true, check: "Export ran with no overflow-guard failures; duplex PDF page order front1, back1, front2…"}
+      - {id: legible, check: "Fronts readable from 3 m; backs readable at arm's length on letter"}
+      - {id: counts, check: "10 cards standard / 12 holiday (D1); PDF has 2 pages per card"}

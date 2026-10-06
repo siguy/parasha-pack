@@ -1,0 +1,65 @@
+# Image QA rubric (agent 05b). Read by agents/definitions/05b-image-qa.md and src/assemble_deck.py.
+#
+# Score every criterion 0, 1 or 2 for every image:
+#   2 = clearly fine   1 = minor problem, usable   0 = wrong, must not print
+# Not applicable (e.g. villain posture on a card with no villain) = 2: nothing to get wrong.
+#
+# PASS = no criterion scored 0 AND total >= pass_total (16 of 22).
+# Mode is flag-only: a failing image is flagged for Simon/the coordinator; nothing regenerates itself.
+
+version: "1.0"
+scale: [0, 1, 2]
+pass_total: 16
+max_total: 22
+no_zeros: true
+mode: flag-only
+
+criteria:
+  - id: title_zone
+    name: Title zone clear and continuous
+    check: >-
+      The top of the image is calm (sky, ceiling, soft light) and flows into the scene.
+      0 if there is a hard band, stripe, border or flat block across the top, or a face/busy detail sits there.
+  - id: character_match
+    name: Characters match identity sheets
+    check: >-
+      Compare with characters/{key}/identity.png: face shape, hair, beard, headwear and clothing colors
+      (the visual_anchors in character.yaml). 0 if a character is unrecognizable or swapped.
+      Adults look adult (Chava needed an explicit adult anchor).
+  - id: no_text
+    name: No text or glyphs
+    check: No letters, Hebrew or English, fake writing, numbers, logos or symbols on walls, scrolls or signs.
+  - id: anatomy
+    name: Anatomy and hands
+    check: Two arms, two legs, five fingers per hand, no merged or extra limbs, natural proportions.
+  - id: modesty
+    name: Modesty and kippah rules
+    check: >-
+      Everyone fully and modestly dressed (Adam and Chava in full-coverage tunics). Modern scenes: every boy
+      wears a kippah, girls never do, women in knee-length skirts or dresses, no hair covering for women.
+  - id: villain_posture
+    name: Villain posture
+    check: Villains look sulky, frustrated or comic. 0 for pointing, snarling, weapons, looming or glowing eyes.
+  - id: god_as_light
+    name: Hashem only as light
+    check: Hashem is never a figure or face. Only light, rays, clouds or a hand from above. 0 for any divine figure.
+  - id: period_accuracy
+    name: Period accuracy
+    check: >-
+      Story-world cards: no modern objects (clocks, zips, glasses, plastic). Objects drawn correctly
+      (a megillah has no twin rollers; a Torah scroll does).
+  - id: diversity
+    name: Diversity in modern scenes
+    check: >-
+      Modern-world group scenes show the Ashkenazi, Sephardi/Mizrahi and Ethiopian mix from style_config.yaml.
+      Story-world cards: 2 (not applicable).
+  - id: emotion_at_8pct
+    name: Emotion readable when shrunk to 8%
+    check: >-
+      Shrink the image to 8% (about 120 px wide, the size on a contact sheet or a phone grid).
+      The main feeling (joy, wonder, worry) is still obvious from faces and bodies.
+  - id: style_match
+    name: Matches the style plates
+    check: >-
+      Same look as style/plates/*.png and the Purim deck: thick clean dark outlines, flat fills with soft
+      gradients, warm saturated colors, big expressive eyes, no grain or photo realism.

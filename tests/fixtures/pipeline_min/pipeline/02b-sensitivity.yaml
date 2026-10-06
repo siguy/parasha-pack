@@ -1,0 +1,20 @@
+agent: 02b-sensitivity-reviewer
+deck_id: pipeline_min
+checklist:
+  - {area: hard_text_policy, item: "Snake and fruit kept off the cards", status: ok}
+  - {area: modern_orthodox, item: "Adam and Chava in modest tunics", status: ok}
+  - {area: child_development, item: "No scary darkness on the anchor", status: ok}
+cards:
+  - {card_id: anchor_1, verdict: ok, reason: light and wonder}
+  - {card_id: spotlight_1, verdict: ok, reason: caring job}
+  - {card_id: spotlight_2, verdict: ok, reason: friendship}
+  - {card_id: story_1, verdict: ok, reason: creation}
+  - {card_id: story_2, verdict: ok, reason: creation}
+  - {card_id: story_3, verdict: ok, reason: rest}
+  - {card_id: story_4, verdict: reframe, reason: "the garden leads to the tree", reframe: "End with Adam caring for the animals; no tree of knowledge"}
+  - {card_id: connection_1, verdict: ok, reason: modern}
+  - {card_id: power_word_1, verdict: ok, reason: vocabulary}
+  - {card_id: home_1, verdict: ok, reason: family}
+if_they_ask:
+  - {card_id: story_4, topic: the fruit, refs: ["Genesis 3:6"], q: "Did they eat the fruit?", answer: "Yes, they made a mistake, and Hashem still cared for them.", redirect: "What do you do when you make a mistake?"}
+checkpoint: {approved: true, decided_by: coordinator, decided_at: "2026-10-06", decisions_log: docs/overnight/decisions.md}
