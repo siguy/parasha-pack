@@ -175,3 +175,23 @@ listen_do:
     - level: 2
       text: "In box 2, draw a עֵץ (ETZ), tree, with one apple."
       expected: [{object: box_2, action: draw, label: "tree + 1 apple"}]
+
+# Coloring + sequence (plan 8.5): the 4 story cards as line art (src/coloring.py).
+coloring:
+  cards: [story_1, story_2, story_3, story_4]       # in story order (= the dots 1-4)
+  page_order: [story_3, story_1, story_4, story_2]  # shuffled on the cut page, so ordering is a real puzzle
+  # Days 1-7 strip for 6-year-olds, built from the item line art (no AI calls).
+  days_strip:
+    - {day: 1, he: יוֹם א׳, items: [light]}
+    - {day: 2, he: יוֹם ב׳, items: [sky, water]}
+    - {day: 3, he: יוֹם ג׳, items: [tree, flower]}
+    - {day: 4, he: יוֹם ד׳, items: [sun, moon]}
+    - {day: 5, he: יוֹם ה׳, items: [fish, bird]}
+    - {day: 6, he: יוֹם ו׳, items: [lion]}
+    - {day: 7, he: שַׁבָּת, items: [shabbat_candles]}
+
+# Sequencing game (plan 8.7): mini story cards + a control strip.
+sequencing:
+  cards: [story_1, story_2, story_3, story_4]
+  copies: 2                                  # two children (or two teams) play at once
+  easy_subset: [story_1, story_3, story_4]   # age 4: three cards only

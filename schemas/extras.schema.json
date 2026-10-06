@@ -86,6 +86,38 @@
         }
       }
     },
+    "coloring": {
+      "description": "Coloring + sequence pages (src/coloring.py, generate_activities.py)",
+      "type": "object",
+      "required": ["cards", "page_order"],
+      "additionalProperties": false,
+      "properties": {
+        "cards": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 4},
+        "page_order": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 4},
+        "days_strip": {
+          "type": "array", "maxItems": 7,
+          "items": {
+            "type": "object", "required": ["day", "he", "items"], "additionalProperties": false,
+            "properties": {
+              "day": {"type": "integer", "minimum": 1, "maximum": 7},
+              "he": {"type": "string"},
+              "items": {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 2}
+            }
+          }
+        }
+      }
+    },
+    "sequencing": {
+      "description": "Sequencing game: mini story cards + control strip",
+      "type": "object",
+      "required": ["cards", "copies", "easy_subset"],
+      "additionalProperties": false,
+      "properties": {
+        "cards": {"type": "array", "items": {"type": "string"}, "minItems": 3, "maxItems": 6},
+        "copies": {"type": "integer", "minimum": 1, "maximum": 3},
+        "easy_subset": {"type": "array", "items": {"type": "string"}, "minItems": 2}
+      }
+    },
     "listen_do": {
       "type": "object",
       "required": ["scene_prompt", "objects", "steps"],
