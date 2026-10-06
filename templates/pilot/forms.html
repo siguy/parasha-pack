@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block style %}
+  .page { font-size: 11pt; }
+  .meta { display: flex; gap: 0.3in; font-size: 11.5pt; margin-bottom: 0.1in; flex: none; }
+  .meta span { flex: 1; border-bottom: 1.5px solid #888; padding-bottom: 2px; }
+  table.grid { border-collapse: collapse; width: 100%; flex: none; }
+  table.grid th, table.grid td { border: 1.5px solid #777; padding: 0.04in 0.06in; vertical-align: middle; }
+  table.grid th { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 9.5pt; color: var(--navy); background: #f3f5f8; line-height: 1.15; }
+  table.grid td { height: 0.5in; font-size: 10pt; }
+  table.grid td.day { font-family: 'Fredoka', sans-serif; font-weight: 700; color: var(--navy); text-align: center; }
+  table.grid td.card b { color: var(--navy); }
+  .friday { margin-top: 0.16in; border: 2px solid var(--gold); border-radius: 0.1in; padding: 0.1in 0.16in; flex: none; }
+  .friday h3, .fb h3 { font-family: 'Fredoka', sans-serif; margin: 0 0 0.06in; color: var(--navy); font-size: 13pt; }
+  .friday li { margin-bottom: 0.08in; font-size: 11.5pt; }
+  .note { font-size: 9.5pt; color: var(--ink-2); margin-top: 0.1in; }
+  .fb { flex: none; margin-bottom: 0.1in; }
+  .fb .q { font-weight: 700; font-size: 11.5pt; }
+  .fb .q .n { display: inline-block; width: 0.28in; height: 0.28in; border-radius: 50%; background: var(--navy); color: #fff;
+              text-align: center; line-height: 0.28in; font-family: 'Fredoka', sans-serif; margin-right: 0.08in; font-size: 10.5pt; }
+  .fb .line { border-bottom: 1.2px solid #999; height: 0.3in; margin-left: 0.36in; }
+  .fb .scale, .fb .choice { margin: 0.08in 0 0 0.36in; display: flex; gap: 0.3in; align-items: center; font-size: 11pt; }
+  .fb .scale i, .fb .choice i { display: inline-block; width: 0.2in; height: 0.2in; border: 1.5px solid #555; border-radius: 50%; margin-right: 4px; vertical-align: -3px; }
+{% endblock %}
+{% block body %}
+{# ---- Daily tick grid ---- #}
+{% if which == "grid" %}
+<section class="page">
+  {% set heading = "Pilot · daily tick grid" %}{% set sub = "One sheet per class, per deck. Tick as you go; counts only, no names." %}{% include "_header.html" %}
+  <div class="meta"><span>Class (A / B / C):</span><span>Deck:</span><span>Week of:</span></div>
+  <table class="grid">
+    <tr><th style="width:0.55in">Day</th><th>Card</th>{% for c in grid.columns %}<th style="width:{{ c.width }}in">{{ c.label }}</th>{% endfor %}</tr>
+    {% for row in rows %}<tr>
+      {% if row.first %}<td class="day" rowspan="{{ row.span }}">{{ row.day }}</td>{% endif %}
+      <td class="card"><b>{{ row.slot }}</b></td>{% for c in grid.columns %}<td></td>{% endfor %}</tr>{% endfor %}
+  </table>
+  <div class="friday"><h3>Friday recall check (Day 5, before the home card)</h3>
+    <ol>{% for item in grid.friday_check %}<li>{{ item }}</li>{% endfor %}</ol></div>
+  <div class="note">Card rows follow the week plan (Day 1 to Day 5) of a standard 10-card deck; write the card title next to its slot if your deck differs. Keep this sheet; Simon copies the numbers into results.yaml.</div>
+</section>
+{% else %}
+{# ---- Teacher feedback form ---- #}
+<section class="page">
+  {% set heading = "Pilot · teacher feedback" %}{% set sub = "Once per deck, at the end of the week. About 10 minutes." %}{% include "_header.html" %}
+  <div class="meta"><span>Class (A / B / C):</span><span>Deck:</span><span>Date:</span></div>
+  {% for f in feedback %}
+  <div class="fb">
+    <div class="q"><span class="n">{{ f.n }}</span>{{ f.q }}</div>
+    {% if f.kind == "lines" %}{% for _ in range(f.lines) %}<div class="line"></div>{% endfor %}
+    {% elif f.kind == "scale" %}<div class="scale">{{ f.low }} {% for n in range(1, 6) %}<span><i></i>{{ n }}</span>{% endfor %} {{ f.high }}</div>
+    {% elif f.kind == "choice" %}<div class="choice">{% for o in f.options %}<span><i></i>{{ o }}</span>{% endfor %}</div>{% endif %}
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,35 @@
+# Classroom pilot kit (plan 8.10): the words on the two printable forms.
+# Rebuild the PDFs with:  python3 src/build_pilot_kit.py
+# No child names anywhere: every number is a COUNT of children.
+
+decks: [bereshit, noach]
+classes:
+  - {id: A, type: "day-school gan (strong Hebrew)"}
+  - {id: B, type: "shul preschool (some Hebrew)"}
+  - {id: C, type: "light-Hebrew class (little Hebrew at home)"}
+
+# Daily tick grid: one sheet per class per deck. One row per card, in week-plan order.
+tick_grid:
+  columns:
+    - {id: taught, label: "Taught? ✓", width: 0.6}
+    - {id: minutes, label: "Real minutes", width: 0.7}
+    - {id: engaged, label: "Engaged: most / some / few", width: 1.25}
+    - {id: gesture, label: "Did the gesture (count)", width: 0.85}
+    - {id: word, label: "Said the word (count)", width: 0.85}
+    - {id: questions, label: "Hard question asked? ✓", width: 0.8}
+  friday_check:
+    - "Children present today: ____"
+    - "Show me our middah gesture (no hint): ____ did it"
+    - "What's our Hebrew word? ____ said it · ____ said it after a hint"
+    - "Which picture comes first? (show 2 story cards) ____ right"
+
+# Teacher feedback form: exactly 8 questions, answered once per deck.
+feedback:
+  - {n: 1, q: "Your class: type, age range, and how many children took part.", kind: lines, lines: 2}
+  - {n: 2, q: "Did each card fit the minutes on its back? Which ran long?", kind: lines, lines: 3}
+  - {n: 3, q: "Could you read the back in the moment (bold = say, [ ] = do)?", kind: scale, low: "hard", high: "easy"}
+  - {n: 4, q: "Which card worked best, and why?", kind: lines, lines: 3}
+  - {n: 5, q: "Which card fell flat, and what would fix it?", kind: lines, lines: 3}
+  - {n: 6, q: "Hebrew: was one power word plus one word per card too many, too few, or right?", kind: choice, options: ["too many", "right", "too few"]}
+  - {n: 7, q: "Did a child ask a hard question? Did the guide's script work?", kind: lines, lines: 3}
+  - {n: 8, q: "Which extras did you use, and would you use them again?", kind: lines, lines: 3}
