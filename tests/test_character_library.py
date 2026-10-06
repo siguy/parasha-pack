@@ -23,7 +23,7 @@ from generate_images import MAX_CHARACTER_REFS, load_reference_images  # noqa: E
 # The real library in characters/
 # ---------------------------------------------------------------------------
 
-MIGRATED = ["moses", "yitro", "miriam", "esther", "mordechai", "haman", "achashverosh"]
+MIGRATED = ["moses", "yitro", "miriam", "esther", "mordechai", "haman", "achashverosh", "adam", "chava"]
 
 
 def test_every_character_yaml_is_valid():
@@ -43,12 +43,12 @@ def test_migrated_characters_have_identity_images(key):
 
 
 @pytest.mark.parametrize("key", ["adam", "chava"])
-def test_adam_and_chava_exist_without_identity_yet(key):
+def test_adam_and_chava_have_modest_anchors_and_alternates(key):
     character = character_library.load_character(key)
-    assert character["identity"] is None
-    assert character_library.identity_path(key) is None
+    assert character["identity"] == "identity.png"
     anchors = " ".join(character["visual_anchors"]).lower()
     assert "modest" in anchors and "full coverage" in anchors
+    assert (character_library.LIBRARY_DIR / key / "alternates" / "identity_v1.png").exists()
 
 
 def test_aliases_resolve_to_library_keys():

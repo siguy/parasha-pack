@@ -1,4 +1,4 @@
-# Chava (Eve), the first woman. Identity sheet NOT generated yet (Phase 3.2, styling phase).
+# Chava (Eve), the first woman. Identity sheet generated 2026-10-05 (Phase 3.2).
 # Modesty (plan decision D3, Modern Orthodox): simple full-coverage tunic dress. No leaves, nothing revealing.
 key: chava
 name_en: Chava
@@ -8,7 +8,7 @@ gender: female
 role: hero
 canonical: true
 version: 1
-identity: null
+identity: identity.png
 visual_anchors:
   - young adult woman with olive skin
   - long dark wavy hair, loosely tied back
@@ -24,9 +24,13 @@ signature_poses:
   - Smiling, hands open
 appears_in: [bereshit]
 source_notes: >
-  Anchors set by Simon for the Bereshit v3 deck (2026-10). Identity sheet to be
-  generated in Phase 3.2: 2 versions, 3-angle turnaround plus expression row,
-  plain background, no caption text.
+  Visual anchors written by Claude for the Bereshit v3 deck (2026-10); Simon approved
+  the approach (Modern Orthodox modesty, plan decision D3). Identity sheet generated
+  2026-10-05 with generate_references.py (Nano Banana 2, 2K, 16:9, style plate
+  landscape as Image 1): 3-angle turnaround plus happy/curious/caring/surprised row,
+  no captions. Chosen identity_v2 (longer, closer to ankle-length dress, hair tied
+  back as anchored, matches Adam v2's proportions and cream background); runner-up
+  in alternates/identity_v1.png (dress mid-calf, hair mostly loose).
 research:
   biblical_refs: ["Genesis 2:18-25", "Genesis 3:20"]
   key_stories:
