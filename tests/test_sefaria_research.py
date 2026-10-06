@@ -108,12 +108,12 @@ def test_partial_failure_marks_cache_incomplete_and_retries(tmp_path, monkeypatc
 
 def test_bereshit_plan_has_the_key_verses():
     verses = sefaria_client.RESEARCH_PLANS["bereshit"]["verses"]
-    assert verses[0] == "Genesis 1:1-5" and "Genesis 2:15" in verses and len(verses) == 10
+    assert verses[0] == "Genesis 1:1-5" and "Genesis 2:15" in verses and "Genesis 2:21-23" in verses and len(verses) == 13
 
 
 def test_committed_bereshit_cache_is_complete():
     cache = Path(__file__).resolve().parent.parent / "research" / "bereshit.yaml"
     data = yaml.safe_load(cache.read_text(encoding="utf-8"))
     assert data["incomplete"] is False
-    assert len(data["verses"]) == 10
+    assert len(data["verses"]) == 13
     assert all(v["en"] and v["he"] for v in data["verses"])
