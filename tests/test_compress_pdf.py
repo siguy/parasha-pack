@@ -45,3 +45,18 @@ def test_smaller_and_same_pixel_size(tmp_path):
 
 def test_missing_file_is_skipped(tmp_path):
     assert main([str(tmp_path / "nope.pdf")]) == 0
+
+
+def test_keeps_original_when_jpeg_would_be_bigger(tmp_path):
+    """Pure black-and-white line art: JPEG is bigger than the PNG, so the file must not change."""
+    from PIL import Image, ImageDraw
+    import compress_pdf as cp
+    img = Image.new("L", (600, 600), 255)
+    draw = ImageDraw.Draw(img)
+    for x in range(0, 600, 20):
+        draw.line([(x, 0), (600 - x, 600)], fill=0, width=3)
+    pdf = tmp_path / "lineart.pdf"
+    img.convert("1").save(pdf, "PDF")
+    before = pdf.read_bytes()
+    cp.compress_pdf(pdf, quality=88)
+    assert pdf.read_bytes() == before

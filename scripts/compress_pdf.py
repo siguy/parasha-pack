@@ -75,6 +75,10 @@ def compress_pdf(path: Path, quality: int = DEFAULT_QUALITY) -> int:
     try:
         with open(tmp_name, "wb") as f:
             writer.write(f)
+        # Black-and-white line art is smaller as PNG than as JPEG: never make a file bigger.
+        if os.path.getsize(tmp_name) >= path.stat().st_size:
+            logger.info(f"{path.name}: re-encoding would not shrink it; keeping the original")
+            return 0
         os.replace(tmp_name, path)
     finally:
         if os.path.exists(tmp_name):
