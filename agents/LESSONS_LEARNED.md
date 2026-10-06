@@ -29,6 +29,18 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **JPEG saved as PNG** — The image API returns JPEG bytes; we were saving them with a `.png` name. Convert with Pillow on save (or name them `.jpg`) and never trust the extension when checking a file.
 - **Nano Banana 2 at 3:4 is 896x1200 at 1K and 1792x2400 at 2K** — not the 768x1024 / 1536x2048 the docs suggested. Log and check the real pixel size after every save; plan DPI math from the real numbers.
 
+### Bereshit v3 run lessons (Oct 2026, first deck on pipeline v3)
+- **Check the research cache covers every card before writing 01** — The Bereshit cache had no verse for Chava's creation or Genesis 3, so the spotlight and the "if they ask" scripts had nothing to cite. Add the refs to `RESEARCH_PLANS` in `src/sefaria_client.py` and refetch with `--refresh`.
+- **Watch for anachronisms inside the creation order** — A Days 1-3 draft drew a sun disc (the sun is made on Day 4). Image QA scores that `period_accuracy: 1`; say "glowing sky, no sun" in early-creation prompts.
+- **Hanging fruit in the title zone reads as "the fruit"** — On Bereshit, a branch with fruit dangling across the top looked like the forbidden fruit. Keep fruit on trees at the sides; nothing hanging into the title area.
+- **Adam's trousers can vanish** — One story draft drew Adam with bare legs under the tunic. Image QA checks modesty against the identity sheet (tunic + trousers), not just "a tunic".
+- **Draft compositions copy the landscape plate** — With the landscape plate as Image 1, several outdoor drafts reused its winding river and flower foreground. It keeps the deck consistent, but ask for a distinct focal action per card so the scenes don't blur together.
+- **Make the gesture the picture** — For the power word, the draft where the characters' thumbs-up was large and close to the camera read instantly at thumbnail size; small hands lost `emotion_at_8pct`.
+- **Emoji in the power-word trio** — Emoji aren't licensed for print. Use a plain glyph (✓) or a word; it renders crisply in the back font.
+- **Generate concurrently, but in continuity order** — The 1K drafts for cards without `continuity_ref` and the 2K finals can run in parallel shells; only the card with `continuity_ref` must wait for the referenced final.
+- **Exports are big** — Letter and 5x7 PDFs with 2K art are ~57 MB each and the exported PNGs ~60 MB; commit the PDFs + raw art and regenerate the PNGs.
+- **`generate_images.py` would draw the home card** — It generates any card with an `image_prompt`, including home_1's "no art" note. Always pass `--card`, or skip home cards in the script.
+
 ### Prompt Detail Level
 - **Stage directions, not descriptions** — "He shakes his head NO" produces better results than "refusing to bow." Write prompts like a movie director, not a caption writer.
 - **Background characters need actions** — "Other people in the crowd ARE bowing low to the ground" not just "people in background." Scenes with crowd energy look more alive.
