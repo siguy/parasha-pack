@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Agent Pipeline v3 (Deck v3 Phase 4)
+
+#### Added
+- **New agents:** `00-series-planner` (owns `series.yaml`: middah, power word, review words, characters, sensitivities, holiday placement), `02b-sensitivity-reviewer` (★ checkpoint: per-card ok / reframe / guide-only / skip verdicts and scripted "if they ask" answers), `05b-image-qa` (★ vision rubric, flag-only, draft picks, contact sheets).
+- **Rubrics:** `agents/rubrics/image_qa.yaml` (11 criteria scored 0–2; pass = no 0s and ≥16/22) and `agents/rubrics/editor.yaml` (content 30, Torah accuracy 25, Hebrew 20, art 15, print 10; pass ≥80% with no blocking 0s or critical issues).
+- **Per-step schemas** `schemas/pipeline/{00-series,01-research,02-structure,02b-sensitivity,03-content,05-visual,05b-image-qa,06-editor}.schema.json`. 03 reuses the `back`/`guide` definitions from `deck.v3.schema.json`.
+- **`src/assemble_deck.py`**: merges `decks/{id}/pipeline/*.yaml` into `deck.json` (structure from 02, content from 03, prompts from 05, picks from 05b), after schema and cross-file checks (D1 card count, approved 02b checkpoint, minutes/core owned by 02, library characters, Image QA totals). Runs `src/validate_deck.py` when it exists.
+- **`src/contact_sheet.py`**: `make_contact_sheet(paths, labels, out_path, cols)` for Image QA and identity reviews.
+- Tests: `tests/test_assemble_deck.py` (fixture `tests/fixtures/pipeline_min/`), `tests/test_contact_sheet.py`. `jsonschema` added to requirements.txt.
+
+#### Changed
+- **01 Torah Scholar** reads `research/{parasha}.yaml` (fetches it if missing), cites a verse for every claim, labels pshat vs midrash ("Our Sages teach…"), flags hard passages.
+- **02 Curriculum Designer**: D1 (10 standard / 12 holiday, home card included), one focal incident, ★core cards, 5-day `week_plan`, `story_world_setting`.
+- **03 Content Writer** now writes English **and** Hebrew (v3 backs, guide blocks, home card; nikud, gender agreement, plural second person, CAPS stress). `04-hebrew-expert.md` removed.
+- **05 Visual Director** updated for styling v2 (plates, `continuity_ref`, library keys ≤4, natural title zone, central 90%, villain posture, modern diversity, Hashem only as light, draft → final).
+- **06 Editor** is a scored rubric; it must run the validator and drafts `feedback.json`.
+- `07-card-designer.md` moved to `agents/tools/card-designer.md` (sync → export letter / `--format 5x7` / `--pdf` → `scripts/sync_to_hub.py`).
+- Docs: `agents/AGENTS.md`, `AGENT_PIPELINE.md`, `README.md` rewritten for v3; `CARD_SPECS.md` card counts (10/12) and week flow; `LESSONS_LEARNED.md` overnight lessons; root and `src/` CLAUDE.md.
+
 ### Deck Validator, Hebrew Gender Check, Export Overflow Guard (Phase 2)
 
 #### Added

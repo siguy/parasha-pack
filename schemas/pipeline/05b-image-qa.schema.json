@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parasha-pack/schemas/pipeline/05b-image-qa.schema.json",
+  "title": "Pipeline step 05b: Image QA",
+  "description": "decks/<id>/pipeline/05b-image-qa.yaml. One scored row per image (rubric: agents/rubrics/image_qa.yaml) plus the chosen draft/final per card. Flag-only: nothing is regenerated automatically.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent", "deck_id", "rubric", "images", "picks"],
+  "properties": {
+    "agent": { "const": "05b-image-qa" },
+    "deck_id": { "type": "string" },
+    "rubric": { "type": "string", "description": "agents/rubrics/image_qa.yaml" },
+    "rubric_version": { "type": "string" },
+    "contact_sheets": { "type": "array", "items": { "type": "string" }, "description": "Paths (relative to the deck folder) of the sheets reviewed" },
+    "images": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["card_id", "file", "stage", "scores", "total", "pass"],
+        "properties": {
+          "card_id": { "type": "string" },
+          "file": { "type": "string", "description": "Relative to the deck folder, e.g. raw/drafts/story_1_d2.png" },
+          "stage": { "enum": ["draft", "final"] },
+          "scores": {
+            "type": "object",
+            "description": "criterion id -> 0, 1 or 2 (ids from the rubric)",
+            "additionalProperties": { "enum": [0, 1, 2] },
+            "minProperties": 1
+          },
+          "total": { "type": "integer", "minimum": 0 },
+          "pass": { "type": "boolean", "description": "Rubric rule: no 0s and total >= pass_total" },
+          "flags": { "type": "array", "items": { "type": "string" } },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "picks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["card_id", "chosen_draft", "decided_by", "reason"],
+        "properties": {
+          "card_id": { "type": "string" },
+          "chosen_draft": { "type": "string", "description": "Draft passed to --final --from-draft" },
+          "final": { "type": "string", "description": "The 2K final once made, e.g. raw/story_1.png" },
+          "decided_by": { "enum": ["simon", "coordinator", "pending"] },
+          "reason": { "type": "string" }
+        }
+      }
+    }
+  }
+}

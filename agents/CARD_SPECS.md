@@ -27,20 +27,29 @@ For agent responsibilities, see [definitions/](definitions/).
 
 ---
 
-## Card Counts
+## Card Counts (decision D1)
 
-| Card Type | Parasha (8-11 total) | Holiday (12-16 total) |
-|-----------|---------------------|----------------------|
+| Card Type | Standard (10 cards) | Holiday (12 cards) |
+|-----------|---------------------|--------------------|
 | Anchor | 1 | 1 |
-| Spotlight | 0-2 | 2-4 |
-| Story | 3-4 | 5-6 |
-| Connection | 2-3 | 2-3 |
-| Tradition | — | 1-2 |
-| Power Word | 0-1 | 0-1 |
+| Spotlight | 2 | 2 |
+| Story | 4 | 3 |
+| Tradition | — | 3 |
+| Connection | 1 | 1 |
+| Power Word | 1 | 1 |
+| Home | 1 | 1 |
+
+A holiday deck swaps one story card for three tradition cards. The home card is part of the count.
+`schemas/pipeline/02-structure.schema.json` enforces the total; `src/assemble_deck.py` warns if the mix differs.
 
 ---
 
 ## Card Structure by Type
+
+> **Note (v3):** the diagrams and "Required fields" lines below are the **v2 (Purim) front layouts**, kept
+> for reference. In v3 every card has `card_id, card_type, title_en, title_he, characters_in_scene,
+> image_prompt, image_path, back, guide` (`schemas/deck.v3.schema.json`); the teacher text lives in `back`
+> (see "Card Back Structure (v3)" below) and the booklet text in `guide`.
 
 ### Anchor Card
 
@@ -97,7 +106,7 @@ For agent responsibilities, see [definitions/](definitions/).
 ├─────────────────────────────────────────┤
 │  [Story description - 2-3 sentences]    │  ← Cream background
 │                                         │
-│  ★ Act it out: [Roleplay prompt]        │  ← Gender-neutral!
+│  (roleplay cue lives on the back: [cue]) │
 └─────────────────────────────────────────┘
 ```
 
@@ -161,7 +170,7 @@ For agent responsibilities, see [definitions/](definitions/).
 **Required fields:** `title_en/he`, `story_connection_en/he`, `practice_description_en/he`, `child_action_en/he`, `hebrew_term`, `hebrew_term_meaning`
 
 **Tradition card rules:**
-- Calm energy (NOT "Act it out!" style)
+- Calm energy (no high-energy roleplay prompts)
 - Invitation format ("Can you...?" not commands)
 - Always placed at END of deck, after narrative
 - Generic characters in illustrations unless story characters are doing the tradition
@@ -187,28 +196,18 @@ For agent responsibilities, see [definitions/](definitions/).
 
 ---
 
-## Session Flow
+## Session Flow (5-day week)
 
-### Parasha (1 session, 15 min)
+Each deck is taught across a week of short circle times (`week_plan` in deck.json, 5 days, 1–3 cards a
+day, home card on day 5). Cards marked **★ core** alone make a complete ~15-minute lesson when time is short.
 
 ```
-[Anchor] → [Spotlight] → [Story 1-2] → [Connection] → (optional)
+Day 1: Anchor + Story 1 → Day 2: Story 2 + Spotlight → Day 3: Spotlight + Story 4
+→ Day 4: Connection → Day 5: Story 3 / Power Word + Home
 ```
 
-**Core (10-12 min):** Anchor + Spotlight + 2 Story + 1 Connection = 5 cards
-
-### Holiday (2+ sessions, 15 min each)
-
-| Session | Cards | Focus |
-|---------|-------|-------|
-| 1 | Anchor + Spotlights + Story 1-3 | Meet characters, begin narrative |
-| 2 | Story 4-6 + Connection + Tradition | Complete story, reflect, practice |
-
-**Energy arc:**
-```
-Session 1: Calm → Meet heroes → Rising action
-Session 2: Climax → Resolution → Reflection → Traditions (calm close)
-```
+**Energy arc:** calm hook → rising story → reflect (connection) → close (power word) → home.
+Holiday decks put the tradition cards after the story, calm and inviting.
 
 ---
 

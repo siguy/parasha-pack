@@ -1,0 +1,135 @@
+agent: 03-content-writer
+deck_id: pipeline_min
+# &guide keeps the fixture short; real decks write a guide per card.
+cards:
+  - card_id: anchor_1
+    title_en: In the Beginning
+    title_he: בְּרֵאשִׁית
+    back:
+      objective: "Hashem made a **beautiful world** for us"
+      say: "**At the very beginning, it was dark.** [Cover your eyes]\n**Then Hashem said, \"Let there be light!\"** [Open your eyes: WOW!]"
+      ask: [{text: "What do you see in this picture?", type: wh}]
+      minutes: 5
+      core: true
+      transition: "What did Hashem make first?"
+      guide_ref: {page: 2}
+    guide: &guide
+      pshat: {text: "Hashem creates light and separates it from darkness.", refs: ["Genesis 1:3-5"]}
+      sages: [{text: "Our Sages teach that the first light was very special.", source: "Rashi on Genesis 1:4"}]
+      hard_questions: []
+      adapt: {see: "Point to the light", do: "Open and close hands", join: "Say WOW together"}
+      extend: "Turn the lights off and on."
+      tip: "Dim the lights first."
+  - card_id: spotlight_1
+    title_en: Adam
+    title_he: אָדָם
+    back:
+      objective: "Adam's job: take care of the garden"
+      say: "[Point to Adam] **This is Adam, the very first person!**"
+      ask: [{text: "What is Adam doing?", type: wh}]
+      hebrew: {word: אֲדָמָה, translit: a-da-MAH, meaning: earth, gesture: "scoop the earth"}
+      minutes: 3
+      core: true
+      transition: "Adam had a big job…"
+      guide_ref: {page: 4}
+    guide: *guide
+  - card_id: spotlight_2
+    title_en: Chava
+    title_he: חַוָּה
+    back:
+      objective: "Chava is Adam's partner"
+      say: "**This is Chava. Now Adam has a friend!** [Wave hello]"
+      ask: [{text: "Who is your helper?", type: open}]
+      minutes: 3
+      core: false
+      transition: "Together they cared for the garden."
+      guide_ref: {page: 5}
+    guide: *guide
+  - card_id: story_1
+    title_en: Days 1-3
+    title_he: יָמִים א–ג
+    hebrew_keyword: {word: אוֹר, translit: OR, meaning: light}
+    back:
+      objective: "Light, sky and land"
+      say: "**Light! Sky! Land and trees!** [Count on fingers: 1, 2, 3]"
+      ask: [{text: "What grew on day three?", type: recall}]
+      minutes: 4
+      core: true
+      transition: "And then Hashem kept going…"
+      guide_ref: {page: 6}
+    guide: *guide
+  - card_id: story_2
+    title_en: Days 4-6
+    title_he: יָמִים ד–ו
+    back:
+      objective: "Sun, fish, birds and animals"
+      say: "**Sun and moon, fish and birds, and animals!** [Flap your wings]"
+      ask: [{text: "Show me your favorite animal!", type: nonverbal}]
+      minutes: 4
+      core: true
+      transition: "Then came a very special day."
+      guide_ref: {page: 7}
+    guide: *guide
+  - card_id: story_3
+    title_en: Shabbat
+    title_he: שַׁבָּת
+    back:
+      objective: "Hashem rested on Shabbat"
+      say: "**On the seventh day, Hashem rested.** [Rest your head on your hands]"
+      ask: [{text: "How do you rest?", type: open}]
+      minutes: 3
+      core: true
+      transition: "Rest makes us ready again."
+      guide_ref: {page: 8}
+    guide: *guide
+  - card_id: story_4
+    title_en: Naming the Animals
+    title_he: שֵׁמוֹת לַחַיּוֹת
+    back:
+      objective: "Adam names and cares for the animals"
+      say: "**Adam gave every animal a name.** [Pet the lion gently]"
+      ask: [{text: "What name would you give a puppy?", type: open}]
+      minutes: 4
+      core: false
+      transition: "We can care for animals too."
+      guide_ref: {page: 9}
+    guide: *guide
+  - card_id: connection_1
+    title_en: Taking Care of Our World
+    title_he: שׁוֹמְרִים עַל הָעוֹלָם
+    back:
+      objective: "We can care for Hashem's world"
+      say: "**How do we take care of the world?** [Water a pretend plant]"
+      ask: [{text: "How do you help at home?", type: distancing}]
+      minutes: 4
+      core: true
+      transition: "Everything Hashem made was good."
+      guide_ref: {page: 10}
+      faces: [happy, proud]
+    guide: *guide
+  - card_id: power_word_1
+    title_en: Tov
+    title_he: טוֹב
+    back:
+      objective: "Learn the word **tov**, good"
+      say: "**Hashem looked and said: tov!** [Thumbs up]"
+      ask: [{text: "Show me tov with your thumb!", type: nonverbal}]
+      hebrew: {word: טוֹב, translit: TOV, meaning: good, gesture: thumbs up}
+      trio:
+        - {big: טוֹב, line1: TOV, line2: good}
+        - {big: "×7", line1: Hashem said it, line2: 7 times}
+        - {big: "✓", line1: gesture, line2: thumbs up}
+      minutes: 2
+      core: true
+      transition: "Tov, tov, tov!"
+      guide_ref: {page: 11}
+    guide: *guide
+  - card_id: home_1
+    title_en: At Home
+    title_he: בַּבַּיִת
+    back:
+      objective: "We learned about **caring for Hashem's world**"
+      shabbat_question: {en: "What is something good Hashem made?", he: "מָה טוֹב שֶׁה׳ בָּרָא?"}
+      try_at_home: [{text: "Water a plant together.", tag: before-shabbat}]
+      transition: "Shabbat shalom!"
+    guide: *guide

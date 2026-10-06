@@ -1,0 +1,15 @@
+agent: 05-visual-director
+deck_id: pipeline_min
+palette: ["#1E3A5F", "#E0A526", "#4F9A4A", "#9BD7F5", "#FFF4D6"]
+web_theme: {primary: "#1E3A5F", secondary: "#4F9A4A", accent: "#E0A526", wash: "#FFF8E7"}
+cards:
+  - {card_id: anchor_1, characters_in_scene: [], image_prompt: "Warm golden light breaking through soft darkness over an empty new world."}
+  - {card_id: spotlight_1, characters_in_scene: [adam], image_prompt: "Adam kneels to water bright flowers, smiling proudly."}
+  - {card_id: spotlight_2, characters_in_scene: [chava], image_prompt: "Chava waves hello beside a fruit tree, warm and friendly."}
+  - {card_id: story_1, characters_in_scene: [], image_prompt: "Rays of light, a wide sky and green land with the first trees sprouting."}
+  - {card_id: story_2, characters_in_scene: [], continuity_ref: story_1, image_prompt: "The same landscape now full of fish, birds and gentle animals."}
+  - {card_id: story_3, characters_in_scene: [], style_plate: object, image_prompt: "A peaceful garden at golden hour, everything resting quietly."}
+  - {card_id: story_4, characters_in_scene: [adam], image_prompt: "Adam gently pets a friendly lion while a line of animals waits happily."}
+  - {card_id: connection_1, characters_in_scene: [], image_prompt: "Four children in a gan water a classroom plant together, smiling."}
+  - {card_id: power_word_1, characters_in_scene: [], image_prompt: "A sunlit garden glowing with every good thing Hashem made."}
+  - {card_id: home_1, characters_in_scene: [], image_prompt: "A family watering plants on a balcony before Shabbat."}

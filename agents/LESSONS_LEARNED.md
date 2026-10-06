@@ -23,6 +23,12 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Never ask for a "calm upper N%"** — In the plate run the model drew a literal flat band across the top in 2 of 8 images. Say the top of the scene "continues naturally ... with no hard band or border" instead.
 - **Label every reference image** — The prompt names each one ("Image 1 = style plate (match art style only, not content)", "Image 3 = Adam identity sheet — match face, hair, clothing exactly") so the model doesn't copy a plate's content or mix up characters.
 
+### Overnight run lessons (Oct 2026)
+- **"Calm top 22%" drew bands** — Asking for a calm upper N% made the model paint a literal flat band across the top in 2 of 8 style plates. Describe the top as sky/ceiling/soft light that "continues naturally ... with no hard band or border". Image QA scores a band as `title_zone: 0`.
+- **Chava looked childlike until an explicit adult anchor** — The first identity sheet read as a girl. Fixed by an explicit adult anchor in `character.yaml` ("young adult woman", adult proportions). Every adult character's anchors should say so; Image QA checks "adults look adult" under `character_match`.
+- **JPEG saved as PNG** — The image API returns JPEG bytes; we were saving them with a `.png` name. Convert with Pillow on save (or name them `.jpg`) and never trust the extension when checking a file.
+- **Nano Banana 2 at 3:4 is 896x1200 at 1K and 1792x2400 at 2K** — not the 768x1024 / 1536x2048 the docs suggested. Log and check the real pixel size after every save; plan DPI math from the real numbers.
+
 ### Prompt Detail Level
 - **Stage directions, not descriptions** — "He shakes his head NO" produces better results than "refusing to bow." Write prompts like a movie director, not a caption writer.
 - **Background characters need actions** — "Other people in the crowd ARE bowing low to the ground" not just "people in background." Scenes with crowd energy look more alive.
@@ -86,7 +92,7 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 
 ### Export Pipeline
 - **sync-deck.sh must run before export** — Copies deck.json, raw/ images, and references/ to `card-designer/content/`. Without this, exports use stale images.
-- **Front/back viewport mismatch by design** — Fronts render at 500x700 CSS @ 3x device scale (matches design editor). Backs render at 1500x2100 CSS @ 1x (print-calibrated fonts). Don't unify them — they were designed at different resolutions.
+- **(v2 PNG export) Front/back viewport mismatch by design** — Fronts render at 500x700 CSS @ 3x device scale (matches design editor). Backs render at 1500x2100 CSS @ 1x (print-calibrated fonts). Don't unify them — they were designed at different resolutions.
 - **All card types use FitText for titles** — Including Story cards. No hardcoded pixel font sizes for titles. Keywords/emotion badges use fixed Tailwind classes (`text-3xl` / `text-sm`).
 - **Clear `.next` cache after component changes** — `rm -rf card-designer/.next` before re-exporting, or the old compiled components may be served.
 - **Hebrew nikud needs lineHeight ≥ 1.3** — Nikud marks sit below the baseline. `lineHeight: 1.1` clips them; `1.3` gives enough room. Also use `overflow: visible` on the FitText container, never `hidden`.
@@ -140,6 +146,6 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Visual: frustrated face, crossed arms** - NOT angry or menacing
 
 ### Tradition Cards
-- **Calm energy** - NOT "Act it out!" style
+- **Calm energy** - no high-energy roleplay prompts
 - **Invitation format** - "Can you...?" not commands
 - **Generic characters in illustrations** - Unless story characters are doing the tradition
