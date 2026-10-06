@@ -29,6 +29,7 @@ from pathlib import Path
 
 from PIL import Image
 
+import character_library
 from config import (DEFAULT_IMAGE_MODEL, DEFAULT_IMAGE_SIZE, VALID_IMAGE_SIZES,
                     EXPECTED_DIMENSIONS_3_4)
 
@@ -200,12 +201,14 @@ def save_prompt_sidecar(deck_path: Path, card_id: str, full_prompt: str) -> None
 
 
 def get_character_label(character_key: str, manifest: dict) -> str:
-    """Derive human-readable label from manifest entry or key name.
+    """Derive human-readable label: library name_en, else manifest 'label', else title-cased key.
 
-    Reads optional 'label' field from manifest. Falls back to title-cased key.
     Only call for character entries — non-character keys (style_hero) are skipped
     by the caller before reaching this function.
     """
+    character = character_library.load_character(character_key)
+    if character:
+        return character["name_en"]
     entry = manifest.get(character_key, {})
     if isinstance(entry, dict):
         return entry.get("label", character_key.replace("_", " ").title())
@@ -227,18 +230,44 @@ def _load_image_as_part(image_path: Path) -> dict:
 # Card types that belong to the story world (receive style hero)
 STORY_WORLD_CARDS = {"anchor", "spotlight", "story", "power_word"}
 
+# Nano Banana 2 accepts at most 4 character reference images per request
+MAX_CHARACTER_REFS = 4
+
+
+def _find_character_ref(key: str, manifest: dict, refs_dir: Path) -> tuple:
+    """Find one character's identity image: shared library first, then the deck manifest.
+
+    Returns (path, label), or (None, None) if no image exists anywhere.
+    """
+    library_path = character_library.identity_path(key)
+    if library_path:
+        character = character_library.load_character(key)
+        return library_path, character["name_en"]
+
+    # Fallback: the deck's own references/manifest.json (older decks)
+    entry = manifest.get(key)
+    identity_file = entry.get("identity", "") if isinstance(entry, dict) else ""
+    if identity_file and (refs_dir / identity_file).exists():
+        logger.warning(f"  -> {key}: not in characters/ library, using deck manifest image {identity_file}")
+        return refs_dir / identity_file, get_character_label(key, manifest)
+
+    logger.warning(f"  -> {key}: no identity image in characters/ or the deck manifest; skipping")
+    return None, None
+
 
 def load_reference_images(deck_path: Path, characters_in_scene: list = None,
                           card_type: str = "", no_hero: bool = False) -> tuple:
     """
-    Load reference images from the deck's manifest: style hero + character refs.
+    Load reference images: style hero (from the deck manifest) + character refs.
 
     Style hero is loaded first (for story-world cards only) as a visual anchor,
-    then character refs filtered by characters_in_scene.
+    then character refs filtered by characters_in_scene. Each character is looked
+    up in the shared characters/ library first, falling back to the deck's
+    references/manifest.json. At most MAX_CHARACTER_REFS characters are sent.
 
     Args:
         deck_path: Path to deck.json
-        characters_in_scene: List of character keys to load, None for all, [] for none
+        characters_in_scene: List of character keys to load, None for all in manifest, [] for none
         card_type: Card type (determines whether style hero is loaded)
         no_hero: If True, skip style hero even for story-world cards
 
@@ -250,15 +279,13 @@ def load_reference_images(deck_path: Path, characters_in_scene: list = None,
     refs_dir = deck_path.parent / "references"
     manifest_path = refs_dir / "manifest.json"
 
-    if not manifest_path.exists():
-        return [], []
-
-    try:
-        with open(manifest_path, 'r', encoding='utf-8') as f:
-            manifest = json.load(f)
-    except Exception as e:
-        print(f"  -> Warning: failed to load manifest: {e}")
-        return [], []
+    manifest = {}
+    if manifest_path.exists():
+        try:
+            with open(manifest_path, 'r', encoding='utf-8') as f:
+                manifest = json.load(f)
+        except Exception as e:
+            logger.warning(f"  -> Warning: failed to load manifest: {e}")
 
     image_parts = []
     loaded_chars = []
@@ -288,26 +315,33 @@ def load_reference_images(deck_path: Path, characters_in_scene: list = None,
             print("  -> Characters: none (no characters in scene)")
         return image_parts, loaded_chars
 
-    for character, data in manifest.items():
-        # Skip non-character entries (style_hero, etc.)
-        if character.startswith("style_hero"):
-            continue
-        # Filter by characters_in_scene if provided
-        if characters_in_scene is not None and character not in characters_in_scene:
-            continue
-        identity_file = data.get("identity", "")
-        if identity_file:
-            identity_path = refs_dir / identity_file
-            if identity_path.exists():
-                try:
-                    label = get_character_label(character, manifest)
-                    image_parts.append({
-                        "text": f"Character reference for {label}:"
-                    })
-                    image_parts.append(_load_image_as_part(identity_path))
-                    loaded_chars.append(character)
-                except Exception as e:
-                    print(f"  -> Failed to load {character} reference: {e}")
+    # None = every character in the deck manifest (backwards compatible)
+    if characters_in_scene is None:
+        keys = [k for k in manifest if not k.startswith("style_hero")]
+    else:
+        keys = list(characters_in_scene)
+
+    found = []  # (key, path, label)
+    for key in keys:
+        path, label = _find_character_ref(key, manifest, refs_dir)
+        if path:
+            found.append((key, path, label))
+
+    if len(found) > MAX_CHARACTER_REFS:
+        dropped = [key for key, _, _ in found[MAX_CHARACTER_REFS:]]
+        logger.error(
+            f"  -> {len(found)} character refs requested but the model allows {MAX_CHARACTER_REFS}; "
+            f"sending the first {MAX_CHARACTER_REFS} and dropping: {', '.join(dropped)}"
+        )
+        found = found[:MAX_CHARACTER_REFS]
+
+    for key, path, label in found:
+        try:
+            image_parts.append({"text": f"Character reference for {label}:"})
+            image_parts.append(_load_image_as_part(path))
+            loaded_chars.append(key)
+        except Exception as e:
+            logger.error(f"  -> Failed to load {key} reference: {e}")
 
     # Add instruction after all references
     if image_parts:

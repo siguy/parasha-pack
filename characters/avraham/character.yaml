@@ -1,0 +1,45 @@
+# Avraham Avinu. DRAFT design (canonical: false) carried over from the old
+# schema.py / workflows databases. Lock the anchors and make an identity sheet
+# before the Lech Lecha deck.
+key: avraham
+name_en: Avraham
+name_he: אַבְרָהָם
+aliases: [abraham]
+gender: male
+role: hero
+canonical: false
+version: 0
+identity: null
+visual_anchors:
+  - kind elderly man with a long white beard
+  - simple head covering
+  - white flowing robe
+  - walking stick
+personality: [faithful, welcoming, brave, kind, generous]
+props: [Walking stick]
+signature_poses:
+  - Arms open in welcome
+  - Looking up at stars
+  - Offering hospitality
+  - Walking with purpose
+appears_in: []
+source_notes: >
+  Merged from schema.py CHARACTER_DESIGNS["avraham"] and workflows DEFAULT_DESIGNS["abraham"].
+  Key standardised to "avraham"; "abraham" still works as an alias.
+research:
+  biblical_refs: ["Genesis 12-25"]
+  key_stories:
+    - Leaving home for a new land
+    - Welcoming three visitors
+    - "Looking at the stars with God's promise"
+  relationships:
+    Sarah: beloved wife
+    Isaac: son
+    Lot: nephew
+  emotional_moments:
+    - {event: Leaving his home, emotion: brave but uncertain}
+    - {event: Welcoming guests, emotion: joyful and generous}
+    - {event: Seeing the stars, emotion: hopeful and amazed}
+  age_appropriate_summary: >-
+    Abraham was very welcoming and always invited people to his tent. He trusted
+    God and started a big family.

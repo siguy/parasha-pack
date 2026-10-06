@@ -1,0 +1,42 @@
+# Chava (Eve), the first woman. Identity sheet NOT generated yet (Phase 3.2, styling phase).
+# Modesty (plan decision D3, Modern Orthodox): simple full-coverage tunic dress. No leaves, nothing revealing.
+key: chava
+name_en: Chava
+name_he: חַוָּה
+aliases: [eve]
+gender: female
+role: hero
+canonical: true
+version: 1
+identity: null
+visual_anchors:
+  - young adult woman with olive skin
+  - long dark wavy hair, loosely tied back
+  - simple modest sage-green tunic dress, full coverage, long sleeves, ankle length
+  - barefoot or simple sandals
+  - friendly, gentle expression; "first people in a garden"
+personality: [curious, gentle, caring, friendly]
+props: []
+signature_poses:
+  - Smelling a flower
+  - Walking with Adam through the garden
+  - Kneeling beside a small animal
+  - Smiling, hands open
+appears_in: [bereshit]
+source_notes: >
+  Anchors set by Simon for the Bereshit v3 deck (2026-10). Identity sheet to be
+  generated in Phase 3.2: 2 versions, 3-angle turnaround plus expression row,
+  plain background, no caption text.
+research:
+  biblical_refs: ["Genesis 2:18-25", "Genesis 3:20"]
+  key_stories:
+    - Hashem creates Chava so Adam is not alone
+    - Adam and Chava care for the garden together
+  relationships:
+    Adam: partner
+  emotional_moments:
+    - {event: Meeting Adam, emotion: happy and friendly}
+    - {event: Exploring the garden, emotion: curious and amazed}
+  age_appropriate_summary: >-
+    Chava was the very first woman. Hashem made her so that Adam would not be
+    alone. Together they took care of Hashem's beautiful garden.

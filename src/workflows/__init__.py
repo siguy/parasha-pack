@@ -32,7 +32,6 @@ from .research import (
     list_available_parshiyot,
     get_character_summary,
     get_parasha_summary,
-    CHARACTER_DATABASE,
     PARASHA_DATABASE,
 )
 
@@ -55,7 +54,6 @@ __all__ = [
     "list_available_parshiyot",
     "get_character_summary",
     "get_parasha_summary",
-    "CHARACTER_DATABASE",
     "PARASHA_DATABASE",
     # Workflows
     "CharacterWorkflow",

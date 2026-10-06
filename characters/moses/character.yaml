@@ -1,0 +1,54 @@
+# Moshe Rabbeinu. Locked design from the Yitro deck (Feb 2026).
+key: moses
+name_en: Moses
+name_he: מֹשֶׁה
+aliases: [moshe]
+gender: male
+role: hero
+canonical: true
+version: 1
+identity: identity.png
+extra_sheets:
+  expressions: expressions.png
+  poses: poses.png
+  turnaround: turnaround.png
+visual_anchors:
+  - middle-aged man with warm brown skin
+  - blue head covering that flows down past the shoulders, tied with a blue band
+  - short dark beard with a touch of gray
+  - blue open outer robe over a cream undergarment, blue sash
+  - wooden shepherd's crook staff
+  - simple brown sandals
+personality: [humble, caring, brave, patient, faithful]
+props: ["Wooden shepherd's crook staff"]
+signature_poses:
+  - Arms wide open, welcoming embrace
+  - Hand to ear, listening carefully
+  - Seated, looking tired, hand on forehead
+  - Standing tall, staff raised, leading
+appears_in: [yitro, beshalach]
+source_notes: >
+  Identity copied from decks/archive/yitro/references/moses_identity.png.
+  Anchors from VISUAL_SPECS.md, schema.py CHARACTER_DESIGNS and the identity image.
+research:
+  biblical_refs: ["Exodus 2-40", "Numbers 1-36", "Deuteronomy 1-34"]
+  key_stories:
+    - Baby in the basket on the Nile
+    - Burning bush encounter
+    - Leading the Exodus from Egypt
+    - Receiving the Torah at Sinai
+    - Striking the rock for water
+  relationships:
+    Miriam: older sister
+    Aaron: older brother
+    Yitro: father-in-law and advisor
+    Pharaoh: confronted for freedom
+    Israelites: leader and teacher
+  emotional_moments:
+    - {event: Seeing the burning bush, emotion: awe and wonder}
+    - {event: Reuniting with Yitro, emotion: joy and gratitude}
+    - {event: Receiving the commandments, emotion: reverence}
+    - {event: When people complained, emotion: tired but caring}
+  age_appropriate_summary: >-
+    Moses was a kind leader who helped his people be free. He listened to God
+    and taught everyone to be good to each other.
