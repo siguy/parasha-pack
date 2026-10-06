@@ -180,12 +180,14 @@ holidays:
     before: ki_tisa
     status: done
     middah: Courage
-    power_word: {he: גִּבּוֹר, translit: gibor, en: hero}
+    power_word: {he: גִּבּוֹר, translit: gee-BOR, en: hero}
     characters: [esther, mordechai, haman, achashverosh]
     sensitivities:
-      - "Haman's plan: say he 'wanted to hurt the Jewish people'; no hanging, no battles"
-      - "Haman is jealous and misguided, never scary"
-    notes: "Adar 14 (Feb/Mar). The 13-card v2 deck in decks/purim/ is the style reference for the series."
+      - "Haman's fate and the fighting (Esther 7-9): teacher guide only, scripted answer"
+      - "Haman's plan: 'a very bad plan against the Jewish people'; no killing words, no hanging, no battles"
+      - "Haman is proud and angry (3:5 חֵמָה), sulky and comic, never scary; not 'jealous'"
+      - "Fasting (4:16) is for grown-ups only"
+    notes: "Adar 14 (Feb/Mar). v3 deck (12 cards, letter + 5x7 PDFs) in decks/purim/; its art is the style reference for the series. Girl form of the power word: גִּבּוֹרָה gee-bo-RAH."
   - {id: pesach, name_en: "Pesach", name_he: "פֶּסַח", type: holiday, before: shemini, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Nisan 15 (Mar/Apr)"}
   - {id: yom_hashoah, name_en: "Yom HaShoah", name_he: "יוֹם הַשּׁוֹאָה", type: holiday, before: tazria, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Nisan 27 (Apr/May)"}
   - {id: yom_haatzmaut, name_en: "Yom HaAtzmaut", name_he: "יוֹם הָעַצְמָאוּת", type: holiday, before: acharei_mot, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Iyar 5 (Apr/May)"}

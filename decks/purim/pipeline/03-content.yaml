@@ -57,7 +57,7 @@ cards:
       ask:
         - {text: "How does Esther's face look?", type: wh}
         - {text: "Show me your brave face!", type: nonverbal}
-      hebrew: {word: אַמִּיצָה, translit: a-mee-TZAH, meaning: brave, note: "girl · boy: אַמִּיץ a-MEETZ", gesture: "fists on hips, chin up"}
+      hebrew: {word: אַמִּיצָה, translit: a-mee-TZAH, meaning: brave, note: "for a boy: a-MEETZ אַמִּיץ", gesture: "fists on hips, chin up"}
       minutes: 3
       core: false
       transition: "Esther had a cousin who helped her…"
@@ -91,7 +91,7 @@ cards:
       ask:
         - {text: "Who gives you good advice?", type: open}
         - {text: "Show me a thinking face!", type: nonverbal}
-      hebrew: {word: חָכָם, translit: kha-KHAM, meaning: wise, note: "boy · girl: חֲכָמָה kha-kha-MAH", gesture: "tap your head"}
+      hebrew: {word: חָכָם, translit: kha-KHAM, meaning: wise, note: "for a girl: kha-kha-MAH חֲכָמָה", gesture: "tap your head"}
       minutes: 3
       core: false
       transition: "Mordechai always stood up for what was right…"
@@ -164,7 +164,7 @@ cards:
       ask:
         - {text: "What did Mordechai say?", type: recall}
         - {text: "Show me how Mordechai stood!", type: nonverbal}
-      hebrew: {word: עוֹמֵד, translit: o-MED, meaning: standing, note: "boy · girl: עוֹמֶדֶת o-ME-det", gesture: "stand up straight, hands at sides"}
+      hebrew: {word: עוֹמֵד, translit: o-MED, meaning: standing, note: "for a girl: o-ME-det עוֹמֶדֶת", gesture: "stand up straight, hands at sides"}
       minutes: 4
       core: true
       transition: "Uh-oh… the Jewish people need help!"
@@ -195,14 +195,13 @@ cards:
     back:
       objective: "Esther was scared, and brave anyway"
       say: |-
-        **Esther asked the grown-ups not to eat for three days, for her.**
-        **Then she went to the king without being called. That was scary!** [Shaky hands…]
-        **The king held out his golden stick. Phew!** [Reach out and touch it]
-        **Esther told him everything, and the Jewish people were safe!** [Cheer!]
+        **The grown-ups didn't eat for three days, for Esther.**
+        **Then she went to the king without being called. Scary!** [Shaky hands…]
+        **The king held out his golden stick. Phew! The Jewish people were safe!** [Cheer!]
       ask:
         - {text: "How did Esther feel before she went in?", type: wh}
         - {text: "What helped Esther be brave?", type: open}
-      hebrew: {word: אַמִּיצָה, translit: a-mee-TZAH, meaning: brave, note: "girl · boy: אַמִּיץ a-MEETZ", gesture: "fists on hips, chin up"}
+      hebrew: {word: אַמִּיצָה, translit: a-mee-TZAH, meaning: brave, note: "for a boy: a-MEETZ אַמִּיץ", gesture: "fists on hips, chin up"}
       minutes: 5
       core: true
       transition: "Hooray! That's why we celebrate Purim!"
@@ -239,7 +238,7 @@ cards:
       ask:
         - {text: "What do we do when we hear 'Haman'?", type: recall}
         - {text: "Show me your quietest freeze!", type: nonverbal}
-      hebrew: {word: מְגִלָּה, translit: me-gee-LAH, meaning: scroll, note: "noisemaker: רַעֲשָׁן ra-a-SHAN", gesture: "unroll a pretend scroll"}
+      hebrew: {word: מְגִלָּה, translit: me-gee-LAH, meaning: scroll, note: "noisemaker: ra-a-SHAN רַעֲשָׁן", gesture: "unroll a pretend scroll"}
       minutes: 3
       core: true
       transition: "What else do we do on Purim?"
@@ -382,7 +381,7 @@ cards:
       ask:
         - {text: "Who can be a gibor or a giborah?", type: open}
         - {text: "Show me your strong arms!", type: nonverbal}
-      hebrew: {word: גִּבּוֹר, translit: gee-BOR, meaning: hero, note: "boy: גִּבּוֹר · girl: גִּבּוֹרָה gee-bo-RAH", gesture: "make strong arms"}
+      hebrew: {word: גִּבּוֹר, translit: gee-BOR, meaning: hero, note: "for a girl: gee-bo-RAH גִּבּוֹרָה · boy גִּבּוֹר", gesture: "make strong arms"}
       minutes: 2
       core: true
       transition: "Gibor! Giborah! Take it home!"
@@ -409,7 +408,7 @@ cards:
     back:
       objective: "We learned about **being brave even when scared**"
       shabbat_question: {en: "When were you brave this week?", he: "מָתַי הֱיִיתֶם אַמִּיצִים הַשָּׁבוּעַ?"}
-      hebrew: {word: גִּבּוֹר, translit: gee-BOR, meaning: hero, note: "girl: גִּבּוֹרָה gee-bo-RAH · boy: גִּבּוֹר", gesture: "strong arms"}
+      hebrew: {word: גִּבּוֹר, translit: gee-BOR, meaning: hero, note: "for a girl: gee-bo-RAH גִּבּוֹרָה", gesture: "strong arms"}
       try_at_home:
         - {text: "Make mishloach manot together: two foods for a neighbor.", tag: before-shabbat}
         - {text: "Ask your child to show you the brave gesture: fists on hips, chin up!", tag: shabbat-friendly}

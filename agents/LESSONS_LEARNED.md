@@ -161,3 +161,24 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Calm energy** - no high-energy roleplay prompts
 - **Invitation format** - "Can you...?" not commands
 - **Generic characters in illustrations** - Unless story characters are doing the tradition
+
+## Purim v3 retrofit (Oct 2026)
+
+- **Re-rendering old art with `--final --from-draft` also updates the setting** — the 2K re-render of the v2
+  Purim art picked up the new Achaemenid story world on its own (bull capitals, glazed-brick rosettes, lions)
+  while keeping the composition and faces. Big architectural shapes from the old draft (a pointed arch, domes)
+  survive, though: to remove them you need a new composition, not a re-render.
+- **A re-render can drop a character's expression** — Mordechai lost his smile on the first 2K re-render.
+  Score finals separately from drafts (faces drift); naming the expression in the prompt ("warm,
+  grandfatherly smile") fixed it on the second try.
+- **The letter overflow guard measures lines, not words** — story_3's SAY was 48 words (under budget) and
+  still 43 px too tall: inline [cue] chips and a long Hebrew title add lines. Cutting a whole line of SAY
+  fixed it; cutting a few words didn't change the number at all.
+- **Put the transliteration before the Hebrew in `hebrew.note`** — "boy: אַמִּיץ a-MEETZ" broke across lines
+  with the bidi order scrambled ("a-" / "MEETZ"). "for a boy: a-MEETZ אַמִּיץ" renders cleanly.
+- **Megillat Esther isn't in the Metsudah Chumash** — `RESEARCH_PLANS` entries can set `en_version: None` to use
+  Sefaria's default English (JPS) for non-Torah books.
+- **Villain posture: "arms crossed" isn't enough** — Haman came out with crossed arms but a stern, glaring brow.
+  Ask for the comic cues too (puffed cheeks, pout, nose in the air) and score the brow in Image QA.
+- **Costume crowns hide kippot** — a dad dressed as a king in a crown, or a boy in a firefighter helmet, loses
+  the kippah. Ask for "a kippah under a paper crown" in modern Purim scenes.

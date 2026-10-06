@@ -152,7 +152,7 @@
           "word": "אַמִּיצָה",
           "translit": "a-mee-TZAH",
           "meaning": "brave",
-          "note": "girl · boy: אַמִּיץ a-MEETZ",
+          "note": "for a boy: a-MEETZ אַמִּיץ",
           "gesture": "fists on hips, chin up"
         },
         "minutes": 3,
@@ -215,7 +215,7 @@
           "word": "חָכָם",
           "translit": "kha-KHAM",
           "meaning": "wise",
-          "note": "boy · girl: חֲכָמָה kha-kha-MAH",
+          "note": "for a girl: kha-kha-MAH חֲכָמָה",
           "gesture": "tap your head"
         },
         "minutes": 3,
@@ -347,7 +347,7 @@
           "word": "עוֹמֵד",
           "translit": "o-MED",
           "meaning": "standing",
-          "note": "boy · girl: עוֹמֶדֶת o-ME-det",
+          "note": "for a girl: o-ME-det עוֹמֶדֶת",
           "gesture": "stand up straight, hands at sides"
         },
         "minutes": 4,
@@ -409,7 +409,7 @@
       },
       "back": {
         "objective": "Esther was scared, and brave anyway",
-        "say": "**Esther asked the grown-ups not to eat for three days, for her.**\n**Then she went to the king without being called. That was scary!** [Shaky hands…]\n**The king held out his golden stick. Phew!** [Reach out and touch it]\n**Esther told him everything, and the Jewish people were safe!** [Cheer!]",
+        "say": "**The grown-ups didn't eat for three days, for Esther.**\n**Then she went to the king without being called. Scary!** [Shaky hands…]\n**The king held out his golden stick. Phew! The Jewish people were safe!** [Cheer!]",
         "ask": [
           {
             "text": "How did Esther feel before she went in?",
@@ -424,7 +424,7 @@
           "word": "אַמִּיצָה",
           "translit": "a-mee-TZAH",
           "meaning": "brave",
-          "note": "girl · boy: אַמִּיץ a-MEETZ",
+          "note": "for a boy: a-MEETZ אַמִּיץ",
           "gesture": "fists on hips, chin up"
         },
         "minutes": 5,
@@ -501,7 +501,7 @@
           "word": "מְגִלָּה",
           "translit": "me-gee-LAH",
           "meaning": "scroll",
-          "note": "noisemaker: רַעֲשָׁן ra-a-SHAN",
+          "note": "noisemaker: ra-a-SHAN רַעֲשָׁן",
           "gesture": "unroll a pretend scroll"
         },
         "minutes": 3,
@@ -761,7 +761,7 @@
           "word": "גִּבּוֹר",
           "translit": "gee-BOR",
           "meaning": "hero",
-          "note": "boy: גִּבּוֹר · girl: גִּבּוֹרָה gee-bo-RAH",
+          "note": "for a girl: gee-bo-RAH גִּבּוֹרָה · boy גִּבּוֹר",
           "gesture": "make strong arms"
         },
         "minutes": 2,
@@ -809,7 +809,7 @@
           "word": "גִּבּוֹר",
           "translit": "gee-BOR",
           "meaning": "hero",
-          "note": "girl: גִּבּוֹרָה gee-bo-RAH · boy: גִּבּוֹר",
+          "note": "for a girl: gee-bo-RAH גִּבּוֹרָה",
           "gesture": "strong arms"
         },
         "try_at_home": [
