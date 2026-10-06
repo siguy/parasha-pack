@@ -93,6 +93,9 @@ export interface WeekDay {
   cards: string[];
 }
 
+/** standard = 4 story cards (3 holiday); sequence = one story card per item (src/deck_pattern.py) */
+export type DeckPattern = 'standard' | 'sequence';
+
 export interface Deck {
   id: string;
   version: '3.0';
@@ -100,6 +103,8 @@ export interface Deck {
   parasha_he: string;
   holiday?: boolean;
   ref?: string;
+  deck_pattern?: DeckPattern;
+  story_cards?: number;
   value: { en: string; he: string; kid_phrase: string; gesture: string };
   palette: string[];
   web_theme: { primary: string; secondary: string; accent: string; wash: string };

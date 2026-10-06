@@ -11,7 +11,7 @@
 /* eslint-disable @next/next/no-img-element -- plain <img> so Playwright export captures the full-size art */
 import React from 'react';
 import { LoadedCard, LoadedDeck } from '@/types/card';
-import { CARD_TYPES } from '@/lib/cardTypes';
+import { CARD_TYPES, typeLabel } from '@/lib/cardTypes';
 import { TypeIcon } from './icons';
 
 /** Soft gradient in the deck's own colors, shown until the real art is generated. */
@@ -65,7 +65,7 @@ export function CardFront({ card, deck }: { card: LoadedCard; deck: LoadedDeck }
       {number && <div className="num">{number}</div>}
       <div className="chip">
         <TypeIcon type={card.card_type} />
-        {type.label}
+        {typeLabel(card, deck)}
       </div>
       {card.card_type === 'story' && card.hebrew_keyword && (
         <div className="kw">
