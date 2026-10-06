@@ -1,108 +1,116 @@
+/**
+ * Deck v3 types. These mirror schemas/deck.v3.schema.json exactly.
+ * If you change one, change the other.
+ */
 
-export interface BaseCardData {
+export type CardType = 'anchor' | 'spotlight' | 'story' | 'connection' | 'tradition' | 'power_word' | 'home';
+
+export type AskType = 'recall' | 'wh' | 'open' | 'distancing' | 'nonverbal';
+
+export type FaceKey = 'happy' | 'proud' | 'calm' | 'excited' | 'scared' | 'brave' | 'sad' | 'surprised';
+
+export interface Hebrew {
+  word: string;
+  translit: string;
+  meaning: string;
+  note?: string;
+  gesture?: string;
+}
+
+export interface Ask {
+  text: string;
+  type: AskType;
+}
+
+export interface GuideRef {
+  page: number;
+  note?: string;
+}
+
+export interface TrioItem {
+  big: string;
+  line1: string;
+  line2: string;
+}
+
+export interface TryAtHome {
+  text: string;
+  tag: 'shabbat-friendly' | 'before-shabbat';
+}
+
+/** The teacher side of every card except the home card. */
+export interface StandardBack {
+  objective: string;
+  title_he?: string;
+  say: string; // **bold** = read aloud, [cue] = action chip, \n = line break
+  ask: Ask[];
+  hebrew?: Hebrew;
+  minutes: number;
+  core: boolean;
+  transition: string;
+  guide_ref?: GuideRef;
+  trio?: TrioItem[]; // power_word
+  faces?: FaceKey[]; // connection
+}
+
+export interface HomeBack {
+  objective: string;
+  shabbat_question: { en: string; he: string };
+  hebrew?: Hebrew;
+  try_at_home: TryAtHome[];
+  transition: string;
+}
+
+/** Teacher-guide booklet content. Not printed on the card itself. */
+export interface Guide {
+  pshat: { text: string; refs: string[] };
+  sages: { text: string; source: string }[];
+  hard_questions: { q: string; answer: string; redirect: string }[];
+  adapt: { see: string; do: string; join: string };
+  extend: string;
+  tip: string;
+}
+
+interface CardBase {
   card_id: string;
-  title_en?: string;
-  title_he?: string;
-  border_color?: string;
-  image_path?: string;
-  teacher_script?: string;
+  title_en: string;
+  title_he: string;
+  characters_in_scene: string[];
+  image_prompt: string;
+  image_path: string;
   sequence_number?: number;
-  // SAY/DO/ASK/TIP back fields
-  teacher_tip?: string;
-  transition_line?: string;
-  discussion_prompts?: string[];
+  hebrew_keyword?: { word: string; translit: string; meaning: string };
+  guide: Guide;
 }
 
-export interface AnchorCardData extends BaseCardData {
-  card_type: 'anchor';
-  hebrew_title?: string;
-  title_he?: string;
-  emotional_hook_en?: string;
-  emotional_hook_he?: string;
+export type StandardCard = CardBase & { card_type: Exclude<CardType, 'home'>; back: StandardBack };
+export type HomeCard = CardBase & { card_type: 'home'; back: HomeBack };
+export type Card = StandardCard | HomeCard;
+
+export interface WeekDay {
+  day: number;
+  label: string;
+  cards: string[];
 }
 
-export interface SpotlightCardData extends BaseCardData {
-  card_type: 'spotlight';
-  hebrew_name?: string;
-  english_name?: string;
-  emotion_word_en?: string;
-  emotion_word_he?: string;
-  character_name_he?: string;
-  character_name_en?: string;
-  emotion_label_en?: string;
-  emotion_label_he?: string;
-  character_description_en?: string;
-  character_description_he?: string;
-  teaching_moment_en?: string;
-}
-
-export interface StoryCardData extends BaseCardData {
-  card_type: 'story';
-  hebrew_key_word?: string;
-  hebrew_key_word_nikud?: string;
-  english_key_word?: string;
-  english_description?: string;
-  description_en?: string;
-  roleplay_prompt?: string;
-  description_he?: string;
-}
-
-export interface ConnectionCardData extends BaseCardData {
-  card_type: 'connection';
-  emojis?: string[];
-  torah_talk_instruction?: string;
-  questions?: Array<{
-    question_he?: string;
-    question_en?: string;
-    question_type?: string;
-  }>;
-  feeling_faces?: Array<{
-    emoji: string;
-    label_en?: string;
-    label_he?: string;
-  }>;
-}
-
-export interface PowerWordCardData extends BaseCardData {
-  card_type: 'power_word';
-  hebrew_word?: string;
-  english_meaning?: string;
-  hebrew_word_nikud?: string;
-  transliteration?: string;
-  kid_friendly_explanation_he?: string;
-  kid_friendly_explanation_en?: string;
-  example_sentence_he?: string;
-  example_sentence_en?: string;
-  pronunciation_guide?: string;
-}
-
-export interface TraditionCardData extends BaseCardData {
-  card_type: 'tradition';
-  hebrew_title?: string;
-  english_title?: string;
-  story_connection_en?: string;
-  story_connection_he?: string;
-  practice_description_en?: string;
-  practice_description_he?: string;
-  child_action_en?: string;
-  child_action_he?: string;
-  hebrew_term?: string;
-  hebrew_term_meaning?: string;
-}
-
-export type CardData = 
-  | AnchorCardData 
-  | SpotlightCardData 
-  | StoryCardData 
-  | ConnectionCardData 
-  | PowerWordCardData 
-  | TraditionCardData;
-
-export interface DeckData {
+export interface Deck {
+  id: string;
+  version: '3.0';
   parasha_en: string;
   parasha_he: string;
-  ref: string;
-  border_color: string;
-  emotional_core?: string;
-  cards: CardData[];
+  holiday?: boolean;
+  ref?: string;
+  value: { en: string; he: string; kid_phrase: string; gesture: string };
+  palette: string[];
+  web_theme: { primary: string; secondary: string; accent: string; wash: string };
+  story_world: string;
+  week_plan: WeekDay[];
+  cards: Card[];
+}
+
+/** A card as the app uses it: plus the URL of its art, or null if no art exists yet. */
+export type LoadedCard = Card & { image_url: string | null };
+
+export interface LoadedDeck extends Omit<Deck, 'cards'> {
+  cards: LoadedCard[];
 }

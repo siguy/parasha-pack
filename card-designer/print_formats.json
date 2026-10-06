@@ -1,0 +1,7 @@
+{
+  "default": "letter",
+  "formats": {
+    "letter": { "page_in": [8.5, 11], "margin_in": 0.3, "bleed_in": 0 },
+    "5x7": { "page_in": [5.25, 7.25], "trim_in": [5, 7], "bleed_in": 0.125, "safe_in": 0.25 }
+  }
+}
