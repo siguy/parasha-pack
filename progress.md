@@ -15,7 +15,9 @@ _Last updated: 2026-10-05_
 | `docs/deck-v3-plan` | [#3](https://github.com/siguy/parasha-pack/pull/3): plan, policies, mockups, progress | open, docs only |
 | `fix/image-model-nano-banana-2` | [#4](https://github.com/siguy/parasha-pack/pull/4): Nano Banana 2 + `--size` flag | open; follow-up fixes for issues 1–3 in progress (separate worktree `.claude/worktrees/fix-image-model`) |
 | `feat/character-library` | [#5](https://github.com/siguy/parasha-pack/pull/5): character library, series.yaml (66 entries), Sefaria cache | open; 58 tests pass; built in parallel, will be rebased onto the card-back PR |
-| `feat/card-back-v3` | Phase 1 (in progress) | — |
+| `feat/card-back-v3` | [#6](https://github.com/siguy/parasha-pack/pull/6): v3 schema, migration, single CardBack/CardFront, letter + 5×7 duplex PDF | open; build + lint clean; Bereshit fits both formats; Purim backs overflow (expected); title text-stroke fixed (18446af) |
+| `feat/deck-validator` | Phase 2 (in progress, based on #6) | — |
+| `feat/hub-sync` + hub `feat/parashapacks-present-mode` | Phase 7 (in progress) | — |
 | `feat/styling-v2` | Phase 5.0–5.3 + Adam/Chava identity sheets (in progress, based on #5) | — |
 | `claude/torah-deck-improvements-40976f` | Original session branch (holds everything). Superseded by the two branches above; do not open a PR from it. | — |
 
@@ -34,6 +36,8 @@ Rules: branch from `main` as `<type>/<short-description>`. When a feature depend
 `main ← #4 fix/image-model-nano-banana-2 ← #3 docs/deck-v3-plan ← feat/card-back-v3 ← feat/deck-validator ← feat/character-library ← feat/styling-v2 ← feat/agent-pipeline-v3 ← feat/bereshit-deck ← feat/extras ← feat/purim-v3`
 - Hub: `siguy/simonbrief-hub` branch `feat/parashapacks-present-mode`, a separate PR.
 - Branches built in parallel are rebased onto the chain when they finish.
+
+**Re-stacking needed after Wave 2:** #5 and styling-v2 were built on `docs/deck-v3-plan`. Rebase them onto `feat/card-back-v3` (#6), and the validator onto styling-v2. The final chain is #4 ← #3 ← #6 ← #5 ← styling ← validator ← agents ← bereshit ← extras ← purim; hub-sync is rebased onto bereshit later.
 
 **Waves:**
 1. card-back-v3 ‖ character-library (code only, no image generation yet)

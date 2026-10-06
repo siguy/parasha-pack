@@ -27,11 +27,11 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [x] D9–D13 Back design, projector + presenter window, hub URL per deck, Bereshit scope/טוֹב, extras v1
 
 ## Phase 1 — New card backs (letter)
-- [~] 1.1 Letter-size mockups done: `docs/mockups/bereshit-v3.html` (10 backs, 3 fronts, 5×7 comparison; verified no overflow). **Waiting for Simon's approval.**
-- [ ] 1.2 `schemas/deck.v3.schema.json`
-- [ ] 1.3 `src/migrate_v2_to_v3.py` (Purim, Terumah)
-- [ ] 1.4 Single `CardBack.tsx`; letter frames; v3 palette + icons
-- [ ] 1.5 Duplex PDF export, `--format letter|5x7` from `print_formats.json`
+- [x] 1.1 Letter-size mockups done: `docs/mockups/bereshit-v3.html` (10 backs, 3 fronts, 5×7 comparison; verified no overflow). **Waiting for Simon's approval.**
+- [x] 1.2 `schemas/deck.v3.schema.json` (#6)
+- [x] 1.3 `src/migrate_v2_to_v3.py`: Purim and Terumah migrated, plus `decks/bereshit/deck.json` (#6)
+- [x] 1.4 Single `CardBack.tsx` + `CardFront.tsx`; letter frames; v3 palette + icons (#6)
+- [x] 1.5 Duplex PDF export: letter 20 pp and 5×7 20 pp (#6)
 
 ## Phase 2 — Automatic checks
 - [ ] 2.1 `src/validate_deck.py`
