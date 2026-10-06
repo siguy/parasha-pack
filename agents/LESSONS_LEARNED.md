@@ -205,3 +205,9 @@ removed in v3 (one `CardFront`/`CardBack`, sizes in `cqw`); keep them as history
 - **A sequence deck shifts every guide page after the stories.** Don't hand-edit page numbers:
   `src/deck_pattern.py` computes them from `story_cards`, and the validator checks the backs.
 
+- **Derived art can break the text too.** The coloring line-art prompt said "a few big shapes (sky,
+  hills, the river)", so Day 1 got hills and a river and Day 2 got a sun (before Day 4). The line-art
+  prompt now carries each card's `exclude` list and never names shapes to add. Look at every derived
+  picture (line art, thumbnails) with the text map open, not only the card art.
+- **Never run two image jobs on the same folder at once.** Two `coloring.py --redo` runs in parallel
+  each saw the other's deleted file as "missing" and paid for it again. Run redo batches one after another.

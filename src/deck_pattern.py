@@ -120,3 +120,21 @@ def deck_page_map(deck: dict, layout: dict, series_path: Path = SERIES_PATH) -> 
     """page_map() for one deck.json dict: picks standard/holiday and the deck's story count."""
     _, n, _ = story_card_count(deck, series_path)
     return page_map(layout, bool(deck.get("holiday")), n)
+
+
+# How a sequence deck's story cards are named. Every sequence deck so far is the days of creation,
+# so "Day"; the Card Designer uses the same word (card-designer/lib/cardTypes.ts).
+SEQUENCE_STORY_WORD = "Day"
+WEEKDAYS = ("Mon", "Tue", "Wed", "Thu", "Fri")
+
+
+def story_word(deck: dict) -> str:
+    """'Day' for a sequence deck's story cards ("Day 3"), 'Story' otherwise ("Story 3")."""
+    return SEQUENCE_STORY_WORD if (deck or {}).get("deck_pattern") == SEQUENCE else "Story"
+
+
+def teaching_day_label(day: int, deck: dict) -> str:
+    """A week_plan day: 'Day 2' in a standard deck, 'Tue' in a sequence deck (where "Day 2" is a card)."""
+    if (deck or {}).get("deck_pattern") == SEQUENCE and 1 <= day <= len(WEEKDAYS):
+        return WEEKDAYS[day - 1]
+    return f"Day {day}"
