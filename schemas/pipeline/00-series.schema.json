@@ -16,6 +16,11 @@
     "book": { "type": "string" },
     "ref": { "type": "string", "description": "e.g. 'Genesis 1:1–6:8'" },
     "holiday_placement": { "type": ["string", "null"], "description": "Holidays only, e.g. 'before: ki_tisa'" },
+    "deck_pattern": {
+      "enum": ["standard", "sequence"],
+      "description": "Optional (default standard). 'sequence' = the text itself is a numbered list (7 days, Ten Commandments): one story card per item. Copied from series.yaml"
+    },
+    "story_cards": { "type": "integer", "minimum": 3, "maximum": 10, "description": "Sequence decks only: how many story cards (copied from series.yaml)" },
     "middah": {
       "type": "object",
       "additionalProperties": false,
@@ -67,5 +72,7 @@
     },
     "sensitivities": { "type": "array", "items": { "type": "string" }, "description": "Hard-text policy items for this deck" },
     "notes": { "type": "string" }
-  }
+  },
+  "if": { "properties": { "deck_pattern": { "const": "sequence" } }, "required": ["deck_pattern"] },
+  "then": { "required": ["story_cards"] }
 }

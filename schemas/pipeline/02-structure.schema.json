@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://parasha-pack/schemas/pipeline/02-structure.schema.json",
   "title": "Pipeline step 02: Curriculum Designer",
-  "description": "decks/<id>/pipeline/02-structure.yaml. Card list, ★core cards, minutes, 5-day week plan, story world. Card-type counts (D1) are checked by src/assemble_deck.py.",
+  "description": "decks/<id>/pipeline/02-structure.yaml. Card list, ★core cards, minutes, 5-day week plan, story world. Exact card-type counts (D1, or 6 + N for a sequence deck, N = story_cards in 00-series.yaml) are checked by src/assemble_deck.py; the schema only bounds the total.",
   "type": "object",
   "additionalProperties": false,
   "required": ["agent", "deck_id", "holiday", "focal_incident", "story_world", "story_world_setting", "learning_objectives", "week_plan", "cards"],
@@ -59,8 +59,8 @@
   "allOf": [
     {
       "if": { "properties": { "holiday": { "const": true } } },
-      "then": { "properties": { "cards": { "minItems": 12, "maxItems": 12 } } },
-      "else": { "properties": { "cards": { "minItems": 10, "maxItems": 10 } } }
+      "then": { "properties": { "cards": { "minItems": 12, "maxItems": 19 } } },
+      "else": { "properties": { "cards": { "minItems": 9, "maxItems": 16 } } }
     }
   ]
 }

@@ -123,7 +123,70 @@ def test_schema_error_is_reported_with_location(deck_dir):
 def test_wrong_card_count_fails(deck_dir):
     _edit(deck_dir, "02-structure.yaml", lambda d: d["cards"].pop())
     _, report = assemble_deck.assemble(deck_dir, write=False)
-    assert any("02-structure.yaml: cards" in e for e in report.errors)
+    assert any("standard deck with 4 story cards needs 10 cards, found 9" in e for e in report.errors)
+
+
+# ---------------------------------------------------------------------------
+# Sequence decks (one story card per item, e.g. the 7 days of creation)
+# ---------------------------------------------------------------------------
+
+def _make_sequence(deck_dir, story_cards=7):
+    """Turn the 10-card fixture into a sequence deck: copy story_4 into story_5..story_N everywhere."""
+    import copy
+    import deck_pattern
+    layout = yaml.safe_load((REPO_ROOT / "guide_layout.yaml").read_text(encoding="utf-8"))
+    pages = deck_pattern.page_map(layout, False, story_cards)["cards"]
+
+    _edit(deck_dir, "00-series.yaml", lambda d: d.update(deck_pattern="sequence", story_cards=story_cards))
+
+    def add_stories(d, key="cards"):
+        rows = d[key]
+        at = next(i for i, c in enumerate(rows) if c["card_id"] == "story_4")
+        for n in range(5, story_cards + 1):
+            row = copy.deepcopy(rows[at])
+            row["card_id"] = f"story_{n}"
+            if "sequence_number" in row:
+                row["sequence_number"] = n
+            rows.insert(at + n - 4, row)
+        for row in rows:   # guide pages move down behind the extra story pages
+            guide_ref = (row.get("back") or {}).get("guide_ref")
+            if guide_ref:
+                guide_ref["page"] = pages[row["card_id"]]
+
+    def structure(d):
+        add_stories(d)
+        d["week_plan"][2]["cards"] += [f"story_{n}" for n in range(5, story_cards + 1)]
+    _edit(deck_dir, "02-structure.yaml", structure)
+    for filename in ("02b-sensitivity.yaml", "03-content.yaml", "05-visual.yaml"):
+        _edit(deck_dir, filename, add_stories)
+
+
+def test_sequence_deck_assembles_with_one_story_card_per_item(deck_dir):
+    _make_sequence(deck_dir, 7)
+    deck, report = assemble_deck.assemble(deck_dir)
+    assert report.errors == []
+    assert len(deck["cards"]) == 13
+    assert (deck["deck_pattern"], deck["story_cards"]) == ("sequence", 7)
+    assert _card(deck, "story_7")["sequence_number"] == 7
+    assert _card(deck, "connection_1")["back"]["guide_ref"]["page"] == 13
+
+
+def test_sequence_deck_with_wrong_story_count_fails(deck_dir):
+    _make_sequence(deck_dir, 7)
+    _edit(deck_dir, "00-series.yaml", lambda d: d.update(story_cards=6))
+    _, report = assemble_deck.assemble(deck_dir, write=False)
+    assert any("sequence deck with 6 story cards needs 12 cards, found 13" in e for e in report.errors)
+
+
+def test_sequence_deck_needs_story_cards(deck_dir):
+    _edit(deck_dir, "00-series.yaml", lambda d: d.update(deck_pattern="sequence"))
+    _, report = assemble_deck.assemble(deck_dir, write=False)
+    assert any("00-series.yaml" in e and "story_cards" in e for e in report.errors)
+
+
+def test_standard_deck_has_no_pattern_fields(deck_dir):
+    deck, _ = assemble_deck.assemble(deck_dir, write=False)
+    assert "deck_pattern" not in deck and "story_cards" not in deck
 
 
 def test_unapproved_checkpoint_fails(deck_dir):

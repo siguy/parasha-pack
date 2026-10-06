@@ -14,7 +14,8 @@ Exit code: 0 = no errors, 1 = errors found (or warnings, with --strict).
 What it checks:
     1. JSON Schema (schemas/deck.v3.schema.json)
     2. Word budgets on the backs (objective, say, cues, ask)
-    3. Card count and card types (10 standard / 12 holiday, decision D1)
+    3. Card count and card types (10 standard / 12 holiday, decision D1; a sequence deck has
+       one story card per item, so 6 + N cards: see src/deck_pattern.py)
     4. Characters: listed characters exist; named characters are listed; <= 4 per card
     5. Hebrew: nikud present; unpointed copies match; grammatical gender vs. character gender
     6. Transitions don't depend on card order
@@ -34,6 +35,8 @@ from pathlib import Path
 
 import jsonschema
 import yaml
+
+import deck_pattern
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_PATH = REPO_ROOT / "schemas" / "deck.v3.schema.json"
@@ -55,10 +58,7 @@ MAX_ASK_WORDS = 12
 MAX_HOME_WORDS = 70      # all English text on the home card back
 MAX_CHARACTERS_PER_CARD = 4  # Nano Banana 2 accepts up to 4 character references
 
-# How many cards of each type a deck needs (decision D1)
-STANDARD_TYPE_COUNTS = {"anchor": 1, "spotlight": 2, "story": 4, "connection": 1, "power_word": 1, "home": 1}
-HOLIDAY_TYPE_COUNTS = {"anchor": 1, "spotlight": 2, "story": 3, "connection": 1, "tradition": 3,
-                       "power_word": 1, "home": 1}
+# How many cards of each type a deck needs: see src/deck_pattern.py (decision D1 + sequence decks)
 
 # Transitions must work in any teaching order, so no "first" / "next card"
 DECK_ORDER_WORDS = ["first", "begins", "one more", "last card", "next card"]
@@ -221,11 +221,17 @@ def check_schema(deck: dict, schema: dict, report: Report) -> None:
         report.error(card_id, field, f"schema: {err.message[:200]}")
 
 
-def check_card_counts(deck: dict, report: Report) -> None:
+def check_card_counts(deck: dict, report: Report, series_path: Path = deck_pattern.SERIES_PATH) -> None:
     cards = deck.get("cards", [])
     holiday = bool(deck.get("holiday"))
-    expected = HOLIDAY_TYPE_COUNTS if holiday else STANDARD_TYPE_COUNTS
-    kind = "holiday" if holiday else "standard"
+    pattern, story_cards, problem = deck_pattern.story_card_count(deck, series_path)
+    if problem:
+        report.error("deck", "deck_pattern", problem)
+    expected = deck_pattern.expected_type_counts(holiday, story_cards)
+    if pattern == deck_pattern.STANDARD:
+        kind = "holiday" if holiday else "standard"
+    else:
+        kind = f"holiday {pattern}" if holiday else pattern
     total = sum(expected.values())
     if len(cards) != total:
         report.error("deck", "cards", f"{kind} deck needs {total} cards, found {len(cards)}")
@@ -425,12 +431,12 @@ def check_image_prompt(card: dict, report: Report) -> None:
         report.warn(cid, "image_prompt", "Star of David in a story-world scene (anachronism)")
 
 
-def check_guide_ref(card: dict, layout: dict, kind: str, report: Report) -> None:
+def check_guide_ref(card: dict, pages: dict, kind: str, report: Report) -> None:
+    """pages = {card_id: page} for this deck (deck_pattern.deck_page_map(...)['cards'])."""
     cid = card.get("card_id", "?")
     guide_ref = (card.get("back") or {}).get("guide_ref")
     if not guide_ref:
         return
-    pages = layout.get(kind, {}).get("cards", {})
     expected = pages.get(cid)
     if expected is None:
         report.error(cid, "back.guide_ref.page", f"'{cid}' has no slot in the {kind} guide layout")
@@ -449,7 +455,7 @@ def check_todos(item: dict, card_id: str, report: Report) -> None:
 # ---------------------------------------------------------------- main entry
 
 def validate_deck(deck_path, characters_dir: Path = CHARACTERS_DIR, layout_path: Path = LAYOUT_PATH,
-                  schema_path: Path = SCHEMA_PATH) -> Report:
+                  schema_path: Path = SCHEMA_PATH, series_path: Path = deck_pattern.SERIES_PATH) -> Report:
     """Run every check on one deck.json and return the Report."""
     deck_path = Path(deck_path)
     report = Report(deck_path)
@@ -482,11 +488,12 @@ def validate_deck(deck_path, characters_dir: Path = CHARACTERS_DIR, layout_path:
         deck_names.setdefault(key, key.title())
 
     check_schema(deck, schema, report)
-    check_card_counts(deck, report)
+    check_card_counts(deck, report, series_path)
     deck_fields = {k: v for k, v in deck.items() if k != "cards"}
     check_todos(deck_fields, "deck", report)
     check_nikud(deck_fields, "deck", report)
     kind = "holiday" if deck.get("holiday") else "standard"
+    guide_pages = deck_pattern.deck_page_map(deck, layout, series_path)["cards"]
     for card in cards:
         if not isinstance(card, dict):
             continue
@@ -498,7 +505,7 @@ def validate_deck(deck_path, characters_dir: Path = CHARACTERS_DIR, layout_path:
         check_gender(card, genders, pairs, report)
         check_transition(card, report)
         check_image_prompt(card, report)
-        check_guide_ref(card, layout, kind, report)
+        check_guide_ref(card, guide_pages, kind, report)
 
     # Group issues by card in deck order (deck-level first); sorted() keeps check order within a card
     order = {"deck": -1, **{c.get("card_id"): i for i, c in enumerate(cards) if isinstance(c, dict)}}

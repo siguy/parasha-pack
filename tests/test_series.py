@@ -103,3 +103,21 @@ def test_holiday_before_must_be_a_parasha():
 def test_missing_characters_lists_noach(real_series):
     assert "noach" in series.missing_characters(real_series)
     assert "adam" not in series.missing_characters(copy.deepcopy(real_series))
+
+
+def test_bereshit_is_a_seven_card_sequence_deck(real_series):
+    by_id = {e["id"]: e for e in series.year_order(real_series)}
+    assert (by_id["bereshit"]["deck_pattern"], by_id["bereshit"]["story_cards"]) == ("sequence", 7)
+
+
+@pytest.mark.parametrize("fields, problem", [
+    ({"deck_pattern": "sequence"}, "needs story_cards"),
+    ({"deck_pattern": "sequence", "story_cards": 11}, "story_cards is 11"),
+    ({"deck_pattern": "list", "story_cards": 7}, "deck_pattern 'list'"),
+    ({"story_cards": 7}, "only for deck_pattern: sequence"),
+])
+def test_bad_deck_pattern_is_reported(real_series, fields, problem):
+    broken = copy.deepcopy(real_series)
+    entry = next(p for p in broken["parshiyot"] if p["id"] == "noach")
+    entry.update(fields)
+    assert any(p.startswith("noach:") and problem in p for p in series.validate_series(broken))

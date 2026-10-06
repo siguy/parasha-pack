@@ -185,3 +185,63 @@ def test_full_run_skips_home_and_promptless_cards(tmp_path, monkeypatch, caplog)
     assert [Path(p).name for p in generated] == ["story_1.png"]
     assert "[SKIP] home_1 - home card" in caplog.text
     assert "[SKIP] story_2 - no image_prompt" in caplog.text
+
+
+# ---------------------------------------------------------------------------
+# Image edits (--edit-from): one picture in, "only change ..." out
+# ---------------------------------------------------------------------------
+
+def test_edit_from_needs_card():
+    with pytest.raises(SystemExit):
+        generate_images.parse_args(["deck.json", "--edit-from", "raw/story_6.png"])
+
+
+def test_edit_mode_is_2k_single_image():
+    args = generate_images.parse_args(["deck.json", "--card", "story_5", "--edit-from", "raw/story_6.png"])
+    run = generate_images.resolve_run_mode(args)
+    assert (run["mode"], run["size"], run["variants"], run["card"]) == ("edit", "2K", 1, "story_5")
+    assert run["edit_path"] == Path("raw/story_6.png")
+
+
+def test_edit_image_is_sent_first_without_style_plates_or_continuity(tmp_path):
+    deck_dir = tmp_path / "demo"
+    (deck_dir / "raw").mkdir(parents=True)
+    master = deck_dir / "raw" / "story_6.png"
+    Image.new("RGB", (30, 40), "green").save(master)
+    card = {"card_id": "story_5", "card_type": "story", "continuity_ref": "story_6", "characters_in_scene": []}
+    refs = generate_images.assemble_references(deck_dir / "deck.json", card, {}, edit_path=master)
+    assert refs["labels"] == [generate_images.style_config.reference_label("edit")]
+    assert refs["parts"][0]["text"].startswith("Image 1 = the image to edit")
+
+
+def test_edit_prompt_keeps_composition_and_lists_only_the_change():
+    prompt = generate_images.build_edit_prompt("Remove the land animals.", reference_labels=["the image to edit"])
+    assert prompt.index("Image 1 = the image to edit") < prompt.index("=== EDIT ===")
+    assert "Keep the exact same composition" in prompt
+    assert prompt.split("Only change:")[1].strip().startswith("Remove the land animals.")
+    assert "=== STYLE ===" not in prompt and "=== SCENE ===" not in prompt
+    assert "SAFETY RULES" in prompt
+
+
+def test_edit_run_writes_the_card_image(tmp_path, monkeypatch):
+    deck = {"deck_id": "demo", "cards": [
+        {"card_id": "story_5", "card_type": "story", "image_prompt": "Remove the land animals."}]}
+    deck_path = tmp_path / "demo" / "deck.json"
+    (deck_path.parent / "raw").mkdir(parents=True)
+    deck_path.write_text(json.dumps(deck))
+    master = deck_path.parent / "raw" / "story_6.png"
+    Image.new("RGB", (30, 40), "green").save(master)
+
+    calls = []
+    monkeypatch.setattr(generate_images, "generate_image_nano_banana",
+                        lambda prompt, api_key, output_path, **kw: calls.append((prompt, output_path, kw)) or {"success": True})
+    monkeypatch.setattr(generate_images, "save_prompt_sidecar", lambda *a, **kw: None)
+    monkeypatch.setattr(generate_images, "log_generation", lambda *a, **kw: None)
+    monkeypatch.setattr(generate_images.time, "sleep", lambda s: None)
+
+    generate_images.main([str(deck_path), "--api-key", "FAKEKEY", "--card", "story_5", "--edit-from", str(master)])
+
+    prompt, output_path, kw = calls[0]
+    assert Path(output_path).name == "story_5.png" and kw["image_size"] == "2K"
+    assert "Only change:\nRemove the land animals." in prompt
+    assert kw["reference_images"][0]["text"].startswith("Image 1 = the image to edit")

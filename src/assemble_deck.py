@@ -6,7 +6,7 @@ Each agent writes one YAML file in decks/<id>/pipeline/. This script is the "sta
 it checks every file against its schema (schemas/pipeline/*.schema.json), then takes
 each part from the agent that owns it:
 
-    00-series.yaml       -> deck name, ref, holiday flag, value (middah)
+    00-series.yaml       -> deck name, ref, holiday flag, value (middah), deck_pattern + story_cards
     02-structure.yaml    -> card list and order, core/minutes, week_plan, story world
     02b-sensitivity.yaml -> checkpoint must be approved; "if they ask" answers -> guide
     03-content.yaml      -> titles, back, guide, hebrew_keyword
@@ -38,6 +38,7 @@ from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 
 import character_library
+import deck_pattern
 
 logger = logging.getLogger("assemble_deck")
 
@@ -61,11 +62,13 @@ PIPELINE_FILES = [
     ("06-editor.yaml", False),
 ]
 
-# Decision D1: 10 cards standard, 12 holiday (a holiday swaps 1 story card for 3 tradition cards).
-CARD_MIX = {
-    False: {"anchor": 1, "spotlight": 2, "story": 4, "connection": 1, "power_word": 1, "home": 1},
-    True: {"anchor": 1, "spotlight": 2, "story": 3, "connection": 1, "tradition": 3, "power_word": 1, "home": 1},
-}
+# The card mix: decision D1 (10 cards standard, 12 holiday) or a sequence deck with one story
+# card per item (6 + N cards). The numbers live in src/deck_pattern.py.
+def card_mix(series: dict, holiday: bool) -> dict:
+    """Expected {card_type: count} for this deck, from 00-series.yaml's deck_pattern/story_cards."""
+    _, story_cards, _ = deck_pattern.story_card_count({**series, "holiday": holiday})
+    return deck_pattern.expected_type_counts(holiday, story_cards)
+
 
 # Used only when 05-visual.yaml doesn't exist yet (e.g. assembling right after the Content Writer).
 PLACEHOLDER_PALETTE = ["#444444", "#777777", "#999999", "#BBBBBB", "#EEEEEE"]
@@ -152,12 +155,18 @@ def check_deck_ids(steps: dict, deck_id_from_folder: str, report: Report) -> Non
             report.error(f"{stem}.yaml: deck_id '{data.get('deck_id')}' does not match folder '{deck_id_from_folder}'")
 
 
-def check_card_mix(structure: dict, report: Report) -> None:
-    """D1 card mix. The total is enforced by the 02 schema; the per-type mix is a warning."""
-    expected = CARD_MIX[bool(structure.get("holiday"))]
+def check_card_mix(structure: dict, series: dict, report: Report) -> None:
+    """Card mix (D1, or 6 + N for a sequence deck). A wrong total is an error; a wrong per-type mix a warning."""
+    pattern, story_cards, problem = deck_pattern.story_card_count({**series, "holiday": structure.get("holiday")})
+    if problem:
+        report.error(f"00-series: {problem}")
+    expected = card_mix(series, bool(structure.get("holiday")))
+    if len(structure["cards"]) != sum(expected.values()):
+        report.error(f"02-structure: a {pattern} deck with {story_cards} story cards needs "
+                     f"{sum(expected.values())} cards, found {len(structure['cards'])}")
     actual = Counter(c["card_type"] for c in structure["cards"])
     if dict(actual) != expected:
-        report.warn(f"02-structure: card mix {dict(actual)} differs from the D1 mix {expected}")
+        report.warn(f"02-structure: card mix {dict(actual)} differs from the {pattern} mix {expected}")
     ids = [c["card_id"] for c in structure["cards"]]
     for dup in [i for i, n in Counter(ids).items() if n > 1]:
         report.error(f"02-structure: card_id '{dup}' appears more than once")
@@ -312,6 +321,9 @@ def merge(steps: dict, report: Report) -> dict:
     else:
         report.warn("deck schema has no 'story_world_setting' yet; left out of deck.json "
                     "(generate_images.py then defaults to the landscape plate)")
+    if series.get("deck_pattern", deck_pattern.STANDARD) != deck_pattern.STANDARD:
+        deck["deck_pattern"] = series["deck_pattern"]
+        deck["story_cards"] = series["story_cards"]
     deck["week_plan"] = structure["week_plan"]
 
     content_by_id, visual_by_id = _by_card(content), _by_card(visual)
@@ -358,7 +370,7 @@ def assemble(deck_dir, write: bool = True, library_dir=None) -> tuple:
         return None, report
 
     check_deck_ids(steps, deck_dir.name, report)
-    check_card_mix(steps["02-structure"], report)
+    check_card_mix(steps["02-structure"], steps["00-series"], report)
     check_sensitivity(steps["02-structure"], steps["02b-sensitivity"], report)
     check_card_sets(steps["02-structure"], steps["03-content"], "03-content.yaml", report)
     if steps["05-visual"]:

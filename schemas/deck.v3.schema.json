@@ -12,6 +12,11 @@
     "parasha_en": { "type": "string", "description": "Parasha or holiday name in English, e.g. 'Bereshit' or 'Purim'" },
     "parasha_he": { "type": "string" },
     "holiday": { "type": "boolean", "description": "true for holiday decks (they add tradition cards)" },
+    "deck_pattern": {
+      "enum": ["standard", "sequence"],
+      "description": "Optional (default standard: 4 story cards, 3 on a holiday). 'sequence' = one story card per item of a numbered text (e.g. the 7 days of creation); needs story_cards. See src/deck_pattern.py"
+    },
+    "story_cards": { "type": "integer", "minimum": 3, "maximum": 10, "description": "Sequence decks only: the number of story cards (from series.yaml)" },
     "ref": { "type": "string", "description": "Source text, e.g. 'Genesis 1:1-6:8'" },
     "value": {
       "type": "object",

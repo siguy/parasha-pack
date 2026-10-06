@@ -43,6 +43,7 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from generate_activities import hebrew_html, html_to_pdf  # noqa: E402
 from generate_items import setup_logging  # noqa: E402
+import deck_pattern  # noqa: E402
 
 logger = logging.getLogger("build_guide")
 
@@ -97,8 +98,9 @@ def load_yaml(path: Path, required: bool = True) -> dict:
 # ---------------------------------------------------------------------------
 
 def layout_for(deck: dict, layout: dict = None) -> dict:
+    """This deck's page map {'cards': {...}, 'fixed': {...}}: one page per story card (see deck_pattern.py)."""
     layout = layout or load_yaml(LAYOUT_PATH)
-    return layout["holiday" if deck.get("holiday") else "standard"]
+    return deck_pattern.deck_page_map(deck, layout)
 
 
 def page_plan(deck: dict, layout: dict) -> list:

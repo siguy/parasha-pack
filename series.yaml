@@ -13,6 +13,9 @@
 #   status (done|in_progress|planned), middah (from docs/policies/values-spine.md, or TBD),
 #   power_word {he, translit, en} (or TBD), characters (keys in characters/),
 #   sensitivities, notes.
+#   Optional: deck_pattern: sequence + story_cards: N when the text itself is a numbered list
+#   (the 7 days of creation, the Ten Commandments...): the deck gets one story card per item,
+#   so 6 + N cards instead of 10. Leave both out for a normal deck. See src/deck_pattern.py.
 #
 # Rule (values-spine.md): no middah may repeat within 4 consecutive filled decks.
 
@@ -80,13 +83,15 @@ parshiyot:
     status: done
     middah: Caring for the world
     power_word: {he: טוֹב, translit: TOV, en: good}
+    deck_pattern: sequence   # one story card per day of creation
+    story_cards: 7
     characters: [adam, chava]
     sensitivities:
       - "The snake and the fruit (Genesis 3): teacher guide only, not on cards"
       - "Kayin and Hevel (Genesis 4): skipped"
       - "Adam and Chava always in simple modest full-coverage tunics (decision D3)"
       - "Hashem is never drawn as a person: light only"
-    notes: "First v3 deck. Seven days of creation, Adam names the animals, caring for the garden (Genesis 2:15)."
+    notes: "First v3 deck. A card for each of the seven days of creation (sequence deck); Adam names the animals and cares for the garden (Genesis 2:15) on his spotlight."
   - id: noach
     name_en: Noach
     name_he: נֹחַ
