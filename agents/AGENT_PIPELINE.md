@@ -221,7 +221,7 @@ cd src && python generate_images.py ../decks/{deck}/deck.json
 # 6. Critical rules (no text, no borders)
 ```
 
-Character reference images from `references/manifest.json` are automatically included.
+Character reference images from the shared `characters/` library (fallback: deck `references/manifest.json`) are automatically included, max 4 per image.
 
 ---
 
@@ -272,7 +272,7 @@ Before regenerating card images, verify:
 1. [ ] Image prompt in deck.json is scene-only (no style/safety/composition sections)
 2. [ ] Character descriptions in prompt match reference sheet
 3. [ ] Hebrew content in deck.json has correct nikud (for Card Designer to render)
-4. [ ] Character reference images exist in `references/manifest.json`
+4. [ ] Character identity images exist in `characters/{key}/identity.png` for every key in `characters_in_scene`
 5. [ ] All content fields populated (for Card Designer text overlay)
 
 ---

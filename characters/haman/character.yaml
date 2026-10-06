@@ -1,0 +1,44 @@
+# Haman. Villain: misguided and jealous, never scary (see VISUAL_SPECS villain rules).
+key: haman
+name_en: Haman
+name_he: הָמָן
+gender: male
+role: villain
+canonical: true
+version: 1
+identity: identity.png
+visual_anchors:
+  - adult man with a dark pointed goatee connected to his mustache
+  - distinctive three-cornered hat (hamantaschen shape) in dusty purple and gray
+  - muted dusty-purple and gray-brown Persian vest over a lighter tunic, baggy trousers
+  - curled-toe boots
+  - pouty, jealous expression with furrowed brow (NOT scary)
+  - arms crossed, shoulders hunched
+personality: [jealous, proud, misguided]
+props: [Three-cornered hat]
+signature_poses:
+  - Arms crossed, looking jealous
+  - Turned away, frustrated
+  - Pouty face, upset
+  - Looking embarrassed
+appears_in: [purim]
+source_notes: >
+  Identity copied from decks/purim/references/haman_identity.png.
+research:
+  biblical_refs: ["Megillat Esther"]
+  key_stories:
+    - Wanting everyone to bow to him
+    - Getting jealous when Mordechai wouldn't bow
+    - Making a bad plan because of jealousy
+    - His plan being stopped
+  relationships:
+    Mordechai: felt jealous of him
+    Achashverosh: worked for the king
+    Esther: didn't know her secret
+  emotional_moments:
+    - {event: Mordechai not bowing, emotion: jealous and hurt}
+    - {event: Making his plan, emotion: frustrated}
+    - {event: Being caught, emotion: embarrassed}
+  age_appropriate_summary: >-
+    Haman felt very jealous when someone wouldn't bow to him. His jealousy made
+    him make bad choices. We can feel jealous sometimes, but we should make good choices.

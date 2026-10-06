@@ -157,8 +157,7 @@ decks/{deck}/
 ├── images/                # Final exports with text overlay
 ├── backs/                 # Teacher content backs
 └── references/
-    ├── manifest.json
-    └── {character}_identity.png
+    └── manifest.json      # style hero (characters come from characters/{key}/)
 ```
 
 ## Handoff
