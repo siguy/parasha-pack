@@ -103,10 +103,10 @@ Status: **All phases built overnight (2026-10-05/06) as 13 stacked PRs (#3–#15
 - **Lessons:** recorded in `agents/LESSONS_LEARNED.md` and `FOR_SIMON.md` (#14), plus `tasks/lessons.md`.
 
 ## Phase 10 — A card for each day of creation (Simon, 2026-10-06)
-Decisions: fold "Adam names the animals" into Adam's spotlight; **art revised: regenerate all 7 days from one master scene with subtractive edits** (reuse didn't show the world building); add a general "sequence deck" type (the story count comes from series.yaml).
+Decisions: fold "Adam names the animals" into Adam's spotlight; **art: regenerate all 7 days with the new creation as the focal hero** (cumulative scenes are too busy; reuse didn't show the build-up); add a general "sequence deck" type (the story count comes from series.yaml).
 Branch `feat/bereshit-seven-days` on top of `fix/v3-followups` (#15).
 - [ ] 10.1 series.yaml `deck_pattern: sequence` + `story_cards: N`; schema/validator/assemble/guide_layout read the count from there (normal decks stay at 10/12)
 - [ ] 10.2 Bereshit deck: 13 cards (anchor, Days 1–7 as story_1..7, Adam, Chava, connection, טוֹב, home); cumulative gestures; new week plan (Fri = Day 7 + טוֹב + home)
-- [ ] 10.3 Art (revised, Simon): one master Day 6 scene, then earlier days made by subtractive image edits so all 7 are the same frame filling up; Day 7 = the master at rest; cap $2
+- [ ] 10.3 Art (final, Simon): each day's NEW creation is the large hero, with earlier creations soft in the background (setting kept consistent via continuity refs); Days 1–2 drawn concretely; Day 7 = the whole world resting (the only cumulative scene); cap $2.30
 - [ ] 10.4 Booklet one page per day; extras: 7-panel + easy 4-panel sequencing, 7 mini cards
 - [ ] 10.5 PDFs (letter + 5×7), validator 0/0, hub re-sync, PR with known issues
