@@ -163,8 +163,41 @@ Type-specific extras inside `back`:
 
 **`guide`** is never printed on the card; it feeds the teacher guide booklet (Phase 8).
 
-Word budgets are not enforced by the JSON schema; the validator (Phase 2) checks them.
-The migrated Purim and Terumah decks are over budget on purpose (content gets rewritten later).
+Word budgets are not enforced by the JSON schema; the validator checks them.
+The migrated Purim and Terumah decks are over budget on purpose (content gets rewritten later),
+so they fail validation until rewritten.
+
+Optional fields used by the image pipeline: deck `story_world_setting` (`outdoor`|`indoor`),
+card `style_plate` (`landscape`|`interior`|`object`|`classroom`) and card `continuity_ref`
+(the card_id of an earlier card whose image is passed as a reference, e.g. story_2 → story_1).
+
+## Validating a Deck
+
+```bash
+python3 src/validate_deck.py decks/bereshit/deck.json   # from the repo root
+```
+
+Errors must be fixed before export; warnings are worth a look. See `src/CLAUDE.md` for the full
+list of checks. Bereshit passes with 0 errors (its warnings are the TODO stubs).
+
+## Teacher Guide Page Map (`guide_layout.yaml`)
+
+`guide_layout.yaml` (repo root) fixes the letter-size guide booklet's page for every card slot,
+so "Guide p.N" on a back is the same for every deck of that kind. Each card's
+`back.guide_ref.page` must match it (the validator checks).
+
+| Slot | Standard (10 cards) | Holiday (12 cards) |
+|---|---|---|
+| cover / overview | p.1 / p.3 | p.1 / p.3 |
+| anchor_1 (+ week plan) | p.2 | p.2 |
+| spotlight_1–2 | p.4–5 | p.4–5 |
+| story_1… | p.6–9 (4 stories) | p.6–8 (3 stories) |
+| tradition_1–3 | — | p.9–11 |
+| connection_1 | p.10 | p.12 |
+| power_word_1 | p.11 | p.13 |
+| hard questions / adaptations / extras index | p.12 / 13 / 14 | p.14 / 15 / 16 |
+| family letter (+ home_1) | p.15 | p.17 |
+| sources | p.16 | p.18 |
 
 ## Print Formats
 
@@ -176,6 +209,17 @@ Defined once in `card-designer/print_formats.json`:
 | `5x7` | 5.25×7.25" | 5×7" trim | print shop: 0.125" bleed in the card color, keep text 0.25" inside the trim |
 
 The same components render both; all sizes are relative to the card width (`cqw`).
+
+**Export guard.** `npm run export <id>` first runs the deck validator, then renders
+`/print/<id>?format=…` and measures every card side. It stops (exit 1) and lists
+card id / side / format / px when a back's text section overflows
+(`.pp-card .body` taller than its box) or any text sits outside the safe zone
+(letter: 0.3" from the sheet edge; 5x7: 0.25" inside the trim, i.e. 0.375" from the sheet edge).
+
+| Flag | Effect |
+|---|---|
+| `--skip-validate` | don't run the Python validator |
+| `--allow-overflow` | print the layout problems but export anyway |
 
 ## Two Visual Worlds
 
