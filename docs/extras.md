@@ -1,4 +1,4 @@
-# Printable extras (bingo, I-spy, match-it, Listen & Do)
+# Printable extras (bingo, I-spy, match-it, Listen & Do, coloring, story order game) + teacher guide
 
 Four classroom activities that go with each deck. They're made from the same words as
 the cards, so children see the same pictures and hear the same Hebrew all week.
@@ -13,6 +13,11 @@ For Bereshit the PDFs are in `decks/bereshit/extras/`:
 | `ispy.pdf` | 4 | I-spy Easy, I-spy Challenge, coloring version, answer key |
 | `match.pdf` | 6 | 3 sets of 12 match cards, each followed by its back page |
 | `listen_do.pdf` | 2 | picture page for children + teacher script with answer keys |
+| `coloring.pdf` | 3 | 4 story pictures to color and cut, the story path glue sheet, the 7 days strip (age 6) |
+| `sequencing.pdf` | 2 | 8 mini story cards + control strip, then 2 more minis and the rules card |
+
+The **teacher guide booklet** is `decks/bereshit/print/bereshit-guide.pdf` (16 letter pages,
+previews in `decks/bereshit/print/previews/`). The classroom pilot forms are in `docs/pilot/`.
 
 A picture of page 1 of each is in `decks/bereshit/extras/previews/`.
 
@@ -61,6 +66,24 @@ page"), color. Cardstock (65–110 lb) makes the cards last much longer.
 - Level 1 is for younger children; Level 2 adds a 3-step direction. Use a fresh copy
   for each level. The answer keys at the bottom of your page show what each picture
   should look like.
+
+### Coloring + story path (`coloring.pdf`)
+- Page 1: four line-art pictures of the story cards, **mixed up on purpose**. Children color,
+  then cut on the thick dashed lines (each picture is 3.75 × 4.5").
+- Page 2: the story path. Children lay the pictures on boxes 1→2→3→4, then check themselves:
+  the dots in the corner of each picture match the dots on its box. Then glue and retell.
+- Page 3 (6-year-olds): cut off the picture strip on the right, cut the squares, glue each
+  next to its day (1–7). Say the day in Hebrew together.
+
+### Story order game (`sequencing.pdf`)
+- Print on cardstock. Cut the 8 mini cards (two sets of the 4 story cards) and the control strip.
+- The rules card (page 2) has a version for each age: **4** = three cards only, control strip
+  face up; **5** = all four, check afterwards; **6** = "what's missing?" with Hebrew-word hints.
+
+### Teacher guide booklet (`print/bereshit-guide.pdf`)
+- Letter, single- or double-sided, staple at the corner or hole-punch for a binder.
+- Page numbers never move: the card backs say "Guide p.N" and the booklet has that card on p.N.
+- p.15 is the family letter: photocopy one per family and send it home Friday with the home card.
 
 ---
 
@@ -119,7 +142,38 @@ The PDF step logs a warning when something doesn't fit (a page taller than the p
 card whose text overflows) or the web fonts (Heebo, Fredoka, Assistant from Google Fonts)
 didn't load. It needs internet for the fonts; offline it falls back to system fonts.
 
+### Coloring line art (4 AI edits per deck)
+`src/coloring.py` sends each story card's finished art (`raw/story_N.png`) to a Gemini **edit**
+call ("turn this into a coloring page: thick outlines, ≤12 big regions, simplify the
+background"), 1K, then cleans it with Pillow exactly like the item line art. Result:
+`extras/art/coloring/story_N.png`, made once. Look at the contact sheet before printing:
+```bash
+python coloring.py ../decks/noach --contact-sheet /tmp/coloring.png
+python coloring.py ../decks/noach --redo story_2 --hint "draw ONLY the ark, the dove and 3 animals"
+```
+Bereshit: 6 billed calls ($0.40): 4 first tries, 1 empty response (not billed) retried, and
+redos of story_1 (more light, fewer flowers) and story_2 (too busy).
+
+### Teacher guide booklet
+```bash
+python3 src/build_guide.py decks/bereshit       # → print/bereshit-guide.pdf + print/previews/
+```
+It reads deck.json (each card's `guide` block, `week_plan`, `value`), `pipeline/01-research.yaml`
+(the parasha in brief), `02-structure.yaml` (objectives), `02b-sensitivity.yaml` (the hard-question
+scripts), `research/{id}.yaml` (which translations), `decks/{id}/guide.yaml` (how-to-use text,
+family letter bullets + song, extras index) and `guide_layout.yaml` (page map). It **stops with an
+error** if a page overflows its 8.5×11 box, if the layout skips a page, or if a card back's
+`guide_ref.page` disagrees with the layout, and it reads the finished PDF back (pypdf) to prove
+each card's footer is on the right page. Too much text on a page? Shorten that card's guide block.
+
+### Pilot kit
+`python3 src/build_pilot_kit.py` rebuilds `docs/pilot/*.pdf` from `docs/pilot/kit.yaml`. See
+`docs/pilot/README.md` for the protocol and the signal → action table.
+
 ### Tests
 `tests/test_extras.py`: schema checks, bingo uniqueness + ≤6 shared + game length,
 I-spy counts = answer key (and zones, sizes, rotation, overlap), line-art binarization,
 cutouts, Hebrew wrapped in RTL spans.
+`tests/test_coloring_guide.py`: panel and mini-card sizes, straight shared cut lines, ≤40-word
+instructions, ≤4-word captions, line art is pure black/white, region counting, booklet page map
+vs guide_refs, the built PDF's pages, the family letter uses the same script as the teacher, 8 pilot questions.

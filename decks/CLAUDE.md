@@ -428,9 +428,12 @@ settings), checked against `schemas/extras.schema.json`. Do not put it in deck.j
 ```bash
 cd src
 python generate_items.py ../decks/bereshit          # item art -> items/shared/{id}/ or decks/{id}/extras/items/{id}/
-python generate_activities.py ../decks/bereshit     # -> decks/{id}/extras/{bingo,ispy,match,listen_do}.pdf
+python coloring.py ../decks/bereshit                # story line art (4 AI edits, once) -> extras/art/coloring/
+python generate_activities.py ../decks/bereshit     # -> decks/{id}/extras/{bingo,ispy,match,listen_do,coloring,sequencing}.pdf
+cd .. && python3 src/build_guide.py decks/bereshit  # teacher guide booklet -> decks/{id}/print/{id}-guide.pdf
 ```
 
 - `extras/art/` holds the two AI scenes (reused; re-measure Listen & Do `pos` boxes if regenerated)
 - `extras/previews/` page-1 PNGs; `extras/build/` is scratch (gitignored)
+- `decks/{id}/guide.yaml` holds the booklet-only text (how to use, family letter, extras index)
 - Full guide: `docs/extras.md`
