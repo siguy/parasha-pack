@@ -22,8 +22,37 @@ import time
 import urllib.request
 import urllib.error
 import base64
+import logging
 from datetime import datetime, timezone
 from pathlib import Path
+
+from PIL import Image
+
+from config import (DEFAULT_IMAGE_MODEL, DEFAULT_IMAGE_SIZE, VALID_IMAGE_SIZES,
+                    EXPECTED_DIMENSIONS_3_4)
+
+logger = logging.getLogger("generate_images")
+
+# Image generation can take a while at 2K/4K, especially with "thinking"
+REQUEST_TIMEOUT_SECONDS = 300
+
+# Errors also go to project.log in the repo root
+PROJECT_LOG = Path(__file__).resolve().parent.parent / "project.log"
+
+
+def setup_logging() -> None:
+    """Print INFO+ to the console and append ERROR+ to project.log."""
+    console = logging.StreamHandler(sys.stdout)
+    console.setLevel(logging.INFO)
+    console.setFormatter(logging.Formatter("%(message)s"))
+
+    error_file = logging.FileHandler(PROJECT_LOG, delay=True)  # file created only on first error
+    error_file.setLevel(logging.ERROR)
+    error_file.setFormatter(logging.Formatter("%(asctime)s %(name)s %(levelname)s %(message)s"))
+
+    logger.setLevel(logging.INFO)
+    logger.addHandler(console)
+    logger.addHandler(error_file)
 
 # PIL overlay system is deprecated - text overlay now handled by Card Designer React components
 # See card-designer/ for the React-based text overlay system
@@ -125,26 +154,28 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
 
 
 def log_generation(deck_path: Path, card_id: str, model: str, full_prompt: str,
-                   character_refs: list, success: bool) -> None:
+                   character_refs: list, success: bool, image_size: str = None) -> None:
     """
     Append a generation record to the deck's JSONL log.
 
-    Each line is a self-contained JSON object with 6 fields.
+    Each line is a self-contained JSON object with 7 fields.
     The log is append-only — never overwritten, never rotated at current scale.
 
     Args:
         deck_path: Path to deck.json
         card_id: Card being generated
-        model: Model name (e.g. "nano-banana-pro")
+        model: Model ID (e.g. "gemini-3.1-flash-image")
         full_prompt: Complete assembled prompt (all layers)
         character_refs: List of character keys whose refs were passed
         success: Whether the generation succeeded
+        image_size: Requested output size ("512", "1K", "2K", "4K")
     """
     log_path = deck_path.parent / "raw" / "generations.jsonl"
     record = {
         "card_id": card_id,
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "model": model,
+        "image_size": image_size,
         "full_prompt": full_prompt,
         "character_refs": character_refs,
         "success": success,
@@ -289,21 +320,33 @@ def load_reference_images(deck_path: Path, characters_in_scene: list = None,
     return image_parts, loaded_chars
 
 
-def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspect_ratio: str = "3:4", reference_images: list = None) -> dict:
-    """
-    Generate an image using Nano Banana Pro model (best for children's book style).
+def get_image_model() -> str:
+    """Return the image model ID: GEMINI_IMAGE_MODEL from .env/env, else the default."""
+    return os.environ.get("GEMINI_IMAGE_MODEL") or DEFAULT_IMAGE_MODEL
 
-    Args:
-        prompt: The image generation prompt
-        api_key: Gemini API key
-        output_path: Path to save the generated image
-        aspect_ratio: Aspect ratio (default 3:4 for cards)
-        reference_images: Optional list of reference image parts for character consistency
+
+def validate_image_size(image_size: str) -> str:
+    """Raise a clear error unless image_size is exactly one of 512, 1K, 2K, 4K."""
+    if image_size not in VALID_IMAGE_SIZES:
+        raise ValueError(
+            f"Invalid image size {image_size!r}. "
+            f"Use one of: {', '.join(VALID_IMAGE_SIZES)} (uppercase K)."
+        )
+    return image_size
+
+
+def build_image_request(prompt: str, api_key: str, model: str, aspect_ratio: str = "3:4",
+                        image_size: str = DEFAULT_IMAGE_SIZE, reference_images: list = None) -> tuple:
+    """
+    Build the URL and JSON payload for one image generation call.
+
+    Pure function (no network) so it can be tested.
 
     Returns:
-        Dict with 'success' (bool) and 'prompt' (str) keys
+        (url, payload) tuple
     """
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/nano-banana-pro-preview:generateContent?key={api_key}"
+    validate_image_size(image_size)
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
 
     # Build parts list: reference images first, then prompt
     parts = []
@@ -315,36 +358,93 @@ def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspe
         "contents": [{"parts": parts}],
         "generationConfig": {
             "responseModalities": ["IMAGE", "TEXT"],
-            "imageConfig": {"aspectRatio": aspect_ratio}
-        }
+            "imageConfig": {"aspectRatio": aspect_ratio, "imageSize": image_size},
+        },
     }
+    return url, payload
+
+
+def extract_final_image(result: dict):
+    """
+    Pull the final image (base64 string) out of an API response.
+
+    The model may "think" first and return draft images marked with
+    "thought": true. We skip those and keep the LAST real image part.
+
+    Returns:
+        base64 image string, or None if the response has no final image
+    """
+    final_image = None
+    for candidate in result.get("candidates", []):
+        for part in candidate.get("content", {}).get("parts", []):
+            if part.get("thought"):
+                continue  # interim draft, not the final answer
+            image_data = part.get("inlineData", {}).get("data")
+            if image_data:
+                final_image = image_data
+    return final_image
+
+
+def check_image_dimensions(output_path: str, aspect_ratio: str, image_size: str) -> tuple:
+    """Log the saved image's pixel size and warn if it isn't what we asked for."""
+    with Image.open(output_path) as img:
+        width, height = img.size
+    logger.info(f"  -> Image size: {width}x{height}")
+
+    if aspect_ratio == "3:4":
+        expected = EXPECTED_DIMENSIONS_3_4[image_size]
+        if (width, height) != expected:
+            logger.warning(
+                f"  Unexpected dimensions {width}x{height} for {image_size} {aspect_ratio} "
+                f"(expected {expected[0]}x{expected[1]}): {output_path}"
+            )
+    return width, height
+
+
+def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspect_ratio: str = "3:4",
+                               reference_images: list = None, image_size: str = DEFAULT_IMAGE_SIZE,
+                               model: str = None) -> dict:
+    """
+    Generate an image with Nano Banana 2 (or the model set in GEMINI_IMAGE_MODEL).
+
+    Args:
+        prompt: The image generation prompt
+        api_key: Gemini API key
+        output_path: Path to save the generated image
+        aspect_ratio: Aspect ratio (default 3:4 for cards)
+        reference_images: Optional list of reference image parts for character consistency
+        image_size: "512", "1K", "2K" (default) or "4K"
+        model: Model ID override (default: get_image_model())
+
+    Returns:
+        Dict with 'success' (bool) and 'prompt' (str) keys
+    """
+    model = model or get_image_model()
+    url, payload = build_image_request(prompt, api_key, model, aspect_ratio, image_size, reference_images)
 
     try:
         data = json.dumps(payload).encode('utf-8')
         req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"}, method='POST')
 
-        with urllib.request.urlopen(req, timeout=180) as response:
+        with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT_SECONDS) as response:
             result = json.loads(response.read().decode())
 
-        if "candidates" in result:
-            for candidate in result["candidates"]:
-                for part in candidate.get("content", {}).get("parts", []):
-                    if "inlineData" in part:
-                        image_data = part["inlineData"].get("data")
-                        if image_data:
-                            with open(output_path, 'wb') as f:
-                                f.write(base64.b64decode(image_data))
-                            return {"success": True, "prompt": prompt}
+        image_data = extract_final_image(result)
+        if not image_data:
+            logger.error(f"  No image in response from {model} for {output_path}")
+            return {"success": False, "prompt": prompt}
 
-        print(f"  No image in response")
-        return {"success": False, "prompt": prompt}
+        with open(output_path, 'wb') as f:
+            f.write(base64.b64decode(image_data))
+        check_image_dimensions(output_path, aspect_ratio, image_size)
+        return {"success": True, "prompt": prompt}
 
     except urllib.error.HTTPError as e:
         error_body = e.read().decode() if e.fp else ""
-        print(f"  HTTP Error {e.code}: {error_body[:200]}")
+        logger.error(f"  HTTP Error {e.code} from {model}: {error_body[:500]}")
         return {"success": False, "prompt": prompt}
     except Exception as e:
-        print(f"  Error: {e}")
+        logger.error(f"  Error generating {output_path} with {model}: {e}")
         return {"success": False, "prompt": prompt}
 
 
@@ -357,8 +457,12 @@ def main():
     parser.add_argument("--no-refs", action="store_true", help="Disable character reference images")
     parser.add_argument("--no-hero", action="store_true", help="Skip style hero reference image")
     parser.add_argument("--variants", type=int, default=1, help="Generate N variants per card (e.g. --variants 3)")
+    parser.add_argument("--size", default=DEFAULT_IMAGE_SIZE, choices=VALID_IMAGE_SIZES,
+                        help=f"Output resolution (default {DEFAULT_IMAGE_SIZE}; 3:4 at 2K = 1536x2048)")
 
     args = parser.parse_args()
+    setup_logging()
+    model_name = get_image_model()
 
     # Get API key
     api_key = args.api_key or os.environ.get("GEMINI_API_KEY")
@@ -397,7 +501,7 @@ def main():
 
     print(f"Generating images for: {deck_name}")
     print(f"Output directory: {raw_dir}")
-    print(f"Model: nano-banana-pro")
+    print(f"Model: {model_name}  Size: {args.size}")
     print("-" * 50)
     print("Note: Images are saved WITHOUT text overlay.")
     print("Use Card Designer (card-designer/) to render final cards with text.")
@@ -473,12 +577,14 @@ def main():
             else:
                 variant_path = output_path
 
-            result = generate_image_nano_banana(prompt, api_key, str(variant_path), reference_images=reference_images)
+            result = generate_image_nano_banana(prompt, api_key, str(variant_path),
+                                                reference_images=reference_images,
+                                                image_size=args.size, model=model_name)
             success = result["success"]
 
             # Log every generation attempt
-            model_name = "nano-banana-pro"
-            log_generation(deck_path, card_id, model_name, prompt, loaded_char_keys, success)
+            log_generation(deck_path, card_id, model_name, prompt, loaded_char_keys, success,
+                           image_size=args.size)
 
             if success:
                 print(f"  -> Saved: {variant_path.name}")

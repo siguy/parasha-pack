@@ -135,7 +135,23 @@ If depicting divine presence:
 # IMAGE GENERATION
 # =============================================================================
 
-DEFAULT_MODEL = "nano-banana"  # ALWAYS use this - never imagen or flash
+# Default image model: Nano Banana 2. Override with GEMINI_IMAGE_MODEL in .env
+# (e.g. GEMINI_IMAGE_MODEL=gemini-3-pro-image for Nano Banana Pro).
+DEFAULT_IMAGE_MODEL = "gemini-3.1-flash-image"
+
+# Output resolution sent as imageConfig.imageSize. Must be exactly one of these
+# (uppercase K). The API rejects lowercase like "2k".
+VALID_IMAGE_SIZES = ("512", "1K", "2K", "4K")
+DEFAULT_IMAGE_SIZE = "2K"
+
+# Expected pixel dimensions (width, height) for 3:4 images at each size.
+# Used only to log a warning if the API returns something unexpected.
+EXPECTED_DIMENSIONS_3_4 = {
+    "512": (384, 512),
+    "1K": (768, 1024),
+    "2K": (1536, 2048),
+    "4K": (3072, 4096),
+}
 
 ASPECT_RATIOS = {
     "card": "5:7",

@@ -15,44 +15,18 @@ import json
 import os
 import sys
 import time
-import base64
-import urllib.request
-import urllib.error
 from pathlib import Path
 
+from config import DEFAULT_IMAGE_SIZE, VALID_IMAGE_SIZES
+from generate_images import generate_image_nano_banana, setup_logging
 
-def generate_image(prompt: str, api_key: str, output_path: str, aspect_ratio: str = "16:9") -> bool:
-    """Generate image using Nano Banana Pro."""
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/nano-banana-pro-preview:generateContent?key={api_key}"
 
-    payload = {
-        "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {
-            "responseModalities": ["IMAGE", "TEXT"],
-            "imageConfig": {"aspectRatio": aspect_ratio}
-        }
-    }
-
-    try:
-        data = json.dumps(payload).encode("utf-8")
-        req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
-
-        with urllib.request.urlopen(req, timeout=180) as response:
-            result = json.loads(response.read().decode())
-
-        if "candidates" in result:
-            for candidate in result["candidates"]:
-                for part in candidate.get("content", {}).get("parts", []):
-                    if "inlineData" in part:
-                        image_data = part["inlineData"].get("data")
-                        if image_data:
-                            with open(output_path, "wb") as f:
-                                f.write(base64.b64decode(image_data))
-                            return True
-        return False
-    except Exception as e:
-        print(f"    Error: {e}")
-        return False
+def generate_image(prompt: str, api_key: str, output_path: str, aspect_ratio: str = "16:9",
+                   image_size: str = DEFAULT_IMAGE_SIZE) -> bool:
+    """Generate one image with the shared Nano Banana 2 helper (model from GEMINI_IMAGE_MODEL)."""
+    result = generate_image_nano_banana(prompt, api_key, output_path,
+                                        aspect_ratio=aspect_ratio, image_size=image_size)
+    return result["success"]
 
 
 # =============================================================================
@@ -129,7 +103,8 @@ Clean white background, no environment.
 """
 
 
-def generate_identity_refs(api_key: str, output_dir: str, characters: list = None):
+def generate_identity_refs(api_key: str, output_dir: str, characters: list = None,
+                           image_size: str = DEFAULT_IMAGE_SIZE):
     """Generate identity reference sheets for specified characters."""
     ref_dir = Path(output_dir)
     ref_dir.mkdir(parents=True, exist_ok=True)
@@ -160,7 +135,7 @@ def generate_identity_refs(api_key: str, output_dir: str, characters: list = Non
 
         identity_path = ref_dir / f"{char_key}_identity.png"
         print(f"\n  Identity Sheet (Portrait + Full Body)...")
-        if generate_image(get_identity_prompt(char_key), api_key, str(identity_path), "16:9"):
+        if generate_image(get_identity_prompt(char_key), api_key, str(identity_path), "16:9", image_size):
             print(f"    -> Saved: {identity_path.name}")
             manifest[char_key] = {"identity": identity_path.name}
         else:
@@ -180,8 +155,11 @@ def main():
     parser.add_argument("--output", "-o", default="decks/yitro/references", help="Output directory")
     parser.add_argument("--api-key", help="Gemini API key (or set GEMINI_API_KEY)")
     parser.add_argument("--character", "-c", help="Generate for specific character only")
+    parser.add_argument("--size", default=DEFAULT_IMAGE_SIZE, choices=VALID_IMAGE_SIZES,
+                        help=f"Output resolution (default {DEFAULT_IMAGE_SIZE})")
 
     args = parser.parse_args()
+    setup_logging()
 
     api_key = args.api_key or os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -190,7 +168,7 @@ def main():
 
     characters = [args.character] if args.character else None
 
-    generate_identity_refs(api_key, args.output, characters)
+    generate_identity_refs(api_key, args.output, characters, image_size=args.size)
 
     print("\n" + "="*50)
     print("REFERENCE GENERATION COMPLETE")
