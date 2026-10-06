@@ -3,7 +3,10 @@ Data schema definitions for Parasha Pack card decks.
 
 Front/back separation for teacher-friendly cards:
 - Card fronts: Scene-only AI images with React text overlay
-- Card backs: 5x7 printable teacher content rendered by Card Designer
+- Card backs: printable teacher content rendered by Card Designer (letter default, 5x7 optional)
+
+Note: these dataclasses describe the v2 deck format. v3 decks are defined by
+schemas/deck.v3.schema.json and checked by validate_deck.py.
 """
 
 from dataclasses import dataclass, field, asdict
