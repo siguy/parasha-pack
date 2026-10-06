@@ -124,20 +124,24 @@ The tables that used to live here are now the `visual_anchors` in each `characte
 
 ### How It Works
 
-1. `load_reference_images()` looks up each key in `characters_in_scene` in `characters/` first,
+1. `assemble_references()` looks up each key in `characters_in_scene` in `characters/` first,
    falling back to the deck's `references/manifest.json` (with a logged warning)
-2. Identity images are base64-encoded and passed to the API (max **4** character refs per image)
-3. Card prompts include character descriptions to reinforce visual features; the locked anchors are
-   available from `character_library.visual_anchor_text(key)`
+2. Identity images are passed to the API after the style plates (max **4** character refs per image),
+   each labeled "{Name} identity sheet — match face, hair, clothing exactly"
+3. The locked anchors (`character_library.visual_anchor_text(key)`) are **added to the prompt
+   automatically** for every character in `characters_in_scene`. Scene prompts only need pose,
+   action and emotion.
 
 ### Character Review Checkpoint
 
 Before finalizing a new character identity:
 
 1. Create `characters/{key}/character.yaml` with `identity: null`, `canonical: false`
-2. Generate 2+ identity versions (3-angle turnaround + expression row, plain background, **no caption text**)
+2. Generate 2+ identity versions (3-angle turnaround + expression row, plain background, **no caption text**):
+   `cd src && python generate_references.py --character {key} --versions 2` → `identity_v1.png`, `identity_v2.png`
 3. User reviews and selects preferred version
-4. Save it as `characters/{key}/identity.png`; set `identity: identity.png`, `canonical: true`
+4. `python generate_references.py --character {key} --accept vN` → `identity.png` (others to `alternates/`,
+   `character.yaml` updated); then set `canonical: true`
 
 ### Library contents
 
@@ -150,8 +154,8 @@ Before finalizing a new character identity:
 | mordechai | hero | yes | striped cream-and-brown headwrap, full gray-brown beard, brown striped robe, cream shawl |
 | haman | villain | yes | three-cornered hat, pointed goatee, muted dusty purple/gray, arms crossed (not scary) |
 | achashverosh | neutral | yes | blue turban under gold crown with red jewel, bushy beard, red robe with gold trim |
-| adam | hero | not yet | young adult man, short dark curly hair, short beard, modest oatmeal/clay full-coverage tunic |
-| chava | hero | not yet | young adult woman, long dark wavy hair loosely tied, modest sage-green full-coverage tunic dress |
+| adam | hero | yes | young adult man, short dark curly hair, short beard, modest oatmeal/clay full-coverage tunic |
+| chava | hero | yes | young adult woman, long dark wavy hair loosely tied, modest sage-green full-coverage tunic dress |
 | avraham, sarah, pharaoh | — | not yet | drafts (`canonical: false`) |
 
 **Modesty (decision D3, Modern Orthodox):** all characters fully covered; Adam and Chava wear simple
@@ -231,12 +235,58 @@ The Torah Scholar determines the story world setting as part of research. It is 
 
 ### What `build_generation_prompt()` adds automatically
 
-1. `STYLE_ANCHORS_V2` — Children's illustration style, anatomy rules
-2. **World style** — `MODERN_WORLD_STYLE` for connection/tradition, `story_world` for all others
-3. `SAFETY_PROMPT` — Content restrictions (no God in human form, etc.)
+All of this text lives in **`style/style_config.yaml`** (one source for the prompt builder, this
+agent pipeline and Image QA). Bump its `prompt_version` when you change it on purpose.
+
+0. `=== REFERENCE IMAGES ===` — one numbered label per reference image (see below)
+1. `STYLE_ANCHORS_V2` — Children's illustration style, anatomy rules (the Purim look, unchanged)
+2. **World style** — `MODERN_WORLD_STYLE` for connection/tradition, `story_world` for all others,
+   plus `Deck palette accents: …` when deck.json has a 5-color `palette`
+3. `SAFETY_PROMPT` — Content restrictions (no God in human form, villains sulky/comic, etc.)
 4. Scene description — passed through unchanged from deck.json
-5. `COMPOSITION_GUIDANCE[card_type]` — Per-card-type cinematography
+4a. Locked character anchors for each key in `characters_in_scene`
+5. `COMPOSITION_GUIDANCE[card_type]` — Per-card-type cinematography, plus: the top of the scene
+   continues naturally with no hard band (title area), key subjects in the central 90% of the width,
+   at most 5 figures in focus, a simple low-detail ground plane. (No more "darker lower-left".)
 6. `COMPOSITION_SUFFIX` — No text, no borders rules
+
+Modern-world rules now name the mix explicitly: Ashkenazi, Sephardi/Mizrahi (olive to brown skin)
+and Ethiopian people in every group scene; every boy wears a kippah, girls never do; a megillah is
+a single scroll without twin wooden rollers.
+
+---
+
+## Style Plates and Reference Order
+
+**Style plates** (`style/plates/`, see `style/README.md`) are 4 character-free images made from the
+Purim art: `landscape`, `interior`, `object`, `classroom`. One is sent first with every card, labeled
+"style plate (match art style only, not content)". They replace the per-deck `style_hero.png`
+(now only a fallback when no plates exist).
+
+| Card type | Plate |
+|-----------|-------|
+| connection, tradition | classroom |
+| anchor, power_word | object |
+| spotlight, story | deck `story_world_setting`: outdoor → landscape, indoor → interior (default landscape) |
+
+A card can override with `style_plate` (a name or a list, max 3).
+
+**Reference images are always sent in this order**, each named in the prompt:
+
+1. Style plate(s)
+2. Chosen draft composition (only for `--final --from-draft`)
+3. Continuity reference (`continuity_ref`: an earlier card's raw image, for the same place)
+4. Character identity sheets (max 4)
+
+### Draft → final
+
+1. `generate_images.py --card story_1 --draft` → two 1K drafts in `raw/drafts/story_1_d1.png`, `_d2.png` ($0.067 each)
+2. Simon picks one.
+3. `generate_images.py --final --from-draft raw/drafts/story_1_d2.png` → the 2K final at `raw/story_1.png`
+   ($0.101), with the draft labeled "re-render this exact composition at full detail in the same style".
+
+Every call goes to `raw/generations.jsonl` with `prompt_version` and the labeled `references`,
+and (when `PP_SPEND_LEDGER` is set) to the spend ledger, which refuses calls past `PP_BUDGET_USD`.
 
 ### Prompt Gotchas
 
@@ -251,5 +301,6 @@ The Torah Scholar determines the story world setting as part of research. It is 
 ## Reference Files
 
 - Character library: `characters/{key}/character.yaml` + `characters/{key}/identity.png`
-- Deck manifest (style hero, legacy character fallback): `decks/{deck}/references/manifest.json`
+- Style plates + style config: `style/plates/*.png`, `style/style_config.yaml`
+- Deck manifest (legacy style hero, legacy character fallback): `decks/{deck}/references/manifest.json`
 - Card images: `decks/{deck}/images/{card_id}.png`

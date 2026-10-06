@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Styling System v2: Style Plates, Labeled References, Draft → Final (Deck v3 Phase 5.0–5.3, 3.2)
+
+The art style is unchanged (Simon: keep the Purim look). These changes are about consistency and process.
+
+#### Added
+- **Series style plates** in `style/plates/` (landscape, interior, object, classroom, made from the Purim art and approved by Simon), with alternates and `style/README.md`.
+- **`style/style_config.yaml`**: one source for the style anchors (old `STYLE_ANCHORS_V2`, word for word), safety rules (moved from `schema.IMAGE_SAFETY_RULES`), modern-world rules, composition per card type, plate mapping, limits (4 character refs, 3 style refs) and `prompt_version: "v2.0"`. Loader: `src/style_config.py`.
+- **`assemble_references()`**: reference images go in a fixed, labeled order (style plates → draft → `continuity_ref` → character identity sheets, max 4), and the prompt opens with a `=== REFERENCE IMAGES ===` block naming each one. Big references are shrunk to 1536px JPEG.
+- **Locked character anchors** from `characters/{key}/character.yaml` are added to the prompt automatically.
+- **Deck palette**: `palette` (5 hex colors) in deck.json adds a "Deck palette accents" line.
+- **Draft → final**: `--draft` (1K, 2 variants, `raw/drafts/{card_id}_d{n}.png`) and `--final --from-draft` (2K, draft passed as a composition reference).
+- **Spend ledger** (`src/spend_ledger.py`): with `PP_SPEND_LEDGER` set, every image call is recorded; with `PP_BUDGET_USD`, calls are refused once the total reaches the budget. Prices: `config.IMAGE_PRICE_USD`.
+- **Identity sheets in the library**: `generate_references.py --character {key} --versions 2` writes `characters/{key}/identity_vN.png` (turnaround + expression row, no text, style plate as Image 1); `--accept vN` promotes one to `identity.png` and moves the rest to `alternates/`.
+- **Adam and Chava identity sheets** (4 calls at 2K, $0.40). The chosen sheets are v2; v1 is in `alternates/`.
+- Tests: `tests/test_styling_v2.py`, `tests/test_spend_ledger.py`, `tests/test_generate_references.py`.
+
+#### Changed
+- Composition (plan 5.2): the "darker lower-left" lines are gone. In their place: a simple ground plane, a natural title area at the top ("no hard band or border", with no percentages), key subjects in the central 90% of the width, and at most 5 figures in focus.
+- Modern world now spells out:
+  - a named diverse Jewish mix: Ashkenazi, Sephardi/Mizrahi and Ethiopian
+  - every boy wears a kippah; girls never do
+  - a megillah is drawn without twin rollers
+- Safety now adds a villain-posture rule: no pointing, no snarling; sulky or comic instead.
+- `generations.jsonl` gains `prompt_version`, `references` and `output_file`.
+- The per-deck `style_hero.png` is now only a fallback for when no plates exist.
+- `workflows/character.py` now writes identity sheets to `characters/{key}/`.
+- Esther's identity sheet had a caption strip, now cropped off. The original is in `characters/esther/alternates/`.
+
 ### Shared Character Library, Year Plan, Sefaria Research Cache (Deck v3 Phase 3)
 
 #### Added
