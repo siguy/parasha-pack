@@ -46,7 +46,7 @@ checkpoint: {approved: true, decided_by: simon, decided_at: "2026-10-06", notes:
 
 `assemble_deck.py` fails if a card in 02-structure is still `guide-only` or `skip`, or has no verdict.
 
-## Checklist (cover all three areas)
+## Checklist (cover all four areas)
 
 **Child development** — no death, injury or punishment on a card; stop the story at a safe beat; no
 "bad child" shame; no child shown alone and sad; feelings named gently; activities safe for 18 kids.
@@ -56,6 +56,10 @@ modern scenes; Shabbat-friendly home activities.
 **Hard-text policy** — every item in 00 `sensitivities` and 01 `hard_passages` has a verdict; villains
 "make bad choices", never monsters; a calm, honest scripted answer (1–2 sentences + redirect) for each
 question kids will ask.
+**Text fidelity** (area `text_fidelity`) — check every planned card against the 01 `text_map`: each card
+cites its `text_ref`; its purpose and (later) its back and picture promise only that row's `in_text`;
+nothing from `not_in_text` (Bereshit: no sun before Day 4, no water on Day 1, no animals on Day 3, no
+"tov" on Day 2); midrash is never presented as the verse. Flag any mismatch for 02/03 to fix.
 
 ## ★ Checkpoint
 

@@ -30,15 +30,21 @@ Score every criterion in `agents/rubrics/editor.yaml` **0, 1 or 2**. Sections an
 | Section | Weight | What it covers |
 |---------|--------|----------------|
 | `content` | 30 | budgets, SAY markup, open ASKs, transitions, middah thread, ★core = full lesson, guide complete |
-| `torah_accuracy` | 25 | claims cited, midrash labeled, 02b verdicts followed, how Hashem is described |
+| `torah_accuracy` | 25 | claims cited, **text fidelity** (each card vs. the 01 text map), midrash labeled, 02b verdicts followed, how Hashem is described |
 | `hebrew` | 20 | nikud, gender agreement, plural second person, CAPS stress in translit |
 | `art` | 15 | every pick passed Image QA, consistency across cards, prompts scene-only |
-| `print` | 10 | export overflow guard clean, legible at 3 m, 10/12 cards, duplex page order |
+| `print` | 10 | export overflow guard clean, legible at 3 m, 10/12 cards (6 + N for a sequence deck), duplex page order |
 
 `weighted_percent` = Σ (section score ÷ section max) × weight.
 
 **PASS = validator passes AND no `blocking` criterion at 0 AND no `critical` issue AND
 weighted_percent ≥ 80.**
+
+**Text fidelity (blocking, rubric v1.1):** read every back and guide block against the 01 `text_map`.
+Any pshat claim without a verse ref, any `not_in_text` item on a back or in a picture, or a `key_hebrew`
+that isn't the verse's exact wording → score `text_fidelity` (or `pshat_cited`) 0, which FAILS the deck.
+The validator already errors on story cards without `text_ref`, unquoted `key_hebrew` and Torah cards
+whose pshat has no refs.
 
 ## Step 3: issues and feedback
 

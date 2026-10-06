@@ -28,6 +28,8 @@ holiday: false           # true = 12-card deck with 3 tradition cards
 book: Genesis
 ref: "Genesis 1:1–6:8"
 holiday_placement: null  # holidays: "before: ki_tisa"
+deck_pattern: sequence   # optional: leave out for a normal deck (see rule 7)
+story_cards: 7           # sequence decks only: one story card per item
 middah: {en: Caring for the world, he: שְׁמִירָה עַל הָעוֹלָם, kid_phrase: "caring for Hashem's world", gesture: "arms in a big circle: hug the world"}
 recent_middot: [Kindness, Forgiveness, Gratitude, Joy]   # the 4 decks before this one
 power_word: {he: טוֹב, translit: TOV, en: good, gesture: thumbs up}
@@ -51,6 +53,14 @@ notes: ""
 5. **Sensitivities:** every passage in this parasha that is on the hard-text policy list, with the default
    handling (card / reframe / guide only / skip). The Sensitivity Reviewer (02b) makes the final call.
 6. Run `cd src && python3 series.py` after editing `series.yaml`; it must print no problems.
+7. **Sequence decks.** When the text itself is a numbered list that children should meet item by item,
+   set `deck_pattern: sequence` and `story_cards: N` (3–10) in `series.yaml` and copy them here. The deck
+   then has one story card per item: 6 + N cards (9 + N on a holiday). Examples: Bereshit (the 7 days of
+   creation, N = 7), Yitro (the Ten Commandments, N = 10), Vayetzei/Vayechi (the 12 tribes: too many,
+   group them or keep a standard deck), Terumah/Vayakhel (the Mishkan items). Use it only when the
+   numbering IS the story; a normal narrative (Noach, Purim) stays a standard deck. Never more than ~10
+   story cards: a week can't hold more. The guide booklet, validator and assembler all follow N
+   automatically (`src/deck_pattern.py`).
 
 ## Handoff
 

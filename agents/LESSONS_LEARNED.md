@@ -188,3 +188,20 @@ removed in v3 (one `CardFront`/`CardBack`, sizes in `cqw`); keep them as history
   Ask for the comic cues too (puffed cheeks, pout, nose in the air) and score the brow in Image QA.
 - **Costume crowns hide kippot** — a dad dressed as a king in a crown, or a boy in a firefighter helmet, loses
   the kippah. Ask for "a kippah under a paper crown" in modern Purim scenes.
+
+## Bereshit: a card for each day (Phase 10, Oct 2026)
+
+- **Stick to the text.** The first art brief put deep water on Day 1 (from 1:2, which is *before* the days)
+  and it confused children; an old card said "every time Hashem made something, it was tov", but tov
+  appears exactly 7 times (1:4, 10, 12, 18, 21, 25, 31): **none on Day 2, twice on Day 3**, and "very
+  good" on Day 6. Rule: the Torah Scholar writes a **text map** (in_text / not_in_text per card), and
+  content and pictures show only `in_text`. Keep it simple: one clear subject per card.
+- **Busy cumulative scenes hide what's new.** The 10-card deck blended Days 1–3 and 4–6 into one picture
+  each; Simon couldn't see what each day added. Each day's NEW creation is now the large hero, earlier
+  days small and soft behind it, and only Day 7 shows everything together.
+- **The composition rule's "ground plane" can contradict the text.** Day 1 came back with a ground strip
+  (land on Day 1). Exclusions in the prompt weren't enough for the from-draft final; one `--edit-from`
+  pass removed it for $0.10. Score text fidelity on finals, not only drafts.
+- **A sequence deck shifts every guide page after the stories.** Don't hand-edit page numbers:
+  `src/deck_pattern.py` computes them from `story_cards`, and the validator checks the backs.
+

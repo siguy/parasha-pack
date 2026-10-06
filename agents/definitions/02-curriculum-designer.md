@@ -28,8 +28,8 @@ week_plan:                        # exactly 5 days; every card appears once
 cards:
   - {card_id: anchor_1, card_type: anchor, title_en: "In the Beginning", purpose: "hook: light",
      core: true, minutes: 5, refs: ["Genesis 1:1-5"]}
-  - {card_id: story_1, card_type: story, sequence_number: 1, title_en: "Days 1-3", purpose: "...",
-     core: true, minutes: 4, characters: [], refs: ["Genesis 1:3-13"]}
+  - {card_id: story_1, card_type: story, sequence_number: 1, title_en: "Day 1: Light", purpose: "...",
+     core: true, minutes: 3, characters: [], refs: ["Genesis 1:3-5"], text_ref: "Genesis 1:3-5"}
   - {card_id: home_1, card_type: home, title_en: "At Home", purpose: "family link", core: false, minutes: 0, refs: []}
 ```
 
@@ -45,8 +45,16 @@ cards:
 | power_word | 1 | 1 |
 | home | 1 | 1 |
 
-A holiday deck swaps one story card for three tradition cards. The 02 schema enforces the total;
-`assemble_deck.py` warns if the mix differs.
+A holiday deck swaps one story card for three tradition cards.
+
+**Sequence decks** (`deck_pattern: sequence` in 00-series.yaml / series.yaml): when the text itself is a
+numbered list (the 7 days of creation, the Ten Commandments, the Mishkan items), give **one story card per
+item**: story = `story_cards` (N, max ~10), everything else as above, so 6 + N cards (9 + N on a holiday).
+Bereshit: anchor, Days 1–7 as story_1..story_7, 2 spotlights, connection, power word, home = 13.
+Number the story cards in text order (`sequence_number` = the item number) and spread them over the
+5-day week plan (2 a day is fine at ~3 minutes each). Don't use it for an ordinary narrative.
+
+`assemble_deck.py` fails if the total is wrong for the pattern and warns if the per-type mix differs.
 
 ## Rules
 
@@ -58,6 +66,9 @@ A holiday deck swaps one story card for three tradition cards. The 02 schema enf
 5. **Story world + setting.** `story_world` is the shared setting text; `story_world_setting` picks the
    style plate (`outdoor`/`indoor`).
 6. **Use the research.** Every card's `refs` come from 01 claims or key moments (modern-world cards: `[]`).
+   **Cite `text_ref`** on every story card (and anchor/spotlight/power word when they show the text): the
+   verse range from the 01 `text_map`, identical. `assemble_deck.py` fails a story card without one, or one
+   that disagrees with the text map. A card's purpose may only promise what that row's `in_text` says.
 7. **Leave out hard passages** marked guide-only/skip in 01. If 02b later marks a card `guide-only` or
    `skip`, replace that card here and ask 02b to re-review it.
 8. **Energy arc:** calm hook → rising story → reflect (connection) → close (power word) → home.

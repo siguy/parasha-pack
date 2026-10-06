@@ -39,6 +39,14 @@ key_moments:
 hard_passages:
   - {refs: ["Genesis 3:1-24"], topic: "the snake and the fruit", why: "punishment, leaving the garden",
      suggested_handling: guide-only}
+text_map:                # one row per planned card (02 cites the same text_ref)
+  - card_id: story_1
+    text_ref: "Genesis 1:3-5"
+    key_hebrew: "יְהִי אוֹר"          # exact phrase from research/{parasha}.yaml, with nikud
+    in_text: ["Hashem says 'Let there be light'", "light", "darkness", "day and night", "tov"]
+    not_in_text: ["water or sea (1:2 is before Day 1)", "the sun, moon or stars (Day 4)"]
+    midrash:               # separate; reaches only the guide, as "Our Sages teach…"
+      - {text: "The light of Day 1 was a special light, not the sun.", source: "Rashi on Genesis 1:4"}
 hebrew_candidates:
   - {word: טוֹב, translit: TOV, meaning: good, ref: "Genesis 1:31"}
 characters:
@@ -56,6 +64,15 @@ story_world_notes: "Green hills, rivers, fruit trees; no buildings, no tools bey
    nakedness, violence. Suggest a handling; 02b decides.
 5. **Hebrew:** nikud on every word; count letters; never write God's name (יהוה). Use "Hashem" in English.
 6. **Rank moments by visual potential** — the Visual Director needs drawable scenes.
+7. **Write the text map** (`text_map`), one row per planned card or moment (run it again once 02 has
+   named the cards). For each: `text_ref` (the verse range the card shows), `key_hebrew` (copied letter
+   for letter, with nikud, from the research cache: the validator rejects anything it can't find there),
+   `in_text` (the concrete things the verses say: objects, beings, actions), `not_in_text` (tempting
+   additions and common mistakes: "sun on Day 1", "tov on Day 2", "animals on Day 3", "water on Day 1"),
+   and `midrash` (Our Sages teach, with source). **Pshat and midrash are never mixed:** nothing from
+   `midrash` may appear in `in_text`. Every later agent may only show or claim what is in `in_text`.
+8. **Count what the text counts.** If a word repeats (tov ×7), list exactly where (1:4, 10, 12, 18, 21,
+   25, 31) so no card says "every day".
 
 ## Handoff
 
