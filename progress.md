@@ -22,7 +22,8 @@ _Last updated: 2026-10-05_
 | hub `feat/parashapacks-present-mode` | [siguy/simonbrief-hub#4](https://github.com/siguy/simonbrief-hub/pull/4): gallery, per-deck pages, Present + presenter (BroadcastChannel), Print PDF; `data.ts` removed | open; lint and build clean; Vercel preview builds (login required): https://simonbrief-git-feat-parashapa-c7b7f9-simon-bs-projects-95643937.vercel.app/parashapacks. Sync verified in both directions. Re-run the sync after the Bereshit and Purim PRs. Terumah has no PDF (no scene-only art). |
 | `feat/styling-v2` | [#7](https://github.com/siguy/parasha-pack/pull/7): style plates, style_config.yaml, labeled refs, draft→final, spend ledger, Adam & Chava identities | open; 113 tests; rebased onto #5 |
 | `feat/agent-pipeline-v3` | [#10](https://github.com/siguy/parasha-pack/pull/10): agents 00, 02b, 05b; 03+04 merged; 06 scored rubric; 07 moved to tools; pipeline schemas; assemble_deck.py; contact_sheet.py | open; rebased onto #8; 165 tests (fixture got the power-word trio the validator requires) |
-| `feat/bereshit-deck` | Phase 6 (in progress, based on #10; cap $3.50) | — |
+| `feat/bereshit-deck` | [#12](https://github.com/siguy/parasha-pack/pull/12): Bereshit, 10 cards through pipeline 00→06, 9 finals at 2K (QA 21–22/22, no redos), validator 0 errors / 0 warnings, editor 93.2%, letter + 5×7 PDFs | open; $2.12; PDF compression being added (they were 57 MB); faint gradient banding behind titles; core cards total 26 min; not test-printed |
+| `feat/purim-v3` | Phase 9 (in progress, based on #10; cap $2.50) | — |
 | `claude/torah-deck-improvements-40976f` | Original session branch (holds everything). Superseded by the two branches above; do not open a PR from it. | — |
 
 Rules: branch from `main` as `<type>/<short-description>`. When a feature depends on an unmerged PR, branch from that PR's branch and say so in the PR body. Squash on merge (Simon's default). Every PR body has a **Known issues / not working** section.

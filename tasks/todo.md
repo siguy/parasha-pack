@@ -58,18 +58,18 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 
 ## Phase 5 — Print-ready art
 - [x] 5.0 Styling system v2 (10 changes + style_config.yaml) (#7)
-- [ ] 5.1 Draft 1K → final 2K (1536×2048); decide upscale/4K after test print
+- [x] 5.1 Draft 1K → final 2K (1792×2400); decide on upscaling or 4K after the test print
 - [ ] 5.1b CMYK soft-proof for 5×7 target
 - [x] 5.2 Prompt fixes (#7)
 - [x] 5.3 Style plates generated; Simon approved (being committed in feat/styling-v2)
-- [ ] 5.4 Letter fronts
-- [ ] 5.5 SVG feeling faces
+- [x] 5.4 Letter fronts (#6)
+- [x] 5.5 SVG feeling faces (#6)
 
 ## Phase 6 — Bereshit deck
-- [ ] 6.1 Pipeline run with checkpoints
-- [ ] 6.2 10 cards
-- [ ] 6.3 Images (~25 gens)
-- [ ] 6.4 Validate, PDF, home-printer test print
+- [x] 6.1 Pipeline run with checkpoints (coordinator-approved, logged) (#12)
+- [x] 6.2 10 cards (#12)
+- [x] 6.3 Images: 18 drafts + 9 finals, $2.12 (#12)
+- [~] 6.4 Validate + PDFs done; **home-printer test print is Simon's**
 - [ ] 6.5 Metrics vs Purim
 
 ## Phase 7 — Hub website
