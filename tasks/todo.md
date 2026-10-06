@@ -101,3 +101,12 @@ Status: **All phases built overnight (2026-10-05/06) as 13 stacked PRs (#3–#15
 - **Cost:** $8.33 of the $15 cap.
 - **Not verified:** physical test print; the Vercel preview behind its login (checked locally only); classroom use.
 - **Lessons:** recorded in `agents/LESSONS_LEARNED.md` and `FOR_SIMON.md` (#14), plus `tasks/lessons.md`.
+
+## Phase 10 — A card for each day of creation (Simon, 2026-10-06)
+Decisions: fold "Adam names the animals" into Adam's spotlight; reuse art (anchor→Day 1, story_1→Day 3, story_3→Day 7, story_2→new anchor) + 4 new (Days 2, 4, 5, 6); add a general "sequence deck" type (the story count comes from series.yaml).
+Branch `feat/bereshit-seven-days` on top of `fix/v3-followups` (#15).
+- [ ] 10.1 series.yaml `deck_pattern: sequence` + `story_cards: N`; schema/validator/assemble/guide_layout read the count from there (normal decks stay at 10/12)
+- [ ] 10.2 Bereshit deck: 13 cards (anchor, Days 1–7 as story_1..7, Adam, Chava, connection, טוֹב, home); cumulative gestures; new week plan (Fri = Day 7 + טוֹב + home)
+- [ ] 10.3 Art: reuse 3 + new anchor from old story_2; generate Days 2, 4, 5, 6 with continuity (~$1)
+- [ ] 10.4 Booklet one page per day; extras: 7-panel + easy 4-panel sequencing, 7 mini cards
+- [ ] 10.5 PDFs (letter + 5×7), validator 0/0, hub re-sync, PR with known issues
