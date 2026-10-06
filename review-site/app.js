@@ -12,7 +12,7 @@ let characterReferences = null;  // Character reference data from manifest
 let currentCharacterKey = null;  // Currently selected character
 let currentRefType = 'identity'; // Currently selected reference type
 
-// Available decks - populated from registry.json
+// Available decks - populated from decks/registry.json (paths relative to decks/)
 let availableDecks = [];
 
 // Configuration
@@ -74,9 +74,11 @@ async function loadRegistry() {
                 status: deck.status,
                 sessions: deck.sessions || 1,
                 card_count: deck.card_count,
+                // deck.path is relative to decks/ (e.g. "archive/terumah/deck.json"),
+                // so the deck folder is everything before "deck.json"
                 path: `../decks/${deck.path}`,
-                feedbackPath: `../decks/${deck.id}/feedback.json`,
-                basePath: `../decks/${deck.id}/`
+                feedbackPath: `../decks/${deck.path.replace(/deck\.json$/, '')}feedback.json`,
+                basePath: `../decks/${deck.path.replace(/deck\.json$/, '')}`
             }));
     } catch (error) {
         console.error('Error loading registry:', error);
