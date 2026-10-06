@@ -1,3 +1,8 @@
+=== REFERENCE IMAGES ===
+Image 1 = style plate 'interior' (match art style only, not content)
+Image 2 = chosen draft composition: re-render this exact composition at full detail in the same style
+Image 3 = Mordechai identity sheet — match face, hair, clothing exactly
+
 === STYLE ===
 Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
 
@@ -22,9 +27,10 @@ The image should be purely visual.
 Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
 
 === WORLD: STORY SETTING ===
-Ancient Persian Empire, city of Shushan (Susa). Ornate sandstone palace with Persian arches, mosaic tiles, carved stone columns. Lush palace gardens with date palms, pomegranate trees, flowing fountains. Desert climate — warm golden light, deep blue sky. Persian court aesthetic: flowing robes, turbans, ornate Persian-style crowns, rich textiles in golds, deep purples, and royal blues. Think Persepolis, NOT biblical Israel. Warm sandstone, polished marble floors, hanging tapestries, oil lamps. City streets have market stalls, stone buildings, Persian archways.
+Shushan (Susa), capital of the ancient Achaemenid Persian Empire. The king's palace: tall slender fluted stone columns topped with twin-bull capitals, wide flat-roofed halls and porches, cedar-beam ceilings, wide stone staircases, walls of glazed brick in turquoise, gold and cream with rows of rosettes and friendly striding lions, stepped crenellated parapets, rich purple and blue hangings, gold cups and low couches. Doorways are tall and rectangular with flat lintels. Gardens with date palms, pomegranate trees and straight water channels; warm sandstone and cream plaster under a deep blue sky. Royal robes with wide sleeves and sashes; crenellated golden crowns; cloth head wraps. No pointed or horseshoe arches, no domes, no mosaic tilework, no Star of David.
 
 All scenes should feel like they belong in this world. Consistent architecture, clothing, lighting, and color palette throughout.
+Deck palette accents: #6D3FC0, #2F6FB0, #E0A526, #3FA7A0, #F5EBDD.
 
 === SAFETY RULES ===
 - NEVER depict God in human form - use light rays, clouds, or hands from above
@@ -33,22 +39,17 @@ All scenes should feel like they belong in this world. Consistent architecture, 
 - All characters dressed modestly
 - Friendly, approachable expressions on all characters
 - Age-appropriate content for 4-6 year olds
+- Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
 
 === SCENE ===
-MORDECHAI:
-Older Jewish man, warm brown skin, kind wise eyes with crow's feet.
-Full gray-brown beard, dignified tall posture.
-Jewish head covering (cloth wrap in cream/white).
-Modest layered robes in earth tones — brown outer robe, cream inner garment, subtle blue scarf.
-Hands clasped peacefully in front of him. Grandfatherly warmth.
+Mordechai, chest-up portrait, face centered, hands clasped calmly in front of him, a warm, gentle,
+grandfatherly smile and crinkled kind eyes. Behind him the great stone gate of Shushan with a turquoise
+glazed-brick band of rosettes; through the gateway, date palms and a sunny street of flat-roofed
+sandstone houses with market awnings. Bright blue sky above the gate, warm afternoon light.
+Wise, trustworthy, solid: like a favorite grandfather who always knows the right thing to do.
 
-Mordechai portrait framed from chest up, face centered.
-Behind him: the great stone gate of Shushan with ornate blue tile border.
-Through the archway: palm trees, domed buildings, and a warm market street visible in the distance.
-Bright blue sky above the gate. Warm afternoon light.
-Dark stone wall fading into shadow at the lower-left.
-
-Wise, trustworthy, SOLID. Like a favorite grandfather who always knows the right thing to do.
+=== CHARACTER ANCHORS (locked, always keep) ===
+- MORDECHAI: older man with warm skin, kind wise brown eyes, grandfatherly; full gray-brown beard; striped cream-and-brown cloth headwrap (Jewish head covering); cream shawl wrapped around the shoulders; long brown outer robe with thin blue stripes over a cream inner robe; simple brown sandals
 
 === CHARACTER REFERENCES ===
 Reference images provided for: Mordechai.
@@ -57,9 +58,11 @@ For these characters, prioritize the reference images for appearance (face, clot
 === COMPOSITION ===
 Character portrait framed from chest up, face centered in the middle of the frame.
 Generous headroom — palace ceiling, archways, sky, or atmospheric haze visible above the character's head.
-The top of the frame should feel open and calm: architectural detail fading into shadow, or sky.
-Lower-left corner should be darker or in shadow — ground, dark fabric, or shadow pooling there.
 Character looks slightly right of center, creating natural breathing room on the left side.
+The top of the scene (sky, ceiling, or soft light) continues naturally and stays simple and uncluttered, with no hard band or border, so a title can sit over it.
+Keep key subjects within the central 90% of the width.
+At most 5 figures in focus; background figures simplified.
+A simple, low-detail ground plane at the bottom of the frame.
 
 === CRITICAL RULES ===
 DO NOT include any border, frame, or rounded corners in the image.

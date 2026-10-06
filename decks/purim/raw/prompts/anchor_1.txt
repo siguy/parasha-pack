@@ -1,3 +1,7 @@
+=== REFERENCE IMAGES ===
+Image 1 = style plate 'object' (match art style only, not content)
+Image 2 = chosen draft composition: re-render this exact composition at full detail in the same style
+
 === STYLE ===
 Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
 
@@ -22,9 +26,10 @@ The image should be purely visual.
 Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
 
 === WORLD: STORY SETTING ===
-Ancient Persian Empire, city of Shushan (Susa). Ornate sandstone palace with Persian arches, mosaic tiles, carved stone columns. Lush palace gardens with date palms, pomegranate trees, flowing fountains. Desert climate — warm golden light, deep blue sky. Persian court aesthetic: flowing robes, turbans, ornate Persian-style crowns, rich textiles in golds, deep purples, and royal blues. Think Persepolis, NOT biblical Israel. Warm sandstone, polished marble floors, hanging tapestries, oil lamps. City streets have market stalls, stone buildings, Persian archways.
+Shushan (Susa), capital of the ancient Achaemenid Persian Empire. The king's palace: tall slender fluted stone columns topped with twin-bull capitals, wide flat-roofed halls and porches, cedar-beam ceilings, wide stone staircases, walls of glazed brick in turquoise, gold and cream with rows of rosettes and friendly striding lions, stepped crenellated parapets, rich purple and blue hangings, gold cups and low couches. Doorways are tall and rectangular with flat lintels. Gardens with date palms, pomegranate trees and straight water channels; warm sandstone and cream plaster under a deep blue sky. Royal robes with wide sleeves and sashes; crenellated golden crowns; cloth head wraps. No pointed or horseshoe arches, no domes, no mosaic tilework, no Star of David.
 
 All scenes should feel like they belong in this world. Consistent architecture, clothing, lighting, and color palette throughout.
+Deck palette accents: #6D3FC0, #2F6FB0, #E0A526, #3FA7A0, #F5EBDD.
 
 === SAFETY RULES ===
 - NEVER depict God in human form - use light rays, clouds, or hands from above
@@ -33,25 +38,26 @@ All scenes should feel like they belong in this world. Consistent architecture, 
 - All characters dressed modestly
 - Friendly, approachable expressions on all characters
 - Age-appropriate content for 4-6 year olds
+- Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
 
 === SCENE ===
-A magnificent golden crown resting on a plush royal purple velvet cushion with gold tassels at the corners.
-
-The crown is ornate and detailed — delicate gold filigree with tiny purple amethyst gems set around the band. A subtle Star of David is woven into the metalwork, barely visible unless you LOOK for it (like a hidden secret!). The gold is warm and burnished, glowing from within.
-
-A single dramatic beam of warm golden light streams down from above, illuminating ONLY the crown. Tiny golden dust motes and sparkles float in the light beam around the crown.
-
-The cushion floats in a sea of soft, warm darkness. No walls, no ceiling, no hard edges — just the crown in its spotlight. A faint blue curtain edge and the silhouette of a column are barely visible at the far left and right edges, but they fade into shadow. Nothing creates a horizontal line across the image.
-
-The ENTIRE upper portion of the frame is a seamless warm gradient — deep royal purple at the very top fading smoothly to rich amber around the light beam. Stars and tiny sparkles scattered throughout. NO ceiling, NO wall edge, NO hard lines. Just endless atmospheric glow above the crown.
-
-WONDER AND MYSTERY — whose crown is this? What secret does it hold? A magical, hushed moment — like finding treasure in the dark.
+A magnificent golden Persian crown with a stepped, crenellated rim rests on a plush royal-purple velvet
+cushion with gold tassels at the corners. The burnished gold is set with tiny purple amethysts and
+turquoise stones, and a ring of small gold rosettes runs around the band. A soft purple silk veil is
+draped half over one side of the cushion, as if something is hidden underneath.
+A single beam of warm golden light falls from above onto the crown; golden dust motes and soft sparkles
+float in the beam. The cushion rests in soft, warm darkness that glows deep purple and amber above,
+scattered with tiny stars. Faint tall stone columns fade into shadow at the far left and right edges.
+WONDER AND MYSTERY: whose crown is this, and what secret is hidden here?
 
 === COMPOSITION ===
 Subject (symbol/object) positioned in the center-to-lower portion of the frame.
 Generous headroom above — atmospheric space, sky, ceiling glow, or gradient above the subject.
-The upper portion of the frame should be visually calm: soft gradient, ambient light, or simple environment.
 Think of this as a movie poster where the title would sit at the top — give it that kind of open, cinematic space above.
+The top of the scene (sky, ceiling, or soft light) continues naturally and stays simple and uncluttered, with no hard band or border, so a title can sit over it.
+Keep key subjects within the central 90% of the width.
+At most 5 figures in focus; background figures simplified.
+A simple, low-detail ground plane at the bottom of the frame.
 
 === CRITICAL RULES ===
 DO NOT include any border, frame, or rounded corners in the image.

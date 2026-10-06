@@ -1,3 +1,7 @@
+=== REFERENCE IMAGES ===
+Image 1 = style plate 'classroom' (match art style only, not content)
+Image 2 = chosen draft composition: re-render this exact composition at full detail in the same style
+
 === STYLE ===
 Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
 
@@ -24,6 +28,10 @@ Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew wil
 === WORLD: MODERN ORTHODOX JEWISH COMMUNITY ===
 Setting: Modern-day Jewish community. Warm, welcoming, colorful environments.
 
+PEOPLE — DIVERSITY:
+- Every scene with several people shows a diverse Jewish mix: Ashkenazi (fair to light skin),
+  Sephardi/Mizrahi (olive to brown skin), and Ethiopian (dark brown skin) families and children.
+
 PEOPLE — ADULTS:
 - Men: knit/srugah kippah, button-down shirt or polo, khakis. Clean-cut, approachable.
 - Women: no hair covering. Casual modest dress — knee-length skirts or dresses,
@@ -31,9 +39,13 @@ PEOPLE — ADULTS:
 - Overall: warm, diverse, friendly. Real community feel.
 
 PEOPLE — CHILDREN:
-- Boys: kippot (knit/srugah style). Tzitzit strings sometimes visible, sometimes not.
-- Girls: modest dresses or skirts. Girls do NOT wear kippot.
+- Every boy wears a kippah (knit/srugah style). Tzitzit strings sometimes visible, sometimes not.
+- Girls never wear a kippah. Girls wear modest dresses or skirts.
 - All children: bright, colorful clothing. Happy, engaged expressions.
+
+OBJECTS:
+- A megillah is a single scroll rolled on itself, WITHOUT twin wooden rollers
+  (twin rollers are a Torah scroll).
 
 CLASSROOM SCENES (connection cards):
 - Co-ed — boys and girls together
@@ -47,6 +59,8 @@ SYNAGOGUE/COMMUNITY SCENES (tradition cards):
 - Mechitza optional and subtle if present
 - Warm, welcoming community gathering feel
 
+Deck palette accents: #6D3FC0, #2F6FB0, #E0A526, #3FA7A0, #F5EBDD.
+
 === SAFETY RULES ===
 - NEVER depict God in human form - use light rays, clouds, or hands from above
 - No graphic violence or death
@@ -54,27 +68,27 @@ SYNAGOGUE/COMMUNITY SCENES (tradition cards):
 - All characters dressed modestly
 - Friendly, approachable expressions on all characters
 - Age-appropriate content for 4-6 year olds
+- Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
 
 === SCENE ===
-A warm, cozy synagogue community room decorated for Purim.
-A friendly bearded man (generic community member, NOT a story character) stands in the center holding a megillah scroll open wide, reading aloud with an animated expression. The scroll faces TOWARD the reader — the viewer sees only the blank parchment back of the scroll, NOT the text side.
-Adults sit in chairs in a semicircle around him — grandparents, parents, smiling and holding small megillah booklets.
-Children sit cross-legged on the wooden floor in the foreground, grinning with excitement.
-Several kids are shaking colorful groggers (noisemakers) — red, blue, green.
-One boy covers his ears, laughing. A girl waves her grogger overhead.
-Festive Purim decorations hang from the ceiling: paper streamers in blue, purple, gold.
-Paper mask cutouts (crowns, stars) taped to the walls.
-Warm pendant lights glow golden above. Warm wooden floor below.
-
-Do NOT include Haman or any villain in this image. Show only positive, joyful community members.
-
-Joyful community celebration! The fun of making noise TOGETHER!
+A bright, cozy shul hall decorated for Purim: purple, blue and gold paper streamers and warm pendant
+lights hang from the ceiling. A friendly man in a knit kippah with olive skin and a short dark beard
+stands at a wooden reading table, reading from ONE parchment scroll that is rolled up on itself with no
+wooden handles; the written side faces him, so we see only the plain back of the parchment.
+Around him families listen: an Ethiopian Jewish mother with her son in a kippah, an Ashkenazi grandfather
+with a white beard and kippah, a Mizrahi girl dressed as a queen. In front, children sit on the floor
+shaking colorful groggers high in the air and laughing; boys wear kippot, girls wear dresses; one girl
+covers her ears and giggles.
+NOISY, HAPPY, TOGETHER!
 
 === COMPOSITION ===
 Scene grounded in the center-to-lower portion of the frame.
 Generous headroom — warm golden glow, ceiling, hanging decorations, or ambient light above.
-The top of the frame should glow warmly but be visually simple: golden light, soft bokeh, or warm haze.
 Think of a photo shot at a warm holiday gathering where you see the ceiling lights above the scene.
+The top of the scene (sky, ceiling, or soft light) continues naturally and stays simple and uncluttered, with no hard band or border, so a title can sit over it.
+Keep key subjects within the central 90% of the width.
+At most 5 figures in focus; background figures simplified.
+A simple, low-detail ground plane at the bottom of the frame.
 
 === CRITICAL RULES ===
 DO NOT include any border, frame, or rounded corners in the image.

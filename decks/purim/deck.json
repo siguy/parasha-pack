@@ -196,7 +196,7 @@
       "characters_in_scene": [
         "mordechai"
       ],
-      "image_prompt": "Mordechai, chest-up portrait, face centered, hands clasped calmly in front of him, a kind wise smile.\nBehind him the great stone gate of Shushan with a turquoise glazed-brick band; through the gateway, date\npalms and a warm sunny market street. Bright blue sky above the gate, warm afternoon light.\nWise, trustworthy, solid: like a favorite grandfather who always knows the right thing to do.\n",
+      "image_prompt": "Mordechai, chest-up portrait, face centered, hands clasped calmly in front of him, a warm, gentle,\ngrandfatherly smile and crinkled kind eyes. Behind him the great stone gate of Shushan with a turquoise\nglazed-brick band of rosettes; through the gateway, date palms and a sunny street of flat-roofed\nsandstone houses with market awnings. Bright blue sky above the gate, warm afternoon light.\nWise, trustworthy, solid: like a favorite grandfather who always knows the right thing to do.\n",
       "image_path": "raw/spotlight_2.png",
       "back": {
         "objective": "Mordechai cared for Esther and helped her be brave",

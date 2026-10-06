@@ -35,9 +35,10 @@ cards:
   - card_id: spotlight_2
     characters_in_scene: [mordechai]
     image_prompt: |
-      Mordechai, chest-up portrait, face centered, hands clasped calmly in front of him, a kind wise smile.
-      Behind him the great stone gate of Shushan with a turquoise glazed-brick band; through the gateway, date
-      palms and a warm sunny market street. Bright blue sky above the gate, warm afternoon light.
+      Mordechai, chest-up portrait, face centered, hands clasped calmly in front of him, a warm, gentle,
+      grandfatherly smile and crinkled kind eyes. Behind him the great stone gate of Shushan with a turquoise
+      glazed-brick band of rosettes; through the gateway, date palms and a sunny street of flat-roofed
+      sandstone houses with market awnings. Bright blue sky above the gate, warm afternoon light.
       Wise, trustworthy, solid: like a favorite grandfather who always knows the right thing to do.
 
   - card_id: story_1
