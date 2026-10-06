@@ -29,3 +29,10 @@ ENV/
 
 # Logs
 project.log
+
+# Bereshit v3: exported PNGs (~60MB) regenerate from raw/ + deck.json with
+# `./sync-deck.sh bereshit && cd card-designer && npm run export bereshit -- --backs --pdf`.
+# The print PDFs and raw art are committed instead.
+decks/bereshit/images/
+decks/bereshit/backs/
+card-designer/content/bereshit/raw/

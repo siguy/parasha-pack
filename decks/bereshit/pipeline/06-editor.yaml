@@ -1,0 +1,80 @@
+# Agent 06: Editor — Bereshit. Scored with agents/rubrics/editor.yaml after export.
+# Export: letter + 5x7 both passed the overflow/safe-zone guard; PDFs 20 pages each in duplex order.
+# PASS: validator passes, no blocking criterion at 0, no critical issue, weighted >= 80.
+agent: 06-editor
+deck_id: bereshit
+rubric: agents/rubrics/editor.yaml
+rubric_version: '1.0'
+validator:
+  ran: true
+  command: python3 src/validate_deck.py decks/bereshit/deck.json
+  passed: true
+  summary: 0 errors, 0 warnings
+sections:
+  content:
+    scores:
+      budgets: 2
+      say_markup: 2
+      asks_open: 2
+      transitions: 2
+      middah_thread: 1
+      core_and_week: 1
+      guide_complete: 2
+  torah_accuracy:
+    scores:
+      pshat_cited: 2
+      midrash_labeled: 2
+      sensitivity_followed: 2
+      hashem_language: 2
+  hebrew:
+    scores:
+      nikud: 2
+      gender: 2
+      second_person: 2
+      translit: 1
+  art:
+    scores:
+      image_qa_pass: 2
+      consistency: 2
+      prompts_scene_only: 2
+  print:
+    scores:
+      export_clean: 2
+      legible: 2
+      counts: 2
+weighted_percent: 93.2
+pass: true
+issues:
+- card_id: anchor_1
+  severity: recommended
+  section: content
+  issue: Anchor objective ('Hashem made a beautiful world for us') doesn't say the middah phrase 'caring for Hashem's
+    world'; the value pill on the back does
+  route_to: 03-content-writer
+  fix: 'Simon''s call (approved wording): e.g. ''Hashem made a beautiful world for us to care for'' (10 words)'
+- card_id: deck
+  severity: recommended
+  section: content
+  issue: ★core cards add up to 26 minutes (anchor 5, Adam 3, stories 1-3 15, tov 3), not ~15
+  route_to: 02-curriculum-designer
+  fix: 'Simon''s call: un-star story_2 or story_3, or accept core = the 5-day minimum'
+- card_id: power_word_1
+  severity: minor
+  section: hebrew
+  issue: Trio box says 'TOHV' while every other place says 'TOV'
+  route_to: 03-content-writer
+  fix: Use 'TOV' (kept 'TOHV' because it is the approved mockup wording)
+- card_id: story_2
+  severity: minor
+  section: print
+  issue: 'Title and Hebrew subtitle sit over the smiling sun and a crescent moon: readable, but the busiest title
+    zone in the deck'
+  route_to: 05-visual-director
+  fix: Optional redo with the sun lower in the frame
+- card_id: spotlight_2
+  severity: minor
+  section: art
+  issue: Chava reads as a young adult but her face is on the youthful side (character_match 1)
+  route_to: 05-visual-director
+  fix: Watch on future decks; identity sheet v3 already has the adult anchor
+feedback_json: decks/bereshit/feedback.json
