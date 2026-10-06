@@ -2,72 +2,73 @@
 
 Full plan: [docs/plans/2026-10-02-feat-deck-v3-improvements-plan.md](../docs/plans/2026-10-02-feat-deck-v3-improvements-plan.md)
 
-Status: **Decisions made — Phase 1 ready to start**
+Status: **Decisions locked 2026-10-05 — awaiting go for Phase 1**
 
-## Phase 0 — Decisions (Simon)
-- [x] D1 Card count: 10 standard / 12 holiday
-- [ ] D2 Values spine list (~12–15 middot) — Claude drafts
-- [x] D3 Modern Orthodox (midrash voiced as "Our Sages teach…")
-- [ ] D4 Hard-text policy — Claude drafts
-- [x] D5 Printed booklet
-- [x] D6 Simon is sole checkpoint
+## Decisions
+- [x] D1–D6 (card count, values spine, Modern Orthodox, hard-text policy, booklet, Simon reviews)
+- [x] D7 One card format: 8.5×11 letter, duplex, home printer, no bleed
+- [x] D8 Order: foundations → Bereshit → website → extras
+- [x] D9–D13 Back design, projector + presenter window, hub URL per deck, Bereshit scope/טוֹב, extras v1
 
-## Phase 1 — Back v3 template + schema
-- [~] 1.1 HTML mockups of v3 backs (7 types incl. home) — `docs/mockups/back-v3.html` — awaiting Simon approval
+## Phase 1 — New card backs (letter)
+- [ ] 1.1 Letter-size mockups (fronts + 7 backs) with Bereshit content → Simon approves
 - [ ] 1.2 `schemas/deck.v3.schema.json`
-- [ ] 1.3 `src/migrate_v2_to_v3.py`
-- [ ] 1.4 Single config-driven `CardBack.tsx`; remove overflow-hidden; bold/bracket parser; AA contrast
-- [ ] 1.5 Update CARD_SPECS.md
+- [ ] 1.3 `src/migrate_v2_to_v3.py` (Purim, Terumah)
+- [ ] 1.4 Single `CardBack.tsx`; letter frames; v3 palette + icons
+- [ ] 1.5 Duplex PDF export
 
-## Phase 2 — Safety net
-- [ ] 2.1 `src/validate_deck.py` (budgets, refs, nikud, Hebrew gender, banned terms, transitions, count)
-- [ ] 2.2 Export overflow + safe-zone guard in `export-deck.ts`
-- [ ] 2.3 Tests (pytest + parser test)
-- [ ] 2.4 Housekeeping (rsync --delete, review-site paths, hardcoded terumah, stale files)
-- [ ] 2.5 Logging to project.log
+## Phase 2 — Automatic checks
+- [ ] 2.1 `src/validate_deck.py`
+- [ ] 2.2 Export overflow/safe-zone guard
+- [ ] 2.3 Tests
+- [ ] 2.4 Logging
+- [ ] 2.5 Housekeeping
 
-## Phase 3 — Purim rewrite
-- [ ] 3.1 Torah accuracy fixes (motive, midrash labels, Esther's risk, ending, Haman Q, hidden God, verse refs)
-- [ ] 3.2 Hebrew fixes (מְקַנֵּא, אַמִּיצָה, gibor/giborah, stress, inclusive forms)
-- [ ] 3.3 Restructure to D1 count; cover 4 mitzvot; add home card; grogger framing
-- [ ] 3.4 Rewrite backs to v3 → validate → export → review
+## Phase 3 — Character library + year plan
+- [ ] 3.1 `characters/` library; migrate 7 characters; retire 3 duplicate sources
+- [ ] 3.2 Adam + Chava identity sheets (2 versions each) → Simon picks
+- [ ] 3.3 `series.yaml` (66 skeleton, first ~5 filled)
+- [ ] 3.4 Sefaria research cache (Bereshit)
 
-## Phase 4 — Imagery & design
-- [ ] 4A Print: 2K generation, bleed export, CMYK proof, licensed emoji/SVG
-- [ ] 4B Prompts: drop lower-left shadow, title zone, figure cap, diversity, kippah, megillah, villain posture, Achaemenid
-- [ ] 4C Series style bible + identity sheets v2 (turnaround + expressions, no captions)
-- [ ] 4D Fronts: FitText padding, gradient, subtitle size, distinct colors + type icons, sequence numbers, emoji bar
+## Phase 4 — Agents
+- [ ] 4.1 00 planner, 02b sensitivity, 05b image QA, merge 03+04, 06 rubric, 07 → tool
+- [ ] 4.2 Per-agent schemas + `assemble_deck.py`
+- [ ] 4.3 Image QA rubric (flag-only)
+- [ ] 4.4 3-layer docs pass (5×7 → letter)
 
-## Phase 5 — Agent pipeline v3
-- [ ] 5.1 00 Series Planner
-- [ ] 5.2 02b Sensitivity Reviewer (+ human checkpoint)
-- [ ] 5.3 Merge 03 + 04
-- [ ] 5.4 05b Image QA (vision rubric)
-- [ ] 5.5 06 Editor → scored rubric
-- [ ] 5.6 07 → tool doc
-- [ ] 5.7 Per-agent output schemas
-- [ ] 5.8 Docs reconciliation across all 3 layers
+## Phase 5 — Print-ready art
+- [ ] 5.1 4K 3:4 generation
+- [ ] 5.2 Prompt fixes
+- [ ] 5.3 Series style bible
+- [ ] 5.4 Letter fronts
+- [ ] 5.5 SVG feeling faces
 
-## Phase 6 — Scaling infra
-- [ ] 6.1 Shared character library (retire 4 duplicate sources)
-- [ ] 6.2 Sefaria research cache
-- [ ] 6.3 series.yaml (66 entries)
-- [ ] 6.4 assemble_deck.py
-- [ ] 6.5 Orchestrator with checkpoints + resume
-- [ ] 6.6 Cost/acceptance tracking
+## Phase 6 — Bereshit deck
+- [ ] 6.1 Pipeline run with checkpoints
+- [ ] 6.2 10 cards
+- [ ] 6.3 Images (~25 gens)
+- [ ] 6.4 Validate, PDF, home-printer test print
+- [ ] 6.5 Metrics vs Purim
 
-## Phase 7 — Extensions
-- [ ] 7.1 Teacher guide booklet generated from `guide` fields
-- [ ] 7.2 Home/family card
-- [ ] 7.3 Sequencing game
-- [ ] 7.4 Year-2 question bank
-- [ ] 7.5 Hebrew word wall
-- [ ] 7.6 Packaging + proof print
-- [ ] 7.7 AI disclosure + licensing review
-- [ ] 7.8 Classroom pilot + survey
-- [ ] 7.9 FOR_SIMON.md
+## Phase 7 — Hub website
+- [ ] 7.1 `scripts/sync_to_hub.py`
+- [ ] 7.2 Routes per deck; migrate Purim/Terumah; drop data.ts
+- [ ] 7.3 Present mode
+- [ ] 7.4 Presenter window (BroadcastChannel)
+- [ ] 7.5 Print button
+- [ ] 7.6 Verify + hub PR
 
-## Phase 8 — Deck #7 on new pipeline
-- [ ] 8.1 Pick a recurring-character parasha
-- [ ] 8.2 Run orchestrator; measure vs Purim
-- [ ] 8.3 Retro
+## Phase 8 — Extras
+- [ ] 8.1 Item art (12 + shared)
+- [ ] 8.2 Bingo ×10
+- [ ] 8.3 I-spy
+- [ ] 8.4 Match-it
+- [ ] 8.5 Coloring + sequence
+- [ ] 8.6 Following-directions story
+- [ ] 8.7 Sequencing game
+- [ ] 8.8 Teacher guide booklet
+- [ ] 8.9 Home card
+- [ ] 8.10 Classroom pilot kit
+
+## Phase 9 — Purim retrofit (later)
+- [ ] 9.1 Content + Hebrew fixes, 12 cards, regenerate at letter
