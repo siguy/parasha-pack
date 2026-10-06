@@ -1,0 +1,140 @@
+# Agent 05: Visual Director — Purim v3
+# Keep the Purim art style (it is the series style). Scene-only prompts; style, safety, composition and
+# character anchors are added by build_generation_prompt().
+# Re-rendered from the v2 art (same composition, --final --from-draft at 2K): spotlight_1, spotlight_2,
+# story_1, connection_1, power_word_1. New compositions (drafts first): anchor_1 (Star of David on the
+# crown), story_2 (Haman pointing), story_3 (new moment: the scepter), tradition_1-3 (megillah drawn as a
+# Torah, all-white families, new mitzvot). home_1 has no AI art (Card Designer front).
+agent: 05-visual-director
+deck_id: purim
+palette: ["#6D3FC0", "#2F6FB0", "#E0A526", "#3FA7A0", "#F5EBDD"]
+web_theme: {primary: "#5B2D8E", secondary: "#2F6FB0", accent: "#E0A526", wash: "#F6F0FB"}
+new_characters: []
+cards:
+  - card_id: anchor_1
+    characters_in_scene: []
+    drafts: 2
+    image_prompt: |
+      A magnificent golden Persian crown with a stepped, crenellated rim rests on a plush royal-purple velvet
+      cushion with gold tassels at the corners. The burnished gold is set with tiny purple amethysts and
+      turquoise stones, and a ring of small gold rosettes runs around the band. A soft purple silk veil is
+      draped half over one side of the cushion, as if something is hidden underneath.
+      A single beam of warm golden light falls from above onto the crown; golden dust motes and soft sparkles
+      float in the beam. The cushion rests in soft, warm darkness that glows deep purple and amber above,
+      scattered with tiny stars. Faint tall stone columns fade into shadow at the far left and right edges.
+      WONDER AND MYSTERY: whose crown is this, and what secret is hidden here?
+
+  - card_id: spotlight_1
+    characters_in_scene: [esther]
+    image_prompt: |
+      Esther, chest-up portrait, face centered, hands clasped gently near her heart, a quiet brave smile that
+      hides a secret. Behind her a tall palace doorway with a rich blue curtain draped to one side and a
+      glowing amber palace hall beyond. Warm golden light from the right lights her face.
+      Warm, regal, kind: a queen with a secret that children instantly root for.
+
+  - card_id: spotlight_2
+    characters_in_scene: [mordechai]
+    image_prompt: |
+      Mordechai, chest-up portrait, face centered, hands clasped calmly in front of him, a kind wise smile.
+      Behind him the great stone gate of Shushan with a turquoise glazed-brick band; through the gateway, date
+      palms and a warm sunny market street. Bright blue sky above the gate, warm afternoon light.
+      Wise, trustworthy, solid: like a favorite grandfather who always knows the right thing to do.
+
+  - card_id: story_1
+    characters_in_scene: [esther, achashverosh]
+    image_prompt: |
+      In the palace hall, King Achashverosh gently places a golden crown on Esther's head as she sits on a
+      cushioned bench, hands clasped in her lap, eyes wide: happy and a little nervous. Courtiers watch from
+      both sides, smiling. Warm light streams through tall windows; rich hangings, glowing oil lamps, and a
+      high ceiling fading into warm amber haze.
+      A fairy-tale moment with a secret underneath!
+
+  - card_id: story_2
+    characters_in_scene: [mordechai, haman]
+    drafts: 2
+    villain_posture: "arms crossed tight, nose in the air, puffed cheeks, big sulky pout; no pointing, never looming"
+    image_prompt: |
+      Outside the king's gate in Shushan: a wide stone gateway with tall columns topped with twin-bull capitals
+      and a turquoise glazed-brick band of gold rosettes. A row of courtiers kneel and bow low toward Haman,
+      foreheads to the ground. Mordechai is the ONLY one standing: tall and calm, chin up, hands at his sides,
+      gently shaking his head no. Haman stands by the gate with his arms crossed tight, nose in the air, cheeks
+      puffed, a big sulky pout, proud and grumpy like a kid who didn't get his way. Warm afternoon sun, deep
+      blue sky above the flat-topped gate.
+      QUIET COURAGE next to GRUMPY PRIDE!
+
+  - card_id: story_3
+    characters_in_scene: [esther, achashverosh]
+    drafts: 2
+    image_prompt: |
+      The king's throne hall in Shushan: tall slender columns with twin-bull capitals, a flat cedar-beam
+      ceiling glowing with warm light, turquoise and gold glazed-brick rosettes along the walls, purple
+      hangings. King Achashverosh sits on a tall golden throne, leaning forward with a big surprised, warm
+      smile, holding out a long golden scepter toward Esther. Esther, in royal purple robes, has just stepped
+      into the hall: one hand pressed to her heart, the other reaching out to touch the tip of the scepter,
+      her face brave and relieved. Two courtiers at the side peek out in surprise.
+      RELIEF AND COURAGE: she was scared, and she did it anyway!
+
+  - card_id: tradition_1
+    characters_in_scene: []
+    drafts: 2
+    image_prompt: |
+      A bright, cozy shul hall decorated for Purim: purple, blue and gold paper streamers and warm pendant
+      lights hang from the ceiling. A friendly man in a knit kippah with olive skin and a short dark beard
+      stands at a wooden reading table, reading from ONE parchment scroll that is rolled up on itself with no
+      wooden handles; the written side faces him, so we see only the plain back of the parchment.
+      Around him families listen: an Ethiopian Jewish mother with her son in a kippah, an Ashkenazi grandfather
+      with a white beard and kippah, a Mizrahi girl dressed as a queen. In front, children sit on the floor
+      shaking colorful groggers high in the air and laughing; boys wear kippot, girls wear dresses; one girl
+      covers her ears and giggles.
+      NOISY, HAPPY, TOGETHER!
+
+  - card_id: tradition_2
+    characters_in_scene: []
+    drafts: 2
+    image_prompt: |
+      A sunny front porch of a modern home on Purim. An Ethiopian Jewish boy in a kippah and a lion costume and
+      his Ashkenazi friend, a girl in a ladybug costume, hold out a basket together to a smiling Sephardi
+      grandmother who is opening her front door. The basket is wrapped in clear cellophane with a big purple
+      ribbon and holds hamantaschen, a red apple, a small juice bottle and wrapped candies. The boy's mother,
+      in a knee-length skirt, waves from the garden path carrying two more baskets. Potted flowers by the door,
+      blue sky above the roof.
+      THE JOY OF GIVING!
+
+  - card_id: tradition_3
+    characters_in_scene: []
+    drafts: 2
+    image_prompt: |
+      A festive Purim meal at a long family table in a warm dining room, with streamers and balloons above and
+      warm lamp light. A diverse family in Purim costumes: a Mizrahi dad in a kippah dressed as a king carries
+      a big platter of food, an Ashkenazi grandmother laughs, an Ethiopian Jewish aunt passes a bowl of grapes,
+      and children in costumes (a boy in a kippah dressed as a firefighter, a girl dressed as a butterfly) raise
+      cups of juice. On the table: a braided bread, a plate of hamantaschen, salads and fruit.
+      In front, a little girl drops a coin into a small plain wooden tzedakah box while her brother in a kippah
+      holds out another coin, waiting his turn.
+      GIVING AND CELEBRATING TOGETHER!
+
+  - card_id: connection_1
+    characters_in_scene: []
+    image_prompt: |
+      Six diverse children sit cross-legged in a circle on a round braided rug with rings of red, blue, yellow
+      and green. A girl with brown curly hair leans forward, mid-sentence, telling her story. A boy in a striped
+      kippah raises his hand high, eager to share. An Ethiopian boy in a knit kippah rests his chin on his hands,
+      listening with wide eyes. A girl with a pink headband hugs her knees, smiling shyly. Two more children
+      listen, one with a hand on a friend's shoulder. Behind them, a lived-in gan: a low bookshelf with picture
+      books and a teddy bear, children's drawings on the wall, a plant on a sunny windowsill.
+      Warm, safe, everyone belongs.
+
+  - card_id: power_word_1
+    characters_in_scene: [esther]
+    image_prompt: |
+      Esther takes a brave step forward through a long palace corridor: right hand pressed to her heart, left
+      hand reaching forward, chin lifted, eyes bright and determined, her robe flowing behind her. She walks
+      from cool shadow into warm golden light pouring from the throne hall ahead. Tall columns at the edges,
+      a patterned stone floor.
+      COURAGE: a small person taking a big brave step!
+
+  - card_id: home_1
+    characters_in_scene: []
+    image_prompt: |
+      Not generated: the home card uses the Card Designer's own front. (If art is ever wanted: a diverse family
+      packing mishloach manot baskets together at a kitchen table, a boy in a kippah tying a ribbon.)

@@ -1,0 +1,74 @@
+# Agent 01: Torah Scholar — Purim (Megillat Esther)
+# Every claim below was checked against research/purim.yaml (Sefaria: JPS English, Tanach with Nikkud).
+agent: 01-torah-scholar
+deck_id: purim
+research_cache: research/purim.yaml
+summary: |
+  Esther, an orphan raised by her cousin Mordechai, is made queen by King Achashverosh; on Mordechai's
+  advice she does not tell anyone she is Jewish. Everyone at the king's gate bows to Haman, but Mordechai
+  will not, because he is a Jew. Haman is filled with rage (חֵמָה) and plots against all the Jews. Esther
+  risks her life by going to the king without being called, after the Jews of Shushan fast for her for
+  three days; the king holds out his golden scepter. At her feast she names Haman. A king's decree cannot
+  be undone, so a new decree lets the Jews stand up for themselves; the day turns around, and Mordechai
+  tells every Jew to keep Purim with feasting, joy, gifts of food and gifts to the poor.
+emotional_core: "Hidden courage: scared, and brave anyway (Esther 4:16)"
+claims:
+  - {text: "Mordechai raised Esther, his uncle's daughter, as his own daughter because she had no father or mother.", kind: pshat, refs: ["Esther 2:7"]}
+  - {text: "Esther did not tell anyone her people, because Mordechai told her not to.", kind: pshat, refs: ["Esther 2:10"]}
+  - {text: "The king loved Esther, put the royal crown on her head and made her queen.", kind: pshat, refs: ["Esther 2:17"]}
+  - {text: "Everyone at the king's gate bowed to Haman, as the king ordered, but Mordechai would not bow.", kind: pshat, refs: ["Esther 3:2"]}
+  - {text: "Mordechai told the courtiers that he was a Jew.", kind: pshat, refs: ["Esther 3:4"]}
+  - {text: "When Haman saw that Mordechai did not bow, Haman was filled with rage (חֵמָה). His motive is wounded pride and anger, not jealousy.", kind: pshat, refs: ["Esther 3:5"]}
+  - {text: "Haman made a plan against all the Jews in the kingdom, Mordechai's people.", kind: pshat, refs: ["Esther 3:6"]}
+  - {text: "Anyone who went to the king without being called could be put to death, unless the king held out his golden scepter; Esther had not been called for 30 days.", kind: pshat, refs: ["Esther 4:11"]}
+  - {text: "Mordechai said: 'Who knows, perhaps you became queen for just such a time as this.'", kind: pshat, refs: ["Esther 4:14"]}
+  - {text: "Esther asked all the Jews of Shushan to fast for her for three days; then she would go to the king, 'and if I perish, I perish.'", kind: pshat, refs: ["Esther 4:16"]}
+  - {text: "On the third day Esther stood in the king's inner court; the king held out the golden scepter and she touched its tip.", kind: pshat, refs: ["Esther 5:1-2"]}
+  - {text: "At her feast Esther asked the king for her life and her people's, and named Haman as the enemy.", kind: pshat, refs: ["Esther 7:3-6"]}
+  - {text: "A letter written in the king's name and sealed with his ring cannot be taken back.", kind: pshat, refs: ["Esther 8:8"]}
+  - {text: "The king allowed the Jews in every city to gather and stand up for their lives.", kind: pshat, refs: ["Esther 8:11"]}
+  - {text: "The Jews had light and joy, gladness and honor.", kind: pshat, refs: ["Esther 8:16"]}
+  - {text: "On the 13th of Adar, the day the enemies hoped to rule over the Jews, it turned around (וְנַהֲפוֹךְ הוּא).", kind: pshat, refs: ["Esther 9:1"]}
+  - {text: "Mordechai told the Jews to keep the 14th and 15th of Adar every year as days of feasting and joy, sending portions (מִשְׁלוֹחַ מָנוֹת) to one another and gifts to the poor (מַתָּנוֹת לָאֶבְיוֹנִים).", kind: pshat, refs: ["Esther 9:20-22"]}
+  - {text: "Our Sages teach that Haman made himself like an idol, so Mordechai would bow only to Hashem.", kind: midrash, refs: ["Esther 3:2"], source: "Rashi on Esther 3:2"}
+  - {text: "Our Sages teach that Esther's name is hinted at in the Torah's words 'I will surely hide (הַסְתֵּר אַסְתִּיר) My face': Hashem's name never appears in the Megillah, yet Hashem was there, hidden, the whole time.", kind: midrash, refs: ["Deuteronomy 31:18"], source: "Chullin 139b"}
+  - {text: "Our Sages teach that mishloach manot is at least two kinds of food to one friend, and matanot la'evyonim is a gift to at least two people in need.", kind: midrash, refs: ["Esther 9:22"], source: "Megillah 7a; Shulchan Arukh OC 694-695"}
+  - {text: "It is a custom (not in the text) to make noise when Haman's name is read, to 'blot out' his name.", kind: midrash, refs: ["Esther 3:1"], source: "Rema, Shulchan Arukh OC 690:17"}
+key_moments:
+  - {moment: "Esther is made queen and keeps her secret", refs: ["Esther 2:10", "Esther 2:17"], characters: [esther, achashverosh], emotion: "wonder, a little nervous", visual_potential: high}
+  - {moment: "Everyone bows to Haman; Mordechai stands tall", refs: ["Esther 3:2-5"], characters: [mordechai, haman], emotion: "quiet courage; Haman's grumpy pride", visual_potential: high}
+  - {moment: "Mordechai: 'who knows… for such a time as this'", refs: ["Esther 4:14"], characters: [mordechai, esther], emotion: "worry, purpose", visual_potential: low}
+  - {moment: "Esther goes to the king uninvited; the golden scepter", refs: ["Esther 4:16", "Esther 5:1-2"], characters: [esther, achashverosh], emotion: "scared, then relief", visual_potential: high}
+  - {moment: "Esther names Haman at the feast", refs: ["Esther 7:3-6"], characters: [esther, achashverosh, haman], emotion: "courage; Haman afraid", visual_potential: medium}
+  - {moment: "Light and joy; Purim with feasting and gifts", refs: ["Esther 8:16", "Esther 9:22"], characters: [esther, mordechai], emotion: "joy", visual_potential: high}
+hard_passages:
+  - {refs: ["Esther 7:9-10", "Esther 8:7"], topic: "Haman's fate", why: "execution; on the hard-text policy list", suggested_handling: guide-only}
+  - {refs: ["Esther 3:13", "Esther 8:11", "Esther 9:1-16"], topic: "the decree and the fighting", why: "killing words and battles", suggested_handling: guide-only}
+  - {refs: ["Esther 4:11", "Esther 4:16"], topic: "Esther might die going to the king; 'if I perish, I perish'", why: "death risk", suggested_handling: reframe}
+  - {refs: ["Esther 2:2-4", "Esther 2:12-14"], topic: "how the king chose a queen", why: "not for small children", suggested_handling: skip}
+  - {refs: ["Esther 1:10-22"], topic: "Vashti", why: "punishment of a queen; marriage conflict", suggested_handling: skip}
+  - {refs: ["Esther 4:16"], topic: "fasting", why: "children must not copy it", suggested_handling: reframe}
+hebrew_candidates:
+  - {word: גִּבּוֹר, translit: gee-BOR, meaning: "hero (boy)"}
+  - {word: גִּבּוֹרָה, translit: gee-bo-RAH, meaning: "hero (girl)"}
+  - {word: אַמִּיצָה, translit: a-mee-TZAH, meaning: "brave (girl)"}
+  - {word: מַלְכָּה, translit: mal-KAH, meaning: queen, ref: "Esther 5:2"}
+  - {word: עוֹמֵד, translit: o-MED, meaning: "standing (boy)"}
+  - {word: חָכָם, translit: kha-KHAM, meaning: "wise (boy)"}
+  - {word: מְגִלָּה, translit: me-gee-LAH, meaning: scroll}
+  - {word: רַעֲשָׁן, translit: ra-a-SHAN, meaning: noisemaker}
+  - {word: מִשְׁלוֹחַ מָנוֹת, translit: mish-LO-ach ma-NOT, meaning: "sending portions", ref: "Esther 9:22"}
+  - {word: מַתָּנוֹת, translit: ma-ta-NOT, meaning: gifts, ref: "Esther 9:22"}
+  - {word: שִׂמְחָה, translit: sim-KHAH, meaning: joy, ref: "Esther 8:16"}
+characters:
+  - {key: esther, role_in_story: "the queen who keeps her secret, then risks her life to save her people", refs: ["Esther 2:7", "Esther 4:16", "Esther 5:1-2"]}
+  - {key: mordechai, role_in_story: "Esther's cousin who raised her; will not bow; gives her courage", refs: ["Esther 2:7", "Esther 3:2-4", "Esther 4:14"]}
+  - {key: haman, role_in_story: "the king's top official; proud and angry; makes a bad plan", refs: ["Esther 3:2-6"]}
+  - {key: achashverosh, role_in_story: "the king; makes Esther queen, holds out the scepter", refs: ["Esther 2:17", "Esther 5:2"]}
+story_world_notes: >-
+  Shushan (Susa) was an Achaemenid Persian capital (about 480 BCE). Its palace (apadana) had tall slender
+  fluted stone columns topped with twin-bull capitals, flat roofs and cedar-beam ceilings, wide staircases
+  with reliefs, and walls of glazed bricks in turquoise, gold and cream (rows of rosettes, striding lions).
+  Doorways were rectangular. Pointed or horseshoe arches, domes and zellige tiles are Islamic-era and wrong.
+  No Star of David (a much later symbol). Royalty wore long robes, crenellated or tall cylindrical crowns.
+  The Megillah is one scroll rolled on itself (no twin wooden rollers like a Torah scroll).
