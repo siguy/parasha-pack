@@ -419,3 +419,18 @@ python workflows.py character moses --deck ../decks/yitro --generate
    - Open Card Designer dev server to preview
    - Add feedback to feedback.json
    - Regenerate images as needed
+
+## Printable Extras
+
+`decks/{id}/extras.yaml` holds the extras data (vocab with nikud, bingo/I-spy/match/Listen & Do
+settings), checked against `schemas/extras.schema.json`. Do not put it in deck.json.
+
+```bash
+cd src
+python generate_items.py ../decks/bereshit          # item art -> items/shared/{id}/ or decks/{id}/extras/items/{id}/
+python generate_activities.py ../decks/bereshit     # -> decks/{id}/extras/{bingo,ispy,match,listen_do}.pdf
+```
+
+- `extras/art/` holds the two AI scenes (reused; re-measure Listen & Do `pos` boxes if regenerated)
+- `extras/previews/` page-1 PNGs; `extras/build/` is scratch (gitignored)
+- Full guide: `docs/extras.md`

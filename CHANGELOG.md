@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Printable Extras, Part A: Item Art, Bingo, I-spy, Match-it, Listen & Do (Phase 8.1–8.4, 8.6)
+
+#### Added
+- **`decks/bereshit/extras.yaml`** + **`schemas/extras.schema.json`**: 12 vocab items (Hebrew with nikud, CAPS-stress transliteration, item prompts), Shabbat-candles free space, bingo settings, I-spy zones and counts, match sets, Listen & Do objects and Level 1/2 directions. `src/extras_data.py` validates it (schema + cross-checks such as ≤3 Hebrew words in Listen & Do).
+- **`src/generate_items.py`**: per item a 1K color picture (object plate as labeled style ref), a line-art version via a Gemini edit call, cleaned to pure black/white with Pillow, and a transparent cutout. Shared items in `items/shared/`, deck-specific ones in `decks/{id}/extras/items/`. Reuses existing files; `--redo`, `--dry-run`, `--contact-sheet`.
+- **`src/generate_activities.py`** (Jinja2 templates in `templates/activities/`, Playwright → letter PDFs, PyMuPDF page-1 previews, overflow + font check):
+  - **Bingo** (`src/bingo.py`): 10 seeded 3×3 boards, any two share ≤6 items; 2000 simulated games per candidate set. Win rule **4 corners** (3-in-a-row with a free center wins on call 2–3). Bereshit: median first win 7, 1.19 simultaneous winners. Calling cards 4 per page.
+  - **I-spy** (`src/ispy.py`): AI background + item cutouts placed in code, so counts are exact: Easy 15 targets, Challenge 23 + 4 distractors; key strip, answer key, coloring version.
+  - **Match-it**: Set A picture↔picture, Set B picture↔Hebrew word, bonus Set C day↔creation; 12 × 2.5" cards per page, star-pattern backs.
+  - **Listen & Do**: line-art scene, 2 drawing boxes, teacher script (Level 1/2, ⏸ wait markers, Hebrew echo), drawn answer keys.
+- `docs/extras.md` (teachers + Simon), `tests/test_extras.py`.
+- `requirements.txt`: Jinja2, numpy, playwright, PyMuPDF.
+
 ### Print PDF Compression
 
 #### Added
