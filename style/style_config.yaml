@@ -1,0 +1,177 @@
+# Parasha Pack series style config — the single source of truth for HOW images are drawn.
+#
+# Read by src/style_config.py. Used by:
+#   - src/image_prompts.py      (STYLE_ANCHORS_V2, MODERN_WORLD_STYLE, COMPOSITION_GUIDANCE ...)
+#   - src/schema.py             (IMAGE_SAFETY_RULES)
+#   - src/generate_images.py    (plates, reference order, limits, prompt_version)
+#   - the Visual Director agent and (later) Image QA
+#
+# HARD RULE (Simon, 2026-10-05): keep the current Purim art style. `style_anchors` is the
+# old STYLE_ANCHORS_V2 text, unchanged. Edit composition/world rules only on purpose.
+
+# Bump when the prompt text below changes in a way that could change the pictures.
+# Written into every raw/generations.jsonl record.
+prompt_version: "v2.0"
+
+limits:
+  max_character_refs: 4    # Nano Banana 2 limit for character identity images
+  max_style_refs: 3        # style plates per request
+
+# ---------------------------------------------------------------------------
+# Style plates (style/plates/*.png). Paths are relative to the repo root.
+# ---------------------------------------------------------------------------
+plates:
+  landscape: style/plates/landscape.png
+  interior: style/plates/interior.png
+  object: style/plates/object.png
+  classroom: style/plates/classroom.png
+
+# Card type -> plate name. "story_world" means: use the deck's story_world_setting.
+plate_mapping:
+  connection: classroom
+  tradition: classroom
+  anchor: object
+  power_word: object
+  spotlight: story_world
+  story: story_world
+
+# deck.json story_world_setting -> plate name
+story_world_setting_plates:
+  outdoor: landscape
+  indoor: interior
+default_story_world_plate: landscape
+
+# ---------------------------------------------------------------------------
+# Style anchors (was STYLE_ANCHORS_V2 in image_prompts.py) — DO NOT change the look.
+# ---------------------------------------------------------------------------
+style_anchors: |
+  Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
+
+  Visual characteristics:
+  - Bold primary colors (red, blue, yellow, green) for foreground elements
+  - Soft pastel colors (pink, light blue, cream, mint) for backgrounds
+  - Rounded, friendly character designs with large expressive eyes
+  - Thick, clean black outlines (2-3px equivalent)
+  - Simple shapes with minimal clutter (5-7 main elements maximum)
+  - Warm, inviting atmosphere
+  - Clean, crisp illustration - NO grain, noise, film texture, or visual artifacts
+  - Smooth color fills with no stippling or dithering
+
+  ANATOMY REQUIREMENTS:
+  - All humans must have exactly 2 arms and 2 legs
+  - Hands have exactly 5 fingers each
+  - Correct proportions - no extra limbs or merged body parts
+
+  CRITICAL: Do NOT render any text in the image. No Hebrew, no English, no titles,
+  no labels, no badges. Text will be added programmatically after generation.
+  The image should be purely visual.
+  Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
+
+# ---------------------------------------------------------------------------
+# Safety rules (was schema.IMAGE_SAFETY_RULES)
+# ---------------------------------------------------------------------------
+safety_rules:
+  - NEVER depict God in human form - use light rays, clouds, or hands from above
+  - No graphic violence or death
+  - No scary monsters
+  - All characters dressed modestly
+  - Friendly, approachable expressions on all characters
+  - Age-appropriate content for 4-6 year olds
+  - "Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses"
+
+# ---------------------------------------------------------------------------
+# Modern world (connection + tradition cards)
+# ---------------------------------------------------------------------------
+modern_world: |
+  === WORLD: MODERN ORTHODOX JEWISH COMMUNITY ===
+  Setting: Modern-day Jewish community. Warm, welcoming, colorful environments.
+
+  PEOPLE — DIVERSITY:
+  - Every scene with several people shows a diverse Jewish mix: Ashkenazi (fair to light skin),
+    Sephardi/Mizrahi (olive to brown skin), and Ethiopian (dark brown skin) families and children.
+
+  PEOPLE — ADULTS:
+  - Men: knit/srugah kippah, button-down shirt or polo, khakis. Clean-cut, approachable.
+  - Women: no hair covering. Casual modest dress — knee-length skirts or dresses,
+    sleeves to elbow or longer. Colorful, modern. No pants on women.
+  - Overall: warm, diverse, friendly. Real community feel.
+
+  PEOPLE — CHILDREN:
+  - Every boy wears a kippah (knit/srugah style). Tzitzit strings sometimes visible, sometimes not.
+  - Girls never wear a kippah. Girls wear modest dresses or skirts.
+  - All children: bright, colorful clothing. Happy, engaged expressions.
+
+  OBJECTS:
+  - A megillah is a single scroll rolled on itself, WITHOUT twin wooden rollers
+    (twin rollers are a Torah scroll).
+
+  CLASSROOM SCENES (connection cards):
+  - Co-ed — boys and girls together
+  - Warm and colorful: bright walls, rug/carpet area, cubbies, play areas
+  - Jewish preschool/gan feel
+  - No Hebrew text on walls or posters (it will be wrong if AI generates it)
+
+  SYNAGOGUE/COMMUNITY SCENES (tradition cards):
+  - Classic shul elements: aron kodesh (ark), ner tamid (eternal light)
+  - Bright and child-friendly, not dark or imposing
+  - Mechitza optional and subtle if present
+  - Warm, welcoming community gathering feel
+
+# ---------------------------------------------------------------------------
+# Composition per card type (natural cinematography language).
+# Plan 5.2: no "darker lower-left" lines; no "calm upper N%" (it drew literal bands).
+# ---------------------------------------------------------------------------
+title_area: >-
+  The top of the scene (sky, ceiling, or soft light) continues naturally and stays simple
+  and uncluttered, with no hard band or border, so a title can sit over it.
+
+framing_rules: |
+  Keep key subjects within the central 90% of the width.
+  At most 5 figures in focus; background figures simplified.
+  A simple, low-detail ground plane at the bottom of the frame.
+
+composition:
+  anchor: |
+    Subject (symbol/object) positioned in the center-to-lower portion of the frame.
+    Generous headroom above — atmospheric space, sky, ceiling glow, or gradient above the subject.
+    Think of this as a movie poster where the title would sit at the top — give it that kind of open, cinematic space above.
+  spotlight: |
+    Character portrait framed from chest up, face centered in the middle of the frame.
+    Generous headroom — palace ceiling, archways, sky, or atmospheric haze visible above the character's head.
+    Character looks slightly right of center, creating natural breathing room on the left side.
+  story: |
+    Scene action positioned in the center and right side of the frame.
+    Generous headroom — ceiling, sky, or atmospheric space above the characters' heads.
+    Think of a film still where the action is center-right.
+  connection: |
+    Characters positioned in the upper two-thirds of the frame.
+    The bottom of the frame should be simple and calm — a soft floor, rug edge, or gentle gradient.
+    Think of a photo taken from slightly above, looking down at children sitting, with floor visible at the bottom.
+    Warm, even lighting throughout. No busy details in the lower 20% of the image.
+  tradition: |
+    Scene grounded in the center-to-lower portion of the frame.
+    Generous headroom — warm golden glow, ceiling, hanging decorations, or ambient light above.
+    Think of a photo shot at a warm holiday gathering where you see the ceiling lights above the scene.
+  power_word: |
+    Character or concept positioned in the center-to-lower portion of the frame.
+    Generous headroom — bright sky, warm glow, or atmospheric space above.
+    Think of a heroic low-angle shot looking slightly up at the subject, with sky/light above.
+
+# Card types whose title sits at the top (they get `title_area`).
+title_on_top: [anchor, spotlight, story, tradition, power_word]
+
+composition_suffix: |
+  === CRITICAL RULES ===
+  DO NOT include any border, frame, or rounded corners in the image.
+  DO NOT render any text, titles, labels, Hebrew letters, or words anywhere in the image.
+  The image should be PURELY visual — all text and borders are added separately by software.
+
+# ---------------------------------------------------------------------------
+# Reference image labels (used in the prompt's REFERENCE IMAGES block)
+# ---------------------------------------------------------------------------
+reference_labels:
+  style_plate: "style plate '{name}' (match art style only, not content)"
+  legacy_style_hero: "deck style hero (match art style only, not content)"
+  draft: "chosen draft composition: re-render this exact composition at full detail in the same style"
+  continuity: "continuity reference, earlier card {name} (keep the same place, lighting and colors; show the new moment)"
+  character: "{name} identity sheet — match face, hair, clothing exactly"

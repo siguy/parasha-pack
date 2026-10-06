@@ -158,6 +158,20 @@ EXPECTED_DIMENSIONS_3_4 = {
     "4K": (3584, 4800),
 }
 
+# Price in USD per generated image, by imageSize (Nano Banana 2, standard, Oct 2026).
+# Used by the spend ledger (src/spend_ledger.py).
+IMAGE_PRICE_USD = {
+    "512": 0.045,
+    "1K": 0.067,
+    "2K": 0.101,
+    "4K": 0.151,
+}
+
+# Sizes for the draft -> final flow (generate_images.py --draft / --final)
+DRAFT_IMAGE_SIZE = "1K"
+FINAL_IMAGE_SIZE = "2K"
+DEFAULT_DRAFT_VARIANTS = 2
+
 ASPECT_RATIOS = {
     "card": "5:7",
     "identity": "16:9",
