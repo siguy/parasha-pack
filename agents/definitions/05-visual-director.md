@@ -39,16 +39,17 @@ The Visual Director owns character consistency across all cards.
    - Each version should interpret the design slightly differently
    - Use the same text prompt for all versions
    - No caption text on the sheet
-   - Output: `characters/{key}/identity_a.png`, `characters/{key}/identity_b.png`
+   - `cd src && python generate_references.py --character {key} --versions 2`
+   - Output: `characters/{key}/identity_v1.png`, `characters/{key}/identity_v2.png`
 
 3. **User Review Checkpoint:** Present versions to user for selection
    - User selects preferred version
-   - Rename selected to `characters/{key}/identity.png`
-   - Delete rejected versions
-   - Set `identity: identity.png` and `canonical: true` in `character.yaml`
+   - `python generate_references.py --character {key} --accept vN` renames it to `identity.png`,
+     moves the others to `characters/{key}/alternates/` and sets `identity: identity.png`
+   - Set `canonical: true` in `character.yaml`
 
 4. **No manifest update needed:** `generate_images.py` finds characters in `characters/`
-   automatically. Deck `references/manifest.json` is only for the style hero and older decks.
+   automatically. Style comes from the series style plates in `style/plates/`; deck `references/manifest.json` is only for older decks.
 
 ### For RETURNING Characters:
 
@@ -338,8 +339,10 @@ Image prompts in deck.json are **pure scene descriptions** — what to draw, not
 - **All card types** reserve the **upper 25-30%** of the frame for text overlay (title, Hebrew). Scene prompts should keep the upper area **calm and open** — warm gradients, soft glow, sky, atmospheric light. Push architectural details and busy elements to the SIDES and LOWER areas.
 - **Floating elements (thought bubbles, banners, speech balloons) must stay BELOW the title zone** — position at chest/belly height or lower. Add explicit constraints like "The entire TOP 30% of the frame must be EMPTY" when floating elements are involved.
 - **Anchor/Power Word** — subject center-to-lower, luminous/atmospheric space above
-- **Spotlight** — face centered, headroom above, darker lower-left
-- **Story** — action center-right, headroom above, darker lower-left
+- **Spotlight** — face centered, headroom above, simple ground plane
+- **Story** — action center-right, headroom above, simple ground plane, at most 5 figures in focus
+- **Do not write character appearance blocks** — the locked anchors from `characters/{key}/character.yaml` are injected automatically for everyone in `characters_in_scene`. Write pose, action and emotion.
+- **Same place as the last card?** Set `continuity_ref: "story_1"` on the card so the earlier image is passed as a reference.
 - **Connection** — characters in upper two-thirds, simple floor below
 - **Tradition** — scene center-to-lower, warm golden glow above
 
