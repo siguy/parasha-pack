@@ -12,17 +12,17 @@
     "gesture": "arms in a big circle: hug the world"
   },
   "palette": [
-    "#444444",
-    "#777777",
-    "#999999",
-    "#BBBBBB",
-    "#EEEEEE"
+    "#1E3A5F",
+    "#E0A526",
+    "#4F9A4A",
+    "#9BD7F5",
+    "#FFF4D6"
   ],
   "web_theme": {
-    "primary": "#444444",
-    "secondary": "#777777",
-    "accent": "#999999",
-    "wash": "#EEEEEE"
+    "primary": "#1E3A5F",
+    "secondary": "#4F9A4A",
+    "accent": "#E0A526",
+    "wash": "#FFF8E7"
   },
   "story_world": "Gan Eden and the newly created world: lush soft green hills, a clear sparkling river, fruit trees heavy with fruit, bright flowers, gentle friendly animals, wide open sky and warm luminous golden light. Pre-civilization: no buildings, no houses, no fences, no tools, no modern objects. Adam and Chava wear simple, modest, full-coverage tunics. Hashem is never shown as a figure, only as light.",
   "story_world_setting": "outdoor",
@@ -75,7 +75,7 @@
       "title_en": "In the Beginning",
       "title_he": "בְּרֵאשִׁית",
       "characters_in_scene": [],
-      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
+      "image_prompt": "The very first moment of creation: a soft, velvety deep-blue darkness over a calm, still sea, and\nright in the middle a brilliant burst of warm golden light breaking through, its rays spreading out in\nevery direction like a sunrise opening. Tiny sparkles of light dance on the water below and the first\nglow touches the gentle waves. No sun disc, no figure, only pure radiant light. The darkness feels\nquiet and cozy, not scary, and the light feels like a wonderful surprise. WOW, LIGHT!\n",
       "image_path": "raw/anchor_1.png",
       "back": {
         "objective": "Hashem made a beautiful world for us",
@@ -141,7 +141,7 @@
       "characters_in_scene": [
         "adam"
       ],
-      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
+      "image_prompt": "Adam (oatmeal tunic, short curly dark hair and beard) kneels in the lush garden, chest-up and close,\ngently cupping a handful of rich brown earth with a tiny green sprout in it, looking down at it with a\nproud, caring smile. Behind him: bright flowers, a fruit tree, soft green hills and a sparkling river\nunder a warm sky glowing with morning light. A friendly rabbit peeks at the sprout beside his elbow.\nGentle, warm and proud: the first gardener.\n",
       "image_path": "raw/spotlight_1.png",
       "back": {
         "objective": "Adam's job: take care of the garden",
@@ -202,7 +202,7 @@
       "characters_in_scene": [
         "chava"
       ],
-      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
+      "image_prompt": "Chava, a grown-up young woman (sage-green long-sleeved dress, long dark wavy hair loosely tied back),\nchest-up portrait in the garden, smiling warmly and kindly. She holds up her open hands to offer a\nsmall bird a few seeds; the little bluebird hops onto her fingertips. Behind her: flowering bushes,\nfruit trees and a clear river in soft golden light, with a wide pale sky above. Friendly, warm and\nhelpful: a helping hand.\n",
       "image_path": "raw/spotlight_2.png",
       "back": {
         "objective": "Adam and Chava help each other",
@@ -268,7 +268,7 @@
       "title_en": "Light, Sky & Land",
       "title_he": "אוֹר, שָׁמַיִם וַאֲדָמָה",
       "characters_in_scene": [],
-      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
+      "image_prompt": "A brand-new world on its third day, wide view: golden light pours over everything from a glowing\nsky. A wide blue sky above, a calm sparkling sea on one side, and on the other side fresh green hills\nof dry land where the very first trees, grass and bright flowers are sprouting and unfurling. A river\nwinds from the hills down to the sea. No animals and no people yet: everything is fresh, clean and\nbrand new, glistening like morning dew. Wonder and freshness everywhere!\n",
       "image_path": "raw/story_1.png",
       "sequence_number": 1,
       "hebrew_keyword": {
@@ -329,7 +329,7 @@
       "title_en": "Sun, Fish & Animals",
       "title_he": "יָמִים ד׳–ו׳",
       "characters_in_scene": [],
-      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
+      "image_prompt": "The very same landscape as the earlier card, the same hills, river, sea and trees, now FULL OF LIFE:\na smiling warm sun shines in the sky with a pale crescent moon and a few twinkly stars still visible\nat one side; colorful fish leap out of the sea and a friendly whale splashes far out; birds swoop over\nthe hills; gentle animals fill the green land: a giraffe, an elephant, a deer, a rabbit, a lion cub\nand a family of ducks by the river. Joyful and busy, the whole world bursting with life!\n",
       "image_path": "raw/story_2.png",
       "sequence_number": 2,
       "hebrew_keyword": {
@@ -337,6 +337,7 @@
         "translit": "DAG",
         "meaning": "fish"
       },
+      "continuity_ref": "story_1",
       "back": {
         "objective": "Days 4–6: sky lights, fish, birds, animals, people",
         "say": "**Day 4: the sun, the moon, and twinkly stars!** [Twinkle fingers]\n**Day 5: fish that swim** [Swim hands] **and birds that fly!** [Flap!]\n**Day 6: animals and people!** [Your favorite animal sound]\n**And Hashem saw it was… TOV!** [Thumbs up!]",
@@ -395,7 +396,7 @@
       "title_en": "Day 7: Shabbat",
       "title_he": "יוֹם הַשְּׁבִיעִי",
       "characters_in_scene": [],
-      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
+      "image_prompt": "The same garden world at rest on the seventh day, a calm golden evening: soft peach and gold light\nglows across the sky and over the still river. The animals are resting peacefully: a lion cub curled\nup asleep beside a lamb, birds tucked quietly in a tree, a deer lying in the soft grass, ducks floating\ngently. The flowers are closed and the trees stand still. Everything is quiet, cozy and peaceful, a\nwarm feeling of rest. SHHH... it is a special day.\n",
       "image_path": "raw/story_3.png",
       "sequence_number": 3,
       "hebrew_keyword": {
@@ -462,7 +463,7 @@
         "adam",
         "chava"
       ],
-      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
+      "image_prompt": "Adam (oatmeal tunic, curly dark hair and beard) stands in a sunny meadow of the garden with one hand\nstretched out and pointing gently at a big friendly lion with a fluffy golden mane, smiling as he names\nit. The lion sits proudly and looks up at him happily. Other friendly animals wait their turn in a\ncheerful line: a giraffe, a zebra, a little lamb, a bunny, and colorful parrots and a dove fluttering at\nshoulder height. Chava (sage-green long dress) kneels nearby, gently petting a little lamb and laughing.\nGreen hills and leafy trees behind them, warm light. Delighted and caring: YOU ARE A LION!\n",
       "image_path": "raw/story_4.png",
       "sequence_number": 4,
       "hebrew_keyword": {
@@ -539,7 +540,7 @@
       "title_en": "Taking Care of Our World",
       "title_he": "שׁוֹמְרִים",
       "characters_in_scene": [],
-      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
+      "image_prompt": "A sunny gan (Jewish preschool) garden corner in the afternoon. Five children ages 4-5 care for plants\nand animals together: an Ethiopian girl in a yellow dress tips a small watering can over a pot of red\nflowers; a Sephardi boy with a kippah plants a seedling in a raised bed, hands in the soil; an Ashkenazi\ngirl with red curls and a purple skirt holds up a seed feeder while a little bird lands on it; a\nMizrahi boy with a kippah gently holds a pet rabbit on his lap; a fair-haired boy with a kippah carries\na basket of fallen leaves, grinning at his friends. A teacher in a knee-length skirt kneels and smiles.\nLeafy trees, a painted fence of flower pots and a sunny sky. Proud, happy and busy helping!\n",
       "image_path": "raw/connection_1.png",
       "back": {
         "objective": "Each child names one way to help",
@@ -599,8 +600,9 @@
         "adam",
         "chava"
       ],
-      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
+      "image_prompt": "Adam (oatmeal tunic) and Chava (sage-green long dress) stand side by side on a green hilltop in the\nglowing garden, grinning with joy, each giving a big THUMBS UP toward the viewer. All around them the\nwhole world glows warm and golden: fruit trees, bright flowers, a sparkling river, a rainbow of birds\nand a happy lion, deer and rabbits nearby. A radiant warm sky above, light shining on everything.\nEverything is GOOD! TOV!\n",
       "image_path": "raw/power_word_1.png",
+      "style_plate": "landscape",
       "back": {
         "objective": "Say, show, and use the word \"tov\"",
         "trio": [
@@ -669,7 +671,7 @@
       "title_en": "This Week: Bereshit",
       "title_he": "בְּרֵאשִׁית",
       "characters_in_scene": [],
-      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
+      "image_prompt": "No art: the home card front is drawn by the Card Designer (a family waters a plant before Shabbat in\nthe try-at-home activity). Never generated.\n",
       "image_path": "raw/home_1.png",
       "back": {
         "objective": "We learned about **caring for Hashem's world**",
