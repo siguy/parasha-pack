@@ -11,6 +11,88 @@ summary: |
   Hashem forms Adam from the earth, puts him in Gan Eden "to work it and to guard it", and brings him the
   animals to name. It is not good for Adam to be alone, so Hashem makes Chava. (Genesis 3, the snake and
   the fruit, is for the teacher guide only.)
+# Text map (Phase 10): one row per card. in_text = what the verses actually say; not_in_text = tempting
+# additions to keep OFF the card and out of the picture. Content and art may show only in_text (plus a
+# soft background of earlier days); midrash stays in its own list and only reaches the guide.
+text_map:
+  - card_id: anchor_1
+    text_ref: "Genesis 1:1-2:3"
+    key_hebrew: "בְּרֵאשִׁית בָּרָא אֱלֹהִים"
+    in_text: ["Hashem created the heavens and the earth", "six days of making, each one ending 'evening and morning'", "everything was very good", "Hashem rested on the seventh day"]
+    not_in_text: ["Hashem drawn as a person", "a dark, empty, scary world on the card (1:2 is guide-only)", "the snake or the tree of knowledge (Genesis 3)"]
+    midrash:
+      - {text: "Our Sages teach that the Torah begins with creation to show that the whole world belongs to Hashem.", source: "Rashi on Genesis 1:1"}
+      - {text: "Our Sages teach that Hashem first created everything from nothing; the earth was tohu va'vohu and the days gave it shape.", source: "Ramban on Genesis 1:1"}
+  - card_id: story_1
+    text_ref: "Genesis 1:3-5"
+    key_hebrew: "יְהִי אוֹר"
+    in_text: ["Hashem says 'Let there be light'", "light", "darkness", "light separated from darkness", "day and night", "Hashem saw the light was good (tov)", "evening and morning, day one"]
+    not_in_text: ["water or sea (1:2 is before Day 1: guide only)", "the sun, moon or stars (Day 4)", "land, plants or animals", "a figure or face for Hashem"]
+    midrash:
+      - {text: "Our Sages teach that the light of Day 1 was a special light, not the sun, set aside for the righteous.", source: "Rashi on Genesis 1:4 (Chagigah 12a)"}
+  - card_id: story_2
+    text_ref: "Genesis 1:6-8"
+    key_hebrew: "יְהִי רָקִיעַ בְּתוֹךְ הַמָּיִם"
+    in_text: ["the rakia (sky) in the middle of the water", "water above the sky (shown as clouds)", "water below the sky (the sea)", "Hashem called the rakia 'sky' (shamayim)", "evening and morning, the second day"]
+    not_in_text: ["'tov' (the Torah doesn't say it on Day 2)", "land, plants or trees (Day 3)", "the sun, moon or stars (Day 4)", "fish or birds (Day 5)"]
+    midrash:
+      - {text: "Our Sages teach that 'it was good' is missing on Day 2 because the work with the water was finished only on Day 3.", source: "Rashi on Genesis 1:7"}
+  - card_id: story_3
+    text_ref: "Genesis 1:9-13"
+    key_hebrew: "וְתֵרָאֶה הַיַּבָּשָׁה"
+    in_text: ["the water gathers into one place: seas", "dry land appears: earth", "grass", "plants with seeds", "fruit trees", "Hashem saw it was good, two times"]
+    not_in_text: ["the sun, moon or stars (Day 4)", "animals, fish or birds (Days 5-6)", "people (Day 6)"]
+  - card_id: story_4
+    text_ref: "Genesis 1:14-19"
+    key_hebrew: "יְהִי מְאֹרֹת"
+    in_text: ["lights in the sky to separate day and night", "the big light for the day (the sun)", "the small light for the night (the moon)", "the stars", "signs for days, seasons and years", "Hashem saw it was good"]
+    not_in_text: ["fish, birds or animals (Days 5-6)", "people (Day 6)"]
+    midrash:
+      - {text: "Our Sages teach that the sun and moon were made on Day 1 and put in their places in the sky on Day 4.", source: "Rashi on Genesis 1:14 (Chagigah 12a)"}
+  - card_id: story_5
+    text_ref: "Genesis 1:20-23"
+    key_hebrew: "יִשְׁרְצוּ הַמַּיִם"
+    in_text: ["the water swarms with living creatures: fish", "the great sea creatures (a friendly whale)", "birds flying across the sky", "Hashem saw it was good", "Hashem blessed them: have many young"]
+    not_in_text: ["land animals (Day 6)", "people (Day 6)", "a scary sea monster"]
+  - card_id: story_6
+    text_ref: "Genesis 1:24-31"
+    key_hebrew: "נַעֲשֶׂה אָדָם"
+    in_text: ["land animals of every kind: cattle, creeping things, wild animals", "Hashem saw it was good", "people made in Hashem's image, male and female: Adam and Chava", "Hashem blessed them", "plants and fruit to eat", "everything was very good (tov me'od)"]
+    not_in_text: ["the garden of Eden story (Genesis 2) or the tree of knowledge", "the snake", "people without modest clothes"]
+  - card_id: story_7
+    text_ref: "Genesis 2:1-3"
+    key_hebrew: "וַיִּשְׁבֹּת בַּיּוֹם הַשְּׁבִיעִי"
+    in_text: ["the heavens and the earth were finished", "Hashem finished the work", "Hashem rested on the seventh day", "Hashem blessed the seventh day and made it holy"]
+    not_in_text: ["anything new being made", "Hashem tired or sleeping as a figure", "Shabbat candles or a table in the picture (a later custom: back only, as a class action)"]
+  - card_id: spotlight_1
+    text_ref: "Genesis 2:7, 2:15, 2:19-20"
+    key_hebrew: "לְעָבְדָהּ וּלְשָׁמְרָהּ"
+    in_text: ["Hashem formed Adam from the dust of the ground (adamah)", "Hashem put Adam in Gan Eden to work it and guard it", "Hashem brought the animals and birds to Adam", "Adam gave every animal its name"]
+    not_in_text: ["the tree of knowledge or its fruit", "the snake", "Adam without clothes"]
+    midrash:
+      - {text: "Our Sages teach that Hashem showed Adam the trees and said: take care not to ruin My world.", source: "Kohelet Rabbah 7:13"}
+  - card_id: spotlight_2
+    text_ref: "Genesis 2:18, 2:21-23"
+    key_hebrew: "לֹא־טוֹב הֱיוֹת הָאָדָם לְבַדּוֹ"
+    in_text: ["it is not good for Adam to be alone", "Hashem made Chava and brought her to Adam", "Adam was glad", "Adam named her Chava, mother of all living (3:20)"]
+    not_in_text: ["the side/rib detail on the card (guide only, sensitivity reframe)", "Chava looking like a child"]
+    midrash:
+      - {text: "Our Sages teach that Hashem began all people with one person, so each person is as precious as a whole world.", source: "Mishnah Sanhedrin 4:5"}
+  - card_id: connection_1
+    text_ref: "Genesis 2:15"
+    key_hebrew: "לְעָבְדָהּ וּלְשָׁמְרָהּ"
+    in_text: ["Adam's job: to work the garden and to guard it (we take care of the world today)"]
+    not_in_text: ["Torah characters in the picture (modern-world card)"]
+  - card_id: power_word_1
+    text_ref: "Genesis 1:31"
+    key_hebrew: "וְהִנֵּה־טוֹב מְאֹד"
+    in_text: ["Hashem saw everything and it was very good", "'good' (tov) 7 times: 1:4, 1:10, 1:12, 1:18, 1:21, 1:25, 1:31 (very good)"]
+    not_in_text: ["'tov' on Day 2", "'tov' after every single day (Day 3 has two, Day 2 none)"]
+  - card_id: home_1
+    text_ref: "Genesis 1:1-2:3"
+    key_hebrew: "בְּרֵאשִׁית בָּרָא אֱלֹהִים"
+    in_text: ["Hashem made the world in six days and rested on the seventh", "everything Hashem made was good"]
+    not_in_text: ["Genesis 3 (the snake and the fruit) as a home activity"]
 emotional_core: "Wonder: everything is brand new, and it is all good. Our job is to take care of it."
 claims:
   # --- Creation, day by day (pshat) ---
@@ -39,6 +121,9 @@ claims:
   # --- Our Sages teach (midrash, guide only) ---
   - {text: "Our Sages teach that Hashem took Adam around all the trees of Gan Eden and said: 'See how beautiful My works are. Everything I made, I made for you. Take care not to ruin My world, because there is no one to fix it after you.'", kind: midrash, refs: ["Genesis 2:15"], source: "Kohelet Rabbah 7:13"}
   - {text: "Rashi explains that the Torah begins with the story of creation to teach that the whole world belongs to Hashem, who made it.", kind: midrash, refs: ["Genesis 1:1"], source: "Rashi on Genesis 1:1"}
+  - {text: "Rashi explains why the Torah doesn't say 'it was good' on Day 2: the work with the water was only finished on Day 3, and something not yet finished isn't called good yet. So on Day 3 'it was good' is said twice.", kind: midrash, refs: ["Genesis 1:6-8", "Genesis 1:10", "Genesis 1:12"], source: "Rashi on Genesis 1:7"}
+  - {text: "Our Sages teach that the light of Day 1 was a special light, different from the sun, which Hashem set aside for the righteous; the sun, moon and stars were put in their places in the sky on Day 4.", kind: midrash, refs: ["Genesis 1:3-4", "Genesis 1:14-16"], source: "Rashi on Genesis 1:4 and 1:14 (Chagigah 12a)"}
+  - {text: "Ramban teaches that in the very first verse Hashem created everything from nothing; the earth was 'tohu va'vohu' (empty and without form) with darkness over the deep water, and the six days gave it shape.", kind: midrash, refs: ["Genesis 1:1", "Genesis 1:2"], source: "Ramban on Genesis 1:1"}
   - {text: "Our Sages teach that Hashem began all people with one single person, to teach that each person is as precious as a whole world.", kind: midrash, refs: ["Genesis 1:27", "Genesis 2:7"], source: "Mishnah Sanhedrin 4:5 (Sanhedrin 37a)"}
 key_moments:
   - {moment: "Let there be light: light breaks into the dark", refs: ["Genesis 1:3-5"], characters: [], emotion: wonder, visual_potential: high}

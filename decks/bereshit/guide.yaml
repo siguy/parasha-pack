@@ -13,7 +13,7 @@ how_to_use:
   - "Use the week plan (p.2): about 15 minutes a day, Day 1 to Day 5, ending on Friday with Shabbat and the home card."
   - "Cards marked core are the must-do cards. The others are for when you have time."
 
-# The family letter (p.15). The hard-question script is copied word for word from
+# The family letter (p.18). The hard-question script is copied word for word from
 # pipeline/02b-sensitivity.yaml, so families say exactly what the teacher says.
 family_letter:
   learned:
@@ -25,9 +25,9 @@ family_letter:
     - {he: שַׁבָּת, translit: sha-BAT, en: Shabbat}
   song: "Sing a 7-days counting song to any tune your child knows: hold up one finger for each day, \"Day 1, light! Day 2, sky!…\" all the way to \"Day 7, Shabbat!\""
   activity_from_home_card: 0          # index into home_1.back.try_at_home
-  hard_question: {card_id: story_4, topic: "the snake and the fruit"}
+  hard_question: {card_id: spotlight_1, topic: "the snake and the fruit"}
 
-# The extras index (p.14). Files are in decks/bereshit/extras/.
+# The extras index (p.17). Files are in decks/bereshit/extras/.
 extras:
   - {name: "Listen & Do", file: listen_do.pdf, cards: [story_1, story_2], materials: "crayons; one copy per child per level", minutes: 10, best_day: 1}
   - {name: "I-spy in Gan Eden", file: ispy.pdf, cards: [story_1, story_2], materials: "crayons for the coloring version", minutes: 10, best_day: 2}

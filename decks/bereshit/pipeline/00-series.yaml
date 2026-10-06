@@ -8,6 +8,9 @@ holiday: false
 book: Genesis
 ref: "Genesis 1:1–6:8"
 holiday_placement: null
+# Sequence deck (Simon, 2026-10-06): one story card per day of creation, so 6 + 7 = 13 cards.
+deck_pattern: sequence
+story_cards: 7
 middah:
   en: Caring for the world
   he: שְׁמִירָה עַל הָעוֹלָם
@@ -30,4 +33,4 @@ sensitivities:
 notes: >-
   Middah gesture "arms in a big circle: hug the world" chosen by the coordinator (overnight run,
   logged in docs/overnight/decisions.md). Power word טוֹב repeats in the text ("and Hashem saw that it
-  was good", Genesis 1), so every creation card ends with "TOV!" + thumbs up.
+  was good", Genesis 1), so Days 1 and 3-6 end with "TOV!" + thumbs up (the Torah doesn't say it on Day 2).
