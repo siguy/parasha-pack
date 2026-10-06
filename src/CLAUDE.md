@@ -12,7 +12,9 @@ Python modules for generating and managing Parasha Pack card decks.
 | `generate_references.py` | Generate character identity reference sheets |
 | `image_prompts.py` | System constants (style, safety, composition, world styles) + scene-only `build_*_v2()` templates |
 | `schema.py` | Data structures, type definitions, and card schemas |
-| `sefaria_client.py` | Sefaria API integration |
+| `sefaria_client.py` | Sefaria API: current parasha, plus the `research/{parasha}.yaml` verse cache |
+| `character_library.py` | Reads the shared `characters/{key}/character.yaml` library (single source of truth for characters) |
+| `series.py` | Loads and validates `series.yaml` (the year plan) |
 | `config.py` | Configuration constants |
 
 Deprecated v1 code lives in `archive/` for reference. Do not use for new decks.
@@ -79,20 +81,22 @@ workflow.save_research()  # -> saves parasha_research.json
 
 ### CLI
 
+Run from `src/` (the old `workflows.py` script became the `workflows/` package):
+
 ```bash
 # Character creation
-python workflows.py character miriam --deck ../decks/beshalach --generate
+python -m workflows character miriam --deck ../decks/beshalach --generate
 
 # Deck creation
-python workflows.py deck Beshalach --output ../decks/beshalach
+python -m workflows deck Beshalach --output ../decks/beshalach
 
 # Research only
-python workflows.py research character moses
-python workflows.py research parasha yitro
+python -m workflows research character moses
+python -m workflows research parasha yitro
 
 # List available data
-python workflows.py list characters
-python workflows.py list parshiyot
+python -m workflows list characters
+python -m workflows list parshiyot
 ```
 
 ---
@@ -129,10 +133,12 @@ python generate_images.py ../decks/yitro/deck.json --card story_1 --variants 3  
 
 ### Reference Image Integration
 
-1. Reads `references/manifest.json` in the deck directory
-2. Filters by `characters_in_scene` field in each card (selective loading)
-3. Base64-encodes identity PNGs and passes alongside text prompt to API
-4. Labels derived from manifest at runtime via `get_character_label()`
+1. For each key in the card's `characters_in_scene`, looks up `characters/{key}/identity.png` in the shared library first
+2. Falls back to the deck's `references/manifest.json` and logs a warning when a character isn't in the library
+3. Sends at most `MAX_CHARACTER_REFS = 4` character images (Nano Banana 2 limit). More than 4 logs an error to `project.log` and only the first 4 are sent
+4. Base64-encodes identity PNGs and passes them alongside the text prompt
+5. Labels come from the library's `name_en` (else manifest `label`, else the key) via `get_character_label()`
+6. The style hero still comes from the deck manifest
 
 ### Variant Generation
 
@@ -208,7 +214,7 @@ Data structures and type definitions.
 
 - `EMOTIONS` - Categorized emotion lists
 - `FEELING_FACES` - Emoji + label mappings
-- `CHARACTER_DESIGNS` - Visual trait definitions
+- `CHARACTER_DESIGNS` - Built at import time from `characters/` (kept so older helpers work; edit the yaml, not this)
 - `IMAGE_SAFETY_RULES` - Content restrictions
 - `PRINT_SPECS` - Print specifications
 - `LAYOUT_ZONES` - Card layout percentages
@@ -222,21 +228,65 @@ Sefaria API integration for Torah text and parasha data.
 ```python
 parasha = fetch_current_parasha()
 parasha.title_en      # "Yitro"
-parasha.title_he      # "יִתְרוֹ"
 parasha.ref           # "Exodus 18:1-20:23"
-parasha.book          # "Exodus"
 parasha.border_color  # "#5c2d91"
 ```
+
+### Research cache
+
+`fetch_parasha_research(parasha, verses=None, commentaries=None)` fetches key verses (EN + HE) and
+commentary pointers from Sefaria's v3 texts API and writes `research/{parasha}.yaml`. If the file
+already exists (and is complete) it is reused, not refetched. Verses and commentaries default to
+`RESEARCH_PLANS[parasha]`.
+
+```bash
+python3 sefaria_client.py research bereshit            # uses the cache if present
+python3 sefaria_client.py research bereshit --refresh  # refetch
+```
+
+- English: Metsudah Chumash (CC-BY). Hebrew: Tanach with Nikkud (Public Domain, vowels without cantillation).
+- HTML tags and footnotes are stripped (`clean_text()`). Commentary text is cut at 1500 characters.
+- Network failure logs a warning and continues. A partly fetched cache is marked `incomplete: true` and is refetched next time; if nothing is fetched, no file is written.
+
+---
+
+## character_library.py
+
+```python
+from character_library import load_character, list_characters, identity_path, visual_anchor_text
+load_character("abraham")["key"]      # "avraham" (aliases resolve)
+identity_path("adam")                 # None until the identity sheet exists
+visual_anchor_text("mordechai")       # "MORDECHAI: older man...; striped cream-and-brown cloth headwrap; ..."
+```
+
+Also `validate_character(dict)` and `legacy_design(key)` (feeds `schema.CHARACTER_DESIGNS`).
+The old `CHARACTER_DATABASE` (workflows/research.py) and `DEFAULT_DESIGNS` (workflows/character.py)
+were removed; the workflows read the library instead. See `characters/README.md`.
+
+---
+
+## series.py
+
+`series.yaml` (repo root) lists every deck: 4 fall holidays, 54 parshiyot by book, and 8 more
+holidays placed with `before: <parasha id>`.
+
+```bash
+python3 series.py   # summary + validation
+```
+
+`year_order()` gives the teaching order. `validate_series()` checks unique ids, valid status/type,
+middah from the `docs/policies/values-spine.md` table (or `TBD`), power word shape, and that no middah
+repeats within 4 consecutive filled decks. `missing_characters()` lists character keys that still
+need a `characters/` entry.
 
 ---
 
 ## Adding New Functionality
 
-### Add a New Character to Research Database
+### Add a New Character
 
-1. Edit `workflows/research.py`
-2. Add entry to `CHARACTER_DATABASE` dict
-3. Add visual defaults to `DEFAULT_DESIGNS` dict
+1. Create `characters/{key}/character.yaml` (copy an existing one; see `characters/README.md`)
+2. Run `python3 -m pytest tests -q` to validate it
 
 ### Add a New Parasha to Research Database
 
