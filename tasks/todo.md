@@ -51,9 +51,9 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [x] 3.4 `research/bereshit.yaml`: 10 verse ranges EN/HE + Rashi/Kohelet Rabbah (PR #5)
 
 ## Phase 4 — Agents
-- [ ] 4.1 00 planner, 02b sensitivity, 05b image QA, merge 03+04, 06 rubric, 07 → tool
-- [ ] 4.2 Per-agent schemas + `assemble_deck.py`
-- [ ] 4.3 Image QA rubric (flag-only)
+- [x] 4.1 00 planner, 02b sensitivity, 05b image QA, merge 03+04, 06 rubric, 07 → tool (#10)
+- [x] 4.2 Per-agent schemas + `assemble_deck.py` (#10)
+- [x] 4.3 Image QA rubric (flag-only) (#10)
 - [ ] 4.4 3-layer docs pass (letter default + 5×7 optional)
 
 ## Phase 5 — Print-ready art
