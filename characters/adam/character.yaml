@@ -8,6 +8,7 @@ role: hero
 canonical: true
 version: 1
 identity: identity.png
+identity_version: 2
 visual_anchors:
   - young adult man with warm brown-olive skin
   - short dark curly hair and a short dark beard
