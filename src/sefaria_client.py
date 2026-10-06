@@ -286,6 +286,36 @@ RESEARCH_PLANS = {
                      "(also Mishnah Sanhedrin 4:5). Ref only: the daf is long and mostly about courts."},
         ],
     },
+    "purim": {
+        # Megillat Esther is not in the Metsudah Chumash: use Sefaria's default English.
+        "en_version": None,
+        "verses": [
+            "Esther 2:7",        # Mordechai raised Esther
+            "Esther 2:10",       # Esther did not tell her people
+            "Esther 2:17",       # the king made her queen
+            "Esther 3:2-6",      # everyone bowed, Mordechai did not; Haman's chemah; his plan
+            "Esther 4:11-16",    # going to the king uninvited; "who knows... for such a time"; 3-day fast
+            "Esther 5:1-2",      # Esther goes in; the king holds out the golden scepter
+            "Esther 7:3-6",      # Esther asks for her life and her people's
+            "Esther 8:3-8",      # a king's decree cannot be undone
+            "Esther 8:11",       # the Jews may stand up for their lives
+            "Esther 8:16",       # light, joy, gladness, honor
+            "Esther 9:1-2",      # the day turned around
+            "Esther 9:20-22",    # feasting, joy, mishloach manot, matanot la'evyonim
+        ],
+        "commentaries": [
+            {"ref": "Rashi on Esther 3:2:1", "fetch": True,
+             "note": "Why Mordechai would not bow: Haman made himself into an idol (midrash)."},
+            {"ref": "Chullin 139b", "fetch": False,
+             "note": "'Where is Esther hinted at in the Torah? I will surely hide (haster astir) My face' "
+                     "(Deut. 31:18): Hashem is hidden in the Megillah. Ref only."},
+            {"ref": "Megillah 7a", "fetch": False,
+             "note": "Mishloach manot = two portions of food to one person; matanot la'evyonim = gifts to "
+                     "two poor people (Shulchan Aruch OC 694-695). Ref only."},
+            {"ref": "Shulchan Arukh, Orach Chayim 690:17", "fetch": False,
+             "note": "Rema: the custom of children making noise to 'blot out' Haman's name. Ref only."},
+        ],
+    },
 }
 
 
@@ -413,7 +443,7 @@ def fetch_parasha_research(parasha: str, verses: list = None, commentaries: list
     missing = []
     verse_entries = []
     for ref in verses:
-        text = fetch_text_v3(ref, DEFAULT_EN_VERSION, DEFAULT_HE_VERSION)
+        text = fetch_text_v3(ref, plan.get("en_version", DEFAULT_EN_VERSION), DEFAULT_HE_VERSION)
         if text is None:
             missing.append(ref)
             continue

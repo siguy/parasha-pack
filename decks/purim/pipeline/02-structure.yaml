@@ -1,0 +1,44 @@
+# Agent 02: Curriculum Designer — Purim (holiday, 12 cards, D1)
+# v2 had 16 cards. Cut and merged on Simon's behalf overnight (logged in docs/overnight/decisions.md):
+#   - spotlights: Esther + Mordechai only; Haman appears in story_2, the king in story_1 and story_3
+#   - stories: ① Esther becomes queen ② Mordechai stands tall / Haman's plan ③ Esther's brave choice → happy ending
+#   - one connection card (being brave); "secrets" connection card dropped
+#   - traditions: ① Megillah + grogger ② mishloach manot ③ matanot la'evyonim + seudah (giving & feasting)
+#   - costumes card dropped (a custom, not one of the 4 mitzvot); costumes still appear in tradition pictures
+agent: 02-curriculum-designer
+deck_id: purim
+holiday: true
+focal_incident: "Esther goes to the king without being called, after three days of fasting: 'and if I perish, I perish' (Esther 4:16, 5:1-2)"
+story_world: >-
+  Shushan (Susa), capital of the ancient Achaemenid Persian Empire. The king's palace: tall slender fluted
+  stone columns topped with twin-bull capitals, wide flat-roofed halls and porches, cedar-beam ceilings,
+  wide stone staircases, walls of glazed brick in turquoise, gold and cream with rows of rosettes and
+  friendly striding lions, stepped crenellated parapets, rich purple and blue hangings, gold cups and low
+  couches. Doorways are tall and rectangular with flat lintels. Gardens with date palms, pomegranate trees
+  and straight water channels; warm sandstone and cream plaster under a deep blue sky. Royal robes with
+  wide sleeves and sashes; crenellated golden crowns; cloth head wraps. No pointed or horseshoe arches,
+  no domes, no mosaic tilework, no Star of David.
+story_world_setting: indoor
+learning_objectives:
+  understand: "Esther and Mordechai were brave to save the Jewish people, and that is why we celebrate Purim"
+  feel: "Brave even when scared; the joy of Purim"
+  do: "Say gibor/giborah with strong arms; listen to the Megillah with a grogger; give food gifts and help people in need"
+week_plan:
+  - {day: 1, label: "This card + Esther", cards: [anchor_1, spotlight_1]}
+  - {day: 2, label: "Mordechai + Stories 1–2", cards: [spotlight_2, story_1, story_2]}
+  - {day: 3, label: "Story 3 + the Megillah", cards: [story_3, tradition_1]}
+  - {day: 4, label: "Being brave + Purim giving", cards: [connection_1, tradition_2, tradition_3]}
+  - {day: 5, label: "Power word + Home card", cards: [power_word_1, home_1]}
+cards:
+  - {card_id: anchor_1, card_type: anchor, title_en: Purim, purpose: "hook: a crown with a secret; name the middah", core: true, minutes: 3, refs: ["Esther 2:17", "Esther 2:10"]}
+  - {card_id: spotlight_1, card_type: spotlight, title_en: Queen Esther, purpose: "meet Esther; brave can mean scared and doing it anyway", core: false, minutes: 3, characters: [esther], refs: ["Esther 2:7", "Esther 2:10"]}
+  - {card_id: spotlight_2, card_type: spotlight, title_en: Mordechai, purpose: "meet Mordechai, who raised Esther and gave her courage", core: false, minutes: 3, characters: [mordechai], refs: ["Esther 2:7", "Esther 4:14"]}
+  - {card_id: story_1, card_type: story, sequence_number: 1, title_en: Esther Becomes Queen, purpose: "the crown and the secret", core: false, minutes: 4, characters: [esther, achashverosh], refs: ["Esther 2:10", "Esther 2:17"]}
+  - {card_id: story_2, card_type: story, sequence_number: 2, title_en: Mordechai Stands Tall, purpose: "Mordechai won't bow; Haman's pride and anger; the bad plan", core: true, minutes: 4, characters: [mordechai, haman], refs: ["Esther 3:2-6"]}
+  - {card_id: story_3, card_type: story, sequence_number: 3, title_en: "Esther's Brave Choice", purpose: "focal incident: the uninvited visit and the scepter, then the happy ending", core: true, minutes: 5, characters: [esther, achashverosh], refs: ["Esther 4:16", "Esther 5:1-2", "Esther 7:3-6", "Esther 8:16"]}
+  - {card_id: tradition_1, card_type: tradition, title_en: Hear the Megillah, purpose: "mitzvah 1: Megillah reading; grogger = noise so Haman's name can't be heard", core: true, minutes: 3, refs: ["Esther 9:20-22"]}
+  - {card_id: tradition_2, card_type: tradition, title_en: Mishloach Manot, purpose: "mitzvah 2: sending portions of food to a friend", core: false, minutes: 3, refs: ["Esther 9:22"]}
+  - {card_id: tradition_3, card_type: tradition, title_en: "Giving & Feasting", purpose: "mitzvot 3+4: gifts to people in need and the Purim meal", core: false, minutes: 3, refs: ["Esther 9:22"]}
+  - {card_id: connection_1, card_type: connection, title_en: Being Brave, purpose: "children name a time they were brave", core: false, minutes: 4, refs: []}
+  - {card_id: power_word_1, card_type: power_word, title_en: "Gibor!", purpose: "power word gibor / giborah with strong arms", core: true, minutes: 2, characters: [esther], refs: []}
+  - {card_id: home_1, card_type: home, title_en: At Home, purpose: "family link: courage + Purim mitzvot", core: false, minutes: 0, refs: []}

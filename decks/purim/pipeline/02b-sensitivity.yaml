@@ -1,0 +1,52 @@
+# Agent 02b: Sensitivity Reviewer — Purim
+# Overnight run: the coordinator made the checkpoint call (logged in docs/overnight/decisions.md).
+agent: 02b-sensitivity-reviewer
+deck_id: purim
+checklist:
+  - {area: hard_text_policy, item: "Haman's fate (Esther 7:9-10) is on no card, front or back; scripted answer in the guide only", status: ok}
+  - {area: hard_text_policy, item: "The decree and the fighting (Esther 8:11, 9:1-16) are on no card; the guide says gently that the Jews were allowed to protect themselves and were safe", status: ok}
+  - {area: hard_text_policy, item: "Haman is proud, angry and sulky: crossed arms, pout, nose in the air; never pointing, snarling, scared or looming", status: ok}
+  - {area: hard_text_policy, item: "Haman's plan is 'a very bad plan against the Jewish people'; no killing words on any card", status: ok}
+  - {area: hard_text_policy, item: "Vashti and how the king chose a queen (Esther 1-2) are skipped entirely", status: ok}
+  - {area: modern_orthodox, item: "Hashem is never drawn; the hidden-Hashem idea (Chullin 139b) is in the guide, labeled 'Our Sages teach'", status: ok}
+  - {area: modern_orthodox, item: "'Mordechai bows only to Hashem' is labeled midrash (Rashi on Esther 3:2) and kept in guide.sages; the card says the verse: 'I am a Jew. I will not bow.' (3:4)", status: ok}
+  - {area: modern_orthodox, item: "Megillah drawn as ONE scroll rolled on itself, no twin wooden rollers; a man reads it in shul", status: ok}
+  - {area: modern_orthodox, item: "Modern scenes: diverse Jewish mix (Ashkenazi, Sephardi/Mizrahi, Ethiopian), every boy in a kippah, girls never, women in skirts or dresses", status: ok}
+  - {area: modern_orthodox, item: "No Star of David in the story world (anachronism), including the anchor crown", status: ok}
+  - {area: modern_orthodox, item: "Home activities tagged; no grogger on Shabbat (shabbat-friendly items are noise-free)", status: ok}
+  - {area: child_development, item: "Esther 'could have been in big trouble' — said as 'that was scary!', never 'she could die'", status: flag, note: "reframe on story_3"}
+  - {area: child_development, item: "Fasting: only 'grown-ups didn't eat for three days'; children do not fast", status: flag, note: "say it on story_3 and in the guide"}
+  - {area: child_development, item: "Haman's feelings named gently (proud, angry) so children can recognize them without shame", status: ok}
+  - {area: child_development, item: "Grogger noise: ears may be sensitive; claps or stamps as a quieter option", status: ok}
+  - {area: child_development, item: "No child shown alone or sad; connection card is a sharing circle", status: ok}
+cards:
+  - {card_id: anchor_1, verdict: ok, reason: "a crown and a secret; wonder, no hard content"}
+  - {card_id: spotlight_1, verdict: ok, reason: "Esther's feelings; brave and a little scared"}
+  - {card_id: spotlight_2, verdict: ok, reason: "Mordechai cares for Esther and gives her courage (4:14)"}
+  - {card_id: story_1, verdict: reframe, reason: "how the king chose a queen (2:2-14) is not for small children",
+     reframe: "Say only 'The king chose Esther to be queen' (2:17). No contest, no Vashti. The secret is the hook."}
+  - {card_id: story_2, verdict: reframe, reason: "Haman's plan is to destroy all the Jews (3:6, 3:13)",
+     reframe: "Haman was proud and angry and made 'a very bad plan against the Jewish people'. No killing words. Haman sulky with crossed arms in the picture, never pointing."}
+  - {card_id: story_3, verdict: reframe, reason: "Esther risks death (4:11, 4:16); the ending involves Haman's fate and fighting",
+     reframe: "'Going to the king without being called was scary!' and the grown-ups didn't eat for three days. End at the scepter and 'the Jewish people were safe!' Haman's fate and the fighting stay in the guide."}
+  - {card_id: tradition_1, verdict: ok, reason: "Megillah and grogger; noise reframed as 'so nobody can hear Haman's name'"}
+  - {card_id: tradition_2, verdict: ok, reason: "giving food to friends"}
+  - {card_id: tradition_3, verdict: ok, reason: "giving to people in need without shame; the Purim meal"}
+  - {card_id: connection_1, verdict: ok, reason: "sharing brave moments; guide covers a child who shares something hard"}
+  - {card_id: power_word_1, verdict: ok, reason: "vocabulary; boy and girl forms both taught"}
+  - {card_id: home_1, verdict: ok, reason: "family link; Shabbat-friendly options tagged"}
+if_they_ask:
+  - {card_id: story_3, topic: "Haman's fate", refs: ["Esther 7:10", "Esther 8:7"], q: "What happened to Haman?",
+     answer: "Haman's bad plan didn't work, and he wasn't able to hurt anyone anymore.",
+     redirect: "What do you think the Jewish people did to celebrate?"}
+  - {card_id: story_3, topic: "the decree and the fighting", refs: ["Esther 8:8", "Esther 8:11", "Esther 9:1"], q: "Couldn't the king just cancel the bad plan?",
+     answer: "In that kingdom, a king's rule could never be erased. So the king made a new rule: the Jewish people could stand up and protect themselves, and they were safe.",
+     redirect: "How do we stand up tall and brave?"}
+  - {card_id: story_2, topic: "Haman's plan", refs: ["Esther 3:6"], q: "Did Haman hurt the Jewish people?",
+     answer: "No. Haman had a bad plan, but Esther and Mordechai were brave, and the Jewish people were safe.",
+     redirect: "Who was brave in our story?"}
+  - {card_id: story_3, topic: "fasting", refs: ["Esther 4:16"], q: "Do I have to stop eating like Esther?",
+     answer: "No. Only grown-ups fast, on the day before Purim. Children eat and help in other ways.",
+     redirect: "How can YOU help someone this Purim?"}
+checkpoint: {approved: true, decided_by: coordinator, decided_at: "2026-10-06", decisions_log: docs/overnight/decisions.md,
+             notes: "Simon asleep; approved 'coordinator picks, Simon reviews'. Verdicts follow the audit and the hard-text policy."}

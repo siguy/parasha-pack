@@ -1,0 +1,431 @@
+# Agent 03: Content Writer (English + Hebrew) — Purim v3
+# Backs follow docs/mockups/back-v3.html (the v3 Purim examples) where they exist, fixed for the audit:
+#   - Haman's motive is pride and anger (Esther 3:5 חֵמָה), never "jealous" (and no קַנַּאי)
+#   - the card says the verse ("I am a Jew. I will not bow.", 3:4); "only bows to Hashem" is labeled midrash in the guide
+#   - Esther's real courage: going to the king uncalled, after a 3-day fast (4:11-16); "who knows…" (4:14)
+#   - the ending (decree can't be undone; the Jews could protect themselves) and Haman's fate: guide only
+#   - Hebrew: Esther is אַמִּיצָה; power word taught as a trio גִּבּוֹר / גִּבּוֹרָה / gesture; class-facing Hebrew is plural
+# Facts come only from pipeline/01-research.yaml; midrash only in guide.sages.
+agent: 03-content-writer
+deck_id: purim
+cards:
+  # ------------------------------------------------------------------ anchor
+  - card_id: anchor_1
+    title_en: Purim
+    title_he: פּוּרִים
+    back:
+      objective: "**Being brave** even when you feel scared"
+      say: |-
+        [Hold the card up high] **Look at this crown! Who wears a crown?**
+        **It belongs to Queen Esther. Esther had a secret… and one day she had to be very, very brave.**
+        [Fists on hips, chin up] **Let's find out!**
+      ask:
+        - {text: "What do you see on the crown?", type: wh}
+        - {text: "What do you think her secret is?", type: open}
+      minutes: 3
+      core: true
+      transition: "Who is this queen with a secret?"
+      guide_ref: {page: 2, note: "hidden courage"}
+    guide:
+      pshat:
+        text: >-
+          Purim tells how Queen Esther and her cousin Mordechai saved the Jewish people of the Persian
+          Empire. The king put the royal crown on Esther's head and made her queen (2:17), but she did not
+          tell anyone she was Jewish, because Mordechai told her not to (2:10). When the Jewish people
+          needed her, she used her courage. We keep Purim on the 14th of Adar (15th in Jerusalem) (9:20-22).
+        refs: ["Esther 2:10", "Esther 2:17", "Esther 9:20-22"]
+      sages:
+        - {text: "Our Sages teach that Esther's name is hinted at in the Torah's words 'I will surely hide (הַסְתֵּר אַסְתִּיר) My face.' Hashem's name never appears in the whole Megillah, yet Hashem was there, hidden, the whole time. Hidden courage, hidden help: that is the theme of this week.", source: "Chullin 139b (on Deuteronomy 31:18)"}
+      hard_questions: []
+      adapt:
+        see: "Bring a real (toy) crown and a scarf; hide the crown under the scarf and reveal it."
+        do: "Children who don't want to stand can do the brave gesture sitting: fists on hips, chin up."
+        join: "Everyone can point to the crown, or nod when you ask 'Who wears a crown?'"
+      extend: "Secret box: put a small Purim object in a closed box; children ask questions to guess what's hidden."
+      tip: "Teach this week's courage gesture now (fists on hips, chin up) and use it every day, every time someone is brave."
+
+  # ------------------------------------------------------------------ spotlight: Esther
+  - card_id: spotlight_1
+    title_en: Queen Esther
+    title_he: אֶסְתֵּר הַמַּלְכָּה
+    back:
+      objective: "Brave can mean scared, and doing it anyway"
+      say: |-
+        [Point to Esther's face] **This is Queen Esther. Sometimes Esther felt a little scared…**
+        [Shaky hands] **…but she was brave anyway!** [Strong arms!]
+        **Being brave means doing the right thing, even when you feel scared.**
+      ask:
+        - {text: "How does Esther's face look?", type: wh}
+        - {text: "Show me your brave face!", type: nonverbal}
+      hebrew: {word: אַמִּיצָה, translit: a-mee-TZAH, meaning: brave, note: "girl · boy: אַמִּיץ a-MEETZ", gesture: "fists on hips, chin up"}
+      minutes: 3
+      core: false
+      transition: "Esther had a cousin who helped her…"
+      guide_ref: {page: 4}
+    guide:
+      pshat:
+        text: >-
+          Esther (her Hebrew name was Hadassah) had no father or mother. Her cousin Mordechai raised her as
+          his own daughter (2:7). When she became queen she kept her people a secret, as Mordechai told her
+          (2:10). Later she risked her life to save them (4:16).
+        refs: ["Esther 2:7", "Esther 2:10", "Esther 4:16"]
+      sages: []
+      hard_questions:
+        - {q: "Where were Esther's mommy and daddy?", answer: "They weren't alive anymore, so her cousin Mordechai took care of her, like a dad.", redirect: "Who takes care of you?"}
+      adapt:
+        see: "Hold up two drawn faces, 'a little scared' and 'brave', and point to each as you say it."
+        do: "Shaky hands and strong arms can be done sitting; children who don't want to move can nod."
+        join: "Children can point to Esther, or show a brave face with no words."
+      extend: "Brave chart: each time a child does something brave this week, add a sticker to a paper crown."
+      tip: "Say אַמִּיצָה for Esther and אַמִּיץ for a boy; let children pick the word that fits them."
+
+  # ------------------------------------------------------------------ spotlight: Mordechai
+  - card_id: spotlight_2
+    title_en: Mordechai
+    title_he: מָרְדֳּכַי
+    back:
+      objective: "Mordechai cared for Esther and helped her be brave"
+      say: |-
+        [Point to Mordechai] **This is Mordechai, Esther's cousin. He took care of Esther, like a dad.** [Hug yourself]
+        **Later he told her: "Who knows? Maybe you became queen for just this time!"** [Tap your head: think!]
+      ask:
+        - {text: "Who gives you good advice?", type: open}
+        - {text: "Show me a thinking face!", type: nonverbal}
+      hebrew: {word: חָכָם, translit: kha-KHAM, meaning: wise, note: "boy · girl: חֲכָמָה kha-kha-MAH", gesture: "tap your head"}
+      minutes: 3
+      core: false
+      transition: "Mordechai always stood up for what was right…"
+      guide_ref: {page: 5, note: "for such a time as this"}
+    guide:
+      pshat:
+        text: >-
+          Mordechai was a Jew in Shushan who raised his orphaned cousin Esther as his daughter (2:7). When
+          the Jewish people were in danger, he sent Esther a message: "Who knows, perhaps you became queen for
+          just such a time as this" (4:14), meaning maybe this is the reason you are in the palace.
+        refs: ["Esther 2:7", "Esther 4:14"]
+      sages: []
+      hard_questions: []
+      adapt:
+        see: "Show the card next to Esther's card: point to each and say 'cousins'."
+        do: "Children can hug a stuffed animal instead of themselves."
+        join: "Children can point to someone in the room who helps them."
+      extend: "Good-advice circle: children tell a friend one helpful idea ('If you're sad, you can…')."
+      tip: "Say 'for just this time!' slowly. Ask: what could YOU be just right for?"
+
+  # ------------------------------------------------------------------ story 1
+  - card_id: story_1
+    title_en: Esther Becomes Queen
+    title_he: אֶסְתֵּר נַעֲשֵׂית מַלְכָּה
+    hebrew_keyword: {word: מַלְכָּה, translit: mal-KAH, meaning: queen}
+    back:
+      objective: "Esther becomes queen and keeps a secret"
+      say: |-
+        **The king chose Esther to be the new queen!** [Put on a pretend crown]
+        **But Esther had a secret: she was Jewish.** [Finger on lips: shhh!]
+        **Mordechai said, "Don't tell anyone yet."**
+        **So Esther kept her secret… shhh!**
+      ask:
+        - {text: "What was Esther's secret?", type: recall}
+        - {text: "Show me how to keep a secret!", type: nonverbal}
+      hebrew: {word: מַלְכָּה, translit: mal-KAH, meaning: queen, gesture: "both hands make a crown on your head"}
+      minutes: 4
+      core: false
+      transition: "Shhh… can you keep a secret?"
+      guide_ref: {page: 6}
+    guide:
+      pshat:
+        text: >-
+          The king loved Esther, set the royal crown on her head and made her queen (2:17). Esther did not
+          tell anyone her people, because Mordechai had told her not to (2:10). On the card we say only
+          that the king chose her (sensitivity reframe): Vashti and how the queen was chosen are left out.
+        refs: ["Esther 2:10", "Esther 2:17"]
+      sages: []
+      hard_questions:
+        - {q: "Why did Esther have to keep a secret?", answer: "Mordechai asked her to wait. Sometimes a grown-up we trust says 'not yet', and later it's time to share.", redirect: "Who can you tell your big feelings to?"}
+      adapt:
+        see: "Show a paper crown and put it on a doll or puppet 'Esther'."
+        do: "Children can mime the crown with one hand, or simply nod."
+        join: "Everyone joins the 'shhh' with a finger on lips; no words needed."
+      extend: "Whisper game: pass a quiet 'Purim!' around the circle without anyone else hearing."
+      tip: "Make the 'shhh' dramatic and soft; children love a secret. Keep it light: Esther is happy, not afraid, here."
+
+  # ------------------------------------------------------------------ story 2
+  - card_id: story_2
+    title_en: Mordechai Stands Tall
+    title_he: מָרְדֳּכַי עוֹמֵד זָקוּף
+    hebrew_keyword: {word: עוֹמֵד, translit: o-MED, meaning: standing}
+    back:
+      objective: "Brave means doing what's right"
+      say: |-
+        **Everyone had to bow down to Haman.** [Everyone bow!]
+        **But Mordechai said, "I am a Jew. I will not bow."** [Stand up tall!]
+        **Haman was SO proud, and SO angry!** [Cross arms, grumpy face]
+        **He made a very bad plan against the Jewish people.**
+      ask:
+        - {text: "What did Mordechai say?", type: recall}
+        - {text: "Show me how Mordechai stood!", type: nonverbal}
+      hebrew: {word: עוֹמֵד, translit: o-MED, meaning: standing, note: "boy · girl: עוֹמֶדֶת o-ME-det", gesture: "stand up straight, hands at sides"}
+      minutes: 4
+      core: true
+      transition: "Uh-oh… the Jewish people need help!"
+      guide_ref: {page: 7, note: "why not bow?"}
+    guide:
+      pshat:
+        text: >-
+          The king ordered everyone at the palace gate to bow to Haman, his top official, but Mordechai
+          would not bow (3:2). He told the courtiers that he was a Jew (3:4). When Haman saw it, he was
+          "filled with rage" (חֵמָה) (3:5): his hurt pride turned into anger. Not satisfied with Mordechai
+          alone, he made a plan against all the Jews in the kingdom (3:6). On the card: "a very bad plan."
+        refs: ["Esther 3:2", "Esther 3:4", "Esther 3:5", "Esther 3:6"]
+      sages:
+        - {text: "Our Sages teach that Haman made himself like an idol, a little god for people to bow to, so Mordechai would bow only to Hashem.", source: "Rashi on Esther 3:2"}
+      hard_questions: []
+      adapt:
+        see: "Have one child stand while the others bow, so everyone sees the difference."
+        do: "Children who can't bow can nod their head down; standing children can just sit up tall."
+        join: "Everyone can do the grumpy Haman face and crossed arms without speaking."
+      extend: "Feelings talk: 'Haman felt proud and angry. What can we do when we feel angry?' (take a breath, tell a grown-up)."
+      tip: "Name Haman's feelings gently (proud, angry) and move on fast; he's grumpy and silly, never scary."
+
+  # ------------------------------------------------------------------ story 3 (focal incident)
+  - card_id: story_3
+    title_en: "Esther's Brave Choice"
+    title_he: הַבְּחִירָה הָאַמִּיצָה שֶׁל אֶסְתֵּר
+    hebrew_keyword: {word: אַמִּיצָה, translit: a-mee-TZAH, meaning: brave}
+    back:
+      objective: "Esther was scared, and brave anyway"
+      say: |-
+        **Esther asked the grown-ups not to eat for three days, for her.**
+        **Then she went to the king without being called. That was scary!** [Shaky hands…]
+        **The king held out his golden stick. Phew!** [Reach out and touch it]
+        **Esther told him everything, and the Jewish people were safe!** [Cheer!]
+      ask:
+        - {text: "How did Esther feel before she went in?", type: wh}
+        - {text: "What helped Esther be brave?", type: open}
+      hebrew: {word: אַמִּיצָה, translit: a-mee-TZAH, meaning: brave, note: "girl · boy: אַמִּיץ a-MEETZ", gesture: "fists on hips, chin up"}
+      minutes: 5
+      core: true
+      transition: "Hooray! That's why we celebrate Purim!"
+      guide_ref: {page: 8, note: "what happened to Haman?"}
+    guide:
+      pshat:
+        text: >-
+          Anyone who came to the king without being called could be put to death, unless the king held out
+          his golden scepter (4:11). Esther asked all the Jews of Shushan to fast for her for three days, then
+          went in: "and if I perish, I perish" (4:16). The king held out the scepter and she touched its tip
+          (5:1-2). At her feast she asked for her people's lives and named Haman (7:3-6). A king's decree could
+          not be undone (8:8), so a new one let the Jews stand up for themselves (8:11). The day turned
+          around (9:1), and the Jews had light and joy (8:16).
+        refs: ["Esther 4:11", "Esther 4:16", "Esther 5:1-2", "Esther 7:3-6", "Esther 8:8", "Esther 8:11", "Esther 9:1", "Esther 8:16"]
+      sages: []
+      hard_questions: []
+      adapt:
+        see: "Use a real stick or wand as the golden scepter; children touch its tip."
+        do: "Shaky hands and reaching can be done sitting; a child can hold the 'scepter' for the class."
+        join: "Everyone joins the cheer, or claps, or shows the brave gesture."
+      extend: "Act it out: one child is the king with the scepter, another walks in bravely; everyone else cheers."
+      tip: "Fasting is for grown-ups only; say so if children ask. 'Scepter' is a new word: 'a king's golden stick'."
+
+  # ------------------------------------------------------------------ tradition 1: Megillah + grogger
+  - card_id: tradition_1
+    title_en: Hear the Megillah
+    title_he: מְגִלַּת אֶסְתֵּר
+    back:
+      objective: "We listen to the Megillah and drown out Haman"
+      say: |-
+        **On Purim we listen to the Megillah, the story of Esther.** [Hands behind ears]
+        **When we hear "Haman," we make noise so nobody can hear his name!** [Say "Haman": everyone shakes]
+        **When I say "Esther"… FREEZE!** [Repeat 3×]
+      ask:
+        - {text: "What do we do when we hear 'Haman'?", type: recall}
+        - {text: "Show me your quietest freeze!", type: nonverbal}
+      hebrew: {word: מְגִלָּה, translit: me-gee-LAH, meaning: scroll, note: "noisemaker: רַעֲשָׁן ra-a-SHAN", gesture: "unroll a pretend scroll"}
+      minutes: 3
+      core: true
+      transition: "What else do we do on Purim?"
+      guide_ref: {page: 9, note: "no groggers? use claps"}
+    guide:
+      pshat:
+        text: >-
+          Mordechai wrote down the story and told the Jews to remember these days every year (9:20-22).
+          We hear the whole Megillah read from a scroll at night and again in the day. A Megillah is one scroll
+          rolled on itself, not on two wooden rollers like a Torah.
+        refs: ["Esther 9:20-22"]
+      sages:
+        - {text: "Making noise at Haman's name is an old custom, so that his name is 'blotted out' and can't be heard; the Rema writes that children do it.", source: "Rema, Shulchan Arukh OC 690:17"}
+      hard_questions: []
+      adapt:
+        see: "Show a real megillah or a rolled paper scroll; point out it has one roller, not two."
+        do: "Sound-sensitive children can clap softly or stamp, or cover their ears; that's fine."
+        join: "Everyone joins the FREEZE; no words needed."
+      extend: "Make groggers: dried beans in a sealed cup or bottle, decorated with stickers."
+      tip: "The FREEZE on 'Esther' gives the noise a clear stop. Practice the stop before you start the noise."
+
+  # ------------------------------------------------------------------ tradition 2: mishloach manot
+  - card_id: tradition_2
+    title_en: Mishloach Manot
+    title_he: מִשְׁלוֹחַ מָנוֹת
+    back:
+      objective: "We send Purim food gifts to friends"
+      say: |-
+        **On Purim we send mishloach manot: food gifts for a friend.** [Hold out a pretend basket]
+        **Two kinds of food, like a hamantasch and an apple!** [Show two fingers]
+        **Knock, knock! "Happy Purim!"** [Knock in the air]
+      ask:
+        - {text: "Who would you send a Purim basket to?", type: open}
+        - {text: "Which two foods would you put inside?", type: open}
+      hebrew: {word: מִשְׁלוֹחַ מָנוֹת, translit: mish-LO-ach ma-NOT, meaning: sending portions, gesture: "hold out a pretend basket with two hands"}
+      minutes: 3
+      core: false
+      transition: "Giving makes everyone happy!"
+      guide_ref: {page: 10}
+    guide:
+      pshat:
+        text: >-
+          Mordechai told the Jews to keep Purim with "sending portions to one another" (מִשְׁלוֹחַ מָנוֹת)
+          (9:22). The happiness of being safe is shared with friends.
+        refs: ["Esther 9:22"]
+      sages:
+        - {text: "Our Sages teach that mishloach manot is at least two kinds of ready-to-eat food, sent to at least one person.", source: "Megillah 7a; Shulchan Arukh OC 695:4"}
+      hard_questions: []
+      adapt:
+        see: "Bring a real basket and two foods; count 'one, two!' as you put them in."
+        do: "Children pass the basket around the circle and say 'Happy Purim!' or just smile."
+        join: "Everyone can show two fingers for 'two kinds of food'."
+      extend: "Class mishloach manot: each child decorates a paper bag; the class fills them for the school staff."
+      tip: "Check allergies before any real food. Paper or play food works just as well."
+
+  # ------------------------------------------------------------------ tradition 3: matanot la'evyonim + seudah
+  - card_id: tradition_3
+    title_en: "Giving & Feasting"
+    title_he: מַתָּנוֹת וּסְעוּדָה
+    back:
+      objective: "We help people in need and share a Purim meal"
+      say: |-
+        **On Purim we give gifts to people who need help, so everyone can be happy.** [Drop a coin in a pretend box]
+        **Then we eat a big Purim meal with our family!** [Rub your tummy: yum!]
+        **Giving and celebrating together: that's Purim!**
+      ask:
+        - {text: "How can we help someone who needs it?", type: open}
+        - {text: "Show me your happiest Purim dance!", type: nonverbal}
+      hebrew: {word: מַתָּנוֹת, translit: ma-ta-NOT, meaning: gifts, note: "gifts to people in need: מַתָּנוֹת לָאֶבְיוֹנִים", gesture: "open both hands and give"}
+      minutes: 3
+      core: false
+      transition: "Purim is full of joy!"
+      guide_ref: {page: 11, note: "giving without shame"}
+    guide:
+      pshat:
+        text: >-
+          Mordechai told the Jews to keep Purim as "days of feasting and joy" and with "gifts to the poor"
+          (מַתָּנוֹת לָאֶבְיוֹנִים) (9:22). The month had turned from sadness to joy (9:22), and on Purim
+          everyone, rich or poor, should be able to celebrate.
+        refs: ["Esther 9:22"]
+      sages:
+        - {text: "Our Sages teach that we give gifts to at least two people in need on Purim day, and that it is better to give more to the poor than to spend more on the meal or on mishloach manot.", source: "Megillah 7a; Rambam, Laws of Megillah 2:17"}
+      hard_questions:
+        - {q: "Why are some people poor?", answer: "Sometimes people don't have enough money for food or things they need. On Purim we make sure they can be happy too.", redirect: "What could we give to help?"}
+      adapt:
+        see: "Bring a real tzedakah box; let each child drop in a play coin."
+        do: "Children can pass the box around, or the teacher holds it while each child taps it."
+        join: "Everyone can rub their tummy for 'yum' or dance in place."
+      extend: "Class tzedakah: collect coins all week; the children decide together where the money goes."
+      tip: "Talk about 'people who need help', never 'poor kids'; some families in your class may be struggling."
+
+  # ------------------------------------------------------------------ connection
+  - card_id: connection_1
+    title_en: Being Brave
+    title_he: לִהְיוֹת אַמִּיצִים
+    back:
+      objective: "Children name a time they were brave"
+      say: |-
+        **Esther felt scared, and she was brave anyway.** [Share one brave moment of your own]
+        **Now it's your turn. When were YOU brave?** [Pass the card to whoever is sharing]
+      ask:
+        - {text: "What did your body feel like?", type: open}
+        - {text: "Point to the face that shows how you felt!", type: nonverbal}
+      faces: [scared, brave, happy, proud]
+      minutes: 4
+      core: false
+      transition: "You are all so brave!"
+      guide_ref: {page: 12, note: "if a child shares something hard"}
+    guide:
+      pshat:
+        text: >-
+          Esther was afraid (4:11) and went to the king anyway (4:16). This card links her courage to the
+          children's own lives: a doctor visit, a dark room, saying sorry, trying something new.
+        refs: ["Esther 4:11", "Esther 4:16"]
+      sages: []
+      hard_questions:
+        - {q: "(A child shares something frightening or sad.)", answer: "Thank the child, say 'that sounds hard, and you were brave to tell us', and check in privately later. Tell a parent or the school if needed.", redirect: "Who helps you when you feel scared?"}
+      adapt:
+        see: "Hold up the four feeling faces and let children point."
+        do: "A child can share by drawing instead of talking."
+        join: "Children can pass the card without speaking; everyone shows the brave gesture for each sharer."
+      extend: "Brave book: each child draws one brave moment; bind the pages into a class book."
+      tip: "Share a small, real brave moment of your own first; it gives children permission to share."
+
+  # ------------------------------------------------------------------ power word
+  - card_id: power_word_1
+    title_en: "Gibor!"
+    title_he: גִּבּוֹר · גִּבּוֹרָה
+    back:
+      objective: "Say and show gibor and giborah: hero!"
+      trio:
+        - {big: גִּבּוֹר, line1: gee-BOR, line2: "a boy hero"}
+        - {big: גִּבּוֹרָה, line1: gee-bo-RAH, line2: "a girl hero"}
+        - {big: "★", line1: gesture, line2: "strong arms!"}
+      say: |-
+        **Our power word is GIBOR: a hero!** [Make strong arms]
+        **Say it with me: gee-BOR!**
+        **A boy is a gibor. A girl is a giborah.**
+        **Esther was a giborah: brave even when scared. Who can be a hero? YOU can!** [Point to everyone]
+      ask:
+        - {text: "Who can be a gibor or a giborah?", type: open}
+        - {text: "Show me your strong arms!", type: nonverbal}
+      hebrew: {word: גִּבּוֹר, translit: gee-BOR, meaning: hero, note: "boy: גִּבּוֹר · girl: גִּבּוֹרָה gee-bo-RAH", gesture: "make strong arms"}
+      minutes: 2
+      core: true
+      transition: "Gibor! Giborah! Take it home!"
+      guide_ref: {page: 13, note: "stress: gee-BOR"}
+    guide:
+      pshat:
+        text: >-
+          Esther's courage (4:16) and Mordechai's (3:2) make them heroes of the Purim story. The word
+          gibor is not in the Megillah; it is the Hebrew word for a hero or a strong, brave person.
+        refs: ["Esther 3:2", "Esther 4:16"]
+      sages: []
+      hard_questions: []
+      adapt:
+        see: "Write גִּבּוֹר and גִּבּוֹרָה big on the board; point to the one each child chooses."
+        do: "Children who can't raise their arms can make two fists in their lap."
+        join: "Everyone shows strong arms together; no words needed."
+      extend: "Hero hunt: all week, catch children being brave and call out 'Gibor!' or 'Giborah!'"
+      tip: "Stress the end: gee-BOR, gee-bo-RAH. Let each child choose the word that fits them; never correct a child's choice."
+
+  # ------------------------------------------------------------------ home
+  - card_id: home_1
+    title_en: At Home
+    title_he: בַּבַּיִת
+    back:
+      objective: "We learned about **being brave even when scared**"
+      shabbat_question: {en: "When were you brave this week?", he: "מָתַי הֱיִיתֶם אַמִּיצִים הַשָּׁבוּעַ?"}
+      hebrew: {word: גִּבּוֹר, translit: gee-BOR, meaning: hero, note: "girl: גִּבּוֹרָה gee-bo-RAH · boy: גִּבּוֹר", gesture: "strong arms"}
+      try_at_home:
+        - {text: "Make mishloach manot together: two foods for a neighbor.", tag: before-shabbat}
+        - {text: "Ask your child to show you the brave gesture: fists on hips, chin up!", tag: shabbat-friendly}
+        - {text: "Retell the Purim story; stamp your feet at 'Haman'.", tag: shabbat-friendly}
+      transition: "Purim sameach!"
+    guide:
+      pshat:
+        text: >-
+          On Purim we hear the Megillah, send food gifts to friends, give to people in need and share a festive
+          meal (9:22). The family letter (p.17) explains the week's value, courage, and the word gibor.
+        refs: ["Esther 9:22"]
+      sages: []
+      hard_questions: []
+      adapt:
+        see: "Send the card home with a photo of the class's groggers or mishloach manot."
+        do: "Families who can't deliver food can make a card or drawing for a neighbor instead."
+        join: "A child who doesn't talk much can show the gesture to the family."
+      extend: "Families send back a photo or drawing of their mishloach manot for a class wall."
+      tip: "Send it home before Purim so families can plan mishloach manot together."
