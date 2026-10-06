@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Print PDF Compression
+
+#### Added
+- **`scripts/compress_pdf.py`**: re-encodes every embedded image in a PDF as JPEG (default quality 88, `--quality`) at the same pixel size, so print DPI is unchanged; rewrites in place via a temp file. Bereshit PDFs: 57.5 MB → 6.2 MB (letter), 57.4 MB → 6.1 MB (5x7).
+- `tests/test_compress_pdf.py`. `pypdf` added to requirements.txt.
+
+#### Changed
+- `card-designer/scripts/export-deck.ts` runs the compressor after each `--pdf` export (best-effort: warns if python3/pypdf is missing). New `--no-compress` flag keeps lossless PNG art.
+
 ### Agent Pipeline v3 (Deck v3 Phase 4)
 
 #### Added
