@@ -81,12 +81,12 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [x] 7.6 Verify + hub PR #4 (re-sync after Bereshit art)
 
 ## Phase 8 — Extras
-- [ ] 8.1 Item art (12 + shared)
-- [ ] 8.2 Bingo ×10
-- [ ] 8.3 I-spy
-- [ ] 8.4 Match-it
+- [x] 8.1 Item art (13: 12 + Shabbat candles) (#11)
+- [x] 8.2 Bingo ×10 (#11)
+- [x] 8.3 I-spy (#11)
+- [x] 8.4 Match-it (#11)
 - [ ] 8.5 Coloring + sequence
-- [ ] 8.6 Following-directions story
+- [x] 8.6 Following-directions story (#11)
 - [ ] 8.7 Sequencing game
 - [ ] 8.8 Teacher guide booklet
 - [ ] 8.9 Home card
