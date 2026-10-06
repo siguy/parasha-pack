@@ -49,7 +49,8 @@
           "minutes": { "type": "integer", "minimum": 0, "description": "0 only for the home card" },
           "sequence_number": { "type": "integer", "minimum": 1 },
           "characters": { "type": "array", "items": { "type": "string" } },
-          "refs": { "type": "array", "items": { "type": "string" }, "description": "Verses this card teaches (empty for modern-world cards)" }
+          "refs": { "type": "array", "items": { "type": "string" }, "description": "Verses this card teaches (empty for modern-world cards)" },
+          "text_ref": { "type": "string", "description": "The one verse range this card SHOWS, from the 01 text map (required for story cards by assemble_deck.py)" }
         },
         "if": { "properties": { "card_type": { "const": "story" } } },
         "then": { "required": ["sequence_number"] }

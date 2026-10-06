@@ -313,3 +313,31 @@ def test_sequence_story_cards_out_of_range(deck, tmp_path):
     seq = sequence_deck(deck, 7)
     seq["story_cards"] = 12
     assert any("story_cards" in m for m in messages(validate(seq, tmp_path)))
+
+# ---------------------------------------------------------------- text fidelity
+
+def test_story_card_needs_text_ref(deck, tmp_path):
+    del card(deck, "story_2")["text_ref"]
+    assert any("story_2 text_ref story card has no text_ref" in m for m in messages(validate(deck, tmp_path)))
+
+
+def test_key_hebrew_needs_nikud_and_must_come_from_the_research_cache(deck, tmp_path):
+    research = tmp_path / "research"
+    research.mkdir()
+    (research / "fixture.yaml").write_text(
+        "verses:\n  - ref: Genesis 1:1-5\n    he:\n      - וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר וַיְהִי־אוֹר׃\n", encoding="utf-8")
+    path = tmp_path / "deck.json"
+
+    def errors_for(key):
+        card(deck, "story_1")["key_hebrew"] = key
+        path.write_text(json.dumps(deck, ensure_ascii=False), encoding="utf-8")
+        return messages(run(path, characters_dir=CHARACTERS, research_dir=research))
+
+    assert errors_for("יְהִי אוֹר") == []
+    assert any("Hebrew vocabulary word has no nikud" in m for m in errors_for("יהי אור"))
+    assert any("not an exact phrase from the research cache" in m for m in errors_for("יְהִי חֹשֶׁךְ"))
+
+
+def test_torah_card_pshat_needs_a_verse(deck, tmp_path):
+    card(deck, "spotlight_1")["guide"]["pshat"]["refs"] = []
+    assert any("spotlight_1 guide.pshat.refs pshat without a verse ref" in m for m in messages(validate(deck, tmp_path)))

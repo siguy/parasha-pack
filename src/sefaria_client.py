@@ -279,6 +279,15 @@ RESEARCH_PLANS = {
         "commentaries": [
             {"ref": "Rashi on Genesis 1:1:1", "fetch": True,
              "note": "Why the Torah begins with creation: the whole world belongs to Hashem."},
+            {"ref": "Ramban on Genesis 1:1", "fetch": False,
+             "note": "Hashem created everything from nothing (yesh me'ayin) in 1:1; the earth was 'tohu va'vohu' "
+                     "and the days then gave it form. Ref only: the comment is very long."},
+            {"ref": "Rashi on Genesis 1:4:1", "fetch": True,
+             "note": "The light of Day 1 was a special light, set aside for the righteous (Chagigah 12a)."},
+            {"ref": "Rashi on Genesis 1:7:2", "fetch": True,
+             "note": "Why the Torah doesn't say 'it was good' on Day 2: the waters were finished only on Day 3."},
+            {"ref": "Rashi on Genesis 1:14:1", "fetch": True,
+             "note": "The sun and moon were made on Day 1 and put in their place in the sky on Day 4 (Chagigah 12a)."},
             {"ref": "Kohelet Rabbah 7:13:1", "fetch": True,
              "note": "Hashem shows Adam the trees: 'do not ruin My world' (caring for the world)."},
             {"ref": "Sanhedrin 37a", "fetch": False,

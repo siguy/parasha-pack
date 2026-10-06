@@ -7,16 +7,17 @@ it checks every file against its schema (schemas/pipeline/*.schema.json), then t
 each part from the agent that owns it:
 
     00-series.yaml       -> deck name, ref, holiday flag, value (middah), deck_pattern + story_cards
-    02-structure.yaml    -> card list and order, core/minutes, week_plan, story world
+    02-structure.yaml    -> card list and order, core/minutes, week_plan, story world, text_ref
     02b-sensitivity.yaml -> checkpoint must be approved; "if they ask" answers -> guide
     03-content.yaml      -> titles, back, guide, hebrew_keyword
-    05-visual.yaml       -> palette, web_theme, image_prompt, characters_in_scene   (optional)
+    05-visual.yaml       -> palette, web_theme, image_prompt, characters_in_scene, exclude (optional)
     05b-image-qa.yaml    -> image_path from the picks                              (optional)
     06-editor.yaml       -> only checked; a failing editor review is a warning      (optional)
 
-01-research.yaml is checked against its schema but not copied (the content already
-cites it). After merging, the deck is checked against schemas/deck.v3.schema.json and
-then src/validate_deck.py runs on the written file.
+01-research.yaml is checked against its schema; only its text map is used: each card's key_hebrew
+(and its text_ref must agree with 02-structure and 05-visual). Story cards must cite a text_ref.
+After merging, the deck is checked against schemas/deck.v3.schema.json and then
+src/validate_deck.py runs on the written file.
 
 Usage (from the repo root):
     python3 src/assemble_deck.py decks/bereshit            # writes decks/bereshit/deck.json
@@ -177,6 +178,27 @@ def check_card_mix(structure: dict, series: dict, report: Report) -> None:
         report.warn(f"02-structure: card '{cid}' is not in any week_plan day")
 
 
+def check_text_map(research: dict, structure: dict, visual: dict, report: Report) -> None:
+    """Text fidelity: story cards cite their verses, and every step cites the SAME verses as the text map."""
+    text_map = _by_card(research, "text_map")
+    if not text_map:
+        report.warn("01-research: no text_map (what each card's verses say and don't); text_ref not cross-checked")
+    visual_by_id = _by_card(visual)
+    for card in structure["cards"]:
+        cid, text_ref = card["card_id"], card.get("text_ref")
+        if card["card_type"] == "story" and not text_ref:
+            report.error(f"02-structure: {cid} is a story card with no text_ref (which verses does it show?)")
+        if text_map and text_ref:
+            row = text_map.get(cid)
+            if row is None:
+                report.error(f"01-research: text_map has no row for {cid}")
+            elif row["text_ref"] != text_ref:
+                report.error(f"02-structure: {cid} text_ref '{text_ref}' but the text map says '{row['text_ref']}'")
+        visual_ref = (visual_by_id.get(cid) or {}).get("text_ref")
+        if visual_ref and text_ref and visual_ref != text_ref:
+            report.error(f"05-visual: {cid} text_ref '{visual_ref}' but 02-structure says '{text_ref}'")
+
+
 def check_sensitivity(structure: dict, sensitivity: dict, report: Report) -> None:
     """The ★ checkpoint must be approved, and every planned card must have an ok/reframe verdict."""
     checkpoint = sensitivity["checkpoint"]
@@ -209,19 +231,41 @@ def check_card_sets(structure: dict, other: dict, filename: str, report: Report)
 def image_qa_result(scores: dict, rubric: dict) -> tuple:
     """Apply the Image QA pass rule. Returns (total, passed).
 
-    Pass = no criterion scored 0 and total >= pass_total (16 of 22).
+    Pass = no criterion scored 0 and total >= pass_total (16 of 22). Each criterion beyond the
+    11 core ones (added_criteria from v1.1, sequence_criteria) raises the line by 2.
     """
+    base = {c["id"] for c in rubric["criteria"]}
+    extra = len([cid for cid in scores if cid not in base])
     total = sum(scores.values())
     no_zero = (0 not in scores.values()) if rubric.get("no_zeros", True) else True
-    return total, (no_zero and total >= rubric["pass_total"])
+    return total, (no_zero and total >= rubric["pass_total"] + 2 * extra)
 
 
-def check_image_qa(image_qa: dict, report: Report) -> None:
-    """Every score row uses the rubric's criteria and its total/pass add up."""
+def _version(text) -> tuple:
+    """'1.10' -> (1, 10), so versions compare as numbers."""
+    return tuple(int(part) for part in str(text).split("."))
+
+
+def required_criteria(rubric: dict, version: str, sequence_story: bool) -> set:
+    """Criterion ids a row must score: the core list, plus extras that exist in its rubric version."""
+    ids = {c["id"] for c in rubric["criteria"]}
+    extras = rubric.get("added_criteria", []) + (rubric.get("sequence_criteria", []) if sequence_story else [])
+    ids |= {c["id"] for c in extras if _version(c.get("since", "1.0")) <= _version(version)}
+    return ids
+
+
+def check_image_qa(image_qa: dict, report: Report, sequence_story_ids: set = frozenset()) -> None:
+    """Every score row uses the rubric's criteria (for its rubric_version) and its total/pass add up.
+
+    sequence_story_ids: story cards of a sequence deck; their rows also need the rubric's
+    sequence_criteria (is the new item the hero?).
+    """
     with open(IMAGE_QA_RUBRIC, "r", encoding="utf-8") as f:
         rubric = yaml.safe_load(f)
-    criteria = {c["id"] for c in rubric["criteria"]}
+    file_version = image_qa.get("rubric_version", "1.0")
     for row in image_qa["images"]:
+        criteria = required_criteria(rubric, row.get("rubric_version", file_version),
+                                     row["card_id"] in sequence_story_ids)
         label = f"05b-image-qa: {row['file']}"
         if set(row["scores"]) != criteria:
             missing = sorted(criteria - set(row["scores"]))
@@ -256,7 +300,7 @@ def _deck_schema_allows(field: str, level: str) -> bool:
 
 
 def merge_card(planned: dict, content: dict, visual: dict, pick: dict, sensitivity: dict,
-               report: Report) -> dict:
+               report: Report, text_row: dict = None) -> dict:
     """Build one deck.json card from the parts each agent owns."""
     cid = planned["card_id"]
     back = dict(content["back"])
@@ -284,6 +328,12 @@ def merge_card(planned: dict, content: dict, visual: dict, pick: dict, sensitivi
     }
     if "sequence_number" in planned:
         card["sequence_number"] = planned["sequence_number"]
+    if planned.get("text_ref"):
+        card["text_ref"] = planned["text_ref"]
+    if text_row and text_row.get("key_hebrew"):
+        card["key_hebrew"] = text_row["key_hebrew"]
+    if visual and visual.get("exclude"):
+        card["exclude"] = visual["exclude"]
     if "hebrew_keyword" in content:
         card["hebrew_keyword"] = content["hebrew_keyword"]
     for field in ("style_plate", "continuity_ref"):
@@ -328,9 +378,10 @@ def merge(steps: dict, report: Report) -> dict:
 
     content_by_id, visual_by_id = _by_card(content), _by_card(visual)
     picks_by_id = _by_card(image_qa, "picks")
+    text_map = _by_card(steps["01-research"], "text_map")
     deck["cards"] = [
         merge_card(planned, content_by_id[planned["card_id"]], visual_by_id.get(planned["card_id"]),
-                   picks_by_id.get(planned["card_id"]), sensitivity, report)
+                   picks_by_id.get(planned["card_id"]), sensitivity, report, text_map.get(planned["card_id"]))
         for planned in structure["cards"]
         if planned["card_id"] in content_by_id
     ]
@@ -372,11 +423,15 @@ def assemble(deck_dir, write: bool = True, library_dir=None) -> tuple:
     check_deck_ids(steps, deck_dir.name, report)
     check_card_mix(steps["02-structure"], steps["00-series"], report)
     check_sensitivity(steps["02-structure"], steps["02b-sensitivity"], report)
+    check_text_map(steps["01-research"], steps["02-structure"], steps["05-visual"], report)
     check_card_sets(steps["02-structure"], steps["03-content"], "03-content.yaml", report)
     if steps["05-visual"]:
         check_card_sets(steps["02-structure"], steps["05-visual"], "05-visual.yaml", report)
     if steps["05b-image-qa"]:
-        check_image_qa(steps["05b-image-qa"], report)
+        sequence_story_ids = set()
+        if steps["00-series"].get("deck_pattern") == deck_pattern.SEQUENCE:
+            sequence_story_ids = {c["card_id"] for c in steps["02-structure"]["cards"] if c["card_type"] == "story"}
+        check_image_qa(steps["05b-image-qa"], report, sequence_story_ids)
     editor = steps["06-editor"]
     if editor and not editor["pass"]:
         report.warn(f"06-editor: review did not pass ({editor['weighted_percent']}%, "

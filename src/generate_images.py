@@ -77,7 +77,8 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
                             manifest: dict = None,
                             palette: list = None,
                             anchor_keys: list = None,
-                            reference_labels: list = None) -> str:
+                            reference_labels: list = None,
+                            exclude: list = None) -> str:
     """
     Build a complete generation prompt by layering system concerns onto a scene description.
 
@@ -94,6 +95,7 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
     4. Scene description — from deck.json (passed through unchanged)
     4a. Character anchors — locked visual anchors from characters/{key}/character.yaml
     4b. Ref hint         — when character refs are loaded, tell model to prioritize them
+    4c. Leave out        — card.exclude: things NOT in this card's verses (text fidelity)
     5. Composition       — per-card-type cinematography (where to place subjects)
     6. Critical rules    — universal (no text, no borders)
 
@@ -106,6 +108,7 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
         palette: Optional list of hex colors from deck.json "palette"
         anchor_keys: Character keys whose locked anchors should be added (characters_in_scene)
         reference_labels: Labels of the reference images, in the order they are sent
+        exclude: Things the picture must not show (card.exclude, from the text map's not_in_text)
 
     Returns:
         Complete prompt with all system layers applied
@@ -168,6 +171,11 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
             f"(face, clothing, coloring). Use the text description above for pose, "
             f"action, and emotion only."
         )
+
+    # 4c. Text fidelity: what this card's verses do NOT contain must stay out of the picture
+    if exclude:
+        parts.append("=== LEAVE OUT (not in this card's verses) ===\n" +
+                     "\n".join(f"- No {item}" for item in exclude))
 
     # 5. Per-card-type composition guidance
     guidance = COMPOSITION_GUIDANCE.get(card_type, "")
@@ -810,6 +818,7 @@ def main(argv=None):
                 palette=palette,
                 anchor_keys=card.get("characters_in_scene") or [],
                 reference_labels=refs["labels"],
+                exclude=card.get("exclude") or [],
             )
         save_prompt_sidecar(deck_path, card_id, prompt)
 

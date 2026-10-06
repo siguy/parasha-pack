@@ -245,3 +245,12 @@ def test_edit_run_writes_the_card_image(tmp_path, monkeypatch):
     assert Path(output_path).name == "story_5.png" and kw["image_size"] == "2K"
     assert "Only change:\nRemove the land animals." in prompt
     assert kw["reference_images"][0]["text"].startswith("Image 1 = the image to edit")
+
+
+def test_exclusions_are_listed_in_the_prompt():
+    prompt = generate_images.build_generation_prompt("A burst of light in the dark.", "story",
+                                                     exclude=["water or sea", "the sun"])
+    block = prompt.split("=== LEAVE OUT (not in this card's verses) ===")[1]
+    assert "- No water or sea" in block and "- No the sun" in block
+    assert prompt.index("=== SCENE ===") < prompt.index("=== LEAVE OUT")
+    assert "LEAVE OUT" not in generate_images.build_generation_prompt("A garden.", "story")
