@@ -18,7 +18,7 @@ The Purim deck (v2) works, but research found three blockers to scaling to 54 pa
 
 Simon wants these fixed, then **Bereshit** built as the first deck on the new system. He also wants a **web version on simonbrief-hub** that teachers project in class, and a set of **printable extras**.
 
-**Big change since the first draft (2026-10-05):** there is now **one card format: 8.5×11 letter, printed on a school or home printer.** 5×7, print vendors, bleed and CMYK are all dropped. Each card is one sheet printed double-sided, with art on the front and the teacher back on the back. It has a white margin and needs no cutting.
+**Big change since the first draft (2026-10-05):** the **default card is 8.5×11 letter, printed on a school or home printer.** Each card is one sheet printed double-sided, with art on the front and the teacher back on the back. It has a white margin and needs no cutting. **5×7 stays as a second, optional export target** (vendor print, 0.125" bleed, CMYK proof) so the decks can be printed professionally later, with no redesign.
 
 ## Decisions (locked)
 
@@ -28,9 +28,9 @@ Simon wants these fixed, then **Bereshit** built as the first deck on the new sy
 | D2 | Values spine: `docs/policies/values-spine.md` (draft adopted). Bereshit = **caring for Hashem's world**. |
 | D3 | Modern Orthodox. Midrash is introduced as "Our Sages teach…". Adam and Chava wear **simple, modest, full-coverage tunics**. |
 | D4 | Hard-text policy: `docs/policies/hard-text-policy.md` (draft adopted). The snake and the fruit appear **only in the guide booklet**. |
-| D5 | Printed teacher guide booklet. Backs show "📖 Guide p.N", with page numbers taken from a fixed page map. |
+| D5 | Printed teacher guide booklet, **8.5×11 letter** (stapled at the corner or hole-punched). Backs show "📖 Guide p.N", with page numbers taken from a fixed page map. |
 | D6 | Simon is the only reviewer. |
-| D7 | **Card = 8.5×11 letter, duplex, home printer, no bleed, ~0.3" white margin.** Export as PDF. |
+| D7 | **Default card = 8.5×11 letter, duplex, home printer, no bleed, ~0.3" white margin.** **Optional target = 5×7 vendor print (5.25×7.25" with bleed, 0.25" safe zone, CMYK soft-proof).** Both exported as PDF from the same layouts. |
 | D8 | Order: **foundations first → Bereshit → website → extras.** |
 | D9 | Back design = refine `docs/mockups/back-v3.html` (bold = say, chips = do, ≤50 words, ★ CORE). |
 | D10 | Web: **projector/smartboard Present mode + a separate presenter window** (laptop) that stays in step with it. |
@@ -55,7 +55,9 @@ Simon wants these fixed, then **Bereshit** built as the first deck on the new sy
   - **Sizes:** `CardFrame`/`CardBackFrame` change from `aspect-[5/7]` to letter. The px font sizes in `CardBackFrame.tsx`/`BackSection.tsx` are re-calibrated for letter.
   - **Colors:** the v3 palette, which passes AA contrast (WCAG's minimum for readable text): Tradition becomes teal, gold becomes darker, and each type gets its own icon.
 - 1.5 `card-designer/scripts/export-deck.ts`:
-  - Add `--pdf`, which uses Playwright `page.pdf({format:'Letter'})` so text stays sharp.
+  - Add `--format letter|5x7` (default `letter`). Sizes and margins come from one `print_formats.json`: letter is 8.5×11 with a 0.3" margin; 5x7 is 5.25×7.25 with 0.125" bleed and a 0.25" safe zone.
+  - Layouts use relative units (cqw/%), so the same component renders both formats.
+  - Add `--pdf`, which uses Playwright `page.pdf()` at the format's size so text stays sharp.
   - Pages go front₁, back₁, front₂… for duplex printing (flip on long edge).
   - Keep PNG export for the web.
 
@@ -108,11 +110,12 @@ Order: **00 Series Planner** → 01 Torah Scholar (reads the research cache and 
   - emotion readable at 8% scale
 
   Start in **flag-only** mode.
-- 4.4 Docs pass across all three layers: CLAUDE.md, src/ and decks/ CLAUDE.md, agents/*, CARD_SPECS, VISUAL_SPECS, README, CHANGELOG. **The print specs change from 5×7 to letter.** Grep the docs for old terms.
+- 4.4 Docs pass across all three layers: CLAUDE.md, src/ and decks/ CLAUDE.md, agents/*, CARD_SPECS, VISUAL_SPECS, README, CHANGELOG. **Print specs: letter becomes the default and 5×7 stays documented as the optional vendor target.** Grep the docs for old terms.
 
 ## Phase 5 — Print-ready art at letter size
 
-- 5.1 `generate_images.py`: pass `imageConfig.imageSize: "4K"` with a 3:4 aspect ratio. 3:4 is 0.75 and letter's printable area (about 7.9×10.4 in) is 0.76, so very little gets cropped. Check the output is at least 2370×3120 px (300 DPI over the printable area).
+- 5.1 `generate_images.py`: pass the right size setting (per the 4K research) with a 3:4 aspect ratio. 3:4 is 0.75 and letter's printable area (about 7.9×10.4 in) is 0.76, so very little gets cropped. Check the output is at least 2370×3120 px (300 DPI over the printable area). **The same image must also crop to 5:7** (0.714, a little narrower), so key subjects stay inside the central 90% of the width.
+- 5.1b CMYK soft-proof script for the 5×7 vendor target only (FOGRA39/GRACoL). It flags out-of-gamut purple and blue.
 - 5.2 `src/image_prompts.py`:
   - drop the "darker lower-left" lines
   - add "top 25% calm for the title", "at most 5 figures in focus"
@@ -199,7 +202,7 @@ All extras are generated from deck.json plus a few extra images by `src/generate
   - auto-drawn answer key
 - 8.7 **Sequencing game:** the real story cards plus a control strip. Variations for ages 4, 5 and 6.
 - 8.8 **Teacher guide booklet:**
-  - half-letter, saddle-stitched, 16 pages (20 for a holiday)
+  - **8.5×11 letter**, single-sided or duplex, stapled at the corner or hole-punched for a binder. About 12 pages (fewer than half-letter because each page holds more), 14 for a holiday
   - fixed page map in `guide_layout.yaml`; card backs look their page numbers up there
   - `build_guide.py` builds it through Jinja, then Playwright PDF, with the overflow guard
   - p.15 is a photocopiable family letter
@@ -243,7 +246,8 @@ It is then cut to 12 cards and regenerated at 4K letter size.
 
 - `pytest` passes. The validator passes Bereshit and **fails** a deliberately broken fixture: an over-budget back, אַמִּיץ used for Chava, a missing character.
 - The export guard fails on a fixture with an overflowing script.
-- Bereshit duplex PDF: 20 pages, art ≥300 DPI over the printable area. A real home-printer test print, checked for duplex alignment and legibility from 3 m.
+- Bereshit duplex PDF (letter): 20 pages, art ≥300 DPI over the printable area. A real home-printer test print, checked for duplex alignment and legibility from 3 m.
+- 5×7 export of the same deck renders with no overflow, keeps text inside the safe zone, and the bleed reaches 5.25×7.25".
 - Hub: `next build` is clean. Present and presenter stay in step across two windows. Purim, Terumah and Bereshit routes all render. Simon checks the Vercel preview.
 - Extras: bingo uniqueness test, I-spy count = answer key, and Hebrew prints in the right direction (RTL) in the PDFs.
 

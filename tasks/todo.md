@@ -6,7 +6,8 @@ Status: **Decisions locked 2026-10-05 — awaiting go for Phase 1**
 
 ## Decisions
 - [x] D1–D6 (card count, values spine, Modern Orthodox, hard-text policy, booklet, Simon reviews)
-- [x] D7 One card format: 8.5×11 letter, duplex, home printer, no bleed
+- [x] D7 Default 8.5×11 letter (home printer, duplex, no bleed); 5×7 vendor print kept as optional export
+- [x] D5b Teacher booklet = 8.5×11 letter
 - [x] D8 Order: foundations → Bereshit → website → extras
 - [x] D9–D13 Back design, projector + presenter window, hub URL per deck, Bereshit scope/טוֹב, extras v1
 
@@ -15,7 +16,7 @@ Status: **Decisions locked 2026-10-05 — awaiting go for Phase 1**
 - [ ] 1.2 `schemas/deck.v3.schema.json`
 - [ ] 1.3 `src/migrate_v2_to_v3.py` (Purim, Terumah)
 - [ ] 1.4 Single `CardBack.tsx`; letter frames; v3 palette + icons
-- [ ] 1.5 Duplex PDF export
+- [ ] 1.5 Duplex PDF export, `--format letter|5x7` from `print_formats.json`
 
 ## Phase 2 — Automatic checks
 - [ ] 2.1 `src/validate_deck.py`
@@ -34,10 +35,11 @@ Status: **Decisions locked 2026-10-05 — awaiting go for Phase 1**
 - [ ] 4.1 00 planner, 02b sensitivity, 05b image QA, merge 03+04, 06 rubric, 07 → tool
 - [ ] 4.2 Per-agent schemas + `assemble_deck.py`
 - [ ] 4.3 Image QA rubric (flag-only)
-- [ ] 4.4 3-layer docs pass (5×7 → letter)
+- [ ] 4.4 3-layer docs pass (letter default + 5×7 optional)
 
 ## Phase 5 — Print-ready art
-- [ ] 5.1 4K 3:4 generation
+- [ ] 5.1 4K 3:4 generation (crop-safe for letter + 5:7)
+- [ ] 5.1b CMYK soft-proof for 5×7 target
 - [ ] 5.2 Prompt fixes
 - [ ] 5.3 Series style bible
 - [ ] 5.4 Letter fronts
