@@ -2,11 +2,13 @@
 
 **Read this first after a /clear.** Then read `tasks/todo.md` (checklist) and `docs/plans/2026-10-02-feat-deck-v3-improvements-plan.md` (full plan). Corrections Simon has made are in `tasks/lessons.md`. Every judgment call made overnight on Simon's behalf is logged in `docs/overnight/decisions.md`. Open follow-ups are in `todos/` (on the top branch).
 
-_Last updated: 2026-10-06 (morning after the overnight run)_
+_Last updated: 2026-10-06 (afternoon)_
+
+**Latest:** Bereshit is now 13 cards (one per day; #17). The hub is merged and live at simonbrief.com, with a Teacher materials section. The teacher link was emailed to adinabeth@gmail.com (cc Simon) on 2026-10-06. The parasha-pack PRs are still unmerged.
 
 ## Status: all planned phases built, as 13 stacked PRs, none merged
 
-**Spend:** about $11.11 of the $15 cap (Nano Banana 2); Phase 10 day art was $1.75.
+**Spend:** about $11.45 of the $15 cap (Nano Banana 2); Phase 10 day art was $1.75.
 | Item | Cost |
 |---|---|
 | Style plates | $0.81 |
@@ -31,9 +33,9 @@ _Last updated: 2026-10-06 (morning after the overnight run)_
 | 10 | [#13](https://github.com/siguy/parasha-pack/pull/13) | `feat/purim-v3` | **Purim v3**: Torah + Hebrew fixes, 12 cards, Persian (Achaemenid) art at 2K, PDFs (~8.5 MB) |
 | 11 | [#9](https://github.com/siguy/parasha-pack/pull/9) | `feat/hub-sync` | `scripts/sync_to_hub.py` |
 | 12 | [#14](https://github.com/siguy/parasha-pack/pull/14) | `docs/v3-final` | Docs reconciled across all 3 layers + `FOR_SIMON.md` |
-| 14 | [#17](https://github.com/siguy/parasha-pack/pull/17) | `feat/bereshit-seven-days` | **Bereshit: a card for each day (13 cards)**, sequence-deck type, text-fidelity rules in every agent; 7-day extras (7-panel + easy 4-panel sequencing, mini cards, Days strip), a 19-page booklet, "Day N" backs, Day 5 sky softened, hub re-synced; 243 tests |
+| 14 | [#17](https://github.com/siguy/parasha-pack/pull/17) | `feat/bereshit-seven-days` | **Bereshit: a card for each day (13 cards)**, sequence-deck type, text-fidelity rules in every agent; 7-day extras (7-panel + easy 4-panel sequencing, mini cards, Days strip), a 19-page booklet, "Day N" backs, Day 5 sky softened, Day 1 coloring redrawn (no clouds), Day 6 coloring simplified (Day 7's simplified version was crude, so it was reverted), compress_pdf never grows a file, teacher materials published to the hub; 246 tests |
 | 13 | [#15](https://github.com/siguy/parasha-pack/pull/15) | `fix/v3-followups` | Skip home-card art, block invalid hub sync, dead code; `todos/` |
-| hub | [simonbrief-hub#4](https://github.com/siguy/simonbrief-hub/pull/4) | `feat/parashapacks-present-mode` | Per-deck pages, projector Present + presenter window, Print PDF. [Vercel preview](https://simonbrief-git-feat-parashapa-c7b7f9-simon-bs-projects-95643937.vercel.app/parashapacks) (needs a login) |
+| hub | [simonbrief-hub#4](https://github.com/siguy/simonbrief-hub/pull/4) | `feat/parashapacks-present-mode` | **MERGED + LIVE (2026-10-06, Simon approved):** per-deck pages, projector Present + presenter window, **Teacher materials section** (8 PDFs). https://simonbrief.com/parashapacks/bereshit#teachers |
 
 **Tests at the top of the stack:** 206 pytest + 8 markup tests pass. Bereshit and Purim both validate with 0 errors and 0 warnings.
 

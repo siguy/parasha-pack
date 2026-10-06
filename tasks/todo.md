@@ -111,3 +111,10 @@ Branch `feat/bereshit-seven-days` on top of `fix/v3-followups` (#15). **PR #17.*
 - [x] 10.4 Booklet one page per day; extras: 7-panel + easy 4-panel sequencing, 7 mini cards
 - [x] 10.5 PDFs (letter + 5×7), validator 0/0, hub re-sync, PR with known issues
 - [x] 10.6 Text fidelity in the pipeline: Torah Scholar text map (text_ref, key_hebrew, in_text, not_in_text, midrash); 02/03/05 draw only from in_text; 02b/06/05b check it; schema + validator require text_ref/key_hebrew on story cards
+
+## Phase 11 — Teacher materials live (2026-10-06)
+- [x] 11.1 Day 1 coloring redrawn as rays + darkness (no clouds); Day 6 simplified; Day 7 reverted to the clean version
+- [x] 11.2 compress_pdf keeps the original when JPEG would be bigger (line art)
+- [x] 11.3 Hub "Teacher materials" section (#teachers): week plan, printing tips, 8 PDF downloads; sync_to_hub publishes materials/
+- [x] 11.4 hub#4 squash-merged with Simon's approval; live at https://simonbrief.com/parashapacks/bereshit#teachers (all 8 PDFs return 200 publicly)
+- [x] 11.5 Emailed the link plus an explanation to adinabeth@gmail.com, cc simon.brief@gmail.com (Gmail id 1a11140f6db82d49)
