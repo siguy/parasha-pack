@@ -76,11 +76,11 @@ Simon wants these fixed, then **Bereshit** built as the first deck on the new sy
 - 2.3 Tests: pytest for the validator, the migration and `build_generation_prompt()`, plus a parser test for the bold/cue markup.
 - 2.4 Logging to `project.log`, with the source name and record count at each step.
 - 2.6 **Image model fix (blocks all generation, including Adam and Chava in Phase 3).** The 4K research found:
-  - **Model:** the hardcoded `nano-banana-pro-preview` alias most likely points to `gemini-3-pro-image-preview`, which Google shut down on 2026-06-25. Switch to `gemini-3-pro-image`, read from `GEMINI_IMAGE_MODEL` in `.env` with that as the default. This applies in `src/generate_images.py` and `src/generate_references.py`.
-  - **Size flag:** add `imageConfig.imageSize` and a `--size 1K|2K|4K` flag. The value must be uppercase; lowercase `"4k"` is rejected. Default is 1K.
+  - **Model:** the hardcoded `nano-banana-pro-preview` alias most likely points to `gemini-3-pro-image-preview`, which Google shut down on 2026-06-25. **Switch to Nano Banana 2, `gemini-3.1-flash-image`** (Simon, 2026-10-05: cheaper and still very good). Read the model from `GEMINI_IMAGE_MODEL` in `.env`, so Pro (`gemini-3-pro-image`) is a one-line switch for any card that needs it. This applies in `src/generate_images.py` and `src/generate_references.py`.
+  - **Size flag:** add `imageConfig.imageSize` and a `--size 512|1K|2K|4K` flag. The value must be uppercase; lowercase `"4k"` is rejected. **Default is 2K.**
   - **Timeout:** raise it from 180s to 300s.
   - **Draft-image bug:** skip parts marked `thought: true`. The model always "thinks" and can return draft images; the current parser saves the first image part, which may be a draft.
-  - **Size check:** after saving, read the pixel size with Pillow and log it. 4K at 3:4 should be 3584×4800.
+  - **Size check:** after saving, read the pixel size with Pillow and log it. 2K at 3:4 should be 1536×2048. Nano Banana 2 allows **up to 4 character references** and 3 style references per image, and the validator enforces that limit.
   - Smoke test: one 1K call. Then update the "nano-banana only" notes in CLAUDE.md and memory.
 - 2.5 Housekeeping:
   - `sync-deck.sh` uses `rsync --delete`
@@ -121,13 +121,28 @@ Order: **00 Series Planner** → 01 Torah Scholar (reads the research cache and 
 
 ## Phase 5 — Print-ready art at letter size
 
-- 5.1 `generate_images.py`: **draft at 1K, final at 4K** (3:4 → 3584×4800, about 455 DPI on letter). 2K (1792×2400) is enough for 5×7 alone, but not for letter (~230 DPI). Run finals through the Batch API to halve the cost. Prices are $0.134 per 1K/2K image and $0.24 per 4K ($0.12 batch). Expect about $6–8 per deck including extras. 3:4 is 0.75 and letter's printable area (about 7.9×10.4 in) is 0.76, so very little gets cropped. Check the output is at least 2370×3120 px (300 DPI over the printable area). **The same image must also crop to 5:7** (0.714, a little narrower), so key subjects stay inside the central 90% of the width.
+- 5.1 **Nano Banana 2 at 2K** (1536×2048, $0.101/image, $0.050 batch). Draft at 1K ($0.067), final at 2K. About $3–4 per deck including extras.
+  - **Resolution:** 2K gives about 282 DPI on 5×7 and **about 195 DPI on letter**. Both look fine from circle-time distance; letter may look a little soft up close.
+  - **Decision gate at the 6.4 test print.** If letter looks soft, either upscale 2× locally with Real-ESRGAN (free, illustration model) or switch only the finals to 4K ($0.151).
+  - The upscaler is an optional `--upscale` export step.
 - 5.1b CMYK soft-proof script for the 5×7 vendor target only (FOGRA39/GRACoL). It flags out-of-gamut purple and blue.
+- 5.0 **Styling system v2** (all 10 adopted by Simon, 2026-10-05):
+  1. **Series style plates**: 3–4 images with no characters (landscape, interior, object close-up, modern classroom), passed with every generation. They replace the per-deck `style_hero`. The text style card shrinks to specifics: line weight, flat color with one soft gradient, eye style, head:body about 1:3, lighting.
+  2. **Per-deck 5-color palette** in deck.json. It drives both the prompts and the hub's `web_theme`, so print and web match.
+  3. **Crops that work for both sizes**: the top 22% is calm for the title; key subjects sit in the central 90% of the width (letter 0.77 / 5:7 0.714); a simple ground plane replaces the lower-left shadow.
+  4. **Draft cheap, then finalize**: 2–3 drafts at 1K, Simon picks one, and the final is made at 2K with the chosen draft passed as a composition reference.
+  5. **Locked character anchors** from `characters/{key}/character.yaml`, added to the prompt automatically instead of typed into each deck prompt.
+  6. **Labeled references** in the prompt ("Image 1 = style plate, Image 2 = Adam identity…").
+  7. **Image QA after every image** (vision rubric, flag-only to start).
+  8. **Story continuity**: the previous story card is passed as a reference when the scene is the same. In Bereshit, ①→② show the same landscape filling up.
+  9. **Thick clean outlines on purpose**, so the art turns into coloring pages reliably.
+  10. **`prompt_version`** written in `generations.jsonl`.
+  - Also: move `IMAGE_SAFETY_RULES` out of `schema.py` and the style text out of `image_prompts.py` into one `style/style_config.yaml`, shared by the Visual Director, the prompt builder and Image QA.
 - 5.2 `src/image_prompts.py`:
   - drop the "darker lower-left" lines
   - add "top 25% calm for the title", "at most 5 figures in focus"
   - add the named ethnic mix, kippah rules and a villain-posture rule to `MODERN_WORLD_STYLE`
-- 5.3 A series **style bible** (`series/style_bible.png` plus a written style card) with no characters in it. It replaces the per-deck style heroes that include characters.
+- 5.3 Generate the series style plates (see 5.0.1). Simon picks from 2 versions each.
 - 5.4 Fronts at letter size:
   - FitText padding ≥5% and title max-width 85%
   - gradient `from-black/65`
@@ -146,7 +161,7 @@ Order: **00 Series Planner** → 01 Torah Scholar (reads the research cache and 
   - Connection: "Taking care of our world"
   - Power word: טוֹב
   - Home card
-- 6.3 Expected image cost: 10 cards × about 2 = 20, plus 4 identity sheets and 1 style bible, about 25 calls. Commit a checkpoint first.
+- 6.3 Expected image cost: about 30 drafts at 1K plus about 15 finals at 2K plus 4 identity sheets plus 4 style plates, **about $4**. Commit a checkpoint first.
 - 6.4 Validate, export the duplex PDF, and print a test copy on a real home printer. Check margins, duplex alignment, and legibility at 3 m.
 - 6.5 Record human-minutes and generations per card, to compare with Purim (39 generations for 16 cards).
 
