@@ -6,7 +6,7 @@ _Last updated: 2026-10-06 (morning after the overnight run)_
 
 ## Status: all planned phases built, as 13 stacked PRs, none merged
 
-**Spend:** $8.33 of the $15 cap, over 112 image calls (Nano Banana 2).
+**Spend:** about $10.07 of the $15 cap (Nano Banana 2); Phase 10 day art was $1.75.
 | Item | Cost |
 |---|---|
 | Style plates | $0.81 |
@@ -31,6 +31,7 @@ _Last updated: 2026-10-06 (morning after the overnight run)_
 | 10 | [#13](https://github.com/siguy/parasha-pack/pull/13) | `feat/purim-v3` | **Purim v3**: Torah + Hebrew fixes, 12 cards, Persian (Achaemenid) art at 2K, PDFs (~8.5 MB) |
 | 11 | [#9](https://github.com/siguy/parasha-pack/pull/9) | `feat/hub-sync` | `scripts/sync_to_hub.py` |
 | 12 | [#14](https://github.com/siguy/parasha-pack/pull/14) | `docs/v3-final` | Docs reconciled across all 3 layers + `FOR_SIMON.md` |
+| 14 | [#17](https://github.com/siguy/parasha-pack/pull/17) | `feat/bereshit-seven-days` | **Bereshit: a card for each day (13 cards)**, sequence-deck type, text-fidelity rules in every agent; extras, booklet and hub update in progress |
 | 13 | [#15](https://github.com/siguy/parasha-pack/pull/15) | `fix/v3-followups` | Skip home-card art, block invalid hub sync, dead code; `todos/` |
 | hub | [simonbrief-hub#4](https://github.com/siguy/simonbrief-hub/pull/4) | `feat/parashapacks-present-mode` | Per-deck pages, projector Present + presenter window, Print PDF. [Vercel preview](https://simonbrief-git-feat-parashapa-c7b7f9-simon-bs-projects-95643937.vercel.app/parashapacks) (needs a login) |
 
