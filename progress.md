@@ -18,7 +18,8 @@ _Last updated: 2026-10-05_
 | `feat/card-back-v3` | [#6](https://github.com/siguy/parasha-pack/pull/6): v3 schema, migration, single CardBack/CardFront, letter + 5×7 duplex PDF | open; build + lint clean; Bereshit fits both formats; Purim backs overflow (expected); title text-stroke fixed (18446af) |
 | `feat/deck-validator` | Phase 2 (in progress, based on #6) | — |
 | `feat/hub-sync` + hub `feat/parashapacks-present-mode` | Phase 7 (in progress) | — |
-| `feat/styling-v2` | Phase 5.0–5.3 + Adam/Chava identity sheets (in progress, based on #5) | — |
+| `feat/styling-v2` | [#7](https://github.com/siguy/parasha-pack/pull/7): style plates, style_config.yaml, labeled refs, draft→final, spend ledger, Adam & Chava identities | open; 113 tests; rebased onto #5 |
+| `feat/agent-pipeline-v3` | Phase 4 (in progress, based on #7) | — |
 | `claude/torah-deck-improvements-40976f` | Original session branch (holds everything). Superseded by the two branches above; do not open a PR from it. | — |
 
 Rules: branch from `main` as `<type>/<short-description>`. When a feature depends on an unmerged PR, branch from that PR's branch and say so in the PR body. Squash on merge (Simon's default). Every PR body has a **Known issues / not working** section.
@@ -37,7 +38,7 @@ Rules: branch from `main` as `<type>/<short-description>`. When a feature depend
 - Hub: `siguy/simonbrief-hub` branch `feat/parashapacks-present-mode`, a separate PR.
 - Branches built in parallel are rebased onto the chain when they finish.
 
-**Re-stacking needed after Wave 2:** #5 and styling-v2 were built on `docs/deck-v3-plan`. Rebase them onto `feat/card-back-v3` (#6), and the validator onto styling-v2. The final chain is #4 ← #3 ← #6 ← #5 ← styling ← validator ← agents ← bereshit ← extras ← purim; hub-sync is rebased onto bereshit later.
+**Re-stacking (2026-10-05 23:20):** #5 rebased onto #6, #7 onto #5. Still to do at the end of the night: rebase #6 onto the #3 tip (it gained decision-log commits) and cascade up; rebase the validator onto #7 and hub-sync onto the validator. Original note: #5 and styling-v2 were built on `docs/deck-v3-plan`. Rebase them onto `feat/card-back-v3` (#6), and the validator onto styling-v2. The final chain is #4 ← #3 ← #6 ← #5 ← styling ← validator ← agents ← bereshit ← extras ← purim; hub-sync is rebased onto bereshit later.
 
 **Waves:**
 1. card-back-v3 ‖ character-library (code only, no image generation yet)
@@ -73,7 +74,14 @@ Rules: branch from `main` as `<type>/<short-description>`. When a feature depend
   - 15 pytest tests pass. The smoke call succeeded.
 
 ## Known issues / NOT working
-0. From PR #5:
+0. From PR #7:
+   - Chava v1 and v2 looked childlike, so v3 was generated with an adult anchor.
+   - Adam and Chava wear muted earth tones (Simon may want brighter).
+   - Adam's hands look slightly mitten-like.
+   - Hex palette codes could be drawn as text; watch the first drafts.
+   - Purim needs `story_world_setting: indoor` before it is regenerated.
+   - Spend so far: $1.48.
+   From PR #5:
    - Esther's identity image has caption text (styling-v2 is cleaning it).
    - `noach` has no character entry yet.
    - avraham, sarah and pharaoh are drafts (`canonical: false`).

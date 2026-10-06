@@ -46,7 +46,7 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 
 ## Phase 3 — Character library + year plan
 - [x] 3.1 `characters/` library (12 characters); duplicates retired or adapted (PR #5)
-- [ ] 3.2 Adam + Chava identity sheets (2 versions each) → Simon picks
+- [x] 3.2 Adam (v2) + Chava (v3) identity sheets; alternates kept (#7)
 - [x] 3.3 `series.yaml`: 66 entries, 8 filled, validated (PR #5)
 - [x] 3.4 `research/bereshit.yaml`: 10 verse ranges EN/HE + Rashi/Kohelet Rabbah (PR #5)
 
@@ -57,10 +57,10 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [ ] 4.4 3-layer docs pass (letter default + 5×7 optional)
 
 ## Phase 5 — Print-ready art
-- [ ] 5.0 Styling system v2 (10 changes + style_config.yaml)
+- [x] 5.0 Styling system v2 (10 changes + style_config.yaml) (#7)
 - [ ] 5.1 Draft 1K → final 2K (1536×2048); decide upscale/4K after test print
 - [ ] 5.1b CMYK soft-proof for 5×7 target
-- [ ] 5.2 Prompt fixes
+- [x] 5.2 Prompt fixes (#7)
 - [x] 5.3 Style plates generated; Simon approved (being committed in feat/styling-v2)
 - [ ] 5.4 Letter fronts
 - [ ] 5.5 SVG feeling faces
