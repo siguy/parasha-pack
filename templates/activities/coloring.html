@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block style %}
+  /* Every box on these pages is placed in inches from src/coloring.py, so the sizes are exact. */
+  .page.abs { padding: 0; display: block; }
+  .top { position: absolute; left: 0.5in; right: 0.5in; top: 0.35in; }
+  .top header.sheet { height: 0.62in; margin-bottom: 0.06in; }
+  .top .inst { font-size: 11pt; line-height: 1.3; color: var(--ink); }
+  .top .inst b { color: var(--navy); }
+  .top .name { font-size: 12pt; color: var(--ink-2); }
+  .panel { position: absolute; display: flex; flex-direction: column; align-items: center; padding: 0.16in 0.16in 0.1in; }
+  .panel img { width: 100%; height: 3.42in; object-fit: contain; flex: none; }
+  .panel .cap { margin-top: 0.04in; text-align: center; line-height: 1.2; }
+  .panel .cap .he { display: block; font-size: 19pt; font-weight: 700; color: #111; }
+  .panel .cap .en { display: block; font-family: 'Fredoka', sans-serif; font-size: 13pt; font-weight: 600; color: #333; }
+  .dots { position: absolute; right: 0.12in; top: 0.12in; display: flex; gap: 3px; padding: 4px 6px;
+          border: 2px solid #111; border-radius: 0.08in; background: #fff; }
+  .dots i { width: 0.13in; height: 0.13in; border-radius: 50%; background: #111; display: block; }
+  .cut { position: absolute; border: 0 dashed #111; }
+  .cut.v { border-left-width: 3.5px; width: 0; transform: translateX(-1.75px); }
+  .cut.h { border-top-width: 3.5px; height: 0; transform: translateY(-1.75px); }
+  .scissors { position: absolute; font-size: 16pt; line-height: 1; background: #fff; padding: 0 2px; }
+  /* Story path */
+  .spot { position: absolute; border: 3px dashed var(--navy); border-radius: 0.14in; background: #fffdf6;
+          display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .spot .num { font-family: 'Fredoka', sans-serif; font-size: 64pt; font-weight: 700; color: var(--sky);
+               -webkit-text-stroke: 2px var(--navy); line-height: 1; }
+  .spot .glue { font-size: 12pt; color: var(--ink-2); margin-top: 0.08in; }
+  .spot .dots { border-color: var(--navy); }
+  .spot .dots i { background: var(--navy); }
+  .arrow { position: absolute; width: 0.5in; height: 0.5in; border-radius: 50%; background: var(--gold);
+           color: #fff; font-size: 20pt; font-weight: 800; display: flex; align-items: center; justify-content: center;
+           border: 2px solid var(--navy); }
+  /* Days 1-7 */
+  .days { position: absolute; left: 0.5in; top: 1.55in; width: 5.3in; }
+  .dayrow { display: flex; align-items: center; height: 1.2in; }
+  .daybadge { width: 1.45in; display: flex; flex-direction: column; align-items: center; }
+  .daybadge .n { font-family: 'Fredoka', sans-serif; font-size: 26pt; font-weight: 700; color: var(--navy); line-height: 1; }
+  .daybadge .he { font-size: 16pt; font-weight: 700; color: var(--navy); }
+  .daybox { width: 1.1in; height: 1.1in; border: 2.5px dashed var(--navy); border-radius: 0.1in; }
+  .dayline { flex: 1; border-bottom: 2px dotted #bbb; margin: 0 0.15in; height: 0.6in; }
+  .pieces { position: absolute; top: 1.6in; left: 6.4in; }
+  .piece { width: 1.1in; height: 1.1in; display: flex; align-items: center; justify-content: center; gap: 2px;
+           border: 3.5px dashed #111; margin-top: -3.5px; }
+  .piece img { max-width: 0.5in; max-height: 0.9in; object-fit: contain; }
+  .piece.one img { max-width: 0.95in; }
+  .stripcut { position: absolute; top: 1.4in; bottom: 0.4in; left: 6.1in; border-left: 3.5px dashed #111; }
+{% endblock %}
+{% block body %}
+{# ---- Page A: the four line-art panels, shuffled ---- #}
+<section class="page abs">
+  <div class="top">
+    {% set heading = "Color, cut & put in order" %}{% set sub = "" %}{% include "_header.html" %}
+    <div class="inst"><b>Teacher:</b> {{ instructions }}</div>
+  </div>
+  {% for p in panels %}
+  <div class="panel" style="left: {{ p.x }}in; top: {{ p.y }}in; width: {{ p.w }}in; height: {{ p.h }}in;">
+    <img src="{{ p.img }}" alt="">
+    <div class="cap"><span class="he" lang="he">{{ p.he }}</span><span class="en">{{ p.en }}</span></div>
+    <div class="dots">{% for _ in range(p.dots) %}<i></i>{% endfor %}</div>
+  </div>
+  {% endfor %}
+  {% for x1, y1, x2, y2 in lines %}
+    {% if x1 == x2 %}<div class="cut v" style="left: {{ x1 }}in; top: {{ y1 }}in; height: {{ (y2 - y1)|round(4) }}in;"></div>
+    {% else %}<div class="cut h" style="left: {{ x1 }}in; top: {{ y1 }}in; width: {{ (x2 - x1)|round(4) }}in;"></div>{% endif %}
+  {% endfor %}
+  <div class="scissors" style="left: {{ lines[0][0] - 0.34 }}in; top: {{ lines[0][1] + 0.2 }}in;">✂</div>
+</section>
+
+{# ---- Page B: the story path to glue onto ---- #}
+<section class="page abs">
+  <div class="top">
+    {% set heading = "My story path" %}{% set sub = "" %}{% include "_header.html" %}
+    <div class="name">Name: ______________________________ &nbsp; Glue picture 1 here, then follow the arrows.</div>
+  </div>
+  {% for s in path %}
+  <div class="spot" style="left: {{ s.x }}in; top: {{ s.y }}in; width: {{ s.w }}in; height: {{ s.h }}in;">
+    <div class="num">{{ s.n }}</div>
+    <div class="glue">glue here</div>
+    <div class="dots">{% for _ in range(s.n) %}<i></i>{% endfor %}</div>
+  </div>
+  {% endfor %}
+  {# arrows in the gaps: 1 -> 2 (right), 2 -> 3 (down), 3 -> 4 (left) #}
+  {% set a = path[0] %}{% set b2 = path[1] %}
+  <div class="arrow" style="left: {{ a.x + a.w + path_gap / 2 - 0.25 }}in; top: {{ a.y + a.h / 2 - 0.25 }}in;">→</div>
+  {% if path|length > 2 %}{% set c = path[2] %}
+  <div class="arrow" style="left: {{ b2.x + b2.w / 2 - 0.25 }}in; top: {{ b2.y + b2.h + path_gap / 2 - 0.25 }}in;">↓</div>
+  {% endif %}
+  {% if path|length > 3 %}{% set d = path[3] %}
+  <div class="arrow" style="left: {{ d.x + d.w + path_gap / 2 - 0.25 }}in; top: {{ d.y + d.h / 2 - 0.25 }}in;">←</div>
+  {% endif %}
+</section>
+
+{% if days %}
+{# ---- Page C: Days 1-7 strip (age 6) ---- #}
+<section class="page abs">
+  <div class="top">
+    {% set heading = "The 7 days" %}{% set sub = "" %}{% include "_header.html" %}
+    <div class="inst"><b>Teacher:</b> {{ days_instructions }}</div>
+  </div>
+  <div class="days">
+    {% for d in days %}
+    <div class="dayrow">
+      <div class="daybadge"><span class="n">{{ d.day }}</span><span class="he" lang="he">{{ d.he }}</span></div>
+      <div class="daybox"></div>
+      <div class="dayline"></div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="stripcut"></div>
+  <div class="scissors" style="left: 6.0in; top: 1.3in;">✂</div>
+  <div class="pieces">
+    {% for d in day_pieces %}
+    <div class="piece{% if d.imgs|length == 1 %} one{% endif %}">{% for img in d.imgs %}<img src="{{ img }}" alt="{{ d.en }}">{% endfor %}</div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -99,6 +99,16 @@ def validate_extras(data: dict) -> list:
     if len(hebrew_words) > MAX_LISTEN_DO_HEBREW_WORDS:
         problems.append(f"listen_do: {len(hebrew_words)} different Hebrew words used "
                         f"(max {MAX_LISTEN_DO_HEBREW_WORDS})")
+    coloring, sequencing = data.get("coloring"), data.get("sequencing")
+    if coloring:
+        if sorted(coloring["page_order"]) != sorted(coloring["cards"]):
+            problems.append("coloring.page_order must use exactly the same cards as coloring.cards")
+        for entry in coloring.get("days_strip", []):
+            for item_id in entry["items"]:
+                if item_id not in known:
+                    problems.append(f"coloring.days_strip: unknown item '{item_id}'")
+    if sequencing and not set(sequencing["easy_subset"]) <= set(sequencing["cards"]):
+        problems.append("sequencing.easy_subset must be a subset of sequencing.cards")
     levels = [s["level"] for s in listen["steps"]]
     if 1 not in levels or 2 not in levels:
         problems.append("listen_do: needs Level 1 and Level 2 steps")

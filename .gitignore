@@ -41,3 +41,7 @@ card-designer/content/bereshit/raw/
 decks/*/extras/build/
 *.raw.png
 *.tmp.png
+
+# Booklet + pilot build folders (HTML + resized pictures; rebuilt every run)
+decks/*/print/build/
+docs/pilot/build/

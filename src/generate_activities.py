@@ -1,5 +1,6 @@
 """
-Printable extras for a deck: bingo, I-spy, match-it and Listen & Do, as letter PDFs.
+Printable extras for a deck: bingo, I-spy, match-it, Listen & Do, coloring + sequence
+and the sequencing game, as letter PDFs.
 
 How it works (like a mail-merge):
   1. Read decks/{id}/extras.yaml (the words and settings) and deck.json (title, colors).
@@ -11,7 +12,7 @@ How it works (like a mail-merge):
      and save a PNG preview of page 1.
 
 Output:
-  decks/{id}/extras/{bingo,ispy,match,listen_do}.pdf
+  decks/{id}/extras/{bingo,ispy,match,listen_do,coloring,sequencing}.pdf
   decks/{id}/extras/previews/{name}_p1.png
   decks/{id}/extras/build/   (HTML + resized pictures; safe to delete, rebuilt each run)
 
@@ -36,6 +37,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from PIL import Image, ImageChops, ImageDraw, ImageFont
 
 import bingo
+import coloring
 import extras_data
 import ispy
 from generate_items import (binarize_line_art, crop_to_content, request_image, setup_logging)
@@ -45,7 +47,7 @@ logger = logging.getLogger("generate_activities")
 REPO_ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES = REPO_ROOT / "templates" / "activities"
 PLATES = REPO_ROOT / "style" / "plates"
-ACTIVITIES = ("bingo", "ispy", "match", "listen_do")
+ACTIVITIES = ("bingo", "ispy", "match", "listen_do", "coloring", "sequencing")
 
 ISPY_SCENE_IN = 7.5        # the I-spy picture is 7.5" square on the page
 ISPY_SCENE_PX = 2048       # composed at 2048 px = 273 pixels per inch
@@ -498,6 +500,128 @@ def build_listen_do(b: Builder) -> tuple:
 
 
 # ---------------------------------------------------------------------------
+# Coloring + sequence (plan 8.5)
+# ---------------------------------------------------------------------------
+
+COLORING_INSTRUCTIONS = ("Color the four pictures. Cut on the thick lines. Lay them on the story path in "
+                         "story order, then check: the dots on each picture match the dots on its box. "
+                         "Glue them down and retell the story.")
+DAYS_INSTRUCTIONS = ("For 6-year-olds. Cut off the picture strip, then cut out the squares. Glue each "
+                     "picture next to the day it was made. Say the day in Hebrew together.")
+
+# Page geometry (inches). The 2x2 panels are 3.75 x 4.5 and fill a 7.5 x 9 block.
+PANEL_W, PANEL_H = 3.75, 4.5
+PANEL_LEFT, PANEL_TOP = 0.5, 1.65
+PATH_GAP = 0.3            # the story path boxes are the same size, with a gap for the arrows
+MINI_W, MINI_H = 2.5, 3.5  # sequencing mini cards (poker-card size)
+MINI_LEFT, MINI_TOP = 0.5, 1.42
+
+
+def cards_by_id(b: "Builder") -> dict:
+    return {c["card_id"]: c for c in b.deck["cards"]}
+
+
+def caption_words(card: dict) -> int:
+    return word_count(card["title_en"])
+
+
+def line_art_img(b: "Builder", card_id: str) -> str:
+    """The story line art, cropped to the drawing and saved as 1-bit PNG inside build/."""
+    target = b.build_dir / "coloring" / f"{card_id}.png"
+    target.parent.mkdir(exist_ok=True)
+    pic = Image.open(coloring.line_art_path(b.deck_dir, card_id)).convert("L")
+    crop_to_content(pic, pad=6).convert("1").save(target, optimize=True)
+    return f"coloring/{card_id}.png"
+
+
+def story_art_img(b: "Builder", card: dict, px: int = 800) -> str:
+    """The story card's art (no text, no number badge), resized to a JPEG inside build/."""
+    target = b.build_dir / "stories" / f"{card['card_id']}.jpg"
+    target.parent.mkdir(exist_ok=True)
+    if not target.exists():
+        pic = Image.open(b.deck_dir / card["image_path"]).convert("RGB")
+        pic.thumbnail((px, px * 2))
+        pic.save(target, quality=86)
+    return f"stories/{card['card_id']}.jpg"
+
+
+def build_coloring(b: Builder) -> tuple:
+    cfg = b.data["coloring"]
+    cards = cards_by_id(b)
+    order = {card_id: n for n, card_id in enumerate(cfg["cards"], 1)}
+    for card_id in cfg["cards"]:
+        if caption_words(cards[card_id]) > 4:
+            b.warnings.append(f"coloring: caption for {card_id} is over 4 words")
+    cells = coloring.grid_cells(2, 2, PANEL_W, PANEL_H, PANEL_LEFT, PANEL_TOP)
+    panels = []
+    for cell, card_id in zip(cells, cfg["page_order"]):
+        card = cards[card_id]
+        panels.append({**cell, "img": line_art_img(b, card_id), "he": card["title_he"],
+                       "en": card["title_en"], "dots": order[card_id]})
+    lines = coloring.cut_lines(2, 2, PANEL_W, PANEL_H, PANEL_LEFT, PANEL_TOP)
+    # Story path: same-size boxes in a U (1 top-left, 2 top-right, 3 bottom-right, 4 bottom-left)
+    box_left = (8.5 - 2 * PANEL_W - PATH_GAP) / 2
+    path_top = 1.3
+    spots = [(0, 0), (1, 0), (1, 1), (0, 1)]
+    path = [{"n": n, "x": round(box_left + col * (PANEL_W + PATH_GAP), 4),
+             "y": round(path_top + row * (PANEL_H + PATH_GAP), 4), "w": PANEL_W, "h": PANEL_H}
+            for n, (col, row) in enumerate(spots[:len(cfg["cards"])], 1)]
+    days = []
+    for entry in cfg.get("days_strip", []):
+        days.append({"day": entry["day"], "he": entry["he"],
+                     "imgs": [b.item_img(i, "line") for i in entry["items"]],
+                     "en": " + ".join(b.items[i]["en"] if i in b.items else b.data["free_space"]["en"]
+                                       for i in entry["items"])})
+    shuffled = sorted(days, key=lambda d: (d["day"] * 5) % 7)  # a fixed mix: days 7,3,6,2,5,1,4
+    html_path = b.render("coloring", "coloring.html", {
+        "title": "Coloring + sequence", "panels": panels, "lines": lines, "path": path,
+        "instructions": COLORING_INSTRUCTIONS, "days": days, "day_pieces": shuffled,
+        "days_instructions": DAYS_INSTRUCTIONS, "path_gap": PATH_GAP})
+    return html_path, {"coloring_panels": len(panels), "days_strip": len(days)}
+
+
+# ---------------------------------------------------------------------------
+# Sequencing game (plan 8.7)
+# ---------------------------------------------------------------------------
+
+SEQUENCING_INSTRUCTIONS = ("Cut on the lines: 8 mini cards (two sets) and the control strip. Children put "
+                           "a set in story order, then check against the control strip.")
+
+
+def missing_hint(card: dict) -> str:
+    """A 'what's missing?' clue from the card's Hebrew keyword."""
+    kw = card.get("hebrew_keyword") or {}
+    if kw:
+        return f"It has the word {kw['word']} ({kw['translit']}, {kw['meaning']})."
+    return f"It is called “{card['title_en']}”."
+
+
+def build_sequencing(b: Builder) -> tuple:
+    cfg = b.data["sequencing"]
+    cards = cards_by_id(b)
+    story = [cards[i] for i in cfg["cards"]]
+    minis = [{"img": story_art_img(b, c), "he": c["title_he"], "en": c["title_en"], "id": c["card_id"]}
+             for c in story] * cfg["copies"]
+    # Mix the order so the two sets don't come off the page already sorted
+    mixed = [minis[i] for i in sorted(range(len(minis)), key=lambda i: (i * 3) % len(minis))]
+    page1 = mixed[:6]
+    page2 = mixed[6:] + [{"blank": True}] * (3 - len(mixed[6:]))
+    cells1 = coloring.grid_cells(3, 2, MINI_W, MINI_H, MINI_LEFT, MINI_TOP)
+    cells2 = coloring.grid_cells(3, 1, MINI_W, MINI_H, MINI_LEFT, MINI_TOP)
+    control = [{"n": n, "img": story_art_img(b, c), "en": c["title_en"], "he": c["title_he"]}
+               for n, c in enumerate(story, 1)]
+    easy = [cards[i]["title_en"] for i in cfg["easy_subset"]]
+    hints = [{"en": c["title_en"], "hint": hebrew_html(missing_hint(c))} for c in story]
+    html_path = b.render("sequencing", "sequencing.html", {
+        "title": "Sequencing game", "pages": [list(zip(cells1, page1)), list(zip(cells2, page2))],
+        "lines": [coloring.cut_lines(3, 2, MINI_W, MINI_H, MINI_LEFT, MINI_TOP),
+                  coloring.cut_lines(3, 1, MINI_W, MINI_H, MINI_LEFT, MINI_TOP)],
+        "control": control, "easy": easy, "hints": hints, "n_cards": len(story),
+        "instructions": SEQUENCING_INSTRUCTIONS, "mini_w": MINI_W, "mini_h": MINI_H})
+    return html_path, {"sequencing_minis": len(minis)}
+
+
+# ---------------------------------------------------------------------------
 # HTML -> PDF -> PNG preview
 # ---------------------------------------------------------------------------
 
@@ -559,7 +683,8 @@ def save_previews(pdf_path: Path, out_path: Path, all_pages_dir: Path = None) ->
                 page.get_pixmap(dpi=PREVIEW_DPI).save(all_pages_dir / f"{pdf_path.stem}_p{number}.png")
 
 
-BUILDERS = {"bingo": build_bingo, "ispy": build_ispy, "match": build_match, "listen_do": build_listen_do}
+BUILDERS = {"bingo": build_bingo, "ispy": build_ispy, "match": build_match, "listen_do": build_listen_do,
+            "coloring": build_coloring, "sequencing": build_sequencing}
 
 
 def parse_args(argv=None):
