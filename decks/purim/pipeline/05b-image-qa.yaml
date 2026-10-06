@@ -412,7 +412,7 @@ images:
   - domes in the far background
   notes: Runner-up, kept for Simon.
 - card_id: spotlight_2
-  file: raw/spotlight_2.png
+  file: raw/drafts/spotlight_2_final_try2.png
   stage: final
   scores:
     title_zone: 2
@@ -430,7 +430,65 @@ images:
   pass: true
   flags:
   - pointed arch and domes carried over from the v2 composition
-  notes: 'Second try with a ''warm smile'' prompt: smile back. Arch/domes need a new composition to fix (not done: spend cap).'
+  notes: 'Second try with a ''warm smile'' prompt: smile back. Retired 2026-10-06: replaced by a new Achaemenid composition (below).'
+- card_id: spotlight_2
+  file: raw/drafts/spotlight_2_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - 'face small in frame (more half-body than chest-up); wide eyes read a little startled'
+  notes: 'New composition: flat-lintel gate, glazed-brick lion + rosette frieze, twin-bull capital, flat roofs. Runner-up.'
+- card_id: spotlight_2
+  file: raw/drafts/spotlight_2_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: 'Picked. True chest-up, bigger face, warm smile; flat lintel, lion/rosette frieze, bull capital, date palms; no domes or arches.'
+- card_id: spotlight_2
+  file: raw/spotlight_2.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: '2K --final --from-draft d2. Composition and period details held; smile and identity (headwrap, beard, cream scarf, striped robe) match.'
 - card_id: story_1
   file: raw/story_1.png
   stage: final

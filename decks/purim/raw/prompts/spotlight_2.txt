@@ -43,9 +43,13 @@ Deck palette accents: #6D3FC0, #2F6FB0, #E0A526, #3FA7A0, #F5EBDD.
 
 === SCENE ===
 Mordechai, chest-up portrait, face centered, hands clasped calmly in front of him, a warm, gentle,
-grandfatherly smile and crinkled kind eyes. Behind him the great stone gate of Shushan with a turquoise
-glazed-brick band of rosettes; through the gateway, date palms and a sunny street of flat-roofed
-sandstone houses with market awnings. Bright blue sky above the gate, warm afternoon light.
+grandfatherly smile and crinkled kind eyes. He stands at the king's gate of ancient Persian Shushan:
+behind him a tall straight-sided gateway with a flat stone lintel, flanked by thick mud-brick walls
+with flat roofs. Along the wall runs a frieze of glazed bricks in turquoise and royal blue, with a
+striding golden lion and a row of white-and-gold rosettes. A slender stone column topped with a
+twin-bull capital stands at one side. Through the gateway, date palms and flat-roofed sandstone houses.
+Bright blue sky above the flat-topped walls, warm afternoon light on his face. No domes, no pointed or
+rounded arches anywhere: every opening is rectangular with a flat lintel.
 Wise, trustworthy, solid: like a favorite grandfather who always knows the right thing to do.
 
 === CHARACTER ANCHORS (locked, always keep) ===
