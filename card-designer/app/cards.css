@@ -153,6 +153,8 @@
 /* Fronts: move the corner badges further in from the trim. */
 .pp-sheet[data-format="5x7"] .pp-front { --inset-x: 5.5%; --inset-y: 4.2%; }
 .pp-sheet[data-format="5x7"] .pp-front.has-num .ttl { left: 18%; right: 18%; }
+/* The title's line box started ~2px above the safe line (found by the export guard). */
+.pp-sheet[data-format="5x7"] .pp-front .ttl { top: 5%; }
 
 /* ---------- PRINT PAGE (one sheet per PDF page) ---------- */
 .pp-print { margin: 0; background: #fff; }
