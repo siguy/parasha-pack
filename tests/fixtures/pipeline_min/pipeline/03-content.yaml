@@ -115,6 +115,10 @@ cards:
       say: "**Hashem looked and said: tov!** [Thumbs up]"
       ask: [{text: "Show me tov with your thumb!", type: nonverbal}]
       hebrew: {word: טוֹב, translit: TOV, meaning: good, gesture: thumbs up}
+      trio:
+        - {big: טוֹב, line1: TOV, line2: good}
+        - {big: "×7", line1: Hashem said it, line2: 7 times}
+        - {big: "✓", line1: gesture, line2: thumbs up}
       minutes: 2
       core: true
       transition: "Tov, tov, tov!"
