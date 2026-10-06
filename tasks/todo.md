@@ -73,12 +73,12 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [ ] 6.5 Metrics vs Purim
 
 ## Phase 7 — Hub website
-- [ ] 7.1 `scripts/sync_to_hub.py`
-- [ ] 7.2 Routes per deck; migrate Purim/Terumah; drop data.ts
-- [ ] 7.3 Present mode
-- [ ] 7.4 Presenter window (BroadcastChannel)
-- [ ] 7.5 Print button
-- [ ] 7.6 Verify + hub PR
+- [x] 7.1 `scripts/sync_to_hub.py` (#9)
+- [x] 7.2 Routes per deck; Purim/Terumah migrated; data.ts dropped (hub#4)
+- [x] 7.3 Present mode
+- [x] 7.4 Presenter window (BroadcastChannel; tested both ways)
+- [x] 7.5 Print button
+- [x] 7.6 Verify + hub PR #4 (re-sync after Bereshit art)
 
 ## Phase 8 — Extras
 - [ ] 8.1 Item art (12 + shared)

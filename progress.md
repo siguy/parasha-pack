@@ -18,7 +18,8 @@ _Last updated: 2026-10-05_
 | `feat/card-back-v3` | [#6](https://github.com/siguy/parasha-pack/pull/6): v3 schema, migration, single CardBack/CardFront, letter + 5×7 duplex PDF | open; build + lint clean; Bereshit fits both formats; Purim backs overflow (expected); title text-stroke fixed (18446af) |
 | `feat/deck-validator` | [#8](https://github.com/siguy/parasha-pack/pull/8): validator, Hebrew gender check, export overflow/safe-zone guard, guide_layout.yaml, housekeeping | open; rebased onto #7; 139 tests; Bereshit PASS (0 errors, 13 TODO warnings); Purim 19 errors and Terumah 17 (expected; the gender check caught גִּבּוֹר on Esther's card) |
 | `feat/extras` | Phase 8A: item art, bingo, I-spy, match-it, listen & do (in progress, based on #8) | — |
-| `feat/hub-sync` + hub `feat/parashapacks-present-mode` | Phase 7 (in progress) | — |
+| `feat/hub-sync` | [#9](https://github.com/siguy/parasha-pack/pull/9): `scripts/sync_to_hub.py` (+4 tests) | open; base #6, so it needs restacking onto the top of the chain |
+| hub `feat/parashapacks-present-mode` | [siguy/simonbrief-hub#4](https://github.com/siguy/simonbrief-hub/pull/4): gallery, per-deck pages, Present + presenter (BroadcastChannel), Print PDF; `data.ts` removed | open; lint and build clean; Vercel preview builds (login required): https://simonbrief-git-feat-parashapa-c7b7f9-simon-bs-projects-95643937.vercel.app/parashapacks. Sync verified in both directions. Re-run the sync after the Bereshit and Purim PRs. Terumah has no PDF (no scene-only art). |
 | `feat/styling-v2` | [#7](https://github.com/siguy/parasha-pack/pull/7): style plates, style_config.yaml, labeled refs, draft→final, spend ledger, Adam & Chava identities | open; 113 tests; rebased onto #5 |
 | `feat/agent-pipeline-v3` | Phase 4 (in progress, based on #7) | — |
 | `claude/torah-deck-improvements-40976f` | Original session branch (holds everything). Superseded by the two branches above; do not open a PR from it. | — |
