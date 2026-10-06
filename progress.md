@@ -18,6 +18,30 @@ _Last updated: 2026-10-05_
 
 Rules: branch from `main` as `<type>/<short-description>`. When a feature depends on an unmerged PR, branch from that PR's branch and say so in the PR body. Squash on merge (Simon's default). Every PR body has a **Known issues / not working** section.
 
+## Overnight run (started 2026-10-05, Simon asleep)
+**Decisions Simon made before the run:**
+- **Checkpoints:** I make each pick that would normally wait for Simon, using the image QA rubric. The runners-up go in an `alternates/` folder next to each chosen file, and each pick and its reason is logged in `docs/overnight/decisions.md`. The mockup is treated as approved.
+- **Image budget:** a hard cap of **$15**. Every API call is appended to the spend ledger `/private/tmp/claude-501/-Users-simonbrief-parasha-pack--claude-worktrees-torah-deck-improvements-40976f/2d123642-4920-472e-bfd5-1e929b9f21d4/scratchpad/spend_ledger.jsonl` (`{ts, branch, purpose, size, usd}`). Check the total before every call, and stop generating at $14.
+  - Prices for Nano Banana 2: 512 $0.045 (est.), 1K $0.067, 2K $0.101, 4K $0.151.
+  - Priority order for the money: style plates → Adam/Chava → Bereshit → extras → Purim.
+- **PRs:** stacked and **not merged**. Simon merges them in order in the morning.
+- **Scope:** a simonbrief-hub PR with a Vercel preview (not merged); Purim and Terumah moved to the new hub pages; the Purim content fixes (Phase 9); keep the Mac awake.
+
+**PR chain (each branches from the one before):**
+`main ← #4 fix/image-model-nano-banana-2 ← #3 docs/deck-v3-plan ← feat/card-back-v3 ← feat/deck-validator ← feat/character-library ← feat/styling-v2 ← feat/agent-pipeline-v3 ← feat/bereshit-deck ← feat/extras ← feat/purim-v3`
+- Hub: `siguy/simonbrief-hub` branch `feat/parashapacks-present-mode`, a separate PR.
+- Branches built in parallel are rebased onto the chain when they finish.
+
+**Waves:**
+1. card-back-v3 ‖ character-library (code only, no image generation yet)
+2. deck-validator ‖ styling-v2 (style plates and Adam/Chava identity sheets generated here)
+3. agent-pipeline-v3 ‖ hub (Purim and Terumah on the new routes)
+4. bereshit-deck (content from agents 00→06, then images, QA, PDF)
+5. extras ‖ hub (adds Bereshit) ‖ purim-v3
+6. Final: docs pass, FOR_SIMON.md, morning summary
+
+**Rules for subagents:** use your own worktree; don't edit progress.md or tasks/todo.md (the main session owns them); every PR body has a Known issues section; tests must pass.
+
 ## Done
 - **Research (2026-10-02/05):**
   - audits: deck and backs, pipeline, imagery
