@@ -110,3 +110,4 @@ Branch `feat/bereshit-seven-days` on top of `fix/v3-followups` (#15).
 - [ ] 10.3 Art (final, Simon): each day's NEW creation is the large hero, with earlier creations soft in the background (setting kept consistent via continuity refs); Days 1–2 drawn concretely; Day 7 = the whole world resting (the only cumulative scene); cap $2.30
 - [ ] 10.4 Booklet one page per day; extras: 7-panel + easy 4-panel sequencing, 7 mini cards
 - [ ] 10.5 PDFs (letter + 5×7), validator 0/0, hub re-sync, PR with known issues
+- [ ] 10.6 Text fidelity in the pipeline: Torah Scholar text map (text_ref, key_hebrew, in_text, not_in_text, midrash); 02/03/05 draw only from in_text; 02b/06/05b check it; schema + validator require text_ref/key_hebrew on story cards
