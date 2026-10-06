@@ -155,11 +155,16 @@ source .env && export GEMINI_API_KEY
 
 ## Image Generation Model
 
-**nano-banana-pro** is the only model. There is no `--model` flag — it's hardcoded.
+**Nano Banana 2 (`gemini-3.1-flash-image`)** is the default. To use a different model, set `GEMINI_IMAGE_MODEL` in `.env` (e.g. `GEMINI_IMAGE_MODEL=gemini-3-pro-image` for Nano Banana Pro). There is no `--model` flag.
+
+Output resolution is set with `--size 512|1K|2K|4K` (default `2K`; uppercase K). Use 1K for cheap drafts, 2K for finals. A 3:4 image at 2K is 1792x2400 (1K = 896x1200). The API returns JPEG; it is re-encoded to a real PNG on save.
 
 ```bash
-python generate_images.py ../decks/purim/deck.json
+python generate_images.py ../decks/purim/deck.json              # 2K
+python generate_images.py ../decks/purim/deck.json --size 1K    # draft
 ```
+
+Each run logs the model and size to `raw/generations.jsonl`. Errors also go to `project.log` in the repo root.
 
 Character reference images are automatically included from `references/manifest.json` when generating cards. Use `--no-refs` to disable if needed.
 
