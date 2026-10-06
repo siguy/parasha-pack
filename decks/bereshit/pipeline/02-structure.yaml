@@ -1,0 +1,43 @@
+# Agent 02: Curriculum Designer — Bereshit (D12 card list; week plan and minutes/core as in the
+# approved mockup docs/mockups/bereshit-v3.html)
+agent: 02-curriculum-designer
+deck_id: bereshit
+holiday: false
+focal_incident: "Hashem puts Adam in the garden to work it and guard it (Genesis 2:15): the world is good, and we take care of it."
+story_world: >-
+  Gan Eden and the newly created world: lush soft green hills, a clear sparkling river, fruit trees heavy
+  with fruit, bright flowers, gentle friendly animals, wide open sky and warm luminous golden light.
+  Pre-civilization: no buildings, no houses, no fences, no tools, no modern objects. Adam and Chava wear
+  simple, modest, full-coverage tunics. Hashem is never shown as a figure, only as light.
+story_world_setting: outdoor
+learning_objectives:
+  understand: "Hashem made the whole world in six days and it was all good (tov); on day seven Hashem rested: Shabbat."
+  feel: "Wonder at how good and beautiful the world is, and pride in helping to care for it."
+  do: "Name one way to take care of Hashem's world (water a plant, be gentle with animals, keep our room tidy) and say TOV with a thumbs up."
+week_plan:
+  - {day: 1, label: "This card + Story 1", cards: [anchor_1, story_1]}
+  - {day: 2, label: "Story 2 + Adam", cards: [story_2, spotlight_1]}
+  - {day: 3, label: "Chava + Story 4", cards: [spotlight_2, story_4]}
+  - {day: 4, label: "Connection", cards: [connection_1]}
+  - {day: 5, label: "Story 3 Shabbat + Tov + Home", cards: [story_3, power_word_1, home_1]}
+cards:
+  - {card_id: anchor_1, card_type: anchor, title_en: "In the Beginning", purpose: "calm hook: dark, then light; the week's big idea (Hashem made a beautiful world for us)",
+     core: true, minutes: 5, refs: ["Genesis 1:1-5"]}
+  - {card_id: spotlight_1, card_type: spotlight, title_en: "Adam", purpose: "meet Adam, made from the earth (adam/adamah); his job is to care for the garden",
+     core: true, minutes: 3, characters: [adam], refs: ["Genesis 2:7", "Genesis 2:15"]}
+  - {card_id: spotlight_2, card_type: spotlight, title_en: "Chava", purpose: "not good to be alone: meet Chava; Adam and Chava help each other",
+     core: false, minutes: 3, characters: [chava], refs: ["Genesis 2:18", "Genesis 2:21-23", "Genesis 3:20"]}
+  - {card_id: story_1, card_type: story, sequence_number: 1, title_en: "Light, Sky & Land", purpose: "Days 1-3 with a movement for each day; TOV + thumbs up",
+     core: true, minutes: 5, characters: [], refs: ["Genesis 1:3-13"]}
+  - {card_id: story_2, card_type: story, sequence_number: 2, title_en: "Sun, Fish & Animals", purpose: "Days 4-6: the same world fills with life; TOV + thumbs up",
+     core: true, minutes: 5, characters: [], refs: ["Genesis 1:14-31"]}
+  - {card_id: story_3, card_type: story, sequence_number: 3, title_en: "Day 7: Shabbat", purpose: "Hashem rests and makes Shabbat special; taught on Friday",
+     core: true, minutes: 5, characters: [], refs: ["Genesis 2:1-3"]}
+  - {card_id: story_4, card_type: story, sequence_number: 4, title_en: "Adam Names the Animals", purpose: "the focal job: Adam names and cares for every creature",
+     core: false, minutes: 5, characters: [adam, chava], refs: ["Genesis 2:15", "Genesis 2:19-20"]}
+  - {card_id: connection_1, card_type: connection, title_en: "Taking Care of Our World", purpose: "modern world: each child names one way they care for Hashem's world",
+     core: false, minutes: 5, characters: [], refs: []}
+  - {card_id: power_word_1, card_type: power_word, title_en: "Tov · Good!", purpose: "power word טוֹב with the thumbs-up gesture; count 7 TOVs",
+     core: true, minutes: 3, characters: [adam, chava], refs: ["Genesis 1:31"]}
+  - {card_id: home_1, card_type: home, title_en: "This Week: Bereshit", purpose: "family link: Shabbat-table question, tov walk",
+     core: false, minutes: 0, characters: [], refs: []}
