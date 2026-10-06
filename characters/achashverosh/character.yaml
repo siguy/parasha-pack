@@ -1,0 +1,44 @@
+# King Achashverosh. Misguided, comedic, not scary.
+key: achashverosh
+name_en: King Achashverosh
+name_he: אֲחַשְׁוֵרוֹשׁ
+gender: male
+role: neutral
+canonical: true
+version: 1
+identity: identity.png
+visual_anchors:
+  - adult man with a big bushy dark-brown beard and mustache
+  - royal-blue turban under a gold pointed crown with one red jewel
+  - red royal robe with wide gold trim over a blue tunic, gold sash
+  - gold scepter
+  - bewildered look, eyebrows raised (somewhat comedic)
+personality: [confused, careless, eventually learns]
+props: [Royal scepter, Crown]
+signature_poses:
+  - Scratching head, confused
+  - Sitting on throne, distracted
+  - Surprised expression
+  - Making a proclamation
+appears_in: [purim]
+source_notes: >
+  Identity copied from decks/purim/references/achashverosh_identity.png.
+  The blue turban under the crown is visible on the identity sheet.
+research:
+  biblical_refs: ["Megillat Esther"]
+  key_stories:
+    - Looking for a new queen
+    - Choosing Esther as queen
+    - "Not thinking before agreeing to Haman's plan"
+    - Learning the truth and making things right
+  relationships:
+    Esther: wife and queen
+    Haman: advisor he trusted too much
+    Mordechai: honored him in the end
+  emotional_moments:
+    - {event: Making hasty decisions, emotion: distracted}
+    - {event: Learning the truth, emotion: surprised and upset}
+    - {event: Making things right, emotion: determined}
+  age_appropriate_summary: >-
+    King Achashverosh was a king who didn't always think before deciding. He
+    learned it's important to ask questions and think carefully!

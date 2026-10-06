@@ -1,0 +1,43 @@
+# Adam, the first person. Identity sheet NOT generated yet (Phase 3.2, styling phase).
+# Modesty (plan decision D3, Modern Orthodox): simple full-coverage tunic. No leaves, nothing revealing.
+key: adam
+name_en: Adam
+name_he: אָדָם
+gender: male
+role: hero
+canonical: true
+version: 1
+identity: null
+visual_anchors:
+  - young adult man with warm brown-olive skin
+  - short dark curly hair and a short dark beard
+  - simple modest oatmeal-and-clay earth-tone tunic, full coverage, long sleeves, knee length, with simple trousers
+  - barefoot or simple sandals
+  - friendly, gentle expression; "first people in a garden"
+personality: [curious, gentle, caring, friendly]
+props: []
+signature_poses:
+  - Kneeling to look closely at a plant or animal
+  - Pointing and naming an animal
+  - Watering or tending a young tree
+  - Smiling, arms relaxed, welcoming
+appears_in: [bereshit]
+source_notes: >
+  Anchors set by Simon for the Bereshit v3 deck (2026-10). Identity sheet to be
+  generated in Phase 3.2: 2 versions, 3-angle turnaround plus expression row,
+  plain background, no caption text.
+research:
+  biblical_refs: ["Genesis 1:26-31", "Genesis 2:7", "Genesis 2:15", "Genesis 2:18-20"]
+  key_stories:
+    - Hashem forms Adam from the earth and breathes life into him
+    - Adam is placed in the garden to work it and guard it
+    - Adam gives names to all the animals
+  relationships:
+    Chava: partner and helper
+  emotional_moments:
+    - {event: Waking up in a beautiful garden, emotion: wonder}
+    - {event: Naming the animals, emotion: curious and delighted}
+    - {event: Meeting Chava, emotion: happy, not alone anymore}
+  age_appropriate_summary: >-
+    Adam was the very first person. Hashem gave him a beautiful garden and asked
+    him to take care of it. He gave names to all the animals!
