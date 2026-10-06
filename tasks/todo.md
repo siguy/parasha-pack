@@ -34,11 +34,11 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [x] 1.5 Duplex PDF export: letter 20 pp and 5×7 20 pp (#6)
 
 ## Phase 2 — Automatic checks
-- [ ] 2.1 `src/validate_deck.py`
-- [ ] 2.2 Export overflow/safe-zone guard
-- [ ] 2.3 Tests
-- [ ] 2.4 Logging
-- [ ] 2.5 Housekeeping
+- [x] 2.1 `src/validate_deck.py` (#8)
+- [x] 2.2 Export overflow/safe-zone guard (#8)
+- [x] 2.3 Tests (139 pytest + 8 markup)
+- [x] 2.4 Logging
+- [x] 2.5 Housekeeping (#8)
 - [~] 2.6 **Image model fix**: Nano Banana 2 via .env, `--size` (default 2K), skip thought images. Done in e893645: 15 tests pass, smoke call OK.
   - [x] 2.6a The 1K call returned 896×1200, not 768×1024. Run one 2K call to check whether `imageSize` is honored.
   - [x] 2.6b The API returns JPEG saved as `.png`. Save real PNGs.

@@ -16,7 +16,8 @@ _Last updated: 2026-10-05_
 | `fix/image-model-nano-banana-2` | [#4](https://github.com/siguy/parasha-pack/pull/4): Nano Banana 2 + `--size` flag | open; follow-up fixes for issues 1–3 in progress (separate worktree `.claude/worktrees/fix-image-model`) |
 | `feat/character-library` | [#5](https://github.com/siguy/parasha-pack/pull/5): character library, series.yaml (66 entries), Sefaria cache | open; 58 tests pass; built in parallel, will be rebased onto the card-back PR |
 | `feat/card-back-v3` | [#6](https://github.com/siguy/parasha-pack/pull/6): v3 schema, migration, single CardBack/CardFront, letter + 5×7 duplex PDF | open; build + lint clean; Bereshit fits both formats; Purim backs overflow (expected); title text-stroke fixed (18446af) |
-| `feat/deck-validator` | Phase 2 (in progress, based on #6) | — |
+| `feat/deck-validator` | [#8](https://github.com/siguy/parasha-pack/pull/8): validator, Hebrew gender check, export overflow/safe-zone guard, guide_layout.yaml, housekeeping | open; rebased onto #7; 139 tests; Bereshit PASS (0 errors, 13 TODO warnings); Purim 19 errors and Terumah 17 (expected; the gender check caught גִּבּוֹר on Esther's card) |
+| `feat/extras` | Phase 8A: item art, bingo, I-spy, match-it, listen & do (in progress, based on #8) | — |
 | `feat/hub-sync` + hub `feat/parashapacks-present-mode` | Phase 7 (in progress) | — |
 | `feat/styling-v2` | [#7](https://github.com/siguy/parasha-pack/pull/7): style plates, style_config.yaml, labeled refs, draft→final, spend ledger, Adam & Chava identities | open; 113 tests; rebased onto #5 |
 | `feat/agent-pipeline-v3` | Phase 4 (in progress, based on #7) | — |
@@ -38,6 +39,7 @@ Rules: branch from `main` as `<type>/<short-description>`. When a feature depend
 - Hub: `siguy/simonbrief-hub` branch `feat/parashapacks-present-mode`, a separate PR.
 - Branches built in parallel are rebased onto the chain when they finish.
 
+**Chain now:** #4 ← #3 ← #6 ← #5 ← #7 ← #8. The agent-pipeline branch (built on #7) is rebased onto #8 when it finishes; extras (on #8) is rebased onto bereshit.
 **Re-stacking (2026-10-05 23:20):** #5 rebased onto #6, #7 onto #5. Still to do at the end of the night: rebase #6 onto the #3 tip (it gained decision-log commits) and cascade up; rebase the validator onto #7 and hub-sync onto the validator. Original note: #5 and styling-v2 were built on `docs/deck-v3-plan`. Rebase them onto `feat/card-back-v3` (#6), and the validator onto styling-v2. The final chain is #4 ← #3 ← #6 ← #5 ← styling ← validator ← agents ← bereshit ← extras ← purim; hub-sync is rebased onto bereshit later.
 
 **Waves:**
