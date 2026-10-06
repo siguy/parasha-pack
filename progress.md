@@ -23,7 +23,7 @@ _Last updated: 2026-10-05_
 | `feat/styling-v2` | [#7](https://github.com/siguy/parasha-pack/pull/7): style plates, style_config.yaml, labeled refs, draft→final, spend ledger, Adam & Chava identities | open; 113 tests; rebased onto #5 |
 | `feat/agent-pipeline-v3` | [#10](https://github.com/siguy/parasha-pack/pull/10): agents 00, 02b, 05b; 03+04 merged; 06 scored rubric; 07 moved to tools; pipeline schemas; assemble_deck.py; contact_sheet.py | open; rebased onto #8; 165 tests (fixture got the power-word trio the validator requires) |
 | `feat/bereshit-deck` | [#12](https://github.com/siguy/parasha-pack/pull/12): Bereshit, 10 cards through pipeline 00→06, 9 finals at 2K (QA 21–22/22, no redos), validator 0 errors / 0 warnings, editor 93.2%, letter + 5×7 PDFs | open; $2.12; PDF compression being added (they were 57 MB); faint gradient banding behind titles; core cards total 26 min; not test-printed |
-| `feat/purim-v3` | [#13](https://github.com/siguy/parasha-pack/pull/13): Purim v3: all audit Torah + Hebrew fixes, 12 cards, Persian (Achaemenid) art at 2K (QA 19–22), validator 0/0, editor 97.5%, letter + 5×7 PDFs (24 pp) | open; $2.02; PDFs 76 MB (compress after restacking onto #12/#11); spotlight_2 still has domes/arch (recompose); see the PR for minor art notes |
+| `feat/purim-v3` | [#13](https://github.com/siguy/parasha-pack/pull/13): Purim v3: all audit Torah + Hebrew fixes, 12 cards, Persian (Achaemenid) art at 2K (QA 19–22), validator 0/0, editor 97.5%, letter + 5×7 PDFs (24 pp) | open; $2.26 total; rebased onto #11; PDFs compressed to ~8.5 MB; spotlight_2 recomposed with a Persian gate (QA 22/22); see the PR for minor art notes |
 | `claude/torah-deck-improvements-40976f` | Original session branch (holds everything). Superseded by the two branches above; do not open a PR from it. | — |
 
 Rules: branch from `main` as `<type>/<short-description>`. When a feature depends on an unmerged PR, branch from that PR's branch and say so in the PR body. Squash on merge (Simon's default). Every PR body has a **Known issues / not working** section.
@@ -42,7 +42,7 @@ Rules: branch from `main` as `<type>/<short-description>`. When a feature depend
 - Hub: `siguy/simonbrief-hub` branch `feat/parashapacks-present-mode`, a separate PR.
 - Branches built in parallel are rebased onto the chain when they finish.
 
-**Chain now:** #4 ← #3 ← #6 ← #5 ← #7 ← #8 ← #10 ← #12 ← #11 ← #13 (Purim restack in progress) ← #9 hub-sync (to restack) ← final docs. The agent-pipeline branch (built on #7) is rebased onto #8 when it finishes; extras (on #8) is rebased onto bereshit.
+**Chain now:** #4 ← #3 ← #6 ← #5 ← #7 ← #8 ← #10 ← #12 ← #11 ← #13 ← #9 hub-sync (restack in progress) ← final docs. The agent-pipeline branch (built on #7) is rebased onto #8 when it finishes; extras (on #8) is rebased onto bereshit.
 **Re-stacking (2026-10-05 23:20):** #5 rebased onto #6, #7 onto #5. Still to do at the end of the night: rebase #6 onto the #3 tip (it gained decision-log commits) and cascade up; rebase the validator onto #7 and hub-sync onto the validator. Original note: #5 and styling-v2 were built on `docs/deck-v3-plan`. Rebase them onto `feat/card-back-v3` (#6), and the validator onto styling-v2. The final chain is #4 ← #3 ← #6 ← #5 ← styling ← validator ← agents ← bereshit ← extras ← purim; hub-sync is rebased onto bereshit later.
 
 **Waves:**
