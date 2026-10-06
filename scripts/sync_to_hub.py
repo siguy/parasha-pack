@@ -63,7 +63,7 @@ DROP_CARD_FIELDS = ("image_prompt", "guide")
 # ("letter", "guide" or the extras PDF name). {boards} comes from extras.yaml (bingo.boards).
 MATERIAL_INFO = {
     "letter": ("Cards", "The card deck",
-               "Every card, kid side and teacher side, on letter paper. Cut along the marks."),
+               "Every card, kid side and teacher side, on letter paper. One card per sheet, no cutting."),
     "guide": ("Teacher guide", "Teacher booklet",
               "The week day by day: what to say, what to ask, and the Hebrew for every card."),
     "coloring": ("Activities", "Coloring + put in order",
