@@ -11,6 +11,9 @@ This project creates illustrated card decks for each weekly Torah portion (paras
 ```
 parasha-pack/
 ├── CLAUDE.md              # This file - project overview
+├── characters/            # Shared character library: {key}/character.yaml + identity.png
+├── series.yaml            # Year plan: all 54 parshiyot + 12 holidays, middah per deck
+├── research/              # Sefaria research cache: {parasha}.yaml (key verses EN/HE)
 ├── agents/                # Agent system documentation (see agents/AGENTS.md)
 │   ├── AGENTS.md          # Agent roster and workflow
 │   ├── AGENT_PIPELINE.md  # Detailed pipeline with YAML schemas
@@ -36,7 +39,7 @@ parasha-pack/
 
 ```bash
 cd src
-python workflows.py deck "Beshalach" --output ../decks/beshalach
+python -m workflows deck "Beshalach" --output ../decks/beshalach
 ```
 
 This will:
@@ -49,7 +52,7 @@ This will:
 
 ```bash
 cd src
-python workflows.py character miriam --deck ../decks/beshalach --generate
+python -m workflows character miriam --deck ../decks/beshalach --generate
 ```
 
 This will:
@@ -140,11 +143,11 @@ See [agents/AGENT_PIPELINE.md](agents/AGENT_PIPELINE.md) for detailed YAML schem
 
 | Task | Command |
 |------|---------|
-| Research a character | `python workflows.py research character moses` |
-| Research a parasha | `python workflows.py research parasha yitro` |
-| List available research | `python workflows.py list characters` |
-| Generate deck template | `python workflows.py deck Yitro` |
-| Create character refs | `python workflows.py character yitro -d ../decks/yitro -g` |
+| Research a character | `python -m workflows research character moses` |
+| Research a parasha | `python -m workflows research parasha yitro` |
+| List available research | `python -m workflows list characters` |
+| Generate deck template | `python -m workflows deck Yitro` |
+| Create character refs | `python -m workflows character yitro -d ../decks/yitro -g` |
 | Generate all images | `python generate_images.py ../decks/yitro/deck.json` |
 | Generate single image | `python generate_images.py ../decks/yitro/deck.json --card spotlight_1` |
 | Generate 3 variants | `python generate_images.py ../decks/yitro/deck.json --card story_1 --variants 3` |
@@ -173,20 +176,20 @@ python generate_images.py ../decks/purim/deck.json --size 1K    # draft
 
 Each run logs the model and size to `raw/generations.jsonl`. Errors also go to `project.log` in the repo root.
 
-Character reference images are automatically included from `references/manifest.json` when generating cards. Use `--no-refs` to disable if needed.
+Character reference images are automatically included when generating cards: each key in a card's `characters_in_scene` is looked up in the shared `characters/` library first, then the deck's `references/manifest.json` (with a warning). At most 4 character refs are sent per image. Use `--no-refs` to disable.
 
 ## Character Consistency System
 
-Character consistency is achieved through **identity references**:
+Character consistency is achieved through the **shared character library** (`characters/`, see `characters/README.md`):
 
-1. **Single Source of Truth:** Each character has ONE identity image (`{character}_identity.png`)
+1. **Single Source of Truth:** Each character has ONE folder, `characters/{key}/`, with `character.yaml` (gender, role, locked visual anchors such as headwear and beard, research notes) and `identity.png`
 2. **Automatic Reference Passing:** When generating cards, the identity image is base64-encoded and passed to the API alongside the text prompt
-3. **Prompt Reinforcement:** Card prompts should still include character descriptions to reinforce visual features
+3. **Prompt Reinforcement:** Card prompts should still include character descriptions to reinforce visual features (`character_library.visual_anchor_text(key)` gives the locked anchors)
 
 **Character Review Workflow:**
-1. Generate 2+ identity versions for new characters
-2. User reviews and selects preferred version
-3. Rename selected version to canonical name (e.g., `haman_identity.png`)
+1. Add `characters/{key}/character.yaml` with `identity: null`, `canonical: false`
+2. Generate 2+ identity versions; user reviews and selects one
+3. Save it as `characters/{key}/identity.png`, set `identity: identity.png` and `canonical: true`
 4. Generate all cards using that identity as reference
 
 ## Version Control
