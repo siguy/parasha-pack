@@ -4,60 +4,69 @@
   "parasha_en": "Purim",
   "parasha_he": "פּוּרִים",
   "holiday": true,
-  "ref": "Megillat Esther",
+  "ref": "Megillat Esther (Esther 2–9)",
   "value": {
     "en": "Courage",
-    "he": "",
-    "kid_phrase": "Hidden courage — being brave even when scared",
-    "gesture": ""
+    "he": "אֹמֶץ לֵב",
+    "kid_phrase": "being brave even when you feel scared",
+    "gesture": "fists on hips, chin up"
   },
   "palette": [
-    "#8B5CF6",
-    "#1E293B",
-    "#F5F0E8",
-    "#475569",
-    "#E7E2D9"
+    "#6D3FC0",
+    "#2F6FB0",
+    "#E0A526",
+    "#3FA7A0",
+    "#F5EBDD"
   ],
   "web_theme": {
-    "primary": "#8B5CF6",
-    "secondary": "#475569",
-    "accent": "#8B5CF6",
-    "wash": "#F5F0E8"
+    "primary": "#5B2D8E",
+    "secondary": "#2F6FB0",
+    "accent": "#E0A526",
+    "wash": "#F6F0FB"
   },
-  "story_world": "Ancient Persian Empire, city of Shushan (Susa). Ornate sandstone palace with Persian arches, mosaic tiles, carved stone columns. Lush palace gardens with date palms, pomegranate trees, flowing fountains. Desert climate — warm golden light, deep blue sky. Persian court aesthetic: flowing robes, turbans, ornate Persian-style crowns, rich textiles in golds, deep purples, and royal blues. Think Persepolis, NOT biblical Israel. Warm sandstone, polished marble floors, hanging tapestries, oil lamps. City streets have market stalls, stone buildings, Persian archways.",
+  "story_world": "Shushan (Susa), capital of the ancient Achaemenid Persian Empire. The king's palace: tall slender fluted stone columns topped with twin-bull capitals, wide flat-roofed halls and porches, cedar-beam ceilings, wide stone staircases, walls of glazed brick in turquoise, gold and cream with rows of rosettes and friendly striding lions, stepped crenellated parapets, rich purple and blue hangings, gold cups and low couches. Doorways are tall and rectangular with flat lintels. Gardens with date palms, pomegranate trees and straight water channels; warm sandstone and cream plaster under a deep blue sky. Royal robes with wide sleeves and sashes; crenellated golden crowns; cloth head wraps. No pointed or horseshoe arches, no domes, no mosaic tilework, no Star of David.",
+  "story_world_setting": "indoor",
   "week_plan": [
     {
       "day": 1,
-      "label": "Session 1",
+      "label": "This card + Esther",
       "cards": [
         "anchor_1",
-        "spotlight_1",
-        "spotlight_2",
-        "story_1",
-        "story_2",
-        "story_3"
+        "spotlight_1"
       ]
     },
     {
       "day": 2,
-      "label": "Session 2",
+      "label": "Mordechai + Stories 1–2",
       "cards": [
-        "spotlight_3",
-        "spotlight_4",
-        "story_4",
-        "story_5",
-        "connection_1",
-        "tradition_1"
+        "spotlight_2",
+        "story_1",
+        "story_2"
       ]
     },
     {
       "day": 3,
-      "label": "Session 3",
+      "label": "Story 3 + the Megillah",
       "cards": [
-        "connection_2",
+        "story_3",
+        "tradition_1"
+      ]
+    },
+    {
+      "day": 4,
+      "label": "Being brave + Purim giving",
+      "cards": [
+        "connection_1",
         "tradition_2",
-        "tradition_3",
-        "power_word_1"
+        "tradition_3"
+      ]
+    },
+    {
+      "day": 5,
+      "label": "Power word + Home card",
+      "cards": [
+        "power_word_1",
+        "home_1"
       ]
     }
   ],
@@ -68,39 +77,52 @@
       "title_en": "Purim",
       "title_he": "פּוּרִים",
       "characters_in_scene": [],
-      "image_prompt": "A magnificent golden crown resting on a plush royal purple velvet cushion with gold tassels at the corners.\n\nThe crown is ornate and detailed — delicate gold filigree with tiny purple amethyst gems set around the band. A subtle Star of David is woven into the metalwork, barely visible unless you LOOK for it (like a hidden secret!). The gold is warm and burnished, glowing from within.\n\nA single dramatic beam of warm golden light streams down from above, illuminating ONLY the crown. Tiny golden dust motes and sparkles float in the light beam around the crown.\n\nThe cushion floats in a sea of soft, warm darkness. No walls, no ceiling, no hard edges — just the crown in its spotlight. A faint blue curtain edge and the silhouette of a column are barely visible at the far left and right edges, but they fade into shadow. Nothing creates a horizontal line across the image.\n\nThe ENTIRE upper portion of the frame is a seamless warm gradient — deep royal purple at the very top fading smoothly to rich amber around the light beam. Stars and tiny sparkles scattered throughout. NO ceiling, NO wall edge, NO hard lines. Just endless atmospheric glow above the crown.\n\nWONDER AND MYSTERY — whose crown is this? What secret does it hold? A magical, hushed moment — like finding treasure in the dark.",
+      "image_prompt": "A magnificent golden Persian crown with a stepped, crenellated rim rests on a plush royal-purple velvet\ncushion with gold tassels at the corners. The burnished gold is set with tiny purple amethysts and\nturquoise stones, and a ring of small gold rosettes runs around the band. A soft purple silk veil is\ndraped half over one side of the cushion, as if something is hidden underneath.\nA single beam of warm golden light falls from above onto the crown; golden dust motes and soft sparkles\nfloat in the beam. The cushion rests in soft, warm darkness that glows deep purple and amber above,\nscattered with tiny stars. Faint tall stone columns fade into shadow at the far left and right edges.\nWONDER AND MYSTERY: whose crown is this, and what secret is hidden here?\n",
       "image_path": "raw/anchor_1.png",
       "back": {
-        "objective": "",
-        "say": "**Today we're going to hear an amazing story. It's about a queen named Esther who had a BIG secret. She was Jewish — just like us! — but nobody knew. When her people needed help, she had to be SO brave. Let's find out what happened!**",
+        "objective": "**Being brave** even when you feel scared",
+        "say": "[Hold the card up high] **Look at this crown! Who wears a crown?**\n**It belongs to Queen Esther. Esther had a secret… and one day she had to be very, very brave.**\n[Fists on hips, chin up] **Let's find out!**",
         "ask": [
           {
-            "text": "What do you think a queen's secret could be?",
-            "type": "open"
+            "text": "What do you see on the crown?",
+            "type": "wh"
           },
           {
-            "text": "When have you had a really big feeling inside?",
+            "text": "What do you think her secret is?",
             "type": "open"
           }
         ],
-        "minutes": 5,
+        "minutes": 3,
         "core": true,
-        "transition": "Now let's meet the characters in our story!"
+        "transition": "Who is this queen with a secret?",
+        "guide_ref": {
+          "page": 2,
+          "note": "hidden courage"
+        }
       },
       "guide": {
         "pshat": {
-          "text": "",
-          "refs": []
+          "text": "Purim tells how Queen Esther and her cousin Mordechai saved the Jewish people of the Persian Empire. The king put the royal crown on Esther's head and made her queen (2:17), but she did not tell anyone she was Jewish, because Mordechai told her not to (2:10). When the Jewish people needed her, she used her courage. We keep Purim on the 14th of Adar (15th in Jerusalem) (9:20-22).",
+          "refs": [
+            "Esther 2:10",
+            "Esther 2:17",
+            "Esther 9:20-22"
+          ]
         },
-        "sages": [],
+        "sages": [
+          {
+            "text": "Our Sages teach that Esther's name is hinted at in the Torah's words 'I will surely hide (הַסְתֵּר אַסְתִּיר) My face.' Hashem's name never appears in the whole Megillah, yet Hashem was there, hidden, the whole time. Hidden courage, hidden help: that is the theme of this week.",
+            "source": "Chullin 139b (on Deuteronomy 31:18)"
+          }
+        ],
         "hard_questions": [],
         "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
+          "see": "Bring a real (toy) crown and a scarf; hide the crown under the scarf and reveal it.",
+          "do": "Children who don't want to stand can do the brave gesture sitting: fists on hips, chin up.",
+          "join": "Everyone can point to the crown, or nod when you ask 'Who wears a crown?'"
         },
-        "extend": "",
-        "tip": "Have children close their eyes while you describe the crown. It builds anticipation."
+        "extend": "Secret box: put a small Purim object in a closed box; children ask questions to guess what's hidden.",
+        "tip": "Teach this week's courage gesture now (fists on hips, chin up) and use it every day, every time someone is brave."
       }
     },
     {
@@ -111,192 +133,116 @@
       "characters_in_scene": [
         "esther"
       ],
-      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark wavy hair with elegant modest head covering.\nRoyal purple dress with ornate gold and blue embroidery at the neckline and cuffs.\nSimple gold tiara with small jewels. Delicate gold earrings.\nHands clasped gently in front of her, one hand near her heart.\nGentle, brave expression — a quiet smile that hides a secret.\n\nEsther portrait framed from chest up, face centered.\nBehind her: a grand Persian palace archway with intricate geometric patterns.\nRich blue curtain draped to one side. Ornate gold columns frame the arch.\nWarm golden light from the right illuminating her face.\nThe archway opens to a deeper palace room glowing with amber light.\nDark shadow pooling in the lower-left.\n\nWarm, regal, kind. She's someone children will INSTANTLY root for. A princess with a secret.",
+      "image_prompt": "Esther, chest-up portrait, face centered, hands clasped gently near her heart, a quiet brave smile that\nhides a secret. Behind her a tall palace doorway with a rich blue curtain draped to one side and a\nglowing amber palace hall beyond. Warm golden light from the right lights her face.\nWarm, regal, kind: a queen with a secret that children instantly root for.\n",
       "image_path": "raw/spotlight_1.png",
       "back": {
-        "objective": "",
-        "say": "**This is Esther. She became the queen! But she had a secret — she was Jewish, and nobody in the palace knew. Esther was nervous about her secret. But guess what? When it really mattered, she was SO brave. She's our hero!**",
+        "objective": "Brave can mean scared, and doing it anyway",
+        "say": "[Point to Esther's face] **This is Queen Esther. Sometimes Esther felt a little scared…**\n[Shaky hands] **…but she was brave anyway!** [Strong arms!]\n**Being brave means doing the right thing, even when you feel scared.**",
         "ask": [
           {
-            "text": "What do you notice about how Esther looks?",
-            "type": "open"
+            "text": "How does Esther's face look?",
+            "type": "wh"
           },
           {
-            "text": "Have you ever kept something special about yourself quiet?",
-            "type": "open"
+            "text": "Show me your brave face!",
+            "type": "nonverbal"
           }
         ],
-        "minutes": 3,
-        "core": true,
-        "transition": "Let's meet another important person in our story!",
         "hebrew": {
           "word": "אַמִּיצָה",
-          "translit": "",
-          "meaning": "Brave",
-          "gesture": ""
+          "translit": "a-mee-TZAH",
+          "meaning": "brave",
+          "note": "for a boy: a-MEETZ אַמִּיץ",
+          "gesture": "fists on hips, chin up"
+        },
+        "minutes": 3,
+        "core": false,
+        "transition": "Esther had a cousin who helped her…",
+        "guide_ref": {
+          "page": 4
         }
       },
       "guide": {
         "pshat": {
-          "text": "Esther was a young Jewish woman who became the queen. She kept her Jewish identity a secret. When her people needed help, she found her courage.",
-          "refs": []
+          "text": "Esther (her Hebrew name was Hadassah) had no father or mother. Her cousin Mordechai raised her as his own daughter (2:7). When she became queen she kept her people a secret, as Mordechai told her (2:10). Later she risked her life to save them (4:16).",
+          "refs": [
+            "Esther 2:7",
+            "Esther 2:10",
+            "Esther 4:16"
+          ]
         },
         "sages": [],
-        "hard_questions": [],
+        "hard_questions": [
+          {
+            "q": "Where were Esther's mommy and daddy?",
+            "answer": "They weren't alive anymore, so her cousin Mordechai took care of her, like a dad.",
+            "redirect": "Who takes care of you?"
+          }
+        ],
         "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
+          "see": "Hold up two drawn faces, 'a little scared' and 'brave', and point to each as you say it.",
+          "do": "Shaky hands and strong arms can be done sitting; children who don't want to move can nod.",
+          "join": "Children can point to Esther, or show a brave face with no words."
         },
-        "extend": "",
-        "tip": "Ask children to show you a brave face, then a nervous face. Builds emotional vocabulary."
+        "extend": "Brave chart: each time a child does something brave this week, add a sticker to a paper crown.",
+        "tip": "Say אַמִּיצָה for Esther and אַמִּיץ for a boy; let children pick the word that fits them."
       }
     },
     {
       "card_id": "spotlight_2",
       "card_type": "spotlight",
       "title_en": "Mordechai",
-      "title_he": "מׇרְדְּכַי הַצַּדִּיק",
+      "title_he": "מָרְדֳּכַי",
       "characters_in_scene": [
         "mordechai"
       ],
-      "image_prompt": "MORDECHAI:\nOlder Jewish man, warm brown skin, kind wise eyes with crow's feet.\nFull gray-brown beard, dignified tall posture.\nJewish head covering (cloth wrap in cream/white).\nModest layered robes in earth tones — brown outer robe, cream inner garment, subtle blue scarf.\nHands clasped peacefully in front of him. Grandfatherly warmth.\n\nMordechai portrait framed from chest up, face centered.\nBehind him: the great stone gate of Shushan with ornate blue tile border.\nThrough the archway: palm trees, domed buildings, and a warm market street visible in the distance.\nBright blue sky above the gate. Warm afternoon light.\nDark stone wall fading into shadow at the lower-left.\n\nWise, trustworthy, SOLID. Like a favorite grandfather who always knows the right thing to do.",
+      "image_prompt": "Mordechai, chest-up portrait, face centered, hands clasped calmly in front of him, a warm, gentle,\ngrandfatherly smile and crinkled kind eyes. He stands at the king's gate of ancient Persian Shushan:\nbehind him a tall straight-sided gateway with a flat stone lintel, flanked by thick mud-brick walls\nwith flat roofs. Along the wall runs a frieze of glazed bricks in turquoise and royal blue, with a\nstriding golden lion and a row of white-and-gold rosettes. A slender stone column topped with a\ntwin-bull capital stands at one side. Through the gateway, date palms and flat-roofed sandstone houses.\nBright blue sky above the flat-topped walls, warm afternoon light on his face. No domes, no pointed or\nrounded arches anywhere: every opening is rectangular with a flat lintel.\nWise, trustworthy, solid: like a favorite grandfather who always knows the right thing to do.\n",
       "image_path": "raw/spotlight_2.png",
       "back": {
-        "objective": "",
-        "say": "**This is Mordechai. He's like a wise uncle or grandpa. He helped raise Esther and always knew what to do. Mordechai was very brave too — he wouldn't bow down to anyone except God. He helped Esther be brave!**",
+        "objective": "Mordechai cared for Esther and helped her be brave",
+        "say": "[Point to Mordechai] **This is Mordechai, Esther's cousin. He took care of Esther, like a dad.** [Hug yourself]\n**Later he told her: \"Who knows? Maybe you became queen for just this time!\"** [Tap your head: think!]",
         "ask": [
           {
-            "text": "Who in your life gives you good advice?",
+            "text": "Who gives you good advice?",
             "type": "open"
           },
           {
-            "text": "What makes someone wise?",
-            "type": "open"
+            "text": "Show me a thinking face!",
+            "type": "nonverbal"
           }
         ],
-        "minutes": 3,
-        "core": true,
-        "transition": "Our story is about to get really exciting!",
         "hebrew": {
           "word": "חָכָם",
-          "translit": "",
-          "meaning": "Wise",
-          "gesture": ""
-        }
-      },
-      "guide": {
-        "pshat": {
-          "text": "Mordechai was Esther's older cousin. He raised her and always gave her good advice. He stood up for what was right, no matter what.",
-          "refs": []
+          "translit": "kha-KHAM",
+          "meaning": "wise",
+          "note": "for a girl: kha-kha-MAH חֲכָמָה",
+          "gesture": "tap your head"
         },
-        "sages": [],
-        "hard_questions": [],
-        "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
-        },
-        "extend": "",
-        "tip": "Connect to children's lives by asking who gives THEM good advice."
-      }
-    },
-    {
-      "card_id": "spotlight_3",
-      "card_type": "spotlight",
-      "title_en": "Haman",
-      "title_he": "הָמָן",
-      "characters_in_scene": [
-        "haman"
-      ],
-      "image_prompt": "HAMAN:\nAdult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.\nDISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape).\nPouty frustrated expression, furrowed brow, eyes narrowed with JEALOUSY (not rage).\nPersian clothing in MUTED dusty purple and gray-brown vest over lighter tunic.\nArms crossed defensively. Shoulders slightly hunched.\nLooking to the side with a jealous scowl — lip pushed out in a pout.\n\nHaman portrait framed from chest up, face centered.\nBehind him: a palace hallway with Persian arched windows.\nPalm trees visible through the windows — soft, warm, NOT dark or scary.\nThe background is neutral and warm — muted golds and tans.\nMuted, slightly desaturated colors throughout. NOT dark. NOT ominous.\nDark ground shadow at lower-left.\n\nJealous and pouty — like a kid who didn't get picked first. NOT SCARY. Kids should recognize the feeling, not be frightened.",
-      "image_path": "raw/spotlight_3.png",
-      "back": {
-        "objective": "",
-        "say": "**This is Haman. He worked for the king and wanted everyone to bow down to him. But Mordechai said no — he only bows to God. That made Haman feel SO jealous. His jealousy grew and grew... and he made a very bad choice. Have you ever felt jealous? It's okay to feel that way, but Haman didn't make good choices with his feelings.**",
-        "ask": [
-          {
-            "text": "What does it feel like inside when you are jealous?",
-            "type": "open"
-          },
-          {
-            "text": "What could Haman have done instead of making a bad choice?",
-            "type": "open"
-          }
-        ],
         "minutes": 3,
-        "core": true,
-        "transition": "There's one more person we need to meet!",
-        "hebrew": {
-          "word": "קַנַּאי",
-          "translit": "",
-          "meaning": "Jealous",
-          "gesture": ""
+        "core": false,
+        "transition": "Mordechai always stood up for what was right…",
+        "guide_ref": {
+          "page": 5,
+          "note": "for such a time as this"
         }
       },
       "guide": {
         "pshat": {
-          "text": "Haman worked for the king. He wanted everyone to bow down to him. When Mordechai wouldn't bow, Haman felt very jealous.",
-          "refs": []
+          "text": "Mordechai was a Jew in Shushan who raised his orphaned cousin Esther as his daughter (2:7). When the Jewish people were in danger, he sent Esther a message: \"Who knows, perhaps you became queen for just such a time as this\" (4:14), meaning maybe this is the reason you are in the palace.",
+          "refs": [
+            "Esther 2:7",
+            "Esther 4:14"
+          ]
         },
         "sages": [],
         "hard_questions": [],
         "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
+          "see": "Show the card next to Esther's card: point to each and say 'cousins'.",
+          "do": "Children can hug a stuffed animal instead of themselves.",
+          "join": "Children can point to someone in the room who helps them."
         },
-        "extend": "Sometimes when we feel jealous, we want to do something mean. But that's not a good choice. We can talk about our feelings instead.",
-        "tip": "Normalize the feeling of jealousy before discussing Haman's bad choice. Children need to know feelings are okay."
-      }
-    },
-    {
-      "card_id": "spotlight_4",
-      "card_type": "spotlight",
-      "title_en": "King Achashverosh",
-      "title_he": "הַמֶּלֶךְ אֲחַשְׁוֵרוֹשׁ",
-      "characters_in_scene": [
-        "achashverosh"
-      ],
-      "image_prompt": "KING ACHASHVEROSH:\nAdult man, somewhat cartoonish and comedic.\nLarge ornate Persian crown with red jewel — slightly too big, tilting on his head.\nFancy royal robes in rich reds and golds with blue sash.\nBig bushy dark beard, wide bewildered eyes, eyebrows raised high.\nOne hand scratching his head under the crown. Other hand on his hip.\nExpression: confused, distracted — \"Wait, what's going on?\"\n\nKing portrait framed from chest up, face centered.\nBehind him: the ornate Persian throne room — same architectural style as Esther's spotlight.\nColorful geometric mosaic tiles on the walls. Ornate Persian arched doorway.\nRich warm light from above. Jeweled decorations glinting.\nDark throne room shadow at lower-left.\n\nBumbling, confused, slightly SILLY — but not mean. A king who needs help thinking things through. Kids will giggle at him!",
-      "image_path": "raw/spotlight_4.png",
-      "back": {
-        "objective": "",
-        "say": "**This is King Achashverosh. He was the king! But you know what? He didn't always stop to think. When Haman told him a bad plan, the king just said yes without asking questions. That wasn't smart! We should always think first and ask questions. But don't worry — the king learns his lesson!**",
-        "ask": [
-          {
-            "text": "Why is it important to ask questions before deciding?",
-            "type": "open"
-          },
-          {
-            "text": "What happens when you say yes too fast without thinking?",
-            "type": "open"
-          }
-        ],
-        "minutes": 3,
-        "core": true,
-        "transition": "Now let's see how our story begins!",
-        "hebrew": {
-          "word": "מְבֻלְבָּל",
-          "translit": "",
-          "meaning": "Confused",
-          "gesture": ""
-        }
-      },
-      "guide": {
-        "pshat": {
-          "text": "King Achashverosh ruled a very big kingdom. He didn't always think before he decided things. He listened to Haman without asking enough questions.",
-          "refs": []
-        },
-        "sages": [],
-        "hard_questions": [],
-        "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
-        },
-        "extend": "It's important to think before we decide. We should ask questions and not just say yes right away.",
-        "tip": "Use a silly voice for the king to keep the mood light and age-appropriate."
+        "extend": "Good-advice circle: children tell a friend one helpful idea ('If you're sad, you can…').",
+        "tip": "Say 'for just this time!' slowly. Ask: what could YOU be just right for?"
       }
     },
     {
@@ -308,554 +254,596 @@
         "esther",
         "achashverosh"
       ],
-      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress, simple gold tiara.\n\nEsther seated on a cushioned bench in the palace throne room.\nKing Achashverosh standing beside her, gently placing a golden crown on her head.\nEsther looks up with wide nervous eyes — her hands clasped in her lap.\nShe's beautiful but overwhelmed. This is the biggest moment of her life!\nPalace courtiers visible in background, watching the ceremony.\nWarm golden light streaming through tall Persian arched windows.\nOrnate mosaic tiles on the walls, rich tapestries hanging, oil lamps glowing.\nHigh vaulted ceiling fading into warm amber haze above.\nDark polished marble floor with shadow pooling in the lower-left.\n\nMagical, exciting, but with a hint of nervousness. A fairy-tale moment with a secret underneath.",
+      "image_prompt": "In the palace hall, King Achashverosh gently places a golden crown on Esther's head as she sits on a\ncushioned bench, hands clasped in her lap, eyes wide: happy and a little nervous. Courtiers watch from\nboth sides, smiling. Warm light streams through tall windows; rich hangings, glowing oil lamps, and a\nhigh ceiling fading into warm amber haze.\nA fairy-tale moment with a secret underneath!\n",
       "image_path": "raw/story_1.png",
       "sequence_number": 1,
       "hebrew_keyword": {
         "word": "מַלְכָּה",
-        "translit": "",
+        "translit": "mal-KAH",
         "meaning": "queen"
       },
       "back": {
-        "objective": "",
-        "say": "**The king needed a new queen, and he chose Esther! She was so beautiful and kind. She moved into the big palace and wore a shiny crown. But Esther had a secret — shhh! — she didn't tell anyone she was Jewish. Let's all put on our pretend crowns and wave like Queen Esther!** [Put an imaginary crown on your head and give a royal wave!]",
+        "objective": "Esther becomes queen and keeps a secret",
+        "say": "**The king chose Esther to be the new queen!** [Put on a pretend crown]\n**But Esther had a secret: she was Jewish.** [Finger on lips: shhh!]\n**Mordechai said, \"Don't tell anyone yet.\"**\n**So Esther kept her secret… shhh!**",
         "ask": [
           {
-            "text": "How would it feel to live in a beautiful palace?",
-            "type": "open"
+            "text": "What was Esther's secret?",
+            "type": "recall"
           },
           {
-            "text": "What would be hard about keeping a really big secret?",
-            "type": "open"
+            "text": "Show me how to keep a secret!",
+            "type": "nonverbal"
           }
         ],
-        "minutes": 5,
-        "core": true,
-        "transition": "Let's find out what happens next!",
         "hebrew": {
           "word": "מַלְכָּה",
-          "translit": "",
-          "meaning": "Queen",
-          "gesture": ""
+          "translit": "mal-KAH",
+          "meaning": "queen",
+          "gesture": "both hands make a crown on your head"
+        },
+        "minutes": 4,
+        "core": false,
+        "transition": "Shhh… can you keep a secret?",
+        "guide_ref": {
+          "page": 6
         }
       },
       "guide": {
         "pshat": {
-          "text": "The king chose Esther to be his new queen. She moved into the beautiful palace. But she kept her secret — she didn't tell anyone she was Jewish.",
-          "refs": []
+          "text": "The king loved Esther, set the royal crown on her head and made her queen (2:17). Esther did not tell anyone her people, because Mordechai had told her not to (2:10). On the card we say only that the king chose her (sensitivity reframe): Vashti and how the queen was chosen are left out.",
+          "refs": [
+            "Esther 2:10",
+            "Esther 2:17"
+          ]
         },
         "sages": [],
-        "hard_questions": [],
+        "hard_questions": [
+          {
+            "q": "Why did Esther have to keep a secret?",
+            "answer": "Mordechai asked her to wait. Sometimes a grown-up we trust says 'not yet', and later it's time to share.",
+            "redirect": "Who can you tell your big feelings to?"
+          }
+        ],
         "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
+          "see": "Show a paper crown and put it on a doll or puppet 'Esther'.",
+          "do": "Children can mime the crown with one hand, or simply nod.",
+          "join": "Everyone joins the 'shhh' with a finger on lips; no words needed."
         },
-        "extend": "",
-        "tip": "Whisper 'shhh' when you mention the secret — children love the dramatic effect."
+        "extend": "Whisper game: pass a quiet 'Purim!' around the circle without anyone else hearing.",
+        "tip": "Make the 'shhh' dramatic and soft; children love a secret. Keep it light: Esther is happy, not afraid, here."
       }
     },
     {
       "card_id": "story_2",
       "card_type": "story",
       "title_en": "Mordechai Stands Tall",
-      "title_he": "מׇרְדְּכַי עוֹמֵד זָקוּף",
+      "title_he": "מָרְדֳּכַי עוֹמֵד זָקוּף",
       "characters_in_scene": [
         "mordechai",
         "haman"
       ],
-      "image_prompt": "MORDECHAI:\nOlder Jewish man, warm brown skin, kind wise eyes.\nFull gray-brown beard. Wrapped cloth turban on his head.\nModest robes in earth tones. Standing TALL, arms at his sides, chin up, shaking his head NO.\n\nHAMAN:\nAdult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE.\nDISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape).\nPouty frustrated expression, pointing angrily at Mordechai.\nMuted dusty purple and gray-brown clothing.\n\nOutside the palace gates in Shushan — ornate Persian archways, warm sandstone.\nHaman stands by the gate on the left. A crowd of people kneeling and bowing before him.\nMordechai stands on the right, the ONLY one not bowing — tall, dignified, refusing.\nHaman points at Mordechai, furious that he won't bow.",
+      "image_prompt": "Outside the king's gate in Shushan: a wide stone gateway with tall columns topped with twin-bull capitals\nand a turquoise glazed-brick band of gold rosettes. A row of courtiers kneel and bow low toward Haman,\nforeheads to the ground. Mordechai is the ONLY one standing: tall and calm, chin up, hands at his sides,\ngently shaking his head no. Haman stands by the gate with his arms crossed tight, nose in the air, cheeks\npuffed, a big sulky pout, proud and grumpy like a kid who didn't get his way. Warm afternoon sun, deep\nblue sky above the flat-topped gate.\nQUIET COURAGE next to GRUMPY PRIDE!\n",
       "image_path": "raw/story_2.png",
       "sequence_number": 2,
       "hebrew_keyword": {
         "word": "עוֹמֵד",
-        "translit": "",
-        "meaning": "stands"
+        "translit": "o-MED",
+        "meaning": "standing"
       },
       "back": {
-        "objective": "",
-        "say": "**Haman walked through the streets and wanted everyone to bow down to him. But when he passed Mordechai, guess what happened? Mordechai stood up TALL. He shook his head and said NO! Mordechai only bows to God. Let's all stand up tall like Mordechai! Stand straight... now shake your head NO!** [Stand up straight and tall! Shake your head NO!]",
+        "objective": "Brave means doing what's right",
+        "say": "**Everyone had to bow down to Haman.** [Everyone bow!]\n**But Mordechai said, \"I am a Jew. I will not bow.\"** [Stand up tall!]\n**Haman was SO proud, and SO angry!** [Cross arms, grumpy face]\n**He made a very bad plan against the Jewish people.**",
         "ask": [
           {
-            "text": "Have you ever said no to something you thought was wrong?",
-            "type": "open"
+            "text": "What did Mordechai say?",
+            "type": "recall"
           },
           {
-            "text": "What makes Mordechai's choice so brave?",
-            "type": "open"
+            "text": "Show me how Mordechai stood!",
+            "type": "nonverbal"
           }
         ],
-        "minutes": 5,
-        "core": true,
-        "transition": "Uh oh — something's about to go wrong...",
         "hebrew": {
           "word": "עוֹמֵד",
-          "translit": "",
-          "meaning": "Stands",
-          "gesture": ""
+          "translit": "o-MED",
+          "meaning": "standing",
+          "note": "for a girl: o-ME-det עוֹמֶדֶת",
+          "gesture": "stand up straight, hands at sides"
+        },
+        "minutes": 4,
+        "core": true,
+        "transition": "Uh-oh… the Jewish people need help!",
+        "guide_ref": {
+          "page": 7,
+          "note": "why not bow?"
         }
       },
       "guide": {
         "pshat": {
-          "text": "Haman wanted everyone to bow down to him. But Mordechai said no! He stood tall and would not bow.",
-          "refs": []
+          "text": "The king ordered everyone at the palace gate to bow to Haman, his top official, but Mordechai would not bow (3:2). He told the courtiers that he was a Jew (3:4). When Haman saw it, he was \"filled with rage\" (חֵמָה) (3:5): his hurt pride turned into anger. Not satisfied with Mordechai alone, he made a plan against all the Jews in the kingdom (3:6). On the card: \"a very bad plan.\"",
+          "refs": [
+            "Esther 3:2",
+            "Esther 3:4",
+            "Esther 3:5",
+            "Esther 3:6"
+          ]
         },
-        "sages": [],
-        "hard_questions": [],
+        "sages": [
+          {
+            "text": "Our Sages teach that Haman made himself like an idol, a little god for people to bow to, so Mordechai would bow only to Hashem.",
+            "source": "Rashi on Esther 3:2"
+          }
+        ],
+        "hard_questions": [
+          {
+            "q": "Did Haman hurt the Jewish people?",
+            "answer": "No. Haman had a bad plan, but Esther and Mordechai were brave, and the Jewish people were safe.",
+            "redirect": "Who was brave in our story?"
+          }
+        ],
         "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
+          "see": "Have one child stand while the others bow, so everyone sees the difference.",
+          "do": "Children who can't bow can nod their head down; standing children can just sit up tall.",
+          "join": "Everyone can do the grumpy Haman face and crossed arms without speaking."
         },
-        "extend": "",
-        "tip": "Let every child stand up for this one. The physical movement helps them remember the lesson."
+        "extend": "Feelings talk: 'Haman felt proud and angry. What can we do when we feel angry?' (take a breath, tell a grown-up).",
+        "tip": "Name Haman's feelings gently (proud, angry) and move on fast; he's grumpy and silly, never scary."
       }
     },
     {
       "card_id": "story_3",
       "card_type": "story",
-      "title_en": "Haman's Bad Choice",
-      "title_he": "הַבְּחִירָה הָרָעָה שֶׁל הָמָן",
-      "characters_in_scene": [
-        "haman",
-        "mordechai"
-      ],
-      "image_prompt": "Haman — THREE-CORNERED HAT (hamantaschen shape), dark pointed goatee, dusty purple and gray-brown robes — sitting hunched on a cushion, arms crossed tight, pouty frustrated frown. NOT scary, just jealous and sulky like a child who didn't get their way.\n\nA LARGE thought bubble to the RIGHT of Haman, positioned LOW — at chest/belly height, in the CENTER-RIGHT of the frame. NOT near the top of the image. Inside the thought bubble: Mordechai standing tall with arms at his sides, refusing to bow. The thought bubble should be prominent. The entire TOP 30% of the frame must be EMPTY — just wall, ceiling, or atmospheric space.\n\nCrumpled papers and a scroll on the floor. Simple stone room, single arched window. Warm dim light — gloomy but not scary.\nDark floor and shadow in the lower-left corner.",
-      "image_path": "raw/story_3.png",
-      "sequence_number": 3,
-      "hebrew_keyword": {
-        "word": "קִנְאָה",
-        "translit": "",
-        "meaning": "jealousy"
-      },
-      "back": {
-        "objective": "",
-        "say": "**Uh oh. Haman was SO jealous and angry that Mordechai wouldn't bow. His jealousy grew and grew until he made a VERY bad choice. He decided he wanted to hurt all the Jewish people! That was SO wrong. Can you make a jealous, pouty face like Haman? Cross your arms... Now — is that a good choice? NO! Haman needed to stop and think.** [Make a jealous, pouty face and cross your arms!]",
-        "ask": [
-          {
-            "text": "What could Haman have done with his jealous feelings instead?",
-            "type": "open"
-          },
-          {
-            "text": "How can we stop ourselves from making bad choices when we're upset?",
-            "type": "open"
-          }
-        ],
-        "minutes": 5,
-        "core": true,
-        "transition": "But don't worry — someone is about to be very brave!",
-        "hebrew": {
-          "word": "קִנְאָה",
-          "translit": "",
-          "meaning": "Jealousy",
-          "gesture": ""
-        }
-      },
-      "guide": {
-        "pshat": {
-          "text": "Haman felt SO jealous that Mordechai wouldn't bow. His jealousy grew bigger and bigger. He made a plan to hurt all the Jewish people. That was wrong!",
-          "refs": []
-        },
-        "sages": [],
-        "hard_questions": [],
-        "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
-        },
-        "extend": "",
-        "tip": "Pause after 'Is that a good choice?' and let children shout 'NO!' together."
-      }
-    },
-    {
-      "card_id": "story_4",
-      "card_type": "story",
       "title_en": "Esther's Brave Choice",
       "title_he": "הַבְּחִירָה הָאַמִּיצָה שֶׁל אֶסְתֵּר",
       "characters_in_scene": [
         "esther",
-        "achashverosh",
-        "haman"
+        "achashverosh"
       ],
-      "image_prompt": "A grand banquet scene in the palace.\nEsther stands center, pointing directly at Haman. Her left hand pressed over her heart.\nShe is REVEALING the truth — \"This is the man!\"\n\nKing Achashverosh on his throne to the left, leaning forward with shock.\nHaman on the right, shrinking back in terror, hands up defensively.\n\nA banquet table with goblets and platters in the foreground.\nOrnate Persian columns and rich tapestries on the walls.",
-      "image_path": "raw/story_4.png",
-      "sequence_number": 4,
+      "image_prompt": "The king's throne hall in Shushan: tall slender columns with twin-bull capitals, a flat cedar-beam\nceiling glowing with warm light, turquoise and gold glazed-brick rosettes along the walls, purple\nhangings. King Achashverosh sits on a tall golden throne, leaning forward with a big surprised, warm\nsmile, holding out a long golden scepter toward Esther. Esther, in royal purple robes, has just stepped\ninto the hall: one hand pressed to her heart, the other reaching out to touch the tip of the scepter,\nher face brave and relieved. Two courtiers at the side peek out in surprise.\nRELIEF AND COURAGE: she was scared, and she did it anyway!\n",
+      "image_path": "raw/story_3.png",
+      "sequence_number": 3,
       "hebrew_keyword": {
-        "word": "אַמִּיץ",
-        "translit": "",
+        "word": "אַמִּיצָה",
+        "translit": "a-mee-TZAH",
         "meaning": "brave"
       },
       "back": {
-        "objective": "",
-        "say": "**Mordechai ran to tell Esther about Haman's terrible plan. Esther was scared — really scared! But she knew she had to help. She took a deep breath and went to see the king. Then she said the bravest words: 'I have something important to tell you. I am Jewish!' Let's practice being brave like Esther. Take a deep breath... now say 'I have something important to tell you!'** [Take a deep breath and say 'I have something important to tell you!']",
+        "objective": "Esther was scared, and brave anyway",
+        "say": "**The grown-ups didn't eat for three days, for Esther.**\n**Then she went to the king without being called. Scary!** [Shaky hands…]\n**The king held out his golden stick. Phew! The Jewish people were safe!** [Cheer!]",
         "ask": [
           {
-            "text": "What gives you courage when you need to speak up?",
-            "type": "open"
+            "text": "How did Esther feel before she went in?",
+            "type": "wh"
           },
           {
-            "text": "How do you think Esther's heart felt in that moment?",
+            "text": "What helped Esther be brave?",
             "type": "open"
           }
         ],
+        "hebrew": {
+          "word": "אַמִּיצָה",
+          "translit": "a-mee-TZAH",
+          "meaning": "brave",
+          "note": "for a boy: a-MEETZ אַמִּיץ",
+          "gesture": "fists on hips, chin up"
+        },
         "minutes": 5,
         "core": true,
-        "transition": "Let's see what the king does!",
-        "hebrew": {
-          "word": "אַמִּיץ",
-          "translit": "",
-          "meaning": "Brave",
-          "gesture": ""
+        "transition": "Hooray! That's why we celebrate Purim!",
+        "guide_ref": {
+          "page": 8,
+          "note": "what happened to Haman?"
         }
       },
       "guide": {
         "pshat": {
-          "text": "Mordechai told Esther about Haman's bad plan. Esther was scared, but she knew what she had to do. She went to the king and told him her secret!",
-          "refs": []
+          "text": "Anyone who came to the king without being called could be put to death, unless the king held out his golden scepter (4:11). Esther asked all the Jews of Shushan to fast for her for three days, then went in: \"and if I perish, I perish\" (4:16). The king held out the scepter and she touched its tip (5:1-2). At her feast she asked for her people's lives and named Haman (7:3-6). A king's decree could not be undone (8:8), so a new one let the Jews stand up for themselves (8:11). The day turned around (9:1), and the Jews had light and joy (8:16).",
+          "refs": [
+            "Esther 4:11",
+            "Esther 4:16",
+            "Esther 5:1-2",
+            "Esther 7:3-6",
+            "Esther 8:8",
+            "Esther 8:11",
+            "Esther 9:1",
+            "Esther 8:16"
+          ]
         },
         "sages": [],
-        "hard_questions": [],
+        "hard_questions": [
+          {
+            "q": "What happened to Haman?",
+            "answer": "Haman's bad plan didn't work, and he wasn't able to hurt anyone anymore.",
+            "redirect": "What do you think the Jewish people did to celebrate?"
+          },
+          {
+            "q": "Couldn't the king just cancel the bad plan?",
+            "answer": "In that kingdom, a king's rule could never be erased. So the king made a new rule: the Jewish people could stand up and protect themselves, and they were safe.",
+            "redirect": "How do we stand up tall and brave?"
+          },
+          {
+            "q": "Do I have to stop eating like Esther?",
+            "answer": "No. Only grown-ups fast, on the day before Purim. Children eat and help in other ways.",
+            "redirect": "How can YOU help someone this Purim?"
+          }
+        ],
         "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
+          "see": "Use a real stick or wand as the golden scepter; children touch its tip.",
+          "do": "Shaky hands and reaching can be done sitting; a child can hold the 'scepter' for the class.",
+          "join": "Everyone joins the cheer, or claps, or shows the brave gesture."
         },
-        "extend": "",
-        "tip": "Practice the deep breath together three times before the roleplay. It grounds the children."
+        "extend": "Act it out: one child is the king with the scepter, another walks in bravely; everyone else cheers.",
+        "tip": "Fasting is for grown-ups only; say so if children ask. 'Scepter' is a new word: 'a king's golden stick'."
       }
     },
     {
-      "card_id": "story_5",
-      "card_type": "story",
-      "title_en": "The Happy Ending",
-      "title_he": "הַסּוֹף הַשָּׂמֵחַ",
-      "characters_in_scene": [
-        "esther",
-        "mordechai"
-      ],
-      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress, simple gold tiara.\nBEAMING with joy — the biggest smile, arms open wide!\n\nMORDECHAI:\nOlder Jewish man, warm brown skin, kind wise eyes.\nFull gray-brown beard. Jewish head covering.\nModest robes in earth tones. Clapping his hands with pride.\n\nCELEBRATION! Esther and Mordechai together in center foreground.\nEsther is dancing, her dress swirling. Mordechai claps beside her, eyes twinkling.\nBehind them: a crowd of Jewish people CHEERING — hands raised, some playing tambourines and lutes.\nChildren in the foreground dancing and throwing confetti.\nColorful festive banners and streamers hang from Persian archways above.\nBright warm colors EVERYWHERE — golds, purples, reds, blues.\nThe whole scene BURSTS with energy and relief.\nFestive canopy or palace ceiling visible above, decorated with flowers and garlands.\nDark festive ground at lower-left.\n\nPURE JOY! This is the payoff — the danger is over, everyone is saved!\nLet kids FEEL the celebration. Maximum energy, maximum happiness!",
-      "image_path": "raw/story_5.png",
-      "sequence_number": 5,
-      "hebrew_keyword": {
-        "word": "שִׂמְחָה",
-        "translit": "",
-        "meaning": "joy"
-      },
+      "card_id": "tradition_1",
+      "card_type": "tradition",
+      "title_en": "Hear the Megillah",
+      "title_he": "מְגִלַּת אֶסְתֵּר",
+      "characters_in_scene": [],
+      "image_prompt": "A bright, cozy shul hall decorated for Purim: purple, blue and gold paper streamers and warm pendant\nlights hang from the ceiling. A friendly man in a knit kippah with olive skin and a short dark beard\nstands at a wooden reading table, reading from ONE parchment scroll that is rolled up on itself with no\nwooden handles; the written side faces him, so we see only the plain back of the parchment.\nAround him families listen: an Ethiopian Jewish mother with her son in a kippah, an Ashkenazi grandfather\nwith a white beard and kippah, a Mizrahi girl dressed as a queen. In front, children sit on the floor\nshaking colorful groggers high in the air and laughing; boys wear kippot, girls wear dresses; one girl\ncovers her ears and giggles.\nNOISY, HAPPY, TOGETHER!\n",
+      "image_path": "raw/tradition_1.png",
       "back": {
-        "objective": "",
-        "say": "**When the king heard Esther's secret, he was so surprised! He loved Queen Esther. He stopped Haman's bad plan right away. The Jewish people were SAVED! Everyone was SO happy! They celebrated and danced and cheered! Let's celebrate too — jump up and down and cheer! YAY!** [Jump up and cheer! The Jewish people were saved!]",
+        "objective": "We listen to the Megillah and drown out Haman",
+        "say": "**On Purim we listen to the Megillah, the story of Esther.** [Hands behind ears]\n**When we hear \"Haman,\" we make noise so nobody can hear his name!** [Say \"Haman\": everyone shakes]\n**When I say \"Esther\"… FREEZE!** [Repeat 3×]",
         "ask": [
           {
-            "text": "How do you celebrate when something really good happens?",
-            "type": "open"
+            "text": "What do we do when we hear 'Haman'?",
+            "type": "recall"
           },
           {
-            "text": "What made this story have a happy ending?",
-            "type": "open"
+            "text": "Show me your quietest freeze!",
+            "type": "nonverbal"
           }
         ],
-        "minutes": 5,
-        "core": true,
-        "transition": "What a wonderful ending! Now let's talk about it together.",
         "hebrew": {
-          "word": "שִׂמְחָה",
-          "translit": "",
-          "meaning": "Joy",
-          "gesture": ""
+          "word": "מְגִלָּה",
+          "translit": "me-gee-LAH",
+          "meaning": "scroll",
+          "note": "noisemaker: ra-a-SHAN רַעֲשָׁן",
+          "gesture": "unroll a pretend scroll"
+        },
+        "minutes": 3,
+        "core": true,
+        "transition": "What else do we do on Purim?",
+        "guide_ref": {
+          "page": 9,
+          "note": "no groggers? use claps"
         }
       },
       "guide": {
         "pshat": {
-          "text": "The king listened to Esther. He stopped Haman's bad plan! All the Jewish people were saved, and everyone celebrated!",
-          "refs": []
+          "text": "Mordechai wrote down the story and told the Jews to remember these days every year (9:20-22). We hear the whole Megillah read from a scroll at night and again in the day. A Megillah is one scroll rolled on itself, not on two wooden rollers like a Torah.",
+          "refs": [
+            "Esther 9:20-22"
+          ]
         },
-        "sages": [],
+        "sages": [
+          {
+            "text": "Making noise at Haman's name is an old custom, so that his name is 'blotted out' and can't be heard; the Rema writes that children do it.",
+            "source": "Rema, Shulchan Arukh OC 690:17"
+          }
+        ],
         "hard_questions": [],
         "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
+          "see": "Show a real megillah or a rolled paper scroll; point out it has one roller, not two.",
+          "do": "Sound-sensitive children can clap softly or stamp, or cover their ears; that's fine.",
+          "join": "Everyone joins the FREEZE; no words needed."
         },
-        "extend": "",
-        "tip": "Let the celebration go for a full 10 seconds — children need to release the built-up tension."
+        "extend": "Make groggers: dried beans in a sealed cup or bottle, decorated with stickers.",
+        "tip": "The FREEZE on 'Esther' gives the noise a clear stop. Practice the stop before you start the noise."
+      }
+    },
+    {
+      "card_id": "tradition_2",
+      "card_type": "tradition",
+      "title_en": "Mishloach Manot",
+      "title_he": "מִשְׁלוֹחַ מָנוֹת",
+      "characters_in_scene": [],
+      "image_prompt": "A sunny front porch of a modern home on Purim. An Ethiopian Jewish boy in a kippah and a lion costume and\nhis Ashkenazi friend, a girl in a ladybug costume, hold out a basket together to a smiling Sephardi\ngrandmother who is opening her front door. The basket is wrapped in clear cellophane with a big purple\nribbon and holds hamantaschen, a red apple, a small juice bottle and wrapped candies. The boy's mother,\nin a knee-length skirt, waves from the garden path carrying two more baskets. Potted flowers by the door,\nblue sky above the roof.\nTHE JOY OF GIVING!\n",
+      "image_path": "raw/tradition_2.png",
+      "back": {
+        "objective": "We send Purim food gifts to friends",
+        "say": "**On Purim we send mishloach manot: food gifts for a friend.** [Hold out a pretend basket]\n**Two kinds of food, like a hamantasch and an apple!** [Show two fingers]\n**Knock, knock! \"Happy Purim!\"** [Knock in the air]",
+        "ask": [
+          {
+            "text": "Who would you send a Purim basket to?",
+            "type": "open"
+          },
+          {
+            "text": "Which two foods would you put inside?",
+            "type": "open"
+          }
+        ],
+        "hebrew": {
+          "word": "מִשְׁלוֹחַ מָנוֹת",
+          "translit": "mish-LO-ach ma-NOT",
+          "meaning": "sending portions",
+          "gesture": "hold out a pretend basket with two hands"
+        },
+        "minutes": 3,
+        "core": false,
+        "transition": "Giving makes everyone happy!",
+        "guide_ref": {
+          "page": 10
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "Mordechai told the Jews to keep Purim with \"sending portions to one another\" (מִשְׁלוֹחַ מָנוֹת) (9:22). The happiness of being safe is shared with friends.",
+          "refs": [
+            "Esther 9:22"
+          ]
+        },
+        "sages": [
+          {
+            "text": "Our Sages teach that mishloach manot is at least two kinds of ready-to-eat food, sent to at least one person.",
+            "source": "Megillah 7a; Shulchan Arukh OC 695:4"
+          }
+        ],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Bring a real basket and two foods; count 'one, two!' as you put them in.",
+          "do": "Children pass the basket around the circle and say 'Happy Purim!' or just smile.",
+          "join": "Everyone can show two fingers for 'two kinds of food'."
+        },
+        "extend": "Class mishloach manot: each child decorates a paper bag; the class fills them for the school staff.",
+        "tip": "Check allergies before any real food. Paper or play food works just as well."
+      }
+    },
+    {
+      "card_id": "tradition_3",
+      "card_type": "tradition",
+      "title_en": "Giving & Feasting",
+      "title_he": "מַתָּנוֹת וּסְעוּדָה",
+      "characters_in_scene": [],
+      "image_prompt": "A festive Purim meal at a long family table in a warm dining room, with streamers and balloons above and\nwarm lamp light. A diverse family in Purim costumes: a Mizrahi dad in a kippah dressed as a king carries\na big platter of food, an Ashkenazi grandmother laughs, an Ethiopian Jewish aunt passes a bowl of grapes,\nand children in costumes (a boy in a kippah dressed as a firefighter, a girl dressed as a butterfly) raise\ncups of juice. On the table: a braided bread, a plate of hamantaschen, salads and fruit.\nIn front, a little girl drops a coin into a small plain wooden tzedakah box while her brother in a kippah\nholds out another coin, waiting his turn.\nGIVING AND CELEBRATING TOGETHER!\n",
+      "image_path": "raw/tradition_3.png",
+      "back": {
+        "objective": "We help people in need and share a Purim meal",
+        "say": "**On Purim we give gifts to people who need help, so everyone can be happy.** [Drop a coin in a pretend box]\n**Then we eat a big Purim meal with our family!** [Rub your tummy: yum!]\n**Giving and celebrating together: that's Purim!**",
+        "ask": [
+          {
+            "text": "How can we help someone who needs it?",
+            "type": "open"
+          },
+          {
+            "text": "Show me your happiest Purim dance!",
+            "type": "nonverbal"
+          }
+        ],
+        "hebrew": {
+          "word": "מַתָּנוֹת",
+          "translit": "ma-ta-NOT",
+          "meaning": "gifts",
+          "note": "gifts to people in need: מַתָּנוֹת לָאֶבְיוֹנִים",
+          "gesture": "open both hands and give"
+        },
+        "minutes": 3,
+        "core": false,
+        "transition": "Purim is full of joy!",
+        "guide_ref": {
+          "page": 11,
+          "note": "giving without shame"
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "Mordechai told the Jews to keep Purim as \"days of feasting and joy\" and with \"gifts to the poor\" (מַתָּנוֹת לָאֶבְיוֹנִים) (9:22). The month had turned from sadness to joy (9:22), and on Purim everyone, rich or poor, should be able to celebrate.",
+          "refs": [
+            "Esther 9:22"
+          ]
+        },
+        "sages": [
+          {
+            "text": "Our Sages teach that we give gifts to at least two people in need on Purim day, and that it is better to give more to the poor than to spend more on the meal or on mishloach manot.",
+            "source": "Megillah 7a; Rambam, Laws of Megillah 2:17"
+          }
+        ],
+        "hard_questions": [
+          {
+            "q": "Why are some people poor?",
+            "answer": "Sometimes people don't have enough money for food or things they need. On Purim we make sure they can be happy too.",
+            "redirect": "What could we give to help?"
+          }
+        ],
+        "adapt": {
+          "see": "Bring a real tzedakah box; let each child drop in a play coin.",
+          "do": "Children can pass the box around, or the teacher holds it while each child taps it.",
+          "join": "Everyone can rub their tummy for 'yum' or dance in place."
+        },
+        "extend": "Class tzedakah: collect coins all week; the children decide together where the money goes.",
+        "tip": "Talk about 'people who need help', never 'poor kids'; some families in your class may be struggling."
       }
     },
     {
       "card_id": "connection_1",
       "card_type": "connection",
       "title_en": "Being Brave",
-      "title_he": "לִהְיוֹת אַמִּיץ",
+      "title_he": "לִהְיוֹת אַמִּיצִים",
       "characters_in_scene": [],
-      "image_prompt": "Six diverse children (ages 4-6) sitting cross-legged in a circle on a round, colorful braided rug with concentric rings of red, blue, yellow, and green.\n\nA girl with brown curly hair leans forward eagerly, one hand on her knee, mouth open mid-sentence — she is TELLING her story.\nA boy in a striped kippah has his hand raised high, fingers spread, bouncing slightly — he wants to share next!\nA boy with dark skin wearing a colorful knit kippah rests his chin on both hands, elbows on knees, listening with wide thoughtful eyes.\nA girl with a pink headband sits with her arms wrapped around her knees, smiling shyly — warming up to speak.\nTwo more children sit attentively, one nodding, one with a hand on a friend's shoulder.\n\nThe classroom behind them feels LIVED-IN and warm:\nA low wooden bookshelf with picture books and a teddy bear. Children's drawings taped to the wall (stick figures, a rainbow, a sun). A window with afternoon golden light streaming in, green trees visible outside. A small plant on the windowsill. Soft blue cubbies in the corner.\n\nThe rug is THEIR special circle-time spot — it feels familiar and safe.\nWarm afternoon light fills the room. Hardwood floor around the rug.\n\nCOZY AND SAFE — like the best part of the school day, when everyone gets to share.",
+      "image_prompt": "Six diverse children sit cross-legged in a circle on a round braided rug with rings of red, blue, yellow\nand green. A girl with brown curly hair leans forward, mid-sentence, telling her story. A boy in a striped\nkippah raises his hand high, eager to share. An Ethiopian boy in a knit kippah rests his chin on his hands,\nlistening with wide eyes. A girl with a pink headband hugs her knees, smiling shyly. Two more children\nlisten, one with a hand on a friend's shoulder. Behind them, a lived-in gan: a low bookshelf with picture\nbooks and a teddy bear, children's drawings on the wall, a plant on a sunny windowsill.\nWarm, safe, everyone belongs.\n",
       "image_path": "raw/connection_1.png",
       "back": {
-        "objective": "",
-        "say": "**Esther was really scared, but she was brave anyway. Let's sit in a circle and talk about being brave. Have YOU ever had to be brave, even when you were scared? Maybe speaking up, or trying something new? What helps you feel brave? Let's share with each other!**",
+        "objective": "Children name a time they were brave",
+        "say": "**Esther felt scared, and she was brave anyway.** [Share one brave moment of your own]\n**Now it's your turn. When were YOU brave?** [Pass the card to whoever is sharing]",
         "ask": [
           {
-            "text": "Have you ever had to be brave, even when you were scared?",
+            "text": "What did your body feel like?",
             "type": "open"
           },
           {
-            "text": "How do you think Esther felt before she told her secret?",
-            "type": "distancing"
+            "text": "Point to the face that shows how you felt!",
+            "type": "nonverbal"
           }
         ],
-        "minutes": 5,
-        "core": true,
-        "transition": "You are all so brave for sharing!",
         "faces": [
           "scared",
           "brave",
+          "happy",
           "proud"
-        ]
-      },
-      "guide": {
-        "pshat": {
-          "text": "",
-          "refs": []
-        },
-        "sages": [],
-        "hard_questions": [],
-        "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
-        },
-        "extend": "",
-        "tip": "Share your own brave moment first to model vulnerability. Children open up when adults go first."
-      }
-    },
-    {
-      "card_id": "connection_2",
-      "card_type": "connection",
-      "title_en": "Secrets and Feelings",
-      "title_he": "סוֹדוֹת וּרְגָשׁוֹת",
-      "characters_in_scene": [],
-      "image_prompt": "Two children (ages 4-5) sitting together in a cozy reading nook in a classroom.\n\nA boy wearing a knit kippah sits cross-legged, hugging a soft blue stuffed elephant to his chest. His eyes look upward and to the side — he is THINKING about something important. His expression is gentle, maybe a tiny bit worried, but mostly thoughtful. He wears a colorful striped button-up shirt and jeans.\n\nNext to him, a girl with dark braids and a purple shirt sits with her knees pulled up, her chin resting on her arms. She LISTENS with kind, patient eyes — she is being a good friend. Her body leans slightly toward the boy, showing she cares.\n\nThey sit on big soft floor cushions in warm colors (orange, teal, mustard) arranged in a cozy nook. Behind them: a low bookshelf with colorful picture book spines visible, a soft knitted blanket draped over the shelf edge, a small potted plant. A window lets in warm golden afternoon light that makes everything glow. A children's drawing of a family is taped to the wall nearby.\n\nThe space feels like a SAFE CORNER — their special spot to talk about big feelings.\nWarm, soft lighting. Gentle and protected.\n\nTENDER AND SAFE — it's okay to have big feelings, especially with a friend nearby.",
-      "image_path": "raw/connection_2.png",
-      "back": {
-        "objective": "",
-        "say": "**Esther had to keep a big secret for a long time. That can feel hard! Have you ever had a secret that felt too big to hold inside? Sometimes we need to talk to a grown-up we trust. Who do you talk to when you have big feelings? Let's share in our circle.**",
-        "ask": [
-          {
-            "text": "Have you ever had a secret that was hard to keep?",
-            "type": "open"
-          },
-          {
-            "text": "How do you think Esther felt keeping her secret?",
-            "type": "distancing"
-          }
         ],
-        "minutes": 5,
+        "minutes": 4,
         "core": false,
-        "transition": "Thank you for sharing your feelings with us!",
-        "faces": []
-      },
-      "guide": {
-        "pshat": {
-          "text": "",
-          "refs": []
-        },
-        "sages": [],
-        "hard_questions": [],
-        "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
-        },
-        "extend": "",
-        "tip": "If a child shares something sensitive, validate it warmly and follow up privately after circle time."
-      }
-    },
-    {
-      "card_id": "tradition_1",
-      "card_type": "tradition",
-      "title_en": "Shake the Grogger!",
-      "title_he": "רַעֲשָׁן",
-      "characters_in_scene": [],
-      "image_prompt": "A warm, cozy synagogue community room decorated for Purim.\nA friendly bearded man (generic community member, NOT a story character) stands in the center holding a megillah scroll open wide, reading aloud with an animated expression. The scroll faces TOWARD the reader — the viewer sees only the blank parchment back of the scroll, NOT the text side.\nAdults sit in chairs in a semicircle around him — grandparents, parents, smiling and holding small megillah booklets.\nChildren sit cross-legged on the wooden floor in the foreground, grinning with excitement.\nSeveral kids are shaking colorful groggers (noisemakers) — red, blue, green.\nOne boy covers his ears, laughing. A girl waves her grogger overhead.\nFestive Purim decorations hang from the ceiling: paper streamers in blue, purple, gold.\nPaper mask cutouts (crowns, stars) taped to the walls.\nWarm pendant lights glow golden above. Warm wooden floor below.\n\nDo NOT include Haman or any villain in this image. Show only positive, joyful community members.\n\nJoyful community celebration! The fun of making noise TOGETHER!",
-      "image_path": "raw/tradition_1.png",
-      "back": {
-        "objective": "",
-        "say": "**Remember how Haman made such a bad choice? Every year, when we read the Purim story and hear his name, we make LOTS of noise! We use a special noisemaker called a grogger. Can you say that? Gro-gger! It sounds like this —** [shake grogger] **. Let's practice! When I say 'Haman'... everyone shake! Ready? HAMAN!** [let kids shake] **Great job! That's how we celebrate Purim!**",
-        "ask": [
-          {
-            "text": "What is the loudest noise you can make?",
-            "type": "open"
-          },
-          {
-            "text": "Why do you think we make noise when we hear Haman's name?",
-            "type": "open"
-          }
-        ],
-        "minutes": 5,
-        "core": true,
-        "transition": "There are even more fun ways we celebrate Purim!",
-        "hebrew": {
-          "word": "רַעֲשָׁן",
-          "translit": "",
-          "meaning": "Grogger (noisemaker)",
-          "gesture": ""
+        "transition": "You are all so brave!",
+        "guide_ref": {
+          "page": 12,
+          "note": "if a child shares something hard"
         }
       },
       "guide": {
         "pshat": {
-          "text": "When someone reads the Purim story out loud, we listen carefully. Every time we hear 'Haman,' we shake our groggers as loud as we can!",
-          "refs": []
+          "text": "Esther was afraid (4:11) and went to the king anyway (4:16). This card links her courage to the children's own lives: a doctor visit, a dark room, saying sorry, trying something new.",
+          "refs": [
+            "Esther 4:11",
+            "Esther 4:16"
+          ]
         },
         "sages": [],
-        "hard_questions": [],
-        "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
-        },
-        "extend": "",
-        "tip": "If you don't have groggers, stomping feet and clapping hands works just as well."
-      }
-    },
-    {
-      "card_id": "tradition_2",
-      "card_type": "tradition",
-      "title_en": "Dressing Up",
-      "title_he": "תַּחְפּוֹשׂוֹת",
-      "characters_in_scene": [],
-      "image_prompt": "A modern Jewish living room decorated for Purim. Warm, cozy, festive.\nFour children showing off their Purim costumes to each other:\n- A girl in a purple queen dress with a gold crown, holding a wand and twirling.\n- A boy in a banana costume, laughing with his arms out.\n- A younger boy as a red-caped superhero, hands on hips in a power pose.\n- A girl in a colorful patchwork dress with a headband, giggling.\nA plate of hamantaschen (triangle pastries) on a coffee table in the foreground.\nPurim masks scattered on the table — a purple mask, a gold mask.\nFestive streamers and balloons hanging from the ceiling.\nA couch and lamp visible in the background. Warm golden living room light.\n\nFUN, festive, IMAGINATIVE! Pure joy of playing dress-up. Kids should want to jump into this scene!",
-      "image_path": "raw/tradition_2.png",
-      "back": {
-        "objective": "",
-        "say": "**Remember how Esther kept her Jewish identity hidden? It was like she was wearing an invisible costume! On Purim, we wear REAL costumes to remember Esther's secret. Some people dress as queens and kings. Some dress as animals or superheroes. Some wear silly costumes! If YOU could wear any Purim costume, what would you be? Let's share our ideas!**",
-        "ask": [
+        "hard_questions": [
           {
-            "text": "What would YOUR perfect Purim costume look like?",
-            "type": "open"
-          },
-          {
-            "text": "Why do you think dressing up is part of Purim?",
-            "type": "open"
+            "q": "(A child shares something frightening or sad.)",
+            "answer": "Thank the child, say 'that sounds hard, and you were brave to tell us', and check in privately later. Tell a parent or the school if needed.",
+            "redirect": "Who helps you when you feel scared?"
           }
         ],
-        "minutes": 5,
-        "core": false,
-        "transition": "We have one more special Purim tradition to learn about!",
-        "hebrew": {
-          "word": "תַּחְפּוֹשׂוֹת",
-          "translit": "",
-          "meaning": "Costumes",
-          "gesture": ""
-        }
-      },
-      "guide": {
-        "pshat": {
-          "text": "On Purim, everyone wears costumes! We can dress up as queens, kings, heroes, or anything we want!",
-          "refs": []
-        },
-        "sages": [],
-        "hard_questions": [],
         "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
+          "see": "Hold up the four feeling faces and let children point.",
+          "do": "A child can share by drawing instead of talking.",
+          "join": "Children can pass the card without speaking; everyone shows the brave gesture for each sharer."
         },
-        "extend": "",
-        "tip": "Have a few costume props ready (crown, cape, silly hat) to pass around while discussing."
-      }
-    },
-    {
-      "card_id": "tradition_3",
-      "card_type": "tradition",
-      "title_en": "Giving Gifts",
-      "title_he": "מִשְׁלוֹחַ מָנוֹת",
-      "characters_in_scene": [],
-      "image_prompt": "A modern Jewish family kitchen — warm, bright, busy with Purim preparations.\nA dad in a kippah arranging fruit in a wicker basket on the left side of the table.\nA mom in a modest dress and apron placing hamantaschen (triangle pastries) on a tray.\nA young boy in a kippah excitedly reaching into a basket, grabbing a wrapped candy.\nA little girl in a striped dress holding up a plate of hamantaschen, proud of her work.\nThe kitchen table is covered with supplies: baskets, colorful cellophane wrap, ribbons, fruits, juice boxes, bags of treats.\nMultiple gift baskets in various stages of being packed.\nA window behind them shows green trees and warm sunlight.\nA calendar and children's drawings on the kitchen wall.\nWarm, bright kitchen lighting from above.\n\nGenerously warm, HOMEY, a real family doing something meaningful together. The joy of GIVING.",
-      "image_path": "raw/tradition_3.png",
-      "back": {
-        "objective": "",
-        "say": "**When the Jewish people were saved, they were SO happy! They wanted to share that happy feeling with everyone. So they gave gifts of food to their friends and neighbors. On Purim, we do the same thing! We make baskets with treats and give them to people we care about. Who would YOU like to give a gift basket to?**",
-        "ask": [
-          {
-            "text": "Who would you most like to give a Purim gift to?",
-            "type": "open"
-          },
-          {
-            "text": "How does it feel when someone gives you a surprise gift?",
-            "type": "open"
-          }
-        ],
-        "minutes": 5,
-        "core": false,
-        "transition": "Purim is all about sharing joy with others!",
-        "hebrew": {
-          "word": "מִשְׁלוֹחַ מָנוֹת",
-          "translit": "",
-          "meaning": "Sending Gifts",
-          "gesture": ""
-        }
-      },
-      "guide": {
-        "pshat": {
-          "text": "On Purim, we make gift baskets filled with yummy treats. We give them to friends to spread happiness!",
-          "refs": []
-        },
-        "sages": [],
-        "hard_questions": [],
-        "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
-        },
-        "extend": "",
-        "tip": "If possible, have the class make a simple mishloach manot together as a craft activity."
+        "extend": "Brave book: each child draws one brave moment; bind the pages into a class book.",
+        "tip": "Share a small, real brave moment of your own first; it gives children permission to share."
       }
     },
     {
       "card_id": "power_word_1",
       "card_type": "power_word",
-      "title_en": "Gibor - Hero",
-      "title_he": "גִּבּוֹר",
+      "title_en": "Gibor!",
+      "title_he": "גִּבּוֹר · גִּבּוֹרָה",
       "characters_in_scene": [
         "esther"
       ],
-      "image_prompt": "ESTHER:\nYoung Jewish woman, warm olive skin, large kind brown eyes.\nLong dark hair with elegant modest head covering.\nRoyal purple and blue flowing dress with gold embroidery at the hem and cuffs.\nSimple gold tiara catching the light. Delicate gold earrings.\n\nEsther takes a brave step forward through a grand palace corridor.\nHer right hand presses against her heart — steadying herself.\nHer left hand is slightly extended forward, fingers spread, as if pushing through fear.\nHer chin is lifted, jaw set with determination. Her eyes are focused and bright.\nHer dress flows behind her with the motion of walking forward.\n\nShe walks FROM shadow INTO warm golden light — the glow of the throne room ahead.\nPersian mosaic tile floor beneath her feet. Dark carved columns to either side at the edges.\nThe golden light ahead washes over her face and dress, making her glow.\nWarm radiance fills the space above her — bright, open, luminous.\n\nShe looks SMALL against the tall corridor — but her posture says she is READY.\nThis is the bravest thing she has ever done.\n\nPURE COURAGE! The moment a hero steps forward into the unknown.",
+      "image_prompt": "Esther takes a brave step forward through a long palace corridor: right hand pressed to her heart, left\nhand reaching forward, chin lifted, eyes bright and determined, her robe flowing behind her. She walks\nfrom cool shadow into warm golden light pouring from the throne hall ahead. Tall columns at the edges,\na patterned stone floor.\nCOURAGE: a small person taking a big brave step!\n",
       "image_path": "raw/power_word_1.png",
       "back": {
-        "objective": "",
-        "say": "**Let's learn a special Hebrew word: GIBOR. Can you say it? Gi-bor! It means 'hero' or 'brave one.' Esther was a gibor because she did the right thing even when she was scared. Guess what? YOU can be a gibor too! When you help someone, or try something new, or stand up for what's right — that's being a gibor. Let's all say it: 'I am a gibor!'**",
+        "objective": "Say and show gibor and giborah: hero!",
+        "trio": [
+          {
+            "big": "גִּבּוֹר",
+            "line1": "gee-BOR",
+            "line2": "a boy hero"
+          },
+          {
+            "big": "גִּבּוֹרָה",
+            "line1": "gee-bo-RAH",
+            "line2": "a girl hero"
+          },
+          {
+            "big": "★",
+            "line1": "gesture",
+            "line2": "strong arms!"
+          }
+        ],
+        "say": "**Our power word is GIBOR: a hero!** [Make strong arms]\n**Say it with me: gee-BOR!**\n**A boy is a gibor. A girl is a giborah.**\n**Esther was a giborah: brave even when scared. Who can be a hero? YOU can!** [Point to everyone]",
         "ask": [
           {
-            "text": "Who is a gibor in your life?",
+            "text": "Who can be a gibor or a giborah?",
             "type": "open"
           },
           {
-            "text": "What is one brave thing you could do this week?",
-            "type": "open"
+            "text": "Show me your strong arms!",
+            "type": "nonverbal"
           }
         ],
-        "minutes": 3,
-        "core": false,
-        "transition": "Now you know an amazing Hebrew word!",
         "hebrew": {
           "word": "גִּבּוֹר",
-          "translit": "Gee-BOR",
-          "meaning": "Hero",
-          "gesture": ""
+          "translit": "gee-BOR",
+          "meaning": "hero",
+          "note": "for a girl: gee-bo-RAH גִּבּוֹרָה · boy גִּבּוֹר",
+          "gesture": "make strong arms"
+        },
+        "minutes": 2,
+        "core": true,
+        "transition": "Gibor! Giborah! Take it home!",
+        "guide_ref": {
+          "page": 13,
+          "note": "stress: gee-BOR"
         }
       },
       "guide": {
         "pshat": {
-          "text": "A gibor is someone who does the right thing, even when it's hard or scary. YOU can be a gibor too!",
-          "refs": []
+          "text": "Esther's courage (4:16) and Mordechai's (3:2) make them heroes of the Purim story. The word gibor is not in the Megillah; it is the Hebrew word for a hero or a strong, brave person.",
+          "refs": [
+            "Esther 3:2",
+            "Esther 4:16"
+          ]
         },
         "sages": [],
         "hard_questions": [],
         "adapt": {
-          "see": "",
-          "do": "",
-          "join": ""
+          "see": "Write גִּבּוֹר and גִּבּוֹרָה big on the board; point to the one each child chooses.",
+          "do": "Children who can't raise their arms can make two fists in their lap.",
+          "join": "Everyone shows strong arms together; no words needed."
         },
-        "extend": "",
-        "tip": "Have children repeat 'I am a gibor!' three times, louder each time. End with a group cheer."
+        "extend": "Hero hunt: all week, catch children being brave and call out 'Gibor!' or 'Giborah!'",
+        "tip": "Stress the end: gee-BOR, gee-bo-RAH. Let each child choose the word that fits them; never correct a child's choice."
+      }
+    },
+    {
+      "card_id": "home_1",
+      "card_type": "home",
+      "title_en": "At Home",
+      "title_he": "בַּבַּיִת",
+      "characters_in_scene": [],
+      "image_prompt": "Not generated: the home card uses the Card Designer's own front. (If art is ever wanted: a diverse family\npacking mishloach manot baskets together at a kitchen table, a boy in a kippah tying a ribbon.)\n",
+      "image_path": "raw/home_1.png",
+      "back": {
+        "objective": "We learned about **being brave even when scared**",
+        "shabbat_question": {
+          "en": "When were you brave this week?",
+          "he": "מָתַי הֱיִיתֶם אַמִּיצִים הַשָּׁבוּעַ?"
+        },
+        "hebrew": {
+          "word": "גִּבּוֹר",
+          "translit": "gee-BOR",
+          "meaning": "hero",
+          "note": "for a girl: gee-bo-RAH גִּבּוֹרָה",
+          "gesture": "strong arms"
+        },
+        "try_at_home": [
+          {
+            "text": "Make mishloach manot together: two foods for a neighbor.",
+            "tag": "before-shabbat"
+          },
+          {
+            "text": "Ask your child to show you the brave gesture: fists on hips, chin up!",
+            "tag": "shabbat-friendly"
+          },
+          {
+            "text": "Retell the Purim story; stamp your feet at 'Haman'.",
+            "tag": "shabbat-friendly"
+          }
+        ],
+        "transition": "Purim sameach!"
+      },
+      "guide": {
+        "pshat": {
+          "text": "On Purim we hear the Megillah, send food gifts to friends, give to people in need and share a festive meal (9:22). The family letter (p.17) explains the week's value, courage, and the word gibor.",
+          "refs": [
+            "Esther 9:22"
+          ]
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Send the card home with a photo of the class's groggers or mishloach manot.",
+          "do": "Families who can't deliver food can make a card or drawing for a neighbor instead.",
+          "join": "A child who doesn't talk much can show the gesture to the family."
+        },
+        "extend": "Families send back a photo or drawing of their mishloach manot for a class wall.",
+        "tip": "Send it home before Purim so families can plan mishloach manot together."
       }
     }
   ]

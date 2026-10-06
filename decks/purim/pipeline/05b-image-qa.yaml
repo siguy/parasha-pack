@@ -1,0 +1,709 @@
+# Agent 05b: Image QA — Purim v3. Coordinator scored every draft and final by eye (Claude read each PNG).
+# home_1 has no AI art (Card Designer front). Overnight picks logged in docs/overnight/decisions.md.
+agent: 05b-image-qa
+deck_id: purim
+rubric: agents/rubrics/image_qa.yaml
+rubric_version: '1.0'
+contact_sheets:
+- raw/drafts/contact_sheet.png
+- raw/contact_sheet_finals.png
+images:
+- card_id: anchor_1
+  file: raw/drafts/anchor_1_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: Crenellated Persian crown, rosette band, purple veil half over the cushion (the hidden secret). No Star of David.
+- card_id: anchor_1
+  file: raw/drafts/anchor_1_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+  total: 21
+  pass: true
+  flags: []
+  notes: Lovely, but the veil is small, so the 'hidden' hook reads less at 8%.
+- card_id: story_2
+  file: raw/drafts/story_2_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 1
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - Haman's brow is stern; arms crossed, no pointing
+  notes: Bull capitals, glazed-brick rosette frieze, flat lintel gate. Mordechai the only one standing.
+- card_id: story_2
+  file: raw/drafts/story_2_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - courtiers bow toward Mordechai, not Haman (story reads wrong)
+  notes: Haman small in the background.
+- card_id: story_3
+  file: raw/drafts/story_3_d1.png
+  stage: draft
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 1
+  total: 20
+  pass: true
+  flags:
+  - ceiling beam across the top
+  - pastel pink walls, paler than Purim
+  notes: ''
+- card_id: story_3
+  file: raw/drafts/story_3_d2.png
+  stage: draft
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - cedar-beam ceiling is busy at the top
+  notes: Rectangular doorway behind Esther (she just came in), scepter held out, warm gold like Purim.
+- card_id: tradition_1
+  file: raw/drafts/tradition_1_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 1
+    emotion_at_8pct: 2
+    style_match: 1
+  total: 19
+  pass: true
+  flags:
+  - scroll is curled at both ends (no wooden rollers, but not clearly one roll)
+  - floor children mostly light-skinned
+  - paler, thinner lines than Purim
+  notes: Every boy in a kippah, girls none; Ethiopian mother+son, Mizrahi reader, Ashkenazi grandfather.
+- card_id: tradition_1
+  file: raw/drafts/tradition_1_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 1
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 0
+  total: 17
+  pass: false
+  flags:
+  - 'oversaturated orange/red, muddy: does not match the plates'
+  notes: ''
+- card_id: tradition_2
+  file: raw/drafts/tradition_2_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 1
+  total: 21
+  pass: true
+  flags: []
+  notes: Ethiopian boy (kippah visible) + Ashkenazi girl give a basket to a Sephardi grandmother; mother on the path.
+- card_id: tradition_2
+  file: raw/drafts/tradition_2_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 1
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 1
+  total: 20
+  pass: true
+  flags:
+  - boy's kippah hidden under the lion hood
+  notes: ''
+- card_id: tradition_3
+  file: raw/drafts/tradition_3_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 1
+    anatomy: 2
+    modesty: 1
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 1
+  total: 19
+  pass: true
+  flags:
+  - a '1' numeral on the coins
+  - firefighter helmet hides one boy's kippah
+  notes: ''
+- card_id: tradition_3
+  file: raw/drafts/tradition_3_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 1
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 1
+  total: 19
+  pass: true
+  flags:
+  - dad wears a crown, no kippah visible
+  notes: ''
+- card_id: spotlight_1
+  file: raw/drafts/spotlight_1_v2art.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - pointed arch (Islamic-era)
+  notes: v2 Purim art (896x1200), the series style reference; used as the composition for a 2K re-render
+- card_id: spotlight_2
+  file: raw/drafts/spotlight_2_v2art.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - pointed arch, domes
+  notes: v2 Purim art (896x1200), the series style reference; used as the composition for a 2K re-render
+- card_id: story_1
+  file: raw/drafts/story_1_v2art.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - pointed arched windows
+  notes: v2 Purim art (896x1200), the series style reference; used as the composition for a 2K re-render
+- card_id: connection_1
+  file: raw/drafts/connection_1_v2art.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 1
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 1
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 20
+  pass: true
+  flags:
+  - boy seen from behind, no visible kippah
+  - one Ethiopian child of six
+  notes: v2 Purim art (896x1200), the series style reference; used as the composition for a 2K re-render
+- card_id: power_word_1
+  file: raw/drafts/power_word_1_v2art.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - pointed/horseshoe arches
+  notes: v2 Purim art (896x1200), the series style reference; used as the composition for a 2K re-render
+- card_id: anchor_1
+  file: raw/anchor_1.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: Matches d1.
+- card_id: spotlight_1
+  file: raw/spotlight_1.png
+  stage: final
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 20
+  pass: true
+  flags:
+  - beams + haze at the top
+  - a horseshoe arch deep inside the doorway (kept from the v2 composition)
+  notes: Re-render of v2 art; the model updated the walls to glazed brick, rosettes and lions on its own.
+- card_id: spotlight_2
+  file: raw/drafts/spotlight_2_final_try1.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 1
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 20
+  pass: true
+  flags:
+  - lost Mordechai's smile; startled look
+  - domes in the far background
+  notes: Runner-up, kept for Simon.
+- card_id: spotlight_2
+  file: raw/drafts/spotlight_2_final_try2.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - pointed arch and domes carried over from the v2 composition
+  notes: 'Second try with a ''warm smile'' prompt: smile back. Retired 2026-10-06: replaced by a new Achaemenid composition (below).'
+- card_id: spotlight_2
+  file: raw/drafts/spotlight_2_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - 'face small in frame (more half-body than chest-up); wide eyes read a little startled'
+  notes: 'New composition: flat-lintel gate, glazed-brick lion + rosette frieze, twin-bull capital, flat roofs. Runner-up.'
+- card_id: spotlight_2
+  file: raw/drafts/spotlight_2_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: 'Picked. True chest-up, bigger face, warm smile; flat lintel, lion/rosette frieze, bull capital, date palms; no domes or arches.'
+- card_id: spotlight_2
+  file: raw/spotlight_2.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: '2K --final --from-draft d2. Composition and period details held; smile and identity (headwrap, beard, cream scarf, striped robe) match.'
+- card_id: story_1
+  file: raw/story_1.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: Re-render of v2 art; now bull capitals, rosette friezes, flat ceiling. Esther and king match identity.
+- card_id: story_2
+  file: raw/story_2.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 1
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - Haman's brow is stern; arms crossed, no pointing
+  notes: ''
+- card_id: story_3
+  file: raw/story_3.png
+  stage: final
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - cedar-beam ceiling at the top
+  notes: ''
+- card_id: tradition_1
+  file: raw/tradition_1.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 1
+    emotion_at_8pct: 2
+    style_match: 1
+  total: 19
+  pass: true
+  flags:
+  - scroll curled at both ends, no wooden rollers
+  - floor children mostly light-skinned
+  notes: ''
+- card_id: tradition_2
+  file: raw/tradition_2.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 1
+  total: 21
+  pass: true
+  flags: []
+  notes: ''
+- card_id: tradition_3
+  file: raw/tradition_3.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 1
+    anatomy: 2
+    modesty: 1
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 1
+  total: 19
+  pass: true
+  flags:
+  - '''1'' numeral on the coins'
+  - dad's crown hides any kippah; firefighter helmet hides one boy's kippah
+  notes: ''
+- card_id: connection_1
+  file: raw/connection_1.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 1
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 1
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 20
+  pass: true
+  flags:
+  - boy seen from behind has no visible kippah (as in v2)
+  - only one Ethiopian child of six
+  notes: Re-render of the v2 art at 2K.
+- card_id: power_word_1
+  file: raw/power_word_1.png
+  stage: final
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 20
+  pass: true
+  flags:
+  - dark round arch across the top
+  - round arches
+  notes: Re-render of v2 art; now glazed-brick lions and rosettes.
+picks:
+- card_id: anchor_1
+  chosen_draft: raw/drafts/anchor_1_d1.png
+  final: raw/anchor_1.png
+  decided_by: coordinator
+  reason: highest total; the veil sells the 'hidden secret' hook
+- card_id: spotlight_1
+  chosen_draft: raw/drafts/spotlight_1_v2art.png
+  final: raw/spotlight_1.png
+  decided_by: coordinator
+  reason: keep the v2 composition (series style reference); re-rendered at 2K
+- card_id: spotlight_2
+  chosen_draft: raw/drafts/spotlight_2_v2art.png
+  final: raw/spotlight_2.png
+  decided_by: coordinator
+  reason: keep the v2 composition; 2nd final try restored the smile (try 1 kept in raw/drafts/)
+- card_id: story_1
+  chosen_draft: raw/drafts/story_1_v2art.png
+  final: raw/story_1.png
+  decided_by: coordinator
+  reason: keep the v2 composition; re-rendered at 2K
+- card_id: story_2
+  chosen_draft: raw/drafts/story_2_d1.png
+  final: raw/story_2.png
+  decided_by: coordinator
+  reason: 'tie at 21 broken on emotion: in d2 the courtiers bow toward Mordechai'
+- card_id: story_3
+  chosen_draft: raw/drafts/story_3_d2.png
+  final: raw/story_3.png
+  decided_by: coordinator
+  reason: warmer gold like Purim; Esther just came through the door; reaching for the tip
+- card_id: tradition_1
+  chosen_draft: raw/drafts/tradition_1_d1.png
+  final: raw/tradition_1.png
+  decided_by: coordinator
+  reason: d2 fails style_match (oversaturated)
+- card_id: tradition_2
+  chosen_draft: raw/drafts/tradition_2_d1.png
+  final: raw/tradition_2.png
+  decided_by: coordinator
+  reason: boy's kippah visible; warmer
+- card_id: tradition_3
+  chosen_draft: raw/drafts/tradition_3_d1.png
+  final: raw/tradition_3.png
+  decided_by: coordinator
+  reason: tie at 19 broken on emotion; d1 faces bigger and happier
+- card_id: connection_1
+  chosen_draft: raw/drafts/connection_1_v2art.png
+  final: raw/connection_1.png
+  decided_by: coordinator
+  reason: v2 art was good; re-rendered at 2K
+- card_id: power_word_1
+  chosen_draft: raw/drafts/power_word_1_v2art.png
+  final: raw/power_word_1.png
+  decided_by: coordinator
+  reason: keep the v2 composition; re-rendered at 2K

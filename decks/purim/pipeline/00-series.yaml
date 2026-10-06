@@ -1,0 +1,34 @@
+# Agent 00: Series Planner — Purim (v3 retrofit, Phase 9)
+# Overnight run: coordinator decisions logged in docs/overnight/decisions.md.
+agent: 00-series-planner
+deck_id: purim
+name_en: Purim
+name_he: פּוּרִים
+type: holiday
+holiday: true
+book: Esther
+ref: "Megillat Esther (Esther 2–9)"
+holiday_placement: "before: ki_tisa"
+middah:
+  en: Courage
+  he: אֹמֶץ לֵב
+  kid_phrase: "being brave even when you feel scared"
+  gesture: "fists on hips, chin up"
+# The decks just before Purim (Mishpatim, Terumah, Tetzaveh) have no middah yet (TBD in series.yaml),
+# so the no-repeat rule could not be checked against them. Courage is not used by any filled deck nearby.
+recent_middot: []
+power_word: {he: גִּבּוֹר, translit: gee-BOR, en: hero, gesture: "make strong arms"}
+review_words: []
+characters: [esther, mordechai, haman, achashverosh]
+proposed_characters: []
+sensitivities:
+  - "Haman's fate (on the hard-text list): teacher guide only, scripted answer; never on a card"
+  - "Haman's plan: 'a very bad plan against the Jewish people'; no killing words, no hanging, no battles"
+  - "The decree could not be undone; the Jews were allowed to defend themselves (Esther 8:8-11, 9:1-2): guide only, gently framed"
+  - "Haman is proud, angry and sulky (Esther 3:5 חֵמָה), comic, never scary; not 'jealous'"
+  - "Mordechai bowing only to Hashem is midrash (Rashi on Esther 3:2): label it; the card uses the verse ('I am a Jew', 3:4)"
+  - "Fasting (Esther 4:16) is for grown-ups; children do not fast"
+notes: >-
+  Adar 14 (Feb/Mar). v3 retrofit of the v2 Purim deck, which is the style reference for the whole series
+  (keep the art style). 12 cards (D1 holiday). Hidden courage: Hashem's name is hidden in the Megillah,
+  and Esther's courage was hidden until she needed it.

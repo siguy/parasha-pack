@@ -1,3 +1,9 @@
+=== REFERENCE IMAGES ===
+Image 1 = style plate 'interior' (match art style only, not content)
+Image 2 = chosen draft composition: re-render this exact composition at full detail in the same style
+Image 3 = Esther identity sheet — match face, hair, clothing exactly
+Image 4 = King Achashverosh identity sheet — match face, hair, clothing exactly
+
 === STYLE ===
 Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
 
@@ -22,9 +28,10 @@ The image should be purely visual.
 Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
 
 === WORLD: STORY SETTING ===
-Ancient Persian Empire, city of Shushan (Susa). Ornate sandstone palace with Persian arches, mosaic tiles, carved stone columns. Lush palace gardens with date palms, pomegranate trees, flowing fountains. Desert climate — warm golden light, deep blue sky. Persian court aesthetic: flowing robes, turbans, ornate Persian-style crowns, rich textiles in golds, deep purples, and royal blues. Think Persepolis, NOT biblical Israel. Warm sandstone, polished marble floors, hanging tapestries, oil lamps. City streets have market stalls, stone buildings, Persian archways.
+Shushan (Susa), capital of the ancient Achaemenid Persian Empire. The king's palace: tall slender fluted stone columns topped with twin-bull capitals, wide flat-roofed halls and porches, cedar-beam ceilings, wide stone staircases, walls of glazed brick in turquoise, gold and cream with rows of rosettes and friendly striding lions, stepped crenellated parapets, rich purple and blue hangings, gold cups and low couches. Doorways are tall and rectangular with flat lintels. Gardens with date palms, pomegranate trees and straight water channels; warm sandstone and cream plaster under a deep blue sky. Royal robes with wide sleeves and sashes; crenellated golden crowns; cloth head wraps. No pointed or horseshoe arches, no domes, no mosaic tilework, no Star of David.
 
 All scenes should feel like they belong in this world. Consistent architecture, clothing, lighting, and color palette throughout.
+Deck palette accents: #6D3FC0, #2F6FB0, #E0A526, #3FA7A0, #F5EBDD.
 
 === SAFETY RULES ===
 - NEVER depict God in human form - use light rays, clouds, or hands from above
@@ -33,35 +40,31 @@ All scenes should feel like they belong in this world. Consistent architecture, 
 - All characters dressed modestly
 - Friendly, approachable expressions on all characters
 - Age-appropriate content for 4-6 year olds
+- Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
 
 === SCENE ===
-ESTHER:
-Young Jewish woman, warm olive skin, large kind brown eyes.
-Long dark hair with elegant modest head covering.
-Royal purple and blue flowing dress, simple gold tiara.
+In the palace hall, King Achashverosh gently places a golden crown on Esther's head as she sits on a
+cushioned bench, hands clasped in her lap, eyes wide: happy and a little nervous. Courtiers watch from
+both sides, smiling. Warm light streams through tall windows; rich hangings, glowing oil lamps, and a
+high ceiling fading into warm amber haze.
+A fairy-tale moment with a secret underneath!
 
-Esther seated on a cushioned bench in the palace throne room.
-King Achashverosh standing beside her, gently placing a golden crown on her head.
-Esther looks up with wide nervous eyes — her hands clasped in her lap.
-She's beautiful but overwhelmed. This is the biggest moment of her life!
-Palace courtiers visible in background, watching the ceremony.
-Warm golden light streaming through tall Persian arched windows.
-Ornate mosaic tiles on the walls, rich tapestries hanging, oil lamps glowing.
-High vaulted ceiling fading into warm amber haze above.
-Dark polished marble floor with shadow pooling in the lower-left.
-
-Magical, exciting, but with a hint of nervousness. A fairy-tale moment with a secret underneath.
+=== CHARACTER ANCHORS (locked, always keep) ===
+- ESTHER: young woman with warm olive skin and large kind brown eyes; long dark wavy hair under a royal-blue modest head covering with gold trim; thin simple gold tiara with one small gold jewel at the center; royal purple long-sleeved ankle-length gown with a blue sash; gentle, quietly brave expression
+- KING ACHASHVEROSH: adult man with a big bushy dark-brown beard and mustache; royal-blue turban under a gold pointed crown with one red jewel; red royal robe with wide gold trim over a blue tunic, gold sash; gold scepter; bewildered look, eyebrows raised (somewhat comedic)
 
 === CHARACTER REFERENCES ===
-Reference images provided for: Esther (Queen Esther), King Achashverosh (the king).
+Reference images provided for: Esther, King Achashverosh.
 For these characters, prioritize the reference images for appearance (face, clothing, coloring). Use the text description above for pose, action, and emotion only.
 
 === COMPOSITION ===
 Scene action positioned in the center and right side of the frame.
 Generous headroom — ceiling, sky, or atmospheric space above the characters' heads.
-The top of the frame should be visually calm: architecture fading up, sky, or warm ambient light.
-Lower-left corner should be darker or simpler — ground shadow, dark foreground element, or negative space.
-Think of a film still where the action is center-right and the lower-left has a moody shadow.
+Think of a film still where the action is center-right.
+The top of the scene (sky, ceiling, or soft light) continues naturally and stays simple and uncluttered, with no hard band or border, so a title can sit over it.
+Keep key subjects within the central 90% of the width.
+At most 5 figures in focus; background figures simplified.
+A simple, low-detail ground plane at the bottom of the frame.
 
 === CRITICAL RULES ===
 DO NOT include any border, frame, or rounded corners in the image.

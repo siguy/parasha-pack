@@ -1,3 +1,8 @@
+=== REFERENCE IMAGES ===
+Image 1 = style plate 'interior' (match art style only, not content)
+Image 2 = chosen draft composition: re-render this exact composition at full detail in the same style
+Image 3 = Esther identity sheet — match face, hair, clothing exactly
+
 === STYLE ===
 Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
 
@@ -22,9 +27,10 @@ The image should be purely visual.
 Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
 
 === WORLD: STORY SETTING ===
-Ancient Persian Empire, city of Shushan (Susa). Ornate sandstone palace with Persian arches, mosaic tiles, carved stone columns. Lush palace gardens with date palms, pomegranate trees, flowing fountains. Desert climate — warm golden light, deep blue sky. Persian court aesthetic: flowing robes, turbans, ornate Persian-style crowns, rich textiles in golds, deep purples, and royal blues. Think Persepolis, NOT biblical Israel. Warm sandstone, polished marble floors, hanging tapestries, oil lamps. City streets have market stalls, stone buildings, Persian archways.
+Shushan (Susa), capital of the ancient Achaemenid Persian Empire. The king's palace: tall slender fluted stone columns topped with twin-bull capitals, wide flat-roofed halls and porches, cedar-beam ceilings, wide stone staircases, walls of glazed brick in turquoise, gold and cream with rows of rosettes and friendly striding lions, stepped crenellated parapets, rich purple and blue hangings, gold cups and low couches. Doorways are tall and rectangular with flat lintels. Gardens with date palms, pomegranate trees and straight water channels; warm sandstone and cream plaster under a deep blue sky. Royal robes with wide sleeves and sashes; crenellated golden crowns; cloth head wraps. No pointed or horseshoe arches, no domes, no mosaic tilework, no Star of David.
 
 All scenes should feel like they belong in this world. Consistent architecture, clothing, lighting, and color palette throughout.
+Deck palette accents: #6D3FC0, #2F6FB0, #E0A526, #3FA7A0, #F5EBDD.
 
 === SAFETY RULES ===
 - NEVER depict God in human form - use light rays, clouds, or hands from above
@@ -33,35 +39,29 @@ All scenes should feel like they belong in this world. Consistent architecture, 
 - All characters dressed modestly
 - Friendly, approachable expressions on all characters
 - Age-appropriate content for 4-6 year olds
+- Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
 
 === SCENE ===
-ESTHER:
-Young Jewish woman, warm olive skin, large kind brown eyes.
-Long dark wavy hair with elegant modest head covering.
-Royal purple dress with ornate gold and blue embroidery at the neckline and cuffs.
-Simple gold tiara with small jewels. Delicate gold earrings.
-Hands clasped gently in front of her, one hand near her heart.
-Gentle, brave expression — a quiet smile that hides a secret.
+Esther, chest-up portrait, face centered, hands clasped gently near her heart, a quiet brave smile that
+hides a secret. Behind her a tall palace doorway with a rich blue curtain draped to one side and a
+glowing amber palace hall beyond. Warm golden light from the right lights her face.
+Warm, regal, kind: a queen with a secret that children instantly root for.
 
-Esther portrait framed from chest up, face centered.
-Behind her: a grand Persian palace archway with intricate geometric patterns.
-Rich blue curtain draped to one side. Ornate gold columns frame the arch.
-Warm golden light from the right illuminating her face.
-The archway opens to a deeper palace room glowing with amber light.
-Dark shadow pooling in the lower-left.
-
-Warm, regal, kind. She's someone children will INSTANTLY root for. A princess with a secret.
+=== CHARACTER ANCHORS (locked, always keep) ===
+- ESTHER: young woman with warm olive skin and large kind brown eyes; long dark wavy hair under a royal-blue modest head covering with gold trim; thin simple gold tiara with one small gold jewel at the center; royal purple long-sleeved ankle-length gown with a blue sash; gentle, quietly brave expression
 
 === CHARACTER REFERENCES ===
-Reference images provided for: Esther (Queen Esther).
+Reference images provided for: Esther.
 For these characters, prioritize the reference images for appearance (face, clothing, coloring). Use the text description above for pose, action, and emotion only.
 
 === COMPOSITION ===
 Character portrait framed from chest up, face centered in the middle of the frame.
 Generous headroom — palace ceiling, archways, sky, or atmospheric haze visible above the character's head.
-The top of the frame should feel open and calm: architectural detail fading into shadow, or sky.
-Lower-left corner should be darker or in shadow — ground, dark fabric, or shadow pooling there.
 Character looks slightly right of center, creating natural breathing room on the left side.
+The top of the scene (sky, ceiling, or soft light) continues naturally and stays simple and uncluttered, with no hard band or border, so a title can sit over it.
+Keep key subjects within the central 90% of the width.
+At most 5 figures in focus; background figures simplified.
+A simple, low-detail ground plane at the bottom of the frame.
 
 === CRITICAL RULES ===
 DO NOT include any border, frame, or rounded corners in the image.
