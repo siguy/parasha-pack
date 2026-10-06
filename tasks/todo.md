@@ -7,7 +7,9 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 ## Version control
 - One PR per main feature; branch `<type>/<desc>` from `main`; squash on merge; every PR has a "Known issues" section.
 - [x] `docs/deck-v3-plan`: plan, policies, mockups, progress
-- [x] `fix/image-model-nano-banana-2`: model fix (has known issues)
+- [x] `fix/image-model-nano-banana-2` (#4): model fix; issues 1–3 fixed, 18 tests
+- [x] `docs/deck-v3-plan` stacked on #4
+- [x] `feat/character-library` (#5)
 - [ ] `feat/card-back-v3` (Phase 1.2–1.5)
 - [ ] `feat/deck-validator` (Phase 2)
 - [ ] `feat/character-library` (Phase 3)
@@ -38,15 +40,15 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [ ] 2.4 Logging
 - [ ] 2.5 Housekeeping
 - [~] 2.6 **Image model fix**: Nano Banana 2 via .env, `--size` (default 2K), skip thought images. Done in e893645: 15 tests pass, smoke call OK.
-  - [ ] 2.6a The 1K call returned 896×1200, not 768×1024. Run one 2K call to check whether `imageSize` is honored.
-  - [ ] 2.6b The API returns JPEG saved as `.png`. Save real PNGs.
-  - [ ] 2.6c Add `project.log` to `.gitignore`.
+  - [x] 2.6a The 1K call returned 896×1200, not 768×1024. Run one 2K call to check whether `imageSize` is honored.
+  - [x] 2.6b The API returns JPEG saved as `.png`. Save real PNGs.
+  - [x] 2.6c Add `project.log` to `.gitignore`.
 
 ## Phase 3 — Character library + year plan
-- [ ] 3.1 `characters/` library; migrate 7 characters; retire 3 duplicate sources
+- [x] 3.1 `characters/` library (12 characters); duplicates retired or adapted (PR #5)
 - [ ] 3.2 Adam + Chava identity sheets (2 versions each) → Simon picks
-- [ ] 3.3 `series.yaml` (66 skeleton, first ~5 filled)
-- [ ] 3.4 Sefaria research cache (Bereshit)
+- [x] 3.3 `series.yaml`: 66 entries, 8 filled, validated (PR #5)
+- [x] 3.4 `research/bereshit.yaml`: 10 verse ranges EN/HE + Rashi/Kohelet Rabbah (PR #5)
 
 ## Phase 4 — Agents
 - [ ] 4.1 00 planner, 02b sensitivity, 05b image QA, merge 03+04, 06 rubric, 07 → tool
@@ -59,7 +61,7 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [ ] 5.1 Draft 1K → final 2K (1536×2048); decide upscale/4K after test print
 - [ ] 5.1b CMYK soft-proof for 5×7 target
 - [ ] 5.2 Prompt fixes
-- [ ] 5.3 Series style plates (Simon picks)
+- [x] 5.3 Style plates generated; Simon approved (being committed in feat/styling-v2)
 - [ ] 5.4 Letter fronts
 - [ ] 5.5 SVG feeling faces
 

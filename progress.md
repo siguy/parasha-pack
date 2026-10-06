@@ -14,6 +14,9 @@ _Last updated: 2026-10-05_
 |---|---|---|
 | `docs/deck-v3-plan` | [#3](https://github.com/siguy/parasha-pack/pull/3): plan, policies, mockups, progress | open, docs only |
 | `fix/image-model-nano-banana-2` | [#4](https://github.com/siguy/parasha-pack/pull/4): Nano Banana 2 + `--size` flag | open; follow-up fixes for issues 1–3 in progress (separate worktree `.claude/worktrees/fix-image-model`) |
+| `feat/character-library` | [#5](https://github.com/siguy/parasha-pack/pull/5): character library, series.yaml (66 entries), Sefaria cache | open; 58 tests pass; built in parallel, will be rebased onto the card-back PR |
+| `feat/card-back-v3` | Phase 1 (in progress) | — |
+| `feat/styling-v2` | Phase 5.0–5.3 + Adam/Chava identity sheets (in progress, based on #5) | — |
 | `claude/torah-deck-improvements-40976f` | Original session branch (holds everything). Superseded by the two branches above; do not open a PR from it. | — |
 
 Rules: branch from `main` as `<type>/<short-description>`. When a feature depends on an unmerged PR, branch from that PR's branch and say so in the PR body. Squash on merge (Simon's default). Every PR body has a **Known issues / not working** section.
@@ -66,6 +69,11 @@ Rules: branch from `main` as `<type>/<short-description>`. When a feature depend
   - 15 pytest tests pass. The smoke call succeeded.
 
 ## Known issues / NOT working
+0. From PR #5:
+   - Esther's identity image has caption text (styling-v2 is cleaning it).
+   - `noach` has no character entry yet.
+   - avraham, sarah and pharaoh are drafts (`canonical: false`).
+   - `python workflows.py` is replaced by `python -m workflows`.
 1. **The image size setting may be ignored.** The 1K smoke call returned **896×1200**, but the docs say Nano Banana 2 at 1K and 3:4 should be 768×1024. Either `imageSize` is ignored, or the expected-size table is wrong. Next step: one 2K call (~$0.10) to tell which. If 2K also returns 896×1200, the field is ignored and needs debugging.
 2. **Image files are mislabeled.** The API returns JPEG data, which we save with a `.png` name. This has probably always been the case. Fix: convert to real PNG with Pillow on save, or save as `.jpg`.
 3. **`project.log` is not in `.gitignore`.**
