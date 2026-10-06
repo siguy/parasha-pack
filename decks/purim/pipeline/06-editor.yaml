@@ -1,0 +1,102 @@
+# Agent 06: Editor — Purim v3 (coordinator, overnight)
+agent: 06-editor
+deck_id: purim
+rubric: agents/rubrics/editor.yaml
+rubric_version: '1.0'
+validator:
+  ran: true
+  command: python3 src/validate_deck.py decks/purim/deck.json
+  passed: true
+  summary: 0 errors, 0 warnings
+sections:
+  content:
+    scores:
+      budgets: 2
+      say_markup: 2
+      asks_open: 2
+      transitions: 2
+      middah_thread: 2
+      core_and_week: 2
+      guide_complete: 2
+    notes: Core = anchor, story_2, story_3, tradition_1, power_word (17 min). Nonverbal asks on 8 cards. Story 3 SAY was cut
+      twice to pass the letter overflow guard.
+  torah_accuracy:
+    scores:
+      pshat_cited: 2
+      midrash_labeled: 2
+      sensitivity_followed: 2
+      hashem_language: 2
+    notes: Haman = pride/anger (3:5); card quotes 3:4; Rashi 3:2 and Chullin 139b in guide.sages; Haman's fate and the decree
+      ending guide-only; fasting = grown-ups only.
+  hebrew:
+    scores:
+      nikud: 2
+      gender: 2
+      second_person: 2
+      translit: 2
+    notes: Esther = אַמִּיצָה with the boy form in the note; power word trio גִּבּוֹר/גִּבּוֹרָה; plural לִהְיוֹת אַמִּיצִים
+      and הֱיִיתֶם; קַנַּאי removed.
+  art:
+    scores:
+      image_qa_pass: 2
+      consistency: 1
+      prompts_scene_only: 2
+    notes: All 11 finals pass Image QA (19-22/22). Modern cards a bit paler than the story cards.
+  print:
+    scores:
+      export_clean: 2
+      legible: 2
+      counts: 2
+    notes: Letter and 5x7 both pass the overflow guard; 24 pages each, duplex order.
+weighted_percent: 97.5
+pass: true
+issues:
+- card_id: spotlight_2
+  severity: recommended
+  section: art
+  issue: Pointed arch and domes in the background (kept from the v2 composition); not Achaemenid
+  route_to: 05-visual-director
+  fix: New 1K drafts with a flat-lintel gate (~$0.24 incl. final), or accept as the v2 look
+- card_id: spotlight_1
+  severity: minor
+  section: art
+  issue: A horseshoe arch deep inside the doorway (v2 composition)
+  route_to: 05-visual-director
+  fix: Accept, or recompose with a rectangular doorway
+- card_id: power_word_1
+  severity: minor
+  section: art
+  issue: Round arches framing the corridor (v2 composition)
+  route_to: 05-visual-director
+  fix: Accept, or recompose
+- card_id: story_2
+  severity: minor
+  section: art
+  issue: Haman's brow is stern rather than comic-sulky (arms crossed, no pointing)
+  route_to: 05-visual-director
+  fix: Optional redraft asking for puffed cheeks and a pout
+- card_id: tradition_1
+  severity: minor
+  section: art
+  issue: The megillah is curled at both ends (no wooden rollers, but not clearly one roll); floor children mostly light-skinned
+  route_to: 05-visual-director
+  fix: 'Optional redraft: ''scroll rolled on ONE side only, the reader holds the loose end'''
+- card_id: tradition_3
+  severity: minor
+  section: art
+  issue: A '1' numeral on the coins; the dad's costume crown hides any kippah
+  route_to: 05-visual-director
+  fix: Accept (costume), or redraft with plain coins and a kippah under a paper crown
+- card_id: connection_1
+  severity: minor
+  section: art
+  issue: One boy seen from behind has no visible kippah; only one Ethiopian child of six (v2 art)
+  route_to: 05-visual-director
+  fix: Recompose if the next print run allows
+- card_id: deck
+  severity: recommended
+  section: art
+  issue: Modern-world cards (tradition 1-3) are paler with thinner lines than the story-world cards and the v2 Purim art
+  route_to: 05-visual-director
+  fix: Check the classroom style plate; consider passing a Purim story card as a second style plate for tradition cards
+feedback_json: decks/purim/feedback.json
