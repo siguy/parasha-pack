@@ -40,7 +40,8 @@ LINE_ART_PROMPT = """Convert this picture into a children's coloring page for ag
 Thick bold black outlines only, at least 8 pixels wide. Pure white fill everywhere.
 No shading, no gray, no color, no texture, no hatching, no tiny details.
 Use at most 12 large, simple, closed regions that a small child can color with a crayon.
-Simplify the background a lot: a few big shapes only (sky, one or two hills, the river).
+Simplify the background a lot: keep only its few biggest shapes. Never add anything that is not
+already in the picture (no new hills, river, ground, sun, moon or clouds).
 Keep the main characters, animals and objects recognizable, in the same places and poses.
 Close every outline so each area can be colored in. Do NOT add any text, letters, numbers or border."""
 
@@ -48,6 +49,14 @@ Close every outline so each area can be colored in. Do NOT add any text, letters
 # ---------------------------------------------------------------------------
 # Line art
 # ---------------------------------------------------------------------------
+
+def line_art_prompt(card: dict, hint: str = "") -> str:
+    """The line-art prompt, plus the card's `exclude` list (text fidelity: e.g. no sun before Day 4)."""
+    prompt = LINE_ART_PROMPT
+    if card.get("exclude"):
+        prompt += "\nThis picture must NOT contain: " + "; ".join(card["exclude"]) + "."
+    return prompt + (f"\n{hint}" if hint else "")
+
 
 def line_art_path(deck_dir: Path, card_id: str) -> Path:
     return Path(deck_dir) / "extras" / "art" / "coloring" / f"{card_id}.png"
@@ -75,7 +84,7 @@ def ensure_line_art(deck_dir: Path, card: dict, deck_id: str, use_ai: bool = Tru
     if not source.exists():
         raise FileNotFoundError(f"Story art {source} is missing")
     raw = out.with_suffix(".raw.png")
-    prompt = LINE_ART_PROMPT + (f"\n{hint}" if hint else "")
+    prompt = line_art_prompt(card, hint)
     ok = request_image(prompt, raw, [source], LINE_ART_SIZE, LINE_ART_ASPECT,
                        f"{deck_id} extras coloring {card['card_id']} line edit")
     if not ok:
@@ -162,6 +171,37 @@ def cut_lines(cols: int, rows: int, cell_w: float, cell_h: float, left: float = 
     vertical = [(round(left + c * cell_w, 4), top, round(left + c * cell_w, 4), bottom) for c in range(cols + 1)]
     horizontal = [(left, round(top + r * cell_h, 4), right, round(top + r * cell_h, 4)) for r in range(rows + 1)]
     return vertical + horizontal
+
+
+def cell_cut_lines(cells: list) -> list:
+    """
+    The straight cut lines around a set of boxes that need not fill a whole grid (e.g. 7 boxes
+    in a 4 x 2 grid), as (x1, y1, x2, y2) in inches.
+
+    Every box edge is collected, edges on the same line are joined when they touch, so two
+    neighbours still share one line and a row of boxes gets one long cut instead of many short ones.
+    """
+    horizontal, vertical = {}, {}
+    for c in cells:
+        x1, y1 = round(c["x"], 4), round(c["y"], 4)
+        x2, y2 = round(c["x"] + c["w"], 4), round(c["y"] + c["h"], 4)
+        for y in (y1, y2):
+            horizontal.setdefault(y, []).append((x1, x2))
+        for x in (x1, x2):
+            vertical.setdefault(x, []).append((y1, y2))
+
+    def joined(spans: list) -> list:
+        out = []
+        for start, end in sorted(spans):
+            if out and start <= out[-1][1] + 1e-6:
+                out[-1] = (out[-1][0], max(out[-1][1], end))
+            else:
+                out.append((start, end))
+        return out
+
+    lines = [(x, a, x, b) for x, spans in sorted(vertical.items()) for a, b in joined(spans)]
+    lines += [(a, y, b, y) for y, spans in sorted(horizontal.items()) for a, b in joined(spans)]
+    return lines
 
 
 def fits_on_page(cells: list, page_w: float = 8.5, page_h: float = 11.0, margin: float = 0.25) -> bool:
