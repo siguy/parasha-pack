@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### v3 Follow-ups
+
+#### Changed
+- `scripts/sync_to_hub.py`: validator errors now stop the sync (exit 1, nothing written) instead of only warning. `--allow-invalid` publishes anyway (needed for Terumah until its v3 rewrite).
+- `src/generate_images.py`: a full-deck run skips `home` cards and cards with no `image_prompt` (info log) instead of sending the home card's "No art" note to the API.
+
+#### Removed
+- `src/config.py`: unused 5×7-only print constants (`CARD_WIDTH`, `BLEED_PX`, ...) and the unused `CARD_STYLE` string. Print sizes live in `card-designer/print_formats.json`; art style in `style/style_config.yaml`.
+- Dead "run the validator only if `validate_deck.py` exists" branches in `assemble_deck.py` and `sync_to_hub.py`.
+
+#### Added
+- `todos/`: remaining review findings as file todos (see `todos/README.md`).
+
 ### Docs: v3 Reconciliation + FOR_SIMON.md (Deck v3 Phase 4.4)
 
 #### Changed

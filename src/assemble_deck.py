@@ -16,7 +16,7 @@ each part from the agent that owns it:
 
 01-research.yaml is checked against its schema but not copied (the content already
 cites it). After merging, the deck is checked against schemas/deck.v3.schema.json and
-then src/validate_deck.py runs too, when that script exists.
+then src/validate_deck.py runs on the written file.
 
 Usage (from the repo root):
     python3 src/assemble_deck.py decks/bereshit            # writes decks/bereshit/deck.json
@@ -46,7 +46,7 @@ SCHEMA_DIR = REPO_ROOT / "schemas"
 PIPELINE_SCHEMA_DIR = SCHEMA_DIR / "pipeline"
 DECK_SCHEMA_PATH = SCHEMA_DIR / "deck.v3.schema.json"
 IMAGE_QA_RUBRIC = REPO_ROOT / "agents" / "rubrics" / "image_qa.yaml"
-VALIDATOR = REPO_ROOT / "src" / "validate_deck.py"   # built on another branch; used when present
+VALIDATOR = REPO_ROOT / "src" / "validate_deck.py"
 PROJECT_LOG = REPO_ROOT / "project.log"
 
 # (file name, required?) in pipeline order. Schema = schemas/pipeline/<stem>.schema.json
@@ -337,11 +337,8 @@ def check_characters(deck: dict, report: Report, library_dir=None) -> None:
                 report.error(f"{card['card_id']}: character '{key}' is not in characters/")
 
 
-def run_validator(deck_json: Path, report: Report) -> bool:
-    """Run src/validate_deck.py <deck.json> when it exists. Returns True if it ran."""
-    if not VALIDATOR.exists():
-        logger.info("src/validate_deck.py not found; skipping the deck validator")
-        return False
+def run_validator(deck_json: Path, report: Report) -> None:
+    """Run src/validate_deck.py <deck.json>; its failures become report errors."""
     result = subprocess.run([sys.executable, str(VALIDATOR), str(deck_json)],
                             capture_output=True, text=True)
     output = (result.stdout + result.stderr).strip()
@@ -349,7 +346,6 @@ def run_validator(deck_json: Path, report: Report) -> bool:
         report.error(f"validate_deck.py failed:\n{output}")
     else:
         logger.info(f"validate_deck.py passed{': ' + output if output else ''}")
-    return True
 
 
 def assemble(deck_dir, write: bool = True, library_dir=None) -> tuple:

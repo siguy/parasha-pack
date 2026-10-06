@@ -8,27 +8,10 @@ For documentation, see: ../agents/VISUAL_SPECS.md and ../agents/CARD_SPECS.md
 """
 
 # =============================================================================
-# PRINT SPECIFICATIONS
+# PRINT SIZES
 # =============================================================================
-# v2 leftovers (5x7 only). The v3 print sizes (letter default, 5x7 vendor) live in
-# card-designer/print_formats.json; nothing in the v3 pipeline reads these.
-
-CARD_WIDTH = 1500  # pixels at 300 DPI
-CARD_HEIGHT = 2100  # pixels at 300 DPI
-CARD_SIZE = (CARD_WIDTH, CARD_HEIGHT)
-
-CARD_WIDTH_INCHES = 5.0
-CARD_HEIGHT_INCHES = 7.0
-
-DPI = 300
-BLEED_INCHES = 0.125
-BLEED_PX = int(BLEED_INCHES * DPI)  # 38px
-
-BORDER_WIDTH = 24  # 8px at 300dpi = 24px
-CORNER_RADIUS = 30  # ~10px at 300dpi
-
-OUTER_PADDING = 40
-INNER_PADDING = 30
+# Print sizes (letter default, 5x7 vendor) live in card-designer/print_formats.json.
+# The Card Designer reads them from there; Python code has no copy of its own.
 
 # =============================================================================
 # COLOR PALETTE
@@ -80,27 +63,10 @@ CARD_TYPE_BORDERS = {
 }
 
 # =============================================================================
-# ART STYLE
+# ART STYLE AND SAFETY
 # =============================================================================
-
-CARD_STYLE = """
-=== STYLE ===
-Vivid, high-contrast cartoon style suitable for ages 4-6.
-Think: Colorful children's book illustration meets educational flashcard.
-- Characters: Rounded, friendly shapes. Large expressive eyes (20% of face).
-- Forms: Simple shapes, no fine details or complex patterns.
-- Lines: Thick, clean black outlines (2-3px equivalent).
-- Contrast: High contrast between foreground and background.
-- Emotion: Big, clear facial expressions visible from across a classroom.
-- Complexity: Maximum 5-7 distinct visual elements per scene.
-
-Card Format: 5x7 inches (1500x2100px)
-Corners: rounded (8-10px radius)
-
-Colors:
-- Characters and main elements: Bold primary colors (#FF4136, #0074D9, #FFDC00, #2ECC40)
-- Backgrounds: Soft pastels (#FFE5E5, #E5F0FF, #FFFBE5, #E5FFE5)
-"""
+# The art style for image prompts lives in style/style_config.yaml (read by
+# src/image_prompts.py). Only the legacy safety text below is kept here.
 
 SAFETY_RESTRICTIONS = """
 === RESTRICTIONS ===

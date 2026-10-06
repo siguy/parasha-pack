@@ -130,9 +130,12 @@ Data lives in `decks/{id}/extras.yaml` and `decks/{id}/guide.yaml`. Full guide: 
 
 ```bash
 python3 scripts/sync_to_hub.py bereshit purim      # uses HUB_DIR from .env, or --hub PATH
+python3 scripts/sync_to_hub.py terumah --allow-invalid   # terumah still fails the v3 validator
 ```
 
 Writes the deck JSON, WebP images and the letter PDF into the `simonbrief-hub` repo (`/parashapacks`).
+Every deck runs through `src/validate_deck.py` first; any validator error stops the sync (exit 1) before
+anything is written, unless you pass `--allow-invalid`.
 
 ### 7. Review Cards
 

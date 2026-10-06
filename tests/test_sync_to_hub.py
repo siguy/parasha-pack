@@ -93,3 +93,39 @@ def test_index_keeps_earlier_decks(tmp_path):
 
 def test_unknown_deck_is_skipped(tmp_path):
     assert sync_to_hub.sync_deck("nope", tmp_path, tmp_path, {}) is None
+
+
+# ---------------------------------------------------------------------------
+# Validation gate: a deck with validator errors is not published
+# ---------------------------------------------------------------------------
+
+def _fake_repo_with_validator(tmp_path, monkeypatch, exit_code: int) -> tuple[Path, Path]:
+    """A fake repo with one deck, a fake hub, and a fake validator that exits with exit_code."""
+    repo, hub = tmp_path / "repo", tmp_path / "hub"
+    (hub / "app").mkdir(parents=True)
+    make_deck(repo / "decks" / "demo", "demo", ["anchor_1"])
+    fake_validator = tmp_path / "validate_deck.py"
+    fake_validator.write_text(f"import sys; print('1 error: say too long'); sys.exit({exit_code})\n")
+    monkeypatch.setattr(sync_to_hub, "REPO", repo)
+    monkeypatch.setattr(sync_to_hub, "VALIDATOR", fake_validator)
+    return repo, hub
+
+
+def test_invalid_deck_stops_sync_with_exit_1(tmp_path, monkeypatch):
+    _, hub = _fake_repo_with_validator(tmp_path, monkeypatch, exit_code=1)
+    assert sync_to_hub.main(["demo", "--hub", str(hub)]) == 1
+    assert not (hub / "app/parashapacks/decks/demo.json").exists()  # nothing published
+    assert not (hub / "app/parashapacks/decks/index.json").exists()
+
+
+def test_allow_invalid_publishes_anyway(tmp_path, monkeypatch):
+    _, hub = _fake_repo_with_validator(tmp_path, monkeypatch, exit_code=1)
+    assert sync_to_hub.main(["demo", "--hub", str(hub), "--allow-invalid"]) == 0
+    assert (hub / "app/parashapacks/decks/demo.json").exists()
+
+
+def test_valid_deck_publishes(tmp_path, monkeypatch):
+    _, hub = _fake_repo_with_validator(tmp_path, monkeypatch, exit_code=0)
+    assert sync_to_hub.main(["demo", "--hub", str(hub)]) == 0
+    index = json.loads((hub / "app/parashapacks/decks/index.json").read_text())
+    assert [e["id"] for e in index] == ["demo"]

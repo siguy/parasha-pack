@@ -6,6 +6,8 @@ Run from the repo root:  python -m pytest tests -q
 """
 
 import io
+import json
+import logging
 import sys
 from pathlib import Path
 
@@ -143,3 +145,43 @@ def test_png_is_saved_untouched(tmp_path):
     out = tmp_path / "story_1.png"
     assert save_image_as_png(png_bytes, str(out)) == "image/png"
     assert out.read_bytes() == png_bytes
+
+
+# ---------------------------------------------------------------------------
+# Which cards get art: home cards and prompt-less cards are skipped
+# ---------------------------------------------------------------------------
+
+def test_no_art_reason():
+    assert generate_images.no_art_reason({"card_type": "story", "image_prompt": "a garden"}) is None
+    assert "home" in generate_images.no_art_reason({"card_type": "home", "image_prompt": "No art: ..."})
+    assert generate_images.no_art_reason({"card_type": "story", "image_prompt": "  "}) == "no image_prompt"
+    assert generate_images.no_art_reason({"card_type": "story"}) == "no image_prompt"
+
+
+def test_full_run_skips_home_and_promptless_cards(tmp_path, monkeypatch, caplog):
+    """Run main() over a whole deck with the API call mocked out: only story_1 is generated."""
+    deck = {"deck_id": "demo", "cards": [
+        {"card_id": "story_1", "card_type": "story", "image_prompt": "a garden at dawn"},
+        {"card_id": "home_1", "card_type": "home", "image_prompt": "No art: drawn by the Card Designer."},
+        {"card_id": "story_2", "card_type": "story", "image_prompt": ""},
+    ]}
+    deck_path = tmp_path / "demo" / "deck.json"
+    deck_path.parent.mkdir()
+    deck_path.write_text(json.dumps(deck))
+
+    generated = []
+    monkeypatch.setattr(generate_images, "generate_image_nano_banana",
+                        lambda prompt, api_key, output_path, **kw: generated.append(output_path) or {"success": True})
+    monkeypatch.setattr(generate_images, "assemble_references",
+                        lambda *a, **kw: {"characters": [], "labels": [], "parts": [], "references": []})
+    monkeypatch.setattr(generate_images, "build_generation_prompt", lambda *a, **kw: "PROMPT")
+    monkeypatch.setattr(generate_images, "save_prompt_sidecar", lambda *a, **kw: None)
+    monkeypatch.setattr(generate_images, "log_generation", lambda *a, **kw: None)
+    monkeypatch.setattr(generate_images.time, "sleep", lambda s: None)
+
+    with caplog.at_level(logging.INFO, logger="generate_images"):
+        generate_images.main([str(deck_path), "--api-key", "FAKEKEY"])
+
+    assert [Path(p).name for p in generated] == ["story_1.png"]
+    assert "[SKIP] home_1 - home card" in caplog.text
+    assert "[SKIP] story_2 - no image_prompt" in caplog.text

@@ -636,6 +636,23 @@ def resolve_run_mode(args) -> dict:
             "variants": args.variants or 1, "draft_path": None, "card": args.card}
 
 
+# Card types whose front is drawn entirely by the Card Designer: no AI art, ever.
+NO_ART_CARD_TYPES = ("home",)
+
+
+def no_art_reason(card: dict) -> str | None:
+    """Why this card gets no generated image, or None if it should be generated.
+
+    Home cards have an image_prompt, but it is only a note ("No art: ..."), so the
+    card type is checked first. Cards with an empty prompt are skipped too.
+    """
+    if card.get("card_type") in NO_ART_CARD_TYPES:
+        return f"{card['card_type']} card (front drawn by the Card Designer)"
+    if not card.get("image_prompt", "").strip():
+        return "no image_prompt"
+    return None
+
+
 def output_path_for(raw_dir: Path, card_id: str, mode: str, variant_num: int, num_variants: int) -> Path:
     """Where one generated image goes."""
     if mode == "draft":
@@ -705,17 +722,18 @@ def main(argv=None):
             continue
         matched += 1
 
+        reason = no_art_reason(card)
+        if reason:
+            logger.info(f"[SKIP] {card_id} - {reason}")
+            skip_count += 1
+            continue
+
         if args.skip_existing and (raw_dir / f"{card_id}.png").exists() and run["mode"] != "draft":
             print(f"[SKIP] {card_id} - image exists")
             skip_count += 1
             continue
 
-        raw_prompt = card.get("image_prompt", "")
-        if not raw_prompt:
-            logger.warning(f"[SKIP] {card_id} - no prompt")
-            skip_count += 1
-            continue
-
+        raw_prompt = card["image_prompt"]
         card_type = card.get("card_type", "")
         if is_v2_card(card):
             title = card.get("back", {}).get("title_en", card_id)[:30]
