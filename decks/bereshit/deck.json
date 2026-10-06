@@ -9,22 +9,23 @@
     "en": "Caring for the world",
     "he": "שְׁמִירָה עַל הָעוֹלָם",
     "kid_phrase": "caring for Hashem's world",
-    "gesture": "TODO: gesture for the value"
+    "gesture": "arms in a big circle: hug the world"
   },
   "palette": [
-    "#1E3A5F",
-    "#E0A526",
-    "#4F9A4A",
-    "#9BD7F5",
-    "#FFF4D6"
+    "#444444",
+    "#777777",
+    "#999999",
+    "#BBBBBB",
+    "#EEEEEE"
   ],
   "web_theme": {
-    "primary": "#1E3A5F",
-    "secondary": "#4F9A4A",
-    "accent": "#E0A526",
-    "wash": "#FFF8E7"
+    "primary": "#444444",
+    "secondary": "#777777",
+    "accent": "#999999",
+    "wash": "#EEEEEE"
   },
-  "story_world": "The newly created world and Gan Eden: soft rolling green hills, clear rivers, fruit trees and flowers, gentle friendly animals, warm golden light. Adam and Chava wear simple, modest, full-coverage tunics. Hashem is never shown as a figure, only as light.",
+  "story_world": "Gan Eden and the newly created world: lush soft green hills, a clear sparkling river, fruit trees heavy with fruit, bright flowers, gentle friendly animals, wide open sky and warm luminous golden light. Pre-civilization: no buildings, no houses, no fences, no tools, no modern objects. Adam and Chava wear simple, modest, full-coverage tunics. Hashem is never shown as a figure, only as light.",
+  "story_world_setting": "outdoor",
   "week_plan": [
     {
       "day": 1,
@@ -74,7 +75,7 @@
       "title_en": "In the Beginning",
       "title_he": "בְּרֵאשִׁית",
       "characters_in_scene": [],
-      "image_prompt": "TODO placeholder: warm light breaking through deep darkness, rays spreading over a dark empty world.",
+      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
       "image_path": "raw/anchor_1.png",
       "back": {
         "objective": "Hashem made a beautiful world for us",
@@ -91,25 +92,45 @@
         ],
         "minutes": 5,
         "core": true,
-        "transition": "What did Hashem make first?",
+        "transition": "What did Hashem make on Day 1?",
         "guide_ref": {
           "page": 2
         }
       },
       "guide": {
         "pshat": {
-          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
-          "refs": []
+          "text": "The Torah opens: \"In the beginning Hashem created the heavens and the earth.\" The earth was empty and dark, with water everywhere. Then Hashem said, \"Let there be light,\" and there was light. Hashem saw that the light was good (טוֹב), and separated light from dark: day and night. That was Day 1.",
+          "refs": [
+            "Genesis 1:1",
+            "Genesis 1:2",
+            "Genesis 1:3-5"
+          ]
         },
-        "sages": [],
-        "hard_questions": [],
+        "sages": [
+          {
+            "text": "Rashi teaches that the Torah begins with the story of creation to show that the whole world belongs to Hashem, who made it. That is why we take care of it: it is Hashem's world, lent to us.",
+            "source": "Rashi on Genesis 1:1"
+          }
+        ],
+        "hard_questions": [
+          {
+            "q": "Is the dark scary?",
+            "answer": "The dark is just the time before the light. Hashem made the light, and Hashem made the night too, so we can rest.",
+            "redirect": "Let's cover our eyes and open them again: WOW, light!"
+          },
+          {
+            "q": "Who made Hashem?",
+            "answer": "Nobody made Hashem. Hashem was always here, before everything, and made everything else. That's a big question, and grown-ups wonder about it too!",
+            "redirect": "What is your favorite thing Hashem made?"
+          }
+        ],
         "adapt": {
-          "see": "TODO",
-          "do": "TODO",
-          "join": "TODO"
+          "see": "Dim the classroom lights during 'just dark', then switch them on at 'Let there be light!'",
+          "do": "Children who don't want to cover their eyes can cup their hands into a tiny 'dark cave' instead.",
+          "join": "Everyone can say WOW together, or show WOW with a big open-mouth face and jazz hands."
         },
-        "extend": "TODO",
-        "tip": "TODO"
+        "extend": "Light walk: turn off the lights and let each child point a flashlight at one thing in the room and name it.",
+        "tip": "Practice the hug-the-world gesture (arms in a big circle) for this week's value, 'caring for Hashem's world', and use it every day."
       }
     },
     {
@@ -120,7 +141,7 @@
       "characters_in_scene": [
         "adam"
       ],
-      "image_prompt": "TODO placeholder: Adam in a simple modest tunic, kneeling to water flowers in a lush garden.",
+      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
       "image_path": "raw/spotlight_1.png",
       "back": {
         "objective": "Adam's job: take care of the garden",
@@ -151,18 +172,26 @@
       },
       "guide": {
         "pshat": {
-          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
-          "refs": []
+          "text": "Hashem formed Adam from the dust of the ground (אֲדָמָה, adamah: that's where his name comes from) and breathed the breath of life into him. Then Hashem put Adam in Gan Eden \"to work it and to guard it\" (לְעָבְדָהּ וּלְשָׁמְרָהּ): the very first job in the world was taking care of the garden.",
+          "refs": [
+            "Genesis 2:7",
+            "Genesis 2:15"
+          ]
         },
-        "sages": [],
+        "sages": [
+          {
+            "text": "Our Sages teach that Hashem took Adam around all the trees of Gan Eden and said: 'See how beautiful My world is. I made it all for you. Take care not to spoil it, because nobody will come after you to fix it.'",
+            "source": "Kohelet Rabbah 7:13"
+          }
+        ],
         "hard_questions": [],
         "adapt": {
-          "see": "TODO",
-          "do": "TODO",
-          "join": "TODO"
+          "see": "Bring a small pot of real soil so children can see and touch 'adamah'.",
+          "do": "Children can scoop with one hand, or pretend-water with a cup, instead of the two-hand scoop.",
+          "join": "Point to Adam on the card, or point to something in the picture Adam takes care of."
         },
-        "extend": "TODO",
-        "tip": "TODO"
+        "extend": "Plant a seed in a clear cup of soil. Each day this week, a different child is the 'Adam' who waters it.",
+        "tip": "Say אָדָם and אֲדָמָה side by side, slowly, so children hear the shared sound; let them guess why."
       }
     },
     {
@@ -171,10 +200,9 @@
       "title_en": "Chava",
       "title_he": "חַוָּה",
       "characters_in_scene": [
-        "chava",
-        "adam"
+        "chava"
       ],
-      "image_prompt": "TODO placeholder: Chava in a simple modest tunic, smiling, tending a garden with Adam.",
+      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
       "image_path": "raw/spotlight_2.png",
       "back": {
         "objective": "Adam and Chava help each other",
@@ -205,18 +233,33 @@
       },
       "guide": {
         "pshat": {
-          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
-          "refs": []
+          "text": "Hashem said, \"It is not good for the man to be alone; I will make a helper for him.\" Hashem let Adam sleep and made Chava from a part of Adam's side, then brought her to Adam, and Adam was glad. Later Adam named her Chava (חַוָּה), \"because she was the mother of all living things.\" On the card we say only \"Hashem made Chava\" (sensitivity reframe); the side detail is here if a child asks.",
+          "refs": [
+            "Genesis 2:18",
+            "Genesis 2:21-23",
+            "Genesis 3:20"
+          ]
         },
-        "sages": [],
-        "hard_questions": [],
+        "sages": [
+          {
+            "text": "Our Sages teach that Hashem began all people with just one person, to teach that every single person is as precious as a whole world.",
+            "source": "Mishnah Sanhedrin 4:5 (Sanhedrin 37a)"
+          }
+        ],
+        "hard_questions": [
+          {
+            "q": "How did Hashem make Chava?",
+            "answer": "The Torah says Hashem let Adam fall asleep and made Chava from a part of Adam's side, so they would always be close, like a team. It didn't hurt.",
+            "redirect": "Who is on your team at home?"
+          }
+        ],
         "adapt": {
-          "see": "TODO",
-          "do": "TODO",
-          "join": "TODO"
+          "see": "Show the sad face and the happy face with two simple drawn faces held up in turn.",
+          "do": "A child who doesn't want to high-five can give a thumbs up or a wave to a friend instead.",
+          "join": "Children can hook pinkies with the teacher, or point to a friend who helps them."
         },
-        "extend": "TODO",
-        "tip": "TODO"
+        "extend": "Helping hands: children trace a hand on paper and the teacher writes one way they helped someone today.",
+        "tip": "Keep the 'alone' beat short and light; move quickly to the happy face so nobody feels sad for long."
       }
     },
     {
@@ -225,12 +268,12 @@
       "title_en": "Light, Sky & Land",
       "title_he": "אוֹר, שָׁמַיִם וַאֲדָמָה",
       "characters_in_scene": [],
-      "image_prompt": "TODO placeholder: a bright new world with blue sky, sparkling water, green hills, one tree and flowers.",
+      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
       "image_path": "raw/story_1.png",
       "sequence_number": 1,
       "hebrew_keyword": {
         "word": "אוֹר",
-        "translit": "or",
+        "translit": "OR",
         "meaning": "light"
       },
       "back": {
@@ -262,18 +305,22 @@
       },
       "guide": {
         "pshat": {
-          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
-          "refs": []
+          "text": "Day 1: Hashem made light and separated it from the dark. Day 2: Hashem made the sky (רָקִיעַ, a dome) between the water above and the water below. Day 3: the water gathered together so dry land appeared, land and seas, and the earth sprouted grass, plants and fruit trees. After the light, the land and seas, and the plants, \"Hashem saw that it was good\" (כִּי־טוֹב).",
+          "refs": [
+            "Genesis 1:3-5",
+            "Genesis 1:6-8",
+            "Genesis 1:9-13"
+          ]
         },
         "sages": [],
         "hard_questions": [],
         "adapt": {
-          "see": "TODO",
-          "do": "TODO",
-          "join": "TODO"
+          "see": "Point to the light, the sky, the water and the trees in the picture as you say each day.",
+          "do": "Seated children can do every movement with arms only: open hands, reach up, wave arms, branch arms.",
+          "join": "Everyone joins the 'TOV!' thumbs up at the end, with or without words."
         },
-        "extend": "TODO",
-        "tip": "TODO"
+        "extend": "Make a 3-panel 'Days 1-3' strip: yellow (light), blue (sky and water), green (land and trees).",
+        "tip": "Hold up 1, 2, 3 fingers for each day; the counting carries into Story 2 and the 7 TOVs."
       }
     },
     {
@@ -282,12 +329,12 @@
       "title_en": "Sun, Fish & Animals",
       "title_he": "יָמִים ד׳–ו׳",
       "characters_in_scene": [],
-      "image_prompt": "TODO placeholder: the same landscape as story 1, now filled with sun, moon, stars, fish, birds and animals.",
+      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
       "image_path": "raw/story_2.png",
       "sequence_number": 2,
       "hebrew_keyword": {
         "word": "דָּג",
-        "translit": "dag",
+        "translit": "DAG",
         "meaning": "fish"
       },
       "back": {
@@ -311,25 +358,35 @@
         },
         "minutes": 5,
         "core": true,
-        "transition": "Now meet the very first person!",
+        "transition": "Who will take care of it all?",
         "guide_ref": {
           "page": 7
         }
       },
       "guide": {
         "pshat": {
-          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
-          "refs": []
+          "text": "Day 4: Hashem made the two great lights, the sun for the day and the moon for the night, and the stars. Day 5: the water filled with fish and great sea creatures, and birds flew across the sky; Hashem blessed them. Day 6: Hashem made every kind of land animal, and then people. Hashem saw everything and it was \"very good\" (טוֹב מְאֹד). Point out that the picture is the same place as Story 1, now full of life.",
+          "refs": [
+            "Genesis 1:14-19",
+            "Genesis 1:20-23",
+            "Genesis 1:24-31"
+          ]
         },
         "sages": [],
-        "hard_questions": [],
+        "hard_questions": [
+          {
+            "q": "Did Hashem make dinosaurs too?",
+            "answer": "The Torah says Hashem made every kind of animal, the giant ones and the tiny ones. Dinosaurs lived a very, very long time ago, and Hashem made them too.",
+            "redirect": "Show me a giant dinosaur step, and now a tiny ant step!"
+          }
+        ],
         "adapt": {
-          "see": "TODO",
-          "do": "TODO",
-          "join": "TODO"
+          "see": "Lay the Story 1 card next to this one: what is new in the picture?",
+          "do": "Children can choose any movement for their animal: a hop, a stomp, a slither on the hands.",
+          "join": "Children who don't want to make a sound can show their animal with hands or point to it on the card."
         },
-        "extend": "TODO",
-        "tip": "TODO"
+        "extend": "Sorting game: sky, water or land? Children sort animal pictures (or toy animals) into three hoops.",
+        "tip": "Keep the animal sounds short: count down 3-2-1 and finish together with the TOV thumbs up."
       }
     },
     {
@@ -338,12 +395,12 @@
       "title_en": "Day 7: Shabbat",
       "title_he": "יוֹם הַשְּׁבִיעִי",
       "characters_in_scene": [],
-      "image_prompt": "TODO placeholder: a calm, golden peaceful world at rest, soft evening light.",
+      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
       "image_path": "raw/story_3.png",
       "sequence_number": 3,
       "hebrew_keyword": {
         "word": "שַׁבָּת",
-        "translit": "sha-bat",
+        "translit": "sha-BAT",
         "meaning": "Shabbat"
       },
       "back": {
@@ -374,18 +431,26 @@
       },
       "guide": {
         "pshat": {
-          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
-          "refs": []
+          "text": "The heavens and the earth were finished. On the seventh day Hashem finished the work and rested (וַיִּשְׁבֹּת, vayishbot, the root of \"Shabbat\"). Hashem blessed the seventh day and made it holy.",
+          "refs": [
+            "Genesis 2:1-3"
+          ]
         },
         "sages": [],
-        "hard_questions": [],
+        "hard_questions": [
+          {
+            "q": "Was Hashem tired?",
+            "answer": "Hashem never gets tired. Hashem stopped making new things to show us that one day each week is for resting and enjoying the world.",
+            "redirect": "What do you like to do on Shabbat?"
+          }
+        ],
         "adapt": {
-          "see": "TODO",
-          "do": "TODO",
-          "join": "TODO"
+          "see": "Show two real (unlit) Shabbat candlesticks, or a picture of them.",
+          "do": "Children who can't sit still can 'rest' by sitting cross-legged with hands in lap.",
+          "join": "Everyone can join a whispered 'Shabbat Shalom' or wave to the class."
         },
-        "extend": "TODO",
-        "tip": "TODO"
+        "extend": "Rest and notice: one minute of quiet with eyes closed, then each child names one sound they heard.",
+        "tip": "Teach this card on Friday (Day 5 of the week plan) so it leads straight into the real Shabbat."
       }
     },
     {
@@ -394,14 +459,15 @@
       "title_en": "Adam Names the Animals",
       "title_he": "שֵׁמוֹת",
       "characters_in_scene": [
-        "adam"
+        "adam",
+        "chava"
       ],
-      "image_prompt": "TODO placeholder: Adam in a modest tunic surrounded by friendly animals (lion, birds, deer) in the garden.",
+      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
       "image_path": "raw/story_4.png",
       "sequence_number": 4,
       "hebrew_keyword": {
         "word": "אַרְיֵה",
-        "translit": "ar-yeh",
+        "translit": "ar-YEH",
         "meaning": "lion"
       },
       "back": {
@@ -433,18 +499,38 @@
       },
       "guide": {
         "pshat": {
-          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
-          "refs": []
+          "text": "Hashem brought every animal of the field and every bird of the sky to Adam \"to see what he would call them\", and whatever Adam called each one, that became its name. Adam was put in the garden to work it and to guard it. The snake, the tree and the fruit (Genesis 3) are NOT on any card: if a child asks, use the scripted answers below.",
+          "refs": [
+            "Genesis 2:19-20",
+            "Genesis 2:15",
+            "Genesis 3:1-7"
+          ]
         },
-        "sages": [],
-        "hard_questions": [],
+        "sages": [
+          {
+            "text": "Our Sages teach that Hashem showed Adam the whole garden and asked him to take care not to ruin it. Naming the animals was part of caring for them: you look closely at each one.",
+            "source": "Kohelet Rabbah 7:13"
+          }
+        ],
+        "hard_questions": [
+          {
+            "q": "Did they eat the fruit? What about the snake?",
+            "answer": "Hashem asked Adam and Chava not to eat from one special tree. The snake tricked them, and they ate it: they made a mistake. Hashem still took care of them and even made them clothes.",
+            "redirect": "What can we do when we make a mistake? (Say sorry, try again.)"
+          },
+          {
+            "q": "Did Adam and Chava have to leave the garden?",
+            "answer": "Yes, after the mistake they went to live outside the garden. Hashem gave them clothes and stayed with them, and they kept working the land.",
+            "redirect": "How can we take care of the world right here?"
+          }
+        ],
         "adapt": {
-          "see": "TODO",
-          "do": "TODO",
-          "join": "TODO"
+          "see": "Hold up toy animals (or pictures) one at a time for children to name.",
+          "do": "Use a soft roar and a quiet tweet; children can show the animal with hands instead of sound.",
+          "join": "Point to an animal on the card, or hold the toy animal while a friend names it."
         },
-        "extend": "TODO",
-        "tip": "TODO"
+        "extend": "Name-it circle: pass a toy animal around; each child gives it a new silly name and one way to take care of it.",
+        "tip": "If a child mentions the snake or the fruit, answer calmly with the script below, then come back to the animals."
       }
     },
     {
@@ -453,7 +539,7 @@
       "title_en": "Taking Care of Our World",
       "title_he": "שׁוֹמְרִים",
       "characters_in_scene": [],
-      "image_prompt": "TODO placeholder: modern diverse preschool children watering plants and feeding a bird in a schoolyard garden.",
+      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
       "image_path": "raw/connection_1.png",
       "back": {
         "objective": "Each child names one way to help",
@@ -483,18 +569,25 @@
       },
       "guide": {
         "pshat": {
-          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
-          "refs": []
+          "text": "Hashem put Adam in Gan Eden \"to work it and to guard it\" (לְעָבְדָהּ וּלְשָׁמְרָהּ). The word on this card, שׁוֹמְרִים (shomrim, \"guarding, taking care\"), comes from that verse: we are the guardians of Hashem's world today.",
+          "refs": [
+            "Genesis 2:15"
+          ]
         },
-        "sages": [],
+        "sages": [
+          {
+            "text": "Our Sages teach that Hashem told Adam: 'Take care not to spoil My world, because there is no one to fix it after you.'",
+            "source": "Kohelet Rabbah 7:13"
+          }
+        ],
         "hard_questions": [],
         "adapt": {
-          "see": "TODO",
-          "do": "TODO",
-          "join": "TODO"
+          "see": "Show 3 picture cues (watering can, bird feeder, recycling bin) for children who need an idea.",
+          "do": "Children can act out their idea (watering, sweeping, feeding) instead of saying it.",
+          "join": "A child can point to one of the picture cues or to a feeling face on the back."
         },
-        "extend": "TODO",
-        "tip": "TODO"
+        "extend": "Make a class 'Shomrim' chart: each child's helping idea, with a sticker each time they do it this week.",
+        "tip": "Use the hug-the-world gesture (arms in a big circle) every time a child shares an idea."
       }
     },
     {
@@ -502,8 +595,11 @@
       "card_type": "power_word",
       "title_en": "Tov · Good!",
       "title_he": "טוֹב",
-      "characters_in_scene": [],
-      "image_prompt": "TODO placeholder: a big friendly thumbs-up hand on a warm sunny background with little stars.",
+      "characters_in_scene": [
+        "adam",
+        "chava"
+      ],
+      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
       "image_path": "raw/power_word_1.png",
       "back": {
         "objective": "Say, show, and use the word \"tov\"",
@@ -514,7 +610,7 @@
             "line2": "good"
           },
           {
-            "big": "👍",
+            "big": "✓",
             "line1": "gesture",
             "line2": "thumbs up"
           },
@@ -545,18 +641,26 @@
       },
       "guide": {
         "pshat": {
-          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
-          "refs": []
+          "text": "After making the light, the land and seas, the plants, the sun and moon, the fish and birds, and the land animals, \"Hashem saw that it was good\" (כִּי־טוֹב). At the very end Hashem saw everything and it was \"very good\" (טוֹב מְאֹד). That is 7 TOVs in the creation story.",
+          "refs": [
+            "Genesis 1:4",
+            "Genesis 1:10",
+            "Genesis 1:12",
+            "Genesis 1:18",
+            "Genesis 1:21",
+            "Genesis 1:25",
+            "Genesis 1:31"
+          ]
         },
         "sages": [],
         "hard_questions": [],
         "adapt": {
-          "see": "TODO",
-          "do": "TODO",
-          "join": "TODO"
+          "see": "Write טוֹב big on the board and point to it each time the class says TOV.",
+          "do": "Children who can't make a thumbs up can nod or smile big for TOV.",
+          "join": "Everyone shows the thumbs up together; no words needed."
         },
-        "extend": "TODO",
-        "tip": "TODO"
+        "extend": "Tov hunt: children find 7 good things in the room and give each one a TOV thumbs up.",
+        "tip": "Review this week's words: אוֹר (OR, light) and שַׁבָּת (sha-BAT). Say each, then TOV!"
       }
     },
     {
@@ -565,7 +669,7 @@
       "title_en": "This Week: Bereshit",
       "title_he": "בְּרֵאשִׁית",
       "characters_in_scene": [],
-      "image_prompt": "No art needed: the home card front is drawn by the Card Designer.",
+      "image_prompt": "TODO: scene prompt from the Visual Director (05-visual.yaml)",
       "image_path": "raw/home_1.png",
       "back": {
         "objective": "We learned about **caring for Hashem's world**",
@@ -593,18 +697,22 @@
       },
       "guide": {
         "pshat": {
-          "text": "TODO: filled by the Torah Scholar / Content Writer agents",
-          "refs": []
+          "text": "This week's parasha, Bereshit, tells how Hashem made the world in six days and rested on the seventh, and how Adam was put in Gan Eden \"to work it and to guard it\". Families can ask about the 7 days and the TOV thumbs.",
+          "refs": [
+            "Genesis 1:1-5",
+            "Genesis 2:1-3",
+            "Genesis 2:15"
+          ]
         },
         "sages": [],
         "hard_questions": [],
         "adapt": {
-          "see": "TODO",
-          "do": "TODO",
-          "join": "TODO"
+          "see": "Send the card home with a small picture of the TOV thumbs so families know the gesture.",
+          "do": "Families who can't walk outside can do the tov walk around the home or from a window.",
+          "join": "Non-speaking children can show the tov thumbs at the Shabbat table."
         },
-        "extend": "TODO",
-        "tip": "TODO"
+        "extend": "Invite families to send a photo or drawing of their favorite thing Hashem made for a class 'Tov Wall'.",
+        "tip": "Send the home card on Friday with the family letter (guide p.15)."
       }
     }
   ]
