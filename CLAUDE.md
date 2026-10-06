@@ -151,7 +151,9 @@ See [agents/AGENT_PIPELINE.md](agents/AGENT_PIPELINE.md) for detailed YAML schem
 | Generate all images | `python generate_images.py ../decks/yitro/deck.json` |
 | Generate single image | `python generate_images.py ../decks/yitro/deck.json --card spotlight_1` |
 | Generate 3 variants | `python generate_images.py ../decks/yitro/deck.json --card story_1 --variants 3` |
-| Generate without style hero | `python generate_images.py ../decks/yitro/deck.json --no-hero` |
+| Generate without style plates | `python generate_images.py ../decks/yitro/deck.json --no-hero` |
+| Cheap drafts, then final | `python generate_images.py ../decks/yitro/deck.json --card story_1 --draft`, then `--final --from-draft ../decks/yitro/raw/drafts/story_1_d2.png` |
+| Identity sheet versions | `python generate_references.py --character adam --versions 2`, then `--accept v2` |
 | Sync deck to Card Designer | `./sync-deck.sh purim` |
 | Export final cards | `cd card-designer && npm run export purim -- --backs --pdf` |
 

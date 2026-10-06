@@ -9,8 +9,10 @@ Python modules for generating and managing Parasha Pack card decks.
 | `workflows/` | High-level reusable workflows for character/deck creation (CLI, research, models) |
 | `generate_deck.py` | Create new deck templates (story, connection, tradition card types) |
 | `generate_images.py` | Generate raw card images to `raw/`; assembles system prompt layers via `build_generation_prompt()` |
-| `generate_references.py` | Generate character identity reference sheets |
-| `image_prompts.py` | System constants (style, safety, composition, world styles) + scene-only `build_*_v2()` templates |
+| `generate_references.py` | Generate identity sheet versions into `characters/{key}/` and `--accept` one |
+| `style_config.py` | Loads `style/style_config.yaml` (style text, safety rules, composition, plates, limits, `prompt_version`) |
+| `spend_ledger.py` | Records every image API call and refuses calls past the budget (`PP_SPEND_LEDGER`, `PP_BUDGET_USD`) |
+| `image_prompts.py` | Exposes the style constants read from `style/style_config.yaml` + scene-only `build_*_v2()` templates |
 | `schema.py` | Data structures, type definitions, and card schemas |
 | `sefaria_client.py` | Sefaria API: current parasha, plus the `research/{parasha}.yaml` verse cache |
 | `character_library.py` | Reads the shared `characters/{key}/character.yaml` library (single source of truth for characters) |
@@ -59,7 +61,7 @@ CharacterWorkflow.create("miriam", deck_path="decks/beshalach", api_key="...")
 workflow = CharacterWorkflow("miriam", "decks/beshalach")
 workflow.research()              # -> CharacterResearch dataclass
 workflow.design()                # -> CharacterDesign dataclass
-workflow.generate_references()   # -> creates identity PNG reference sheet
+workflow.generate_references()   # -> characters/{key}/identity_v1.png, identity_v2.png (then --accept vN)
 workflow.add_to_manifest()       # -> updates manifest.json
 workflow.save_research()         # -> saves research JSON
 ```
@@ -129,16 +131,28 @@ python generate_images.py ../decks/yitro/deck.json --skip-existing     # Skip ex
 python generate_images.py ../decks/yitro/deck.json --no-refs           # Without character refs
 python generate_images.py ../decks/yitro/deck.json --variants 3        # Generate 3 variants per card
 python generate_images.py ../decks/yitro/deck.json --card story_1 --variants 3  # 3 variants of one card
+python generate_images.py ../decks/yitro/deck.json --card story_1 --draft       # 1K x2 -> raw/drafts/story_1_d1.png, _d2.png
+python generate_images.py ../decks/yitro/deck.json --final --from-draft ../decks/yitro/raw/drafts/story_1_d2.png  # 2K final
 ```
+
+### Draft → final
+
+`--draft` makes cheap 1K drafts (default 2 variants) in `raw/drafts/{card_id}_d{n}.png` and does not touch `image_path`. `--final --from-draft <file>` makes the 2K final at `raw/{card_id}.png` (card id read from the file name) and passes the chosen draft as a reference labeled "re-render this exact composition at full detail in the same style". No flag = 2K single image as before.
+
+### Spend ledger
+
+`generate_image_nano_banana()` (used by both scripts) writes one line per real call to `$PP_SPEND_LEDGER` (`ts, branch, purpose, size, usd`; prices in `config.IMAGE_PRICE_USD`; failed calls are logged at $0 with a note). If `PP_BUDGET_USD` is set and the ledger total is at or above it, the call is refused before any network request and `{"refused": True}` is returned.
 
 ### Reference Image Integration
 
-1. For each key in the card's `characters_in_scene`, looks up `characters/{key}/identity.png` in the shared library first
-2. Falls back to the deck's `references/manifest.json` and logs a warning when a character isn't in the library
-3. Sends at most `MAX_CHARACTER_REFS = 4` character images (Nano Banana 2 limit). More than 4 logs an error to `project.log` and only the first 4 are sent
-4. Base64-encodes identity PNGs and passes them alongside the text prompt
-5. Labels come from the library's `name_en` (else manifest `label`, else the key) via `get_character_label()`
-6. The style hero still comes from the deck manifest
+`assemble_references()` builds the reference list in a **fixed, labeled order**:
+
+1. **Style plates** from `style/plates/` (1–2, max 3): `card.style_plate` override, else `plate_mapping` in `style_config.yaml` (connection/tradition → classroom, anchor/power_word → object, spotlight/story → deck `story_world_setting`: outdoor → landscape, indoor → interior, default landscape). The deck's `references/style_hero.png` is only a fallback when no plates exist.
+2. **Draft composition** (only `--final --from-draft`).
+3. **Continuity reference** — `card.continuity_ref`, a card_id (→ `raw/{id}.png`) or a path relative to the deck folder.
+4. **Character identity sheets** — each key in `characters_in_scene`, library first, deck manifest fallback with a warning; at most 4 (`limits.max_character_refs`), extras dropped with an error in `project.log`.
+
+Each image is preceded by an `Image N = <label>:` text part, and the prompt starts with a matching `=== REFERENCE IMAGES ===` block (e.g. "Image 3 = Adam identity sheet — match face, hair, clothing exactly"). Images over 1536px are shrunk to JPEG before sending (keeps requests under the 20 MB limit). `--no-hero` skips the plates; `--no-refs` sends no references (except an explicit `--from-draft`). `load_reference_images()` is kept as a thin wrapper for older callers.
 
 ### Variant Generation
 
@@ -148,14 +162,14 @@ python generate_images.py ../decks/yitro/deck.json --card story_1 --variants 3  
 
 ## generate_references.py
 
-Generates character identity reference sheets (single source of truth for character appearance).
-
-We generate ONLY identity sheets. A single identity image serves as the visual anchor for all card generations.
+Makes identity sheets in the shared library from the character's locked `visual_anchors`: a 3-angle turnaround (front, 3/4, side) plus a row of 4 expressions (happy, curious, caring, surprised), plain light background, no text, 16:9, with a style plate (default `landscape`) as Image 1.
 
 ```bash
-python generate_references.py --output ../decks/yitro/references
-python generate_references.py --character moses
+python generate_references.py --character adam --versions 2   # -> characters/adam/identity_v1.png, identity_v2.png
+python generate_references.py --character adam --accept v2     # -> identity.png; others to alternates/; updates character.yaml
 ```
+
+Version numbers never repeat (alternates are counted). The exact prompt is saved as `characters/{key}/identity_prompt.txt`. The character workflow (`workflows/character.py`) calls `generate_identity_versions()` too.
 
 ---
 
@@ -163,41 +177,37 @@ python generate_references.py --character moses
 
 `build_generation_prompt()` in `generate_images.py` assembles all system layers at generation time:
 
-1. `STYLE_ANCHORS_V2` — children's illustration style, anatomy rules
-2. **World style** — `MODERN_WORLD_STYLE` for connection/tradition cards (modern Orthodox Jewish community, same across all decks), or `story_world` from deck.json for all other cards (per-deck historical setting)
-3. `SAFETY_PROMPT` — content restrictions (no God in human form, no violence, etc.)
+All text comes from `style/style_config.yaml` (one source shared with the Visual Director and Image QA).
+
+0. **Reference images** — numbered labels of every reference image, in send order
+1. `STYLE_ANCHORS_V2` — children's illustration style, anatomy rules (unchanged Purim look)
+2. **World style** — `MODERN_WORLD_STYLE` for connection/tradition cards (modern Orthodox community: named diverse mix, every boy in a kippah, girls never, megillah without twin rollers), or `story_world` from deck.json for all other cards. Adds `Deck palette accents: …` when deck.json has `palette`.
+3. `SAFETY_PROMPT` — content restrictions (no God in human form, villains sulky/comic not scary, etc.)
 4. Scene description — from deck.json, passed through unchanged
+4a. **Character anchors** — `visual_anchor_text(key)` for each key in `characters_in_scene`, added automatically
 4b. **Ref hint** — when character ref images are loaded, tells model to prioritize refs for appearance
-5. `COMPOSITION_GUIDANCE[card_type]` — per-card-type cinematography
+5. `COMPOSITION_GUIDANCE[card_type]` — per-card-type cinematography + natural title area + central 90% + max 5 figures + simple ground plane
 6. `COMPOSITION_SUFFIX` — universal no-border, no-text rules
 
 ### Generation Provenance
 
-Every generation is logged to `raw/generations.jsonl` (append-only JSONL, 7 fields: card_id, timestamp, model, image_size, full_prompt, character_refs, success). Full assembled prompts also saved to `raw/prompts/{card_id}.txt` for quick debugging.
+Every generation is logged to `raw/generations.jsonl` (append-only JSONL: card_id, timestamp, model, image_size, `prompt_version` (from style_config.yaml, now "v2.0"), full_prompt, character_refs, `references` (label + path of each reference image, in order), output_file, success). Full assembled prompts also saved to `raw/prompts/{card_id}.txt` for quick debugging.
 
 ### Selective Character References
 
 Cards include a `characters_in_scene` field in deck.json that controls which character ref images are loaded. `load_reference_images()` filters by this list. Empty list `[]` = no refs loaded (for tradition/connection cards). `null`/absent = load all (backwards compatible).
 
-### Style Hero Reference
+### Style Plates (replace the per-deck style hero)
 
-If `references/manifest.json` contains a `style_hero` entry, its image is loaded as the **first** reference for all story-world cards (anchor, spotlight, story, power_word). The hero provides a visual anchor for art style, color palette, and rendering quality. Modern-world cards (connection, tradition) skip the hero — they use `MODERN_WORLD_STYLE` text instead.
-
-```bash
-# Generate with hero (default when manifest has style_hero)
-python generate_images.py ../decks/purim/deck.json
-
-# Skip hero for A/B comparison
-python generate_images.py ../decks/purim/deck.json --no-hero
-```
+See `style/README.md`. `--no-hero` turns the plates off for A/B comparison.
 
 ### Card Type Composition
 
 | Card Type | Subject Position | Open Space |
 |-----------|-----------------|------------|
 | Anchor | Center-low | Headroom above (for title) |
-| Spotlight | Chest-up portrait, center | Headroom above, shadow lower-left |
-| Story | Action center-right | Headroom above, shadow lower-left |
+| Spotlight | Chest-up portrait, center | Headroom above, simple ground plane |
+| Story | Action center-right | Headroom above, simple ground plane |
 | Connection | Upper two-thirds | Simple floor/gradient below |
 | Tradition | Center-low, grounded | Golden glow/warm haze above |
 | Power Word | Center-low, heroic angle | Bright sky/light above |
@@ -215,7 +225,7 @@ Data structures and type definitions.
 - `EMOTIONS` - Categorized emotion lists
 - `FEELING_FACES` - Emoji + label mappings
 - `CHARACTER_DESIGNS` - Built at import time from `characters/` (kept so older helpers work; edit the yaml, not this)
-- `IMAGE_SAFETY_RULES` - Content restrictions
+- `IMAGE_SAFETY_RULES` - Content restrictions (read from `style/style_config.yaml`)
 - `PRINT_SPECS` - Print specifications
 - `LAYOUT_ZONES` - Card layout percentages
 

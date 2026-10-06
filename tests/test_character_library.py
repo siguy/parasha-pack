@@ -23,7 +23,7 @@ from generate_images import MAX_CHARACTER_REFS, load_reference_images  # noqa: E
 # The real library in characters/
 # ---------------------------------------------------------------------------
 
-MIGRATED = ["moses", "yitro", "miriam", "esther", "mordechai", "haman", "achashverosh"]
+MIGRATED = ["moses", "yitro", "miriam", "esther", "mordechai", "haman", "achashverosh", "adam", "chava"]
 
 
 def test_every_character_yaml_is_valid():
@@ -43,12 +43,12 @@ def test_migrated_characters_have_identity_images(key):
 
 
 @pytest.mark.parametrize("key", ["adam", "chava"])
-def test_adam_and_chava_exist_without_identity_yet(key):
+def test_adam_and_chava_have_modest_anchors_and_alternates(key):
     character = character_library.load_character(key)
-    assert character["identity"] is None
-    assert character_library.identity_path(key) is None
+    assert character["identity"] == "identity.png"
     anchors = " ".join(character["visual_anchors"]).lower()
     assert "modest" in anchors and "full coverage" in anchors
+    assert (character_library.LIBRARY_DIR / key / "alternates" / "identity_v1.png").exists()
 
 
 def test_aliases_resolve_to_library_keys():
@@ -135,7 +135,7 @@ def test_library_image_is_used_before_manifest(tmp_path, fake_library):
     _png(deck.parent / "references" / "anna_identity.png")
     parts, loaded = load_reference_images(deck, ["anna"], card_type="story")
     assert loaded == ["anna"]
-    assert {"text": "Character reference for Anna:"} in parts
+    assert any("Anna identity sheet" in part.get("text", "") for part in parts)
 
 
 def test_falls_back_to_manifest_with_warning(tmp_path, fake_library, caplog):
@@ -158,7 +158,7 @@ def test_more_than_four_refs_is_capped_and_logged(tmp_path, fake_library, caplog
 
 def test_empty_list_loads_no_characters(tmp_path, fake_library):
     deck = _make_deck(tmp_path, {})
-    parts, loaded = load_reference_images(deck, [], card_type="connection")
+    parts, loaded = load_reference_images(deck, [], card_type="connection", no_hero=True)
     assert parts == [] and loaded == []
 
 

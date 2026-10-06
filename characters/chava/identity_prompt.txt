@@ -1,0 +1,49 @@
+Image 1 is a style plate: match its art style exactly (line weight, flat colors with one soft gradient, warm palette). Copy the style only, not its content.
+Create a CHARACTER IDENTITY SHEET for a children's picture-card series (ages 4-6).
+
+=== STYLE ===
+Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
+
+Visual characteristics:
+- Bold primary colors (red, blue, yellow, green) for foreground elements
+- Soft pastel colors (pink, light blue, cream, mint) for backgrounds
+- Rounded, friendly character designs with large expressive eyes
+- Thick, clean black outlines (2-3px equivalent)
+- Simple shapes with minimal clutter (5-7 main elements maximum)
+- Warm, inviting atmosphere
+- Clean, crisp illustration - NO grain, noise, film texture, or visual artifacts
+- Smooth color fills with no stippling or dithering
+
+ANATOMY REQUIREMENTS:
+- All humans must have exactly 2 arms and 2 legs
+- Hands have exactly 5 fingers each
+- Correct proportions - no extra limbs or merged body parts
+
+CRITICAL: Do NOT render any text in the image. No Hebrew, no English, no titles,
+no labels, no badges. Text will be added programmatically after generation.
+The image should be purely visual.
+Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
+Head-to-body ratio about 1:3. Large friendly eyes. Rounded, simple shapes.
+Same proportions and line weight as every other character in this series.
+
+=== CHARACTER: CHAVA (female) ===
+- grown-up young woman (about 25 years old) with olive skin; adult proportions and height matching Adam — clearly a grown woman, not a girl or teen
+- long dark wavy hair, loosely tied back
+- simple modest sage-green tunic dress, full coverage, long sleeves, ankle length
+- barefoot or simple sandals
+- friendly, gentle expression; "first people in a garden"
+Personality: curious, gentle, caring, friendly.
+Modest Modern Orthodox dress: simple, full-coverage clothing as described above. No leaves, nothing revealing.
+
+=== LAYOUT ===
+One clean sheet on a plain, light, solid background. No scenery.
+TOP ROW: a 3-angle turnaround of the full figure, head to toe, standing relaxed:
+front view, three-quarter view, side view.
+BOTTOM ROW: 4 head-and-shoulders portraits with different expressions:
+happy, curious, caring, surprised.
+Every drawing shows the EXACT SAME CHARACTER: same face, hair, skin, clothing and colors.
+Hands relaxed and simple, exactly 5 fingers each.
+
+=== CRITICAL ===
+NO text, captions, labels, names, numbers or letters anywhere on the sheet.
+No borders or panel frames; just the drawings on the plain background.

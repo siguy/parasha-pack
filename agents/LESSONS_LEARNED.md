@@ -18,10 +18,10 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **Exact text matters** - The AI renders EXACTLY what you specify; vague instructions cause invented text
 
 ### Style Consistency
-- **Style hero anchors the deck's look** — A single representative image (`references/style_hero.png`) passed as the first reference to all story-world cards. Locks in art style, color palette, and rendering quality.
-- **Story-world only** — Modern-world cards (connection, tradition) don't get the hero. They use `MODERN_WORLD_STYLE` text constant.
-- **A/B test with `--no-hero`** — Compare with and without hero to verify it helps before relying on it.
-- **Hero creation** — Generate 2-3 representative scenes, pick the one with the best style for the deck. Save as `references/style_hero.png` and add to manifest.
+- **Series style plates replaced the per-deck style hero (Oct 2026)** — 4 character-free plates in `style/plates/` (landscape, interior, object, classroom), made from the Purim art, are passed first with every card (modern-world cards get `classroom`). A deck `style_hero.png` is only a fallback when no plates exist. See `style/README.md`.
+- **A/B test with `--no-hero`** — Turns the plates off, to check they help.
+- **Never ask for a "calm upper N%"** — In the plate run the model drew a literal flat band across the top in 2 of 8 images. Say the top of the scene "continues naturally ... with no hard band or border" instead.
+- **Label every reference image** — The prompt names each one ("Image 1 = style plate (match art style only, not content)", "Image 3 = Adam identity sheet — match face, hair, clothing exactly") so the model doesn't copy a plate's content or mix up characters.
 
 ### Prompt Detail Level
 - **Stage directions, not descriptions** — "He shakes his head NO" produces better results than "refusing to bow." Write prompts like a movie director, not a caption writer.

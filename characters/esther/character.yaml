@@ -22,9 +22,10 @@ signature_poses:
   - Arms open, embracing her people
 appears_in: [purim]
 source_notes: >
-  Identity copied from decks/purim/references/esther_identity.png.
-  Note: that sheet has caption text under each panel ("CLOSE-UP PORTRAIT",
-  "FULL BODY STANDING"); regenerate without captions when Esther is next revised.
+  Identity copied from decks/purim/references/esther_identity.png. The caption strip
+  under the panels ("CLOSE-UP PORTRAIT", "FULL BODY STANDING") was cropped off with
+  Pillow on 2026-10-05 (no API call); the original is in
+  alternates/identity_with_captions.png.
 research:
   biblical_refs: ["Megillat Esther"]
   key_stories:

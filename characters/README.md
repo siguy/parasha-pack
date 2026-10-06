@@ -12,7 +12,10 @@ characters/
 │   ├── identity.png       # identity sheet passed to the image model
 │   └── expressions.png    # optional extra sheets (also poses.png, turnaround.png)
 ├── adam/
-│   └── character.yaml     # identity: null — sheet not generated yet
+│   ├── character.yaml
+│   ├── identity.png
+│   ├── identity_prompt.txt  # exact prompt used for the sheet
+│   └── alternates/        # runner-up sheets (identity_v1.png ...)
 └── ...
 ```
 
@@ -50,16 +53,20 @@ characters/
 
 1. Make `characters/{key}/character.yaml` (copy one that exists). Start with `identity: null`
    and `canonical: false`.
-2. Generate 2+ identity sheets, Simon picks one, save it as `identity.png`.
-3. Set `identity: identity.png`, `canonical: true`, and run `python3 -m pytest tests -q`.
+2. Make 2 candidate sheets (3-angle turnaround + a row of 4 expressions, no text, style plate
+   `landscape` as Image 1). They are saved as `identity_v1.png`, `identity_v2.png`:
+   `cd src && python generate_references.py --character {key} --versions 2`
+3. Simon picks one: `python generate_references.py --character {key} --accept v2`. This renames it
+   to `identity.png`, moves the others to `alternates/`, and sets `identity: identity.png`.
+4. Set `canonical: true` and run `python3 -m pytest tests -q`.
 
 ## Current status
 
 | Character | Identity sheet | Canonical |
 |-----------|----------------|-----------|
 | moses, yitro, miriam | yes (+ expressions, poses, turnaround) | yes |
-| esther, mordechai, haman, achashverosh | yes | yes |
-| adam, chava | not yet (Phase 3.2) | yes (anchors locked) |
+| esther, mordechai, haman, achashverosh | yes (Esther's caption strip cropped off; original in `alternates/`) | yes |
+| adam, chava | yes (turnaround + expression row, 2026-10-05; runners-up in `alternates/`) | yes |
 | avraham, sarah, pharaoh | no | no (drafts from the old databases) |
 
 The archived decks still keep their own copies in `decks/archive/*/references/`, so they
