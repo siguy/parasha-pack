@@ -84,13 +84,20 @@ npm run export purim -- --backs
 
 # Export backs only
 npm run export purim -- --backs-only
+
+# Duplex print PDF (letter is the default format; 5x7 is the vendor option)
+npm run export purim -- --backs --pdf
+npm run export purim -- --format 5x7 --pdf
 ```
 
 Output:
-- `decks/purim/images/{card_id}.png` - Final card fronts with text overlay (1500x2100)
-- `decks/purim/backs/{card_id}_back.png` - Teacher content backs (1500x2100)
+- `decks/purim/images/{card_id}.png` - Card fronts with text overlay (letter: 2375x3125 @ 300 DPI)
+- `decks/purim/backs/{card_id}_back.png` - Teacher content backs (same size)
+- `decks/purim/print/purim-letter.pdf` - Duplex PDF: front1, back1, front2… (flip on long edge)
 
-**Export rendering:** Fronts render at 500x700 CSS with 3x device scale (matches design editor). Backs render at 1500x2100 CSS with 1x scale (print-calibrated fonts).
+**Export rendering:** Everything renders from `/print/{deckId}?format=…`, one sheet per page at the
+exact paper size from `card-designer/print_formats.json`. The Card Designer only reads **v3** decks
+(`schemas/deck.v3.schema.json`); convert old ones with `python src/migrate_v2_to_v3.py`.
 
 ### 5. Review Cards
 
@@ -143,7 +150,7 @@ See [agents/AGENT_PIPELINE.md](agents/AGENT_PIPELINE.md) for detailed YAML schem
 | Generate 3 variants | `python generate_images.py ../decks/yitro/deck.json --card story_1 --variants 3` |
 | Generate without style hero | `python generate_images.py ../decks/yitro/deck.json --no-hero` |
 | Sync deck to Card Designer | `./sync-deck.sh purim` |
-| Export final cards | `cd card-designer && npm run export purim -- --backs` |
+| Export final cards | `cd card-designer && npm run export purim -- --backs --pdf` |
 
 ## Environment Variables
 
@@ -221,10 +228,11 @@ For code reviews, output findings incrementally as files are read rather than wa
 - **AI generates scene-only images** to `raw/` directory (no text in image)
 - **`build_generation_prompt()`** layers style, safety, composition, and rules at generation time
 - **Card Designer (React)** renders text overlays and teacher content
-- **Card Front**: Full-bleed image with React-rendered text overlay (all titles use FitText dynamic scaling)
-- **Card Back**: 5x7 printable teacher content (scripts, activities, questions)
+- **Card Front**: Full-bleed image with React-rendered title band, type chip, story number, Hebrew badge
+- **Card Back**: teacher side (SAY / ASK / Hebrew), one `CardBack` component for all types
+- **Default size is 8.5x11 letter** (duplex, 0.3" margin); 5x7 with bleed is the optional vendor target
 - Image prompts in deck.json are **pure scene descriptions** — no style, composition, or rules
-- **Export resolution**: Fronts render at 500x700 CSS @ 3x scale = 1500x2100 output. Backs render at 1500x2100 CSS @ 1x.
+- **Export resolution**: 300 DPI. Letter card PNG = 2375x3125; 5x7 card PNG = 1500x2100. PDFs are vector text.
 
 **Deck Data Flow:**
 ```
