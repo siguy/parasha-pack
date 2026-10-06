@@ -1,180 +1,212 @@
 #!/usr/bin/env python3
 """
-Generate character identity reference sheets for Parasha Pack.
+Generate character identity sheets into the shared character library (characters/{key}/).
 
-Creates a single identity sheet per character (portrait + full body) which
-serves as the visual source of truth for all card image generations.
+An identity sheet is the one picture every card generation copies a character from:
+a 3-angle turnaround (front, 3/4, side) plus a row of 4 expressions, plain light
+background, no text. The look comes from the character's locked visual_anchors in
+characters/{key}/character.yaml, and the art style from a series style plate.
 
-Usage:
-    python generate_references.py --output ../decks/purim/references
-    python generate_references.py --output ../decks/purim/references --character esther
+Workflow (Simon picks, like an audition):
+    # 1. Make 2 candidate versions -> characters/adam/identity_v1.png, identity_v2.png
+    python generate_references.py --character adam --versions 2
+    # 2. Promote the winner -> identity.png; the others move to characters/adam/alternates/
+    python generate_references.py --character adam --accept v2
+
+character.yaml `identity:` is updated by --accept.
 """
 
 import argparse
-import json
+import logging
 import os
+import re
+import shutil
 import sys
 import time
 from pathlib import Path
 
+import character_library
+import style_config
 from config import DEFAULT_IMAGE_SIZE, VALID_IMAGE_SIZES
-from generate_images import generate_image_nano_banana, setup_logging
+from generate_images import _load_image_as_part, generate_image_nano_banana, setup_logging
+
+logger = logging.getLogger("generate_images")  # same logger: errors go to project.log
+
+IDENTITY_ASPECT_RATIO = "16:9"
+DEFAULT_STYLE_PLATE = "landscape"
+VERSION_PATTERN = re.compile(r"identity_v(\d+)\.png$")
 
 
-def generate_image(prompt: str, api_key: str, output_path: str, aspect_ratio: str = "16:9",
-                   image_size: str = DEFAULT_IMAGE_SIZE) -> bool:
+def generate_image(prompt: str, api_key: str, output_path: str, aspect_ratio: str = IDENTITY_ASPECT_RATIO,
+                   image_size: str = DEFAULT_IMAGE_SIZE, reference_images: list = None,
+                   purpose: str = "") -> bool:
     """Generate one image with the shared Nano Banana 2 helper (model from GEMINI_IMAGE_MODEL)."""
-    result = generate_image_nano_banana(prompt, api_key, output_path,
-                                        aspect_ratio=aspect_ratio, image_size=image_size)
+    result = generate_image_nano_banana(prompt, api_key, output_path, aspect_ratio=aspect_ratio,
+                                        image_size=image_size, reference_images=reference_images,
+                                        purpose=purpose)
     return result["success"]
 
 
 # =============================================================================
-# CHARACTER DEFINITIONS
+# PROMPT
 # =============================================================================
 
-CHARACTERS = {
-    "moses": {
-        "name": "Moses",
-        "base_description": """Children's book cartoon character MOSES:
-- Friendly middle-aged man
-- Warm brown skin
-- Kind, gentle LARGE expressive eyes (20% of face)
-- Short dark beard with touch of gray
-- Blue head covering flowing down
-- Blue outer robe with cream/white undergarment
-- Wooden shepherd's crook staff
-- Rounded, friendly cartoon style
-- Thick clean black outlines
-- Bold colors, simple shapes""",
-    },
-    "yitro": {
-        "name": "Yitro",
-        "base_description": """Children's book cartoon character YITRO (Jethro):
-- Wise elderly grandfather figure
-- Long flowing WHITE/GRAY beard (distinguished)
-- Warm, twinkling wise eyes (LARGE, 20% of face)
-- Tan/olive head covering
-- Colorful earth-toned Midianite robes (browns, reds, golds with geometric patterns)
-- Walking staff (wooden, gnarled)
-- Grandfatherly gentle smile
-- Rounded, friendly cartoon style
-- Thick clean black outlines
-- Bold colors, simple shapes""",
-    },
-}
+def get_identity_prompt(key: str, library_dir=None, with_style_plate: bool = True) -> str:
+    """Build the identity-sheet prompt from the character's locked anchors in character.yaml."""
+    character = character_library.load_character(key, library_dir)
+    if not character:
+        raise ValueError(f"'{key}' is not in the characters/ library. Create characters/{key}/character.yaml first.")
 
+    anchors = "\n".join(f"- {a}" for a in character["visual_anchors"])
+    personality = ", ".join(character.get("personality", []))
+    style_line = ("Image 1 is a style plate: match its art style exactly (line weight, flat colors "
+                  "with one soft gradient, warm palette). Copy the style only, not its content.\n"
+                  if with_style_plate else "")
 
-def get_identity_prompt(char_key: str) -> str:
-    """Portrait + Full Body identity sheet."""
-    char = CHARACTERS[char_key]
-    return f"""Create a CHARACTER IDENTITY REFERENCE SHEET for a children's book.
+    return f"""{style_line}Create a CHARACTER IDENTITY SHEET for a children's picture-card series (ages 4-6).
 
 === STYLE ===
-Vivid, high-contrast cartoon style for ages 4-6.
-- Rounded, friendly shapes
-- Large expressive eyes (20% of face)
-- Thick, clean black outlines (2-3px)
-- Bold primary colors
-- Simple, memorable design
-- NO text or labels in the image
+{style_config.load()["style_anchors"].strip()}
+Head-to-body ratio about 1:3. Large friendly eyes. Rounded, simple shapes.
+Same proportions and line weight as every other character in this series.
 
-=== CHARACTER ===
-{char["base_description"]}
+=== CHARACTER: {character["name_en"].upper()} ({character["gender"]}) ===
+{anchors}
+Personality: {personality}.
+Modest Modern Orthodox dress: simple, full-coverage clothing as described above. No leaves, nothing revealing.
 
 === LAYOUT ===
-Side-by-side panels on clean white background:
+One clean sheet on a plain, light, solid background. No scenery.
+TOP ROW: a 3-angle turnaround of the full figure, head to toe, standing relaxed:
+front view, three-quarter view, side view.
+BOTTOM ROW: 4 head-and-shoulders portraits with different expressions:
+happy, curious, caring, surprised.
+Every drawing shows the EXACT SAME CHARACTER: same face, hair, skin, clothing and colors.
+Hands relaxed and simple, exactly 5 fingers each.
 
-LEFT (50%): CLOSE-UP PORTRAIT
-- Head and shoulders
-- Neutral friendly expression
-- Clear view of face, eyes, beard, head covering
-- Looking slightly toward viewer
-
-RIGHT (50%): FULL BODY STANDING
-- Complete figure head to toe
-- Same outfit and features
-- Standing in relaxed pose
-- Holding staff naturally
-- Same character, same style
-
-Both panels must show the EXACT SAME CHARACTER with identical features, colors, and style.
-Clean white background, no environment.
-"""
+=== CRITICAL ===
+NO text, captions, labels, names, numbers or letters anywhere on the sheet.
+No borders or panel frames; just the drawings on the plain background."""
 
 
-def generate_identity_refs(api_key: str, output_dir: str, characters: list = None,
-                           image_size: str = DEFAULT_IMAGE_SIZE):
-    """Generate identity reference sheets for specified characters."""
-    ref_dir = Path(output_dir)
-    ref_dir.mkdir(parents=True, exist_ok=True)
+# =============================================================================
+# VERSIONS
+# =============================================================================
 
-    if characters is None:
-        characters = list(CHARACTERS.keys())
+def character_folder(key: str, library_dir=None) -> Path:
+    return Path(library_dir or character_library.LIBRARY_DIR) / character_library.resolve_key(key, library_dir)
 
-    manifest = {}
 
-    # Load existing manifest to preserve entries for characters we're not regenerating
-    manifest_path = ref_dir / "manifest.json"
-    if manifest_path.exists():
-        try:
-            with open(manifest_path, 'r', encoding='utf-8') as f:
-                manifest = json.load(f)
-        except Exception:
-            pass
+def next_version(folder: Path) -> int:
+    """1 + the highest identity_vN.png already in the folder or its alternates/ (so numbers never repeat)."""
+    numbers = [int(m.group(1)) for p in list(folder.glob("identity_v*.png")) + list(folder.glob("alternates/identity_v*.png"))
+               if (m := VERSION_PATTERN.search(p.name))]
+    return max(numbers, default=0) + 1
 
-    for char_key in characters:
-        if char_key not in CHARACTERS:
-            print(f"Unknown character: {char_key}")
-            continue
 
-        char_name = CHARACTERS[char_key]["name"]
-        print(f"\n{'='*50}")
-        print(f"Generating identity reference for: {char_name}")
-        print('='*50)
+def generate_identity_versions(key: str, api_key: str, versions: int = 2, style_plate: str = DEFAULT_STYLE_PLATE,
+                               image_size: str = DEFAULT_IMAGE_SIZE, library_dir=None) -> list:
+    """Generate N candidate sheets as characters/{key}/identity_vN.png. Returns the saved paths."""
+    folder = character_folder(key, library_dir)
+    prompt = get_identity_prompt(key, library_dir, with_style_plate=bool(style_plate))
 
-        identity_path = ref_dir / f"{char_key}_identity.png"
-        print(f"\n  Identity Sheet (Portrait + Full Body)...")
-        if generate_image(get_identity_prompt(char_key), api_key, str(identity_path), "16:9", image_size):
-            print(f"    -> Saved: {identity_path.name}")
-            manifest[char_key] = {"identity": identity_path.name}
+    reference_images = []
+    if style_plate:
+        plate = style_config.plate_path(style_plate)
+        if plate:
+            reference_images = [{"text": f"Image 1 = {style_config.reference_label('style_plate', style_plate)}:"},
+                                _load_image_as_part(plate)]
         else:
-            print(f"    -> FAILED")
-        time.sleep(3)
+            logger.error(f"Style plate '{style_plate}' not found; generating {key} without a style reference")
 
-    # Save manifest with relative filenames
-    with open(manifest_path, "w", encoding="utf-8") as f:
-        json.dump(manifest, f, indent=2, ensure_ascii=False)
-    print(f"\n\nManifest saved to: {manifest_path}")
+    saved = []
+    start = next_version(folder)
+    for number in range(start, start + versions):
+        path = folder / f"identity_v{number}.png"
+        print(f"[GEN] {key} identity v{number} ({image_size}, {IDENTITY_ASPECT_RATIO})...")
+        if generate_image(prompt, api_key, str(path), IDENTITY_ASPECT_RATIO, image_size,
+                          reference_images, purpose=f"{key} identity v{number}"):
+            print(f"  -> Saved: {path}")
+            saved.append(path)
+        else:
+            logger.error(f"  {key} identity v{number} FAILED")
+        time.sleep(2)
 
-    return manifest
+    (folder / "identity_prompt.txt").write_text(prompt, encoding="utf-8")
+    print(f"{key}: {len(saved)} of {versions} versions saved")
+    return saved
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Generate character identity reference sheets")
-    parser.add_argument("--output", "-o", default="decks/yitro/references", help="Output directory")
-    parser.add_argument("--api-key", help="Gemini API key (or set GEMINI_API_KEY)")
-    parser.add_argument("--character", "-c", help="Generate for specific character only")
+def set_yaml_identity(yaml_path: Path, filename: str) -> None:
+    """Set `identity:` in character.yaml, keeping every comment and line as written."""
+    text = yaml_path.read_text(encoding="utf-8")
+    new_text, count = re.subn(r"^identity:.*$", f"identity: {filename}", text, count=1, flags=re.M)
+    if count == 0:
+        raise ValueError(f"No 'identity:' line in {yaml_path}")
+    yaml_path.write_text(new_text, encoding="utf-8")
+
+
+def accept_version(key: str, version, library_dir=None) -> Path:
+    """
+    Promote identity_vN.png to identity.png. Every other identity_v*.png (and an older
+    identity.png, if there was one) moves to characters/{key}/alternates/.
+    Updates character.yaml `identity: identity.png`.
+    """
+    number = int(str(version).lower().lstrip("v"))
+    folder = character_folder(key, library_dir)
+    chosen = folder / f"identity_v{number}.png"
+    if not chosen.exists():
+        raise FileNotFoundError(f"{chosen} does not exist")
+
+    alternates = folder / "alternates"
+    alternates.mkdir(exist_ok=True)
+
+    current = folder / "identity.png"
+    if current.exists():
+        backup = alternates / "identity_previous.png"
+        n = 2
+        while backup.exists():
+            backup = alternates / f"identity_previous_{n}.png"
+            n += 1
+        shutil.move(str(current), str(backup))
+        print(f"  old identity.png -> {backup.relative_to(folder)}")
+
+    shutil.move(str(chosen), str(current))
+    for other in sorted(folder.glob("identity_v*.png")):
+        shutil.move(str(other), str(alternates / other.name))
+        print(f"  {other.name} -> alternates/")
+
+    set_yaml_identity(folder / "character.yaml", "identity.png")
+    print(f"{key}: identity_v{number}.png is now identity.png")
+    return current
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Generate or accept character identity sheets (characters/{key}/)")
+    parser.add_argument("--character", "-c", required=True, help="Library key, e.g. adam")
+    parser.add_argument("--versions", type=int, default=2, help="How many candidate versions to make (default 2)")
+    parser.add_argument("--accept", help="Promote a version to identity.png, e.g. --accept v2 (no API call)")
+    parser.add_argument("--style-plate", default=DEFAULT_STYLE_PLATE,
+                        help=f"Style plate to pass as Image 1 (default {DEFAULT_STYLE_PLATE}; 'none' to skip)")
     parser.add_argument("--size", default=DEFAULT_IMAGE_SIZE, choices=VALID_IMAGE_SIZES,
                         help=f"Output resolution (default {DEFAULT_IMAGE_SIZE})")
-
-    args = parser.parse_args()
+    parser.add_argument("--api-key", help="Gemini API key (or set GEMINI_API_KEY)")
+    args = parser.parse_args(argv)
     setup_logging()
+
+    if args.accept:
+        accept_version(args.character, args.accept)
+        return
 
     api_key = args.api_key or os.environ.get("GEMINI_API_KEY")
     if not api_key:
         print("Error: Gemini API key required")
         sys.exit(1)
 
-    characters = [args.character] if args.character else None
-
-    generate_identity_refs(api_key, args.output, characters, image_size=args.size)
-
-    print("\n" + "="*50)
-    print("REFERENCE GENERATION COMPLETE")
-    print("="*50)
-    print(f"\nIdentity sheets saved to: {args.output}/")
-    print("  - *_identity.png : Portrait + Full Body")
+    plate = None if args.style_plate.lower() == "none" else args.style_plate
+    generate_identity_versions(args.character, api_key, args.versions, plate, args.size)
+    print(f"\nLook at characters/{args.character}/identity_v*.png, then run:")
+    print(f"  python generate_references.py --character {args.character} --accept vN")
 
 
 if __name__ == "__main__":

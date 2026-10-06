@@ -130,11 +130,11 @@ class CharacterWorkflow:
 
     def generate_references(self, api_key: str = None, output_dir: str = None) -> Dict[str, str]:
         """
-        Step 3: Generate character reference sheet images.
+        Step 3: Generate 2 candidate identity sheets in characters/{key}/.
 
         Args:
             api_key: Gemini API key (or uses GEMINI_API_KEY env var)
-            output_dir: Output directory (defaults to deck_path/references)
+            output_dir: Ignored (kept for old callers); sheets always go to characters/{key}/
 
         Returns:
             Dictionary mapping reference type to file path
@@ -146,40 +146,27 @@ class CharacterWorkflow:
         if not api_key:
             raise ValueError("API key required. Set GEMINI_API_KEY or pass api_key parameter.")
 
-        # Determine output directory
-        if output_dir:
-            ref_dir = Path(output_dir)
-        elif self.deck_path:
-            ref_dir = self.deck_path / "references"
-        else:
-            ref_dir = Path("references")
-
-        ref_dir.mkdir(parents=True, exist_ok=True)
-
         print(f"\n{'='*50}")
-        print(f"GENERATING REFERENCES: {self.name}")
-        print(f"Output: {ref_dir}")
+        print(f"GENERATING IDENTITY SHEETS: {self.name}  ->  characters/{self.key}/")
         print('='*50)
 
-        # Import the generation function
+        # Identity sheets now live in the shared library: characters/{key}/identity_vN.png
         try:
-            from generate_references import generate_image
+            import character_library
+            from generate_references import generate_identity_versions
         except ImportError:
             print("ERROR: generate_references module not found")
             return {}
 
-        base_desc = self.design_data.get_base_description()
+        if not character_library.load_character(self.key):
+            print(f"ERROR: characters/{self.key}/character.yaml is missing. Create it (locked anchors) "
+                  f"first; identity sheets are built from it.")
+            return {}
 
-        # Generate ONLY identity reference (single source of truth)
-        output_path = ref_dir / f"{self.key}_identity.png"
-        print(f"\n[IDENTITY] Generating single reference sheet...")
-
-        prompt = self._get_identity_prompt(base_desc)
-        if generate_image(prompt, api_key, str(output_path), "16:9"):
-            print(f"  -> Saved: {output_path.name}")
-            self.reference_paths["identity"] = str(output_path)
-        else:
-            print(f"  -> FAILED")
+        # 2 candidate versions; Simon picks one with
+        #   python generate_references.py --character {key} --accept vN
+        for number, path in enumerate(generate_identity_versions(self.key, api_key, versions=2), start=1):
+            self.reference_paths[f"identity_candidate_{number}"] = str(path)
 
         return self.reference_paths
 
@@ -264,35 +251,3 @@ class CharacterWorkflow:
         print('='*50)
 
         return workflow
-
-    # Private prompt generation methods
-    def _get_identity_prompt(self, base_desc: str) -> str:
-        return f"""Create a CHARACTER IDENTITY REFERENCE SHEET for a children's book.
-
-=== STYLE ===
-Vivid, high-contrast cartoon style for ages 4-6.
-- Rounded, friendly shapes
-- Large expressive eyes (20% of face)
-- Thick, clean black outlines (2-3px)
-- Bold primary colors
-- Simple, memorable design
-- NO text or labels in the image
-
-=== CHARACTER ===
-{base_desc}
-
-=== LAYOUT ===
-Side-by-side panels on clean white background:
-
-LEFT (50%): CLOSE-UP PORTRAIT
-- Head and shoulders
-- Neutral friendly expression
-- Clear view of face and distinguishing features
-
-RIGHT (50%): FULL BODY STANDING
-- Complete figure head to toe
-- Same outfit and features
-- Standing in relaxed pose
-
-Both panels must show the EXACT SAME CHARACTER with identical features, colors, and style.
-"""
