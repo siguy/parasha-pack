@@ -253,48 +253,54 @@ See [/decks/CLAUDE.md](../decks/CLAUDE.md) for full JSON examples of each card t
 
 ---
 
-## Card Back Structure (SAY / DO / ASK / TIP)
+## Card Back Structure (v3: SAY / ASK / HEBREW)
 
-Every card back follows a consistent 4-section layout for teacher usability:
+Design: `docs/mockups/bereshit-v3.html`. One `CardBack` component renders every type.
+The teacher reads the back top to bottom:
 
-| Section | Label | Purpose | Space |
-|---------|-------|---------|-------|
-| **SAY THIS** | White bg | Teacher script — what to read aloud | ~35% |
-| **DO THIS** | Tinted bg | Activity or action for the moment | ~20% |
-| **ASK THIS** | Light blue tint | Discussion prompts (2 open-ended questions) | ~25% |
-| **TIP** | Light amber tint | 1 actionable teacher tip | ~15% |
+| Part | Shows | Source field (`back.*`) | Budget |
+|------|-------|-------------------------|--------|
+| **Header** | type icon + label ("Story 1"), "~5 min", ★ CORE | `minutes`, `core` | |
+| **Title** | English title + Hebrew | card `title_en`, `title_he` (or `back.title_he`) | |
+| **Goal** | 🎯 objective + the deck value pill | `objective`, deck `value.en` | **≤10 words** |
+| **SAY** | what to read aloud. **Bold** = say it; ▸ chips = do it | `say` (`**bold**`, `[cue]`, newline) | **≤50 words** |
+| **ASK** | ? questions, ✋ for answers without words | `ask[] {text, type}` | **≤2 questions, ≤12 words each** |
+| **HEBREW** | word · translit · "meaning" + ✋ gesture | `hebrew {word, translit, meaning, note?, gesture}` | |
+| **Footer** | ▸ transition (left), Guide p.N (right) | `transition`, `guide_ref {page, note?}` | |
 
-Plus a compact title line at top and a transition line footer.
+`ask[].type` is one of `recall`, `wh`, `open`, `distancing`, `nonverbal`.
 
-### Section Mapping by Card Type
+### Sections by Card Type
 
-| Card Type | SAY THIS | DO THIS | ASK THIS | TIP |
-|-----------|----------|---------|----------|-----|
-| **Anchor** | `teacher_script` | `emotional_hook_en` (read aloud) | `discussion_prompts` | `teacher_tip` |
-| **Spotlight** | `teacher_script` | emotion expression + `teaching_moment_en` | `discussion_prompts` | `teacher_tip` |
-| **Story** | `teacher_script` | `roleplay_prompt` | `discussion_prompts` | `teacher_tip` |
-| **Connection** | `torah_talk_instruction` | feeling_faces (emoji grid) | `questions[]` (EN only) | `teacher_tip` |
-| **Tradition** | `teacher_script` | `child_action_en` | `discussion_prompts` | `teacher_tip` |
-| **Power Word** | `teacher_script` | `pronunciation_guide` | `discussion_prompts` | `teacher_tip` |
+| Card Type | Sections (top to bottom) |
+|-----------|--------------------------|
+| **Anchor** | SAY, ASK, THIS WEEK strip (deck `week_plan`) |
+| **Spotlight** | SAY, ASK, HEBREW |
+| **Story** | SAY, ASK, HEBREW |
+| **Connection** | SAY, ASK, feeling faces (`back.faces`, drawn SVG, max 4) |
+| **Tradition** | SAY, ASK, HEBREW |
+| **Power Word** | trio boxes (`back.trio`, exactly 3), SAY, ASK |
+| **Home** | AT THE SHABBAT TABLE, ASK (`shabbat_question` EN + HE), HEBREW, TRY AT HOME (`try_at_home`, tagged Shabbat-friendly / before Shabbat) |
 
-### Required Fields (All Cards)
+Everything else (background, Sages, hard questions, adaptations, extensions, tips) goes in
+`card.guide` and is printed in the teacher guide booklet, not on the card.
 
-- `teacher_tip` — 1 actionable sentence of classroom management or pedagogy advice
-- `transition_line` — thematic bridge displayed in footer, works in any card order
+### Colors and Icons
 
-### Required Fields (Per Type)
+Every type color passes WCAG AA (≥4.5:1) with white and on the cream back. Each type also has its
+own icon so color is never the only cue. Source: `card-designer/lib/cardTypes.ts`.
 
-- **All except Connection:** `discussion_prompts` — array of 2 open-ended questions
-- **Power Word only:** `pronunciation_guide` — syllable breakdown + "Rhymes with" hint
+| Type | Color | Icon |
+|------|-------|------|
+| Anchor | `#5B2D8E` | crown |
+| Spotlight | `#7E601A` | star |
+| Story | `#B83227` | open book |
+| Connection | `#1F5FA8` | heart |
+| Tradition | `#0E7470` | candle |
+| Power Word | `#2D7A3A` | speech bubble |
+| Home | `#A84B16` | house |
 
-### Design Tokens
-
-- SAY: white background, largest section, `text-lg` font
-- DO: `${borderColor}10` tint background, `text-base` font
-- ASK: light blue tint `#0074d915`, `text-base` font
-- TIP: light amber tint `#f59e0b15`, `text-base` font
-- Each section has a 4px left border accent in the card's border color
-- Transition line: small italic centered text in footer bar
+Long text is never clipped: an over-budget back spills visibly past its footer.
 
 ---
 
@@ -310,8 +316,12 @@ AI generates scene-only images. Card Designer (React) renders text overlays and 
 
 | File | Size | Purpose |
 |------|------|---------|
-| `raw/{card_id}.png` | 1500x2100 | Scene-only AI image (no text) |
-| `images/{card_id}.png` | 1500x2100 | Card front with text overlay |
-| `backs/{card_id}_back.png` | 1500x2100 | Teacher card back (5x7 @ 300 DPI) |
+| `raw/{card_id}.png` | 3:4 | Scene-only AI image (no text) |
+| `images/{card_id}.png` | 2375x3125 | Card front, letter @ 300 DPI (5x7: `images/5x7/`, 1500x2100) |
+| `backs/{card_id}_back.png` | 2375x3125 | Teacher card back, letter @ 300 DPI (5x7: `backs/5x7/`) |
+| `print/{deck}-{format}.pdf` | letter / 5x7 pages | Duplex print PDF, front1, back1, front2… |
+
+Default card = **8.5×11 letter** (one sheet per card, duplex, 0.3" white margin). Optional
+**5×7 vendor** target: 5.25×7.25" with 0.125" bleed and a 0.25" safe zone.
 
 See [/decks/CLAUDE.md](../decks/CLAUDE.md) for full JSON examples of each card type.

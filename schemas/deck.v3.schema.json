@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parasha-pack/schemas/deck.v3.schema.json",
+  "title": "Parasha Pack deck (v3)",
+  "description": "One deck.json = one weekly parasha (or holiday). Word budgets (objective <=10, say <=50, ask <=2x12) are checked by the validator, not here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "parasha_en", "parasha_he", "value", "palette", "web_theme", "story_world", "week_plan", "cards"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9_-]+$", "description": "Folder name under decks/, e.g. 'bereshit'" },
+    "version": { "const": "3.0" },
+    "parasha_en": { "type": "string", "description": "Parasha or holiday name in English, e.g. 'Bereshit' or 'Purim'" },
+    "parasha_he": { "type": "string" },
+    "holiday": { "type": "boolean", "description": "true for holiday decks (they add tradition cards)" },
+    "ref": { "type": "string", "description": "Source text, e.g. 'Genesis 1:1-6:8'" },
+    "value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "he", "kid_phrase", "gesture"],
+      "properties": {
+        "en": { "type": "string", "description": "Short label for the value pill on every back, e.g. 'Caring for the world'" },
+        "he": { "type": "string" },
+        "kid_phrase": { "type": "string", "description": "How we say it to children, e.g. 'caring for Hashem's world'" },
+        "gesture": { "type": "string" }
+      }
+    },
+    "palette": {
+      "type": "array",
+      "description": "Five hex colors for this deck's art and placeholder fronts",
+      "items": { "$ref": "#/$defs/hex" },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "web_theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "secondary", "accent", "wash"],
+      "properties": {
+        "primary": { "$ref": "#/$defs/hex" },
+        "secondary": { "$ref": "#/$defs/hex" },
+        "accent": { "$ref": "#/$defs/hex" },
+        "wash": { "$ref": "#/$defs/hex" }
+      }
+    },
+    "story_world": { "type": "string", "description": "Setting description shared by all image prompts" },
+    "week_plan": {
+      "type": "array",
+      "description": "Shown as the THIS WEEK strip on the anchor back",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["day", "label", "cards"],
+        "properties": {
+          "day": { "type": "integer", "minimum": 1 },
+          "label": { "type": "string", "description": "e.g. 'This card + Story 1'" },
+          "cards": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "cards": { "type": "array", "items": { "$ref": "#/$defs/card" }, "minItems": 1 }
+  },
+
+  "$defs": {
+    "hex": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+
+    "hebrew": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["word", "translit", "meaning"],
+      "properties": {
+        "word": { "type": "string", "description": "Hebrew with nikud" },
+        "translit": { "type": "string", "description": "Stress in caps, e.g. 'a-da-MAH'" },
+        "meaning": { "type": "string" },
+        "note": { "type": "string", "description": "Optional aside after the meaning, e.g. 'sounds like Adam!'" },
+        "gesture": { "type": "string", "description": "Hand motion that goes with the word" }
+      }
+    },
+
+    "ask": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "type"],
+      "properties": {
+        "text": { "type": "string" },
+        "type": { "enum": ["recall", "wh", "open", "distancing", "nonverbal"] }
+      }
+    },
+
+    "guide_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page"],
+      "properties": {
+        "page": { "type": "integer", "minimum": 1 },
+        "note": { "type": "string", "description": "Shown after the page number, e.g. 'the garden & the tree'" }
+      }
+    },
+
+    "shabbat_question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "he"],
+      "properties": { "en": { "type": "string" }, "he": { "type": "string" } }
+    },
+
+    "try_at_home": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text", "tag"],
+        "properties": {
+          "text": { "type": "string" },
+          "tag": { "enum": ["shabbat-friendly", "before-shabbat"] }
+        }
+      }
+    },
+
+    "back": {
+      "description": "The teacher side of the card. 'say' uses **bold** for words read aloud and [cue] for actions.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["objective", "say", "ask", "minutes", "core", "transition"],
+      "properties": {
+        "objective": { "type": "string", "description": "The goal line. <=10 words. May use **bold**." },
+        "title_he": { "type": "string", "description": "Hebrew beside the title on the back, only if different from the card's title_he" },
+        "say": { "type": "string", "description": "<=50 words. **bold** = read aloud, [cue] = action chip, newline = line break" },
+        "ask": { "type": "array", "items": { "$ref": "#/$defs/ask" }, "maxItems": 2 },
+        "hebrew": { "$ref": "#/$defs/hebrew" },
+        "minutes": { "type": "integer", "minimum": 1 },
+        "core": { "type": "boolean", "description": "true = do this card even when time is short" },
+        "transition": { "type": "string", "description": "Footer line leading to the next card" },
+        "guide_ref": { "$ref": "#/$defs/guide_ref" },
+        "trio": {
+          "description": "power_word only: three boxes (word / gesture / fact)",
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["big", "line1", "line2"],
+            "properties": { "big": { "type": "string" }, "line1": { "type": "string" }, "line2": { "type": "string" } }
+          }
+        },
+        "faces": {
+          "description": "connection only: keys of the drawn SVG feeling faces",
+          "type": "array",
+          "items": { "enum": ["happy", "proud", "calm", "excited", "scared", "brave", "sad", "surprised"] },
+          "maxItems": 4
+        }
+      }
+    },
+
+    "home_back": {
+      "description": "The home card back: a Shabbat-table question and things to try at home.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["objective", "shabbat_question", "try_at_home", "transition"],
+      "properties": {
+        "objective": { "type": "string", "description": "May use **bold**, e.g. 'We learned about **caring for Hashem's world**'" },
+        "shabbat_question": { "$ref": "#/$defs/shabbat_question" },
+        "hebrew": { "$ref": "#/$defs/hebrew" },
+        "try_at_home": { "$ref": "#/$defs/try_at_home" },
+        "transition": { "type": "string" }
+      }
+    },
+
+    "guide": {
+      "description": "Teacher guide booklet content for this card (not printed on the card).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pshat", "sages", "hard_questions", "adapt", "extend", "tip"],
+      "properties": {
+        "pshat": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["text", "refs"],
+          "properties": { "text": { "type": "string" }, "refs": { "type": "array", "items": { "type": "string" } } }
+        },
+        "sages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["text", "source"],
+            "properties": { "text": { "type": "string" }, "source": { "type": "string" } }
+          }
+        },
+        "hard_questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["q", "answer", "redirect"],
+            "properties": { "q": { "type": "string" }, "answer": { "type": "string" }, "redirect": { "type": "string" } }
+          }
+        },
+        "adapt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["see", "do", "join"],
+          "properties": { "see": { "type": "string" }, "do": { "type": "string" }, "join": { "type": "string" } }
+        },
+        "extend": { "type": "string" },
+        "tip": { "type": "string" }
+      }
+    },
+
+    "card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["card_id", "card_type", "title_en", "title_he", "characters_in_scene", "image_prompt", "image_path", "back", "guide"],
+      "properties": {
+        "card_id": { "type": "string", "pattern": "^[a-z_]+_[0-9]+$" },
+        "card_type": { "enum": ["anchor", "spotlight", "story", "connection", "tradition", "power_word", "home"] },
+        "title_en": { "type": "string" },
+        "title_he": { "type": "string" },
+        "characters_in_scene": { "type": "array", "items": { "type": "string" } },
+        "image_prompt": { "type": "string", "description": "Scene only. No style, text or layout rules." },
+        "image_path": { "type": "string", "description": "Usually raw/{card_id}.png" },
+        "sequence_number": { "type": "integer", "minimum": 1, "description": "story cards only" },
+        "hebrew_keyword": {
+          "description": "Front badge (story cards)",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["word", "translit", "meaning"],
+          "properties": { "word": { "type": "string" }, "translit": { "type": "string" }, "meaning": { "type": "string" } }
+        },
+        "back": { "type": "object" },
+        "guide": { "$ref": "#/$defs/guide" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "card_type": { "const": "home" } } },
+          "then": { "properties": { "back": { "$ref": "#/$defs/home_back" } } },
+          "else": { "properties": { "back": { "$ref": "#/$defs/back" } } }
+        },
+        {
+          "if": { "properties": { "card_type": { "const": "story" } } },
+          "then": { "required": ["sequence_number"] }
+        }
+      ]
+    }
+  }
+}

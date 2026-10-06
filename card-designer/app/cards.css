@@ -1,0 +1,160 @@
+/*
+ * Card styles (v3), ported from docs/mockups/bereshit-v3.html.
+ *
+ * Every size is in cqw ("container query width": 1cqw = 1% of the card's
+ * width), so the SAME markup renders correctly on letter paper, on 5x7, and
+ * in the on-screen viewer. Only the sheet around the card changes.
+ *
+ * --c is the card-type color, set inline by the components.
+ */
+
+:root {
+  --pp-cream: #f5f0e8;
+  --pp-ink: #1e293b;
+  --pp-ink-2: #475569;
+}
+
+/* ---------- SHEET: the piece of paper the card is printed on ---------- */
+/* Outer wrapper is a size container so the sheet padding can use cqw. */
+.pp-sheet-wrap { container-type: inline-size; width: 100%; }
+.pp-sheet { position: relative; width: 100%; background: #fff; }
+.pp-sheet > * { width: 100%; height: 100%; }
+/* 5x7 vendor print: the bleed area is filled with the card color, and the
+   card has square corners because the print shop trims it. */
+.pp-sheet[data-format="5x7"] { background: var(--c); }
+.pp-sheet[data-format="5x7"] .pp-card,
+.pp-sheet[data-format="5x7"] .pp-front { border-radius: 0; }
+
+/* ---------- CARD BACK ---------- */
+.pp-card {
+  width: 100%; height: 100%; background: var(--pp-cream); color: var(--pp-ink);
+  border: .9cqw solid var(--c); border-radius: 1.6cqw; display: flex; flex-direction: column;
+  container-type: inline-size; overflow: visible; font-family: var(--font-assistant), sans-serif;
+}
+.pp-card .hdr {
+  background: var(--c); color: #fff; display: flex; align-items: center; gap: 2.2cqw;
+  padding: 2.2cqw 4cqw; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 3.4cqw;
+}
+.pp-card .hdr svg { width: 4.6cqw; height: 4.6cqw; fill: #fff; flex: none; }
+.pp-card .hdr .meta { margin-left: auto; font-weight: 600; letter-spacing: .02em; text-transform: none; }
+.pp-card .core { background: #fff; color: var(--c); border-radius: 99px; padding: .2cqw 1.6cqw; font-size: 2.8cqw; }
+.pp-card .body { flex: 1; padding: 2.8cqw 4.2cqw 1.4cqw; display: flex; flex-direction: column; gap: 2.2cqw; min-height: 0; }
+.pp-card .title { display: flex; align-items: baseline; justify-content: space-between; gap: 2cqw; }
+.pp-card .title h3 { margin: 0; font-family: inherit; font-size: 5.8cqw; line-height: 1.05; font-weight: 700; }
+.pp-card .title .he { font-family: var(--font-heebo), sans-serif; font-size: 5cqw; color: var(--pp-ink-2); direction: rtl; white-space: nowrap; }
+.pp-card .goal { display: flex; align-items: center; gap: 1.6cqw; font-size: 3.4cqw; color: var(--pp-ink-2); }
+.pp-card .goal > svg { width: 3.8cqw; height: 3.8cqw; flex: none; }
+.pp-card .goal b { color: var(--pp-ink); }
+.pp-card .value {
+  margin-left: auto; color: var(--c); font-weight: 800; font-size: 2.7cqw; letter-spacing: .05em; text-transform: uppercase;
+  border: .45cqw solid var(--c); border-radius: 99px; padding: .2cqw 1.8cqw; white-space: nowrap;
+}
+.pp-card .lbl { font-weight: 800; font-size: 3cqw; letter-spacing: .12em; color: var(--c); margin-bottom: .8cqw; }
+.pp-card .say { border-left: 1.3cqw solid var(--c); padding: .2cqw 0 .2cqw 2.8cqw; }
+.pp-card .say p { margin: 0; font-size: 4.3cqw; line-height: 1.38; }
+.pp-card .say b { font-weight: 700; color: var(--pp-ink); }
+.pp-card .cue {
+  display: inline-block; font-style: italic; font-weight: 600; font-size: 3.4cqw; color: var(--c);
+  background: color-mix(in srgb, var(--c) 12%, transparent); border-radius: 1.2cqw; padding: 0 1.2cqw; margin: .2cqw 0;
+}
+.pp-card .cue::before { content: "▸ "; font-style: normal; }
+.pp-card .ask ul { margin: 0; padding: 0; list-style: none; }
+.pp-card .ask li { font-size: 4cqw; line-height: 1.32; padding-left: 3.8cqw; position: relative; margin-bottom: .4cqw; }
+.pp-card .ask .mark { position: absolute; left: 0; top: 0; font-weight: 800; color: var(--c); }
+.pp-card .ask .mark svg { width: 3.2cqw; height: 3.2cqw; fill: var(--c); margin-top: .7cqw; display: block; }
+.pp-card .ask i { color: var(--pp-ink-2); }
+.pp-card .heb { display: flex; align-items: center; gap: 2.4cqw; background: #fff; border-radius: 1.8cqw; padding: 1.6cqw 2.8cqw; }
+.pp-card .heb .w { font-family: var(--font-heebo), sans-serif; font-size: 6.4cqw; font-weight: 700; direction: rtl; color: var(--c); line-height: 1; }
+.pp-card .heb .t { font-size: 3.3cqw; line-height: 1.3; }
+.pp-card .heb .t b { font-size: 3.7cqw; }
+.pp-card .heb .t svg { width: 3cqw; height: 3cqw; fill: var(--c); display: inline-block; vertical-align: -.4cqw; margin-right: .6cqw; }
+.pp-card .ftr {
+  border-top: .35cqw dashed color-mix(in srgb, var(--c) 45%, transparent); margin: 0 4.2cqw; padding: 1.6cqw 0 2cqw;
+  display: flex; justify-content: space-between; gap: 2cqw; font-size: 3cqw; color: var(--pp-ink-2);
+}
+.pp-card .ftr .next { font-style: italic; }
+.pp-card .ftr .guide { white-space: nowrap; font-weight: 600; display: flex; align-items: center; gap: .8cqw; }
+.pp-card .ftr .guide svg { width: 3.2cqw; height: 3.2cqw; fill: var(--pp-ink-2); }
+.pp-card .spacer { flex: 1; }
+.pp-card .week { display: grid; grid-template-columns: repeat(5, 1fr); gap: .9cqw; }
+.pp-card .week div { background: #fff; border-radius: 1.4cqw; padding: 1.2cqw .8cqw; text-align: center; font-size: 2.8cqw; line-height: 1.22; }
+.pp-card .week b { display: block; color: var(--c); font-size: 3cqw; }
+.pp-card .faces { display: flex; justify-content: space-around; background: #fff; border-radius: 1.8cqw; padding: 1.4cqw; }
+.pp-card .faces figure { margin: 0; text-align: center; font-size: 3cqw; font-weight: 600; }
+.pp-card .faces svg { width: 10cqw; height: 10cqw; display: block; margin: 0 auto .5cqw; }
+.pp-card .trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.4cqw; text-align: center; }
+.pp-card .trio div { background: #fff; border-radius: 1.8cqw; padding: 1.8cqw 1cqw; font-size: 3.1cqw; line-height: 1.25; }
+.pp-card .trio .big {
+  display: block; margin-bottom: .6cqw; font-family: var(--font-heebo), var(--font-fredoka), sans-serif;
+  font-size: 7cqw; font-weight: 700; color: var(--c); line-height: 1.1;
+}
+.pp-card .bi { display: grid; gap: 1.2cqw; }
+.pp-card .bi .en { font-size: 4.4cqw; font-weight: 700; line-height: 1.3; }
+.pp-card .bi .he2 { font-family: var(--font-heebo), sans-serif; direction: rtl; font-size: 4.2cqw; line-height: 1.45; color: var(--pp-ink-2); }
+
+/* ---------- CARD FRONT ---------- */
+/* Title shadows have NO blur on purpose: Chrome turns blurred text-shadows
+   into soft-masked images in the PDF, and macOS Preview prints those as
+   black boxes. A crisp offset shadow stays vector text and prints cleanly. */
+.pp-front {
+  --inset-x: 3%; --inset-y: 3%;
+  position: relative; width: 100%; height: 100%; border-radius: 1.6cqw; overflow: hidden;
+  border: .9cqw solid var(--c); container-type: inline-size; background: #222;
+  font-family: var(--font-assistant), sans-serif;
+}
+.pp-front .art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.pp-front .placeholder-note {
+  position: absolute; left: 0; right: 0; bottom: 14%; text-align: center; color: rgba(255,255,255,.55);
+  font-size: 2.6cqw; letter-spacing: .14em; text-transform: uppercase; font-weight: 600;
+}
+.pp-front .shade { position: absolute; left: 0; right: 0; top: 0; height: 34%; background: linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,0)); }
+.pp-front .ttl { position: absolute; top: 3.5%; left: 7.5%; right: 7.5%; text-align: center; color: #fff; }
+.pp-front .ttl .en {
+  font-family: var(--font-fredoka), sans-serif; font-weight: 700; font-size: 10cqw; line-height: 1.02;
+  text-shadow: 0 .5cqw 0 rgba(0,0,0,.4); /* no -webkit-text-stroke: it draws the font's internal contour lines inside letters */
+}
+.pp-front .ttl .he {
+  font-family: var(--font-heebo), sans-serif; font-weight: 700; font-size: 7cqw; direction: rtl; margin-top: 1cqw;
+  text-shadow: 0 .4cqw 0 rgba(0,0,0,.4);
+}
+.pp-front.has-num .ttl { left: 15%; right: 15%; }
+.pp-front.has-num .ttl .en { font-size: 8.6cqw; }
+.pp-front .chip {
+  position: absolute; bottom: var(--inset-y); left: var(--inset-x); display: flex; align-items: center; gap: 1.4cqw;
+  background: var(--c); color: #fff; border-radius: 99px; padding: 1cqw 2.6cqw 1cqw 1.6cqw; font-weight: 800;
+  font-size: 3.2cqw; letter-spacing: .06em; text-transform: uppercase; border: .4cqw solid #fff;
+}
+.pp-front .chip svg { width: 4.4cqw; height: 4.4cqw; fill: #fff; }
+.pp-front .num {
+  position: absolute; top: var(--inset-y); right: var(--inset-x); width: 11cqw; height: 11cqw; border-radius: 50%;
+  background: #fff; color: var(--c); font-family: var(--font-fredoka), sans-serif; font-weight: 700; font-size: 6.4cqw;
+  display: grid; place-items: center; border: .7cqw solid var(--c);
+}
+.pp-front .kw {
+  position: absolute; bottom: var(--inset-y); right: var(--inset-x); background: #fff; border-radius: 2cqw; padding: .8cqw 2.4cqw;
+  font-family: var(--font-heebo), sans-serif; font-weight: 700; font-size: 6cqw; color: var(--c); direction: rtl;
+  border: .4cqw solid var(--c); line-height: 1.2;
+}
+.pp-front .kw small { font-family: var(--font-assistant), sans-serif; font-size: 3cqw; color: var(--pp-ink-2); display: block; text-align: center; direction: ltr; }
+
+/* Home card front (drawn here, no AI art needed) */
+.pp-front.home { background: color-mix(in srgb, var(--c) 14%, #fff8ec); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3cqw; text-align: center; color: var(--pp-ink); }
+.pp-front.home .house { width: 34cqw; height: 34cqw; border-radius: 50%; background: var(--c); display: grid; place-items: center; box-shadow: 0 0 0 2.4cqw color-mix(in srgb, var(--c) 22%, transparent); }
+.pp-front.home .house svg { width: 18cqw; height: 18cqw; fill: #fff; }
+.pp-front.home .big { font-family: var(--font-fredoka), sans-serif; font-weight: 700; font-size: 13cqw; line-height: 1; color: var(--c); margin-top: 3cqw; }
+.pp-front.home .deck { font-family: var(--font-fredoka), sans-serif; font-weight: 600; font-size: 7cqw; line-height: 1.1; }
+.pp-front.home .deck-he { font-family: var(--font-heebo), sans-serif; font-weight: 700; font-size: 7cqw; direction: rtl; color: var(--pp-ink-2); }
+.pp-front.home .foot { position: absolute; bottom: 5%; left: 0; right: 0; font-size: 3.4cqw; color: var(--pp-ink-2); font-weight: 600; letter-spacing: .08em; }
+
+/* ---------- 5x7: keep text inside the 0.25" safe zone ---------- */
+/* Backs: the header and footer sit close to the trim line, so give them more room. */
+.pp-sheet[data-format="5x7"] .pp-card .hdr { padding-top: 4.4cqw; padding-left: 4.8cqw; padding-right: 4.8cqw; }
+.pp-sheet[data-format="5x7"] .pp-card .ftr { padding-bottom: 4.4cqw; margin: 0 5cqw; }
+/* Fronts: move the corner badges further in from the trim. */
+.pp-sheet[data-format="5x7"] .pp-front { --inset-x: 5.5%; --inset-y: 4.2%; }
+.pp-sheet[data-format="5x7"] .pp-front.has-num .ttl { left: 18%; right: 18%; }
+
+/* ---------- PRINT PAGE (one sheet per PDF page) ---------- */
+.pp-print { margin: 0; background: #fff; }
+.pp-print-page { overflow: hidden; }
+.pp-print-page:not(:last-child) { break-after: page; }

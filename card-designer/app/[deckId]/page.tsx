@@ -1,76 +1,63 @@
-
-import { getDeck } from '@/lib/api';
-import { CardFactory } from '@/components/cards/CardFactory';
-import { CardGrid } from '@/components/layout/CardGrid';
-import { ScaledBack } from '@/components/layout/ScaledBack';
-import { ExportControls } from '@/components/ui/ExportControls';
+/**
+ * Deck viewer: every card's front and back side by side, on the chosen paper.
+ * URL: /{deckId}            letter (default)
+ *      /{deckId}?format=5x7 vendor 5x7 with bleed
+ */
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { getDeck } from '@/lib/api';
+import { getFormat } from '@/lib/formats';
+import { CardFactory } from '@/components/cards/CardFactory';
+import formats from '@/print_formats.json';
 
 interface PageProps {
   params: Promise<{ deckId: string }>;
+  searchParams: Promise<{ format?: string }>;
 }
 
-import fs from 'fs';
-import path from 'path';
-import { DEFAULT_LAYOUT_CONFIG, LayoutConfig } from '@/types/editor';
+export const dynamic = 'force-dynamic';
 
-// ... imports
-
-export default async function DeckPage({ params }: PageProps) {
+export default async function DeckPage({ params, searchParams }: PageProps) {
   const { deckId } = await params;
+  const { id: format } = getFormat((await searchParams).format);
   const deck = await getDeck(deckId);
-  
-  // Read Layout Config from disk
-  let config: LayoutConfig = DEFAULT_LAYOUT_CONFIG;
-  try {
-    const configPath = path.join(process.cwd(), 'layout_settings.json');
-    if (fs.existsSync(configPath)) {
-      config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-    }
-  } catch (e) {
-    console.error("Failed to load layout config", e);
-  }
-
-  if (!deck) {
-    return notFound();
-  }
+  if (!deck) return notFound();
 
   return (
-    <div className="min-h-screen bg-slate-100 pb-20">
+    <div className="min-h-screen bg-[#e7e2d9] pb-20 text-slate-800">
       <header className="bg-white shadow-sm border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-           <div>
-             <h1 className="text-2xl font-bold text-slate-900">{deck.parasha_en} / {deck.parasha_he}</h1>
-             <p className="text-sm text-slate-500">{deck.ref} • {deck.emotional_core}</p>
-           </div>
-           <div className="text-sm font-medium px-3 py-1 bg-slate-100 rounded-full">
-             {deck.cards.length} Cards
-           </div>
+        <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-bold">{deck.parasha_en} / {deck.parasha_he}</h1>
+            <p className="text-sm text-slate-500">{deck.ref} • {deck.value.en} • {deck.cards.length} cards</p>
+          </div>
+          <nav className="flex gap-2 text-sm font-semibold">
+            {Object.keys(formats.formats).map((f) => (
+              <Link
+                key={f}
+                href={`/${deckId}?format=${f}`}
+                className={`px-3 py-1 rounded-full ${f === format ? 'bg-slate-800 text-white' : 'bg-slate-100'}`}
+              >
+                {f}
+              </Link>
+            ))}
+            <Link href={`/print/${deckId}?format=${format}`} className="px-3 py-1 rounded-full bg-slate-100">
+              print view
+            </Link>
+          </nav>
         </div>
       </header>
-      
-      <main className="max-w-[1920px] mx-auto p-8">
-        <CardGrid>
-          {deck.cards.map((card) => (
-             <div key={card.card_id} className="flex flex-col gap-3 items-center">
-                <CardFactory card={card} deckId={deckId} config={config} side="front" />
-                <div className="text-center w-full flex items-center justify-between px-2">
-                  <span className="text-xs font-mono text-gray-400">{card.card_id} (Front)</span>
-                  <ExportControls cardId={card.card_id} />
-                </div>
-                
-                {/* Render Back — 1500x2100 scaled to match front width */}
-                <div className="mt-4 w-full">
-                  <ScaledBack>
-                    <CardFactory card={card} deckId={deckId} config={config} side="back" />
-                  </ScaledBack>
-                  <div className="text-center w-full px-2 mt-1">
-                    <span className="text-xs font-mono text-gray-400">{card.card_id} (Back)</span>
-                  </div>
-                </div>
-             </div>
-          ))}
-        </CardGrid>
+
+      <main className="max-w-[1400px] mx-auto p-8 grid gap-10" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(560px, 1fr))' }}>
+        {deck.cards.map((card) => (
+          <section key={card.card_id}>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="shadow-md"><CardFactory card={card} deck={deck} side="front" format={format} /></div>
+              <div className="shadow-md"><CardFactory card={card} deck={deck} side="back" format={format} /></div>
+            </div>
+            <p className="text-xs font-mono text-slate-500 mt-2">{card.card_id}</p>
+          </section>
+        ))}
       </main>
     </div>
   );
