@@ -2,7 +2,7 @@
 
 Full plan: [docs/plans/2026-10-02-feat-deck-v3-improvements-plan.md](../docs/plans/2026-10-02-feat-deck-v3-improvements-plan.md)
 
-Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly done.** After a /clear, read `progress.md` first.
+Status: **All phases built overnight (2026-10-05/06) as 13 stacked PRs (#3–#15) plus hub#4. Nothing merged.** After a /clear, read `progress.md` first.
 
 ## Version control
 - One PR per main feature; branch `<type>/<desc>` from `main`; squash on merge; every PR has a "Known issues" section.
@@ -10,14 +10,14 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [x] `fix/image-model-nano-banana-2` (#4): model fix; issues 1–3 fixed, 18 tests
 - [x] `docs/deck-v3-plan` stacked on #4
 - [x] `feat/character-library` (#5)
-- [ ] `feat/card-back-v3` (Phase 1.2–1.5)
-- [ ] `feat/deck-validator` (Phase 2)
-- [ ] `feat/character-library` (Phase 3)
-- [ ] `feat/agent-pipeline-v3` (Phase 4)
-- [ ] `feat/styling-v2` (Phase 5)
-- [ ] `feat/bereshit-deck` (Phase 6)
-- [ ] hub: `feat/parashapacks-present-mode` (Phase 7, simonbrief-hub repo)
-- [ ] `feat/extras-*` (Phase 8, one PR per extra or a small group)
+- [x] `feat/card-back-v3` (#6)
+- [x] `feat/deck-validator` (#8)
+- [x] `feat/character-library` (#5)
+- [x] `feat/agent-pipeline-v3` (#10)
+- [x] `feat/styling-v2` (#7)
+- [x] `feat/bereshit-deck` (#12)
+- [x] hub: `feat/parashapacks-present-mode` (hub#4) + `feat/hub-sync` (#9)
+- [x] `feat/extras` (#11), `feat/purim-v3` (#13), `docs/v3-final` (#14), `fix/v3-followups` (#15)
 
 ## Decisions
 - [x] D1–D6 (card count, values spine, Modern Orthodox, hard-text policy, booklet, Simon reviews)
@@ -39,7 +39,7 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [x] 2.3 Tests (139 pytest + 8 markup)
 - [x] 2.4 Logging
 - [x] 2.5 Housekeeping (#8)
-- [~] 2.6 **Image model fix**: Nano Banana 2 via .env, `--size` (default 2K), skip thought images. Done in e893645: 15 tests pass, smoke call OK.
+- [x] 2.6 **Image model fix**: Nano Banana 2 via .env, `--size` (default 2K), skip thought images. Done in e893645: 15 tests pass, smoke call OK.
   - [x] 2.6a The 1K call returned 896×1200, not 768×1024. Run one 2K call to check whether `imageSize` is honored.
   - [x] 2.6b The API returns JPEG saved as `.png`. Save real PNGs.
   - [x] 2.6c Add `project.log` to `.gitignore`.
@@ -54,12 +54,12 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [x] 4.1 00 planner, 02b sensitivity, 05b image QA, merge 03+04, 06 rubric, 07 → tool (#10)
 - [x] 4.2 Per-agent schemas + `assemble_deck.py` (#10)
 - [x] 4.3 Image QA rubric (flag-only) (#10)
-- [ ] 4.4 3-layer docs pass (letter default + 5×7 optional)
+- [x] 4.4 3-layer docs pass (#14)
 
 ## Phase 5 — Print-ready art
 - [x] 5.0 Styling system v2 (10 changes + style_config.yaml) (#7)
 - [x] 5.1 Draft 1K → final 2K (1792×2400); decide on upscaling or 4K after the test print
-- [ ] 5.1b CMYK soft-proof for 5×7 target
+- [ ] 5.1b CMYK soft-proof for 5×7 target (not done; only matters for vendor print)
 - [x] 5.2 Prompt fixes (#7)
 - [x] 5.3 Style plates generated; Simon approved (being committed in feat/styling-v2)
 - [x] 5.4 Letter fronts (#6)
@@ -70,7 +70,7 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [x] 6.2 10 cards (#12)
 - [x] 6.3 Images: 18 drafts + 9 finals, $2.12 (#12)
 - [~] 6.4 Validate + PDFs done; **home-printer test print is Simon's**
-- [ ] 6.5 Metrics vs Purim
+- [x] 6.5 Metrics: Bereshit took 27 calls for 10 cards (2.7 per card, half of them cheap drafts) vs Purim v2's 39 for 16; no redos
 
 ## Phase 7 — Hub website
 - [x] 7.1 `scripts/sync_to_hub.py` (#9)
@@ -94,3 +94,10 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 
 ## Phase 9 — Purim retrofit (later)
 - [x] 9.1 Content + Hebrew fixes, 12 cards, regenerated at 2K (#13); follow-ups: compress PDFs, recompose spotlight_2
+
+## Review (2026-10-06)
+- **Built:** every phase in this list except the CMYK soft-proof (5.1b) and the Year-2 question bank / Hebrew word wall / packaging / AI-disclosure items (7.4–7.7), which were never in tonight's scope. 2 decks (Bereshit new, Purim retrofit), 8 extras, a teacher booklet, the hub present mode.
+- **Quality bar:** 206 tests; both decks validate with 0 errors; every image went through the QA rubric (Bereshit 21–22/22, Purim 19–22/22); PDFs pass the overflow/safe-zone guard; hub build is clean and the Vercel deploy passed.
+- **Cost:** $8.33 of the $15 cap.
+- **Not verified:** physical test print; the Vercel preview behind its login (checked locally only); classroom use.
+- **Lessons:** recorded in `agents/LESSONS_LEARNED.md` and `FOR_SIMON.md` (#14), plus `tasks/lessons.md`.
