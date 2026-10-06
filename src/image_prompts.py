@@ -8,135 +8,29 @@ in generate_images.py at generation time.
 """
 
 from typing import Optional, List
-from schema import CHARACTER_DESIGNS, IMAGE_SAFETY_RULES
+from schema import CHARACTER_DESIGNS
+import style_config
 
+# All style text now lives in style/style_config.yaml (one source shared by the
+# prompt builder, the Visual Director and Image QA). These names are kept so
+# existing imports keep working.
+_cfg = style_config.load()
 
-# =============================================================================
-# COMPOSITION GUIDANCE (injected at generation time per card type)
-# =============================================================================
-# These use natural cinematography language so the model understands
-# composition through subject placement rather than "leave space for text."
+# Base style anchors for all images (unchanged Purim look)
+STYLE_ANCHORS_V2 = _cfg["style_anchors"]
 
-COMPOSITION_GUIDANCE = {
-    "anchor": """
-=== COMPOSITION ===
-Subject (symbol/object) positioned in the center-to-lower portion of the frame.
-Generous headroom above — atmospheric space, sky, ceiling glow, or gradient above the subject.
-The upper portion of the frame should be visually calm: soft gradient, ambient light, or simple environment.
-Think of this as a movie poster where the title would sit at the top — give it that kind of open, cinematic space above.""",
+# Modern world (connection + tradition cards). Story world comes from deck.json "story_world".
+MODERN_WORLD_STYLE = _cfg["modern_world"]
 
-    "spotlight": """
-=== COMPOSITION ===
-Character portrait framed from chest up, face centered in the middle of the frame.
-Generous headroom — palace ceiling, archways, sky, or atmospheric haze visible above the character's head.
-The top of the frame should feel open and calm: architectural detail fading into shadow, or sky.
-Lower-left corner should be darker or in shadow — ground, dark fabric, or shadow pooling there.
-Character looks slightly right of center, creating natural breathing room on the left side.""",
+# Per-card-type composition block, built from the config
+COMPOSITION_GUIDANCE = {card_type: style_config.composition_for(card_type)
+                        for card_type in _cfg["composition"]}
 
-    "story": """
-=== COMPOSITION ===
-Scene action positioned in the center and right side of the frame.
-Generous headroom — ceiling, sky, or atmospheric space above the characters' heads.
-The top of the frame should be visually calm: architecture fading up, sky, or warm ambient light.
-Lower-left corner should be darker or simpler — ground shadow, dark foreground element, or negative space.
-Think of a film still where the action is center-right and the lower-left has a moody shadow.""",
+# Shared suffix appended to all prompts at generation time (no text, no borders)
+COMPOSITION_SUFFIX = _cfg["composition_suffix"]
 
-    "connection": """
-=== COMPOSITION ===
-Characters positioned in the upper two-thirds of the frame.
-The bottom of the frame should be simple and calm — a soft floor, rug edge, or gentle gradient.
-Think of a photo taken from slightly above, looking down at children sitting, with floor visible at the bottom.
-Warm, even lighting throughout. No busy details in the lower 20% of the image.""",
-
-    "tradition": """
-=== COMPOSITION ===
-Scene grounded in the center-to-lower portion of the frame.
-Generous headroom — warm golden glow, ceiling, hanging decorations, or ambient light above.
-The top of the frame should glow warmly but be visually simple: golden light, soft bokeh, or warm haze.
-Think of a photo shot at a warm holiday gathering where you see the ceiling lights above the scene.""",
-
-    "power_word": """
-=== COMPOSITION ===
-Character or concept positioned in the center-to-lower portion of the frame.
-Generous headroom — bright sky, warm glow, or atmospheric space above.
-The top of the frame should be open and luminous: bright light, sky, or soft radiance.
-Think of a heroic low-angle shot looking slightly up at the subject, with sky/light above.""",
-}
-
-# Shared suffix appended to all prompts at generation time
-COMPOSITION_SUFFIX = """
-=== CRITICAL RULES ===
-DO NOT include any border, frame, or rounded corners in the image.
-DO NOT render any text, titles, labels, Hebrew letters, or words anywhere in the image.
-The image should be PURELY visual — all text and borders are added separately by software."""
-
-
-# =============================================================================
-# BASE STYLE TEMPLATES
-# =============================================================================
-
-# Base style anchors for all images (no text — text rendered by Card Designer)
-STYLE_ANCHORS_V2 = """
-Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
-
-Visual characteristics:
-- Bold primary colors (red, blue, yellow, green) for foreground elements
-- Soft pastel colors (pink, light blue, cream, mint) for backgrounds
-- Rounded, friendly character designs with large expressive eyes
-- Thick, clean black outlines (2-3px equivalent)
-- Simple shapes with minimal clutter (5-7 main elements maximum)
-- Warm, inviting atmosphere
-- Clean, crisp illustration - NO grain, noise, film texture, or visual artifacts
-- Smooth color fills with no stippling or dithering
-
-ANATOMY REQUIREMENTS:
-- All humans must have exactly 2 arms and 2 legs
-- Hands have exactly 5 fingers each
-- Correct proportions - no extra limbs or merged body parts
-
-CRITICAL: Do NOT render any text in the image. No Hebrew, no English, no titles,
-no labels, no badges. Text will be added programmatically after generation.
-The image should be purely visual.
-Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
-"""
-
-
-# =============================================================================
-# WORLD STYLES (injected based on card type)
-# =============================================================================
-# Two visual "worlds" exist across all decks:
-#   1. MODERN WORLD — connection + tradition cards (same across all decks)
-#   2. STORY WORLD — anchor, spotlight, story, power_word (per-deck, from deck.json)
-
-MODERN_WORLD_STYLE = """
-=== WORLD: MODERN ORTHODOX JEWISH COMMUNITY ===
-Setting: Modern-day Jewish community. Warm, welcoming, colorful environments.
-
-PEOPLE — ADULTS:
-- Men: knit/srugah kippah, button-down shirt or polo, khakis. Clean-cut, approachable.
-- Women: no hair covering. Casual modest dress — knee-length skirts or dresses,
-  sleeves to elbow or longer. Colorful, modern. No pants on women.
-- Overall: warm, diverse, friendly. Real community feel.
-
-PEOPLE — CHILDREN:
-- Boys: kippot (knit/srugah style). Tzitzit strings sometimes visible, sometimes not.
-- Girls: modest dresses or skirts. Girls do NOT wear kippot.
-- All children: bright, colorful clothing. Happy, engaged expressions.
-
-CLASSROOM SCENES (connection cards):
-- Co-ed — boys and girls together
-- Warm and colorful: bright walls, rug/carpet area, cubbies, play areas
-- Jewish preschool/gan feel
-- No Hebrew text on walls or posters (it will be wrong if AI generates it)
-
-SYNAGOGUE/COMMUNITY SCENES (tradition cards):
-- Classic shul elements: aron kodesh (ark), ner tamid (eternal light)
-- Bright and child-friendly, not dark or imposing
-- Mechitza optional and subtle if present
-- Warm, welcoming community gathering feel
-"""
-
-# Safety rules as string
+# Safety rules as one prompt-ready string
+IMAGE_SAFETY_RULES = style_config.safety_rules()
 SAFETY_PROMPT = "\n".join(f"- {rule}" for rule in IMAGE_SAFETY_RULES)
 
 

@@ -11,6 +11,7 @@ from enum import Enum
 from typing import Optional, List, Dict, Any
 import json
 
+import style_config
 from character_library import ALIASES as CHARACTER_ALIASES, legacy_design, list_characters
 
 
@@ -469,11 +470,5 @@ for _alias, _key in CHARACTER_ALIASES.items():
         CHARACTER_DESIGNS[_alias] = CHARACTER_DESIGNS[_key]
 
 # Safety rules for image generation
-IMAGE_SAFETY_RULES = [
-    "NEVER depict God in human form - use light rays, clouds, or hands from above",
-    "No graphic violence or death",
-    "No scary monsters",
-    "All characters dressed modestly",
-    "Friendly, approachable expressions on all characters",
-    "Age-appropriate content for 4-6 year olds",
-]
+# Moved to style/style_config.yaml (one source for prompts, Visual Director and Image QA)
+IMAGE_SAFETY_RULES = style_config.safety_rules()

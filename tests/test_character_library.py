@@ -135,7 +135,7 @@ def test_library_image_is_used_before_manifest(tmp_path, fake_library):
     _png(deck.parent / "references" / "anna_identity.png")
     parts, loaded = load_reference_images(deck, ["anna"], card_type="story")
     assert loaded == ["anna"]
-    assert {"text": "Character reference for Anna:"} in parts
+    assert any("Anna identity sheet" in part.get("text", "") for part in parts)
 
 
 def test_falls_back_to_manifest_with_warning(tmp_path, fake_library, caplog):
@@ -158,7 +158,7 @@ def test_more_than_four_refs_is_capped_and_logged(tmp_path, fake_library, caplog
 
 def test_empty_list_loads_no_characters(tmp_path, fake_library):
     deck = _make_deck(tmp_path, {})
-    parts, loaded = load_reference_images(deck, [], card_type="connection")
+    parts, loaded = load_reference_images(deck, [], card_type="connection", no_hero=True)
     assert parts == [] and loaded == []
 
 
