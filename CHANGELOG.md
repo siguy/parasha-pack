@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Docs: v3 Reconciliation + FOR_SIMON.md (Deck v3 Phase 4.4)
+
+#### Changed
+- Root `CLAUDE.md` and `README.md` rewritten for v3: 10/12 card counts, pipeline 00→06 + `assemble_deck.py` as the way to make a deck (with a README quick start), Nano Banana 2 at 2K/1K drafts, env vars table (`GEMINI_IMAGE_MODEL`, `PP_SPEND_LEDGER`, `PP_BUDGET_USD`, `HUB_DIR`, `CARD_DESIGNER_PORT`), letter default + 5×7 vendor print specs, export guard, PDF compression, extras/guide and hub sync commands, current directory tree.
+- `src/CLAUDE.md`: extras/guide modules and scripts listed; `generate_deck.py` and `workflows deck` marked legacy v2.
+- `decks/CLAUDE.md`: v3 deck folder tree (bereshit, purim, archive), pipeline-based deck creation, raw art 1792×2400, drafts, legacy `references/`, v3 feedback.json.
+- Agent docs: validator/guard/hub sync described as landed (no more "when it exists" / "parallel branch"), VISUAL_SPECS print table (letter + 5×7), v2-only export lessons labeled as history, new v3 export lessons (fail-loud overflow, no `-webkit-text-stroke`, compress PDFs). card-designer README: export guard, compression, worktree `node_modules` note.
+
+#### Added
+- **`FOR_SIMON.md`**: plain-language learning document about how and why the project was built.
+
+### Hub Sync (Phase 7.1)
+
+#### Added
+- **`scripts/sync_to_hub.py <deck_id>... [--hub PATH]`** (or `HUB_DIR` in `.env`): runs the validator (warn only), writes the deck JSON without `image_prompt`/`guide`, WebP fronts and backs (q82, ≤1600 px tall), the letter PDF, and merges `decks/index.json` in simonbrief-hub. Looks in `decks/` then `decks/archive/`. `tests/test_sync_to_hub.py`.
+
+### Purim Deck v3 (Phase 9)
+
+#### Changed
+- `decks/purim` rebuilt on pipeline v3 (`pipeline/00…06`, assembled): 16 → 12 cards (D1 holiday, home card added), Torah and Hebrew audit fixes (Haman's pride/anger, the verse "I will not bow", Esther's real courage, אַמִּיצָה / גִּבּוֹרָה, plural class Hebrew), 4 mitzvot on 3 tradition cards, Achaemenid story world (`story_world_setting: indoor`). All art at 2K (re-renders + new compositions). Editor 97.5%; validator 0 errors; letter + 5×7 PDFs. `research/purim.yaml` (JPS English for Esther).
+
+### Bereshit Deck v3 (Phase 6)
+
+#### Added
+- `decks/bereshit`: the first deck made end to end on pipeline v3 (10 cards incl. home), 9 Nano Banana 2 cards (2 drafts at 1K, final at 2K), full `guide` blocks, Editor 93.2%, letter + 5×7 PDFs. Exported PNGs gitignored (rebuild with the export).
+
 ### Printable Extras, Part B: Coloring + Sequence, Sequencing Game, Teacher Guide Booklet, Pilot Kit (Phase 8.5, 8.7, 8.8, 8.10)
 
 #### Added

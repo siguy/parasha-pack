@@ -14,7 +14,7 @@ owns a card's words in both languages, so they can't drift apart.)
 - `pipeline/02-structure.yaml` (cards, `core`, `minutes`, refs)
 - `pipeline/02b-sensitivity.yaml` (verdicts, reframes, `if_they_ask`) — must be `approved: true`
 - `characters/{key}/character.yaml` (`gender`, for Hebrew agreement)
-- `guide_layout.yaml` (guide booklet page map, card → page) when it exists
+- `guide_layout.yaml` (guide booklet page map, card → page)
 - Design reference: `docs/mockups/bereshit-v3.html`; field rules: `agents/CARD_SPECS.md`
 
 ## Output

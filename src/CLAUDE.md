@@ -6,8 +6,8 @@ Python modules for generating and managing Parasha Pack card decks.
 
 | Module | Purpose |
 |--------|---------|
-| `workflows/` | High-level reusable workflows for character/deck creation (CLI, research, models) |
-| `generate_deck.py` | Create new deck templates (story, connection, tradition card types) |
+| `workflows/` | Character workflow, research lookups and `list` CLI (`python -m workflows`); its `deck` command is legacy v2 |
+| `generate_deck.py` | **Legacy:** writes a v2 deck template. New decks come from the v3 pipeline + `assemble_deck.py` |
 | `generate_images.py` | Generate raw card images to `raw/`; assembles system prompt layers via `build_generation_prompt()` |
 | `generate_references.py` | Generate identity sheet versions into `characters/{key}/` and `--accept` one |
 | `style_config.py` | Loads `style/style_config.yaml` (style text, safety rules, composition, plates, limits, `prompt_version`) |
@@ -20,9 +20,20 @@ Python modules for generating and managing Parasha Pack card decks.
 | `sefaria_client.py` | Sefaria API: current parasha, plus the `research/{parasha}.yaml` verse cache |
 | `character_library.py` | Reads the shared `characters/{key}/character.yaml` library (single source of truth for characters) |
 | `series.py` | Loads and validates `series.yaml` (the year plan) |
-| `assemble_deck.py` | Merges `decks/{id}/pipeline/*.yaml` into `deck.json` after schema + cross-file checks; runs `validate_deck.py` when present |
+| `assemble_deck.py` | Merges `decks/{id}/pipeline/*.yaml` into `deck.json` after schema + cross-file checks, then runs `validate_deck.py` |
 | `contact_sheet.py` | `make_contact_sheet(paths, labels, out_path, cols)`: labeled image grid for Image QA and identity reviews |
-| `config.py` | Configuration constants |
+| `config.py` | Configuration constants (image model, sizes, prices `IMAGE_PRICE_USD`, draft/final sizes). The `CARD_*`/`BLEED_*` print constants are v2 leftovers; print sizes live in `card-designer/print_formats.json` |
+| `extras_data.py` | Loads and checks `decks/{id}/extras.yaml` against `schemas/extras.schema.json` |
+| `generate_items.py` | Item art for extras: color picture, line art (Gemini edit), cutout; reused once made |
+| `generate_activities.py` | Extras PDFs (bingo, I-spy, match, Listen & Do, coloring, sequencing) via Jinja2 + Playwright |
+| `bingo.py` | Fair bingo boards, chosen by simulating 2000 games (4-corners win rule) |
+| `ispy.py` | Places item cutouts on the I-spy background in code, so counts are exact |
+| `coloring.py` | Story-card line art for coloring pages + cut-grid geometry |
+| `build_guide.py` | Letter teacher guide booklet, page by page from `guide_layout.yaml`, checked with pypdf |
+| `build_pilot_kit.py` | Classroom pilot forms (`docs/pilot/`) |
+
+Scripts outside `src/`: `scripts/compress_pdf.py` (shrinks PDF art as JPEG, same pixels) and
+`scripts/sync_to_hub.py` (publishes decks to simonbrief-hub). Extras commands: `decks/CLAUDE.md`, `docs/extras.md`.
 
 Deprecated v1 code lives in `archive/` for reference. Do not use for new decks.
 
@@ -71,7 +82,10 @@ workflow.add_to_manifest()       # -> updates manifest.json
 workflow.save_research()         # -> saves research JSON
 ```
 
-### Deck Workflow
+### Deck Workflow (legacy v2)
+
+`DeckWorkflow` and `python -m workflows deck` still produce a **v2** template via `generate_deck.py`.
+Use the v3 pipeline (`agents/AGENT_PIPELINE.md`) for new decks.
 
 ```python
 from workflows import DeckWorkflow
@@ -94,7 +108,7 @@ Run from `src/` (the old `workflows.py` script became the `workflows/` package):
 # Character creation
 python -m workflows character miriam --deck ../decks/beshalach --generate
 
-# Deck creation
+# Deck creation (legacy v2 template)
 python -m workflows deck Beshalach --output ../decks/beshalach
 
 # Research only
@@ -108,13 +122,13 @@ python -m workflows list parshiyot
 
 ---
 
-## generate_deck.py
+## generate_deck.py (legacy)
 
-Creates new deck templates with placeholder cards.
+Creates **v2** deck templates with placeholder cards. Its counts are the old v2 ones, not D1 (10/12).
 
 **`create_deck_template(parasha_name, parasha_he, ref, theme, border_color, is_holiday) -> dict`**
 - Standard deck: 10 cards (1 anchor, 2 spotlight, 4 story, 2 connection, 1 power_word)
-- Holiday deck: +3 tradition cards = 13 cards
+- Holiday deck: +3 tradition cards = 13 cards (v2; a v3 holiday deck is 12 including the home card)
 
 ```bash
 python generate_deck.py                              # Current parasha from Sefaria
@@ -142,7 +156,7 @@ python generate_images.py ../decks/yitro/deck.json --final --from-draft ../decks
 
 ### Draft → final
 
-`--draft` makes cheap 1K drafts (default 2 variants) in `raw/drafts/{card_id}_d{n}.png` and does not touch `image_path`. `--final --from-draft <file>` makes the 2K final at `raw/{card_id}.png` (card id read from the file name) and passes the chosen draft as a reference labeled "re-render this exact composition at full detail in the same style". No flag = 2K single image as before.
+`--draft` makes cheap 1K drafts (default 2 variants) in `raw/drafts/{card_id}_d{n}.png` and does not touch `image_path`. `--final --from-draft <file>` makes the 2K final at `raw/{card_id}.png` (card id read from the file name) and passes the chosen draft as a reference labeled "re-render this exact composition at full detail in the same style". No flag = 2K single image as before. Home cards have no art: pass `--card` so `home_1` is skipped (the script does not skip it by itself).
 
 ### Spend ledger
 
@@ -342,5 +356,6 @@ need a `characters/` entry.
 
 ### Add a New Parasha to Research Database
 
-1. Edit `workflows/research.py`
-2. Add entry to `PARASHA_DATABASE` dict
+1. Add a `RESEARCH_PLANS["{id}"]` entry in `sefaria_client.py` (verses + commentaries)
+2. `python3 sefaria_client.py research {id}` → `research/{id}.yaml` (read by the Torah Scholar)
+3. Add the deck to `series.yaml` (`python3 series.py` to validate)

@@ -52,11 +52,11 @@ ls research/{id}.yaml || (cd src && python3 sefaria_client.py research {id})
 # 02b Sensitivity Reviewer → pipeline/02b-sensitivity.yaml      ★ Simon approves
 
 # 03 Content Writer → pipeline/03-content.yaml, then
-python3 src/assemble_deck.py decks/{id}          # also runs src/validate_deck.py when it exists
+python3 src/assemble_deck.py decks/{id}          # also runs src/validate_deck.py
 
 # 05 Visual Director → pipeline/05-visual.yaml, then
 python3 src/assemble_deck.py decks/{id}          # deck.json now has the prompts
-cd src && python3 generate_images.py ../decks/{id}/deck.json --draft && cd ..   # 2 drafts per card at 1K
+cd src && python3 generate_images.py ../decks/{id}/deck.json --card story_1 --draft && cd ..   # 2 drafts at 1K; one --card per illustrated card (skip home_1)
 
 # 05b Image QA
 python3 src/contact_sheet.py decks/{id}/raw/drafts/contact_sheet.png decks/{id}/raw/drafts/*.png --cols 4
@@ -70,7 +70,7 @@ python3 src/assemble_deck.py decks/{id}
 # Card Designer tool
 ./sync-deck.sh {id}
 cd card-designer && npm run export {id} -- --backs --pdf     # letter; add --format 5x7 for vendor print
-python3 scripts/sync_to_hub.py {id}                          # (parallel branch)
+python3 scripts/sync_to_hub.py {id}                          # publish to simonbrief-hub
 ```
 
 ## assemble_deck.py
@@ -84,9 +84,9 @@ python3 scripts/sync_to_hub.py {id}                          # (parallel branch)
    02 cards; `minutes`/`core` in 03 match 02; Image QA totals and pass flags add up.
 3. Merges (structure from 02, content from 03, prompts from 05, picks from 05b) in 02's card order.
 4. Checks the result: every `characters_in_scene` key is in `characters/`; the deck passes
-   `schemas/deck.v3.schema.json`. Optional image fields the deck schema doesn't know yet
-   (`story_world_setting`, `style_plate`, `continuity_ref`) are left out with a warning.
-5. Writes `deck.json`, then runs `src/validate_deck.py decks/{id}/deck.json` if that file exists.
+   `schemas/deck.v3.schema.json` (which includes the optional image fields `story_world_setting`,
+   `style_plate`, `continuity_ref`).
+5. Writes `deck.json`, then runs `src/validate_deck.py decks/{id}/deck.json` (a failure is an error).
 
 Exit 0 = written and all checks passed. Errors also go to `project.log`.
 
