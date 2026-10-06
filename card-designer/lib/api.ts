@@ -1,126 +1,63 @@
 /**
- * API utilities for loading deck data and image paths.
+ * Loads v3 decks from content/{deckId}/deck.json (copied there by ../sync-deck.sh).
  *
  * Image flow:
- *   - AI generates images to raw/{card_id}.png (no text)
- *   - Card Designer loads raw images and renders text overlay in React
- *   - Export saves final composited images to images/{card_id}.png
+ *   - AI generates scene-only art to raw/{card_id}.png
+ *   - The Card Designer draws the title, badges and back on top in React
+ *   - The export script saves PNGs to decks/{id}/images|backs and PDFs to decks/{id}/print
  */
 import fs from 'fs/promises';
 import path from 'path';
-import { DeckData } from '@/types/card';
+import { Deck, LoadedDeck } from '@/types/card';
 
-const DECKS_DIR = path.join(process.cwd(), 'content');
+const CONTENT_DIR = path.join(process.cwd(), 'content');
 
-export async function getDeck(deckId: string): Promise<DeckData | null> {
+async function fileExists(filePath: string): Promise<boolean> {
   try {
-    const filePath = path.join(DECKS_DIR, deckId, 'deck.json');
-    const fileContent = await fs.readFile(filePath, 'utf-8');
-    const data = JSON.parse(fileContent);
-
-    // Flatten front/back data for easier consumption in components
-    if (data.cards) {
-      data.cards = data.cards.map((card: any) => {
-        const merged = {
-          ...card,
-          ...(card.front || {}),
-          ...(card.back || {}),
-          // Normalize image_path to always use raw/ for Card Designer
-          // (components render text overlay, export saves to images/)
-          image_path: normalizeImagePath(card.image_path, card.card_id),
-        };
-        return normalizeFieldNames(merged);
-      });
-    }
-
-    return data as DeckData;
-  } catch (error) {
-    console.error(`Error loading deck ${deckId}:`, error);
-    return null;
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
   }
 }
 
-/**
- * Map legacy deck.json field names to what React components expect.
- * Only sets a field if not already present (front/back data takes priority).
- */
-function normalizeFieldNames(card: any): any {
-  const normalized = { ...card };
+/** Returns the deck, or null if it does not exist. Throws if it is not a v3 deck. */
+export async function getDeck(deckId: string): Promise<LoadedDeck | null> {
+  const deckDir = path.join(CONTENT_DIR, deckId.replace(/[^a-zA-Z0-9_-]/g, ''));
+  const filePath = path.join(deckDir, 'deck.json');
+  if (!(await fileExists(filePath))) return null;
 
-  // Spotlight: character_name → hebrew_name/english_name, emotion_label → emotion_word
-  if (card.card_type === 'spotlight') {
-    if (!normalized.hebrew_name && normalized.character_name_he) {
-      normalized.hebrew_name = normalized.character_name_he;
-    }
-    if (!normalized.english_name && normalized.character_name_en) {
-      normalized.english_name = normalized.character_name_en;
-    }
-    if (!normalized.emotion_word_he && normalized.emotion_label_he) {
-      normalized.emotion_word_he = normalized.emotion_label_he;
-    }
-    if (!normalized.emotion_word_en && normalized.emotion_label_en) {
-      normalized.emotion_word_en = normalized.emotion_label_en;
-    }
+  const deck: Deck = JSON.parse(await fs.readFile(filePath, 'utf-8'));
+  if (deck.version !== '3.0') {
+    throw new Error(
+      `${deckId}/deck.json is version ${deck.version ?? '?'}; the Card Designer only reads v3. ` +
+        `Run: python src/migrate_v2_to_v3.py decks/${deckId}/deck.json`
+    );
   }
 
-  // Story: description_en → english_description
-  if (card.card_type === 'story') {
-    if (!normalized.english_description && normalized.description_en) {
-      normalized.english_description = normalized.description_en;
-    }
-  }
-
-  // Connection: feeling_faces[].emoji → emojis[]
-  if (card.card_type === 'connection') {
-    if (!normalized.emojis && normalized.feeling_faces) {
-      normalized.emojis = normalized.feeling_faces
-        .map((f: any) => f.emoji)
-        .filter(Boolean);
-    }
-  }
-
-  // Tradition/Anchor: title_he → hebrew_title, title_en → english_title
-  if (card.card_type === 'tradition' || card.card_type === 'anchor') {
-    if (!normalized.hebrew_title && normalized.title_he) {
-      normalized.hebrew_title = normalized.title_he;
-    }
-    if (!normalized.english_title && normalized.title_en) {
-      normalized.english_title = normalized.title_en;
-    }
-  }
-
-  return normalized;
+  // Attach an image URL only when the art file really exists, so cards
+  // without art can show a placeholder instead of a broken image.
+  const cards = await Promise.all(
+    deck.cards.map(async (card) => {
+      const hasImage = await fileExists(path.join(deckDir, card.image_path));
+      return { ...card, image_url: hasImage ? imageUrl(deckId, card.image_path) : null };
+    })
+  );
+  return { ...deck, cards };
 }
 
-/**
- * Normalize image path to use raw/ directory.
- * Handles legacy images/ paths and missing paths.
- */
-function normalizeImagePath(imagePath: string | undefined, cardId: string): string {
-  if (!imagePath) {
-    return `raw/${cardId}.png`;
+/** Deck ids that have a deck.json in content/. */
+export async function listDecks(): Promise<string[]> {
+  const entries = await fs.readdir(CONTENT_DIR, { withFileTypes: true });
+  const ids: string[] = [];
+  for (const entry of entries) {
+    if (entry.isDirectory() && (await fileExists(path.join(CONTENT_DIR, entry.name, 'deck.json')))) {
+      ids.push(entry.name);
+    }
   }
-  // Convert images/{id}.png to raw/{id}.png
-  if (imagePath.startsWith('images/')) {
-    return imagePath.replace('images/', 'raw/');
-  }
-  return imagePath;
+  return ids.sort();
 }
 
-/**
- * Get the API URL for serving an image.
- * @param deckId - The deck identifier
- * @param imagePath - The image path (e.g., raw/story_1.png)
- * @param source - Optional source override ('raw' or 'images')
- */
-export async function getDeckImage(
-  deckId: string,
-  imagePath: string,
-  source?: 'raw' | 'images'
-): Promise<string> {
-  const params = new URLSearchParams({ deck: deckId, path: imagePath });
-  if (source) {
-    params.set('source', source);
-  }
-  return `/api/images?${params.toString()}`;
+export function imageUrl(deckId: string, imagePath: string): string {
+  return `/api/images?${new URLSearchParams({ deck: deckId, path: imagePath })}`;
 }
