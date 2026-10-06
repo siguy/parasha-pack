@@ -212,3 +212,9 @@ def test_pilot_kit_has_8_questions_and_week_rows(deck):
     rows = build_pilot_kit.grid_rows(deck)
     assert len(rows) == len(deck["cards"])
     assert sum(r["first"] for r in rows) == len(deck["week_plan"])
+
+
+def test_day1_light_and_darkness_is_simple(tmp_path):
+    img = Image.open(coloring.light_and_darkness_art(tmp_path / "day1.png", size=(448, 600)))
+    assert img.mode == "1" and img.size == (448, 600)
+    assert 6 <= coloring.count_regions(img) <= 15

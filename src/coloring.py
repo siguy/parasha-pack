@@ -17,6 +17,8 @@ Usage (from src/):
     python coloring.py ../decks/bereshit                    # make any missing line art
     python coloring.py ../decks/bereshit --redo story_2     # remake one (costs 1 call)
     python coloring.py ../decks/bereshit --contact-sheet /tmp/sheet.png
+
+Day 1 (light and darkness) is drawn by light_and_darkness_art() instead of an AI edit.
 """
 
 import argparse
@@ -92,6 +94,39 @@ def ensure_line_art(deck_dir: Path, card: dict, deck_id: str, use_ai: bool = Tru
     clean_line_art(Image.open(raw)).save(out, optimize=True)
     raw.unlink(missing_ok=True)
     logger.info(f"  {card['card_id']}: line art saved to {out}")
+    return out
+
+
+def light_and_darkness_art(out: Path, size: tuple = (896, 1200)) -> Path:
+    """
+    Day 1 coloring page drawn with Pillow (no AI call): light rays fanning in from the
+    left edge, ending at one big curve; past the curve is the darkness, a large area with
+    sparse dots so a child knows to color it dark. No clouds, land, water or sun disc
+    (the Gemini edit kept turning the darkness into clouds, which belong to Day 2).
+    """
+    import math
+    k = 2                                   # draw at 2x, shrink at the end for smooth lines
+    w, h = size[0] * k, size[1] * k
+    sx = size[0] / 896                      # every number below is for an 896 px wide page
+    line_w = round(11 * sx * k)
+    img = Image.new("L", (w, h), 255)
+    draw = ImageDraw.Draw(img)
+    ox, oy = -140 * sx * k, 330 * sx * k    # where the light comes from (off the left edge)
+    edge = 760 * sx * k                     # radius of the curve where the darkness begins
+    step, dot = round(46 * sx * k), 4 * sx * k
+    for y in range(0, h, step):             # darkness dots, every other row shifted half a step
+        for x in range(((y // step) % 2) * step // 2, w, step):
+            if math.hypot(x - ox, y - oy) > edge + 40 * sx * k:
+                draw.ellipse([x - dot, y - dot, x + dot, y + dot], fill=0)
+    start = 140 * sx * k
+    for angle in (-24, -10, 4, 18, 32, 46, 60, 74):
+        t = math.radians(angle)
+        draw.line([ox + start * math.cos(t), oy + start * math.sin(t),
+                   ox + edge * math.cos(t), oy + edge * math.sin(t)], fill=0, width=line_w)
+    draw.ellipse([ox - edge, oy - edge, ox + edge, oy + edge], outline=0, width=line_w + 4 * k)
+    out = Path(out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    clean_line_art(img.resize(size, Image.LANCZOS)).save(out, optimize=True)
     return out
 
 
