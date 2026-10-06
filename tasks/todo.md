@@ -85,12 +85,12 @@ Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly
 - [x] 8.2 Bingo ×10 (#11)
 - [x] 8.3 I-spy (#11)
 - [x] 8.4 Match-it (#11)
-- [ ] 8.5 Coloring + sequence
+- [x] 8.5 Coloring + sequence (+ Days 1–7 strip) (#11)
 - [x] 8.6 Following-directions story (#11)
-- [ ] 8.7 Sequencing game
-- [ ] 8.8 Teacher guide booklet
-- [ ] 8.9 Home card
-- [ ] 8.10 Classroom pilot kit
+- [x] 8.7 Sequencing game: mini cards + control strip (#11)
+- [x] 8.8 Teacher guide booklet: 16 pp letter, page numbers checked (#11)
+- [x] 8.9 Home card (in every deck) + family letter in the booklet
+- [x] 8.10 Classroom pilot kit: docs/pilot (#11)
 
 ## Phase 9 — Purim retrofit (later)
 - [x] 9.1 Content + Hebrew fixes, 12 cards, regenerated at 2K (#13); follow-ups: compress PDFs, recompose spotlight_2
