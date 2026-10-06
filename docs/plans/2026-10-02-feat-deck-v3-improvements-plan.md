@@ -40,6 +40,18 @@ Simon wants these fixed, then **Bereshit** built as the first deck on the new sy
 
 ---
 
+## How to resume after a /clear
+
+Read `progress.md`, then `tasks/todo.md`, then this plan. `progress.md` holds the branch and PR table, what works, and **what doesn't work yet**. Update all three files after each completed step, and commit them.
+
+## Version control
+
+- One PR per main feature, on a branch named `<type>/<short-description>` from `main`.
+- If a feature depends on an unmerged PR, it branches from that PR's branch, and the PR body says so.
+- Squash on merge.
+- Every PR body includes: summary, how to verify, tests run, **Known issues / not working**, follow-ups.
+- Subagents do the implementation work, one focused task each. The main session reviews, verifies and opens the PRs.
+
 ## Phase 1 — New card backs (letter size)
 
 **Goal:** the new back design, a v3 deck format, and one component for all back types. Export a duplex PDF.

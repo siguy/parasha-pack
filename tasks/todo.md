@@ -2,7 +2,20 @@
 
 Full plan: [docs/plans/2026-10-02-feat-deck-v3-improvements-plan.md](../docs/plans/2026-10-02-feat-deck-v3-improvements-plan.md)
 
-Status: **Decisions locked 2026-10-05 — awaiting go for Phase 1**
+Status: **Phase 1.1 mockups done, waiting for Simon's approval. Phase 2.6 partly done.** After a /clear, read `progress.md` first.
+
+## Version control
+- One PR per main feature; branch `<type>/<desc>` from `main`; squash on merge; every PR has a "Known issues" section.
+- [x] `docs/deck-v3-plan`: plan, policies, mockups, progress
+- [x] `fix/image-model-nano-banana-2`: model fix (has known issues)
+- [ ] `feat/card-back-v3` (Phase 1.2–1.5)
+- [ ] `feat/deck-validator` (Phase 2)
+- [ ] `feat/character-library` (Phase 3)
+- [ ] `feat/agent-pipeline-v3` (Phase 4)
+- [ ] `feat/styling-v2` (Phase 5)
+- [ ] `feat/bereshit-deck` (Phase 6)
+- [ ] hub: `feat/parashapacks-present-mode` (Phase 7, simonbrief-hub repo)
+- [ ] `feat/extras-*` (Phase 8, one PR per extra or a small group)
 
 ## Decisions
 - [x] D1–D6 (card count, values spine, Modern Orthodox, hard-text policy, booklet, Simon reviews)
@@ -12,7 +25,7 @@ Status: **Decisions locked 2026-10-05 — awaiting go for Phase 1**
 - [x] D9–D13 Back design, projector + presenter window, hub URL per deck, Bereshit scope/טוֹב, extras v1
 
 ## Phase 1 — New card backs (letter)
-- [ ] 1.1 Letter-size mockups (fronts + 7 backs) with Bereshit content → Simon approves
+- [~] 1.1 Letter-size mockups done: `docs/mockups/bereshit-v3.html` (10 backs, 3 fronts, 5×7 comparison; verified no overflow). **Waiting for Simon's approval.**
 - [ ] 1.2 `schemas/deck.v3.schema.json`
 - [ ] 1.3 `src/migrate_v2_to_v3.py` (Purim, Terumah)
 - [ ] 1.4 Single `CardBack.tsx`; letter frames; v3 palette + icons
@@ -24,7 +37,10 @@ Status: **Decisions locked 2026-10-05 — awaiting go for Phase 1**
 - [ ] 2.3 Tests
 - [ ] 2.4 Logging
 - [ ] 2.5 Housekeeping
-- [ ] 2.6 **Image model fix**: Nano Banana 2 `gemini-3.1-flash-image` via .env, `--size` (default 2K), skip thought images, verify 1536×2048 (blocks all generation)
+- [~] 2.6 **Image model fix**: Nano Banana 2 via .env, `--size` (default 2K), skip thought images. Done in e893645: 15 tests pass, smoke call OK.
+  - [ ] 2.6a The 1K call returned 896×1200, not 768×1024. Run one 2K call to check whether `imageSize` is honored.
+  - [ ] 2.6b The API returns JPEG saved as `.png`. Save real PNGs.
+  - [ ] 2.6c Add `project.log` to `.gitignore`.
 
 ## Phase 3 — Character library + year plan
 - [ ] 3.1 `characters/` library; migrate 7 characters; retire 3 duplicate sources
