@@ -24,6 +24,7 @@ Status: **Decisions locked 2026-10-05 — awaiting go for Phase 1**
 - [ ] 2.3 Tests
 - [ ] 2.4 Logging
 - [ ] 2.5 Housekeeping
+- [ ] 2.6 **Image model fix**: `gemini-3-pro-image` via .env, `--size` flag, skip thought images, verify dimensions (blocks all generation)
 
 ## Phase 3 — Character library + year plan
 - [ ] 3.1 `characters/` library; migrate 7 characters; retire 3 duplicate sources
@@ -38,7 +39,7 @@ Status: **Decisions locked 2026-10-05 — awaiting go for Phase 1**
 - [ ] 4.4 3-layer docs pass (letter default + 5×7 optional)
 
 ## Phase 5 — Print-ready art
-- [ ] 5.1 4K 3:4 generation (crop-safe for letter + 5:7)
+- [ ] 5.1 Draft 1K → final 4K (3584×4800), Batch API for finals; crop-safe for letter + 5:7
 - [ ] 5.1b CMYK soft-proof for 5×7 target
 - [ ] 5.2 Prompt fixes
 - [ ] 5.3 Series style bible

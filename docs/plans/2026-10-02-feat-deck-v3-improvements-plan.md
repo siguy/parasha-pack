@@ -75,6 +75,13 @@ Simon wants these fixed, then **Bereshit** built as the first deck on the new sy
 - 2.2 Export guard in `export-deck.ts`: any section whose `scrollHeight > clientHeight`, or whose text falls outside the safe zone, **fails the export** and reports the card id.
 - 2.3 Tests: pytest for the validator, the migration and `build_generation_prompt()`, plus a parser test for the bold/cue markup.
 - 2.4 Logging to `project.log`, with the source name and record count at each step.
+- 2.6 **Image model fix (blocks all generation, including Adam and Chava in Phase 3).** The 4K research found:
+  - **Model:** the hardcoded `nano-banana-pro-preview` alias most likely points to `gemini-3-pro-image-preview`, which Google shut down on 2026-06-25. Switch to `gemini-3-pro-image`, read from `GEMINI_IMAGE_MODEL` in `.env` with that as the default. This applies in `src/generate_images.py` and `src/generate_references.py`.
+  - **Size flag:** add `imageConfig.imageSize` and a `--size 1K|2K|4K` flag. The value must be uppercase; lowercase `"4k"` is rejected. Default is 1K.
+  - **Timeout:** raise it from 180s to 300s.
+  - **Draft-image bug:** skip parts marked `thought: true`. The model always "thinks" and can return draft images; the current parser saves the first image part, which may be a draft.
+  - **Size check:** after saving, read the pixel size with Pillow and log it. 4K at 3:4 should be 3584×4800.
+  - Smoke test: one 1K call. Then update the "nano-banana only" notes in CLAUDE.md and memory.
 - 2.5 Housekeeping:
   - `sync-deck.sh` uses `rsync --delete`
   - fix the review-site registry path
@@ -114,7 +121,7 @@ Order: **00 Series Planner** → 01 Torah Scholar (reads the research cache and 
 
 ## Phase 5 — Print-ready art at letter size
 
-- 5.1 `generate_images.py`: pass the right size setting (per the 4K research) with a 3:4 aspect ratio. 3:4 is 0.75 and letter's printable area (about 7.9×10.4 in) is 0.76, so very little gets cropped. Check the output is at least 2370×3120 px (300 DPI over the printable area). **The same image must also crop to 5:7** (0.714, a little narrower), so key subjects stay inside the central 90% of the width.
+- 5.1 `generate_images.py`: **draft at 1K, final at 4K** (3:4 → 3584×4800, about 455 DPI on letter). 2K (1792×2400) is enough for 5×7 alone, but not for letter (~230 DPI). Run finals through the Batch API to halve the cost. Prices are $0.134 per 1K/2K image and $0.24 per 4K ($0.12 batch). Expect about $6–8 per deck including extras. 3:4 is 0.75 and letter's printable area (about 7.9×10.4 in) is 0.76, so very little gets cropped. Check the output is at least 2370×3120 px (300 DPI over the printable area). **The same image must also crop to 5:7** (0.714, a little narrower), so key subjects stay inside the central 90% of the width.
 - 5.1b CMYK soft-proof script for the 5×7 vendor target only (FOGRA39/GRACoL). It flags out-of-gamut purple and blue.
 - 5.2 `src/image_prompts.py`:
   - drop the "darker lower-left" lines
@@ -253,7 +260,8 @@ It is then cut to 12 cards and regenerated at 4K letter size.
 
 ## Risks
 
-- **4K generation:** confirm that nano-banana-pro honors `imageSize: "4K"`. If it doesn't, generate at 2K and upscale (Real-ESRGAN) for print.
+- **4K generation:** check the pixel size of the first 4K output, because one SDK has been reported to ignore the size setting. Fallback: generate at 2K and upscale with Real-ESRGAN's illustration model. Avoid Gemini edit-upscaling, which redraws faces.
+- **Rate and spend caps:** Tier 1 allows $10 per 10 minutes. Batch the final runs.
 - **Duplex drift on home printers (±⅛"):** the 0.3" margin absorbs it, and match-it backs use a pattern with no border to line up.
 - **Hub on Next 16:** API changes. Read its docs first and keep the changes inside `app/parashapacks/`.
 - **Line-art edits may change faces:** the contact-sheet review step catches this.
