@@ -1,0 +1,21 @@
+=== REFERENCE IMAGES ===
+Image 1 = the image to edit: keep its exact composition, camera, framing and art style
+
+=== EDIT ===
+Edit Image 1. Keep the exact same composition, camera position, framing, horizon line and art style: every element that is not mentioned below stays exactly where and how it is.
+Only change:
+The sky only: replace the hard vertical split between the pink left half and the blue right half with one soft, gradual sunrise-to-sky gradient (warm pale peach low on the left blending smoothly into light blue), with no visible seam or edge anywhere. Keep the exact same composition, characters, fish, whale, birds, sun, moon, clouds, stars, tree, island, sea, splash and art style, all in the same places and sizes.
+
+=== SAFETY RULES ===
+- NEVER depict God in human form - use light rays, clouds, or hands from above
+- No graphic violence or death
+- No scary monsters
+- All characters dressed modestly
+- Friendly, approachable expressions on all characters
+- Age-appropriate content for 4-6 year olds
+- Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
+
+=== CRITICAL RULES ===
+DO NOT include any border, frame, or rounded corners in the image.
+DO NOT render any text, titles, labels, Hebrew letters, or words anywhere in the image.
+The image should be PURELY visual — all text and borders are added separately by software.

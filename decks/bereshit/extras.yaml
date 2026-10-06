@@ -124,7 +124,8 @@ match:
   sets:
     pic_pic: [sun, moon, fish, bird, tree, flower]
     pic_word: [lion, snake, star, water, light, sky]
-  # Bonus: which creation goes with which day (Bereshit 1).
+  # Bonus: which creation goes with which day (Bereshit 1). Day 7 (Shabbat candles) would make 14
+  # cards; a match set is one page of 12, so Day 7 stays on the coloring and sequencing pages.
   bonus_days:
     - {day: 1, he: יוֹם א׳, item: light}
     - {day: 2, he: יוֹם ב׳, item: sky}
@@ -164,8 +165,8 @@ listen_do:
       expected: [{object: river, action: draw, label: "fish"}]
     # Level 2: two steps, then one 3-step direction where the steps don't go together.
     - level: 2
-      text: "Color the cloud blue, ⏸ then draw rain under the cloud."
-      expected: [{object: cloud, action: color, color: blue}, {object: cloud, action: draw, label: "rain"}]
+      text: "Color the cloud blue, ⏸ then draw a bird next to the cloud."
+      expected: [{object: cloud, action: color, color: blue}, {object: cloud, action: draw, label: "bird"}]
     - level: 2
       text: "Color the flower red, ⏸ put an X on the rock, ⏸ then draw a שֶׁמֶשׁ (SHE-mesh), sun, in box 1."
       expected:
@@ -176,22 +177,26 @@ listen_do:
       text: "In box 2, draw a עֵץ (ETZ), tree, with one apple."
       expected: [{object: box_2, action: draw, label: "tree + 1 apple"}]
 
-# Coloring + sequence (plan 8.5): the 4 story cards as line art (src/coloring.py).
+# Coloring + sequence (plan 8.5): the 7 day cards as line art (src/coloring.py).
 coloring:
-  cards: [story_1, story_2, story_3, story_4]       # in story order (= the dots 1-4)
-  page_order: [story_3, story_1, story_4, story_2]  # shuffled on the cut page, so ordering is a real puzzle
-  # Days 1-7 strip for 6-year-olds, built from the item line art (no AI calls).
+  cards: [story_1, story_2, story_3, story_4, story_5, story_6, story_7]   # in order (= the dots 1-7)
+  page_order: [story_4, story_1, story_6, story_3, story_7, story_2, story_5]  # shuffled on the cut page
+  # Easy version for age 4: four days only. Days 1, 3, 5, 7 = the first day, every other day, and
+  # Shabbat, so the strip still runs from "light" to "rest" (logged in docs/overnight/decisions.md).
+  easy_cards: [story_1, story_3, story_5, story_7]
+  easy_page_order: [story_5, story_1, story_7, story_3]
+  # Days 1-7 strip for 6-year-olds: small pictures of each day card's line art, glued next to the day.
   days_strip:
-    - {day: 1, he: יוֹם א׳, items: [light]}
-    - {day: 2, he: יוֹם ב׳, items: [sky, water]}
-    - {day: 3, he: יוֹם ג׳, items: [tree, flower]}
-    - {day: 4, he: יוֹם ד׳, items: [sun, moon]}
-    - {day: 5, he: יוֹם ה׳, items: [fish, bird]}
-    - {day: 6, he: יוֹם ו׳, items: [lion]}
-    - {day: 7, he: שַׁבָּת, items: [shabbat_candles]}
+    - {day: 1, he: יוֹם א׳, card: story_1}
+    - {day: 2, he: יוֹם ב׳, card: story_2}
+    - {day: 3, he: יוֹם ג׳, card: story_3}
+    - {day: 4, he: יוֹם ד׳, card: story_4}
+    - {day: 5, he: יוֹם ה׳, card: story_5}
+    - {day: 6, he: יוֹם ו׳, card: story_6}
+    - {day: 7, he: שַׁבָּת, card: story_7}
 
-# Sequencing game (plan 8.7): mini story cards + a control strip.
+# Sequencing game (plan 8.7): mini day cards + a control strip.
 sequencing:
-  cards: [story_1, story_2, story_3, story_4]
-  copies: 2                                  # two children (or two teams) play at once
-  easy_subset: [story_1, story_3, story_4]   # age 4: three cards only
+  cards: [story_1, story_2, story_3, story_4, story_5, story_6, story_7]
+  copies: 2                                            # two children (or two teams) play at once
+  easy_subset: [story_1, story_3, story_5, story_7]    # age 4: the same four days as the easy coloring

@@ -13,7 +13,7 @@
   html, body { margin: 0; padding: 0; background: #fff; color: var(--ink); font-family: 'Assistant', Arial, sans-serif;
                font-size: 10.8pt; line-height: 1.3; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .page { width: 8.5in; height: 11in; padding: 0.5in 0.55in 0.72in; position: relative; overflow: hidden;
-          break-after: page; display: flex; flex-direction: column; gap: 0.09in; }
+          break-after: page; display: flex; flex-direction: column; gap: 0.075in; }
   .page:last-child { break-after: auto; }
   .he { font-family: 'Heebo', 'Arial Hebrew', sans-serif; direction: rtl; unicode-bidi: isolate; }
   h1, h2, h3 { font-family: 'Fredoka', 'Arial Rounded MT Bold', sans-serif; color: var(--navy); margin: 0; line-height: 1.1; }
@@ -52,10 +52,17 @@
   .cardtop .t-en { font-family: 'Fredoka', sans-serif; font-size: 23pt; font-weight: 700; color: var(--navy); line-height: 1.05; }
   .cardtop .t-he { font-size: 20pt; font-weight: 700; color: var(--navy); line-height: 1.1; text-align: left; }
   .cardtop .obj { font-size: 12pt; }
+  .vref { font-family: 'Assistant', sans-serif; font-size: 10pt; font-weight: 700; color: var(--ink-2);
+          border: 1px solid var(--line); border-radius: 0.05in; padding: 0 5px; margin-left: 4px; vertical-align: middle; }
+  .tsays { display: flex; align-items: baseline; justify-content: space-between; gap: 0.15in; }
+  .keyhe { font-size: 17pt; font-weight: 800; color: var(--navy); line-height: 1.2; }
   .word { display: flex; align-items: center; gap: 0.12in; background: var(--cream); border-radius: 0.08in; padding: 0.05in 0.12in; }
   .word .big { font-size: 24pt; font-weight: 800; color: var(--navy); line-height: 1.1; }
   .word .small { font-size: 10pt; line-height: 1.25; }
-  .qa { margin-bottom: 0.06in; }
+  .qa { margin-bottom: 0.05in; }
+  .box.line .qa { font-size: 10pt; line-height: 1.25; }
+  .qgrid .box.line .qa { font-size: inherit; line-height: inherit; }
+  .two .box { font-size: 10pt; line-height: 1.25; }
   .qa .q { font-weight: 800; color: var(--navy); }
   .qa .a::before { content: "Say: "; font-weight: 700; color: var(--ink-2); }
   .qa .r::before { content: "Then: "; font-weight: 700; color: var(--green); }
@@ -63,13 +70,14 @@
   .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.12in; flex: none; }
   .three .box h3, .two .box h3 { font-size: 11pt; }
   .three .box { font-size: 10pt; }
-  .qgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.1in; font-size: 10.2pt; }
+  .qgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.07in; font-size: 9.6pt; line-height: 1.22; }
+  .qgrid .box { padding: 0.05in 0.11in; }
   .qgrid .qa { margin-bottom: 0.03in; }
   /* Week table */
   table { border-collapse: collapse; width: 100%; }
   th, td { text-align: left; vertical-align: top; padding: 0.03in 0.06in; border-bottom: 1px solid var(--line); }
   th { font-family: 'Fredoka', sans-serif; font-weight: 600; color: var(--navy); font-size: 10pt; border-bottom: 2px solid var(--navy); }
-  table.week td { font-size: 10pt; }
+  table.week td { font-size: 9.6pt; padding-top: 0.02in; padding-bottom: 0.02in; }
   table.week td.d { font-family: 'Fredoka', sans-serif; font-weight: 700; color: var(--navy); font-size: 13pt; white-space: nowrap; }
   table.dense td { font-size: 8.8pt; line-height: 1.25; }
   table.dense td.slot { font-weight: 700; color: var(--navy); white-space: nowrap; }
@@ -77,7 +85,7 @@
   .compact .cardtop .meta { gap: 0.02in; }
   .compact .cardtop .t-en { font-size: 19pt; }
   .compact .cardtop .t-he { font-size: 16pt; }
-  .compact { font-size: 10.3pt; }
+  .compact { font-size: 9.9pt; line-height: 1.25; }
   /* Cover */
   .cover-hero { background: var(--navy); color: #fff; border-radius: 0.16in; padding: 0.3in 0.35in; display: flex;
                 justify-content: space-between; align-items: center; flex: none; }
@@ -118,21 +126,25 @@
     <div class="kicker">{{ c.slot }}</div>
     <div class="t-en">{{ c.title_en }}</div>
     <div class="t-he he" lang="he">{{ c.title_he }}</div>
-    <div>{% if c.day %}<span class="chip day">Day {{ c.day }}</span>{% endif %}{% if c.minutes %}<span class="chip">{{ c.minutes }} min</span>{% endif %}{% if c.core is not none %}<span class="chip{% if c.core %} core{% endif %}">{{ "core" if c.core else "if you have time" }}</span>{% endif %}</div>
+    <div>{% if c.day %}<span class="chip day">Week: {{ c.day }}</span>{% endif %}{% if c.minutes %}<span class="chip">{{ c.minutes }} min</span>{% endif %}{% if c.core is not none %}<span class="chip{% if c.core %} core{% endif %}">{{ "core" if c.core else "if you have time" }}</span>{% endif %}</div>
     {% if c.objective %}<div class="obj"><b>Goal:</b> {{ c.objective|safe }}</div>{% endif %}
     {% if c.hebrew %}<div class="word"><span class="big he" lang="he">{{ c.hebrew.word }}</span>
       <span class="small"><b>{{ c.hebrew.translit }}</b> = {{ c.hebrew.meaning }}{% if c.hebrew.gesture %}<br>Gesture: {{ c.hebrew.gesture }}{% endif %}</span></div>{% endif %}
   </div>
 </div>
-<div class="box sky"><h2>What the Torah says</h2><p>{{ c.pshat|safe }}</p>{{ refs(c.refs) }}</div>
-{% for s in c.sages %}<div class="box gold"><h2>Our Sages teach</h2><p>{{ s.text|safe }}</p><div class="src">{{ s.source }}</div></div>{% endfor %}
+<div class="box sky"><div class="tsays"><h2>What the Torah says{% if c.text_ref %} <span class="vref">{{ c.text_ref }}</span>{% endif %}</h2>
+  {% if c.key_hebrew %}<span class="keyhe he" lang="he">{{ c.key_hebrew }}</span>{% endif %}</div>
+  <p>{{ c.pshat|safe }}</p>{{ refs(c.refs) }}</div>
+{% if compact and c.sages %}<div class="box gold"><h2>Our Sages teach</h2>{% for s in c.sages %}<p>{{ s.text|safe }} <span class="src">({{ s.source }})</span></p>{% endfor %}</div>
+{% else %}{% for s in c.sages %}<div class="box gold"><h2>Our Sages teach</h2><p>{{ s.text|safe }}</p><div class="src">{{ s.source }}</div></div>{% endfor %}{% endif %}
 {% if c.questions and compact %}<div class="box line"><b>If they ask</b> {% for q in c.questions %}“{{ q.q|safe }}”{% if not loop.last %} · {% endif %}{% endfor %}: the answers are on p.{{ fixed.hard_questions }}.</div>
 {% elif c.questions %}<div class="box line"><h2>If they ask…</h2>{% for q in c.questions %}{{ qa(q) }}{% endfor %}</div>{% endif %}
-<div class="three">
+{% if compact %}<div class="box cream"><b>👀 See:</b> {{ c.adapt.see|safe }} <b>✋ Do:</b> {{ c.adapt.do|safe }} <b>🤝 Join:</b> {{ c.adapt.join|safe }}</div>
+{% else %}<div class="three">
   <div class="box cream"><h3>👀 See</h3>{{ c.adapt.see|safe }}</div>
   <div class="box cream"><h3>✋ Do</h3>{{ c.adapt.do|safe }}</div>
   <div class="box cream"><h3>🤝 Join</h3>{{ c.adapt.join|safe }}</div>
-</div>
+</div>{% endif %}
 {% if compact %}<div class="box line"><b>Extend:</b> {{ c.extend|safe }} <b>Tip:</b> {{ c.tip|safe }}</div>
 {% else %}<div class="two">
   <div class="box line"><h3>Extend</h3>{{ c.extend|safe }}</div>
@@ -178,9 +190,9 @@
 {% elif p.kind == "card" %}{% set c = p.card %}
   {% if p.week %}
   {{ head("Week at a glance", "The week, day by day") }}
-  <table class="week"><tr><th style="width:0.8in">Day</th><th style="width:3.9in">Cards (guide page)</th><th style="width:0.45in">Min</th><th>Extras that fit</th></tr>
-  {% for d in p.week %}<tr><td class="d">Day {{ d.day }}</td>
-    <td>{% for card in d.cards %}{{ card.slot }}: {{ card.title }} (p.{{ card.page }}){% if card.core %} <b>★</b>{% endif %}{% if not loop.last %}<br>{% endif %}{% endfor %}</td>
+  <table class="week"><tr><th style="width:0.8in">When</th><th style="width:3.9in">Cards (guide page)</th><th style="width:0.45in">Min</th><th>Extras that fit</th></tr>
+  {% for d in p.week %}<tr><td class="d">{{ d.day_label }}</td>
+    <td>{% for card in d.cards %}{{ card.slot }}: {{ card.title }} (p.{{ card.page }}){% if card.core %} <b>★</b>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}</td>
     <td>{{ d.minutes }}</td><td>{{ d.extras|join(", ") or "—" }}</td></tr>{% endfor %}</table>
   <div class="refs" style="margin-top:-0.06in">★ = core card. Extras are in the extras folder; see p.{{ fixed.extras_index }} for materials and timing.</div>
   <div class="compact" style="display:flex;flex-direction:column;gap:0.1in">{{ card_body(c, True) }}</div>
@@ -203,7 +215,7 @@
   {{ head("Printables", "Extras index") }}
   <p>All files are letter size. Print at “Actual size” (100%). Cardstock makes cards last longer.</p>
   <table><tr><th>Extra</th><th>Cards used</th><th>Materials</th><th>Min</th><th>Best day</th><th>File</th></tr>
-  {% for e in p.data %}<tr><td><b>{{ e.name }}</b></td><td>{{ e.cards|join(", ") }}</td><td>{{ e.materials }}</td><td>{{ e.minutes }}</td><td>Day {{ e.best_day }}</td><td class="refs">{{ e.file_label }}</td></tr>{% endfor %}</table>
+  {% for e in p.data %}<tr><td><b>{{ e.name }}</b></td><td>{{ e.cards|join(", ") }}</td><td>{{ e.materials }}</td><td>{{ e.minutes }}</td><td>{{ e.best_day_label }}</td><td class="refs">{{ e.file_label }}</td></tr>{% endfor %}</table>
 
 {% elif p.kind == "family_letter" %}{% set L = p.letter %}
   <div class="pagehead"><div><div class="kicker" style="color:#555">From our class · please photocopy</div><h1 style="color:#111">This week we learned {{ deck.parasha_en }}</h1></div>

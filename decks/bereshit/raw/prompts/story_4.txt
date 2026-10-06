@@ -1,8 +1,7 @@
 === REFERENCE IMAGES ===
 Image 1 = style plate 'landscape' (match art style only, not content)
 Image 2 = chosen draft composition: re-render this exact composition at full detail in the same style
-Image 3 = Adam identity sheet — match face, hair, clothing exactly
-Image 4 = Chava identity sheet — match face, hair, clothing exactly
+Image 3 = continuity reference, earlier card story_3 (keep the same place, lighting and colors; show the new moment)
 
 === STYLE ===
 Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
@@ -43,20 +42,15 @@ Deck palette accents: #1E3A5F, #E0A526, #4F9A4A, #9BD7F5, #FFF4D6.
 - Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
 
 === SCENE ===
-Adam (oatmeal tunic, curly dark hair and beard) stands in a sunny meadow of the garden with one hand
-stretched out and pointing gently at a big friendly lion with a fluffy golden mane, smiling as he names
-it. The lion sits proudly and looks up at him happily. Other friendly animals wait their turn in a
-cheerful line: a giraffe, a zebra, a little lamb, a bunny, and colorful parrots and a dove fluttering at
-shoulder height. Chava (sage-green long dress) kneels nearby, gently petting a little lamb and laughing.
-Green hills and leafy trees behind them, warm light. Delighted and caring: YOU ARE A LION!
+Day 4: the sky is the hero. On one side a big, round, friendly golden sun shines in a bright day sky; on
+the other side the sky turns dusky blue and holds a pale crescent moon and a few twinkling stars: the
+big light for the day and the small light for the night. Below, the land, a fruit tree and the sea from
+Day 3 sit small, soft and simple in the background.
+Use the continuity reference only for setting and palette; the new creation must dominate the picture.
 
-=== CHARACTER ANCHORS (locked, always keep) ===
-- ADAM: young adult man with warm brown-olive skin; short dark curly hair and a short dark beard; simple modest oatmeal-and-clay earth-tone tunic, full coverage, long sleeves, knee length, with simple trousers; barefoot or simple sandals; friendly, gentle expression; "first people in a garden"
-- CHAVA: grown-up young woman (about 25 years old) with olive skin; adult proportions and height matching Adam — clearly a grown woman, not a girl or teen; long dark wavy hair, loosely tied back; simple modest sage-green tunic dress, full coverage, long sleeves, ankle length; barefoot or simple sandals; friendly, gentle expression; "first people in a garden"
-
-=== CHARACTER REFERENCES ===
-Reference images provided for: Adam, Chava.
-For these characters, prioritize the reference images for appearance (face, clothing, coloring). Use the text description above for pose, action, and emotion only.
+=== LEAVE OUT (not in this card's verses) ===
+- No fish, birds or animals
+- No people
 
 === COMPOSITION ===
 Scene action positioned in the center and right side of the frame.

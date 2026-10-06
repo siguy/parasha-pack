@@ -18,6 +18,7 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
 
+import deck_pattern  # noqa: E402
 import validate_deck  # noqa: E402
 from validate_deck import count_words, spoken_text, strip_nikud, validate_deck as run  # noqa: E402
 
@@ -226,9 +227,117 @@ def test_card_without_guide_slot(deck, tmp_path):
 
 def test_guide_layout_matches_card_counts():
     layout = validate_deck.load_yaml(validate_deck.LAYOUT_PATH)
-    assert len(layout["standard"]["cards"]) == sum(validate_deck.STANDARD_TYPE_COUNTS.values())
-    assert len(layout["holiday"]["cards"]) == sum(validate_deck.HOLIDAY_TYPE_COUNTS.values())
-    for kind in ("standard", "holiday"):
-        pages = list(layout[kind]["cards"].values()) + list(layout[kind]["fixed"].values())
-        # Only the home card shares a page (with the family letter)
-        assert len(pages) - len(set(pages)) == 1
+    for holiday, kind in ((False, "standard"), (True, "holiday")):
+        n = deck_pattern.STANDARD_STORY_CARDS[holiday]
+        assert layout[kind]["story_cards"] == n
+        pages = deck_pattern.page_map(layout, holiday, n)
+        assert len(pages["cards"]) == deck_pattern.total_cards(holiday, n)
+        all_pages = list(pages["cards"].values()) + list(pages["fixed"].values())
+        # Only the home card shares a page (with the family letter), and no page is skipped
+        assert len(all_pages) - len(set(all_pages)) == 1
+        assert sorted(set(all_pages)) == list(range(1, max(all_pages) + 1))
+
+
+def test_standard_page_map_is_unchanged():
+    layout = validate_deck.load_yaml(validate_deck.LAYOUT_PATH)
+    pages = deck_pattern.page_map(layout, False, 4)
+    assert pages["cards"] == {"anchor_1": 2, "spotlight_1": 4, "spotlight_2": 5, "story_1": 6, "story_2": 7,
+                              "story_3": 8, "story_4": 9, "connection_1": 10, "power_word_1": 11, "home_1": 15}
+    assert pages["fixed"]["sources"] == 16
+
+
+def test_sequence_page_map_adds_one_page_per_story_card():
+    layout = validate_deck.load_yaml(validate_deck.LAYOUT_PATH)
+    pages = deck_pattern.page_map(layout, False, 7)
+    assert [pages["cards"][f"story_{n}"] for n in range(1, 8)] == list(range(6, 13))
+    assert (pages["cards"]["spotlight_2"], pages["cards"]["connection_1"]) == (5, 13)
+    assert (pages["cards"]["home_1"], pages["fixed"]["family_letter"], pages["fixed"]["sources"]) == (18, 18, 19)
+    holiday = deck_pattern.page_map(layout, True, 5)
+    assert (holiday["cards"]["story_5"], holiday["cards"]["tradition_1"], holiday["fixed"]["sources"]) == (10, 11, 20)
+
+
+# ---------------------------------------------------------------- sequence decks
+
+def sequence_deck(deck, story_cards=7):
+    """The valid 10-card fixture turned into a sequence deck with one story card per item."""
+    import copy
+    deck["deck_pattern"], deck["story_cards"] = "sequence", story_cards
+    at = next(i for i, c in enumerate(deck["cards"]) if c["card_id"] == "story_4")
+    for n in range(5, story_cards + 1):
+        extra = copy.deepcopy(deck["cards"][at])
+        extra["card_id"], extra["sequence_number"] = f"story_{n}", n
+        deck["cards"].insert(at + n - 4, extra)
+    layout = validate_deck.load_yaml(validate_deck.LAYOUT_PATH)
+    pages = deck_pattern.page_map(layout, False, story_cards)["cards"]
+    for c in deck["cards"]:
+        if (c.get("back") or {}).get("guide_ref"):
+            c["back"]["guide_ref"]["page"] = pages[c["card_id"]]
+    return deck
+
+
+def test_sequence_deck_is_valid(deck, tmp_path):
+    report = validate(sequence_deck(deck, 7), tmp_path)
+    assert messages(report) == []
+    assert report.card_count == 13
+
+
+def test_sequence_deck_missing_a_story_card(deck, tmp_path):
+    seq = sequence_deck(deck, 7)
+    seq["cards"] = [c for c in seq["cards"] if c["card_id"] != "story_7"]
+    errors = " | ".join(messages(validate(seq, tmp_path)))
+    assert "sequence deck needs 13 cards, found 12" in errors
+    assert "needs 7 'story' card(s), found 6" in errors
+
+
+def test_sequence_deck_with_old_guide_pages(deck, tmp_path):
+    seq = sequence_deck(deck, 7)
+    card(seq, "connection_1")["back"]["guide_ref"]["page"] = 10   # the standard page
+    assert any("connection_1 back.guide_ref.page says p.10" in m and "p.13" in m
+               for m in messages(validate(seq, tmp_path)))
+
+
+def test_sequence_deck_reads_story_cards_from_series(deck, tmp_path):
+    seq = sequence_deck(deck, 7)
+    del seq["story_cards"]
+    series = tmp_path / "series.yaml"
+    series.write_text("parshiyot:\n  - {id: fixture, deck_pattern: sequence, story_cards: 7}\n", encoding="utf-8")
+    path = tmp_path / "deck.json"
+    path.write_text(json.dumps(seq, ensure_ascii=False), encoding="utf-8")
+    assert messages(run(path, characters_dir=CHARACTERS, series_path=series)) == []
+    series.write_text("parshiyot: []\n", encoding="utf-8")
+    errors = messages(run(path, characters_dir=CHARACTERS, series_path=series))
+    assert any("sequence deck needs story_cards" in m for m in errors)
+
+
+def test_sequence_story_cards_out_of_range(deck, tmp_path):
+    seq = sequence_deck(deck, 7)
+    seq["story_cards"] = 12
+    assert any("story_cards" in m for m in messages(validate(seq, tmp_path)))
+
+# ---------------------------------------------------------------- text fidelity
+
+def test_story_card_needs_text_ref(deck, tmp_path):
+    del card(deck, "story_2")["text_ref"]
+    assert any("story_2 text_ref story card has no text_ref" in m for m in messages(validate(deck, tmp_path)))
+
+
+def test_key_hebrew_needs_nikud_and_must_come_from_the_research_cache(deck, tmp_path):
+    research = tmp_path / "research"
+    research.mkdir()
+    (research / "fixture.yaml").write_text(
+        "verses:\n  - ref: Genesis 1:1-5\n    he:\n      - וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר וַיְהִי־אוֹר׃\n", encoding="utf-8")
+    path = tmp_path / "deck.json"
+
+    def errors_for(key):
+        card(deck, "story_1")["key_hebrew"] = key
+        path.write_text(json.dumps(deck, ensure_ascii=False), encoding="utf-8")
+        return messages(run(path, characters_dir=CHARACTERS, research_dir=research))
+
+    assert errors_for("יְהִי אוֹר") == []
+    assert any("Hebrew vocabulary word has no nikud" in m for m in errors_for("יהי אור"))
+    assert any("not an exact phrase from the research cache" in m for m in errors_for("יְהִי חֹשֶׁךְ"))
+
+
+def test_torah_card_pshat_needs_a_verse(deck, tmp_path):
+    card(deck, "spotlight_1")["guide"]["pshat"]["refs"] = []
+    assert any("spotlight_1 guide.pshat.refs pshat without a verse ref" in m for m in messages(validate(deck, tmp_path)))

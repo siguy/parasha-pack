@@ -1,4 +1,9 @@
-# Agent 05: Visual Director — Bereshit
+# Agent 05: Visual Director — Bereshit (13-card sequence deck, Phase 10)
+# Days 1-7 (story_1..7): each card makes THAT day's new creation the large, bright hero; earlier days sit
+# small, soft and simple behind it (Simon's art brief). Scenes are built only from the 01 text map's
+# in_text; `exclude` lists its not_in_text items, which generate_images.py adds to the prompt as a
+# LEAVE OUT block. continuity_ref = the previous day's final, for setting and palette only.
+# anchor_1 reuses the old story_2 art (the whole finished world, no people): raw/archive/story_2_days-4-6.png.
 # Scene-only prompts. Style (Purim look), safety, composition and the title zone are added by
 # build_generation_prompt() from style/style_config.yaml. Plates: anchor -> object (default),
 # spotlight/story -> landscape (story_world_setting: outdoor), connection -> classroom,
@@ -10,15 +15,101 @@ web_theme: {primary: "#1E3A5F", secondary: "#4F9A4A", accent: "#E0A526", wash: "
 new_characters: []
 cards:
   - card_id: anchor_1
+    text_ref: "Genesis 1:1-2:3"
     characters_in_scene: []
+    exclude: ["people", "the snake or the tree of knowledge"]
     image_prompt: |
-      The very first moment of creation: a soft, velvety deep-blue darkness over a calm, still sea, and
-      right in the middle a brilliant burst of warm golden light breaking through, its rays spreading out in
-      every direction like a sunrise opening. Tiny sparkles of light dance on the water below and the first
-      glow touches the gentle waves. No sun disc, no figure, only pure radiant light. The darkness feels
-      quiet and cozy, not scary, and the light feels like a wonderful surprise. WOW, LIGHT!
+      The whole brand-new world, full of life: a smiling warm sun shines in the sky with a pale crescent moon
+      and a few twinkly stars at one side; colorful fish leap out of the sea and a friendly whale splashes far
+      out; birds swoop over green hills; gentle animals fill the land: a giraffe, an elephant, a deer, a
+      rabbit, a lion cub and a family of ducks by a winding river under fruit trees. Joyful and busy, the
+      whole world bursting with life! (Reused art: the old story_2 final, made from this prompt.)
+
+  - card_id: story_1
+    text_ref: "Genesis 1:3-5"
+    characters_in_scene: []
+    exclude: ["water, sea or waves", "sun disc, moon or stars", "land, hills, plants or trees", "animals or people", "figure or face in the light", "ground strip or horizon at the bottom: soft darkness and light fill the whole picture"]
+    image_prompt: |
+      Day 1: a big, bright burst of warm golden light breaking out of deep darkness and pushing it back. One
+      side of the picture glows with soft morning light, the other side is calm, deep-blue night: light and
+      darkness, day and night. The light is the hero: large, radiant and central, with gentle soft rays.
+      Nothing else at all: only light and dark. Wonderful and cozy, never scary.
+
+  - card_id: story_2
+    text_ref: "Genesis 1:6-8"
+    continuity_ref: story_1
+    characters_in_scene: []
+    exclude: ["land, islands, hills or rocks", "plants or trees", "sun disc, moon or stars", "fish, birds or animals", "people"]
+    image_prompt: |
+      Day 2: a wide, clear band of bright blue sky across the middle of the picture, open air between the
+      waters. Up high, the water above the sky as big, soft white-and-blue clouds; down low, a wide rolling
+      blue ocean with gentle waves. The sky in between is the hero: clear, airy and obvious. Soft golden light
+      from Day 1 glows gently over everything. Simple and calm: only clouds, sky and sea.
+      Use the continuity reference only for setting and palette; the new creation must dominate the picture.
+
+  - card_id: story_3
+    text_ref: "Genesis 1:9-13"
+    continuity_ref: story_2
+    characters_in_scene: []
+    exclude: ["sun disc, moon or stars (a bright sky with no sun)", "animals, fish or birds", "people"]
+    image_prompt: |
+      Day 3: fresh dry land rising out of the water as the sea pulls back to one side. On the land, one big
+      fruit tree heavy with round fruit, with bright flowers and green grass sprouting all around it: the tree
+      and the new land are the heroes, large and central in the foreground. The sea, the sky and the soft
+      clouds stay simple and gentle behind. Fresh, brand-new and glistening like morning dew.
+      Use the continuity reference only for setting and palette; the new creation must dominate the picture.
+
+  - card_id: story_4
+    text_ref: "Genesis 1:14-19"
+    continuity_ref: story_3
+    characters_in_scene: []
+    exclude: ["fish, birds or animals", "people"]
+    image_prompt: |
+      Day 4: the sky is the hero. On one side a big, round, friendly golden sun shines in a bright day sky; on
+      the other side the sky turns dusky blue and holds a pale crescent moon and a few twinkling stars: the
+      big light for the day and the small light for the night. Below, the land, a fruit tree and the sea from
+      Day 3 sit small, soft and simple in the background.
+      Use the continuity reference only for setting and palette; the new creation must dominate the picture.
+
+  - card_id: story_5
+    text_ref: "Genesis 1:20-23"
+    continuity_ref: story_4
+    characters_in_scene: []
+    exclude: ["land animals", "people"]
+    image_prompt: |
+      Day 5: a big, happy, colorful fish leaping out of the sea in the foreground with a sparkling splash, a
+      friendly smiling whale spouting water further out, and two bright birds flying across the sky. The fish,
+      the whale and the birds are the heroes: large, bright and joyful. The land, the trees and the sun stay
+      small, soft and simple behind them.
+      Use the continuity reference only for setting and palette; the new creation must dominate the picture.
+
+  - card_id: story_6
+    text_ref: "Genesis 1:24-31"
+    continuity_ref: story_5
+    characters_in_scene: [adam, chava]
+    exclude: ["snake", "fruit being picked or eaten", "more than three animals in front"]
+    image_prompt: |
+      Day 6: Adam (oatmeal tunic, short curly dark hair and beard) and Chava (sage-green long dress, long dark
+      wavy hair) stand together on a green hill, smiling and waving hello, with three friendly land animals
+      beside them: a gentle lion, a woolly sheep and a tall giraffe. This group is the hero, large and
+      central. The sea, the fruit trees, the sun and a bird or two stay small and soft in the background.
+      Use the continuity reference only for setting and palette; the new creation must dominate the picture.
+
+  - card_id: story_7
+    text_ref: "Genesis 2:1-3"
+    continuity_ref: story_6
+    characters_in_scene: [adam, chava]
+    exclude: ["anyone working or making something", "candles, tables or buildings"]
+    image_prompt: |
+      Day 7, Shabbat: the whole finished world at rest in soft golden evening light. The sea, the green hills
+      and fruit trees, a calm peach-and-gold sky with the sun setting low, a pale moon and the first stars.
+      Adam and Chava sit peacefully together on the grass, smiling quietly. Around them everything rests: a
+      lion and a sheep curled up asleep side by side, a giraffe lying down, birds settled in a tree, fish
+      resting near the shore. Still, cozy and peaceful: everything is finished.
+      Use the continuity reference only for setting and palette; the new creation must dominate the picture.
 
   - card_id: spotlight_1
+    text_ref: "Genesis 2:7, 2:15, 2:19-20"
     characters_in_scene: [adam]
     image_prompt: |
       Adam (oatmeal tunic, short curly dark hair and beard) kneels in the lush garden, chest-up and close,
@@ -28,6 +119,7 @@ cards:
       Gentle, warm and proud: the first gardener.
 
   - card_id: spotlight_2
+    text_ref: "Genesis 2:18, 2:21-23"
     characters_in_scene: [chava]
     image_prompt: |
       Chava, a grown-up young woman (sage-green long-sleeved dress, long dark wavy hair loosely tied back),
@@ -35,44 +127,6 @@ cards:
       small bird a few seeds; the little bluebird hops onto her fingertips. Behind her: flowering bushes,
       fruit trees and a clear river in soft golden light, with a wide pale sky above. Friendly, warm and
       helpful: a helping hand.
-
-  - card_id: story_1
-    characters_in_scene: []
-    image_prompt: |
-      A brand-new world on its third day, wide view: golden light pours over everything from a glowing
-      sky. A wide blue sky above, a calm sparkling sea on one side, and on the other side fresh green hills
-      of dry land where the very first trees, grass and bright flowers are sprouting and unfurling. A river
-      winds from the hills down to the sea. No animals and no people yet: everything is fresh, clean and
-      brand new, glistening like morning dew. Wonder and freshness everywhere!
-
-  - card_id: story_2
-    continuity_ref: story_1
-    characters_in_scene: []
-    image_prompt: |
-      The very same landscape as the earlier card, the same hills, river, sea and trees, now FULL OF LIFE:
-      a smiling warm sun shines in the sky with a pale crescent moon and a few twinkly stars still visible
-      at one side; colorful fish leap out of the sea and a friendly whale splashes far out; birds swoop over
-      the hills; gentle animals fill the green land: a giraffe, an elephant, a deer, a rabbit, a lion cub
-      and a family of ducks by the river. Joyful and busy, the whole world bursting with life!
-
-  - card_id: story_3
-    characters_in_scene: []
-    image_prompt: |
-      The same garden world at rest on the seventh day, a calm golden evening: soft peach and gold light
-      glows across the sky and over the still river. The animals are resting peacefully: a lion cub curled
-      up asleep beside a lamb, birds tucked quietly in a tree, a deer lying in the soft grass, ducks floating
-      gently. The flowers are closed and the trees stand still. Everything is quiet, cozy and peaceful, a
-      warm feeling of rest. SHHH... it is a special day.
-
-  - card_id: story_4
-    characters_in_scene: [adam, chava]
-    image_prompt: |
-      Adam (oatmeal tunic, curly dark hair and beard) stands in a sunny meadow of the garden with one hand
-      stretched out and pointing gently at a big friendly lion with a fluffy golden mane, smiling as he names
-      it. The lion sits proudly and looks up at him happily. Other friendly animals wait their turn in a
-      cheerful line: a giraffe, a zebra, a little lamb, a bunny, and colorful parrots and a dove fluttering at
-      shoulder height. Chava (sage-green long dress) kneels nearby, gently petting a little lamb and laughing.
-      Green hills and leafy trees behind them, warm light. Delighted and caring: YOU ARE A LION!
 
   - card_id: connection_1
     characters_in_scene: []

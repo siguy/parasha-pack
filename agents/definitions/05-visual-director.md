@@ -58,8 +58,8 @@ cards:
 6. **Style plate:** the mapping in `style_config.yaml` picks it (connection/tradition → classroom,
    anchor/power_word → object, spotlight/story → the deck's `story_world_setting`). Override with
    `style_plate` only for a reason.
-7. **Continuity:** same place as an earlier card → `continuity_ref: <card_id>` (Bereshit ①→② is the same
-   landscape filling up).
+7. **Continuity:** same place as an earlier card → `continuity_ref: <card_id>`. In a sequence deck each
+   item uses the previous item's final, for setting and palette only (say so in the prompt).
 8. **Villains:** sulky, frustrated or comic — crossed arms, pout, turned away. Never pointing, snarling,
    weapons or looming. Note the posture in `villain_posture`.
 9. **Modern world** (connection, tradition): name a diverse Jewish mix (Ashkenazi, Sephardi/Mizrahi,
@@ -69,6 +69,13 @@ cards:
     from above. Adam and Chava are clearly **adults** in simple, modest, full-coverage tunics.
 11. **No text anywhere** in the scene: no signs, scrolls facing the viewer, posters or letters.
 12. **Period accuracy:** story-world scenes have no modern objects.
+13. **Build the scene from the text map.** Cite the card's `text_ref` (same as 02). Draw only the row's
+    `in_text` (plus, at most, a soft background of earlier items) and put the visual items of
+    `not_in_text` in `exclude:` (e.g. `["water, sea or waves", "sun disc, moon or stars"]`):
+    `generate_images.py` adds them to the prompt as a LEAVE OUT block. No decorative extras the verse
+    doesn't mention (no animals on Day 3, no sun before Day 4).
+14. **Keep it simple.** One clear focal subject a 4-year-old can name in a word. In a sequence deck the
+    NEW item is the large, bright hero in the centre; what already existed is smaller, softer and behind.
 
 ## Card-type notes (short)
 
@@ -89,6 +96,11 @@ python3 generate_images.py ../decks/{id}/deck.json --card story_1 --draft     # 
 # Image QA (05b) scores the drafts and picks one
 python3 generate_images.py ../decks/{id}/deck.json --final --from-draft ../decks/{id}/raw/drafts/story_1_d2.png
 ```
+
+To fix one detail of a finished image without redrawing it, edit it:
+`python3 generate_images.py ../decks/{id}/deck.json --card story_1 --edit-from ../decks/{id}/raw/story_1.png`
+(the card's `image_prompt` must then say only what to change; 2K; no style plates). Bereshit Day 1 used it
+to remove a ground strip.
 
 Set `PP_SPEND_LEDGER` and `PP_BUDGET_USD` before any batch (see `agents/AGENT_PIPELINE.md`). Make finals
 in Torah order so `continuity_ref` images exist when they are needed.

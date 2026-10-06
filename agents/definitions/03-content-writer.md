@@ -80,7 +80,15 @@ happy, proud, calm, excited, scared, brave, sad, surprised).
 9. **Home card:** ≤70 English words, a Shabbat-table question in EN + HE, transliteration, activities tagged
    `shabbat-friendly` or `before-shabbat`.
 10. **Copy `minutes` and `core` from 02 exactly** (assemble fails on a mismatch). `guide_ref.page` must exist
-    in `guide_layout.yaml`.
+    in `guide_layout.yaml` (for a sequence deck, pages after the story pages move down: see
+    `src/deck_pattern.py`, e.g. Bereshit connection p.13, power word p.14, home p.18).
+11. **Stick to the text map.** Each card shows its 01 `text_map` row: SAY, ASK and the badge may only claim
+    what is in `in_text`; nothing from `not_in_text` (Bereshit: no "tov" on Day 2, "tov, tov" on Day 3,
+    "tov me'od" on Day 6). Quote the row's `key_hebrew` (with its verse ref) in `guide.pshat`. Midrash
+    stays in `guide.sages`, labeled, with a source.
+12. **Sequence decks** (one story card per item): give each item ONE gesture and end its SAY with a
+    quick recap chant of every gesture so far, carried by the cue chips so the words stay short
+    ("**Light! Sky! Trees!** [Open · reach up · grow]").
 
 ## Hebrew rules
 

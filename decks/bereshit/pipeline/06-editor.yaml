@@ -1,15 +1,17 @@
 # Agent 06: Editor — Bereshit. Scored with agents/rubrics/editor.yaml after export.
-# Export: letter + 5x7 both passed the overflow/safe-zone guard; PDFs 20 pages each in duplex order.
+# Export: letter + 5x7 both passed the overflow/safe-zone guard; PDFs 26 pages each in duplex order (13 cards).
 # PASS: validator passes, no blocking criterion at 0, no critical issue, weighted >= 80.
+# Phase 10 re-review (13-card sequence deck, rubric 1.1 with blocking text_fidelity): every back and guide
+# block checked against the 01 text map; tov only where the text says it.
 agent: 06-editor
 deck_id: bereshit
 rubric: agents/rubrics/editor.yaml
-rubric_version: '1.0'
+rubric_version: '1.1'
 validator:
   ran: true
   command: python3 src/validate_deck.py decks/bereshit/deck.json
   passed: true
-  summary: 0 errors, 0 warnings
+  summary: 0 errors, 0 warnings (13-card sequence deck)
 sections:
   content:
     scores:
@@ -23,6 +25,7 @@ sections:
   torah_accuracy:
     scores:
       pshat_cited: 2
+      text_fidelity: 2
       midrash_labeled: 2
       sensitivity_followed: 2
       hashem_language: 2
@@ -40,9 +43,9 @@ sections:
   print:
     scores:
       export_clean: 2
-      legible: 2
+      legible: 1
       counts: 2
-weighted_percent: 93.2
+weighted_percent: 91.5
 pass: true
 issues:
 - card_id: anchor_1
@@ -51,26 +54,32 @@ issues:
   issue: Anchor objective ('Hashem made a beautiful world for us') doesn't say the middah phrase 'caring for Hashem's
     world'; the value pill on the back does
   route_to: 03-content-writer
-  fix: 'Simon''s call (approved wording): e.g. ''Hashem made a beautiful world for us to care for'' (10 words)'
+  fix: Simon's call (approved wording)
 - card_id: deck
   severity: recommended
   section: content
-  issue: ★core cards add up to 26 minutes (anchor 5, Adam 3, stories 1-3 15, tov 3), not ~15
+  issue: '★core cards add up to 33 minutes over the week (anchor 5, Days 1-7 21, Adam 4, tov 3): 6-11 core minutes
+    a day, fine for the week plan but not a single ~15-minute lesson'
   route_to: 02-curriculum-designer
-  fix: 'Simon''s call: un-star story_2 or story_3, or accept core = the 5-day minimum'
+  fix: 'Simon''s call: un-star some days, or accept core = the 5-day minimum'
 - card_id: power_word_1
   severity: minor
   section: hebrew
   issue: Trio box says 'TOHV' while every other place says 'TOV'
   route_to: 03-content-writer
   fix: Use 'TOV' (kept 'TOHV' because it is the approved mockup wording)
-- card_id: story_2
+- card_id: story_6
   severity: minor
   section: print
-  issue: 'Title and Hebrew subtitle sit over the smiling sun and a crescent moon: readable, but the busiest title
-    zone in the deck'
+  issue: 'The title ''Day 6: Animals & People'' wraps to 2 lines and sits over the sun; readable'
   route_to: 05-visual-director
-  fix: Optional redo with the sun lower in the frame
+  fix: 'Optional: shorter title or the sun lower in a redo'
+- card_id: story_5
+  severity: minor
+  section: art
+  issue: Hard vertical colour split (day/night) behind the title; Day 5 also keeps the Day 4 moon
+  route_to: 05-visual-director
+  fix: Optional redo with a single day sky
 - card_id: spotlight_2
   severity: minor
   section: art

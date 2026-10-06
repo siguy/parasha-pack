@@ -8,8 +8,16 @@ the website wants them and drops them into the hub repo:
   decks/<id>/deck.json             -> HUB/app/parashapacks/decks/<id>.json
   decks/<id>/images/<card>.png     -> HUB/public/parashapacks/<id>/<card>.webp
   decks/<id>/backs/<card>_back.png -> HUB/public/parashapacks/<id>/<card>_back.webp
-  decks/<id>/print/<id>-letter.pdf -> HUB/public/parashapacks/<id>/<id>-letter.pdf
+  decks/<id>/print/<id>-letter.pdf -> HUB/public/parashapacks/<id>/materials/<id>-letter.pdf
+  decks/<id>/print/<id>-guide.pdf  -> HUB/public/parashapacks/<id>/materials/<id>-guide.pdf
+  decks/<id>/extras/*.pdf          -> HUB/public/parashapacks/<id>/materials/*.pdf
   (all synced decks)               -> HUB/app/parashapacks/decks/index.json
+
+The teacher files ("materials") are listed in the deck JSON as `materials`
+(title, description, file, size, pages, category), so the deck page can show a
+"Teacher materials" section with download buttons. Whatever PDFs exist get
+published; a new activity PDF in extras/ shows up without code changes (it gets a
+plain title until it is added to MATERIAL_INFO).
 
 WebP is about 10x smaller than PNG for the same look, so pages load fast.
 Archived decks (decks/archive/<id>/) work too.
@@ -23,6 +31,8 @@ Every deck is checked with src/validate_deck.py first. If the validator reports
 errors, the sync stops (exit code 1) before anything is written to the hub.
 --allow-invalid publishes anyway (with a warning). Terumah needs it for now: it is
 a v2 deck migrated to v3 and still fails the v3 checks (see todos/).
+
+The classroom pilot forms (docs/pilot/) are not per-deck, so they are not published.
 
 Missing images or a missing PDF are logged as warnings; the sync carries on.
 Run the Card Designer export first:  cd card-designer && npm run export <id> -- --backs --pdf
@@ -48,6 +58,28 @@ MAX_HEIGHT = 1600  # px; the exports are 3125 tall, far more than any screen nee
 
 # Card fields the website never uses. Dropping them keeps the site's JSON small.
 DROP_CARD_FIELDS = ("image_prompt", "guide")
+
+# Teacher materials: friendly title + one-line description per file, keyed by file stem
+# ("letter", "guide" or the extras PDF name). {boards} comes from extras.yaml (bingo.boards).
+MATERIAL_INFO = {
+    "letter": ("Cards", "The card deck",
+               "Every card, kid side and teacher side, on letter paper. One card per sheet, no cutting."),
+    "guide": ("Teacher guide", "Teacher booklet",
+              "The week day by day: what to say, what to ask, and the Hebrew for every card."),
+    "coloring": ("Activities", "Coloring + put in order",
+                 "Color the story pictures, cut them out and glue them in order. Easy and full versions."),
+    "sequencing": ("Activities", "Sequencing game",
+                   "Two sets of mini story cards to cut out and put in order, plus the game rules."),
+    "bingo": ("Activities", "Bingo: {boards} boards + calling cards",
+              "Picture bingo with the week's Hebrew words. Every board is different."),
+    "ispy": ("Activities", "I spy",
+             "Find and count the hidden pictures. Easy, challenge and coloring pages, plus an answer key."),
+    "match": ("Activities", "Match it",
+              "Picture-picture and picture-word cards to cut out and pair up, or play as memory."),
+    "listen_do": ("Activities", "Listen & do",
+                  "Kids listen, then color and draw on the picture. Includes the teacher script."),
+}
+MATERIAL_CATEGORIES = ("Cards", "Teacher guide", "Activities")
 
 logger = logging.getLogger("sync_to_hub")
 
@@ -161,6 +193,68 @@ def load_series_status(repo: Path) -> dict[str, str]:
     return status
 
 
+def pdf_pages(pdf: Path) -> int | None:
+    """Page count of a PDF, or None if it can't be read."""
+    try:
+        from pypdf import PdfReader
+        return len(PdfReader(pdf).pages)
+    except Exception as exc:  # a broken PDF should not stop the sync
+        logger.warning("  could not count pages in %s: %s", pdf.name, exc)
+        return None
+
+
+def bingo_boards(roots: list[Path]) -> int:
+    """How many bingo boards the deck prints (extras.yaml bingo.boards, default 10)."""
+    extras_yaml = find_file(roots, "extras.yaml")
+    if extras_yaml is None:
+        return 10
+    try:
+        import yaml
+        return int(((yaml.safe_load(extras_yaml.read_text()) or {}).get("bingo") or {}).get("boards", 10))
+    except Exception:
+        return 10
+
+
+def find_materials(roots: list[Path], deck_id: str) -> list[tuple[str, Path]]:
+    """(key, path) for every teacher PDF the deck has: cards, guide, then each extras/*.pdf."""
+    found = []
+    for key, relative in (("letter", f"print/{deck_id}-letter.pdf"), ("guide", f"print/{deck_id}-guide.pdf")):
+        pdf = find_file(roots, relative)
+        if pdf is not None:
+            found.append((key, pdf))
+    extras_dir = next((r / "extras" for r in roots if (r / "extras").is_dir()), None)
+    if extras_dir is not None:
+        known = [k for k in MATERIAL_INFO if k not in ("letter", "guide")]
+        extras = sorted(extras_dir.glob("*.pdf"),
+                        key=lambda p: (known.index(p.stem) if p.stem in known else len(known), p.stem))
+        found.extend((p.stem, p) for p in extras)
+    return found
+
+
+def publish_materials(roots: list[Path], deck_id: str, out_dir: Path) -> list[dict]:
+    """Copy the teacher PDFs into out_dir and describe each one for the site."""
+    materials = []
+    boards = bingo_boards(roots)
+    for key, pdf in find_materials(roots, deck_id):
+        category, title, description = MATERIAL_INFO.get(
+            key, ("Activities", key.replace("_", " ").capitalize(), "A printable activity for this deck."))
+        out_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(pdf, out_dir / pdf.name)
+        materials.append({
+            "title": title.format(boards=boards),
+            "description": description,
+            "file": f"materials/{pdf.name}",
+            "size": pdf.stat().st_size,
+            "pages": pdf_pages(pdf),
+            "category": category,
+        })
+    order = {c: i for i, c in enumerate(MATERIAL_CATEGORIES)}
+    materials.sort(key=lambda m: order.get(m["category"], len(order)))  # stable: keeps file order within a category
+    total = sum(m["size"] for m in materials)
+    logger.info("  materials: %d PDFs, %.1f MB", len(materials), total / 1e6)
+    return materials
+
+
 def index_entry(deck: dict, has_pdf: bool, missing: int, status: str) -> dict:
     """One deck's row in index.json: just enough for the gallery on /parashapacks."""
     cards = deck["cards"]
@@ -197,8 +291,6 @@ def sync_deck(deck_id: str, repo: Path, hub: Path, series_status: dict[str, str]
 
     data_dir = hub / "app" / "parashapacks" / "decks"
     data_dir.mkdir(parents=True, exist_ok=True)
-    (data_dir / f"{deck_id}.json").write_text(json.dumps(slim_deck(deck), ensure_ascii=False, indent=2) + "\n")
-    logger.info("  wrote app/parashapacks/decks/%s.json (%d cards)", deck_id, len(deck["cards"]))
 
     # Start from an empty folder so cards removed from the deck don't linger on the site
     public_dir = hub / "public" / "parashapacks" / deck_id
@@ -219,14 +311,17 @@ def sync_deck(deck_id: str, repo: Path, hub: Path, series_status: dict[str, str]
             copied += 1
     logger.info("  images: %d copied as WebP, %d missing", copied, missing)
 
-    pdf = find_file(roots, f"print/{deck_id}-letter.pdf")
-    if pdf is None:
+    materials = publish_materials(roots, deck_id, public_dir / "materials")
+    has_pdf = any(m["category"] == "Cards" for m in materials)
+    if not has_pdf:
         logger.warning("  missing print/%s-letter.pdf (the Print button will be hidden)", deck_id)
-    else:
-        shutil.copy2(pdf, public_dir / f"{deck_id}-letter.pdf")
-        logger.info("  copied %s-letter.pdf", deck_id)
 
-    return index_entry(deck, pdf is not None, missing, series_status.get(deck_id, ""))
+    site_deck = slim_deck(deck)
+    site_deck["materials"] = materials
+    (data_dir / f"{deck_id}.json").write_text(json.dumps(site_deck, ensure_ascii=False, indent=2) + "\n")
+    logger.info("  wrote app/parashapacks/decks/%s.json (%d cards, %d materials)", deck_id, len(deck["cards"]), len(materials))
+
+    return index_entry(deck, has_pdf, missing, series_status.get(deck_id, ""))
 
 
 def update_index(hub: Path, entries: list[dict]) -> list[dict]:

@@ -79,13 +79,16 @@ python3 scripts/sync_to_hub.py {id}                          # publish to simonb
 
 1. Loads each pipeline file and checks it against its schema (errors name the file and the path,
    e.g. `03-content.yaml: cards/3/back: ...`). Any error → stops, nothing written.
-2. Cross-file checks: `deck_id` matches the folder; D1 card mix (warning) and total (error); every card in
+2. Cross-file checks: `deck_id` matches the folder; card mix (warning) and total (error) for the deck's
+   pattern (D1, or 6 + N for a sequence deck); story cards cite a `text_ref` that matches the 01 text map
+   (and 05, if it cites one); every card in
    02 has an `ok`/`reframe` verdict in 02b and the checkpoint is approved; 03 and 05 cover exactly the
    02 cards; `minutes`/`core` in 03 match 02; Image QA totals and pass flags add up.
 3. Merges (structure from 02, content from 03, prompts from 05, picks from 05b) in 02's card order.
 4. Checks the result: every `characters_in_scene` key is in `characters/`; the deck passes
    `schemas/deck.v3.schema.json` (which includes the optional image fields `story_world_setting`,
-   `style_plate`, `continuity_ref`).
+   `style_plate`, `continuity_ref`) and carries `text_ref`, `key_hebrew` (from the text map) and `exclude`
+   (from 05).
 5. Writes `deck.json`, then runs `src/validate_deck.py decks/{id}/deck.json` (a failure is an error).
 
 Exit 0 = written and all checks passed. Errors also go to `project.log`.

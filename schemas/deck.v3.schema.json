@@ -12,6 +12,11 @@
     "parasha_en": { "type": "string", "description": "Parasha or holiday name in English, e.g. 'Bereshit' or 'Purim'" },
     "parasha_he": { "type": "string" },
     "holiday": { "type": "boolean", "description": "true for holiday decks (they add tradition cards)" },
+    "deck_pattern": {
+      "enum": ["standard", "sequence"],
+      "description": "Optional (default standard: 4 story cards, 3 on a holiday). 'sequence' = one story card per item of a numbered text (e.g. the 7 days of creation); needs story_cards. See src/deck_pattern.py"
+    },
+    "story_cards": { "type": "integer", "minimum": 3, "maximum": 10, "description": "Sequence decks only: the number of story cards (from series.yaml)" },
     "ref": { "type": "string", "description": "Source text, e.g. 'Genesis 1:1-6:8'" },
     "value": {
       "type": "object",
@@ -233,6 +238,12 @@
           "description": "Optional. card_id of an earlier card whose image is passed as a reference so the scene stays the same (e.g. story_2 -> story_1)"
         },
         "sequence_number": { "type": "integer", "minimum": 1, "description": "story cards only" },
+        "text_ref": { "type": "string", "minLength": 3, "description": "The verses this card shows, from the Torah Scholar's text map (01-research.yaml), e.g. 'Genesis 1:3-5'. Required on story cards (validator)" },
+        "key_hebrew": { "type": "string", "description": "The key phrase of those verses, copied with nikud from research/{deck}.yaml, e.g. 'יְהִי אוֹר'" },
+        "exclude": {
+          "type": "array", "items": { "type": "string" },
+          "description": "Things NOT in this card's verses that the picture must leave out (from the text map's not_in_text), e.g. 'the sun'. generate_images.py adds them to the prompt"
+        },
         "hebrew_keyword": {
           "description": "Front badge (story cards)",
           "type": "object",

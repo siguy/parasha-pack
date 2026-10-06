@@ -17,6 +17,7 @@ from pathlib import Path
 import yaml
 
 import character_library
+import deck_pattern
 
 logger = logging.getLogger("series")
 
@@ -100,6 +101,17 @@ def validate_series(series: dict, middot: list = None) -> list:
         middah = entry.get("middah")
         if middah != TBD and middah not in middot:
             problems.append(f"{entry_id}: middah '{middah}' is not in values-spine.md")
+
+        # Sequence decks (deck_pattern: sequence) get one story card per item: see src/deck_pattern.py
+        pattern = entry.get("deck_pattern", deck_pattern.STANDARD)
+        if pattern not in deck_pattern.PATTERNS:
+            problems.append(f"{entry_id}: deck_pattern '{pattern}' must be one of {list(deck_pattern.PATTERNS)}")
+        elif pattern == deck_pattern.SEQUENCE:
+            _, _, problem = deck_pattern.story_card_count({**entry, "holiday": entry.get("type") == "holiday"}, None)
+            if problem:
+                problems.append(f"{entry_id}: {problem}")
+        elif "story_cards" in entry:
+            problems.append(f"{entry_id}: story_cards is only for deck_pattern: sequence")
 
         power_word = entry.get("power_word")
         if power_word != TBD and not (isinstance(power_word, dict)

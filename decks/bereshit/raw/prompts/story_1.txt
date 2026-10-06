@@ -41,11 +41,18 @@ Deck palette accents: #1E3A5F, #E0A526, #4F9A4A, #9BD7F5, #FFF4D6.
 - Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
 
 === SCENE ===
-A brand-new world on its third day, wide view: golden light pours over everything from a glowing
-sky. A wide blue sky above, a calm sparkling sea on one side, and on the other side fresh green hills
-of dry land where the very first trees, grass and bright flowers are sprouting and unfurling. A river
-winds from the hills down to the sea. No animals and no people yet: everything is fresh, clean and
-brand new, glistening like morning dew. Wonder and freshness everywhere!
+Day 1: a big, bright burst of warm golden light breaking out of deep darkness and pushing it back. One
+side of the picture glows with soft morning light, the other side is calm, deep-blue night: light and
+darkness, day and night. The light is the hero: large, radiant and central, with gentle soft rays.
+Nothing else at all: only light and dark. Wonderful and cozy, never scary.
+
+=== LEAVE OUT (not in this card's verses) ===
+- No water, sea or waves
+- No sun disc, moon or stars
+- No land, hills, plants or trees
+- No animals or people
+- No figure or face in the light
+- No ground strip or horizon at the bottom: soft darkness and light fill the whole picture
 
 === COMPOSITION ===
 Scene action positioned in the center and right side of the frame.

@@ -103,10 +103,13 @@ def validate_extras(data: dict) -> list:
     if coloring:
         if sorted(coloring["page_order"]) != sorted(coloring["cards"]):
             problems.append("coloring.page_order must use exactly the same cards as coloring.cards")
+        if sorted(coloring.get("easy_page_order", [])) != sorted(coloring.get("easy_cards", [])):
+            problems.append("coloring.easy_page_order must use exactly the same cards as coloring.easy_cards")
+        if not set(coloring.get("easy_cards", [])) <= set(coloring["cards"]):
+            problems.append("coloring.easy_cards must be a subset of coloring.cards")
         for entry in coloring.get("days_strip", []):
-            for item_id in entry["items"]:
-                if item_id not in known:
-                    problems.append(f"coloring.days_strip: unknown item '{item_id}'")
+            if entry["card"] not in coloring["cards"]:
+                problems.append(f"coloring.days_strip: day {entry['day']} card '{entry['card']}' is not in coloring.cards")
     if sequencing and not set(sequencing["easy_subset"]) <= set(sequencing["cards"]):
         problems.append("sequencing.easy_subset must be a subset of sequencing.cards")
     levels = [s["level"] for s in listen["steps"]]

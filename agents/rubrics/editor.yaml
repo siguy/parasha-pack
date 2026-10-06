@@ -9,7 +9,7 @@
 #   - no issue with severity "critical"
 #   - weighted_percent >= pass_percent
 
-version: "1.0"
+version: "1.1"   # 1.1 (Phase 10): torah_accuracy.text_fidelity; counts allow sequence decks
 scale: [0, 1, 2]
 pass_percent: 80
 
@@ -27,7 +27,8 @@ sections:
   - id: torah_accuracy
     weight: 25
     criteria:
-      - {id: pshat_cited, blocking: true, check: "Every story claim traces to a 01-research claim with a verse ref"}
+      - {id: pshat_cited, blocking: true, check: "Every story claim traces to a 01-research claim with a verse ref. Any pshat claim without a verse FAILS the deck"}
+      - {id: text_fidelity, blocking: true, check: "Each card cites its text_ref and shows only the 01 text map's in_text: no not_in_text item on the back or in the picture (no sun before Day 4, no tov on Day 2); key_hebrew copied exactly"}
       - {id: midrash_labeled, blocking: true, check: "Midrash is only in guide.sages or says 'Our Sages teach…', with a source"}
       - {id: sensitivity_followed, blocking: true, check: "Every 02b verdict was followed (guide-only topics are absent from cards; reframes used)"}
       - {id: hashem_language, check: "Hashem protects, helps and loves; never scary; God's name never written"}
@@ -49,4 +50,4 @@ sections:
     criteria:
       - {id: export_clean, blocking: true, check: "Export ran with no overflow-guard failures; duplex PDF page order front1, back1, front2…"}
       - {id: legible, check: "Fronts readable from 3 m; backs readable at arm's length on letter"}
-      - {id: counts, check: "10 cards standard / 12 holiday (D1); PDF has 2 pages per card"}
+      - {id: counts, check: "10 cards standard / 12 holiday (D1), or 6 + story_cards for a sequence deck; PDF has 2 pages per card"}

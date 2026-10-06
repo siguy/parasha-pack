@@ -172,6 +172,7 @@ composition_suffix: |
 reference_labels:
   style_plate: "style plate '{name}' (match art style only, not content)"
   legacy_style_hero: "deck style hero (match art style only, not content)"
+  edit: "the image to edit: keep its exact composition, camera, framing and art style"
   draft: "chosen draft composition: re-render this exact composition at full detail in the same style"
   continuity: "continuity reference, earlier card {name} (keep the same place, lighting and colors; show the new moment)"
   character: "{name} identity sheet — match face, hair, clothing exactly"

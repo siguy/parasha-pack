@@ -1,6 +1,7 @@
 === REFERENCE IMAGES ===
 Image 1 = style plate 'landscape' (match art style only, not content)
 Image 2 = chosen draft composition: re-render this exact composition at full detail in the same style
+Image 3 = continuity reference, earlier card story_2 (keep the same place, lighting and colors; show the new moment)
 
 === STYLE ===
 Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
@@ -41,11 +42,16 @@ Deck palette accents: #1E3A5F, #E0A526, #4F9A4A, #9BD7F5, #FFF4D6.
 - Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
 
 === SCENE ===
-The same garden world at rest on the seventh day, a calm golden evening: soft peach and gold light
-glows across the sky and over the still river. The animals are resting peacefully: a lion cub curled
-up asleep beside a lamb, birds tucked quietly in a tree, a deer lying in the soft grass, ducks floating
-gently. The flowers are closed and the trees stand still. Everything is quiet, cozy and peaceful, a
-warm feeling of rest. SHHH... it is a special day.
+Day 3: fresh dry land rising out of the water as the sea pulls back to one side. On the land, one big
+fruit tree heavy with round fruit, with bright flowers and green grass sprouting all around it: the tree
+and the new land are the heroes, large and central in the foreground. The sea, the sky and the soft
+clouds stay simple and gentle behind. Fresh, brand-new and glistening like morning dew.
+Use the continuity reference only for setting and palette; the new creation must dominate the picture.
+
+=== LEAVE OUT (not in this card's verses) ===
+- No sun disc, moon or stars (a bright sky with no sun)
+- No animals, fish or birds
+- No people
 
 === COMPOSITION ===
 Scene action positioned in the center and right side of the frame.

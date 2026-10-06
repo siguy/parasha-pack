@@ -15,7 +15,7 @@
  */
 import React from 'react';
 import { Card, Hebrew, LoadedDeck, StandardBack, HomeBack } from '@/types/card';
-import { CARD_TYPES, BackSection } from '@/lib/cardTypes';
+import { CARD_TYPES, BackSection, backHeaderLabel, weekDayLabel } from '@/lib/cardTypes';
 import { parseMarkup } from '@/lib/markup';
 import { TypeIcon, TargetIcon, HandIcon, BookIcon, FeelingFace } from './icons';
 
@@ -89,7 +89,7 @@ function Section({ name, card, deck }: { name: BackSection; card: Card; deck: Lo
           <div className="lbl">THIS WEEK</div>
           <div className="week">
             {deck.week_plan.map((d) => (
-              <div key={d.day}><b>Day {d.day}</b>{d.label}</div>
+              <div key={d.day}><b>{weekDayLabel(d.day, deck)}</b>{d.label}</div>
             ))}
           </div>
         </div>
@@ -149,7 +149,7 @@ export function CardBack({ card, deck }: { card: Card; deck: LoadedDeck }) {
   const isHome = card.card_type === 'home';
   const std = isHome ? null : (card.back as StandardBack);
 
-  const headerLabel = card.card_type === 'story' && card.sequence_number ? `Story ${card.sequence_number}` : type.label;
+  const headerLabel = backHeaderLabel(card, deck);
   const titleHe = std?.title_he ?? card.title_he;
 
   return (

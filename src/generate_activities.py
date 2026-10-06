@@ -503,18 +503,29 @@ def build_listen_do(b: Builder) -> tuple:
 # Coloring + sequence (plan 8.5)
 # ---------------------------------------------------------------------------
 
-COLORING_INSTRUCTIONS = ("Color the four pictures. Cut on the thick lines. Lay them on the story path in "
-                         "story order, then check: the dots on each picture match the dots on its box. "
-                         "Glue them down and retell the story.")
+COLORING_INSTRUCTIONS = ("Color the pictures. Cut on the thick lines. Lay them in order, then check: "
+                         "the dots under each picture match the dots on its box. Glue them on the strips "
+                         "and retell the story.")
+EASY_INSTRUCTIONS = ("Easy version: four days only. Color, cut on the thick lines, and glue each picture "
+                     "on the box with the same dots and number. Then retell: first, next, then, last.")
 DAYS_INSTRUCTIONS = ("For 6-year-olds. Cut off the picture strip, then cut out the squares. Glue each "
                      "picture next to the day it was made. Say the day in Hebrew together.")
 
-# Page geometry (inches). The 2x2 panels are 3.75 x 4.5 and fill a 7.5 x 9 block.
+# Page geometry (inches).
+# Easy page: 2 x 2 panels of 3.75 x 4.5 fill a 7.5 x 9 block, with a story path in a U.
 PANEL_W, PANEL_H = 3.75, 4.5
 PANEL_LEFT, PANEL_TOP = 0.5, 1.65
 PATH_GAP = 0.3            # the story path boxes are the same size, with a gap for the arrows
-MINI_W, MINI_H = 2.5, 3.5  # sequencing mini cards (poker-card size)
+# Full page: up to 8 day panels of 1.75 x 3.6 in a 4 x 2 grid (7 days fill 7 boxes; the 8th spot is
+# the name box, not cut). The glue strips use the same box size.
+DAY_COLS, DAY_W, DAY_H = 4, 1.75, 3.6
+DAY_LEFT, DAY_TOP = 0.75, 1.6
+STRIP_TOPS = (1.55, 5.75)  # two glue strips: days 1-4, then 5-7 with a tape tab
+TAB_W = 0.55
+MINI_W, MINI_H = 1.875, 2.625  # sequencing mini cards: the 5:7 card shape, 4 across
+MINI_COLS = 4
 MINI_LEFT, MINI_TOP = 0.5, 1.42
+MINI_TOP_2 = 1.2              # page 2 has no instructions line, so its row starts higher
 
 
 def cards_by_id(b: "Builder") -> dict:
@@ -523,6 +534,16 @@ def cards_by_id(b: "Builder") -> dict:
 
 def caption_words(card: dict) -> int:
     return word_count(card["title_en"])
+
+
+def day_caption(card: dict) -> dict:
+    """
+    The words under a picture on the cut pages: the Hebrew key word and a short English caption,
+    with NO day number ('Day 3: Land & Trees' -> 'Land & Trees'), so putting them in order is a puzzle.
+    """
+    keyword = card.get("hebrew_keyword") or {}
+    en = card["title_en"].split(": ", 1)[-1]
+    return {"he": keyword.get("word") or card["title_he"], "en": en}
 
 
 def line_art_img(b: "Builder", card_id: str) -> str:
@@ -545,47 +566,87 @@ def story_art_img(b: "Builder", card: dict, px: int = 800) -> str:
     return f"stories/{card['card_id']}.jpg"
 
 
+def panels_for(b: "Builder", cells: list, page_order: list, numbers: dict) -> list:
+    """One cut panel per card: line art, caption and the self-check dots (= its number)."""
+    cards = cards_by_id(b)
+    return [{**cell, "img": line_art_img(b, card_id), **day_caption(cards[card_id]), "dots": numbers[card_id]}
+            for cell, card_id in zip(cells, page_order)]
+
+
+def glue_strips(n_days: int) -> list:
+    """
+    The 7-day path as two glue strips: days 1-4 on the first, the rest on the second, which starts
+    with a tape tab (it goes under the end of strip 1, so the two make one long strip).
+    Returns [{'x', 'y', 'w', 'h', 'tab', 'boxes': [{'n', 'x', 'y', 'w', 'h'}]}] in inches.
+    """
+    per_strip = DAY_COLS
+    strips = []
+    for index, first in enumerate(range(1, n_days + 1, per_strip)):
+        numbers = list(range(first, min(first + per_strip, n_days + 1)))
+        tab = TAB_W if index > 0 else 0.0
+        x, y = DAY_LEFT, STRIP_TOPS[min(index, len(STRIP_TOPS) - 1)]
+        boxes = [{"n": n, "x": round(x + tab + i * DAY_W, 4), "y": y, "w": DAY_W, "h": DAY_H}
+                 for i, n in enumerate(numbers)]
+        strips.append({"x": x, "y": y, "w": round(tab + len(numbers) * DAY_W, 4), "h": DAY_H, "tab": tab,
+                       "boxes": boxes})
+    return strips
+
+
 def build_coloring(b: Builder) -> tuple:
     cfg = b.data["coloring"]
     cards = cards_by_id(b)
-    order = {card_id: n for n, card_id in enumerate(cfg["cards"], 1)}
+    order = {card_id: n for n, card_id in enumerate(cfg["cards"], 1)}  # day number = dots
     for card_id in cfg["cards"]:
         if caption_words(cards[card_id]) > 4:
             b.warnings.append(f"coloring: caption for {card_id} is over 4 words")
-    cells = coloring.grid_cells(2, 2, PANEL_W, PANEL_H, PANEL_LEFT, PANEL_TOP)
-    panels = []
-    for cell, card_id in zip(cells, cfg["page_order"]):
-        card = cards[card_id]
-        panels.append({**cell, "img": line_art_img(b, card_id), "he": card["title_he"],
-                       "en": card["title_en"], "dots": order[card_id]})
-    lines = coloring.cut_lines(2, 2, PANEL_W, PANEL_H, PANEL_LEFT, PANEL_TOP)
-    # Story path: same-size boxes in a U (1 top-left, 2 top-right, 3 bottom-right, 4 bottom-left)
-    box_left = (8.5 - 2 * PANEL_W - PATH_GAP) / 2
-    path_top = 1.3
-    spots = [(0, 0), (1, 0), (1, 1), (0, 1)]
-    path = [{"n": n, "x": round(box_left + col * (PANEL_W + PATH_GAP), 4),
-             "y": round(path_top + row * (PANEL_H + PATH_GAP), 4), "w": PANEL_W, "h": PANEL_H}
-            for n, (col, row) in enumerate(spots[:len(cfg["cards"])], 1)]
+    pages = []
+    # Full set: every day on one cut page, then the glue strips
+    n = len(cfg["cards"])
+    rows = math.ceil(n / DAY_COLS)
+    cells = coloring.grid_cells(DAY_COLS, rows, DAY_W, DAY_H, DAY_LEFT, DAY_TOP)
+    spare = cells[n:]
+    cells = cells[:n]
+    pages.append({"kind": "cut", "size": "small", "heading": f"Color, cut & put the {n} days in order",
+                  "instructions": COLORING_INSTRUCTIONS,
+                  "panels": panels_for(b, cells, cfg["page_order"], order),
+                  "lines": coloring.cell_cut_lines(cells), "spare": spare[0] if spare else None})
+    pages.append({"kind": "strips", "heading": "My 7 days strip" if n == 7 else "My story strip",
+                  "strips": glue_strips(n)})
+    # Easy set (age 4): the 2 x 2 page and a U-shaped path, numbered by day
+    easy = cfg.get("easy_cards") or []
+    if easy:
+        cells = coloring.grid_cells(2, 2, PANEL_W, PANEL_H, PANEL_LEFT, PANEL_TOP)[:len(easy)]
+        pages.append({"kind": "cut", "size": "big", "heading": "Easy: color, cut & put in order",
+                      "instructions": EASY_INSTRUCTIONS,
+                      "panels": panels_for(b, cells, cfg["easy_page_order"], order),
+                      "lines": coloring.cell_cut_lines(cells), "spare": None})
+        box_left = (8.5 - 2 * PANEL_W - PATH_GAP) / 2
+        spots = [(0, 0), (1, 0), (1, 1), (0, 1)]
+        path = [{"n": order[card_id], "x": round(box_left + col * (PANEL_W + PATH_GAP), 4),
+                 "y": round(1.3 + row * (PANEL_H + PATH_GAP), 4), "w": PANEL_W, "h": PANEL_H}
+                for card_id, (col, row) in zip(easy, spots)]
+        pages.append({"kind": "path", "heading": "Easy: my story path", "path": path})
     days = []
     for entry in cfg.get("days_strip", []):
-        days.append({"day": entry["day"], "he": entry["he"],
-                     "imgs": [b.item_img(i, "line") for i in entry["items"]],
-                     "en": " + ".join(b.items[i]["en"] if i in b.items else b.data["free_space"]["en"]
-                                       for i in entry["items"])})
+        card = cards[entry["card"]]
+        days.append({"day": entry["day"], "he": entry["he"], "img": line_art_img(b, entry["card"]),
+                     "en": day_caption(card)["en"]})
     shuffled = sorted(days, key=lambda d: (d["day"] * 5) % 7)  # a fixed mix: days 7,3,6,2,5,1,4
-    html_path = b.render("coloring", "coloring.html", {
-        "title": "Coloring + sequence", "panels": panels, "lines": lines, "path": path,
-        "instructions": COLORING_INSTRUCTIONS, "days": days, "day_pieces": shuffled,
-        "days_instructions": DAYS_INSTRUCTIONS, "path_gap": PATH_GAP})
-    return html_path, {"coloring_panels": len(panels), "days_strip": len(days)}
+    if days:
+        pages.append({"kind": "days", "heading": "The 7 days", "days": days, "day_pieces": shuffled,
+                      "instructions": DAYS_INSTRUCTIONS})
+    html_path = b.render("coloring", "coloring.html", {"title": "Coloring + sequence", "pages": pages,
+                                                         "path_gap": PATH_GAP})
+    return html_path, {"coloring_pages": [p["kind"] for p in pages], "coloring_panels": n,
+                       "easy_panels": len(easy), "days_strip": len(days)}
 
 
 # ---------------------------------------------------------------------------
 # Sequencing game (plan 8.7)
 # ---------------------------------------------------------------------------
 
-SEQUENCING_INSTRUCTIONS = ("Cut on the lines: 8 mini cards (two sets) and the control strip. Children put "
-                           "a set in story order, then check against the control strip.")
+SEQUENCING_INSTRUCTIONS = ("Cut on the lines: two sets of mini cards and the control strip. Children put "
+                           "a set in order, then check against the control strip.")
 
 
 def missing_hint(card: dict) -> str:
@@ -600,23 +661,29 @@ def build_sequencing(b: Builder) -> tuple:
     cfg = b.data["sequencing"]
     cards = cards_by_id(b)
     story = [cards[i] for i in cfg["cards"]]
-    minis = [{"img": story_art_img(b, c), "he": c["title_he"], "en": c["title_en"], "id": c["card_id"]}
-             for c in story] * cfg["copies"]
-    # Mix the order so the two sets don't come off the page already sorted
-    mixed = [minis[i] for i in sorted(range(len(minis)), key=lambda i: (i * 3) % len(minis))]
-    page1 = mixed[:6]
-    page2 = mixed[6:] + [{"blank": True}] * (3 - len(mixed[6:]))
-    cells1 = coloring.grid_cells(3, 2, MINI_W, MINI_H, MINI_LEFT, MINI_TOP)
-    cells2 = coloring.grid_cells(3, 1, MINI_W, MINI_H, MINI_LEFT, MINI_TOP)
-    control = [{"n": n, "img": story_art_img(b, c), "en": c["title_en"], "he": c["title_he"]}
-               for n, c in enumerate(story, 1)]
-    easy = [cards[i]["title_en"] for i in cfg["easy_subset"]]
-    hints = [{"en": c["title_en"], "hint": hebrew_html(missing_hint(c))} for c in story]
+    minis = [{"img": story_art_img(b, c), **day_caption(c), "id": c["card_id"]} for c in story] * cfg["copies"]
+    # Mix the order so the two sets don't come off the page already sorted (3 is coprime with 14, 8...)
+    step = 3 if len(minis) % 3 else 5
+    mixed = [minis[i] for i in sorted(range(len(minis)), key=lambda i: (i * step) % len(minis))]
+    # Page 1: a 4 x 3 grid of mini cards; page 2: the rest in one row (blanks fill the row), then
+    # the control strip and the rules
+    first = MINI_COLS * 3
+    page1, rest = mixed[:first], mixed[first:]
+    rest_rows = max(1, math.ceil(len(rest) / MINI_COLS))
+    page2 = rest + [{"blank": True}] * (rest_rows * MINI_COLS - len(rest))
+    cells1 = coloring.grid_cells(MINI_COLS, 3, MINI_W, MINI_H, MINI_LEFT, MINI_TOP)[:len(page1)]
+    cells2 = coloring.grid_cells(MINI_COLS, rest_rows, MINI_W, MINI_H, MINI_LEFT, MINI_TOP_2)
+    control = [{"n": n, "img": story_art_img(b, c), **day_caption(c)} for n, c in enumerate(story, 1)]
+    easy = [f"{n} ({day_caption(cards[i])['en']})" for n, i in
+            ((cfg["cards"].index(i) + 1, i) for i in cfg["easy_subset"])]
+    hints = [{"en": day_caption(c)["en"], "hint": hebrew_html(missing_hint(c))} for c in story]
     html_path = b.render("sequencing", "sequencing.html", {
-        "title": "Sequencing game", "pages": [list(zip(cells1, page1)), list(zip(cells2, page2))],
-        "lines": [coloring.cut_lines(3, 2, MINI_W, MINI_H, MINI_LEFT, MINI_TOP),
-                  coloring.cut_lines(3, 1, MINI_W, MINI_H, MINI_LEFT, MINI_TOP)],
+        "title": "Day order game" if b.deck.get("deck_pattern") == "sequence" else "Sequencing game",
+        "pages": [list(zip(cells1, page1)), list(zip(cells2, page2))],
+        "lines": [coloring.cell_cut_lines(cells1), coloring.cell_cut_lines(cells2)],
+        "control_top": round(MINI_TOP_2 + rest_rows * MINI_H + 0.18, 4),
         "control": control, "easy": easy, "hints": hints, "n_cards": len(story),
+        "word": "day" if b.deck.get("deck_pattern") == "sequence" else "card",
         "instructions": SEQUENCING_INSTRUCTIONS, "mini_w": MINI_W, "mini_h": MINI_H})
     return html_path, {"sequencing_minis": len(minis)}
 
@@ -633,7 +700,7 @@ async () => {
   const problems = [];
   document.querySelectorAll('.page').forEach((page, i) => {
     if (page.scrollHeight > page.clientHeight + 1) problems.push(`page ${i + 1}: content taller than the page`);
-    page.querySelectorAll('.cell, .call, .card, .k, .howto, .box').forEach(el => {
+    page.querySelectorAll('.cell, .call, .card, .k, .howto, .box, .rules, .control').forEach(el => {
       if (el.scrollHeight > el.clientHeight + 2 || el.scrollWidth > el.clientWidth + 2)
         problems.push(`page ${i + 1}: ${el.className} overflows (${el.scrollWidth}x${el.scrollHeight} > ${el.clientWidth}x${el.clientHeight})`);
     });

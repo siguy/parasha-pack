@@ -11,6 +11,30 @@
     "deck_id": { "type": "string" },
     "research_cache": { "type": "string", "description": "Path of the Sefaria cache that was read, e.g. research/bereshit.yaml" },
     "summary": { "type": "string", "description": "3-5 sentences: what happens, in plain words" },
+    "text_map": {
+      "type": "array",
+      "description": "One row per planned card/moment: exactly what its verses say (and don't). Content and art may only show in_text; midrash stays separate.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["card_id", "text_ref", "key_hebrew", "in_text", "not_in_text"],
+        "properties": {
+          "card_id": { "type": "string", "pattern": "^[a-z_]+_[0-9]+$" },
+          "text_ref": { "type": "string", "description": "Verse range, e.g. 'Genesis 1:3-5'" },
+          "key_hebrew": { "type": "string", "description": "Exact phrase from research/{parasha}.yaml, with nikud" },
+          "in_text": { "type": "array", "items": { "type": "string" }, "minItems": 1, "description": "Concrete things the verses say: objects, beings, actions" },
+          "not_in_text": { "type": "array", "items": { "type": "string" }, "description": "Tempting additions or misconceptions to avoid (e.g. 'the sun on Day 1')" },
+          "midrash": {
+            "type": "array",
+            "description": "Our Sages teach (guide only), never mixed into in_text",
+            "items": {
+              "type": "object", "additionalProperties": false, "required": ["text", "source"],
+              "properties": { "text": { "type": "string" }, "source": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
     "emotional_core": { "type": "string" },
     "claims": {
       "type": "array",

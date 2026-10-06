@@ -178,6 +178,7 @@
       "characters_in_scene": [],
       "image_prompt": "A bright new world with green hills.",
       "image_path": "raw/story_1.png",
+      "text_ref": "Genesis 1:1",
       "back": {
         "objective": "Hashem made the world",
         "say": "**word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word**",
@@ -226,6 +227,7 @@
       "characters_in_scene": [],
       "image_prompt": "A bright new world with green hills.",
       "image_path": "raw/story_2.png",
+      "text_ref": "Genesis 1:1",
       "back": {
         "objective": "Hashem made the world",
         "say": "**Hashem made light.** [Open hands]",
@@ -276,6 +278,7 @@
       ],
       "image_prompt": "A bright new world with green hills.",
       "image_path": "raw/story_4.png",
+      "text_ref": "Genesis 1:1",
       "back": {
         "objective": "Hashem made the world",
         "say": "**Hashem made light.** [Open hands]",

@@ -43,6 +43,7 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from generate_activities import hebrew_html, html_to_pdf  # noqa: E402
 from generate_items import setup_logging  # noqa: E402
+import deck_pattern  # noqa: E402
 
 logger = logging.getLogger("build_guide")
 
@@ -76,10 +77,10 @@ def script_html(text: str) -> str:
     return out.replace("\n", "<br>")
 
 
-def slot_label(card_id: str) -> str:
-    """story_2 -> 'Story 2', anchor_1 -> 'Anchor' (only numbered when a deck can have several)."""
+def slot_label(card_id: str, deck: dict = None) -> str:
+    """story_2 -> 'Story 2' ('Day 2' in a sequence deck), anchor_1 -> 'Anchor' (numbered only when a deck can have several)."""
     kind, _, number = card_id.rpartition("_")
-    name = SLOT_NAMES.get(kind, kind.replace("_", " ").title())
+    name = deck_pattern.story_word(deck) if kind == "story" else SLOT_NAMES.get(kind, kind.replace("_", " ").title())
     return f"{name} {number}" if kind in ("spotlight", "story", "tradition") else name
 
 
@@ -97,8 +98,9 @@ def load_yaml(path: Path, required: bool = True) -> dict:
 # ---------------------------------------------------------------------------
 
 def layout_for(deck: dict, layout: dict = None) -> dict:
+    """This deck's page map {'cards': {...}, 'fixed': {...}}: one page per story card (see deck_pattern.py)."""
     layout = layout or load_yaml(LAYOUT_PATH)
-    return layout["holiday" if deck.get("holiday") else "standard"]
+    return deck_pattern.deck_page_map(deck, layout)
 
 
 def page_plan(deck: dict, layout: dict) -> list:
@@ -163,6 +165,33 @@ class Guide:
 
     # ---- small lookups -------------------------------------------------------
 
+    def slot(self, card_id: str) -> str:
+        """'Day 3' in a sequence deck, 'Story 3' otherwise (see slot_label)."""
+        return slot_label(card_id, self.deck)
+
+    def title(self, card_id: str) -> str:
+        """The card's English title without a leading 'Day 3: ' when the slot already says it."""
+        title, prefix = self.cards[card_id]["title_en"], f"{self.slot(card_id)}: "
+        return title[len(prefix):] if title.startswith(prefix) else title
+
+    def cards_label(self, card_ids: list) -> str:
+        """['story_1', ..., 'story_7', 'home_1'] -> 'Days 1–7, Home card' (runs of 3+ story cards become a range)."""
+        nums = [int(c.rpartition("_")[2]) for c in card_ids if c.startswith("story_")]
+        parts = []
+        if nums:
+            word = deck_pattern.story_word(self.deck)
+            if len(nums) == 1:
+                parts.append(f"{word} {nums[0]}")
+            elif len(nums) > 2 and nums == list(range(nums[0], nums[-1] + 1)):
+                parts.append(f"{word}s {nums[0]}–{nums[-1]}")
+            else:
+                parts.append(f"{word}s " + ", ".join(str(n) for n in nums))
+        return ", ".join(parts + [self.slot(c) for c in card_ids if not c.startswith("story_")])
+
+    def teaching_day(self, day):
+        """'Tue' (sequence deck) or 'Day 2' (standard) for a week_plan day; None stays None."""
+        return deck_pattern.teaching_day_label(day, self.deck) if day else None
+
     def day_of(self, card_id: str):
         for day in self.deck.get("week_plan", []):
             if card_id in day["cards"]:
@@ -198,8 +227,8 @@ class Guide:
     def rendered_questions(self, card_id: str = None) -> list:
         return [{"q": hebrew_html(q["q"]), "answer": hebrew_html(q["answer"]),
                  "redirect": hebrew_html(q["redirect"]), "refs": q.get("refs", []),
-                 "topic": q.get("topic", ""), "card": slot_label(q["card_id"]),
-                 "title": self.cards[q["card_id"]]["title_en"]} for q in self.if_they_ask(card_id)]
+                 "topic": q.get("topic", ""), "card": self.slot(q["card_id"]),
+                 "title": self.title(q["card_id"])} for q in self.if_they_ask(card_id)]
 
     # ---- page builders -------------------------------------------------------
 
@@ -212,10 +241,13 @@ class Guide:
             hebrew = {"word": power["he"], "translit": power["translit"], "meaning": power["en"],
                       "gesture": power.get("gesture")}
         return {
-            "card_id": card_id, "slot": slot_label(card_id), "type": card["card_type"],
-            "title_en": card["title_en"], "title_he": card["title_he"], "thumb": self.thumb(card_id),
+            "card_id": card_id, "slot": self.slot(card_id), "type": card["card_type"],
+            "title_en": self.title(card_id), "title_he": card["title_he"], "thumb": self.thumb(card_id),
             "objective": hebrew_html(re.sub(r"\*\*", "", back.get("objective", ""))),
-            "minutes": back.get("minutes"), "core": back.get("core"), "day": self.day_of(card_id),
+            "minutes": back.get("minutes"), "core": back.get("core"),
+            "day": self.teaching_day(self.day_of(card_id)),
+            # sequence decks: the verses this card shows and their key Hebrew words (01 text map)
+            "text_ref": card.get("text_ref", ""), "key_hebrew": card.get("key_hebrew", ""),
             "hebrew": hebrew,
             "pshat": hebrew_html(guide.get("pshat", {}).get("text", "")),
             "refs": guide.get("pshat", {}).get("refs", []),
@@ -232,12 +264,12 @@ class Guide:
             extras_by_day.setdefault(extra["best_day"], []).append(extra["name"])
         days = []
         for day in self.deck.get("week_plan", []):
-            cards = [{"slot": slot_label(c), "title": self.cards[c]["title_en"],
+            cards = [{"slot": self.slot(c), "title": self.title(c),
                       "minutes": (self.cards[c].get("back") or {}).get("minutes"),
                       "core": (self.cards[c].get("back") or {}).get("core"),
                       "page": self.layout["cards"][c]} for c in day["cards"]]
             minutes = sum(c["minutes"] or 0 for c in cards)
-            days.append({"day": day["day"], "label": day["label"], "cards": cards, "minutes": minutes,
+            days.append({"day": day["day"], "day_label": self.teaching_day(day["day"]), "label": day["label"], "cards": cards, "minutes": minutes,
                          "extras": extras_by_day.get(day["day"], [])})
         return days
 
@@ -245,7 +277,7 @@ class Guide:
         toc = []
         for page in page_plan(self.deck, self.layout):
             names = [FIXED_NAMES.get(f, f) for f in page["fixed"]]
-            names += [f"{slot_label(c)}: {self.cards[c]['title_en']}" for c in page["cards"]
+            names += [f"{self.slot(c)}: {self.title(c)}" for c in page["cards"]
                       if not page["fixed"] or c != "home_1"]
             toc.append({"n": page["n"], "name": " · ".join(names)})
         return {"how_to_use": [script_html(t) for t in self.extra.get("how_to_use", [])], "toc": toc,
@@ -267,7 +299,7 @@ class Guide:
         for card_id in self.layout["cards"]:
             guide = self.cards[card_id].get("guide") or {}
             adapt = guide.get("adapt") or {}
-            rows.append({"slot": slot_label(card_id), "title": self.cards[card_id]["title_en"],
+            rows.append({"slot": self.slot(card_id), "title": self.title(card_id),
                          "see": hebrew_html(adapt.get("see", "")), "do": hebrew_html(adapt.get("do", "")),
                          "join": hebrew_html(adapt.get("join", "")), "extend": hebrew_html(guide.get("extend", "")),
                          "page": self.layout["cards"][card_id]})
@@ -279,7 +311,8 @@ class Guide:
             file_path = (self.deck_dir / "extras" / extra["file"]).resolve()
             if not file_path.exists():
                 logger.warning(f"  extras index: {extra['file']} not found (build it with generate_activities.py)")
-            rows.append({**extra, "cards": [slot_label(c) for c in extra["cards"]],
+            rows.append({**extra, "cards": [self.cards_label(extra["cards"])],
+                         "best_day_label": self.teaching_day(extra["best_day"]),
                          "file_label": Path(extra["file"]).name + (f" p.{extra['pages']}" if extra.get("pages") else "")})
         return rows
 
@@ -306,7 +339,7 @@ class Guide:
         refs = []
         for card_id in self.layout["cards"]:
             guide = self.cards[card_id].get("guide") or {}
-            refs.append({"slot": slot_label(card_id), "title": self.cards[card_id]["title_en"],
+            refs.append({"slot": self.slot(card_id), "title": self.title(card_id),
                          "refs": guide.get("pshat", {}).get("refs", []),
                          "sages": [s["source"] for s in guide.get("sages", [])]})
         commentaries = sorted({s["source"] for c in self.deck["cards"] for s in (c.get("guide") or {}).get("sages", [])})
@@ -325,7 +358,7 @@ class Guide:
             entry = {"n": page["n"]}
             if "family_letter" in fixed:
                 entry.update(kind="family_letter", letter=self.family_letter(),
-                             footer=" · ".join([slot_label(c) for c in cards] + [FIXED_NAMES["family_letter"]]))
+                             footer=" · ".join([self.slot(c) for c in cards] + [FIXED_NAMES["family_letter"]]))
             elif fixed:
                 kind = fixed[0]
                 builder = {"cover": self.cover, "overview": self.overview, "hard_questions": self.rendered_questions,
@@ -334,10 +367,10 @@ class Guide:
                 entry.update(kind=kind, data=builder(), footer=FIXED_NAMES[kind])
             else:
                 card_id = cards[0]
-                entry.update(kind="card", card=self.card_page(card_id), footer=slot_label(card_id))
+                entry.update(kind="card", card=self.card_page(card_id), footer=self.slot(card_id))
                 if card_id == "anchor_1":
                     entry["week"] = self.week()
-            entry["slots"] = [slot_label(c) for c in cards]
+            entry["slots"] = [self.slot(c) for c in cards]
             out.append(entry)
         return out
 
@@ -374,7 +407,7 @@ def verify_pdf(pdf_path: Path, deck: dict, layout: dict) -> list:
         if not page or page > len(texts):
             problems.append(f"{card['card_id']}: page {page} is not in the PDF")
             continue
-        marker = f"p.{page} · {slot_label(card['card_id'])}"
+        marker = f"p.{page} · {slot_label(card['card_id'], deck)}"
         if marker not in " ".join(texts[page - 1].split()):
             problems.append(f"{card['card_id']}: footer '{marker}' not found on PDF page {page}")
     return problems

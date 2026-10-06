@@ -32,18 +32,31 @@ For agent responsibilities, see [definitions/](definitions/).
 
 ## Card Counts (decision D1)
 
-| Card Type | Standard (10 cards) | Holiday (12 cards) |
-|-----------|---------------------|--------------------|
-| Anchor | 1 | 1 |
-| Spotlight | 2 | 2 |
-| Story | 4 | 3 |
-| Tradition | — | 3 |
-| Connection | 1 | 1 |
-| Power Word | 1 | 1 |
-| Home | 1 | 1 |
+| Card Type | Standard (10 cards) | Holiday (12 cards) | Sequence (6 + N) |
+|-----------|---------------------|--------------------|------------------|
+| Anchor | 1 | 1 | 1 |
+| Spotlight | 2 | 2 | 2 |
+| Story | 4 | 3 | N (one per item, max ~10) |
+| Tradition | — | 3 | — (3 on a holiday) |
+| Connection | 1 | 1 | 1 |
+| Power Word | 1 | 1 | 1 |
+| Home | 1 | 1 | 1 |
 
 A holiday deck swaps one story card for three tradition cards. The home card is part of the count.
-`schemas/pipeline/02-structure.schema.json` enforces the total; `src/assemble_deck.py` warns if the mix differs.
+
+**Sequence decks** (`deck_pattern: sequence`, `story_cards: N` in `series.yaml`): when the text itself
+is a numbered list (the 7 days of creation, the Ten Commandments, the Mishkan items), each item gets its
+own story card, numbered in text order (`sequence_number`). Bereshit is the first: 13 cards, Days 1–7 as
+story_1..story_7. Each day's back adds one gesture and ends with a recap chant; each day's picture makes
+that day's new creation the hero. Guide pages after the story pages move down by N − 4
+(`src/deck_pattern.py`); the card backs' `Guide p.N` must match.
+
+`src/assemble_deck.py` fails if the total is wrong for the pattern and warns if the mix differs;
+`src/validate_deck.py` checks the counts and the guide pages.
+
+**Text fidelity:** story cards cite `text_ref` (the verses they show) and carry `key_hebrew` (the exact
+phrase from the research cache, with nikud), both from the Torah Scholar's text map. A card shows only
+what its verses say (`in_text`); `exclude` lists what must stay out of the picture.
 
 ---
 
@@ -207,6 +220,9 @@ day, home card on day 5). Cards marked **★ core** alone make a complete ~15-mi
 ```
 Day 1: Anchor + Story 1 → Day 2: Story 2 + Spotlight → Day 3: Spotlight + Story 4
 → Day 4: Connection → Day 5: Story 3 / Power Word + Home
+
+Sequence deck (Bereshit): Day 1: Anchor + Days 1–2 → Day 2: Days 3–4 → Day 3: Days 5–6 + Adam
+→ Day 4: Chava + Connection → Day 5: Day 7 Shabbat + טוֹב + Home
 ```
 
 **Energy arc:** calm hook → rising story → reflect (connection) → close (power word) → home.

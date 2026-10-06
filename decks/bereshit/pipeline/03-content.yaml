@@ -1,10 +1,11 @@
-# Agent 03: Content Writer (English + Hebrew) — Bereshit
-# Backs = the APPROVED wording from docs/mockups/bereshit-v3.html / the v3 deck.json, changed only where the
-# validator or policy requires it (logged in docs/overnight/decisions.md):
-#   - anchor_1 and story_2 transitions no longer depend on card order ("first", "now meet")
-#   - power-word trio: the thumbs-up emoji is replaced by a plain check-mark glyph (emoji aren't licensed for print)
-#   - story keyword badges: transliteration stress in CAPS (OR, DAG, sha-BAT, ar-YEH), matching the backs
-# Guide blocks are new. Facts come only from pipeline/01-research.yaml; midrash only in guide.sages.
+# Agent 03: Content Writer (English + Hebrew) — Bereshit, 13-card sequence deck (one story card per day).
+# Phase 10 (Simon, 2026-10-06): story_1..story_7 = Day 1..Day 7. Each day adds ONE gesture, and the SAY ends
+# with a recap chant of every gesture so far (the chips carry the movements, so the words stay short).
+# "And Hashem saw it was… TOV!" on Days 1, 3-6 only: the Torah does not say it on Day 2 (Rashi on 1:7),
+# says it twice on Day 3 and "very good" on Day 6. "Adam names the animals" moved onto Adam's spotlight.
+# Spotlight_2, connection, power word and home keep the approved mockup wording (guide pages moved:
+# connection p.13, power word p.14, home/family letter p.18). Facts come only from pipeline/01-research.yaml;
+# midrash only in guide.sages.
 agent: 03-content-writer
 deck_id: bereshit
 cards:
@@ -15,12 +16,12 @@ cards:
     back:
       objective: "Hashem made a beautiful world for us"
       say: |-
-        **At the very beginning, there was nothing at all. Just dark.** [Everyone cover your eyes]
-        **Then Hashem said, "Let there be light!"** [Open your eyes: WOW!]
-        **This week we'll see everything Hashem made.**
+        **Look! Hashem made this whole beautiful world.** [Hug the world]
+        **Hashem made it one day at a time, in six days, and then rested.** [Count on fingers: 1… 7!]
+        **Every day this week, let's find out what's new!**
       ask:
         - {text: "What do you see in this picture?", type: wh}
-        - {text: "What do you think Hashem made next?", type: open}
+        - {text: "What is your favorite thing Hashem made?", type: open}
       minutes: 5
       core: true
       transition: "What did Hashem make on Day 1?"
@@ -28,55 +29,326 @@ cards:
     guide:
       pshat:
         text: >-
-          The Torah opens: "In the beginning Hashem created the heavens and the earth." The earth was empty
-          and dark, with water everywhere. Then Hashem said, "Let there be light," and there was light. Hashem
-          saw that the light was good (טוֹב), and separated light from dark: day and night. That was Day 1.
-        refs: ["Genesis 1:1", "Genesis 1:2", "Genesis 1:3-5"]
+          The Torah opens: "In the beginning Hashem created the heavens and the earth" (בְּרֵאשִׁית בָּרָא,
+          Genesis 1:1). Then, day by day, Hashem gave the world its shape: Day 1 light, Day 2 the sky, Day 3 land,
+          seas and plants, Day 4 the sun, moon and stars, Day 5 fish and birds, Day 6 animals and people. Hashem saw
+          everything and it was "very good" (טוֹב מְאֹד, 1:31). On Day 7 Hashem rested (2:1-3). Each story card
+          this week is one day; this picture shows the whole finished world.
+        refs: ["Genesis 1:1", "Genesis 1:31", "Genesis 2:1"]
       sages:
         - {text: "Rashi teaches that the Torah begins with the story of creation to show that the whole world belongs to Hashem, who made it. That is why we take care of it: it is Hashem's world, lent to us.", source: "Rashi on Genesis 1:1"}
-      hard_questions:
-        - {q: "Is the dark scary?", answer: "The dark is just the time before the light. Hashem made the light, and Hashem made the night too, so we can rest.", redirect: "Let's cover our eyes and open them again: WOW, light!"}
+        - {text: "For the teacher: Ramban teaches that in the very first verse Hashem created everything from nothing. The earth was 'tohu va'vohu' (תֹהוּ וָבֹהוּ, empty and without form) with darkness over the deep water (1:2), and the six days then gave it shape. The cards start with the light, so children never meet a dark, empty world.", source: "Ramban on Genesis 1:1"}
+      hard_questions: []
       adapt:
-        see: "Dim the classroom lights during 'just dark', then switch them on at 'Let there be light!'"
-        do: "Children who don't want to cover their eyes can cup their hands into a tiny 'dark cave' instead."
-        join: "Everyone can say WOW together, or show WOW with a big open-mouth face and jazz hands."
-      extend: "Light walk: turn off the lights and let each child point a flashlight at one thing in the room and name it."
+        see: "Point to the sky, the water, the land, the animals: one finger per thing as you name it."
+        do: "Children who can't count on fingers can tap their knees seven times instead."
+        join: "Everyone can do the hug-the-world gesture together, with or without words."
+      extend: "Start a 7-days chart on the wall: one empty box per day. Each day the class draws or sticks what Hashem made."
       tip: "Practice the hug-the-world gesture (arms in a big circle) for this week's value, 'caring for Hashem's world', and use it every day."
 
-  # ------------------------------------------------------------------ spotlight: Adam
+  # ------------------------------------------------------------------ story 1: Day 1
+  - card_id: story_1
+    title_en: "Day 1: Light"
+    title_he: יוֹם אֶחָד
+    hebrew_keyword: {word: אוֹר, translit: OR, meaning: light}
+    back:
+      objective: "Day 1: Hashem made light"
+      say: |-
+        **It was dark. Hashem said, "Let there be light!"** [Fists, then open wide]
+        **Light for the day, dark for the night: Day 1!** [Hold up 1 finger]
+        **And Hashem saw it was… TOV!** [Thumbs up!]
+        **Light!** [Open hands]
+      ask:
+        - {text: "What did Hashem make on Day 1?", type: recall}
+        - {text: "Show me light with your hands!", type: nonverbal}
+      hebrew: {word: אוֹר, translit: OR, meaning: light, gesture: "fists, then open wide like a sunburst"}
+      minutes: 3
+      core: true
+      transition: "But where would the sky go?"
+      guide_ref: {page: 6}
+    guide:
+      pshat:
+        text: >-
+          Hashem said, "Let there be light" (יְהִי אוֹר, Genesis 1:3), and there was light. Hashem saw that the
+          light was good (כִּי־טוֹב, the 1st TOV), and separated the light from the darkness: Hashem called the
+          light "day" and the darkness "night". There was evening and there was morning, "one day" (יוֹם אֶחָד).
+          The deep water of 1:2 is the world before the days began; the card leaves it out so Day 1 is only light
+          and dark.
+        refs: ["Genesis 1:2", "Genesis 1:3-5"]
+      sages:
+        - {text: "Our Sages teach that the light of Day 1 was a special light, not the sun. Hashem set it aside for the righteous; the sun, moon and stars were put in their places in the sky on Day 4.", source: "Rashi on Genesis 1:4 and 1:14 (Chagigah 12a)"}
+      hard_questions:
+        - {q: "Is the dark scary?", answer: "The dark is just the time before the light. Hashem made the light, and Hashem made the night too, so we can rest.", redirect: "Let's close our eyes and open them again: WOW, light!"}
+        - {q: "Where did the light come from before the sun?", answer: "Hashem made a special light on Day 1. Our Sages teach it was a different light from the sun. The sun and moon came on Day 4.", redirect: "Show me light with your hands!"}
+      adapt:
+        see: "Dim the classroom lights at 'It was dark', then switch them on at 'Let there be light!'"
+        do: "Children who don't want to make fists can blink their eyes closed and open instead."
+        join: "Everyone joins the 'TOV!' thumbs up at the end, with or without words."
+      extend: "Light walk: turn off the lights and let each child point a flashlight at one thing in the room and name it."
+      tip: "Start the finger count here: hold up 1 finger. Each day's card adds one gesture, so by Day 7 the class can do all seven."
+
+  # ------------------------------------------------------------------ story 2: Day 2
+  - card_id: story_2
+    title_en: "Day 2: Sky & Water"
+    title_he: יוֹם שֵׁנִי
+    hebrew_keyword: {word: שָׁמַיִם, translit: sha-MA-yim, meaning: sky}
+    back:
+      objective: "Day 2: the sky, between water and water"
+      say: |-
+        **Day 2: Hashem made the sky!** [Reach up!]
+        **Water up high in the clouds,** [Hands high, wiggle fingers] **water down low in the sea,** [Wiggle waves low] **and sky in between.**
+        **Light! Sky!** [Open hands · reach up]
+      ask:
+        - {text: "Where is the water? Where is the sky?", type: wh}
+        - {text: "Show me up high and down low!", type: nonverbal}
+      hebrew: {word: שָׁמַיִם, translit: sha-MA-yim, meaning: sky, gesture: "reach both arms up high"}
+      minutes: 3
+      core: true
+      transition: "The water needed a place to go…"
+      guide_ref: {page: 7}
+    guide:
+      pshat:
+        text: >-
+          Hashem said, "Let there be a sky" (יְהִי רָקִיעַ, Genesis 1:6): a great spread (rakia) in the middle of
+          the water, with water above it and water below it. Hashem called the rakia "sky" (שָׁמַיִם). There was
+          evening and morning, the second day. On the card the water up high is drawn as big clouds. This is the
+          one day where the Torah does NOT say "Hashem saw that it was good", so the back has no TOV today.
+        refs: ["Genesis 1:6-8"]
+      sages:
+        - {text: "Rashi asks why the Torah doesn't say 'it was good' on Day 2. He answers that the work with the water was only finished on Day 3, and something not yet finished isn't called good yet. That is why Day 3 says 'it was good' twice.", source: "Rashi on Genesis 1:7"}
+      hard_questions:
+        - {q: "Why didn't Hashem say TOV today?", answer: "The water job wasn't finished yet! Hashem finished it on Day 3, and then the Torah says TOV two times.", redirect: "Let's save our thumbs for Day 3!"}
+      adapt:
+        see: "Hold a blue cloth up high (the clouds) and wiggle another one on the floor (the sea)."
+        do: "Seated children reach up with one arm and wiggle the other hand low."
+        join: "Children can point up for the sky and down for the sea."
+      extend: "Up-high, down-low game: say 'clouds!' and children wiggle fingers high, 'sea!' wiggle low, 'sky!' reach up. Speed up!"
+      tip: "If children shout TOV out of habit, smile and say: 'The Torah saves it for tomorrow, two times!'"
+
+  # ------------------------------------------------------------------ story 3: Day 3
+  - card_id: story_3
+    title_en: "Day 3: Land & Trees"
+    title_he: יוֹם שְׁלִישִׁי
+    hebrew_keyword: {word: עֵץ, translit: ETZ, meaning: tree}
+    back:
+      objective: "Day 3: dry land, seas, plants and trees"
+      say: |-
+        **Day 3: the water rolled away, and dry land came out!** [Push hands apart]
+        **Then grass, flowers and trees grew!** [Grow like a tree]
+        **Hashem saw it was… TOV, TOV!** [Two thumbs up!]
+        **Light! Sky! Trees!** [Open · reach up · grow]
+      ask:
+        - {text: "What grew on the land?", type: wh}
+        - {text: "Show me how a tree grows!", type: nonverbal}
+      hebrew: {word: עֵץ, translit: ETZ, meaning: tree, gesture: "crouch low, then grow up tall with branch arms"}
+      minutes: 3
+      core: true
+      transition: "But who will light up the sky?"
+      guide_ref: {page: 8}
+    guide:
+      pshat:
+        text: >-
+          Hashem said, "Let the water gather into one place and let the dry land appear" (וְתֵרָאֶה הַיַּבָּשָׁה,
+          Genesis 1:9). Hashem called the dry land "earth" and the gathered water "seas", and saw that it was good
+          (1:10). Then the earth sprouted grass, plants with seeds and fruit trees (עֵץ פְּרִי, 1:11-12), and
+          Hashem saw that it was good again. Day 3 has TOV two times: the 2nd and 3rd TOV.
+        refs: ["Genesis 1:9-13"]
+      sages: []
+      hard_questions: []
+      adapt:
+        see: "Point to the sea, the land and the tree in the picture as you say each one."
+        do: "Seated children can grow with arms only: hands together low, then branch arms up."
+        join: "Everyone joins the double thumbs up, with or without words."
+      extend: "Plant a seed in a clear cup of soil. Each day this week a different child waters it and checks for roots."
+      tip: "Ask 'What's NEW in this picture?' before you read the back: the tree is the hero, the rest was already there."
+
+  # ------------------------------------------------------------------ story 4: Day 4
+  - card_id: story_4
+    title_en: "Day 4: Sun & Moon"
+    title_he: יוֹם רְבִיעִי
+    hebrew_keyword: {word: שֶׁמֶשׁ, translit: SHE-mesh, meaning: sun}
+    back:
+      objective: "Day 4: the sun, the moon and the stars"
+      say: |-
+        **Day 4: Hashem made a big light, the sun, for the day,** [Big circle arms]
+        **and a small light, the moon, with twinkly stars for the night!** [Twinkle fingers]
+        **Hashem saw it was… TOV!** [Thumbs up!]
+        **Light! Sky! Trees! Sun!** [Open · reach · grow · twinkle]
+      ask:
+        - {text: "What shines in the day? At night?", type: wh}
+        - {text: "Show me twinkly stars!", type: nonverbal}
+      hebrew: {word: שֶׁמֶשׁ, translit: SHE-mesh, meaning: sun, gesture: "open and close your fingers like twinkling light"}
+      minutes: 3
+      core: true
+      transition: "The sea is so quiet and empty…"
+      guide_ref: {page: 9}
+    guide:
+      pshat:
+        text: >-
+          Hashem said, "Let there be lights in the sky" (יְהִי מְאֹרֹת, Genesis 1:14) to separate day from night
+          and to mark days, seasons and years. Hashem made the two great lights (שְׁנֵי הַמְּאֹרֹת הַגְּדֹלִים):
+          the big light for the day and the small light for the night, and the stars (1:16), and saw that it was
+          good (1:18, the 4th TOV).
+        refs: ["Genesis 1:14-19"]
+      sages:
+        - {text: "Rashi teaches that the sun and moon were made on Day 1, and on Day 4 Hashem put them in their places in the sky.", source: "Rashi on Genesis 1:14 (Chagigah 12a)"}
+      hard_questions:
+        - {q: "How long was a day before the sun?", answer: "The Torah doesn't tell us how long those first days were. Grown-ups and our Sages have wondered about it a lot! We know Hashem made it all, one step at a time.", redirect: "What do you see in the sky in the day? At night?"}
+      adapt:
+        see: "Hold up a yellow circle (sun) and a white crescent (moon) as you say each one."
+        do: "Children who can't twinkle fingers can open and close their hands."
+        join: "Point to the sun, then the moon, then a star on the card."
+      extend: "Day or night? Sort pictures (sun, moon, stars, breakfast, pajamas) onto a day side and a night side."
+      tip: "The sun is the big light, the moon the small light: let children show big and small with their hands."
+
+  # ------------------------------------------------------------------ story 5: Day 5
+  - card_id: story_5
+    title_en: "Day 5: Fish & Birds"
+    title_he: יוֹם חֲמִישִׁי
+    hebrew_keyword: {word: דָּג, translit: DAG, meaning: fish}
+    back:
+      objective: "Day 5: fish, sea creatures and birds"
+      say: |-
+        **Day 5: fish and a giant whale in the sea,** [Swim hands]
+        **and birds up in the sky!** [Flap!]
+        **Hashem saw it was… TOV!** [Thumbs up!]
+        **Light! Sky! Trees! Sun! Fish!** [Open · reach · grow · twinkle · swim]
+      ask:
+        - {text: "What swims? What flies?", type: wh}
+        - {text: "Show me your swim hands!", type: nonverbal}
+      hebrew: {word: דָּג, translit: DAG, meaning: fish, gesture: "palms together, swim them forward"}
+      minutes: 3
+      core: true
+      transition: "And what will live on the land?"
+      guide_ref: {page: 10}
+    guide:
+      pshat:
+        text: >-
+          Hashem said, "Let the water swarm with living creatures" (יִשְׁרְצוּ הַמַּיִם, Genesis 1:20), "and let
+          birds fly above the earth, across the sky." Hashem created the great sea creatures (הַתַּנִּינִם
+          הַגְּדֹלִים), every kind of creature in the water and every kind of bird, and saw that it was good (1:21,
+          the 5th TOV). Hashem blessed them: "Have many young and fill the water in the seas."
+        refs: ["Genesis 1:20-23"]
+      sages: []
+      hard_questions:
+        - {q: "Did Hashem make sharks and whales too?", answer: "Yes! The Torah says Hashem made the great sea creatures, the giant ones and the tiny ones.", redirect: "Show me a giant whale swim, and now a tiny fish swim!"}
+      adapt:
+        see: "Show a toy fish and a toy bird, or two pictures, and move each one as you say it."
+        do: "Children can swim with one hand and flap with the other."
+        join: "Point to the fish, then the birds on the card."
+      extend: "Swim or fly? Call out a creature; children swim for sea creatures and flap for birds."
+      tip: "Keep the whale friendly: a big smile and a gentle splash."
+
+  # ------------------------------------------------------------------ story 6: Day 6
+  - card_id: story_6
+    title_en: "Day 6: Animals & People"
+    title_he: יוֹם הַשִּׁשִּׁי
+    hebrew_keyword: {word: אָדָם, translit: a-DAM, meaning: a person}
+    back:
+      objective: "Day 6: land animals, then people"
+      say: |-
+        **Day 6: animals on the land!** [Soft lion roar]
+        **Then people: Adam and Chava! Hello!** [Wave hello]
+        **Hashem saw it all: TOV ME'OD, VERY good!** [Two thumbs up!]
+        **Light! Sky! Trees! Sun! Fish! People!** [Open · reach · grow · twinkle · swim · wave]
+      ask:
+        - {text: "Which animal would you like to meet?", type: open}
+        - {text: "Wave hello to Adam and Chava!", type: nonverbal}
+      hebrew: {word: אָדָם, translit: a-DAM, meaning: "a person (and Adam's name)", gesture: "wave hello"}
+      minutes: 3
+      core: true
+      transition: "What did Hashem do after all that work?"
+      guide_ref: {page: 11}
+    guide:
+      pshat:
+        text: >-
+          Hashem said, "Let the earth bring out living creatures" (Genesis 1:24): animals of every kind, and saw
+          that it was good (1:25, the 6th TOV). Then Hashem said, "Let us make people" (נַעֲשֶׂה אָדָם, 1:26), and
+          created them in Hashem's image, "male and female He created them" (1:27): so Adam and Chava belong on Day
+          6. Hashem saw everything and it was "very good" (טוֹב מְאֹד, 1:31, the 7th TOV).
+        refs: ["Genesis 1:24-25", "Genesis 1:26-28", "Genesis 1:31"]
+      sages: []
+      hard_questions: []
+      adapt:
+        see: "Hold up toy animals one at a time; children make each one's sound softly."
+        do: "Children can choose any movement for their animal: a hop, a stomp, a slither on the hands."
+        join: "Children who don't want to make a sound can show their animal with hands or point to it on the card."
+      extend: "Animal parade: each child picks a land animal and moves like it around the circle, then waves hello like Adam and Chava."
+      tip: "Teach Adam's card on the same day: it tells what Adam did next (cared for the garden and named the animals)."
+
+  # ------------------------------------------------------------------ story 7: Day 7
+  - card_id: story_7
+    title_en: "Day 7: Shabbat"
+    title_he: הַיּוֹם הַשְּׁבִיעִי
+    hebrew_keyword: {word: שַׁבָּת, translit: sha-BAT, meaning: Shabbat}
+    back:
+      objective: "Hashem rested and made Shabbat special"
+      say: |-
+        **Day 7: Hashem finished making the world, and rested.** [Head on hands, shhh…]
+        **Hashem made the day holy and special: Shabbat!** [Light pretend candles]
+        **Light! Sky! Trees! Sun! Fish! People! Shabbat!** [Open · reach · grow · twinkle · swim · wave · rest]
+      ask:
+        - {text: "What did Hashem do on Day 7?", type: recall}
+        - {text: "Show me how we rest!", type: nonverbal}
+      hebrew: {word: שַׁבָּת, translit: sha-BAT, meaning: "Shabbat, the rest day", gesture: "hands together under your cheek"}
+      minutes: 3
+      core: true
+      transition: "Shabbat Shalom!"
+      guide_ref: {page: 12}
+    guide:
+      pshat:
+        text: >-
+          The heavens and the earth and everything in them were finished (2:1). On the seventh day Hashem finished
+          the work and rested (וַיִּשְׁבֹּת, vayishbot, the root of "Shabbat", 2:2). Hashem blessed the seventh day
+          and made it holy (2:3). Nothing new was made on Day 7: the picture is the whole world at rest.
+        refs: ["Genesis 2:1-3"]
+      sages: []
+      hard_questions:
+        - {q: "Was Hashem tired?", answer: "Hashem never gets tired. Hashem stopped making new things to show us that one day each week is for resting and enjoying the world.", redirect: "What do you like to do on Shabbat?"}
+      adapt:
+        see: "Show two real (unlit) Shabbat candlesticks, or a picture of them."
+        do: "Children who can't sit still can 'rest' by sitting cross-legged with hands in lap."
+        join: "Everyone can join a whispered 'Shabbat Shalom' or wave to the class."
+      extend: "Rest and notice: one minute of quiet with eyes closed, then each child names one sound they heard."
+      tip: "Teach this card on Friday: do the 7-gesture chant once slowly, once fast, then a whispered 'Shabbat Shalom'."
+
+  # ------------------------------------------------------------------ spotlight: Adam (cares for the garden + names the animals)
   - card_id: spotlight_1
     title_en: Adam
     title_he: אָדָם
     back:
-      objective: "Adam's job: take care of the garden"
+      objective: "Adam's jobs: care for the garden, name the animals"
       say: |-
-        [Point to Adam] **This is Adam, the very first person!**
-        **Hashem made Adam from the earth** [Scoop up pretend dirt]
-        **and gave him a big job: take care of the garden.** [Water the plants!]
+        [Point to Adam] **This is Adam! Hashem made him from the earth** [Scoop up pretend dirt]
+        **and gave him jobs: take care of the garden** [Water the plants!]
+        **and give every animal a name! "You are a LION!"** [Roar!] **"You are a BIRD!"** [Tweet!]
       ask:
         - {text: "What is Adam doing?", type: wh}
-        - {text: "Show me how you'd water a flower!", type: nonverbal}
+        - {text: "What name would you give an animal?", type: open}
       hebrew: {word: אֲדָמָה, translit: a-da-MAH, meaning: earth, note: "sounds like Adam!", gesture: "cup your hands, scoop the earth"}
-      minutes: 3
+      minutes: 4
       core: true
       transition: "But Adam was all alone…"
-      guide_ref: {page: 4}
+      guide_ref: {page: 4, note: "the garden, the animals & the tree"}
     guide:
       pshat:
         text: >-
           Hashem formed Adam from the dust of the ground (אֲדָמָה, adamah: that's where his name comes from)
-          and breathed the breath of life into him. Then Hashem put Adam in Gan Eden "to work it and to guard
-          it" (לְעָבְדָהּ וּלְשָׁמְרָהּ): the very first job in the world was taking care of the garden.
-        refs: ["Genesis 2:7", "Genesis 2:15"]
+          and breathed the breath of life into him. Hashem put Adam in Gan Eden "to work it and to guard it"
+          (לְעָבְדָהּ וּלְשָׁמְרָהּ): the very first job in the world was taking care of the garden. Then Hashem brought
+          every animal and bird to Adam "to see what he would call them", and whatever Adam called each one, that
+          became its name. The snake, the tree and the fruit (Genesis 3) are NOT on any card: if a child asks,
+          use the scripted answers below.
+        refs: ["Genesis 2:7", "Genesis 2:15", "Genesis 2:19-20", "Genesis 3:1-7"]
       sages:
-        - {text: "Our Sages teach that Hashem took Adam around all the trees of Gan Eden and said: 'See how beautiful My world is. I made it all for you. Take care not to spoil it, because nobody will come after you to fix it.'", source: "Kohelet Rabbah 7:13"}
+        - {text: "Our Sages teach that Hashem took Adam around all the trees of Gan Eden and said: 'See how beautiful My world is. I made it all for you. Take care not to spoil it, because nobody will come after you to fix it.' Naming the animals was part of caring for them: you look closely at each one.", source: "Kohelet Rabbah 7:13"}
       hard_questions: []
       adapt:
-        see: "Bring a small pot of real soil so children can see and touch 'adamah'."
-        do: "Children can scoop with one hand, or pretend-water with a cup, instead of the two-hand scoop."
-        join: "Point to Adam on the card, or point to something in the picture Adam takes care of."
-      extend: "Plant a seed in a clear cup of soil. Each day this week, a different child is the 'Adam' who waters it."
-      tip: "Say אָדָם and אֲדָמָה side by side, slowly, so children hear the shared sound; let them guess why."
+        see: "Bring a small pot of real soil, and hold up toy animals (or pictures) one at a time to name."
+        do: "Children can scoop with one hand, and use a soft roar and a quiet tweet, or show the animal with hands."
+        join: "Point to Adam on the card, or hold the toy animal while a friend names it."
+      extend: "Name-it circle: pass a toy animal around; each child gives it a name and one way to take care of it."
+      tip: "Say אָדָם and אֲדָמָה side by side, slowly, so children hear the shared sound. If a child mentions the snake or the fruit, answer calmly with the script below, then come back to the animals."
 
   # ------------------------------------------------------------------ spotlight: Chava
   - card_id: spotlight_2
@@ -114,152 +386,6 @@ cards:
       extend: "Helping hands: children trace a hand on paper and the teacher writes one way they helped someone today."
       tip: "Keep the 'alone' beat short and light; move quickly to the happy face so nobody feels sad for long."
 
-  # ------------------------------------------------------------------ story 1: Days 1-3
-  - card_id: story_1
-    title_en: "Light, Sky & Land"
-    title_he: אוֹר, שָׁמַיִם וַאֲדָמָה
-    hebrew_keyword: {word: אוֹר, translit: OR, meaning: light}
-    back:
-      objective: "Days 1–3: light, sky, land and plants"
-      title_he: יָמִים א׳–ג׳
-      say: |-
-        **Day 1: light!** [Open hands wide] **Day 2: the sky up high** [Reach up!] **and water down low.** [Wiggle like waves]
-        **Day 3: dry land, with trees and flowers!** [Grow like a tree]
-        **And Hashem saw it was… TOV!** [Thumbs up!]
-      ask:
-        - {text: "What did Hashem make first?", type: recall}
-        - {text: "Show me how a tree grows!", type: nonverbal}
-      hebrew: {word: אוֹר, translit: OR, meaning: light, gesture: "fists, then open wide like a sunburst"}
-      minutes: 5
-      core: true
-      transition: "But the sky was still empty…"
-      guide_ref: {page: 6}
-    guide:
-      pshat:
-        text: >-
-          Day 1: Hashem made light and separated it from the dark. Day 2: Hashem made the sky (רָקִיעַ, a dome)
-          between the water above and the water below. Day 3: the water gathered together so dry land appeared,
-          land and seas, and the earth sprouted grass, plants and fruit trees. After the light, the land and seas,
-          and the plants, "Hashem saw that it was good" (כִּי־טוֹב).
-        refs: ["Genesis 1:3-5", "Genesis 1:6-8", "Genesis 1:9-13"]
-      sages: []
-      hard_questions: []
-      adapt:
-        see: "Point to the light, the sky, the water and the trees in the picture as you say each day."
-        do: "Seated children can do every movement with arms only: open hands, reach up, wave arms, branch arms."
-        join: "Everyone joins the 'TOV!' thumbs up at the end, with or without words."
-      extend: "Make a 3-panel 'Days 1-3' strip: yellow (light), blue (sky and water), green (land and trees)."
-      tip: "Hold up 1, 2, 3 fingers for each day; the counting carries into Story 2 and the 7 TOVs."
-
-  # ------------------------------------------------------------------ story 2: Days 4-6
-  - card_id: story_2
-    title_en: "Sun, Fish & Animals"
-    title_he: יָמִים ד׳–ו׳
-    hebrew_keyword: {word: דָּג, translit: DAG, meaning: fish}
-    back:
-      objective: "Days 4–6: sky lights, fish, birds, animals, people"
-      say: |-
-        **Day 4: the sun, the moon, and twinkly stars!** [Twinkle fingers]
-        **Day 5: fish that swim** [Swim hands] **and birds that fly!** [Flap!]
-        **Day 6: animals and people!** [Your favorite animal sound]
-        **And Hashem saw it was… TOV!** [Thumbs up!]
-      ask:
-        - {text: "What swims in the water?", type: wh}
-        - {text: "Show me your favorite animal!", type: nonverbal}
-      hebrew: {word: דָּג, translit: DAG, meaning: fish, gesture: "palms together, swim them forward"}
-      minutes: 5
-      core: true
-      transition: "Who will take care of it all?"
-      guide_ref: {page: 7}
-    guide:
-      pshat:
-        text: >-
-          Day 4: Hashem made the two great lights, the sun for the day and the moon for the night, and the stars.
-          Day 5: the water filled with fish and great sea creatures, and birds flew across the sky; Hashem blessed
-          them. Day 6: Hashem made every kind of land animal, and then people. Hashem saw everything and it was
-          "very good" (טוֹב מְאֹד). Point out that the picture is the same place as Story 1, now full of life.
-        refs: ["Genesis 1:14-19", "Genesis 1:20-23", "Genesis 1:24-31"]
-      sages: []
-      hard_questions: []
-      adapt:
-        see: "Lay the Story 1 card next to this one: what is new in the picture?"
-        do: "Children can choose any movement for their animal: a hop, a stomp, a slither on the hands."
-        join: "Children who don't want to make a sound can show their animal with hands or point to it on the card."
-      extend: "Sorting game: sky, water or land? Children sort animal pictures (or toy animals) into three hoops."
-      tip: "Keep the animal sounds short: count down 3-2-1 and finish together with the TOV thumbs up."
-
-  # ------------------------------------------------------------------ story 3: Shabbat
-  - card_id: story_3
-    title_en: "Day 7: Shabbat"
-    title_he: יוֹם הַשְּׁבִיעִי
-    hebrew_keyword: {word: שַׁבָּת, translit: sha-BAT, meaning: Shabbat}
-    back:
-      objective: "Hashem rested and made Shabbat special"
-      say: |-
-        **Hashem made the whole world in six days.** [Count fingers: 1… 6!]
-        **On the seventh day, Hashem rested.** [Head on hands, shhh…]
-        **Hashem made that day special. We call it… Shabbat!** [Light pretend candles]
-      ask:
-        - {text: "What did Hashem do on day 7?", type: recall}
-        - {text: "Show me how we rest!", type: nonverbal}
-      hebrew: {word: שַׁבָּת, translit: sha-BAT, meaning: "Shabbat, the rest day", gesture: "circle hands, then cover eyes"}
-      minutes: 5
-      core: true
-      transition: "Shabbat Shalom!"
-      guide_ref: {page: 8}
-    guide:
-      pshat:
-        text: >-
-          The heavens and the earth were finished. On the seventh day Hashem finished the work and rested
-          (וַיִּשְׁבֹּת, vayishbot, the root of "Shabbat"). Hashem blessed the seventh day and made it holy.
-        refs: ["Genesis 2:1-3"]
-      sages: []
-      hard_questions:
-        - {q: "Was Hashem tired?", answer: "Hashem never gets tired. Hashem stopped making new things to show us that one day each week is for resting and enjoying the world.", redirect: "What do you like to do on Shabbat?"}
-      adapt:
-        see: "Show two real (unlit) Shabbat candlesticks, or a picture of them."
-        do: "Children who can't sit still can 'rest' by sitting cross-legged with hands in lap."
-        join: "Everyone can join a whispered 'Shabbat Shalom' or wave to the class."
-      extend: "Rest and notice: one minute of quiet with eyes closed, then each child names one sound they heard."
-      tip: "Teach this card on Friday (Day 5 of the week plan) so it leads straight into the real Shabbat."
-
-  # ------------------------------------------------------------------ story 4: naming the animals
-  - card_id: story_4
-    title_en: Adam Names the Animals
-    title_he: שֵׁמוֹת
-    hebrew_keyword: {word: אַרְיֵה, translit: ar-YEH, meaning: lion}
-    back:
-      objective: "Adam cares for every creature"
-      say: |-
-        **Hashem brought all the animals to Adam,** [Point to the animals]
-        **and Adam gave each one a name! "You are a LION!"** [Roar!] **"You are a BIRD!"** [Tweet!]
-        **Adam's job was to take care of them all.**
-      ask:
-        - {text: "Which animals do you see?", type: wh}
-        - {text: "What name would you give this animal?", type: open}
-      hebrew: {word: אַרְיֵה, translit: ar-YEH, meaning: lion, gesture: "claws up, soft roar"}
-      minutes: 5
-      core: false
-      transition: "How can WE take care of the world?"
-      guide_ref: {page: 9, note: "the garden & the tree"}
-    guide:
-      pshat:
-        text: >-
-          Hashem brought every animal of the field and every bird of the sky to Adam "to see what he would call
-          them", and whatever Adam called each one, that became its name. Adam was put in the garden to work it
-          and to guard it. The snake, the tree and the fruit (Genesis 3) are NOT on any card: if a child asks,
-          use the scripted answers below.
-        refs: ["Genesis 2:19-20", "Genesis 2:15", "Genesis 3:1-7"]
-      sages:
-        - {text: "Our Sages teach that Hashem showed Adam the whole garden and asked him to take care not to ruin it. Naming the animals was part of caring for them: you look closely at each one.", source: "Kohelet Rabbah 7:13"}
-      hard_questions: []
-      adapt:
-        see: "Hold up toy animals (or pictures) one at a time for children to name."
-        do: "Use a soft roar and a quiet tweet; children can show the animal with hands instead of sound."
-        join: "Point to an animal on the card, or hold the toy animal while a friend names it."
-      extend: "Name-it circle: pass a toy animal around; each child gives it a new silly name and one way to take care of it."
-      tip: "If a child mentions the snake or the fruit, answer calmly with the script below, then come back to the animals."
-
   # ------------------------------------------------------------------ connection
   - card_id: connection_1
     title_en: Taking Care of Our World
@@ -277,7 +403,7 @@ cards:
       minutes: 5
       core: false
       transition: "That's how we say TOV!"
-      guide_ref: {page: 10}
+      guide_ref: {page: 13}
     guide:
       pshat:
         text: >-
@@ -306,21 +432,22 @@ cards:
         - {big: "×7", line1: Hashem said it, line2: 7 times!}
       say: |-
         **Our Hebrew word is TOV. It means good!** [Thumbs up!]
-        **Every time Hashem made something, Hashem saw it was… TOV!**
-        **Let's count 7 TOVs!** [Count on fingers: tov, tov, tov…]
+        **Hashem looked at the new world and saw it was… TOV!**
+        **The Torah says it 7 times! Let's count!** [Count on fingers: tov, tov, tov…]
       ask:
         - {text: "What is something tov in our classroom?", type: open}
         - {text: "Show me your tov thumbs!", type: nonverbal}
       minutes: 3
       core: true
       transition: "Take \"tov\" home this Shabbat!"
-      guide_ref: {page: 11, note: "review: אוֹר, שַׁבָּת"}
+      guide_ref: {page: 14, note: "review: אוֹר, שַׁבָּת"}
     guide:
       pshat:
         text: >-
           After making the light, the land and seas, the plants, the sun and moon, the fish and birds, and the land
           animals, "Hashem saw that it was good" (כִּי־טוֹב). At the very end Hashem saw everything and it was
-          "very good" (טוֹב מְאֹד). That is 7 TOVs in the creation story.
+          "very good" (טוֹב מְאֹד). That is 7 TOVs in the creation story: none on Day 2, two on Day 3
+          (Genesis 1:10 and 1:12), and the last one is "very good".
         refs: ["Genesis 1:4", "Genesis 1:10", "Genesis 1:12", "Genesis 1:18", "Genesis 1:21", "Genesis 1:25", "Genesis 1:31"]
       sages: []
       hard_questions: []
@@ -359,4 +486,4 @@ cards:
         do: "Families who can't walk outside can do the tov walk around the home or from a window."
         join: "Non-speaking children can show the tov thumbs at the Shabbat table."
       extend: "Invite families to send a photo or drawing of their favorite thing Hashem made for a class 'Tov Wall'."
-      tip: "Send the home card on Friday with the family letter (guide p.15)."
+      tip: "Send the home card on Friday with the family letter (guide p.18)."

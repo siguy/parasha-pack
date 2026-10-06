@@ -23,6 +23,7 @@
           "card_id": { "type": "string" },
           "file": { "type": "string", "description": "Relative to the deck folder, e.g. raw/drafts/story_1_d2.png" },
           "stage": { "enum": ["draft", "final"] },
+          "rubric_version": { "type": "string", "description": "Optional: the rubric version this row was scored with (default: the file's rubric_version)" },
           "scores": {
             "type": "object",
             "description": "criterion id -> 0, 1 or 2 (ids from the rubric)",

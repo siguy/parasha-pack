@@ -6,17 +6,18 @@ Each agent writes one YAML file in decks/<id>/pipeline/. This script is the "sta
 it checks every file against its schema (schemas/pipeline/*.schema.json), then takes
 each part from the agent that owns it:
 
-    00-series.yaml       -> deck name, ref, holiday flag, value (middah)
-    02-structure.yaml    -> card list and order, core/minutes, week_plan, story world
+    00-series.yaml       -> deck name, ref, holiday flag, value (middah), deck_pattern + story_cards
+    02-structure.yaml    -> card list and order, core/minutes, week_plan, story world, text_ref
     02b-sensitivity.yaml -> checkpoint must be approved; "if they ask" answers -> guide
     03-content.yaml      -> titles, back, guide, hebrew_keyword
-    05-visual.yaml       -> palette, web_theme, image_prompt, characters_in_scene   (optional)
+    05-visual.yaml       -> palette, web_theme, image_prompt, characters_in_scene, exclude (optional)
     05b-image-qa.yaml    -> image_path from the picks                              (optional)
     06-editor.yaml       -> only checked; a failing editor review is a warning      (optional)
 
-01-research.yaml is checked against its schema but not copied (the content already
-cites it). After merging, the deck is checked against schemas/deck.v3.schema.json and
-then src/validate_deck.py runs on the written file.
+01-research.yaml is checked against its schema; only its text map is used: each card's key_hebrew
+(and its text_ref must agree with 02-structure and 05-visual). Story cards must cite a text_ref.
+After merging, the deck is checked against schemas/deck.v3.schema.json and then
+src/validate_deck.py runs on the written file.
 
 Usage (from the repo root):
     python3 src/assemble_deck.py decks/bereshit            # writes decks/bereshit/deck.json
@@ -38,6 +39,7 @@ from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 
 import character_library
+import deck_pattern
 
 logger = logging.getLogger("assemble_deck")
 
@@ -61,11 +63,13 @@ PIPELINE_FILES = [
     ("06-editor.yaml", False),
 ]
 
-# Decision D1: 10 cards standard, 12 holiday (a holiday swaps 1 story card for 3 tradition cards).
-CARD_MIX = {
-    False: {"anchor": 1, "spotlight": 2, "story": 4, "connection": 1, "power_word": 1, "home": 1},
-    True: {"anchor": 1, "spotlight": 2, "story": 3, "connection": 1, "tradition": 3, "power_word": 1, "home": 1},
-}
+# The card mix: decision D1 (10 cards standard, 12 holiday) or a sequence deck with one story
+# card per item (6 + N cards). The numbers live in src/deck_pattern.py.
+def card_mix(series: dict, holiday: bool) -> dict:
+    """Expected {card_type: count} for this deck, from 00-series.yaml's deck_pattern/story_cards."""
+    _, story_cards, _ = deck_pattern.story_card_count({**series, "holiday": holiday})
+    return deck_pattern.expected_type_counts(holiday, story_cards)
+
 
 # Used only when 05-visual.yaml doesn't exist yet (e.g. assembling right after the Content Writer).
 PLACEHOLDER_PALETTE = ["#444444", "#777777", "#999999", "#BBBBBB", "#EEEEEE"]
@@ -152,12 +156,18 @@ def check_deck_ids(steps: dict, deck_id_from_folder: str, report: Report) -> Non
             report.error(f"{stem}.yaml: deck_id '{data.get('deck_id')}' does not match folder '{deck_id_from_folder}'")
 
 
-def check_card_mix(structure: dict, report: Report) -> None:
-    """D1 card mix. The total is enforced by the 02 schema; the per-type mix is a warning."""
-    expected = CARD_MIX[bool(structure.get("holiday"))]
+def check_card_mix(structure: dict, series: dict, report: Report) -> None:
+    """Card mix (D1, or 6 + N for a sequence deck). A wrong total is an error; a wrong per-type mix a warning."""
+    pattern, story_cards, problem = deck_pattern.story_card_count({**series, "holiday": structure.get("holiday")})
+    if problem:
+        report.error(f"00-series: {problem}")
+    expected = card_mix(series, bool(structure.get("holiday")))
+    if len(structure["cards"]) != sum(expected.values()):
+        report.error(f"02-structure: a {pattern} deck with {story_cards} story cards needs "
+                     f"{sum(expected.values())} cards, found {len(structure['cards'])}")
     actual = Counter(c["card_type"] for c in structure["cards"])
     if dict(actual) != expected:
-        report.warn(f"02-structure: card mix {dict(actual)} differs from the D1 mix {expected}")
+        report.warn(f"02-structure: card mix {dict(actual)} differs from the {pattern} mix {expected}")
     ids = [c["card_id"] for c in structure["cards"]]
     for dup in [i for i, n in Counter(ids).items() if n > 1]:
         report.error(f"02-structure: card_id '{dup}' appears more than once")
@@ -166,6 +176,27 @@ def check_card_mix(structure: dict, report: Report) -> None:
         report.error(f"02-structure: week_plan names unknown card '{cid}'")
     for cid in [i for i in ids if i not in week_ids]:
         report.warn(f"02-structure: card '{cid}' is not in any week_plan day")
+
+
+def check_text_map(research: dict, structure: dict, visual: dict, report: Report) -> None:
+    """Text fidelity: story cards cite their verses, and every step cites the SAME verses as the text map."""
+    text_map = _by_card(research, "text_map")
+    if not text_map:
+        report.warn("01-research: no text_map (what each card's verses say and don't); text_ref not cross-checked")
+    visual_by_id = _by_card(visual)
+    for card in structure["cards"]:
+        cid, text_ref = card["card_id"], card.get("text_ref")
+        if card["card_type"] == "story" and not text_ref:
+            report.error(f"02-structure: {cid} is a story card with no text_ref (which verses does it show?)")
+        if text_map and text_ref:
+            row = text_map.get(cid)
+            if row is None:
+                report.error(f"01-research: text_map has no row for {cid}")
+            elif row["text_ref"] != text_ref:
+                report.error(f"02-structure: {cid} text_ref '{text_ref}' but the text map says '{row['text_ref']}'")
+        visual_ref = (visual_by_id.get(cid) or {}).get("text_ref")
+        if visual_ref and text_ref and visual_ref != text_ref:
+            report.error(f"05-visual: {cid} text_ref '{visual_ref}' but 02-structure says '{text_ref}'")
 
 
 def check_sensitivity(structure: dict, sensitivity: dict, report: Report) -> None:
@@ -200,19 +231,41 @@ def check_card_sets(structure: dict, other: dict, filename: str, report: Report)
 def image_qa_result(scores: dict, rubric: dict) -> tuple:
     """Apply the Image QA pass rule. Returns (total, passed).
 
-    Pass = no criterion scored 0 and total >= pass_total (16 of 22).
+    Pass = no criterion scored 0 and total >= pass_total (16 of 22). Each criterion beyond the
+    11 core ones (added_criteria from v1.1, sequence_criteria) raises the line by 2.
     """
+    base = {c["id"] for c in rubric["criteria"]}
+    extra = len([cid for cid in scores if cid not in base])
     total = sum(scores.values())
     no_zero = (0 not in scores.values()) if rubric.get("no_zeros", True) else True
-    return total, (no_zero and total >= rubric["pass_total"])
+    return total, (no_zero and total >= rubric["pass_total"] + 2 * extra)
 
 
-def check_image_qa(image_qa: dict, report: Report) -> None:
-    """Every score row uses the rubric's criteria and its total/pass add up."""
+def _version(text) -> tuple:
+    """'1.10' -> (1, 10), so versions compare as numbers."""
+    return tuple(int(part) for part in str(text).split("."))
+
+
+def required_criteria(rubric: dict, version: str, sequence_story: bool) -> set:
+    """Criterion ids a row must score: the core list, plus extras that exist in its rubric version."""
+    ids = {c["id"] for c in rubric["criteria"]}
+    extras = rubric.get("added_criteria", []) + (rubric.get("sequence_criteria", []) if sequence_story else [])
+    ids |= {c["id"] for c in extras if _version(c.get("since", "1.0")) <= _version(version)}
+    return ids
+
+
+def check_image_qa(image_qa: dict, report: Report, sequence_story_ids: set = frozenset()) -> None:
+    """Every score row uses the rubric's criteria (for its rubric_version) and its total/pass add up.
+
+    sequence_story_ids: story cards of a sequence deck; their rows also need the rubric's
+    sequence_criteria (is the new item the hero?).
+    """
     with open(IMAGE_QA_RUBRIC, "r", encoding="utf-8") as f:
         rubric = yaml.safe_load(f)
-    criteria = {c["id"] for c in rubric["criteria"]}
+    file_version = image_qa.get("rubric_version", "1.0")
     for row in image_qa["images"]:
+        criteria = required_criteria(rubric, row.get("rubric_version", file_version),
+                                     row["card_id"] in sequence_story_ids)
         label = f"05b-image-qa: {row['file']}"
         if set(row["scores"]) != criteria:
             missing = sorted(criteria - set(row["scores"]))
@@ -247,7 +300,7 @@ def _deck_schema_allows(field: str, level: str) -> bool:
 
 
 def merge_card(planned: dict, content: dict, visual: dict, pick: dict, sensitivity: dict,
-               report: Report) -> dict:
+               report: Report, text_row: dict = None) -> dict:
     """Build one deck.json card from the parts each agent owns."""
     cid = planned["card_id"]
     back = dict(content["back"])
@@ -275,6 +328,12 @@ def merge_card(planned: dict, content: dict, visual: dict, pick: dict, sensitivi
     }
     if "sequence_number" in planned:
         card["sequence_number"] = planned["sequence_number"]
+    if planned.get("text_ref"):
+        card["text_ref"] = planned["text_ref"]
+    if text_row and text_row.get("key_hebrew"):
+        card["key_hebrew"] = text_row["key_hebrew"]
+    if visual and visual.get("exclude"):
+        card["exclude"] = visual["exclude"]
     if "hebrew_keyword" in content:
         card["hebrew_keyword"] = content["hebrew_keyword"]
     for field in ("style_plate", "continuity_ref"):
@@ -312,13 +371,17 @@ def merge(steps: dict, report: Report) -> dict:
     else:
         report.warn("deck schema has no 'story_world_setting' yet; left out of deck.json "
                     "(generate_images.py then defaults to the landscape plate)")
+    if series.get("deck_pattern", deck_pattern.STANDARD) != deck_pattern.STANDARD:
+        deck["deck_pattern"] = series["deck_pattern"]
+        deck["story_cards"] = series["story_cards"]
     deck["week_plan"] = structure["week_plan"]
 
     content_by_id, visual_by_id = _by_card(content), _by_card(visual)
     picks_by_id = _by_card(image_qa, "picks")
+    text_map = _by_card(steps["01-research"], "text_map")
     deck["cards"] = [
         merge_card(planned, content_by_id[planned["card_id"]], visual_by_id.get(planned["card_id"]),
-                   picks_by_id.get(planned["card_id"]), sensitivity, report)
+                   picks_by_id.get(planned["card_id"]), sensitivity, report, text_map.get(planned["card_id"]))
         for planned in structure["cards"]
         if planned["card_id"] in content_by_id
     ]
@@ -358,13 +421,17 @@ def assemble(deck_dir, write: bool = True, library_dir=None) -> tuple:
         return None, report
 
     check_deck_ids(steps, deck_dir.name, report)
-    check_card_mix(steps["02-structure"], report)
+    check_card_mix(steps["02-structure"], steps["00-series"], report)
     check_sensitivity(steps["02-structure"], steps["02b-sensitivity"], report)
+    check_text_map(steps["01-research"], steps["02-structure"], steps["05-visual"], report)
     check_card_sets(steps["02-structure"], steps["03-content"], "03-content.yaml", report)
     if steps["05-visual"]:
         check_card_sets(steps["02-structure"], steps["05-visual"], "05-visual.yaml", report)
     if steps["05b-image-qa"]:
-        check_image_qa(steps["05b-image-qa"], report)
+        sequence_story_ids = set()
+        if steps["00-series"].get("deck_pattern") == deck_pattern.SEQUENCE:
+            sequence_story_ids = {c["card_id"] for c in steps["02-structure"]["cards"] if c["card_type"] == "story"}
+        check_image_qa(steps["05b-image-qa"], report, sequence_story_ids)
     editor = steps["06-editor"]
     if editor and not editor["pass"]:
         report.warn(f"06-editor: review did not pass ({editor['weighted_percent']}%, "

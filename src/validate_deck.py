@@ -14,13 +14,16 @@ Exit code: 0 = no errors, 1 = errors found (or warnings, with --strict).
 What it checks:
     1. JSON Schema (schemas/deck.v3.schema.json)
     2. Word budgets on the backs (objective, say, cues, ask)
-    3. Card count and card types (10 standard / 12 holiday, decision D1)
+    3. Card count and card types (10 standard / 12 holiday, decision D1; a sequence deck has
+       one story card per item, so 6 + N cards: see src/deck_pattern.py)
     4. Characters: listed characters exist; named characters are listed; <= 4 per card
     5. Hebrew: nikud present; unpointed copies match; grammatical gender vs. character gender
     6. Transitions don't depend on card order
     7. Image prompts are scene-only and never depict God
     8. Guide page numbers match guide_layout.yaml
     9. Question types (distancing questions only on connection/home cards)
+   10. Text fidelity: story cards cite their verses (text_ref); key_hebrew has nikud and is copied
+       exactly from research/{deck}.yaml; story-world cards' guide pshat has verse refs
 """
 
 import argparse
@@ -35,11 +38,14 @@ from pathlib import Path
 import jsonschema
 import yaml
 
+import deck_pattern
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_PATH = REPO_ROOT / "schemas" / "deck.v3.schema.json"
 LAYOUT_PATH = REPO_ROOT / "guide_layout.yaml"
 CHARACTERS_DIR = REPO_ROOT / "characters"
 GENDER_LEXICON_PATH = Path(__file__).resolve().parent / "hebrew_gender.yaml"
+RESEARCH_DIR = REPO_ROOT / "research"
 PROJECT_LOG = REPO_ROOT / "project.log"
 
 logger = logging.getLogger("validate_deck")
@@ -55,10 +61,7 @@ MAX_ASK_WORDS = 12
 MAX_HOME_WORDS = 70      # all English text on the home card back
 MAX_CHARACTERS_PER_CARD = 4  # Nano Banana 2 accepts up to 4 character references
 
-# How many cards of each type a deck needs (decision D1)
-STANDARD_TYPE_COUNTS = {"anchor": 1, "spotlight": 2, "story": 4, "connection": 1, "power_word": 1, "home": 1}
-HOLIDAY_TYPE_COUNTS = {"anchor": 1, "spotlight": 2, "story": 3, "connection": 1, "tradition": 3,
-                       "power_word": 1, "home": 1}
+# How many cards of each type a deck needs: see src/deck_pattern.py (decision D1 + sequence decks)
 
 # Transitions must work in any teaching order, so no "first" / "next card"
 DECK_ORDER_WORDS = ["first", "begins", "one more", "last card", "next card"]
@@ -73,6 +76,9 @@ MODERN_WORLD_TYPES = {"connection", "home"}
 # Never show God as a person (safety rule)
 GOD_DEPICTION_PHRASES = ["god's face", "face of god", "god as a man", "old man in the clouds",
                          "hashem's face", "face of hashem", "hashem as a man"]
+
+# Cards that teach the Torah text: they must cite verses (text fidelity)
+TEXT_CARD_TYPES = {"anchor", "spotlight", "story"}
 
 # Question types allowed only on some cards
 DISTANCING_ALLOWED_TYPES = {"connection", "home"}
@@ -221,11 +227,17 @@ def check_schema(deck: dict, schema: dict, report: Report) -> None:
         report.error(card_id, field, f"schema: {err.message[:200]}")
 
 
-def check_card_counts(deck: dict, report: Report) -> None:
+def check_card_counts(deck: dict, report: Report, series_path: Path = deck_pattern.SERIES_PATH) -> None:
     cards = deck.get("cards", [])
     holiday = bool(deck.get("holiday"))
-    expected = HOLIDAY_TYPE_COUNTS if holiday else STANDARD_TYPE_COUNTS
-    kind = "holiday" if holiday else "standard"
+    pattern, story_cards, problem = deck_pattern.story_card_count(deck, series_path)
+    if problem:
+        report.error("deck", "deck_pattern", problem)
+    expected = deck_pattern.expected_type_counts(holiday, story_cards)
+    if pattern == deck_pattern.STANDARD:
+        kind = "holiday" if holiday else "standard"
+    else:
+        kind = f"holiday {pattern}" if holiday else pattern
     total = sum(expected.values())
     if len(cards) != total:
         report.error("deck", "cards", f"{kind} deck needs {total} cards, found {len(cards)}")
@@ -310,7 +322,7 @@ def check_characters(card: dict, library: dict, deck_names: dict, report: Report
 
 
 def is_vocab_field(path: str) -> bool:
-    return path in ("back.hebrew.word", "hebrew_keyword.word")
+    return path in ("back.hebrew.word", "hebrew_keyword.word", "key_hebrew")
 
 
 def is_hebrew_field(path: str) -> bool:
@@ -425,18 +437,41 @@ def check_image_prompt(card: dict, report: Report) -> None:
         report.warn(cid, "image_prompt", "Star of David in a story-world scene (anachronism)")
 
 
-def check_guide_ref(card: dict, layout: dict, kind: str, report: Report) -> None:
+def check_guide_ref(card: dict, pages: dict, kind: str, report: Report) -> None:
+    """pages = {card_id: page} for this deck (deck_pattern.deck_page_map(...)['cards'])."""
     cid = card.get("card_id", "?")
     guide_ref = (card.get("back") or {}).get("guide_ref")
     if not guide_ref:
         return
-    pages = layout.get(kind, {}).get("cards", {})
     expected = pages.get(cid)
     if expected is None:
         report.error(cid, "back.guide_ref.page", f"'{cid}' has no slot in the {kind} guide layout")
     elif guide_ref.get("page") != expected:
         report.error(cid, "back.guide_ref.page",
                      f"says p.{guide_ref.get('page')}, but guide_layout.yaml puts {cid} on p.{expected}")
+
+
+def load_research_hebrew(deck_id: str, research_dir: Path = RESEARCH_DIR) -> list:
+    """Every Hebrew verse line in research/{deck_id}.yaml (NFC-normalized), or [] if there is no cache."""
+    path = Path(research_dir) / f"{deck_id}.yaml"
+    if not path.exists():
+        return []
+    research = load_yaml(path)
+    return [unicodedata.normalize("NFC", line) for verse in research.get("verses", []) for line in verse.get("he", [])]
+
+
+def check_text_fidelity(card: dict, research_hebrew: list, report: Report) -> None:
+    """Story cards cite their verses; key_hebrew is quoted exactly; Torah cards' pshat has verse refs."""
+    cid, ctype = card.get("card_id", "?"), card.get("card_type")
+    if ctype == "story" and not card.get("text_ref"):
+        report.error(cid, "text_ref", "story card has no text_ref: which verses does it show? (01 text map)")
+    key = card.get("key_hebrew")
+    if key and research_hebrew:
+        wanted = unicodedata.normalize("NFC", key.strip())
+        if not any(wanted in line for line in research_hebrew):
+            report.error(cid, "key_hebrew", f"'{key}' is not an exact phrase from the research cache (copy it with nikud)")
+    if ctype in TEXT_CARD_TYPES and not ((card.get("guide") or {}).get("pshat") or {}).get("refs"):
+        report.error(cid, "guide.pshat.refs", "pshat without a verse ref (every Torah claim needs its verse)")
 
 
 def check_todos(item: dict, card_id: str, report: Report) -> None:
@@ -449,7 +484,8 @@ def check_todos(item: dict, card_id: str, report: Report) -> None:
 # ---------------------------------------------------------------- main entry
 
 def validate_deck(deck_path, characters_dir: Path = CHARACTERS_DIR, layout_path: Path = LAYOUT_PATH,
-                  schema_path: Path = SCHEMA_PATH) -> Report:
+                  schema_path: Path = SCHEMA_PATH, series_path: Path = deck_pattern.SERIES_PATH,
+                  research_dir: Path = RESEARCH_DIR) -> Report:
     """Run every check on one deck.json and return the Report."""
     deck_path = Path(deck_path)
     report = Report(deck_path)
@@ -482,11 +518,13 @@ def validate_deck(deck_path, characters_dir: Path = CHARACTERS_DIR, layout_path:
         deck_names.setdefault(key, key.title())
 
     check_schema(deck, schema, report)
-    check_card_counts(deck, report)
+    check_card_counts(deck, report, series_path)
     deck_fields = {k: v for k, v in deck.items() if k != "cards"}
     check_todos(deck_fields, "deck", report)
     check_nikud(deck_fields, "deck", report)
     kind = "holiday" if deck.get("holiday") else "standard"
+    guide_pages = deck_pattern.deck_page_map(deck, layout, series_path)["cards"]
+    research_hebrew = load_research_hebrew(deck.get("id", ""), research_dir)
     for card in cards:
         if not isinstance(card, dict):
             continue
@@ -498,7 +536,8 @@ def validate_deck(deck_path, characters_dir: Path = CHARACTERS_DIR, layout_path:
         check_gender(card, genders, pairs, report)
         check_transition(card, report)
         check_image_prompt(card, report)
-        check_guide_ref(card, layout, kind, report)
+        check_guide_ref(card, guide_pages, kind, report)
+        check_text_fidelity(card, research_hebrew, report)
 
     # Group issues by card in deck order (deck-level first); sorted() keeps check order within a card
     order = {"deck": -1, **{c.get("card_id"): i for i, c in enumerate(cards) if isinstance(c, dict)}}

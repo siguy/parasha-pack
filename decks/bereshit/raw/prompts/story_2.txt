@@ -42,11 +42,18 @@ Deck palette accents: #1E3A5F, #E0A526, #4F9A4A, #9BD7F5, #FFF4D6.
 - Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
 
 === SCENE ===
-The very same landscape as the earlier card, the same hills, river, sea and trees, now FULL OF LIFE:
-a smiling warm sun shines in the sky with a pale crescent moon and a few twinkly stars still visible
-at one side; colorful fish leap out of the sea and a friendly whale splashes far out; birds swoop over
-the hills; gentle animals fill the green land: a giraffe, an elephant, a deer, a rabbit, a lion cub
-and a family of ducks by the river. Joyful and busy, the whole world bursting with life!
+Day 2: a wide, clear band of bright blue sky across the middle of the picture, open air between the
+waters. Up high, the water above the sky as big, soft white-and-blue clouds; down low, a wide rolling
+blue ocean with gentle waves. The sky in between is the hero: clear, airy and obvious. Soft golden light
+from Day 1 glows gently over everything. Simple and calm: only clouds, sky and sea.
+Use the continuity reference only for setting and palette; the new creation must dominate the picture.
+
+=== LEAVE OUT (not in this card's verses) ===
+- No land, islands, hills or rocks
+- No plants or trees
+- No sun disc, moon or stars
+- No fish, birds or animals
+- No people
 
 === COMPOSITION ===
 Scene action positioned in the center and right side of the frame.

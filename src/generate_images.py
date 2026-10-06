@@ -7,6 +7,8 @@ Usage:
     python generate_images.py ../decks/yitro/deck.json                 # 2K, one image per card
     python generate_images.py ../decks/yitro/deck.json --card story_1 --draft     # 1K drafts
     python generate_images.py ../decks/yitro/deck.json --final --from-draft ../decks/yitro/raw/drafts/story_1_d2.png
+    python generate_images.py ../decks/bereshit/deck.json --card story_5 --edit-from ../decks/bereshit/raw/story_6.png
+        (image EDIT: the card's image_prompt says only what to change; same composition, 2K)
 
 Output:
     Images are saved to decks/{deck}/raw/ as scene-only images (no text).
@@ -75,7 +77,8 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
                             manifest: dict = None,
                             palette: list = None,
                             anchor_keys: list = None,
-                            reference_labels: list = None) -> str:
+                            reference_labels: list = None,
+                            exclude: list = None) -> str:
     """
     Build a complete generation prompt by layering system concerns onto a scene description.
 
@@ -92,6 +95,7 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
     4. Scene description — from deck.json (passed through unchanged)
     4a. Character anchors — locked visual anchors from characters/{key}/character.yaml
     4b. Ref hint         — when character refs are loaded, tell model to prioritize them
+    4c. Leave out        — card.exclude: things NOT in this card's verses (text fidelity)
     5. Composition       — per-card-type cinematography (where to place subjects)
     6. Critical rules    — universal (no text, no borders)
 
@@ -104,6 +108,7 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
         palette: Optional list of hex colors from deck.json "palette"
         anchor_keys: Character keys whose locked anchors should be added (characters_in_scene)
         reference_labels: Labels of the reference images, in the order they are sent
+        exclude: Things the picture must not show (card.exclude, from the text map's not_in_text)
 
     Returns:
         Complete prompt with all system layers applied
@@ -166,6 +171,11 @@ def build_generation_prompt(scene_prompt: str, card_type: str, story_world: str 
             f"(face, clothing, coloring). Use the text description above for pose, "
             f"action, and emotion only."
         )
+
+    # 4c. Text fidelity: what this card's verses do NOT contain must stay out of the picture
+    if exclude:
+        parts.append("=== LEAVE OUT (not in this card's verses) ===\n" +
+                     "\n".join(f"- No {item}" for item in exclude))
 
     # 5. Per-card-type composition guidance
     guidance = COMPOSITION_GUIDANCE.get(card_type, "")
@@ -295,6 +305,38 @@ def load_manifest(deck_path: Path) -> dict:
         return {}
 
 
+# Image edits (--edit-from): the model gets ONE picture to change and a short "only change ..." list.
+# No style plates (the input picture already has the style) and no long scene layers, so it doesn't
+# redraw the whole scene. Used for sequence decks whose cards are one frame filling up (or emptying).
+EDIT_INSTRUCTIONS = (
+    "Edit Image 1. Keep the exact same composition, camera position, framing, horizon line and art "
+    "style: every element that is not mentioned below stays exactly where and how it is.\n"
+    "Only change:"
+)
+
+
+def build_edit_prompt(change: str, reference_labels: list = None, anchor_keys: list = None) -> str:
+    """
+    Prompt for an image EDIT (--edit-from): reference list, the edit instruction, the change from
+    the card's image_prompt, locked character anchors, safety rules and the no-text rules.
+    """
+    from image_prompts import SAFETY_PROMPT, COMPOSITION_SUFFIX
+
+    parts = []
+    if reference_labels:
+        lines = [f"Image {n} = {label}" for n, label in enumerate(reference_labels, start=1)]
+        parts.append("=== REFERENCE IMAGES ===\n" + "\n".join(lines))
+    parts.append(f"=== EDIT ===\n{EDIT_INSTRUCTIONS}\n{change.strip()}")
+    anchor_lines = [character_library.visual_anchor_text(key) for key in (anchor_keys or [])]
+    anchor_lines = [line for line in anchor_lines if line]
+    if anchor_lines:
+        parts.append("=== CHARACTER ANCHORS (locked, always keep) ===\n" +
+                     "\n".join(f"- {line}" for line in anchor_lines))
+    parts.append(f"=== SAFETY RULES ===\n{SAFETY_PROMPT}")
+    parts.append(COMPOSITION_SUFFIX.strip())
+    return "\n\n".join(parts)
+
+
 def _resolve_continuity_ref(deck_path: Path, value: str):
     """continuity_ref is a card_id ('story_1' -> raw/story_1.png) or a path relative to the deck folder."""
     deck_dir = deck_path.parent
@@ -307,10 +349,12 @@ def _resolve_continuity_ref(deck_path: Path, value: str):
 
 def assemble_references(deck_path: Path, card: dict, deck: dict = None,
                         no_style: bool = False, no_refs: bool = False,
-                        draft_path: Path = None) -> dict:
+                        draft_path: Path = None, edit_path: Path = None) -> dict:
     """
     Collect every reference image for one card, in a FIXED, LABELED order:
 
+      0. The image to edit           only for --edit-from (then no style plates and no
+                                     continuity ref: the input image already carries both)
       1. Style plates (1-2, max 3)   chosen by card.style_plate, else the plate mapping
                                      (legacy deck style_hero only if style/plates/ is empty)
       2. Draft composition           only for --final --from-draft
@@ -335,8 +379,12 @@ def assemble_references(deck_path: Path, card: dict, deck: dict = None,
     manifest = load_manifest(deck_path)
     images = []  # (label, path, character_key or None) in send order
 
+    # 0. The image to edit (--edit-from) always goes first, as Image 1
+    if edit_path:
+        images.append((style_config.reference_label("edit"), Path(edit_path), None))
+
     # 1. Style plates (or the legacy per-deck style hero when no plates exist)
-    if not no_style and not no_refs:
+    if not no_style and not no_refs and not edit_path:
         if style_config.any_plates_exist():
             for name in style_config.plates_for_card(card, deck):
                 path = style_config.plate_path(name)
@@ -354,7 +402,7 @@ def assemble_references(deck_path: Path, card: dict, deck: dict = None,
     if not no_refs:
         # 3. Continuity reference
         continuity = card.get("continuity_ref")
-        if continuity:
+        if continuity and not edit_path:
             path = _resolve_continuity_ref(deck_path, continuity)
             if path:
                 images.append((style_config.reference_label("continuity", Path(continuity).stem), path, None))
@@ -607,8 +655,13 @@ def parse_args(argv=None):
     mode.add_argument("--final", action="store_true",
                       help=f"Final at {FINAL_IMAGE_SIZE} using --from-draft as a composition reference")
     parser.add_argument("--from-draft", help="Chosen draft image for --final (e.g. raw/drafts/story_1_d2.png)")
+    mode.add_argument("--edit-from", metavar="IMAGE",
+                      help=f"Edit this image instead of drawing a new one ({FINAL_IMAGE_SIZE}, needs --card): "
+                           "the card's image_prompt lists only what to change; saved to raw/{card_id}.png")
 
     args = parser.parse_args(argv)
+    if args.edit_from and not args.card:
+        parser.error("--edit-from needs --card (one card per edit)")
     if args.final and not args.from_draft:
         parser.error("--final needs --from-draft path/to/{card_id}_dN.png")
     if args.from_draft and not args.final:
@@ -626,6 +679,9 @@ def resolve_run_mode(args) -> dict:
     if args.draft:
         return {"mode": "draft", "size": args.size or DRAFT_IMAGE_SIZE,
                 "variants": args.variants or DEFAULT_DRAFT_VARIANTS, "draft_path": None, "card": args.card}
+    if args.edit_from:
+        return {"mode": "edit", "size": args.size or FINAL_IMAGE_SIZE, "variants": 1,
+                "draft_path": None, "edit_path": Path(args.edit_from), "card": args.card}
     if args.final:
         draft_path = Path(args.from_draft)
         # story_1_d2.png -> story_1
@@ -683,6 +739,9 @@ def main(argv=None):
         sys.exit(1)
     if run["draft_path"] and not run["draft_path"].exists():
         print(f"Error: draft not found: {run['draft_path']}")
+        sys.exit(1)
+    if run.get("edit_path") and not run["edit_path"].exists():
+        print(f"Error: image to edit not found: {run['edit_path']}")
         sys.exit(1)
 
     with open(deck_path, 'r', encoding='utf-8') as f:
@@ -743,17 +802,24 @@ def main(argv=None):
 
         # Reference images in a fixed, labeled order (plates, draft, continuity, characters)
         refs = assemble_references(deck_path, card, deck, no_style=args.no_hero,
-                                   no_refs=args.no_refs, draft_path=run["draft_path"])
+                                   no_refs=args.no_refs, draft_path=run["draft_path"],
+                                   edit_path=run.get("edit_path"))
 
-        # Full prompt: refs block + style + world + safety + scene + anchors + composition + rules
-        prompt = build_generation_prompt(
-            raw_prompt, card_type, story_world=story_world,
-            character_refs_loaded=refs["characters"],
-            manifest=manifest,
-            palette=palette,
-            anchor_keys=card.get("characters_in_scene") or [],
-            reference_labels=refs["labels"],
-        )
+        if run["mode"] == "edit":
+            # Edit prompt: refs block + "keep everything, only change:" + the card's change list
+            prompt = build_edit_prompt(raw_prompt, reference_labels=refs["labels"],
+                                       anchor_keys=card.get("characters_in_scene") or [])
+        else:
+            # Full prompt: refs block + style + world + safety + scene + anchors + composition + rules
+            prompt = build_generation_prompt(
+                raw_prompt, card_type, story_world=story_world,
+                character_refs_loaded=refs["characters"],
+                manifest=manifest,
+                palette=palette,
+                anchor_keys=card.get("characters_in_scene") or [],
+                reference_labels=refs["labels"],
+                exclude=card.get("exclude") or [],
+            )
         save_prompt_sidecar(deck_path, card_id, prompt)
 
         num_variants = run["variants"]

@@ -55,6 +55,11 @@
             ]
           },
           "continuity_ref": { "type": "string", "description": "Earlier card_id (same place, new moment), e.g. 'story_1'" },
+          "text_ref": { "type": "string", "description": "The verses this scene shows (same as 02-structure / the 01 text map)" },
+          "exclude": {
+            "type": "array", "items": { "type": "string" },
+            "description": "Visual things from the text map's not_in_text that the picture must leave out (e.g. 'the sun', 'animals'). Added to the prompt as exclusions"
+          },
           "villain_posture": { "type": "string", "description": "For villains: the sulky/comic posture used (no pointing, no snarling)" },
           "drafts": { "type": "integer", "minimum": 1, "maximum": 3, "description": "How many 1K drafts to make (default 2)" }
         }

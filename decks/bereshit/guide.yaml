@@ -10,10 +10,10 @@ deck_id: bereshit
 how_to_use:
   - "Each card has a picture on the front and a teacher script on the back. This booklet has one page per card with the background: what the Torah says, what our Sages teach, and what to say if children ask hard questions."
   - "On the card backs, **bold words are what you SAY**, and [words in brackets are what you DO]."
-  - "Use the week plan (p.2): about 15 minutes a day, Day 1 to Day 5, ending on Friday with Shabbat and the home card."
+  - "Use the week plan (p.2): about 15 minutes a day, Monday to Friday, ending on Friday with Shabbat and the home card."
   - "Cards marked core are the must-do cards. The others are for when you have time."
 
-# The family letter (p.15). The hard-question script is copied word for word from
+# The family letter (p.18). The hard-question script is copied word for word from
 # pipeline/02b-sensitivity.yaml, so families say exactly what the teacher says.
 family_letter:
   learned:
@@ -25,15 +25,17 @@ family_letter:
     - {he: שַׁבָּת, translit: sha-BAT, en: Shabbat}
   song: "Sing a 7-days counting song to any tune your child knows: hold up one finger for each day, \"Day 1, light! Day 2, sky!…\" all the way to \"Day 7, Shabbat!\""
   activity_from_home_card: 0          # index into home_1.back.try_at_home
-  hard_question: {card_id: story_4, topic: "the snake and the fruit"}
+  hard_question: {card_id: spotlight_1, topic: "the snake and the fruit"}
 
-# The extras index (p.14). Files are in decks/bereshit/extras/.
+# The extras index (p.17). Files are in decks/bereshit/extras/. best_day = the teaching day
+# (1 = Mon ... 5 = Fri), after the cards it uses have been taught.
 extras:
-  - {name: "Listen & Do", file: listen_do.pdf, cards: [story_1, story_2], materials: "crayons; one copy per child per level", minutes: 10, best_day: 1}
-  - {name: "I-spy in Gan Eden", file: ispy.pdf, cards: [story_1, story_2], materials: "crayons for the coloring version", minutes: 10, best_day: 2}
-  - {name: "Match-it", file: match.pdf, cards: [story_1, story_2, story_4], materials: "cardstock, print double-sided, scissors", minutes: 15, best_day: 3}
-  - {name: "Bingo", file: bingo.pdf, cards: [story_1, story_2, story_4], materials: "pom-poms or counters (not food), cardstock", minutes: 15, best_day: 4}
-  - {name: "Coloring + story path", file: coloring.pdf, pages: "1-2", cards: [story_1, story_2, story_3, story_4], materials: "crayons, child scissors, glue stick", minutes: 20, best_day: 5}
-  - {name: "The 7 days strip (age 6)", file: coloring.pdf, pages: "3", cards: [story_1, story_2, story_3], materials: "crayons, child scissors, glue stick", minutes: 15, best_day: 5}
-  - {name: "Story order game", file: sequencing.pdf, cards: [story_1, story_2, story_3, story_4], materials: "cardstock, scissors (teacher cuts)", minutes: 10, best_day: 5}
-  - {name: "Home card + family letter", file: "../print/bereshit-guide.pdf", pages: "15", cards: [home_1], materials: "one copy per family", minutes: 2, best_day: 5}
+  - {name: "Listen & Do", file: listen_do.pdf, cards: [story_3, story_4], materials: "crayons; one copy per child per level", minutes: 10, best_day: 2}
+  - {name: "I-spy in Gan Eden", file: ispy.pdf, cards: [story_5, story_6], materials: "crayons for the coloring version", minutes: 10, best_day: 3}
+  - {name: "Match-it (with day ↔ creation set)", file: match.pdf, cards: [story_1, story_2, story_3, story_4, story_5, story_6], materials: "cardstock, print double-sided, scissors", minutes: 15, best_day: 4}
+  - {name: "Bingo", file: bingo.pdf, cards: [story_1, story_2, story_3, story_4, story_5, story_6], materials: "pom-poms or counters (not food), cardstock", minutes: 15, best_day: 4}
+  - {name: "Coloring: 7 days", file: coloring.pdf, pages: "1-2", cards: [story_1, story_2, story_3, story_4, story_5, story_6, story_7], materials: "crayons, child scissors, glue stick, tape", minutes: 25, best_day: 5}
+  - {name: "Easy coloring (age 4)", file: coloring.pdf, pages: "3-4", cards: [story_1, story_3, story_5, story_7], materials: "crayons, child scissors, glue stick", minutes: 15, best_day: 5}
+  - {name: "7 days strip (age 6)", file: coloring.pdf, pages: "5", cards: [story_1, story_2, story_3, story_4, story_5, story_6, story_7], materials: "crayons, child scissors, glue stick", minutes: 15, best_day: 5}
+  - {name: "Day order game", file: sequencing.pdf, cards: [story_1, story_2, story_3, story_4, story_5, story_6, story_7], materials: "cardstock, scissors (teacher cuts)", minutes: 10, best_day: 5}
+  - {name: "Family letter", file: "../print/bereshit-guide.pdf", pages: "18", cards: [home_1], materials: "one copy per family", minutes: 2, best_day: 5}

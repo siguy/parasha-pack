@@ -92,16 +92,20 @@
       "required": ["cards", "page_order"],
       "additionalProperties": false,
       "properties": {
-        "cards": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 4},
-        "page_order": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 4},
+        "cards": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 10,
+                  "description": "The story (day) cards in order; their dots/numbers are 1..N"},
+        "page_order": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 10},
+        "easy_cards": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 4,
+                       "description": "Optional easy version (age 4): a few of the cards, in order, on the 2x2 page"},
+        "easy_page_order": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 4},
         "days_strip": {
           "type": "array", "maxItems": 7,
           "items": {
-            "type": "object", "required": ["day", "he", "items"], "additionalProperties": false,
+            "type": "object", "required": ["day", "he", "card"], "additionalProperties": false,
             "properties": {
               "day": {"type": "integer", "minimum": 1, "maximum": 7},
               "he": {"type": "string"},
-              "items": {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 2}
+              "card": {"type": "string", "description": "the day card whose line art is the picture piece"}
             }
           }
         }
@@ -113,7 +117,7 @@
       "required": ["cards", "copies", "easy_subset"],
       "additionalProperties": false,
       "properties": {
-        "cards": {"type": "array", "items": {"type": "string"}, "minItems": 3, "maxItems": 6},
+        "cards": {"type": "array", "items": {"type": "string"}, "minItems": 3, "maxItems": 10},
         "copies": {"type": "integer", "minimum": 1, "maximum": 3},
         "easy_subset": {"type": "array", "items": {"type": "string"}, "minItems": 2}
       }

@@ -41,9 +41,14 @@ Score each criterion **0, 1 or 2** (2 = fine, 1 = minor problem, 0 = must not pr
 | `diversity` | Modern group scenes show the Ashkenazi / Sephardi-Mizrahi / Ethiopian mix |
 | `emotion_at_8pct` | Shrunk to 8% (~120 px wide), the main feeling is still obvious |
 | `style_match` | Same look as the style plates: thick clean outlines, flat fills, warm colors |
+| `text_fidelity` (v1.1) | Shows what the card's verses describe (01 text map `in_text`), nothing contradicting them, nothing from a later day; **0 = fail** |
+| `simplicity` (v1.1) | One clear focal subject; no decorative extras the verse doesn't mention |
+| `new_creation_focus` (v1.1, sequence decks' story cards only) | The new item is large, bright and central; earlier items soft and behind |
 
-**PASS = no criterion at 0 AND total ≥ 16 of 22.** (`assemble_deck.py` recomputes every total and fails if
-yours doesn't add up.)
+**PASS = no criterion at 0 AND total ≥ 16 of 22**, plus 2 for each v1.1 criterion scored (20 of 26; 22 of
+28 on a sequence deck's story card). Set `rubric_version: '1.1'` in the file; rows scored earlier can keep
+`rubric_version: '1.0'` on the row. (`assemble_deck.py` recomputes every total and fails if yours doesn't
+add up or a required criterion is missing.)
 
 ## Step 3: pick
 

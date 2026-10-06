@@ -257,6 +257,7 @@
       "image_prompt": "In the palace hall, King Achashverosh gently places a golden crown on Esther's head as she sits on a\ncushioned bench, hands clasped in her lap, eyes wide: happy and a little nervous. Courtiers watch from\nboth sides, smiling. Warm light streams through tall windows; rich hangings, glowing oil lamps, and a\nhigh ceiling fading into warm amber haze.\nA fairy-tale moment with a secret underneath!\n",
       "image_path": "raw/story_1.png",
       "sequence_number": 1,
+      "text_ref": "Esther 2:10-17",
       "hebrew_keyword": {
         "word": "מַלְכָּה",
         "translit": "mal-KAH",
@@ -325,6 +326,7 @@
       "image_prompt": "Outside the king's gate in Shushan: a wide stone gateway with tall columns topped with twin-bull capitals\nand a turquoise glazed-brick band of gold rosettes. A row of courtiers kneel and bow low toward Haman,\nforeheads to the ground. Mordechai is the ONLY one standing: tall and calm, chin up, hands at his sides,\ngently shaking his head no. Haman stands by the gate with his arms crossed tight, nose in the air, cheeks\npuffed, a big sulky pout, proud and grumpy like a kid who didn't get his way. Warm afternoon sun, deep\nblue sky above the flat-topped gate.\nQUIET COURAGE next to GRUMPY PRIDE!\n",
       "image_path": "raw/story_2.png",
       "sequence_number": 2,
+      "text_ref": "Esther 3:2-6",
       "hebrew_keyword": {
         "word": "עוֹמֵד",
         "translit": "o-MED",
@@ -402,6 +404,7 @@
       "image_prompt": "The king's throne hall in Shushan: tall slender columns with twin-bull capitals, a flat cedar-beam\nceiling glowing with warm light, turquoise and gold glazed-brick rosettes along the walls, purple\nhangings. King Achashverosh sits on a tall golden throne, leaning forward with a big surprised, warm\nsmile, holding out a long golden scepter toward Esther. Esther, in royal purple robes, has just stepped\ninto the hall: one hand pressed to her heart, the other reaching out to touch the tip of the scepter,\nher face brave and relieved. Two courtiers at the side peek out in surprise.\nRELIEF AND COURAGE: she was scared, and she did it anyway!\n",
       "image_path": "raw/story_3.png",
       "sequence_number": 3,
+      "text_ref": "Esther 4:16-5:2",
       "hebrew_keyword": {
         "word": "אַמִּיצָה",
         "translit": "a-mee-TZAH",

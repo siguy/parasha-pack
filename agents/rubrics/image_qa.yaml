@@ -5,9 +5,11 @@
 # Not applicable (e.g. villain posture on a card with no villain) = 2: nothing to get wrong.
 #
 # PASS = no criterion scored 0 AND total >= pass_total (16 of 22).
+# Every criterion beyond the 11 core ones (added_criteria from v1.1, sequence_criteria) adds 2 to the
+# pass line: v1.1 = 20 of 26; a sequence deck's story card = 22 of 28.
 # Mode is flag-only: a failing image is flagged for Simon/the coordinator; nothing regenerates itself.
 
-version: "1.0"
+version: "1.1"
 scale: [0, 1, 2]
 pass_total: 16
 max_total: 22
@@ -63,3 +65,33 @@ criteria:
     check: >-
       Same look as style/plates/*.png and the Purim deck: thick clean dark outlines, flat fills with soft
       gradients, warm saturated colors, big expressive eyes, no grain or photo realism.
+
+# Added in v1.1 (Simon, Phase 10: "stick to the text, keep it simple"). Scored on every image of a
+# deck whose 05b file (or row) says rubric_version '1.1'; older rows stay on the 1.0 list.
+added_criteria:
+  - id: text_fidelity
+    since: "1.1"
+    name: Text fidelity
+    check: >-
+      Shows what the card's verses describe (its text_ref / in_text in the 01 text map), nothing that
+      contradicts them and nothing from a later day or a later verse (e.g. no sun before Day 4, no animals
+      on Day 3, no water on Day 1). 0 = fail.
+  - id: simplicity
+    since: "1.1"
+    name: One clear focal subject
+    check: >-
+      One clear subject a 4-year-old can name in a word; minimal extra elements; no decorative extras that
+      are not in the verse. 0 if the picture is busy or the subject is unclear.
+
+# Extra check for the STORY cards of a sequence deck (deck_pattern: sequence, one card per item,
+# e.g. the 7 days of creation). Each card must make its own new item the hero, so children see at
+# a glance what is new today. When it applies, it is scored like the others and adds 2 to the
+# pass line: see image_qa_result() in src/assemble_deck.py.
+sequence_criteria:
+  - id: new_creation_focus
+    name: The new item is the hero
+    check: >-
+      The item this card is about (e.g. Day 4: the sun, moon and stars) is large, bright and central;
+      what already existed is softer, smaller and clearly in the background.
+      0 if the new item is small, hidden or competes with a busy scene.
+    since: "1.1"

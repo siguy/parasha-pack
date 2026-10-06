@@ -123,7 +123,115 @@ def test_schema_error_is_reported_with_location(deck_dir):
 def test_wrong_card_count_fails(deck_dir):
     _edit(deck_dir, "02-structure.yaml", lambda d: d["cards"].pop())
     _, report = assemble_deck.assemble(deck_dir, write=False)
-    assert any("02-structure.yaml: cards" in e for e in report.errors)
+    assert any("standard deck with 4 story cards needs 10 cards, found 9" in e for e in report.errors)
+
+
+# ---------------------------------------------------------------------------
+# Text fidelity: the Torah Scholar's text map
+# ---------------------------------------------------------------------------
+
+TEXT_MAP_ROW = {"card_id": "story_1", "text_ref": "Genesis 1:3-13", "key_hebrew": "יְהִי אוֹר",
+                "in_text": ["light", "sky", "dry land", "plants"], "not_in_text": ["the sun (Day 4)"]}
+
+
+def test_text_map_key_hebrew_and_exclusions_reach_the_deck(deck_dir):
+    def text_map(d):   # one row per story card, copied from its text_ref
+        structure = yaml.safe_load((deck_dir / "pipeline" / "02-structure.yaml").read_text(encoding="utf-8"))
+        others = [{**TEXT_MAP_ROW, "card_id": c["card_id"], "text_ref": c["text_ref"], "key_hebrew": "בְּרֵאשִׁית"}
+                  for c in structure["cards"] if c.get("text_ref") and c["card_id"] != "story_1"]
+        d["text_map"] = [TEXT_MAP_ROW, *others]
+    _edit(deck_dir, "01-research.yaml", text_map)
+    _edit(deck_dir, "05-visual.yaml", lambda d: _card(d, "story_1").update(text_ref="Genesis 1:3-13", exclude=["the sun"]))
+    deck, report = assemble_deck.assemble(deck_dir, write=False)
+    assert report.errors == []
+    story_1 = _card(deck, "story_1")
+    assert (story_1["text_ref"], story_1["key_hebrew"], story_1["exclude"]) == ("Genesis 1:3-13", "יְהִי אוֹר", ["the sun"])
+
+
+def test_story_card_without_text_ref_fails(deck_dir):
+    _edit(deck_dir, "02-structure.yaml", lambda d: _card(d, "story_2").pop("text_ref"))
+    _, report = assemble_deck.assemble(deck_dir, write=False)
+    assert any("story_2 is a story card with no text_ref" in e for e in report.errors)
+
+
+def test_text_ref_must_match_the_text_map(deck_dir):
+    _edit(deck_dir, "01-research.yaml", lambda d: d.update(text_map=[{**TEXT_MAP_ROW, "text_ref": "Genesis 1:3-5"}]))
+    _edit(deck_dir, "05-visual.yaml", lambda d: _card(d, "story_2").update(text_ref="Genesis 2:1-3"))
+    _, report = assemble_deck.assemble(deck_dir, write=False)
+    assert any("story_1 text_ref 'Genesis 1:3-13' but the text map says 'Genesis 1:3-5'" in e for e in report.errors)
+    assert any("05-visual: story_2 text_ref 'Genesis 2:1-3'" in e for e in report.errors)
+    assert any("text_map has no row for story_2" in e for e in report.errors)
+
+
+# ---------------------------------------------------------------------------
+# Sequence decks (one story card per item, e.g. the 7 days of creation)
+# ---------------------------------------------------------------------------
+
+def _make_sequence(deck_dir, story_cards=7):
+    """Turn the 10-card fixture into a sequence deck: copy story_4 into story_5..story_N everywhere."""
+    import copy
+    import deck_pattern
+    layout = yaml.safe_load((REPO_ROOT / "guide_layout.yaml").read_text(encoding="utf-8"))
+    pages = deck_pattern.page_map(layout, False, story_cards)["cards"]
+
+    _edit(deck_dir, "00-series.yaml", lambda d: d.update(deck_pattern="sequence", story_cards=story_cards))
+
+    def add_stories(d, key="cards"):
+        rows = d[key]
+        at = next(i for i, c in enumerate(rows) if c["card_id"] == "story_4")
+        for n in range(5, story_cards + 1):
+            row = copy.deepcopy(rows[at])
+            row["card_id"] = f"story_{n}"
+            if "sequence_number" in row:
+                row["sequence_number"] = n
+            rows.insert(at + n - 4, row)
+        for row in rows:   # guide pages move down behind the extra story pages
+            guide_ref = (row.get("back") or {}).get("guide_ref")
+            if guide_ref:
+                guide_ref["page"] = pages[row["card_id"]]
+
+    def structure(d):
+        add_stories(d)
+        d["week_plan"][2]["cards"] += [f"story_{n}" for n in range(5, story_cards + 1)]
+    _edit(deck_dir, "02-structure.yaml", structure)
+    for filename in ("02b-sensitivity.yaml", "03-content.yaml", "05-visual.yaml"):
+        _edit(deck_dir, filename, add_stories)
+
+    def focus_scores(d):   # rubric 1.1: text fidelity + simplicity; story cards also "is the new item the hero?"
+        d["rubric_version"] = "1.1"
+        for row in d["images"]:
+            extra = ["text_fidelity", "simplicity"] + (["new_creation_focus"] if row["card_id"].startswith("story_") else [])
+            row["scores"].update(dict.fromkeys(extra, 2))
+            row["total"] += 2 * len(extra)
+    _edit(deck_dir, "05b-image-qa.yaml", focus_scores)
+
+
+def test_sequence_deck_assembles_with_one_story_card_per_item(deck_dir):
+    _make_sequence(deck_dir, 7)
+    deck, report = assemble_deck.assemble(deck_dir)
+    assert report.errors == []
+    assert len(deck["cards"]) == 13
+    assert (deck["deck_pattern"], deck["story_cards"]) == ("sequence", 7)
+    assert _card(deck, "story_7")["sequence_number"] == 7
+    assert _card(deck, "connection_1")["back"]["guide_ref"]["page"] == 13
+
+
+def test_sequence_deck_with_wrong_story_count_fails(deck_dir):
+    _make_sequence(deck_dir, 7)
+    _edit(deck_dir, "00-series.yaml", lambda d: d.update(story_cards=6))
+    _, report = assemble_deck.assemble(deck_dir, write=False)
+    assert any("sequence deck with 6 story cards needs 12 cards, found 13" in e for e in report.errors)
+
+
+def test_sequence_deck_needs_story_cards(deck_dir):
+    _edit(deck_dir, "00-series.yaml", lambda d: d.update(deck_pattern="sequence"))
+    _, report = assemble_deck.assemble(deck_dir, write=False)
+    assert any("00-series.yaml" in e and "story_cards" in e for e in report.errors)
+
+
+def test_standard_deck_has_no_pattern_fields(deck_dir):
+    deck, _ = assemble_deck.assemble(deck_dir, write=False)
+    assert "deck_pattern" not in deck and "story_cards" not in deck
 
 
 def test_unapproved_checkpoint_fails(deck_dir):
@@ -206,6 +314,40 @@ def test_pass_rule(rubric):
     assert assemble_deck.image_qa_result(six_ones, rubric) == (16, True)    # exactly the line
     seven_ones = {**all_twos, **dict.fromkeys(ids[:7], 1)}
     assert assemble_deck.image_qa_result(seven_ones, rubric) == (15, False)
+
+
+def test_sequence_criterion_raises_the_pass_line(rubric):
+    ids = [c["id"] for c in rubric["criteria"]]
+    extra = [c["id"] for c in rubric["sequence_criteria"]]
+    assert extra == ["new_creation_focus"]
+    six_ones = {**dict.fromkeys(ids, 2), **dict.fromkeys(ids[:6], 1)}
+    assert assemble_deck.image_qa_result({**six_ones, "new_creation_focus": 2}, rubric) == (18, True)
+    assert assemble_deck.image_qa_result({**six_ones, "new_creation_focus": 1}, rubric) == (17, False)
+    assert assemble_deck.image_qa_result({**dict.fromkeys(ids, 2), "new_creation_focus": 0}, rubric)[1] is False
+
+
+def test_sequence_story_rows_need_the_focus_score():
+    row = {"card_id": "story_1", "file": "raw/drafts/story_1_d1.png", "stage": "draft",
+           "scores": {}, "total": 22, "pass": True}
+    rubric = yaml.safe_load(assemble_deck.IMAGE_QA_RUBRIC.read_text(encoding="utf-8"))
+    row["scores"] = {c["id"]: 2 for c in rubric["criteria"] + rubric["added_criteria"]}
+    row["total"] = 26
+    qa = {"rubric_version": "1.1", "images": [row], "picks": []}
+    report = assemble_deck.Report()
+    assemble_deck.check_image_qa(qa, report)                       # standard deck: fine
+    assert report.errors == []
+    assemble_deck.check_image_qa(qa, report, {"story_1"})          # sequence deck: focus score missing
+    assert any("missing ['new_creation_focus']" in e for e in report.errors)
+
+
+def test_rubric_version_decides_the_criteria(rubric):
+    core = {c["id"] for c in rubric["criteria"]}
+    assert assemble_deck.required_criteria(rubric, "1.0", sequence_story=True) == core
+    assert assemble_deck.required_criteria(rubric, "1.1", sequence_story=False) == core | {"text_fidelity", "simplicity"}
+    assert "new_creation_focus" in assemble_deck.required_criteria(rubric, "1.1", sequence_story=True)
+    twos = dict.fromkeys(assemble_deck.required_criteria(rubric, "1.1", False), 2)
+    assert assemble_deck.image_qa_result(twos, rubric) == (26, True)
+    assert assemble_deck.image_qa_result({**twos, "text_fidelity": 0}, rubric)[1] is False   # a 0 = fail
 
 
 def test_editor_rubric_weights_add_to_100():

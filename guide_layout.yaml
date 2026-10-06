@@ -14,16 +14,22 @@
 #
 # Standard deck = 10 cards. Holiday deck = 12 cards (one story card is
 # replaced by three tradition cards, decision D1).
+#
+# Story pages are not listed one by one: story_1 is on story_pages_start,
+# story_2 on the next page, and so on. The page numbers below are written for
+# `story_cards` story cards (4 standard, 3 holiday). A SEQUENCE deck (one story
+# card per item, e.g. the 7 days of creation; deck_pattern: sequence in
+# series.yaml) has more story pages, so every page after the story pages moves
+# down by the extra cards. src/deck_pattern.py does that arithmetic, e.g.
+# Bereshit (7 story cards): story_1-7 on p.6-12, connection_1 p.13 ... sources p.19.
 
 standard:
+  story_cards: 4         # the pages below are written for this many story cards
+  story_pages_start: 6   # story_1 is on p.6, story_2 on p.7, ...
   cards:
     anchor_1: 2        # week plan + the anchor card
     spotlight_1: 4
     spotlight_2: 5
-    story_1: 6
-    story_2: 7
-    story_3: 8
-    story_4: 9
     connection_1: 10
     power_word_1: 11
     home_1: 15         # the home card goes out with the family letter
@@ -37,13 +43,12 @@ standard:
     sources: 16        # verse refs and commentaries
 
 holiday:
+  story_cards: 3
+  story_pages_start: 6
   cards:
     anchor_1: 2
     spotlight_1: 4
     spotlight_2: 5
-    story_1: 6
-    story_2: 7
-    story_3: 8
     tradition_1: 9
     tradition_2: 10
     tradition_3: 11

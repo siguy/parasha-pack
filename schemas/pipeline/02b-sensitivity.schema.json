@@ -17,7 +17,7 @@
         "additionalProperties": false,
         "required": ["area", "item", "status"],
         "properties": {
-          "area": { "enum": ["child_development", "modern_orthodox", "hard_text_policy"] },
+          "area": { "enum": ["child_development", "modern_orthodox", "hard_text_policy", "text_fidelity"] },
           "item": { "type": "string" },
           "status": { "enum": ["ok", "flag"] },
           "note": { "type": "string" }
