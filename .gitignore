@@ -26,3 +26,6 @@ ENV/
 # Project-specific
 # Keep generated images in repo for now (they're part of the deck content)
 # exports/  # Uncomment to ignore exports
+
+# Logs
+project.log

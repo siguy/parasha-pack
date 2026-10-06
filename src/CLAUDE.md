@@ -116,7 +116,7 @@ python generate_deck.py --output ../decks/yitro      # Custom output path
 
 ## generate_images.py
 
-Generates card images using Gemini API. Default model is Nano Banana 2 (`gemini-3.1-flash-image`); override with `GEMINI_IMAGE_MODEL` in `.env` (e.g. `gemini-3-pro-image`). Set resolution with `--size 512|1K|2K|4K` (default 2K). `generate_references.py` uses the same helper and also accepts `--size`.
+Generates card images using Gemini API. Default model is Nano Banana 2 (`gemini-3.1-flash-image`); override with `GEMINI_IMAGE_MODEL` in `.env` (e.g. `gemini-3-pro-image`). Set resolution with `--size 512|1K|2K|4K` (default 2K; 3:4 at 2K = 1792x2400). The API returns JPEG, which `save_image_as_png()` re-encodes so `raw/*.png` files are real PNGs. `generate_references.py` uses the same helper and also accepts `--size`.
 
 ```bash
 python generate_images.py ../decks/yitro/deck.json              # Generate all

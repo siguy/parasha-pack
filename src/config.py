@@ -146,11 +146,16 @@ DEFAULT_IMAGE_SIZE = "2K"
 
 # Expected pixel dimensions (width, height) for 3:4 images at each size.
 # Used only to log a warning if the API returns something unexpected.
+# Source: Google's resolution table for Gemini 3.1 Flash Image
+# (ai.google.dev/gemini-api/docs/image-generation). Note "1K" is NOT 768x1024 —
+# the short side is 896, not a power of two.
+#   512 and 4K: documented only (not yet seen in a real call)
+#   1K and 2K: documented AND observed in real API calls (Oct 2026)
 EXPECTED_DIMENSIONS_3_4 = {
-    "512": (384, 512),
-    "1K": (768, 1024),
-    "2K": (1536, 2048),
-    "4K": (3072, 4096),
+    "512": (448, 600),
+    "1K": (896, 1200),
+    "2K": (1792, 2400),
+    "4K": (3584, 4800),
 }
 
 ASPECT_RATIOS = {

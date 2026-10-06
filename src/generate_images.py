@@ -22,6 +22,7 @@ import time
 import urllib.request
 import urllib.error
 import base64
+import io
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
@@ -385,6 +386,28 @@ def extract_final_image(result: dict):
     return final_image
 
 
+def save_image_as_png(image_bytes: bytes, output_path: str) -> str:
+    """
+    Save image bytes to output_path as a real PNG file.
+
+    Nano Banana 2 returns JPEG data, but the rest of the pipeline expects
+    .png files. Writing JPEG bytes into a .png file "works" but the file
+    lies about its format, so we re-encode anything that isn't already PNG.
+
+    Returns:
+        The MIME type the API actually sent (e.g. "image/jpeg")
+    """
+    with Image.open(io.BytesIO(image_bytes)) as img:
+        original_mime = Image.MIME.get(img.format, img.format)
+        if img.format == "PNG":
+            with open(output_path, 'wb') as f:
+                f.write(image_bytes)  # already PNG, save untouched
+        else:
+            logger.info(f"  -> API returned {original_mime}; re-encoding to PNG")
+            img.save(output_path, format="PNG")
+    return original_mime
+
+
 def check_image_dimensions(output_path: str, aspect_ratio: str, image_size: str) -> tuple:
     """Log the saved image's pixel size and warn if it isn't what we asked for."""
     with Image.open(output_path) as img:
@@ -434,8 +457,7 @@ def generate_image_nano_banana(prompt: str, api_key: str, output_path: str, aspe
             logger.error(f"  No image in response from {model} for {output_path}")
             return {"success": False, "prompt": prompt}
 
-        with open(output_path, 'wb') as f:
-            f.write(base64.b64decode(image_data))
+        save_image_as_png(base64.b64decode(image_data), output_path)
         check_image_dimensions(output_path, aspect_ratio, image_size)
         return {"success": True, "prompt": prompt}
 
@@ -458,7 +480,7 @@ def main():
     parser.add_argument("--no-hero", action="store_true", help="Skip style hero reference image")
     parser.add_argument("--variants", type=int, default=1, help="Generate N variants per card (e.g. --variants 3)")
     parser.add_argument("--size", default=DEFAULT_IMAGE_SIZE, choices=VALID_IMAGE_SIZES,
-                        help=f"Output resolution (default {DEFAULT_IMAGE_SIZE}; 3:4 at 2K = 1536x2048)")
+                        help=f"Output resolution (default {DEFAULT_IMAGE_SIZE}; 3:4 at 2K = 1792x2400)")
 
     args = parser.parse_args()
     setup_logging()

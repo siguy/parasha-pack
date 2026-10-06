@@ -5,16 +5,20 @@ These run without network access — they only check the pure helper functions.
 Run from the repo root:  python -m pytest tests -q
 """
 
+import io
 import sys
 from pathlib import Path
 
 import pytest
+from PIL import Image
 
 # The scripts in src/ import each other by plain module name, so put src/ on the path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 import generate_images  # noqa: E402
-from generate_images import build_image_request, extract_final_image, get_image_model  # noqa: E402
+from generate_images import (build_image_request, extract_final_image, get_image_model,  # noqa: E402
+                             save_image_as_png)
+from config import EXPECTED_DIMENSIONS_3_4  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -101,3 +105,41 @@ def test_parser_returns_none_for_empty_response():
 
 def test_timeout_is_300_seconds():
     assert generate_images.REQUEST_TIMEOUT_SECONDS == 300
+
+
+def test_expected_3_4_dimensions_match_google_table():
+    # 1K and 2K were confirmed by real API calls; 512 and 4K are from Google's docs
+    assert EXPECTED_DIMENSIONS_3_4 == {
+        "512": (448, 600),
+        "1K": (896, 1200),
+        "2K": (1792, 2400),
+        "4K": (3584, 4800),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Saving: JPEG from the API becomes a real PNG on disk
+# ---------------------------------------------------------------------------
+
+def _tiny_image_bytes(fmt):
+    buffer = io.BytesIO()
+    Image.new("RGB", (4, 3), "yellow").save(buffer, format=fmt)
+    return buffer.getvalue()
+
+
+def test_jpeg_is_reencoded_to_real_png(tmp_path):
+    out = tmp_path / "story_1.png"
+    original_mime = save_image_as_png(_tiny_image_bytes("JPEG"), str(out))
+
+    assert original_mime == "image/jpeg"
+    assert out.read_bytes().startswith(b"\x89PNG")  # PNG file signature
+    with Image.open(out) as img:
+        assert img.format == "PNG"
+        assert img.size == (4, 3)
+
+
+def test_png_is_saved_untouched(tmp_path):
+    png_bytes = _tiny_image_bytes("PNG")
+    out = tmp_path / "story_1.png"
+    assert save_image_as_png(png_bytes, str(out)) == "image/png"
+    assert out.read_bytes() == png_bytes
