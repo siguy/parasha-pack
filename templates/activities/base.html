@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ deck.parasha_en }} — {{ title }}</title>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Fredoka:wght@500;600;700&family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Letter paper, every .page is exactly one sheet. 0.5" margins are safe on home printers. */
+  @page { size: 8.5in 11in; margin: 0; }
+  :root {
+    --navy: {{ palette[0] }}; --gold: {{ palette[1] }}; --green: {{ palette[2] }};
+    --sky: {{ palette[3] }}; --cream: {{ palette[4] }};
+    --ink: #1e293b; --ink-2: #475569; --cut: #8a8f98;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; color: var(--ink);
+               font-family: 'Assistant', 'Arial', sans-serif;
+               -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 8.5in; height: 11in; padding: 0.5in; position: relative; overflow: hidden;
+          page-break-after: always; break-after: page; display: flex; flex-direction: column; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .he { font-family: 'Heebo', 'Arial Hebrew', sans-serif; direction: rtl; unicode-bidi: isolate; }
+  .title { font-family: 'Fredoka', 'Arial Rounded MT Bold', sans-serif; }
+  header.sheet { display: flex; align-items: center; justify-content: space-between;
+                 border-bottom: 3px solid var(--gold); padding-bottom: 0.06in; margin-bottom: 0.14in;
+                 height: 0.72in; flex: none; }
+  header.sheet .en { font-family: 'Fredoka', sans-serif; font-size: 21pt; font-weight: 600; color: var(--navy); line-height: 1; }
+  header.sheet .sub { font-size: 11pt; color: var(--ink-2); font-weight: 600; margin-top: 3px; }
+  header.sheet .he { font-size: 24pt; font-weight: 700; color: var(--navy); }
+  .footer-note { font-size: 9pt; color: var(--ink-2); text-align: center; }
+  {% block style %}{% endblock %}
+</style>
+</head>
+<body>
+{% block body %}{% endblock %}
+</body>
+</html>

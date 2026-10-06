@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block style %}
+  .board { width: 7.5in; height: 7.5in; display: grid; grid-template-columns: repeat(3, 2.5in);
+           grid-template-rows: repeat(3, 2.5in); border: 4px solid var(--navy); border-radius: 0.12in;
+           overflow: hidden; flex: none; }
+  .cell { border: 2px solid var(--navy); display: flex; flex-direction: column; align-items: center;
+          justify-content: center; padding: 0.1in; background: #fff; }
+  .cell img { width: 1.7in; height: 1.7in; object-fit: contain; }
+  .cell .he { font-size: 30pt; font-weight: 700; line-height: 1.05; margin-top: 0.02in; color: var(--navy); }
+  .cell.free { background: var(--cream); }
+  .cell.free .he { font-size: 22pt; color: #7a5a00; }
+  .corner { background: #fff; }
+  .board-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 0.22in; }
+  .rule { display: flex; align-items: center; gap: 0.12in; }
+  .rule svg { width: 0.75in; height: 0.75in; }
+  .num { font-family: 'Fredoka', sans-serif; font-size: 16pt; color: var(--ink-2); }
+  /* calling cards */
+  .howto { border: 2px solid var(--gold); background: var(--cream); border-radius: 0.1in; padding: 0.1in 0.16in;
+           font-size: 12.5pt; line-height: 1.3; height: 1.05in; flex: none; margin-bottom: 0.15in; }
+  .howto b { color: var(--navy); }
+  .calls { display: grid; grid-template-columns: 3.75in 3.75in; grid-template-rows: 3.95in 3.95in;
+           border-top: 1.5px dashed var(--cut); border-left: 1.5px dashed var(--cut); flex: none; }
+  .call { border-right: 1.5px dashed var(--cut); border-bottom: 1.5px dashed var(--cut); display: flex;
+          flex-direction: column; align-items: center; justify-content: center; padding: 0.15in; }
+  .call img { width: 2.15in; height: 2.15in; object-fit: contain; }
+  .call .he { font-size: 40pt; font-weight: 700; color: var(--navy); line-height: 1.1; }
+  .call .tr { font-size: 15pt; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+  .call .en { font-size: 13pt; color: var(--ink-2); }
+  .scissors { font-size: 10pt; color: var(--cut); margin-top: 0.06in; }
+{% endblock %}
+{% block body %}
+{% for board in boards %}
+<section class="page">
+  {% set heading = "Bingo" %}{% set sub = "" %}{% include "_header.html" %}
+  <div class="board">
+    {% for cell in board %}
+      {% if cell.free %}
+      <div class="cell free"><img src="{{ cell.img }}" alt=""><div class="he" lang="he">{{ cell.he }}</div></div>
+      {% else %}
+      <div class="cell"><img src="{{ cell.img }}" alt=""><div class="he" lang="he">{{ cell.he }}</div></div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="board-foot">
+    <div class="rule">
+      <svg viewBox="0 0 60 60" aria-hidden="true">
+        <rect x="3" y="3" width="54" height="54" rx="5" fill="#fff" stroke="{{ palette[0] }}" stroke-width="3"/>
+        {% for x, y in rule_dots %}<circle cx="{{ x }}" cy="{{ y }}" r="7" fill="{{ palette[1] }}" stroke="{{ palette[0] }}" stroke-width="2"/>{% endfor %}
+      </svg>
+      <div class="title" style="font-size:20pt;color:var(--navy)">בִּינְגּוֹ!</div>
+    </div>
+    <div class="num">#{{ loop.index }}</div>
+  </div>
+</section>
+{% endfor %}
+{% for page in call_pages %}
+<section class="page">
+  {% set heading = "Bingo calling cards" %}{% set sub = "Cut on the dashed lines · " ~ loop.index ~ " of " ~ call_pages|length %}{% include "_header.html" %}
+  <div class="howto"><b>Teacher:</b> {{ instructions }}</div>
+  <div class="calls">
+    {% for card in page %}
+    <div class="call">
+      <img src="{{ card.img }}" alt="">
+      <div class="he" lang="he">{{ card.he }}</div>
+      <div class="tr">{{ card.translit }}</div>
+      <div class="en">{{ card.en }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endfor %}
+{% endblock %}
