@@ -20,7 +20,9 @@ parasha-pack/
 │   ├── CARD_SPECS.md      # Card type specifications
 │   ├── VISUAL_SPECS.md    # Visual specs, characters, safety rules
 │   ├── LESSONS_LEARNED.md # Patterns and gotchas
-│   └── definitions/       # Individual agent specs (01-07)
+│   ├── definitions/       # Agent specs (00, 01, 02, 02b, 03, 05, 05b, 06)
+│   ├── tools/             # card-designer.md (sync, export, hub sync)
+│   └── rubrics/           # image_qa.yaml, editor.yaml
 ├── src/                   # Python source code (see src/CLAUDE.md)
 │   └── archive/           # Deprecated v1 code (do not use)
 ├── card-designer/         # Next.js React app for text overlay + export
@@ -111,25 +113,27 @@ Open `review-site/index.html` in a browser to:
 
 ## Card Types
 
-Standard deck: 10 cards. Holiday decks add 3 tradition cards = 13 cards.
+Standard deck: 10 cards. Holiday deck: 12 (one story card swapped for 3 tradition cards). Decision D1.
 
-| Type | Count | Purpose |
-|------|-------|---------|
-| Anchor | 1 | Parasha/holiday introduction with emotional hook |
-| Spotlight | 2 | Character portraits with emotion |
-| Story | 4 | Key narrative moments with roleplay prompts |
-| Connection | 2 | "Have you ever..." discussion questions |
-| Tradition | 3 | Holiday practices (holiday decks only) |
-| Power Word | 1 | Hebrew vocabulary |
+| Type | Standard | Holiday | Purpose |
+|------|----------|---------|---------|
+| Anchor | 1 | 1 | Parasha/holiday introduction with emotional hook |
+| Spotlight | 2 | 2 | Character portraits with emotion |
+| Story | 4 | 3 | Key narrative moments |
+| Tradition | — | 3 | Holiday practices |
+| Connection | 1 | 1 | "Have you ever..." discussion |
+| Power Word | 1 | 1 | Hebrew vocabulary |
+| Home | 1 | 1 | Shabbat-table question + try at home |
 
-## Agent-Based Workflow
+## Agent-Based Workflow (pipeline v3)
 
-Deck creation uses a 7-agent pipeline. See [agents/AGENTS.md](agents/AGENTS.md) for:
-- Agent roster (01 Torah Scholar through 07 Card Designer)
-- Workflow diagram with checkpoints
-- Human review process
+Deck creation uses 8 agent roles (00 Series Planner, 01 Torah Scholar, 02 Curriculum Designer,
+02b Sensitivity Reviewer ★, 03 Content Writer (English + Hebrew), 05 Visual Director, 05b Image QA ★,
+06 Editor) plus the Card Designer tool. Each writes `decks/{id}/pipeline/<step>.yaml` (schemas in
+`schemas/pipeline/`), and `python3 src/assemble_deck.py decks/{id}` merges them into deck.json.
 
-See [agents/AGENT_PIPELINE.md](agents/AGENT_PIPELINE.md) for detailed YAML schemas.
+- Roles, checkpoints, overnight rule: [agents/AGENTS.md](agents/AGENTS.md)
+- Files, commands, assemble step, budgets: [agents/AGENT_PIPELINE.md](agents/AGENT_PIPELINE.md)
 
 ## Safety Rules for Image Generation
 
