@@ -28,7 +28,7 @@ cards:
   - card_id: story_1
     text_ref: "Genesis 1:3-5"
     characters_in_scene: []
-    exclude: ["water, sea or waves", "sun disc, moon or stars", "land, hills, plants or trees", "animals or people", "figure or face in the light"]
+    exclude: ["water, sea or waves", "sun disc, moon or stars", "land, hills, plants or trees", "animals or people", "figure or face in the light", "ground strip or horizon at the bottom: soft darkness and light fill the whole picture"]
     image_prompt: |
       Day 1: a big, bright burst of warm golden light breaking out of deep darkness and pushing it back. One
       side of the picture glows with soft morning light, the other side is calm, deep-blue night: light and

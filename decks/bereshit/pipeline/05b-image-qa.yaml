@@ -11,6 +11,7 @@ rubric_version: '1.1'
 contact_sheets:
 - raw/archive/drafts/contact_sheet_10card.jpg
 - raw/archive/contact_sheet_finals_10card.jpg
+- raw/contact_sheet_seven_days.jpg
 images:
 - card_id: spotlight_1
   file: raw/drafts/spotlight_1_d1.png
@@ -265,7 +266,7 @@ images:
   flags: []
   notes: Faithful to d1; young adult, modest.
 - card_id: anchor_1
-  file: raw/story_2.png
+  file: raw/anchor_1.png
   stage: final
   rubric_version: '1.0'
   scores:
@@ -285,7 +286,7 @@ images:
   flags:
   - moon top-left corner
   notes: 'Faithful to d2; same landscape as story_1. [Reused for the 13-card deck: this old story_2 art is now the
-    anchor.]'
+    anchor.] [Was raw/story_2.png; git mv to raw/anchor_1.png in Phase 10.]'
 - card_id: connection_1
   file: raw/connection_1.png
   stage: final
@@ -326,7 +327,562 @@ images:
   pass: true
   flags: []
   notes: Faithful to d1.
+- card_id: story_1
+  file: raw/drafts/story_1_d1.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 1
+    text_fidelity: 1
+    simplicity: 2
+    new_creation_focus: 2
+  total: 26
+  pass: true
+  flags: []
+  notes: 'Light bursting out of dark clouds, light left / night right: reads as Day 1 instantly. A dark ground strip
+    at the bottom (the composition rule asks for a ground plane) could read as land.'
+- card_id: story_1
+  file: raw/drafts/story_1_d2.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 1
+    text_fidelity: 0
+    simplicity: 2
+    new_creation_focus: 2
+  total: 24
+  pass: false
+  flags:
+  - 'text_fidelity 0: land on Day 1'
+  notes: Soft blurry burst; a green land strip at the bottom = land on Day 1.
+- card_id: story_1
+  file: raw/drafts/story_1_final_try1.png
+  stage: final
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 1
+    text_fidelity: 1
+    simplicity: 2
+    new_creation_focus: 2
+  total: 26
+  pass: true
+  flags: []
+  notes: '2K final from d1: kept the dark ground strip. Fixed with one --edit-from pass (row below).'
+- card_id: story_1
+  file: raw/story_1.png
+  stage: final
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 1
+    text_fidelity: 2
+    simplicity: 2
+    new_creation_focus: 2
+  total: 27
+  pass: true
+  flags: []
+  notes: '--edit-from of try 1: the ground strip is gone; only light and darkness. Softer outlines than the plates
+    (light-only scene).'
+- card_id: story_2
+  file: raw/drafts/story_2_d1.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 1
+    new_creation_focus: 1
+  total: 24
+  pass: true
+  flags: []
+  notes: Colorful but clouds crowd the top and sides; the open band of sky is small.
+- card_id: story_2
+  file: raw/drafts/story_2_d2.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 1
+    text_fidelity: 2
+    simplicity: 2
+    new_creation_focus: 2
+  total: 26
+  pass: true
+  flags: []
+  notes: 'Clouds up high, a wide clear band of sky, ocean below: the separation is obvious. A bit pale.'
+- card_id: story_2
+  file: raw/story_2.png
+  stage: final
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 1
+    text_fidelity: 2
+    simplicity: 2
+    new_creation_focus: 2
+  total: 26
+  pass: true
+  flags: []
+  notes: 2K final of d2; Day 1 light glows through the clouds.
+- card_id: story_3
+  file: raw/drafts/story_3_d1.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 1
+    new_creation_focus: 2
+  total: 26
+  pass: true
+  flags: []
+  notes: Big fruit tree on new land, river and sea; extra brown mountains.
+- card_id: story_3
+  file: raw/drafts/story_3_d2.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 2
+    new_creation_focus: 2
+  total: 27
+  pass: true
+  flags: []
+  notes: One big fruit tree with flowers on fresh land, sea pulled back to the left; no sun disc. Canopy reaches
+    into the upper quarter.
+- card_id: story_3
+  file: raw/story_3.png
+  stage: final
+  rubric_version: '1.1'
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 2
+    new_creation_focus: 2
+  total: 27
+  pass: true
+  flags: []
+  notes: 2K final of d2.
+- card_id: story_4
+  file: raw/drafts/story_4_d1.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 2
+    new_creation_focus: 2
+  total: 27
+  pass: true
+  flags: []
+  notes: Smiling sun, crescent moon, stars; big glare at the top.
+- card_id: story_4
+  file: raw/drafts/story_4_d2.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 2
+    new_creation_focus: 2
+  total: 28
+  pass: true
+  flags: []
+  notes: 'Day/night split sky: big friendly sun left, crescent moon and stars right; the Day 3 land and tree sit
+    below.'
+- card_id: story_4
+  file: raw/story_4.png
+  stage: final
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 2
+    new_creation_focus: 2
+  total: 28
+  pass: true
+  flags: []
+  notes: 2K final of d2; same land and tree as Day 3.
+- card_id: story_5
+  file: raw/drafts/story_5_d1.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 1
+    new_creation_focus: 2
+  total: 26
+  pass: true
+  flags: []
+  notes: Big leaping fish, whale, two birds; the Day 4 sun and moon stay behind. Hard vertical colour split at the
+    top.
+- card_id: story_5
+  file: raw/drafts/story_5_d2.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 1
+    new_creation_focus: 2
+  total: 26
+  pass: true
+  flags: []
+  notes: Big fish and whale, many small fish, birds near the top; the sun from Day 4 is missing.
+- card_id: story_5
+  file: raw/story_5.png
+  stage: final
+  rubric_version: '1.1'
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 1
+    new_creation_focus: 2
+  total: 26
+  pass: true
+  flags: []
+  notes: 2K final of d1.
+- card_id: story_6
+  file: raw/drafts/story_6_d1.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 1
+    new_creation_focus: 2
+  total: 27
+  pass: true
+  flags: []
+  notes: 'Adam and Chava waving with a lion, a sheep and a giraffe: modest tunics, adult Chava, 5 fingers. Two small
+    birds and the sun behind.'
+- card_id: story_6
+  file: raw/drafts/story_6_d2.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 1
+    new_creation_focus: 2
+  total: 27
+  pass: true
+  flags: []
+  notes: Similar group, animals bunched on the left; people larger.
+- card_id: story_6
+  file: raw/story_6.png
+  stage: final
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 1
+    new_creation_focus: 2
+  total: 27
+  pass: true
+  flags: []
+  notes: 2K final of d1; identities match the character sheets.
+- card_id: story_7
+  file: raw/drafts/story_7_d1.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 1
+    new_creation_focus: 2
+  total: 27
+  pass: true
+  flags: []
+  notes: 'Golden evening: Adam and Chava sit calmly, lion and sheep asleep, giraffe resting, birds in trees, fish
+    by the shore, setting sun, moon, stars. Cumulative by design (the one full scene).'
+- card_id: story_7
+  file: raw/drafts/story_7_d2.png
+  stage: draft
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 1
+    new_creation_focus: 2
+  total: 26
+  pass: true
+  flags: []
+  notes: Same idea, figures smaller and the scene busier.
+- card_id: story_7
+  file: raw/story_7.png
+  stage: final
+  rubric_version: '1.1'
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+    text_fidelity: 2
+    simplicity: 1
+    new_creation_focus: 2
+  total: 27
+  pass: true
+  flags: []
+  notes: 2K final of d1.
 picks:
+- card_id: anchor_1
+  chosen_draft: raw/archive/drafts/story_2_d2.png
+  final: raw/anchor_1.png
+  decided_by: coordinator
+  reason: 'Phase 10: the old story_2 final (the whole world full of life, 21/22) is reused as the anchor, "Hashem
+    made the whole world"; no new art needed'
+- card_id: story_1
+  chosen_draft: raw/drafts/story_1_d1.png
+  final: raw/story_1.png
+  decided_by: coordinator
+  reason: d2 has green land on Day 1 (text fidelity 0); final ground strip removed with one --edit-from pass
+- card_id: story_2
+  chosen_draft: raw/drafts/story_2_d2.png
+  final: raw/story_2.png
+  decided_by: coordinator
+  reason: d2 shows the three layers (clouds, sky, sea) most clearly
+- card_id: story_3
+  chosen_draft: raw/drafts/story_3_d2.png
+  final: raw/story_3.png
+  decided_by: coordinator
+  reason: 'simpler: one hero tree, no extra mountains'
+- card_id: story_4
+  chosen_draft: raw/drafts/story_4_d2.png
+  final: raw/story_4.png
+  decided_by: coordinator
+  reason: clear day/night split with more stars and no glare in the title zone
+- card_id: story_5
+  chosen_draft: raw/drafts/story_5_d1.png
+  final: raw/story_5.png
+  decided_by: coordinator
+  reason: keeps the Day 4 sun and moon behind, so the world visibly builds; d2 drops the sun
+- card_id: story_6
+  chosen_draft: raw/drafts/story_6_d1.png
+  final: raw/story_6.png
+  decided_by: coordinator
+  reason: 'balanced group: people and animals share the centre'
+- card_id: story_7
+  chosen_draft: raw/drafts/story_7_d1.png
+  final: raw/story_7.png
+  decided_by: coordinator
+  reason: bigger, calmer resting figures; d2 is busier
 - card_id: spotlight_1
   chosen_draft: raw/drafts/spotlight_1_d1.png
   final: raw/spotlight_1.png
@@ -337,12 +893,6 @@ picks:
   final: raw/spotlight_2.png
   decided_by: coordinator
   reason: d2 looks more childlike and the hands merge
-- card_id: anchor_1
-  chosen_draft: raw/archive/drafts/story_2_d2.png
-  final: raw/anchor_1.png
-  decided_by: coordinator
-  reason: 'Phase 10: the old story_2 final (the whole world full of life, 21/22) is reused as the anchor, "Hashem
-    made the whole world"; no new art needed'
 - card_id: connection_1
   chosen_draft: raw/drafts/connection_1_d1.png
   final: raw/connection_1.png
