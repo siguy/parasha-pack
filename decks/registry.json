@@ -1,8 +1,20 @@
 {
   "version": "1.0",
-  "generated": "2026-02-04",
-  "description": "Auto-generated registry of available decks. Used by review-site for deck discovery.",
+  "generated": "2026-10-05",
+  "description": "Deck list for review-site (review-site/app.js loads ../decks/registry.json). Paths are relative to decks/. Hand-maintained for now; to be generated from series.yaml later.",
   "decks": [
+    {
+      "id": "bereshit",
+      "name_en": "Bereshit",
+      "name_he": "בְּרֵאשִׁית",
+      "content_type": "parasha",
+      "theme": "caring for the world",
+      "status": "draft",
+      "path": "bereshit/deck.json",
+      "card_count": 10,
+      "sessions": 1,
+      "ref": "Genesis 1:1-6:8"
+    },
     {
       "id": "mishpatim",
       "name_en": "Mishpatim",
@@ -10,7 +22,7 @@
       "content_type": "parasha",
       "theme": "fairness",
       "status": "ready",
-      "path": "mishpatim/deck.json",
+      "path": "archive/mishpatim/deck.json",
       "card_count": 10,
       "sessions": 1,
       "ref": "Exodus 21:1-24:18"
@@ -23,7 +35,7 @@
       "theme": "courage",
       "status": "ready",
       "path": "purim/deck.json",
-      "card_count": 15,
+      "card_count": 16,
       "sessions": 2,
       "source": "Megillat Esther"
     },
@@ -34,7 +46,7 @@
       "content_type": "parasha",
       "theme": "contribution",
       "status": "ready",
-      "path": "terumah/deck.json",
+      "path": "archive/terumah/deck.json",
       "card_count": 8,
       "sessions": 1,
       "ref": "Exodus 25:1-27:19"
@@ -46,7 +58,7 @@
       "content_type": "parasha",
       "theme": "covenant",
       "status": "ready",
-      "path": "yitro/deck.json",
+      "path": "archive/yitro/deck.json",
       "card_count": 12,
       "sessions": 1,
       "ref": "Exodus 18:1-20:23"
@@ -58,7 +70,7 @@
       "content_type": "parasha",
       "theme": "water",
       "status": "draft",
-      "path": "beshalach/deck.json",
+      "path": "archive/beshalach/deck.json",
       "card_count": 12,
       "sessions": 1,
       "ref": "Exodus 13:17-17:16"

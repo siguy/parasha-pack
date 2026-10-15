@@ -1,0 +1,50 @@
+# Hebrew gender lexicon for src/validate_deck.py
+#
+# Hebrew adjectives (and present-tense verbs) change form for boys and girls:
+#   Mordechai is אַמִּיץ (brave, masculine), Esther is אַמִּיצָה (brave, feminine).
+# The validator compares each card's Hebrew words with the gender of the
+# characters on that card and flags a mismatch as an ERROR.
+#
+# Matching is done on the letters only (nikud stripped), as whole words.
+# A few pairs have the SAME letters in both forms (יָפֶה / יָפָה); for those the
+# validator compares the pointed (nikud) form instead.
+#
+# To add a word: add a pair below with masculine, feminine and meaning.
+
+pairs:
+  - { masculine: "אַמִּיץ",   feminine: "אַמִּיצָה",  meaning: brave }
+  - { masculine: "גִּבּוֹר",   feminine: "גִּבּוֹרָה",  meaning: hero / strong }
+  - { masculine: "טוֹב",     feminine: "טוֹבָה",    meaning: good }
+  - { masculine: "שָׂמֵחַ",    feminine: "שְׂמֵחָה",   meaning: happy }
+  - { masculine: "חָכָם",    feminine: "חֲכָמָה",   meaning: wise }
+  - { masculine: "מְקַנֵּא",   feminine: "מְקַנְּאָה",  meaning: jealous }
+  - { masculine: "עָצוּב",   feminine: "עֲצוּבָה",  meaning: sad }
+  - { masculine: "גָּדוֹל",   feminine: "גְּדוֹלָה",  meaning: big }
+  - { masculine: "קָטָן",    feminine: "קְטַנָּה",   meaning: small }
+  - { masculine: "יָפֶה",    feminine: "יָפָה",     meaning: beautiful }
+  - { masculine: "נֶחְמָד",   feminine: "נֶחְמָדָה",  meaning: nice }
+  - { masculine: "עוֹזֵר",   feminine: "עוֹזֶרֶת",   meaning: helper / helping }
+
+# Fallback genders, used only when a character has no characters/{key}/character.yaml
+# (or that file has no gender). Once the shared character library exists,
+# its gender field wins.
+known_character_genders:
+  adam: male
+  chava: female
+  avraham: male
+  sarah: female
+  yitzchak: male
+  rivka: female
+  yaakov: male
+  rachel: female
+  leah: female
+  yosef: male
+  noach: male
+  moshe: male
+  aharon: male
+  miriam: female
+  yitro: male
+  esther: female
+  mordechai: male
+  haman: male
+  achashverosh: male

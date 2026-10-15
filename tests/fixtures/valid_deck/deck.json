@@ -1,0 +1,512 @@
+{
+  "id": "fixture",
+  "version": "3.0",
+  "parasha_en": "Fixture",
+  "parasha_he": "בְּרֵאשִׁית",
+  "holiday": false,
+  "value": {
+    "en": "Caring",
+    "he": "שְׁמִירָה",
+    "kid_phrase": "caring",
+    "gesture": "hug"
+  },
+  "palette": [
+    "#111111",
+    "#222222",
+    "#333333",
+    "#444444",
+    "#555555"
+  ],
+  "web_theme": {
+    "primary": "#111111",
+    "secondary": "#222222",
+    "accent": "#333333",
+    "wash": "#444444"
+  },
+  "story_world": "A garden.",
+  "story_world_setting": "outdoor",
+  "week_plan": [
+    {
+      "day": 1,
+      "label": "Anchor",
+      "cards": [
+        "anchor_1"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "card_id": "anchor_1",
+      "card_type": "anchor",
+      "title_en": "Anchor 1",
+      "title_he": "אוֹר",
+      "characters_in_scene": [],
+      "image_prompt": "A bright new world with green hills.",
+      "image_path": "raw/anchor_1.png",
+      "back": {
+        "objective": "Hashem made the world",
+        "say": "**Hashem made light.** [Open hands]",
+        "ask": [
+          {
+            "text": "What did Hashem make?",
+            "type": "recall"
+          }
+        ],
+        "minutes": 3,
+        "core": true,
+        "transition": "Let's see what Hashem made.",
+        "guide_ref": {
+          "page": 2
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "Short pshat.",
+          "refs": [
+            "Genesis 1:1"
+          ]
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Point to the picture.",
+          "do": "Do the gesture.",
+          "join": "Echo the word."
+        },
+        "extend": "Draw it.",
+        "tip": "Go slowly."
+      }
+    },
+    {
+      "card_id": "spotlight_1",
+      "card_type": "spotlight",
+      "title_en": "Spotlight 1",
+      "title_he": "אוֹר",
+      "characters_in_scene": [
+        "adam"
+      ],
+      "image_prompt": "Adam waters flowers in a garden.",
+      "image_path": "raw/spotlight_1.png",
+      "back": {
+        "objective": "Hashem made the world",
+        "say": "**Hashem made light.** [Open hands]",
+        "ask": [
+          {
+            "text": "What did Hashem make?",
+            "type": "recall"
+          }
+        ],
+        "minutes": 3,
+        "core": true,
+        "transition": "Let's see what Hashem made.",
+        "guide_ref": {
+          "page": 4
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "Short pshat.",
+          "refs": [
+            "Genesis 1:1"
+          ]
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Point to the picture.",
+          "do": "Do the gesture.",
+          "join": "Echo the word."
+        },
+        "extend": "Draw it.",
+        "tip": "Go slowly."
+      }
+    },
+    {
+      "card_id": "spotlight_2",
+      "card_type": "spotlight",
+      "title_en": "Spotlight 2",
+      "title_he": "אוֹר",
+      "characters_in_scene": [
+        "chava"
+      ],
+      "image_prompt": "Chava smiles in a garden.",
+      "image_path": "raw/spotlight_2.png",
+      "back": {
+        "objective": "Hashem made the world",
+        "say": "**Hashem made light.** [Open hands]",
+        "ask": [
+          {
+            "text": "What did Hashem make?",
+            "type": "recall"
+          }
+        ],
+        "minutes": 3,
+        "core": true,
+        "transition": "Let's see what Hashem made.",
+        "guide_ref": {
+          "page": 5
+        },
+        "hebrew": {
+          "word": "עוֹזְרִים",
+          "translit": "oz-RIM",
+          "meaning": "helping"
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "Short pshat.",
+          "refs": [
+            "Genesis 1:1"
+          ]
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Point to the picture.",
+          "do": "Do the gesture.",
+          "join": "Echo the word."
+        },
+        "extend": "Draw it.",
+        "tip": "Go slowly."
+      }
+    },
+    {
+      "card_id": "story_1",
+      "card_type": "story",
+      "title_en": "Story 1",
+      "title_he": "אוֹר",
+      "characters_in_scene": [],
+      "image_prompt": "A bright new world with green hills.",
+      "image_path": "raw/story_1.png",
+      "back": {
+        "objective": "Hashem made the world",
+        "say": "**Hashem made light.** [Open hands]",
+        "ask": [
+          {
+            "text": "What did Hashem make?",
+            "type": "recall"
+          }
+        ],
+        "minutes": 3,
+        "core": true,
+        "transition": "Let's see what Hashem made.",
+        "guide_ref": {
+          "page": 6
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "Short pshat.",
+          "refs": [
+            "Genesis 1:1"
+          ]
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Point to the picture.",
+          "do": "Do the gesture.",
+          "join": "Echo the word."
+        },
+        "extend": "Draw it.",
+        "tip": "Go slowly."
+      },
+      "sequence_number": 1,
+      "hebrew_keyword": {
+        "word": "אוֹר",
+        "translit": "OR",
+        "meaning": "light"
+      }
+    },
+    {
+      "card_id": "story_2",
+      "card_type": "story",
+      "title_en": "Story 2",
+      "title_he": "אוֹר",
+      "characters_in_scene": [],
+      "image_prompt": "A bright new world with green hills.",
+      "image_path": "raw/story_2.png",
+      "back": {
+        "objective": "Hashem made the world",
+        "say": "**Hashem made light.** [Open hands]",
+        "ask": [
+          {
+            "text": "What did Hashem make?",
+            "type": "recall"
+          }
+        ],
+        "minutes": 3,
+        "core": true,
+        "transition": "Let's see what Hashem made.",
+        "guide_ref": {
+          "page": 7
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "Short pshat.",
+          "refs": [
+            "Genesis 1:1"
+          ]
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Point to the picture.",
+          "do": "Do the gesture.",
+          "join": "Echo the word."
+        },
+        "extend": "Draw it.",
+        "tip": "Go slowly."
+      },
+      "sequence_number": 2,
+      "hebrew_keyword": {
+        "word": "אוֹר",
+        "translit": "OR",
+        "meaning": "light"
+      }
+    },
+    {
+      "card_id": "story_3",
+      "card_type": "story",
+      "title_en": "Story 3",
+      "title_he": "אוֹר",
+      "characters_in_scene": [],
+      "image_prompt": "A bright new world with green hills.",
+      "image_path": "raw/story_3.png",
+      "back": {
+        "objective": "Hashem made the world",
+        "say": "**Hashem made light.** [Open hands]",
+        "ask": [
+          {
+            "text": "What did Hashem make?",
+            "type": "recall"
+          }
+        ],
+        "minutes": 3,
+        "core": true,
+        "transition": "Let's see what Hashem made.",
+        "guide_ref": {
+          "page": 8
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "Short pshat.",
+          "refs": [
+            "Genesis 1:1"
+          ]
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Point to the picture.",
+          "do": "Do the gesture.",
+          "join": "Echo the word."
+        },
+        "extend": "Draw it.",
+        "tip": "Go slowly."
+      },
+      "sequence_number": 3,
+      "hebrew_keyword": {
+        "word": "אוֹר",
+        "translit": "OR",
+        "meaning": "light"
+      }
+    },
+    {
+      "card_id": "story_4",
+      "card_type": "story",
+      "title_en": "Story 4",
+      "title_he": "אוֹר",
+      "characters_in_scene": [],
+      "image_prompt": "A bright new world with green hills.",
+      "image_path": "raw/story_4.png",
+      "back": {
+        "objective": "Hashem made the world",
+        "say": "**Hashem made light.** [Open hands]",
+        "ask": [
+          {
+            "text": "What did Hashem make?",
+            "type": "recall"
+          }
+        ],
+        "minutes": 3,
+        "core": true,
+        "transition": "Let's see what Hashem made.",
+        "guide_ref": {
+          "page": 9
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "Short pshat.",
+          "refs": [
+            "Genesis 1:1"
+          ]
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Point to the picture.",
+          "do": "Do the gesture.",
+          "join": "Echo the word."
+        },
+        "extend": "Draw it.",
+        "tip": "Go slowly."
+      },
+      "sequence_number": 4,
+      "hebrew_keyword": {
+        "word": "אוֹר",
+        "translit": "OR",
+        "meaning": "light"
+      }
+    },
+    {
+      "card_id": "connection_1",
+      "card_type": "connection",
+      "title_en": "Connection 1",
+      "title_he": "אוֹר",
+      "characters_in_scene": [],
+      "image_prompt": "A bright new world with green hills.",
+      "image_path": "raw/connection_1.png",
+      "back": {
+        "objective": "Hashem made the world",
+        "say": "**Hashem made light.** [Open hands]",
+        "ask": [
+          {
+            "text": "What did Hashem make?",
+            "type": "recall"
+          }
+        ],
+        "minutes": 3,
+        "core": true,
+        "transition": "Let's see what Hashem made.",
+        "guide_ref": {
+          "page": 10
+        }
+      },
+      "guide": {
+        "pshat": {
+          "text": "Short pshat.",
+          "refs": [
+            "Genesis 1:1"
+          ]
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Point to the picture.",
+          "do": "Do the gesture.",
+          "join": "Echo the word."
+        },
+        "extend": "Draw it.",
+        "tip": "Go slowly."
+      }
+    },
+    {
+      "card_id": "power_word_1",
+      "card_type": "power_word",
+      "title_en": "Power Word 1",
+      "title_he": "אוֹר",
+      "characters_in_scene": [],
+      "image_prompt": "A bright new world with green hills.",
+      "image_path": "raw/power_word_1.png",
+      "back": {
+        "objective": "Hashem made the world",
+        "say": "**Hashem made light.** [Open hands]",
+        "ask": [
+          {
+            "text": "What did Hashem make?",
+            "type": "recall"
+          }
+        ],
+        "minutes": 3,
+        "core": true,
+        "transition": "Let's see what Hashem made.",
+        "guide_ref": {
+          "page": 11
+        },
+        "trio": [
+          {
+            "big": "טוֹב",
+            "line1": "TOV",
+            "line2": "good"
+          },
+          {
+            "big": "👍",
+            "line1": "gesture",
+            "line2": "thumbs up"
+          },
+          {
+            "big": "×7",
+            "line1": "said",
+            "line2": "7 times"
+          }
+        ]
+      },
+      "guide": {
+        "pshat": {
+          "text": "Short pshat.",
+          "refs": [
+            "Genesis 1:1"
+          ]
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Point to the picture.",
+          "do": "Do the gesture.",
+          "join": "Echo the word."
+        },
+        "extend": "Draw it.",
+        "tip": "Go slowly."
+      }
+    },
+    {
+      "card_id": "home_1",
+      "card_type": "home",
+      "title_en": "This Week",
+      "title_he": "בְּרֵאשִׁית",
+      "characters_in_scene": [],
+      "image_prompt": "No art needed.",
+      "image_path": "raw/home_1.png",
+      "back": {
+        "objective": "We learned about **caring for the world**",
+        "shabbat_question": {
+          "en": "What did Hashem make?",
+          "he": "מָה ה׳ בָּרָא?"
+        },
+        "hebrew": {
+          "word": "טוֹב",
+          "translit": "TOV",
+          "meaning": "good"
+        },
+        "try_at_home": [
+          {
+            "text": "Water a plant.",
+            "tag": "before-shabbat"
+          }
+        ],
+        "transition": "Shabbat Shalom!"
+      },
+      "guide": {
+        "pshat": {
+          "text": "Short pshat.",
+          "refs": [
+            "Genesis 1:1"
+          ]
+        },
+        "sages": [],
+        "hard_questions": [],
+        "adapt": {
+          "see": "Point to the picture.",
+          "do": "Do the gesture.",
+          "join": "Echo the word."
+        },
+        "extend": "Draw it.",
+        "tip": "Go slowly."
+      }
+    }
+  ]
+}

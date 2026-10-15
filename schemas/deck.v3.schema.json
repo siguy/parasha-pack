@@ -43,6 +43,10 @@
       }
     },
     "story_world": { "type": "string", "description": "Setting description shared by all image prompts" },
+    "story_world_setting": {
+      "enum": ["outdoor", "indoor"],
+      "description": "Optional. Whether the story world is mostly outdoors or indoors; picks the default style plate (landscape vs interior)"
+    },
     "week_plan": {
       "type": "array",
       "description": "Shown as the THIS WEEK strip on the anchor back",
@@ -219,6 +223,15 @@
         "characters_in_scene": { "type": "array", "items": { "type": "string" } },
         "image_prompt": { "type": "string", "description": "Scene only. No style, text or layout rules." },
         "image_path": { "type": "string", "description": "Usually raw/{card_id}.png" },
+        "style_plate": {
+          "enum": ["landscape", "interior", "object", "classroom"],
+          "description": "Optional. Which series style plate to pass with this card's generation (overrides the deck default)"
+        },
+        "continuity_ref": {
+          "type": "string",
+          "pattern": "^[a-z_]+_[0-9]+$",
+          "description": "Optional. card_id of an earlier card whose image is passed as a reference so the scene stays the same (e.g. story_2 -> story_1)"
+        },
         "sequence_number": { "type": "integer", "minimum": 1, "description": "story cards only" },
         "hebrew_keyword": {
           "description": "Front badge (story cards)",

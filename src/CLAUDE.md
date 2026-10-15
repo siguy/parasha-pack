@@ -12,6 +12,9 @@ Python modules for generating and managing Parasha Pack card decks.
 | `generate_references.py` | Generate identity sheet versions into `characters/{key}/` and `--accept` one |
 | `style_config.py` | Loads `style/style_config.yaml` (style text, safety rules, composition, plates, limits, `prompt_version`) |
 | `spend_ledger.py` | Records every image API call and refuses calls past the budget (`PP_SPEND_LEDGER`, `PP_BUDGET_USD`) |
+| `validate_deck.py` | Check a v3 deck.json for mistakes (budgets, counts, characters, Hebrew nikud + gender, prompts, guide pages) |
+| `hebrew_gender.yaml` | Masculine/feminine word pairs (+ fallback character genders) used by the validator's gender check |
+| `migrate_v2_to_v3.py` | Mechanical v2 → v3 deck migration |
 | `image_prompts.py` | Exposes the style constants read from `style/style_config.yaml` + scene-only `build_*_v2()` templates |
 | `schema.py` | Data structures, type definitions, and card schemas |
 | `sefaria_client.py` | Sefaria API: current parasha, plus the `research/{parasha}.yaml` verse cache |
@@ -213,6 +216,43 @@ See `style/README.md`. `--no-hero` turns the plates off for A/B comparison.
 | Power Word | Center-low, heroic angle | Bright sky/light above |
 
 Key files: `image_prompts.py` (constants), `generate_images.py` (`build_generation_prompt()`)
+
+---
+
+## validate_deck.py
+
+A spell-checker for a whole deck. Run it from the repo root before generating
+images or exporting (the export runs it for you):
+
+```bash
+python3 src/validate_deck.py decks/bereshit/deck.json            # readable report
+python3 src/validate_deck.py decks/bereshit/deck.json --strict   # warnings fail too
+python3 src/validate_deck.py decks/bereshit/deck.json --json     # for scripts
+```
+
+Exit code 1 when there are errors. Failing decks are logged to `project.log`.
+
+| Check | Severity |
+|---|---|
+| JSON Schema (`schemas/deck.v3.schema.json`) | error |
+| `back.objective` ≤10 words, `back.say` ≤50 spoken words (`[cue]` text not counted), cues ≤25 words, `back.ask` ≤2 × ≤12 words | error |
+| Home card ≤70 English words | warning |
+| 10 cards standard / 12 holiday, with the right count of each type (D1) | error |
+| power_word has a `trio` | error |
+| `characters_in_scene` keys exist in `characters/{key}/character.yaml` (or the deck's `references/manifest.json` until the library exists) | error |
+| >4 characters on a card; a known character named in `image_prompt` but not listed | warning |
+| Nikud on Hebrew vocabulary words (`back.hebrew.word`, `hebrew_keyword.word`) / on other Hebrew (`title_he`, `*_he`, `he`) | error / warning |
+| `*_unpointed` copy equals the pointed text with nikud removed | error |
+| **Gender:** masculine form on an all-female card or vice-versa (`hebrew_gender.yaml`), unless `back.hebrew.note` gives both forms | error |
+| Transition mentions deck order ("first", "begins", "one more", "last card", "next card") | warning |
+| Prompt not scene-only (`=== STYLE`, `=== COMPOSITION`, `22%`, "text", "letters", "border", "frame"; Star of David in the story world) | warning |
+| God shown as a person ("God's face", "old man in the clouds"…) | error |
+| `back.guide_ref.page` matches the card's slot in `guide_layout.yaml` | error |
+| `distancing` questions outside connection/home cards; leftover `TODO` text; missing guide_ref | warning |
+
+Character gender comes from `characters/{key}/character.yaml` (`gender:`) and falls
+back to `known_character_genders` in `hebrew_gender.yaml`. Tests: `tests/test_validate_deck.py`
+with fixtures in `tests/fixtures/`.
 
 ---
 

@@ -196,44 +196,22 @@ def approve_checkpoint(deck_name: str, checkpoint: str, notes: str = "") -> dict
 
 def resume_orchestrator(deck_name: str) -> dict:
     """
-    Resume the orchestrator for a deck in the background.
+    Resuming the automatic orchestrator is not supported.
 
-    Args:
-        deck_name: Deck name
+    This used to start `python -m workflows deck <Name> --auto --resume`, but the
+    workflows CLI has no --auto or --resume flags (the v1 orchestrator was
+    retired), so the background process failed silently. The v3 pipeline is run
+    by hand through the agents (see agents/AGENTS.md).
 
     Returns:
-        Result dict
+        Result dict with success=False and an explanation.
     """
-    src_dir = get_src_dir()
-
-    # Start orchestrator in background
-    cmd = [
-        "python", "-m", "workflows", "deck",
-        deck_name.title(),  # Capitalize for parasha name
-        "--auto",
-        "--resume",
-    ]
-
-    try:
-        process = subprocess.Popen(
-            cmd,
-            cwd=src_dir,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            start_new_session=True,  # Detach from parent
-        )
-
-        return {
-            "success": True,
-            "message": f"Orchestrator resumed for {deck_name}",
-            "pid": process.pid,
-        }
-
-    except Exception as e:
-        return {
-            "success": False,
-            "error": f"Failed to resume orchestrator: {e}",
-        }
+    return {
+        "success": False,
+        "error": (f"Resuming the orchestrator for {deck_name} is not supported: "
+                  "the workflows CLI has no --auto/--resume mode. "
+                  "Run the agent pipeline by hand (see agents/AGENTS.md)."),
+    }
 
 
 def regenerate_card(deck_name: str, card_id: str, auto_retry: bool = True) -> dict:
