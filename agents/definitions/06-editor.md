@@ -37,7 +37,7 @@ Score every criterion in `agents/rubrics/editor.yaml` **0, 1 or 2**. Sections an
 
 `weighted_percent` = Σ (section score ÷ section max) × weight.
 
-**PASS = validator passes (when present) AND no `blocking` criterion at 0 AND no `critical` issue AND
+**PASS = validator passes AND no `blocking` criterion at 0 AND no `critical` issue AND
 weighted_percent ≥ 80.**
 
 ## Step 3: issues and feedback

@@ -11,6 +11,9 @@ For agent responsibilities, see [definitions/](definitions/).
 
 ### Core Types (All Decks)
 
+> Border colors and icons in these two tables are the **v2** ones. The v3 colors and icons are in
+> "Colors and Icons" below (`card-designer/lib/cardTypes.ts`). The home card is v3-only.
+
 | Type | Purpose | Energy | Border | Icon |
 |------|---------|--------|--------|------|
 | **Anchor** | Emotional entry point, deck theme | Calm | Deck theme | Crown/Symbol |
@@ -299,7 +302,7 @@ own icon so color is never the only cue. Source: `card-designer/lib/cardTypes.ts
 | Power Word | `#2D7A3A` | speech bubble |
 | Home | `#A84B16` | house |
 
-Long text is never clipped: an over-budget back spills visibly past its footer.
+Long text is never clipped silently: the export guard fails when a back's text doesn't fit (shorten it, don't shrink the font).
 
 ---
 

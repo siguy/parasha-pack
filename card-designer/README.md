@@ -43,6 +43,17 @@ npm run export bereshit -- --backs-only
 
 **Printing the letter PDF:** double-sided, **flip on long edge**, "actual size" (not "fit to page").
 
+**Export guard.** Before writing anything the export runs `src/validate_deck.py` (0 errors needed),
+then measures every card on `/print/<id>`: a back whose text section overflows, or any text outside
+the safe zone (letter 0.3" margin, 5x7 0.25" inside the trim), stops the export with card / side /
+format / px. Shorten the text; don't shrink the font. `--skip-validate` and `--allow-overflow` bypass it.
+
+**PDF size.** After a `--pdf` export, `scripts/compress_pdf.py` re-encodes the art as JPEG (q88, same
+pixels, so print DPI is unchanged): ~57 MB → ~6 MB. `--no-compress` keeps lossless PNG art.
+
+**Worktrees:** Turbopack refuses a `node_modules` symlink that points outside the project. In a git
+worktree, copy it (`cp -cR` makes a cheap APFS clone) instead of symlinking.
+
 The export starts a dev server if none is running. Set `CARD_DESIGNER_PORT=3117` to use another
 port (useful when another checkout already runs a server on 3000, which would otherwise be reused).
 
@@ -81,4 +92,4 @@ All sizes are in `cqw` (1% of the card's width), so one component renders correc
 letter, on 5x7 and on screen. Cards without art get a gradient placeholder in the deck
 palette; the home card draws its own front.
 
-Long text is never clipped. If a back is over budget it visibly spills past the footer.
+Long text is never clipped silently: an over-budget back fails the export guard (see above).

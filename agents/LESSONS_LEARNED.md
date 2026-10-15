@@ -85,7 +85,7 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 - **The rug/nook is their SPECIAL SPOT** — Describe specific colors and textures. A braided rug with red/blue/yellow rings, or big floor cushions in warm colors. It should feel familiar.
 
 ### Pipeline Cross-Reference (CRITICAL)
-- **Visual Director must read teacher_script** — Story_4 was missing Haman because the Visual Director wrote "Esther approaches the king" without checking the teacher script, which describes the banquet reveal scene where Haman is present. Always cross-reference the Content Writer's narrative when composing scene prompts.
+- **Visual Director must read the story text (v2 `teacher_script`, v3 `back.say`)** — Story_4 was missing Haman because the Visual Director wrote "Esther approaches the king" without checking the teacher script, which describes the banquet reveal scene where Haman is present. Always cross-reference the Content Writer's narrative when composing scene prompts.
 - **characters_in_scene must match the prompt** — If the prompt mentions King Achashverosh placing a crown, his identity ref must be loaded. Story_1 had the king in the prompt but only `["esther"]` in characters_in_scene, so the model invented a generic king.
 - **characters_in_scene includes thought bubble characters** — If a character appears inside a thought bubble, dream sequence, or any secondary visual element, they MUST be in `characters_in_scene`. Story_3 had Mordechai in Haman's thought bubble but only `["haman"]` in the list — the model invented a generic figure for the thought bubble.
 - **Every boy in Modern World cards needs a kippah** — MODERN_WORLD_STYLE says "Boys: kippot" but this is a general instruction. Scene prompts must explicitly specify "wearing a kippah" for each boy described, or the model may skip some.
@@ -104,15 +104,21 @@ Patterns and gotchas discovered during deck creation. Check this before starting
 
 ### Export Pipeline
 - **sync-deck.sh must run before export** — Copies deck.json, raw/ images, and references/ to `card-designer/content/`. Without this, exports use stale images.
+- **(v3) Overflow must fail loudly** — v2 backs used `overflow: hidden`, so long text was silently cut off (spotlight_3, connection_1). The v3 export guard measures every back and fails with card/side/px instead.
+- **(v3) No `-webkit-text-stroke` on titles** — it draws the font's internal contour lines inside the letters. Use a crisp offset `text-shadow` (blurred shadows print as black boxes in macOS Preview).
+- **(v3) Compress PDFs** — 2K art embedded as PNG made 57 MB PDFs; JPEG re-encoding at the same pixel size gives ~6 MB (`scripts/compress_pdf.py`, run by the export).
+
+The bullets below marked v2 describe the old per-type React components (FitText, 500x700 fronts). Those were
+removed in v3 (one `CardFront`/`CardBack`, sizes in `cqw`); keep them as history.
 - **(v2 PNG export) Front/back viewport mismatch by design** — Fronts render at 500x700 CSS @ 3x device scale (matches design editor). Backs render at 1500x2100 CSS @ 1x (print-calibrated fonts). Don't unify them — they were designed at different resolutions.
-- **All card types use FitText for titles** — Including Story cards. No hardcoded pixel font sizes for titles. Keywords/emotion badges use fixed Tailwind classes (`text-3xl` / `text-sm`).
+- **(v2) All card types use FitText for titles** — Including Story cards. No hardcoded pixel font sizes for titles. Keywords/emotion badges use fixed Tailwind classes (`text-3xl` / `text-sm`).
 - **Clear `.next` cache after component changes** — `rm -rf card-designer/.next` before re-exporting, or the old compiled components may be served.
-- **Hebrew nikud needs lineHeight ≥ 1.3** — Nikud marks sit below the baseline. `lineHeight: 1.1` clips them; `1.3` gives enough room. Also use `overflow: visible` on the FitText container, never `hidden`.
+- **Hebrew nikud needs lineHeight ≥ 1.3** (still true in v3) — Nikud marks sit below the baseline. `lineHeight: 1.1` clips them; `1.3` gives enough room. Also use `overflow: visible` on the FitText container, never `hidden`.
 - **English subtitle gap mt-2 minimum** — `mt-1` (4px) crowds nikud from below. Use `mt-2` (8px) on all English text that appears directly below Hebrew FitText titles.
 - **Anchor card letter-spacing for nikud dots** — Hebrew characters with internal dots (shuruq/vav, dagesh) get covered by adjacent letters when displayed large with heavy stroke/shadow effects. Use `letterSpacing: 0.2em` on AnchorCard to give each letter breathing room. Other card types at smaller sizes don't need this.
-- **FitText accounts for CSS letter-spacing** — Canvas API measurement ignores CSS `letter-spacing` by default. FitText now reads `style.letterSpacing` (em and px units) and adds it to the Canvas measurement. Without this, text with letter-spacing overflows its container.
-- **FitText minSize is a soft floor** — The `minSize` prop is a preference, not a hard clamp. Text can shrink below minSize (absolute floor: 12px) to avoid overflow. Long Hebrew titles with nikud need room to breathe.
-- **Title gradient: h-44 from-black/50** — All card types use the same gradient spec at the top of the card for title readability. Standardized to `h-44 bg-gradient-to-b from-black/50 to-transparent`. Don't vary per card type — consistency makes the deck feel unified.
+- **(v2) FitText accounts for CSS letter-spacing** — Canvas API measurement ignores CSS `letter-spacing` by default. FitText now reads `style.letterSpacing` (em and px units) and adds it to the Canvas measurement. Without this, text with letter-spacing overflows its container.
+- **(v2) FitText minSize is a soft floor** — The `minSize` prop is a preference, not a hard clamp. Text can shrink below minSize (absolute floor: 12px) to avoid overflow. Long Hebrew titles with nikud need room to breathe.
+- **(v2) Title gradient: h-44 from-black/50** — All card types use the same gradient spec at the top of the card for title readability. Standardized to `h-44 bg-gradient-to-b from-black/50 to-transparent`. Don't vary per card type — consistency makes the deck feel unified.
 - **Hide Next.js dev overlay in exports** — Playwright screenshots capture the dev error overlay ("1 issue" badge). The export script injects CSS to hide `nextjs-portal, [data-nextjs-toast], [data-nextjs-dialog-overlay]` before screenshotting.
 
 ### Variant Exploration

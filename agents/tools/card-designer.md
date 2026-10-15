@@ -6,7 +6,7 @@ for the web and a duplex PDF for printing. (This was "Agent 07" before pipeline 
 
 ## Before you start
 
-- `python3 src/assemble_deck.py decks/{id}` reports 0 errors (and runs `src/validate_deck.py` when it exists).
+- `python3 src/assemble_deck.py decks/{id}` reports 0 errors (it also runs `src/validate_deck.py`).
 - Every card has its final image at its `image_path` (usually `raw/{card_id}.png`, from Image QA picks).
 
 ## 1. Sync
@@ -36,9 +36,9 @@ After writing a PDF the export runs `scripts/compress_pdf.py` (art re-encoded as
 Formats come from `card-designer/print_formats.json`: **letter** = 8.5×11", 0.3" white margin, no bleed
 (default, home/school printer); **5×7** = 5.25×7.25" with 0.125" bleed and a 0.25" safe zone (vendor print).
 Every page is rendered from one route, `/print/{id}?format=…&side=…`, using `CardBack.tsx` for all back types.
-The export **overflow guard** (plan 2.2, added to `export-deck.ts` on the validator branch) fails the export
-when a section's text doesn't fit and names the card — shorten the text (Content Writer), don't shrink the
-font. Until that lands, check the backs by eye: over-budget text spills visibly past the footer.
+The export **guard** runs first: the deck validator must report 0 errors, then every back's text section
+must fit and all text must sit inside the safe zone. A failure names card / side / format / px — shorten the
+text (Content Writer), don't shrink the font. `--skip-validate` / `--allow-overflow` bypass it (rarely).
 
 Preview while editing: `cd card-designer && npm run dev`, then `http://localhost:3000/{id}`.
 If components changed, `rm -rf card-designer/.next` before exporting.
@@ -46,14 +46,14 @@ If components changed, `rm -rf card-designer/.next` before exporting.
 ## 3. Hub sync
 
 ```bash
-python3 scripts/sync_to_hub.py {id}     # built on a parallel branch (Phase 7.1)
+python3 scripts/sync_to_hub.py {id}     # HUB_DIR from .env, or --hub PATH
 ```
-Runs the validator, writes `simonbrief-hub/app/parashapacks/decks/{id}.json`, WebP images to
-`public/parashapacks/{id}/`, and copies the print PDF. The hub is a separate repo with its own PR.
+Runs the validator (failures are logged as warnings, not stops), writes `simonbrief-hub/app/parashapacks/decks/{id}.json`, WebP images to
+`public/parashapacks/{id}/`, and copies the letter PDF and updates `decks/index.json`. Run the export first. The hub is a separate repo with its own PR.
 
 ## Quality checks after export
 
-- Text readable over the art (title gradient at the top, FitText titles, nikud not clipped).
+- Text readable over the art (title band at the top, nikud not clipped, Hebrew badge not covering a face).
 - No text baked into any raw image.
 - PDF has 2 pages per card (20 standard / 24 holiday), in duplex order.
 - Test-print one sheet double-sided: margins and front/back alignment.
