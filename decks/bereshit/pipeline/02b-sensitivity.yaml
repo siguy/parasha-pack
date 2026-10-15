@@ -1,0 +1,59 @@
+# Agent 02b: Sensitivity Reviewer — Bereshit
+# Overnight run: the coordinator made the checkpoint call (logged in docs/overnight/decisions.md).
+agent: 02b-sensitivity-reviewer
+deck_id: bereshit
+checklist:
+  - {area: hard_text_policy, item: "The snake and the fruit (Genesis 3:1-7) are on no card, front or back; teacher guide only (D4)", status: ok}
+  - {area: hard_text_policy, item: "Leaving Gan Eden (Genesis 3:22-24) is on no card; scripted answer in the guide", status: ok}
+  - {area: hard_text_policy, item: "Kayin and Hevel (Genesis 4) skipped entirely: no card, no guide block", status: ok}
+  - {area: hard_text_policy, item: "No tree of knowledge singled out in any picture (story_4, spotlights, power word)", status: ok}
+  - {area: modern_orthodox, item: "Hashem is only light, rays or clouds; never a figure, face or hand with a body", status: ok}
+  - {area: modern_orthodox, item: "Adam and Chava in simple, modest, full-coverage tunics (D3); Chava clearly a grown woman", status: ok}
+  - {area: modern_orthodox, item: "Midrash labeled 'Our Sages teach…' and kept in guide.sages", status: ok}
+  - {area: modern_orthodox, item: "Connection card: boys in kippot, girls without; diverse Jewish mix", status: ok}
+  - {area: modern_orthodox, item: "Home activities tagged shabbat-friendly or before-shabbat (watering is before Shabbat)", status: ok}
+  - {area: child_development, item: "Anchor darkness is quiet and cozy ('just dark'), and the light comes right away", status: flag, note: "say 'cover your eyes' is a game, not a scare; never use the word 'scary'"}
+  - {area: child_development, item: "Chava from Adam's side: the cards only say 'Hashem made Chava'; the side/rib detail stays in the guide, said gently", status: flag, note: "reframe on spotlight_2"}
+  - {area: child_development, item: "Every activity safe for 18 children in a circle (soft roar, swim hands, no running)", status: ok}
+  - {area: child_development, item: "No child shown alone or sad on the connection card", status: ok}
+cards:
+  - {card_id: anchor_1, verdict: reframe, reason: "Genesis 1:2 darkness can frighten",
+     reframe: "Darkness is 'just dark', quiet and short; the light comes right away. The picture is light breaking through, warm not gloomy."}
+  - {card_id: spotlight_1, verdict: ok, reason: "Adam made from the earth and given a caring job; no hard content"}
+  - {card_id: spotlight_2, verdict: reframe, reason: "Genesis 2:21-22 (side/rib, deep sleep) can sound like surgery",
+     reframe: "On the card say only 'Hashem made Chava' so Adam isn't alone; the side/rib detail goes in the guide pshat, said gently if asked."}
+  - {card_id: story_1, verdict: ok, reason: "creation days 1-3: wonder and movement"}
+  - {card_id: story_2, verdict: ok, reason: "creation days 4-6: joy; 'people' are mentioned, not shown as a crowd"}
+  - {card_id: story_3, verdict: ok, reason: "Shabbat rest; Hashem 'rested' is the text's word, no picture of Hashem"}
+  - {card_id: story_4, verdict: reframe, reason: "the garden scene leads straight to the tree and the snake",
+     reframe: "End with Adam caring for the animals. No snake, no tree of knowledge, no fruit being picked on the card or in the picture."}
+  - {card_id: connection_1, verdict: ok, reason: "modern-world caring actions; children together, nobody alone"}
+  - {card_id: power_word_1, verdict: ok, reason: "joyful vocabulary card"}
+  - {card_id: home_1, verdict: ok, reason: "family link; activities tagged for Shabbat"}
+if_they_ask:
+  - {card_id: story_4, topic: "the snake and the fruit", refs: ["Genesis 3:1-7"],
+     q: "Did they eat the fruit? What about the snake?",
+     answer: "Hashem asked Adam and Chava not to eat from one special tree. The snake tricked them, and they ate it: they made a mistake. Hashem still took care of them and even made them clothes.",
+     redirect: "What can we do when we make a mistake? (Say sorry, try again.)"}
+  - {card_id: story_4, topic: "leaving the garden", refs: ["Genesis 3:21-24"],
+     q: "Did Adam and Chava have to leave the garden?",
+     answer: "Yes, after the mistake they went to live outside the garden. Hashem gave them clothes and stayed with them, and they kept working the land.",
+     redirect: "How can we take care of the world right here?"}
+  - {card_id: anchor_1, topic: "who made Hashem", refs: ["Genesis 1:1"],
+     q: "Who made Hashem?",
+     answer: "Nobody made Hashem. Hashem was always here, before everything, and made everything else. That's a big question, and grown-ups wonder about it too!",
+     redirect: "What is your favorite thing Hashem made?"}
+  - {card_id: story_2, topic: "dinosaurs", refs: ["Genesis 1:20-25"],
+     q: "Did Hashem make dinosaurs too?",
+     answer: "The Torah says Hashem made every kind of animal, the giant ones and the tiny ones. Dinosaurs lived a very, very long time ago, and Hashem made them too.",
+     redirect: "Show me a giant dinosaur step, and now a tiny ant step!"}
+  - {card_id: spotlight_2, topic: "how Chava was made", refs: ["Genesis 2:21-22"],
+     q: "How did Hashem make Chava?",
+     answer: "The Torah says Hashem let Adam fall asleep and made Chava from a part of Adam's side, so they would always be close, like a team. It didn't hurt.",
+     redirect: "Who is on your team at home?"}
+checkpoint:
+  approved: true
+  decided_by: coordinator
+  decided_at: "2026-10-06"
+  decisions_log: docs/overnight/decisions.md
+  notes: "Overnight run (Simon asleep). Verdicts follow D3/D4 and the hard-text policy; three reframes, no card replaced. Simon to review in the morning."

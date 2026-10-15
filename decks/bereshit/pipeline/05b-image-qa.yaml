@@ -1,0 +1,587 @@
+# Agent 05b: Image QA — Bereshit. Every draft and final was opened and scored by eye against
+# agents/rubrics/image_qa.yaml (PASS = no 0 and total >= 16/22). Overnight run: picks decided_by coordinator.
+# home_1 has no image (the Card Designer draws its front). No redos were needed: no draft scored a 0.
+agent: 05b-image-qa
+deck_id: bereshit
+rubric: agents/rubrics/image_qa.yaml
+rubric_version: '1.0'
+contact_sheets:
+- raw/drafts/contact_sheet.jpg
+- raw/contact_sheet_finals.jpg
+images:
+- card_id: anchor_1
+  file: raw/drafts/anchor_1_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 1
+  total: 21
+  pass: true
+  flags: []
+  notes: Light only, no figure or sun disc; cozy dark sea; softer outlines than the plates (expected for a light-only
+    scene).
+- card_id: anchor_1
+  file: raw/drafts/anchor_1_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 1
+  total: 20
+  pass: true
+  flags: []
+  notes: Clean sunburst but a flat dark ground strip along the bottom; less sparkle on the water.
+- card_id: spotlight_1
+  file: raw/drafts/spotlight_1_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: Chest-up, cupped earth with sprout, rabbit; matches identity sheet; calm sky on top.
+- card_id: spotlight_1
+  file: raw/drafts/spotlight_1_d2.png
+  stage: draft
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+  total: 19
+  pass: true
+  flags:
+  - fruit branch dangling across the title zone
+  notes: Full body kneeling in a stone-lined stream; not chest-up; a fruit hanging at the top evokes the forbidden
+    fruit.
+- card_id: spotlight_2
+  file: raw/drafts/spotlight_2_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 1
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags: []
+  notes: Offering seeds to a bluebird; modest sage dress; reads as a young woman (slightly youthful face).
+- card_id: spotlight_2
+  file: raw/drafts/spotlight_2_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 1
+    no_text: 1
+    anatomy: 1
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 19
+  pass: true
+  flags:
+  - hands tangled
+  - small arrow-like mark in the water
+  notes: Front-facing, more childlike face, hands merge.
+- card_id: story_1
+  file: raw/drafts/story_1_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+  total: 21
+  pass: true
+  flags: []
+  notes: Sky, sea, land, first trees and flowers; glow but no sun disc (sun is Day 4); calm, slightly plain.
+- card_id: story_1
+  file: raw/drafts/story_1_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 1
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+  total: 20
+  pass: true
+  flags:
+  - sun disc on Days 1-3
+  notes: 'Same layout with a sun disc: the sun is made on Day 4 (Genesis 1:14-19).'
+- card_id: story_2
+  file: raw/drafts/story_2_d1.png
+  stage: draft
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - birds and moon in the title zone
+  notes: Same landscape (continuity works), smiling sun, giraffe standing in the sea.
+- card_id: story_2
+  file: raw/drafts/story_2_d2.png
+  stage: draft
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - crescent moon top-left corner
+  notes: Same landscape as story_1 now full of life; warmer, whale, elephant, ducks, fish; sun rays fill the top.
+- card_id: story_3
+  file: raw/drafts/story_3_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+  total: 21
+  pass: true
+  flags: []
+  notes: Peach evening, sleeping lion and lamb small in the scene.
+- card_id: story_3
+  file: raw/drafts/story_3_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: 'Golden evening, big sleeping lion with lamb, resting deer and birds: rest is obvious at a glance.'
+- card_id: story_4
+  file: raw/drafts/story_4_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 1
+    no_text: 2
+    anatomy: 1
+    modesty: 1
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 19
+  pass: true
+  flags:
+  - Adam drawn without his trousers (bare legs under the tunic)
+  notes: Lion tail sprouts behind Adam.
+- card_id: story_4
+  file: raw/drafts/story_4_d2.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 1
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - lion tail curls behind Adam
+  notes: Adam points at the lion naming it; Chava pets a lamb; giraffe, zebra, rabbit, parrots, dove; modest, matches
+    both identity sheets.
+- card_id: connection_1
+  file: raw/drafts/connection_1_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: Five children each doing a job; all 3 boys in kippot, girls without; Ethiopian/Sephardi/Ashkenazi/Mizrahi
+    mix; teacher in a long skirt.
+- card_id: connection_1
+  file: raw/drafts/connection_1_d2.png
+  stage: draft
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+  total: 20
+  pass: true
+  flags:
+  - building wall and window at top-left
+  notes: Good roles and kippot, busier top.
+- card_id: power_word_1
+  file: raw/drafts/power_word_1_d1.png
+  stage: draft
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: Adam and Chava each give a BIG thumbs up; light rays above (no figure); animals around; the gesture is
+    the picture.
+- card_id: power_word_1
+  file: raw/drafts/power_word_1_d2.png
+  stage: draft
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+  total: 20
+  pass: true
+  flags:
+  - birds in the title zone
+  notes: Small thumbs up, harder to read when shrunk.
+- card_id: anchor_1
+  file: raw/anchor_1.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 1
+  total: 21
+  pass: true
+  flags: []
+  notes: Faithful to d1.
+- card_id: spotlight_1
+  file: raw/spotlight_1.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: Faithful to d1; identity holds.
+- card_id: spotlight_2
+  file: raw/spotlight_2.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 1
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags: []
+  notes: Faithful to d1; young adult, modest.
+- card_id: story_1
+  file: raw/story_1.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 1
+    style_match: 2
+  total: 21
+  pass: true
+  flags: []
+  notes: Faithful to d1; still no sun disc.
+- card_id: story_2
+  file: raw/story_2.png
+  stage: final
+  scores:
+    title_zone: 1
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - moon top-left corner
+  notes: Faithful to d2; same landscape as story_1.
+- card_id: story_3
+  file: raw/story_3.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: Faithful to d2.
+- card_id: story_4
+  file: raw/story_4.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 1
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 21
+  pass: true
+  flags:
+  - lion tail curls behind Adam (reads as natural)
+  notes: Faithful to d2; Adam in trousers and sandals.
+- card_id: connection_1
+  file: raw/connection_1.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: Faithful to d1; kippot on all boys.
+- card_id: power_word_1
+  file: raw/power_word_1.png
+  stage: final
+  scores:
+    title_zone: 2
+    character_match: 2
+    no_text: 2
+    anatomy: 2
+    modesty: 2
+    villain_posture: 2
+    god_as_light: 2
+    period_accuracy: 2
+    diversity: 2
+    emotion_at_8pct: 2
+    style_match: 2
+  total: 22
+  pass: true
+  flags: []
+  notes: Faithful to d1.
+picks:
+- card_id: anchor_1
+  chosen_draft: raw/drafts/anchor_1_d1.png
+  final: raw/anchor_1.png
+  decided_by: coordinator
+  reason: 'd1: richer sparkle on the water, no flat ground strip at the bottom'
+- card_id: spotlight_1
+  chosen_draft: raw/drafts/spotlight_1_d1.png
+  final: raw/spotlight_1.png
+  decided_by: coordinator
+  reason: d2 is full-body, kneels in a stream and has a fruit hanging in the title zone
+- card_id: spotlight_2
+  chosen_draft: raw/drafts/spotlight_2_d1.png
+  final: raw/spotlight_2.png
+  decided_by: coordinator
+  reason: d2 looks more childlike and the hands merge
+- card_id: story_1
+  chosen_draft: raw/drafts/story_1_d1.png
+  final: raw/story_1.png
+  decided_by: coordinator
+  reason: d2 shows a sun disc on Days 1-3 (the sun comes on Day 4)
+- card_id: story_2
+  chosen_draft: raw/drafts/story_2_d2.png
+  final: raw/story_2.png
+  decided_by: coordinator
+  reason: tie 21/21; d2 is warmer, fuller and keeps the story_1 landscape most clearly
+- card_id: story_3
+  chosen_draft: raw/drafts/story_3_d2.png
+  final: raw/story_3.png
+  decided_by: coordinator
+  reason: d2 reads as 'resting' instantly (big sleeping lion and lamb)
+- card_id: story_4
+  chosen_draft: raw/drafts/story_4_d2.png
+  final: raw/story_4.png
+  decided_by: coordinator
+  reason: d1 drew Adam without trousers (modesty 1)
+- card_id: connection_1
+  chosen_draft: raw/drafts/connection_1_d1.png
+  final: raw/connection_1.png
+  decided_by: coordinator
+  reason: d2 has a busy building wall at the top
+- card_id: power_word_1
+  chosen_draft: raw/drafts/power_word_1_d1.png
+  final: raw/power_word_1.png
+  decided_by: coordinator
+  reason: d1's big thumbs up teaches the gesture; d2's thumbs are small and birds crowd the top

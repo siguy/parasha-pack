@@ -12,6 +12,9 @@
  *   --pdf                 Also write decks/<id>/print/<id>-<format>.pdf
  *                         (all cards, pages ordered front1, back1, front2, back2...
  *                         for duplex printing, flip on long edge)
+ *   --no-compress         Keep the PDF's art as lossless PNG (by default the PDF
+ *                         is shrunk with scripts/compress_pdf.py: art re-encoded
+ *                         as JPEG at the same pixel size, ~57 MB -> ~6 MB)
  *   --skip-validate       Don't run src/validate_deck.py first
  *   --allow-overflow      Report overflowing text but export anyway
  *
@@ -162,6 +165,25 @@ async function exportPdf(browser: Browser, deckId: string, format: FormatId) {
   });
   await page.context().close();
   console.log(`\n✓ PDF (${format}, duplex order front/back): ${outPath}`);
+  if (compressPdfs) compressPdf(outPath);
+}
+
+/**
+ * Shrink the PDF with scripts/compress_pdf.py (art re-encoded as JPEG, same
+ * pixel size). Best-effort: if python3 or pypdf is missing, warn and keep the
+ * uncompressed PDF rather than failing the export.
+ */
+function compressPdf(pdfPath: string) {
+  const repoRoot = path.join(__dirname, '../..');
+  console.log('  Compressing PDF images (pass --no-compress to skip)...');
+  const result = spawnSync('python3', [path.join(repoRoot, 'scripts', 'compress_pdf.py'), pdfPath], {
+    cwd: repoRoot,
+    stdio: 'inherit',
+  });
+  if (result.error || result.status !== 0) {
+    const why = result.error ? result.error.message : `exit code ${result.status}`;
+    console.warn(`  ⚠ PDF not compressed (${why}). Needs python3 with pypdf + Pillow: pip install pypdf pillow`);
+  }
 }
 
 
@@ -274,7 +296,7 @@ const deckId = args.find((a, i) => !a.startsWith('--') && args[i - 1] !== '--for
 const formatArg = args.includes('--format') ? args[args.indexOf('--format') + 1] : formats.default;
 
 if (!deckId || !(formatArg in formats.formats)) {
-  console.error('Usage: npm run export <deckId> -- [--format letter|5x7] [--backs|--backs-only|--fronts-only] [--pdf] [--skip-validate] [--allow-overflow]');
+  console.error('Usage: npm run export <deckId> -- [--format letter|5x7] [--backs|--backs-only|--fronts-only] [--pdf] [--no-compress] [--skip-validate] [--allow-overflow]');
   console.error('Example: npm run export bereshit -- --backs --pdf');
   process.exit(1);
 }
@@ -282,6 +304,7 @@ const format = formatArg as FormatId;
 const wantBacks = args.includes('--backs') || args.includes('--backs-only');
 const wantFronts = !args.includes('--backs-only');
 const wantPdf = args.includes('--pdf');
+const compressPdfs = !args.includes('--no-compress');
 const skipValidate = args.includes('--skip-validate');
 const allowOverflow = args.includes('--allow-overflow');
 

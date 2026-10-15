@@ -1,0 +1,90 @@
+{
+  "deck_id": "bereshit",
+  "review_date": "2026-10-06",
+  "cards": [
+    {
+      "card_id": "anchor_1",
+      "status": "needs_review",
+      "feedback": [
+        {
+          "category": "text",
+          "comment": "Anchor objective ('Hashem made a beautiful world for us') doesn't say the middah phrase 'caring for Hashem's world'; the value pill on the back does → Simon's call (approved wording): e.g. 'Hashem made a beautiful world for us to care for' (10 words)",
+          "priority": "medium",
+          "resolved": false
+        },
+        {
+          "category": "text",
+          "comment": "★core cards add up to 26 minutes (anchor 5, Adam 3, stories 1-3 15, tov 3), not ~15 → Simon's call: un-star story_2 or story_3, or accept core = the 5-day minimum",
+          "priority": "medium",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "spotlight_1",
+      "status": "pending",
+      "feedback": []
+    },
+    {
+      "card_id": "spotlight_2",
+      "status": "needs_review",
+      "feedback": [
+        {
+          "category": "image",
+          "comment": "Chava reads as a young adult but her face is on the youthful side (character_match 1) → Watch on future decks; identity sheet v3 already has the adult anchor",
+          "priority": "low",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "story_1",
+      "status": "pending",
+      "feedback": []
+    },
+    {
+      "card_id": "story_2",
+      "status": "needs_review",
+      "feedback": [
+        {
+          "category": "layout",
+          "comment": "Title and Hebrew subtitle sit over the smiling sun and a crescent moon: readable, but the busiest title zone in the deck → Optional redo with the sun lower in the frame",
+          "priority": "low",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "story_3",
+      "status": "pending",
+      "feedback": []
+    },
+    {
+      "card_id": "story_4",
+      "status": "pending",
+      "feedback": []
+    },
+    {
+      "card_id": "connection_1",
+      "status": "pending",
+      "feedback": []
+    },
+    {
+      "card_id": "power_word_1",
+      "status": "needs_review",
+      "feedback": [
+        {
+          "category": "hebrew",
+          "comment": "Trio box says 'TOHV' while every other place says 'TOV' → Use 'TOV' (kept 'TOHV' because it is the approved mockup wording)",
+          "priority": "low",
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "card_id": "home_1",
+      "status": "pending",
+      "feedback": []
+    }
+  ]
+}

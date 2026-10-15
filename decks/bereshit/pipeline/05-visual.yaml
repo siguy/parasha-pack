@@ -1,0 +1,102 @@
+# Agent 05: Visual Director — Bereshit
+# Scene-only prompts. Style (Purim look), safety, composition and the title zone are added by
+# build_generation_prompt() from style/style_config.yaml. Plates: anchor -> object (default),
+# spotlight/story -> landscape (story_world_setting: outdoor), connection -> classroom,
+# power_word -> landscape (override: it is a Gan Eden scene, not an object close-up).
+agent: 05-visual-director
+deck_id: bereshit
+palette: ["#1E3A5F", "#E0A526", "#4F9A4A", "#9BD7F5", "#FFF4D6"]
+web_theme: {primary: "#1E3A5F", secondary: "#4F9A4A", accent: "#E0A526", wash: "#FFF8E7"}
+new_characters: []
+cards:
+  - card_id: anchor_1
+    characters_in_scene: []
+    image_prompt: |
+      The very first moment of creation: a soft, velvety deep-blue darkness over a calm, still sea, and
+      right in the middle a brilliant burst of warm golden light breaking through, its rays spreading out in
+      every direction like a sunrise opening. Tiny sparkles of light dance on the water below and the first
+      glow touches the gentle waves. No sun disc, no figure, only pure radiant light. The darkness feels
+      quiet and cozy, not scary, and the light feels like a wonderful surprise. WOW, LIGHT!
+
+  - card_id: spotlight_1
+    characters_in_scene: [adam]
+    image_prompt: |
+      Adam (oatmeal tunic, short curly dark hair and beard) kneels in the lush garden, chest-up and close,
+      gently cupping a handful of rich brown earth with a tiny green sprout in it, looking down at it with a
+      proud, caring smile. Behind him: bright flowers, a fruit tree, soft green hills and a sparkling river
+      under a warm sky glowing with morning light. A friendly rabbit peeks at the sprout beside his elbow.
+      Gentle, warm and proud: the first gardener.
+
+  - card_id: spotlight_2
+    characters_in_scene: [chava]
+    image_prompt: |
+      Chava, a grown-up young woman (sage-green long-sleeved dress, long dark wavy hair loosely tied back),
+      chest-up portrait in the garden, smiling warmly and kindly. She holds up her open hands to offer a
+      small bird a few seeds; the little bluebird hops onto her fingertips. Behind her: flowering bushes,
+      fruit trees and a clear river in soft golden light, with a wide pale sky above. Friendly, warm and
+      helpful: a helping hand.
+
+  - card_id: story_1
+    characters_in_scene: []
+    image_prompt: |
+      A brand-new world on its third day, wide view: golden light pours over everything from a glowing
+      sky. A wide blue sky above, a calm sparkling sea on one side, and on the other side fresh green hills
+      of dry land where the very first trees, grass and bright flowers are sprouting and unfurling. A river
+      winds from the hills down to the sea. No animals and no people yet: everything is fresh, clean and
+      brand new, glistening like morning dew. Wonder and freshness everywhere!
+
+  - card_id: story_2
+    continuity_ref: story_1
+    characters_in_scene: []
+    image_prompt: |
+      The very same landscape as the earlier card, the same hills, river, sea and trees, now FULL OF LIFE:
+      a smiling warm sun shines in the sky with a pale crescent moon and a few twinkly stars still visible
+      at one side; colorful fish leap out of the sea and a friendly whale splashes far out; birds swoop over
+      the hills; gentle animals fill the green land: a giraffe, an elephant, a deer, a rabbit, a lion cub
+      and a family of ducks by the river. Joyful and busy, the whole world bursting with life!
+
+  - card_id: story_3
+    characters_in_scene: []
+    image_prompt: |
+      The same garden world at rest on the seventh day, a calm golden evening: soft peach and gold light
+      glows across the sky and over the still river. The animals are resting peacefully: a lion cub curled
+      up asleep beside a lamb, birds tucked quietly in a tree, a deer lying in the soft grass, ducks floating
+      gently. The flowers are closed and the trees stand still. Everything is quiet, cozy and peaceful, a
+      warm feeling of rest. SHHH... it is a special day.
+
+  - card_id: story_4
+    characters_in_scene: [adam, chava]
+    image_prompt: |
+      Adam (oatmeal tunic, curly dark hair and beard) stands in a sunny meadow of the garden with one hand
+      stretched out and pointing gently at a big friendly lion with a fluffy golden mane, smiling as he names
+      it. The lion sits proudly and looks up at him happily. Other friendly animals wait their turn in a
+      cheerful line: a giraffe, a zebra, a little lamb, a bunny, and colorful parrots and a dove fluttering at
+      shoulder height. Chava (sage-green long dress) kneels nearby, gently petting a little lamb and laughing.
+      Green hills and leafy trees behind them, warm light. Delighted and caring: YOU ARE A LION!
+
+  - card_id: connection_1
+    characters_in_scene: []
+    image_prompt: |
+      A sunny gan (Jewish preschool) garden corner in the afternoon. Five children ages 4-5 care for plants
+      and animals together: an Ethiopian girl in a yellow dress tips a small watering can over a pot of red
+      flowers; a Sephardi boy with a kippah plants a seedling in a raised bed, hands in the soil; an Ashkenazi
+      girl with red curls and a purple skirt holds up a seed feeder while a little bird lands on it; a
+      Mizrahi boy with a kippah gently holds a pet rabbit on his lap; a fair-haired boy with a kippah carries
+      a basket of fallen leaves, grinning at his friends. A teacher in a knee-length skirt kneels and smiles.
+      Leafy trees, a painted fence of flower pots and a sunny sky. Proud, happy and busy helping!
+
+  - card_id: power_word_1
+    characters_in_scene: [adam, chava]
+    style_plate: landscape
+    image_prompt: |
+      Adam (oatmeal tunic) and Chava (sage-green long dress) stand side by side on a green hilltop in the
+      glowing garden, grinning with joy, each giving a big THUMBS UP toward the viewer. All around them the
+      whole world glows warm and golden: fruit trees, bright flowers, a sparkling river, a rainbow of birds
+      and a happy lion, deer and rabbits nearby. A radiant warm sky above, light shining on everything.
+      Everything is GOOD! TOV!
+
+  - card_id: home_1
+    characters_in_scene: []
+    image_prompt: |
+      No art: the home card front is drawn by the Card Designer (a family waters a plant before Shabbat in
+      the try-at-home activity). Never generated.

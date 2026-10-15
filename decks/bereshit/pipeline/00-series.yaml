@@ -1,0 +1,33 @@
+# Agent 00: Series Planner — Bereshit (first parasha deck of the year, first deck on pipeline v3)
+agent: 00-series-planner
+deck_id: bereshit
+name_en: Bereshit
+name_he: בְּרֵאשִׁית
+type: parasha
+holiday: false
+book: Genesis
+ref: "Genesis 1:1–6:8"
+holiday_placement: null
+middah:
+  en: Caring for the world
+  he: שְׁמִירָה עַל הָעוֹלָם
+  kid_phrase: "caring for Hashem's world"
+  gesture: "arms in a big circle: hug the world"
+# The 4 decks taught before Bereshit (fall holidays in series.yaml): no repeat of "Caring for the world"
+recent_middot: [Kindness, Forgiveness, Gratitude, Joy]
+power_word: {he: טוֹב, translit: TOV, en: good, gesture: thumbs up}
+# First parasha deck; the fall-holiday decks are not built yet, so there are no earlier power words to review.
+review_words: []
+characters: [adam, chava]
+proposed_characters: []
+sensitivities:
+  - "The snake and the fruit (Genesis 3): teacher guide only, never on a card (D4)"
+  - "Leaving Gan Eden (Genesis 3:22-24): teacher guide only"
+  - "Kayin and Hevel (Genesis 4): skipped entirely"
+  - "Adam and Chava always in simple, modest, full-coverage tunics (D3); Chava clearly an adult"
+  - "Hashem is never drawn as a person: light, rays or clouds only"
+  - "Darkness on the anchor card must feel quiet and cozy, not scary"
+notes: >-
+  Middah gesture "arms in a big circle: hug the world" chosen by the coordinator (overnight run,
+  logged in docs/overnight/decisions.md). Power word טוֹב repeats in the text ("and Hashem saw that it
+  was good", Genesis 1), so every creation card ends with "TOV!" + thumbs up.

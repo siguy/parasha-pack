@@ -1,0 +1,73 @@
+# Agent 01: Torah Scholar — Bereshit
+# Every claim cites verses from research/bereshit.yaml (Sefaria cache: Metsudah Chumash EN, Tanach with
+# Nikkud HE). pshat = what the verse says. midrash = "Our Sages teach…", always with a source.
+agent: 01-torah-scholar
+deck_id: bereshit
+research_cache: research/bereshit.yaml
+summary: |
+  Hashem makes the whole world in six days: light; the sky; dry land, seas and plants; the sun, moon and
+  stars; fish and birds; animals, and then people. After each day Hashem sees that it is good (טוֹב), and
+  at the end, "very good". On the seventh day Hashem rests and makes that day blessed and holy: Shabbat.
+  Hashem forms Adam from the earth, puts him in Gan Eden "to work it and to guard it", and brings him the
+  animals to name. It is not good for Adam to be alone, so Hashem makes Chava. (Genesis 3, the snake and
+  the fruit, is for the teacher guide only.)
+emotional_core: "Wonder: everything is brand new, and it is all good. Our job is to take care of it."
+claims:
+  # --- Creation, day by day (pshat) ---
+  - {text: "In the beginning Hashem created the heavens and the earth.", kind: pshat, refs: ["Genesis 1:1"]}
+  - {text: "Before light, the earth was unformed and there was darkness over the water.", kind: pshat, refs: ["Genesis 1:2"]}
+  - {text: "Day 1: Hashem said 'Let there be light', saw the light was good, and separated light from darkness (day and night).", kind: pshat, refs: ["Genesis 1:3-5"]}
+  - {text: "Day 2: Hashem made the sky (rakia) to divide the waters above from the waters below.", kind: pshat, refs: ["Genesis 1:6-8"]}
+  - {text: "Day 3: the waters gathered so dry land appeared (land and seas), and the earth sprouted grass, plants and fruit trees; Hashem saw it was good.", kind: pshat, refs: ["Genesis 1:9-13"]}
+  - {text: "Day 4: Hashem made the two great lights (sun and moon) and the stars, to light the earth and mark days and seasons.", kind: pshat, refs: ["Genesis 1:14-19"]}
+  - {text: "Day 5: the waters filled with fish and great sea creatures, and birds flew in the sky; Hashem blessed them.", kind: pshat, refs: ["Genesis 1:20-23"]}
+  - {text: "Day 6: Hashem made the land animals, and then people, in Hashem's image, male and female.", kind: pshat, refs: ["Genesis 1:24-28"]}
+  - {text: "Hashem gave people and animals plants and fruit to eat.", kind: pshat, refs: ["Genesis 1:29-30"]}
+  - {text: "Hashem saw everything that was made and it was very good (טוֹב מְאֹד).", kind: pshat, refs: ["Genesis 1:31"]}
+  - {text: "'Hashem saw that it was good' (כִּי־טוֹב) comes after the light, the land and seas, the plants, the sky lights, the fish and birds, and the land animals, and then 'very good' at the end: tov seven times.", kind: pshat, refs: ["Genesis 1:4", "Genesis 1:10", "Genesis 1:12", "Genesis 1:18", "Genesis 1:21", "Genesis 1:25", "Genesis 1:31"]}
+  # --- Shabbat ---
+  - {text: "Day 7: Hashem finished the work and rested (vayishbot), and blessed the seventh day and made it holy.", kind: pshat, refs: ["Genesis 2:1-3"]}
+  # --- Adam ---
+  - {text: "Hashem formed Adam from the dust of the ground (adamah) and breathed into him the breath of life.", kind: pshat, refs: ["Genesis 2:7"]}
+  - {text: "Hashem put Adam in Gan Eden 'to work it and to guard it' (לְעָבְדָהּ וּלְשָׁמְרָהּ).", kind: pshat, refs: ["Genesis 2:15"]}
+  - {text: "Hashem said it is not good for Adam to be alone, and that Hashem would make a helper for him.", kind: pshat, refs: ["Genesis 2:18"]}
+  - {text: "Hashem brought every animal and bird to Adam to see what he would call them, and whatever Adam called each one, that was its name.", kind: pshat, refs: ["Genesis 2:19-20"]}
+  # --- Chava ---
+  - {text: "Hashem made Chava from Adam's side while he slept and brought her to Adam, and Adam was glad: 'This at last is bone of my bones'.", kind: pshat, refs: ["Genesis 2:21-23"]}
+  - {text: "Adam called her Chava (חַוָּה), because she was the mother of all living things.", kind: pshat, refs: ["Genesis 3:20"]}
+  - {text: "Hashem made clothes for Adam and Chava and dressed them.", kind: pshat, refs: ["Genesis 3:21"]}
+  # --- Our Sages teach (midrash, guide only) ---
+  - {text: "Our Sages teach that Hashem took Adam around all the trees of Gan Eden and said: 'See how beautiful My works are. Everything I made, I made for you. Take care not to ruin My world, because there is no one to fix it after you.'", kind: midrash, refs: ["Genesis 2:15"], source: "Kohelet Rabbah 7:13"}
+  - {text: "Rashi explains that the Torah begins with the story of creation to teach that the whole world belongs to Hashem, who made it.", kind: midrash, refs: ["Genesis 1:1"], source: "Rashi on Genesis 1:1"}
+  - {text: "Our Sages teach that Hashem began all people with one single person, to teach that each person is as precious as a whole world.", kind: midrash, refs: ["Genesis 1:27", "Genesis 2:7"], source: "Mishnah Sanhedrin 4:5 (Sanhedrin 37a)"}
+key_moments:
+  - {moment: "Let there be light: light breaks into the dark", refs: ["Genesis 1:3-5"], characters: [], emotion: wonder, visual_potential: high}
+  - {moment: "Sky, seas, dry land and the first plants and trees", refs: ["Genesis 1:6-13"], characters: [], emotion: amazement, visual_potential: high}
+  - {moment: "The world fills with life: sun, moon, stars, fish, birds, animals", refs: ["Genesis 1:14-25"], characters: [], emotion: joy, visual_potential: high}
+  - {moment: "Hashem rests on the seventh day and makes it holy", refs: ["Genesis 2:1-3"], characters: [], emotion: peace, visual_potential: medium}
+  - {moment: "Adam is placed in the garden to work it and guard it", refs: ["Genesis 2:7", "Genesis 2:15"], characters: [adam], emotion: pride and care, visual_potential: high}
+  - {moment: "Adam names the animals", refs: ["Genesis 2:19-20"], characters: [adam], emotion: delight, visual_potential: high}
+  - {moment: "Hashem makes Chava; Adam is not alone anymore", refs: ["Genesis 2:18", "Genesis 2:21-23"], characters: [adam, chava], emotion: happiness, visual_potential: medium}
+hard_passages:
+  - {refs: ["Genesis 3:1-7"], topic: "the snake and the fruit", why: "a talking, tricky snake; disobeying Hashem; nakedness", suggested_handling: guide-only}
+  - {refs: ["Genesis 3:22-24"], topic: "leaving Gan Eden", why: "punishment and being sent out of the garden", suggested_handling: guide-only}
+  - {refs: ["Genesis 4:1-16"], topic: "Kayin and Hevel", why: "the first death; violence between brothers", suggested_handling: skip}
+  - {refs: ["Genesis 2:21-22"], topic: "Chava made from Adam's side while he sleeps", why: "can sound like surgery to a 4-year-old", suggested_handling: reframe}
+  - {refs: ["Genesis 1:2"], topic: "darkness before light", why: "the dark can frighten young children", suggested_handling: reframe}
+hebrew_candidates:
+  - {word: טוֹב, translit: TOV, meaning: good, ref: "Genesis 1:31"}
+  - {word: אוֹר, translit: OR, meaning: light, ref: "Genesis 1:3"}
+  - {word: שָׁמַיִם, translit: sha-MA-yim, meaning: sky, ref: "Genesis 1:8"}
+  - {word: דָּג, translit: DAG, meaning: fish, ref: "Genesis 1:26"}
+  - {word: שַׁבָּת, translit: sha-BAT, meaning: "Shabbat, the rest day", ref: "Genesis 2:3"}
+  - {word: אֲדָמָה, translit: a-da-MAH, meaning: earth, ref: "Genesis 2:7"}
+  - {word: אַרְיֵה, translit: ar-YEH, meaning: lion}
+  - {word: שֵׁם, translit: SHEM, meaning: name, ref: "Genesis 2:20"}
+characters:
+  - {key: adam, role_in_story: "the first person; made from the earth; works and guards the garden; names the animals", refs: ["Genesis 2:7", "Genesis 2:15", "Genesis 2:19-20"]}
+  - {key: chava, role_in_story: "the first woman; Adam's partner and helper; 'mother of all living'", refs: ["Genesis 2:18", "Genesis 2:21-23", "Genesis 3:20"]}
+story_world_notes: >-
+  The brand-new world and Gan Eden: soft green hills, a clear river, fruit trees and flowers, gentle
+  friendly animals, open sky with warm light. Pre-civilization: no buildings, no tools beyond the hands,
+  no modern objects. Hashem appears only as light. Adam and Chava wear the simple modest tunics from
+  their character sheets (Hashem made them clothes, Genesis 3:21).

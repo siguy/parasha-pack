@@ -1,0 +1,70 @@
+=== REFERENCE IMAGES ===
+Image 1 = style plate 'landscape' (match art style only, not content)
+Image 2 = chosen draft composition: re-render this exact composition at full detail in the same style
+Image 3 = Chava identity sheet — match face, hair, clothing exactly
+
+=== STYLE ===
+Style: Vivid, high-contrast cartoon illustration for children ages 4-6.
+
+Visual characteristics:
+- Bold primary colors (red, blue, yellow, green) for foreground elements
+- Soft pastel colors (pink, light blue, cream, mint) for backgrounds
+- Rounded, friendly character designs with large expressive eyes
+- Thick, clean black outlines (2-3px equivalent)
+- Simple shapes with minimal clutter (5-7 main elements maximum)
+- Warm, inviting atmosphere
+- Clean, crisp illustration - NO grain, noise, film texture, or visual artifacts
+- Smooth color fills with no stippling or dithering
+
+ANATOMY REQUIREMENTS:
+- All humans must have exactly 2 arms and 2 legs
+- Hands have exactly 5 fingers each
+- Correct proportions - no extra limbs or merged body parts
+
+CRITICAL: Do NOT render any text in the image. No Hebrew, no English, no titles,
+no labels, no badges. Text will be added programmatically after generation.
+The image should be purely visual.
+Do NOT put any Hebrew letters or text on walls, posters, or signs — Hebrew will be wrong.
+
+=== WORLD: STORY SETTING ===
+Gan Eden and the newly created world: lush soft green hills, a clear sparkling river, fruit trees heavy with fruit, bright flowers, gentle friendly animals, wide open sky and warm luminous golden light. Pre-civilization: no buildings, no houses, no fences, no tools, no modern objects. Adam and Chava wear simple, modest, full-coverage tunics. Hashem is never shown as a figure, only as light.
+
+All scenes should feel like they belong in this world. Consistent architecture, clothing, lighting, and color palette throughout.
+Deck palette accents: #1E3A5F, #E0A526, #4F9A4A, #9BD7F5, #FFF4D6.
+
+=== SAFETY RULES ===
+- NEVER depict God in human form - use light rays, clouds, or hands from above
+- No graphic violence or death
+- No scary monsters
+- All characters dressed modestly
+- Friendly, approachable expressions on all characters
+- Age-appropriate content for 4-6 year olds
+- Villains look misguided, sulky, or comic, never scary: no pointing, no snarling, no menacing poses
+
+=== SCENE ===
+Chava, a grown-up young woman (sage-green long-sleeved dress, long dark wavy hair loosely tied back),
+chest-up portrait in the garden, smiling warmly and kindly. She holds up her open hands to offer a
+small bird a few seeds; the little bluebird hops onto her fingertips. Behind her: flowering bushes,
+fruit trees and a clear river in soft golden light, with a wide pale sky above. Friendly, warm and
+helpful: a helping hand.
+
+=== CHARACTER ANCHORS (locked, always keep) ===
+- CHAVA: grown-up young woman (about 25 years old) with olive skin; adult proportions and height matching Adam — clearly a grown woman, not a girl or teen; long dark wavy hair, loosely tied back; simple modest sage-green tunic dress, full coverage, long sleeves, ankle length; barefoot or simple sandals; friendly, gentle expression; "first people in a garden"
+
+=== CHARACTER REFERENCES ===
+Reference images provided for: Chava.
+For these characters, prioritize the reference images for appearance (face, clothing, coloring). Use the text description above for pose, action, and emotion only.
+
+=== COMPOSITION ===
+Character portrait framed from chest up, face centered in the middle of the frame.
+Generous headroom — palace ceiling, archways, sky, or atmospheric haze visible above the character's head.
+Character looks slightly right of center, creating natural breathing room on the left side.
+The top of the scene (sky, ceiling, or soft light) continues naturally and stays simple and uncluttered, with no hard band or border, so a title can sit over it.
+Keep key subjects within the central 90% of the width.
+At most 5 figures in focus; background figures simplified.
+A simple, low-detail ground plane at the bottom of the frame.
+
+=== CRITICAL RULES ===
+DO NOT include any border, frame, or rounded corners in the image.
+DO NOT render any text, titles, labels, Hebrew letters, or words anywhere in the image.
+The image should be PURELY visual — all text and borders are added separately by software.

@@ -286,6 +286,8 @@ To reproduce an image: find the entry in `generations.jsonl`, copy the `full_pro
 | `print/{id}-letter.pdf` | 8.5x11 pages | Duplex PDF: front1, back1, front2, back2… (flip on long edge) |
 | `print/{id}-5x7.pdf` | 5.25x7.25 pages | Vendor PDF with 0.125" bleed |
 
+PDFs are auto-shrunk after export by `scripts/compress_pdf.py` (JPEG q88, same pixel size; `--no-compress` to skip, or run it by hand on any PDF).
+
 ## Generating Cards
 
 ```bash

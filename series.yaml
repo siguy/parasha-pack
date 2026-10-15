@@ -77,9 +77,9 @@ parshiyot:
     name_he: בְּרֵאשִׁית
     type: parasha
     book: Genesis
-    status: in_progress
+    status: done
     middah: Caring for the world
-    power_word: {he: טוֹב, translit: tov, en: good}
+    power_word: {he: טוֹב, translit: TOV, en: good}
     characters: [adam, chava]
     sensitivities:
       - "The snake and the fruit (Genesis 3): teacher guide only, not on cards"

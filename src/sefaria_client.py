@@ -272,6 +272,9 @@ RESEARCH_PLANS = {
             "Genesis 2:7",      # Adam formed from the earth
             "Genesis 2:15",     # to work it and guard it
             "Genesis 2:18-20",  # not good to be alone; naming the animals
+            "Genesis 2:21-23",  # Chava is made from Adam's side
+            "Genesis 3:1-7",    # the snake and the fruit (teacher guide only)
+            "Genesis 3:20-21",  # Chava named; Hashem makes them clothes
         ],
         "commentaries": [
             {"ref": "Rashi on Genesis 1:1:1", "fetch": True,
