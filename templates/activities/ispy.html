@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block style %}
+  .scene { width: 7.5in; height: 7.5in; border: 3px solid var(--navy); border-radius: 0.1in; flex: none; display: block; }
+  .key { display: flex; justify-content: space-around; align-items: center; margin-top: 0.12in;
+         border: 2px solid var(--gold); background: #fff; border-radius: 0.12in; padding: 0.06in 0.08in; flex: none; }
+  .key.bw { background: #fff; border-color: #333; }
+  .k { display: flex; flex-direction: column; align-items: center; min-width: 1.1in; }
+  .k .row { display: flex; align-items: center; gap: 0.05in; }
+  .k img { width: 0.62in; height: 0.62in; object-fit: contain; }
+  .k .x { font-family: "Fredoka", sans-serif; font-size: 22pt; font-weight: 700; color: var(--navy); }
+  .k .he { font-size: 16pt; font-weight: 700; color: var(--navy); line-height: 1.1; }
+  .k .tr { font-size: 10pt; color: var(--ink-2); }
+  .keys { display: grid; grid-template-columns: 1fr 1fr; gap: 0.2in; }
+  .ak { display: flex; flex-direction: column; align-items: center; }
+  .ak img { width: 3.6in; height: 3.6in; border: 2px solid var(--navy); border-radius: 0.06in; }
+  .ak h3 { font-family: 'Fredoka', sans-serif; margin: 0.06in 0; color: var(--navy); font-size: 15pt; }
+  table.counts { border-collapse: collapse; font-size: 12pt; margin-top: 0.06in; }
+  table.counts td { padding: 2px 8px; border-bottom: 1px solid #ddd; }
+  table.counts td.n { font-weight: 800; text-align: center; }
+  .note { font-size: 11.5pt; line-height: 1.35; margin-top: 0.22in; color: var(--ink); }
+{% endblock %}
+{% block body %}
+{% for level in levels %}
+<section class="page">
+  {% set heading = "I spy in Gan Eden" %}{% set sub = level.label %}{% include "_header.html" %}
+  <img class="scene" src="{{ level.scene }}" alt="">
+  <div class="key{% if level.bw %} bw{% endif %}">
+    {% for k in level.key %}
+    <div class="k">
+      <div class="row"><img src="{{ k.img }}" alt=""><span class="x">×{{ k.count }}</span></div>
+      <div class="he" lang="he">{{ k.he }}</div>
+      <div class="tr">{{ k.translit }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endfor %}
+<section class="page">
+  {% set heading = "I spy · answer key" %}{% set sub = "For the teacher" %}{% include "_header.html" %}
+  <div class="keys">
+    {% for ak in answer_keys %}
+    <div class="ak">
+      <h3>{{ ak.label }}</h3>
+      <img src="{{ ak.img }}" alt="">
+      <table class="counts">
+        {% for row in ak.rows %}<tr><td>{{ row.en }}</td><td class="he" lang="he">{{ row.he }}</td><td class="n">{{ row.count }}</td><td>{{ row.role }}</td></tr>{% endfor %}
+      </table>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="note">{{ note }}</div>
+</section>
+{% endblock %}

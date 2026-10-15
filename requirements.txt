@@ -17,3 +17,9 @@ pypdf>=6.0
 
 # Pipeline YAML + deck.json schema checks (src/assemble_deck.py); referencing comes with jsonschema
 jsonschema>=4.18
+
+# Printable extras (src/generate_activities.py): templates, bingo simulation, PDF + previews
+Jinja2>=3.1
+numpy>=1.26
+playwright>=1.40   # then: python -m playwright install chromium
+PyMuPDF>=1.23

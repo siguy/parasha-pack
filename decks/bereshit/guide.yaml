@@ -1,0 +1,39 @@
+# Bereshit teacher guide booklet: the few things that are ONLY in the booklet.
+#
+# Read by src/build_guide.py. Everything else in the booklet comes from deck.json
+# (the guide blocks on each card, week_plan, value), pipeline/01-research.yaml
+# (the parasha in brief), pipeline/02b-sensitivity.yaml (the "if they ask" scripts)
+# and guide_layout.yaml (which page holds what).
+
+deck_id: bereshit
+
+how_to_use:
+  - "Each card has a picture on the front and a teacher script on the back. This booklet has one page per card with the background: what the Torah says, what our Sages teach, and what to say if children ask hard questions."
+  - "On the card backs, **bold words are what you SAY**, and [words in brackets are what you DO]."
+  - "Use the week plan (p.2): about 15 minutes a day, Day 1 to Day 5, ending on Friday with Shabbat and the home card."
+  - "Cards marked core are the must-do cards. The others are for when you have time."
+
+# The family letter (p.15). The hard-question script is copied word for word from
+# pipeline/02b-sensitivity.yaml, so families say exactly what the teacher says.
+family_letter:
+  learned:
+    - "Hashem made the world in six days: light, sky, land and plants, the sun and moon, fish and birds, animals and people. Every day Hashem said it was TOV, good!"
+    - "On the seventh day Hashem rested and made Shabbat special."
+    - "Adam's very first job was to take care of the garden, and he gave every animal a name."
+  review_words:   # first deck of the year: this week's card words
+    - {he: אוֹר, translit: OR, en: light}
+    - {he: שַׁבָּת, translit: sha-BAT, en: Shabbat}
+  song: "Sing a 7-days counting song to any tune your child knows: hold up one finger for each day, \"Day 1, light! Day 2, sky!…\" all the way to \"Day 7, Shabbat!\""
+  activity_from_home_card: 0          # index into home_1.back.try_at_home
+  hard_question: {card_id: story_4, topic: "the snake and the fruit"}
+
+# The extras index (p.14). Files are in decks/bereshit/extras/.
+extras:
+  - {name: "Listen & Do", file: listen_do.pdf, cards: [story_1, story_2], materials: "crayons; one copy per child per level", minutes: 10, best_day: 1}
+  - {name: "I-spy in Gan Eden", file: ispy.pdf, cards: [story_1, story_2], materials: "crayons for the coloring version", minutes: 10, best_day: 2}
+  - {name: "Match-it", file: match.pdf, cards: [story_1, story_2, story_4], materials: "cardstock, print double-sided, scissors", minutes: 15, best_day: 3}
+  - {name: "Bingo", file: bingo.pdf, cards: [story_1, story_2, story_4], materials: "pom-poms or counters (not food), cardstock", minutes: 15, best_day: 4}
+  - {name: "Coloring + story path", file: coloring.pdf, pages: "1-2", cards: [story_1, story_2, story_3, story_4], materials: "crayons, child scissors, glue stick", minutes: 20, best_day: 5}
+  - {name: "The 7 days strip (age 6)", file: coloring.pdf, pages: "3", cards: [story_1, story_2, story_3], materials: "crayons, child scissors, glue stick", minutes: 15, best_day: 5}
+  - {name: "Story order game", file: sequencing.pdf, cards: [story_1, story_2, story_3, story_4], materials: "cardstock, scissors (teacher cuts)", minutes: 10, best_day: 5}
+  - {name: "Home card + family letter", file: "../print/bereshit-guide.pdf", pages: "15", cards: [home_1], materials: "one copy per family", minutes: 2, best_day: 5}

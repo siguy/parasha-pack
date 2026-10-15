@@ -7,7 +7,7 @@
 # Who reads this file:
 #   - src/validate_deck.py checks that each card's back.guide_ref.page
 #     matches the page for its card slot here (error on mismatch).
-#   - build_guide.py (Phase 8) will lay the booklet out from it.
+#   - src/build_guide.py lays the booklet out from it and fails if the PDF disagrees.
 #
 # A "slot" is the card_id (anchor_1, story_3, ...). Fixed pages hold
 # booklet-only content that is not tied to one card.

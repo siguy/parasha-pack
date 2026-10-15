@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ deck.parasha_en }} — Teacher guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Fredoka:wght@500;600;700&family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Letter paper. Every .page is one fixed 8.5 x 11 box; build_guide.py fails if content is taller. */
+  @page { size: 8.5in 11in; margin: 0; }
+  :root { --navy: {{ palette[0] }}; --gold: {{ palette[1] }}; --green: {{ palette[2] }};
+          --sky: {{ palette[3] }}; --cream: {{ palette[4] }}; --ink: #1e293b; --ink-2: #475569; --line: #d8dde5; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; color: var(--ink); font-family: 'Assistant', Arial, sans-serif;
+               font-size: 10.8pt; line-height: 1.3; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 8.5in; height: 11in; padding: 0.5in 0.55in 0.72in; position: relative; overflow: hidden;
+          break-after: page; display: flex; flex-direction: column; gap: 0.09in; }
+  .page:last-child { break-after: auto; }
+  .he { font-family: 'Heebo', 'Arial Hebrew', sans-serif; direction: rtl; unicode-bidi: isolate; }
+  h1, h2, h3 { font-family: 'Fredoka', 'Arial Rounded MT Bold', sans-serif; color: var(--navy); margin: 0; line-height: 1.1; }
+  h1 { font-size: 24pt; font-weight: 700; }
+  h2 { font-size: 14pt; font-weight: 600; margin-bottom: 0.03in; }
+  h3 { font-size: 12pt; font-weight: 600; margin-bottom: 0.02in; }
+  p { margin: 0 0 0.05in; }
+  ul { margin: 0; padding-left: 0.22in; }
+  li { margin-bottom: 0.03in; }
+  .pagehead { display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 3px solid var(--gold);
+              padding-bottom: 0.05in; flex: none; }
+  .pagehead .he { font-size: 22pt; font-weight: 700; color: var(--navy); line-height: 1; }
+  .kicker { font-family: 'Fredoka', sans-serif; font-size: 10pt; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--gold); }
+  footer { position: absolute; left: 0.55in; right: 0.55in; bottom: 0.32in; display: flex; justify-content: space-between;
+           font-size: 9pt; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 0.05in; }
+  footer .pn { font-family: 'Fredoka', sans-serif; font-weight: 600; color: var(--navy); }
+  .box { border-radius: 0.1in; padding: 0.08in 0.14in; flex: none; }
+  .box.cream { background: var(--cream); }
+  .box.sky { background: #eaf6fd; border-left: 5px solid var(--sky); }
+  .box.gold { background: #fdf3dc; border-left: 5px solid var(--gold); }
+  .box.line { border: 1.5px solid var(--line); }
+  .refs { font-size: 9.5pt; color: var(--ink-2); }
+  .refs span { display: inline-block; border: 1px solid var(--line); border-radius: 0.05in; padding: 0 5px; margin: 1px 3px 1px 0; }
+  .src { font-size: 9.5pt; color: var(--ink-2); font-style: italic; }
+  b.say { color: var(--navy); }
+  .do { color: var(--green); font-weight: 700; }
+  .chip { display: inline-block; border-radius: 0.06in; padding: 1px 7px; font-size: 9.5pt; font-weight: 700;
+          background: #eef1f5; color: var(--ink); margin-right: 4px; }
+  .chip.core { background: var(--navy); color: #fff; }
+  .chip.day { background: var(--gold); color: #fff; }
+  /* Card page */
+  .cardtop { display: flex; gap: 0.22in; flex: none; }
+  .cardtop img.thumb { width: 1.85in; height: 2.43in; object-fit: cover; border-radius: 0.08in; border: 2px solid var(--navy); flex: none; }
+  .cardtop .meta { flex: 1; display: flex; flex-direction: column; gap: 0.05in; }
+  .cardtop .t-en { font-family: 'Fredoka', sans-serif; font-size: 23pt; font-weight: 700; color: var(--navy); line-height: 1.05; }
+  .cardtop .t-he { font-size: 20pt; font-weight: 700; color: var(--navy); line-height: 1.1; text-align: left; }
+  .cardtop .obj { font-size: 12pt; }
+  .word { display: flex; align-items: center; gap: 0.12in; background: var(--cream); border-radius: 0.08in; padding: 0.05in 0.12in; }
+  .word .big { font-size: 24pt; font-weight: 800; color: var(--navy); line-height: 1.1; }
+  .word .small { font-size: 10pt; line-height: 1.25; }
+  .qa { margin-bottom: 0.06in; }
+  .qa .q { font-weight: 800; color: var(--navy); }
+  .qa .a::before { content: "Say: "; font-weight: 700; color: var(--ink-2); }
+  .qa .r::before { content: "Then: "; font-weight: 700; color: var(--green); }
+  .three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.12in; flex: none; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.12in; flex: none; }
+  .three .box h3, .two .box h3 { font-size: 11pt; }
+  .three .box { font-size: 10pt; }
+  .qgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.1in; font-size: 10.2pt; }
+  .qgrid .qa { margin-bottom: 0.03in; }
+  /* Week table */
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.03in 0.06in; border-bottom: 1px solid var(--line); }
+  th { font-family: 'Fredoka', sans-serif; font-weight: 600; color: var(--navy); font-size: 10pt; border-bottom: 2px solid var(--navy); }
+  table.week td { font-size: 10pt; }
+  table.week td.d { font-family: 'Fredoka', sans-serif; font-weight: 700; color: var(--navy); font-size: 13pt; white-space: nowrap; }
+  table.dense td { font-size: 8.8pt; line-height: 1.25; }
+  table.dense td.slot { font-weight: 700; color: var(--navy); white-space: nowrap; }
+  .compact .cardtop img.thumb { width: 1.1in; height: 1.45in; }
+  .compact .cardtop .meta { gap: 0.02in; }
+  .compact .cardtop .t-en { font-size: 19pt; }
+  .compact .cardtop .t-he { font-size: 16pt; }
+  .compact { font-size: 10.3pt; }
+  /* Cover */
+  .cover-hero { background: var(--navy); color: #fff; border-radius: 0.16in; padding: 0.3in 0.35in; display: flex;
+                justify-content: space-between; align-items: center; flex: none; }
+  .cover-hero h1 { color: #fff; font-size: 34pt; }
+  .cover-hero > .he { font-size: 36pt; font-weight: 800; }
+  .cover-hero .sub { color: var(--cream); font-size: 12.5pt; margin-top: 0.06in; }
+  .legend { display: grid; grid-template-columns: 1fr 1fr; gap: 0.12in; }
+  .toc { columns: 2; column-gap: 0.3in; font-size: 10.5pt; }
+  .toc div { break-inside: avoid; padding: 1px 0; border-bottom: 1px dotted var(--line); }
+  .toc .n { display: inline-block; width: 0.38in; font-family: 'Fredoka', sans-serif; font-weight: 700; color: var(--navy); }
+  /* Family letter: photocopiable, mostly black on white */
+  .letter { font-size: 11pt; }
+  .letter .box.line { border-color: #999; }
+  .letter h2 { color: #111; }
+  .letter .big { font-size: 26pt; font-weight: 800; color: #111; }
+  .cutline { border-top: 2px dashed #888; position: relative; margin: 0.04in 0; flex: none; }
+  .cutline span { position: absolute; left: 0; top: -0.13in; background: #fff; padding-right: 4px; font-size: 12pt; }
+</style>
+</head>
+<body>
+{% macro refs(list) %}{% if list %}<div class="refs">{% for r in list %}<span>{{ r }}</span>{% endfor %}</div>{% endif %}{% endmacro %}
+{% macro qa(q, show_card=False) %}
+<div class="qa">
+  <div class="q">“{{ q.q|safe }}”{% if show_card %} <span class="chip">{{ q.card }}</span>{% endif %}</div>
+  <div class="a">{{ q.answer|safe }}</div>
+  <div class="r">{{ q.redirect|safe }}</div>
+</div>
+{% endmacro %}
+{% macro head(kicker, title, he=None) %}
+<div class="pagehead"><div><div class="kicker">{{ kicker }}</div><h1>{{ title }}</h1></div>
+  <div class="he" lang="he">{{ he or deck.parasha_he }}</div></div>
+{% endmacro %}
+
+{% macro card_body(c, compact=False) %}
+<div class="cardtop">
+  {% if c.thumb %}<img class="thumb" src="{{ c.thumb }}" alt="">{% endif %}
+  <div class="meta">
+    <div class="kicker">{{ c.slot }}</div>
+    <div class="t-en">{{ c.title_en }}</div>
+    <div class="t-he he" lang="he">{{ c.title_he }}</div>
+    <div>{% if c.day %}<span class="chip day">Day {{ c.day }}</span>{% endif %}{% if c.minutes %}<span class="chip">{{ c.minutes }} min</span>{% endif %}{% if c.core is not none %}<span class="chip{% if c.core %} core{% endif %}">{{ "core" if c.core else "if you have time" }}</span>{% endif %}</div>
+    {% if c.objective %}<div class="obj"><b>Goal:</b> {{ c.objective|safe }}</div>{% endif %}
+    {% if c.hebrew %}<div class="word"><span class="big he" lang="he">{{ c.hebrew.word }}</span>
+      <span class="small"><b>{{ c.hebrew.translit }}</b> = {{ c.hebrew.meaning }}{% if c.hebrew.gesture %}<br>Gesture: {{ c.hebrew.gesture }}{% endif %}</span></div>{% endif %}
+  </div>
+</div>
+<div class="box sky"><h2>What the Torah says</h2><p>{{ c.pshat|safe }}</p>{{ refs(c.refs) }}</div>
+{% for s in c.sages %}<div class="box gold"><h2>Our Sages teach</h2><p>{{ s.text|safe }}</p><div class="src">{{ s.source }}</div></div>{% endfor %}
+{% if c.questions and compact %}<div class="box line"><b>If they ask</b> {% for q in c.questions %}“{{ q.q|safe }}”{% if not loop.last %} · {% endif %}{% endfor %}: the answers are on p.{{ fixed.hard_questions }}.</div>
+{% elif c.questions %}<div class="box line"><h2>If they ask…</h2>{% for q in c.questions %}{{ qa(q) }}{% endfor %}</div>{% endif %}
+<div class="three">
+  <div class="box cream"><h3>👀 See</h3>{{ c.adapt.see|safe }}</div>
+  <div class="box cream"><h3>✋ Do</h3>{{ c.adapt.do|safe }}</div>
+  <div class="box cream"><h3>🤝 Join</h3>{{ c.adapt.join|safe }}</div>
+</div>
+{% if compact %}<div class="box line"><b>Extend:</b> {{ c.extend|safe }} <b>Tip:</b> {{ c.tip|safe }}</div>
+{% else %}<div class="two">
+  <div class="box line"><h3>Extend</h3>{{ c.extend|safe }}</div>
+  <div class="box line"><h3>Teacher tip</h3>{{ c.tip|safe }}</div>
+</div>{% endif %}
+{% endmacro %}
+
+{% for p in pages %}
+<section class="page{% if p.kind == 'family_letter' %} letter{% endif %}" data-page="{{ p.n }}">
+
+{% if p.kind == "cover" %}{% set d = p.data %}
+  <div class="cover-hero">
+    <div><div class="kicker" style="color: var(--gold)">Teacher guide · {{ deck.ref }}</div><h1>{{ deck.parasha_en }}</h1>
+      <div class="sub">This week's value: <b>{{ d.value.en }}</b> (<span class="he" lang="he">{{ d.value.he }}</span>), “{{ d.value.kid_phrase }}”</div></div>
+    <div class="he" lang="he">{{ deck.parasha_he }}</div>
+  </div>
+  <div class="box cream"><h2>The middah and its gesture</h2>
+    <p><b>{{ d.value.en }}</b>: <span class="he" lang="he">{{ d.value.he }}</span>. Gesture: <b>{{ d.value.gesture }}</b>. Use it every day this week, every time a child shares a way to help.</p></div>
+  <div><h2>How to use this guide</h2><ul>{% for t in d.how_to_use %}<li>{{ t|safe }}</li>{% endfor %}</ul></div>
+  <div class="legend">
+    <div class="box line"><h3>Reading a card back</h3><b class="say">Bold = what you say.</b> <span class="do">[Brackets = what you do.]</span><br>
+      Example: <b class="say">Day 1: light!</b> <span class="do">[Open hands wide]</span></div>
+    <div class="box line"><h3>On every card page</h3>What the Torah says (with verses) · Our Sages teach · If they ask · See / Do / Join · Extend · Tip</div>
+  </div>
+  <div><h2>What's inside</h2><div class="toc">{% for t in d.toc %}<div><span class="n">p.{{ t.n }}</span>{{ t.name }}</div>{% endfor %}</div></div>
+
+{% elif p.kind == "overview" %}{% set d = p.data %}
+  {{ head("The parasha in brief", deck.parasha_en ~ " in brief") }}
+  <div class="box sky"><h2>The story</h2><p>{{ d.summary|safe }}</p><div class="refs"><span>{{ deck.ref }}</span></div></div>
+  {% if d.emotional_core %}<div class="box gold"><h2>The heart of it</h2><p>{{ d.emotional_core|safe }}</p></div>{% endif %}
+  <div><h2>Key moments</h2><table><tr><th>Moment</th><th>Verses</th></tr>
+    {% for m in d.moments %}<tr><td>{{ m.text|safe }}</td><td class="refs">{{ m.refs|join(", ") }}</td></tr>{% endfor %}</table></div>
+  {% if d.objectives %}<div class="three">
+    <div class="box cream"><h3>Children understand</h3>{{ d.objectives.understand|safe }}</div>
+    <div class="box cream"><h3>Children feel</h3>{{ d.objectives.feel|safe }}</div>
+    <div class="box cream"><h3>Children do</h3>{{ d.objectives.do|safe }}</div></div>{% endif %}
+  <div class="two">
+    <div class="box line"><h3>The value (middah)</h3><b>{{ deck.value.en }}</b> · <span class="he" lang="he">{{ deck.value.he }}</span><br>Kid phrase: “{{ deck.value.kid_phrase }}”<br>Gesture: {{ deck.value.gesture }}</div>
+    <div class="box line"><h3>Power word</h3>{% if d.power %}<span class="he" lang="he" style="font-size:18pt;font-weight:800;color:var(--navy)">{{ d.power.he }}</span> {{ d.power.translit }} = {{ d.power.en }} · gesture: {{ d.power.gesture }}{% endif %}</div>
+  </div>
+  {% if d.skipped %}<div class="box line"><h3>Not on any card (teacher only)</h3><ul>{% for s in d.skipped %}<li>{{ s.topic }} ({{ s.refs|join(", ") }}): {{ "answer only if asked, see p." ~ fixed.hard_questions if s.suggested_handling == "guide-only" else "skipped this year" }}</li>{% endfor %}</ul></div>{% endif %}
+
+{% elif p.kind == "card" %}{% set c = p.card %}
+  {% if p.week %}
+  {{ head("Week at a glance", "The week, day by day") }}
+  <table class="week"><tr><th style="width:0.8in">Day</th><th style="width:3.9in">Cards (guide page)</th><th style="width:0.45in">Min</th><th>Extras that fit</th></tr>
+  {% for d in p.week %}<tr><td class="d">Day {{ d.day }}</td>
+    <td>{% for card in d.cards %}{{ card.slot }}: {{ card.title }} (p.{{ card.page }}){% if card.core %} <b>★</b>{% endif %}{% if not loop.last %}<br>{% endif %}{% endfor %}</td>
+    <td>{{ d.minutes }}</td><td>{{ d.extras|join(", ") or "—" }}</td></tr>{% endfor %}</table>
+  <div class="refs" style="margin-top:-0.06in">★ = core card. Extras are in the extras folder; see p.{{ fixed.extras_index }} for materials and timing.</div>
+  <div class="compact" style="display:flex;flex-direction:column;gap:0.1in">{{ card_body(c, True) }}</div>
+  {% else %}
+  {{ card_body(c) }}
+  {% endif %}
+
+{% elif p.kind == "hard_questions" %}
+  {{ head("Hard-text policy · rule 6", "If they ask…") }}
+  <p>These questions are never on a card. If a child asks, answer in one or two calm, honest sentences, then redirect. The family letter (p.{{ fixed.family_letter }}) gives parents the same words, so home and school match.</p>
+  <div class="qgrid">{% for q in p.data %}<div class="box line"><div class="kicker">{{ q.card }}{% if q.topic %} · {{ q.topic }}{% endif %}</div>{{ qa(q) }}{{ refs(q.refs) }}</div>{% endfor %}</div>
+
+{% elif p.kind == "adaptations" %}
+  {{ head("Universal Design for Learning", "Adaptations & extensions") }}
+  <p style="font-size:10pt">Every child can take part: <b>See</b> (another way to take it in), <b>Do</b> (another way to move or answer), <b>Join</b> (a way in without speaking).</p>
+  <table class="dense"><tr><th>Card</th><th>See</th><th>Do</th><th>Join</th><th>Extend</th></tr>
+  {% for r in p.data %}<tr><td class="slot">{{ r.slot }}<br><span class="refs">p.{{ r.page }}</span></td><td>{{ r.see|safe }}</td><td>{{ r.do|safe }}</td><td>{{ r.join|safe }}</td><td>{{ r.extend|safe }}</td></tr>{% endfor %}</table>
+
+{% elif p.kind == "extras_index" %}
+  {{ head("Printables", "Extras index") }}
+  <p>All files are letter size. Print at “Actual size” (100%). Cardstock makes cards last longer.</p>
+  <table><tr><th>Extra</th><th>Cards used</th><th>Materials</th><th>Min</th><th>Best day</th><th>File</th></tr>
+  {% for e in p.data %}<tr><td><b>{{ e.name }}</b></td><td>{{ e.cards|join(", ") }}</td><td>{{ e.materials }}</td><td>{{ e.minutes }}</td><td>Day {{ e.best_day }}</td><td class="refs">{{ e.file_label }}</td></tr>{% endfor %}</table>
+
+{% elif p.kind == "family_letter" %}{% set L = p.letter %}
+  <div class="pagehead"><div><div class="kicker" style="color:#555">From our class · please photocopy</div><h1 style="color:#111">This week we learned {{ deck.parasha_en }}</h1></div>
+    <div class="he" lang="he" style="color:#111">{{ deck.parasha_he }}</div></div>
+  <p>Dear families, this week we learned the very beginning of the Torah. Here is what to ask, sing and try at home.</p>
+  <div class="box line"><h2>We learned</h2><ul>{% for t in L.learned %}<li>{{ t|safe }}</li>{% endfor %}</ul></div>
+  <div class="two">
+    <div class="box line"><h2>Our value</h2><b>{{ L.value.en }}</b> (<span class="he" lang="he">{{ L.value.he }}</span>): “{{ L.value.kid_phrase }}”.<br>Our gesture: <b>{{ L.value.gesture }}</b>. Ask your child to show you!</div>
+    <div class="box line"><h2>Our Hebrew word</h2>{% if L.word %}<span class="big he" lang="he">{{ L.word.word or L.word.he }}</span> <b>{{ L.word.translit }}</b> = {{ L.word.meaning or L.word.en }}{% if L.word.gesture %}<br>{{ L.word.gesture }}{% endif %}{% endif %}
+      {% if L.review %}<br>Also say: {% for w in L.review %}<span class="he" lang="he" style="font-weight:700">{{ w.he }}</span> {{ w.translit }} ({{ w.en }}){% if not loop.last %} · {% endif %}{% endfor %}{% endif %}</div>
+  </div>
+  {% if L.shabbat_question %}<div class="box line"><h2>At the Shabbat table, ask</h2>{{ L.shabbat_question.en }}<br><span class="he" lang="he" style="font-size:13pt">{{ L.shabbat_question.he }}</span></div>{% endif %}
+  <div class="two">
+    <div class="box line"><h2>Sing</h2>{{ L.song|safe }}</div>
+    <div class="box line"><h2>Try at home</h2>{% if L.activity %}{{ L.activity.text|safe }}{% if L.activity.tag %} <span class="chip">{{ L.activity.tag }}</span>{% endif %}{% endif %}</div>
+  </div>
+  <div class="box line"><h2>If your child asks about {{ L.question_raw.topic }}</h2>
+    <p>That part of the story isn't on our cards, but children sometimes ask. This is what we say in class:</p>{{ qa(L.question) }}</div>
+  <p style="text-align:center;font-weight:700">Shabbat Shalom! · <span class="he" lang="he">שַׁבָּת שָׁלוֹם</span></p>
+
+{% elif p.kind == "sources" %}{% set d = p.data %}
+  {{ head("Where it comes from", "Sources") }}
+  <table><tr><th>Card</th><th>Verses</th><th>Our Sages teach</th></tr>
+  {% for r in d.cards %}<tr><td><b>{{ r.slot }}</b>: {{ r.title }}</td><td class="refs">{{ r.refs|join(", ") }}</td><td class="refs">{{ r.sages|join("; ") or "—" }}</td></tr>{% endfor %}</table>
+  <div class="two">
+    <div class="box line"><h3>Commentaries quoted</h3><ul>{% for s in d.commentaries %}<li>{{ s }}</li>{% endfor %}</ul></div>
+    <div class="box line"><h3>Hard-question verses (p.{{ fixed.hard_questions }})</h3>{{ d.hard_refs|join(", ") }}</div>
+  </div>
+  <div class="box cream"><h3>Texts</h3>Verse texts from {{ d.fetched or "Sefaria" }}: {{ d.texts|join("; ") }}. Midrash is labeled “Our Sages teach” and given with its source. Hashem is never drawn as a person in this deck: only light, rays and clouds.</div>
+{% endif %}
+
+  <footer><span>{{ deck.parasha_en }} teacher guide</span><span class="pn">p.{{ p.n }} · {{ p.footer }}</span></footer>
+</section>
+{% endfor %}
+</body>
+</html>

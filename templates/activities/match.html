@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block style %}
+  /* 12 cards, 2.5" squares, 3 x 4, filling the 7.5" x 10" area inside 0.5" margins.
+     Neighbouring cards share one cut line. */
+  .grid { width: 7.5in; height: 10in; display: grid; grid-template-columns: repeat(3, 2.5in);
+          grid-template-rows: repeat(4, 2.5in); border-top: 1.5px solid var(--cut); border-left: 1.5px solid var(--cut); }
+  .card { border-right: 1.5px solid var(--cut); border-bottom: 1.5px solid var(--cut); position: relative;
+          display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.18in; }
+  .card img.pic { width: 1.9in; height: 1.9in; object-fit: contain; }
+  .card .hint { position: absolute; inset: 0.3in; width: 1.9in; height: 1.9in; opacity: 0.16; object-fit: contain; }
+  .card .word { position: relative; font-size: 40pt; font-weight: 800; color: var(--navy); line-height: 1.1; }
+  .card .tr { position: relative; font-size: 12pt; color: var(--ink-2); font-weight: 700; }
+  .card .day-n { font-family: 'Fredoka', sans-serif; font-size: 66pt; font-weight: 700; color: var(--navy); line-height: 1; }
+  .card .dots { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; max-width: 1.4in; margin: 0.06in 0; }
+  .card .dots i { width: 0.17in; height: 0.17in; border-radius: 50%; background: var(--gold); border: 1.5px solid var(--navy); }
+  .card .dayhe { font-size: 24pt; font-weight: 700; color: var(--navy); }
+  .card .set { position: absolute; bottom: 0.08in; right: 0.1in; font-family: 'Fredoka', sans-serif;
+               font-size: 9pt; color: #b0b5bd; }
+  /* Back page: one seamless pattern, no border, so a duplex shift of 1/8" doesn't show. */
+  .page.back { padding: 0; }
+  .pattern { position: absolute; inset: 0.25in; background-color: {{ back_color }};
+             background-image: url('{{ back_tile }}'); background-size: 0.625in 0.625in; background-repeat: repeat; }
+{% endblock %}
+{% block body %}
+{% for set in sets %}
+<section class="page">
+  <div class="grid">
+    {% for card in set.cards %}
+    <div class="card">
+      {% if card.kind == "pic" %}
+        <img class="pic" src="{{ card.img }}" alt="">
+      {% elif card.kind == "word" %}
+        <img class="hint" src="{{ card.hint }}" alt="">
+        <div class="word he" lang="he">{{ card.he }}</div>
+        <div class="tr">{{ card.translit }}</div>
+      {% elif card.kind == "day" %}
+        <div class="day-n">{{ card.day }}</div>
+        <div class="dots">{% for _ in range(card.day) %}<i></i>{% endfor %}</div>
+        <div class="dayhe he" lang="he">{{ card.he }}</div>
+      {% endif %}
+      <div class="set">{{ set.letter }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<section class="page back"><div class="pattern"></div></section>
+{% endfor %}
+{% endblock %}

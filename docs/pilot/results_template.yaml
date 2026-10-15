@@ -1,0 +1,44 @@
+# Pilot results: copy this file to docs/pilot/results/{class}-{deck}.yaml, one per class per deck.
+# COUNTS ONLY. Never write a child's name, photo, or anything that identifies a child.
+class: A                  # A | B | C (see kit.yaml)
+class_type: ""            # e.g. "day-school gan (strong Hebrew)"
+deck: bereshit            # bereshit | noach
+week_of: "2026-10-12"
+teacher_code: T1          # a code, not a name
+children_enrolled: 0
+ages: "4-5"
+
+# From the daily tick grid: one entry per card
+cards:
+  anchor_1:      {taught: true, minutes: 0, engaged: most, gesture: 0, word: 0, hard_question: false}
+  story_1:       {taught: true, minutes: 0, engaged: most, gesture: 0, word: 0, hard_question: false}
+  story_2:       {taught: true, minutes: 0, engaged: most, gesture: 0, word: 0, hard_question: false}
+  spotlight_1:   {taught: true, minutes: 0, engaged: most, gesture: 0, word: 0, hard_question: false}
+  spotlight_2:   {taught: true, minutes: 0, engaged: most, gesture: 0, word: 0, hard_question: false}
+  story_4:       {taught: true, minutes: 0, engaged: most, gesture: 0, word: 0, hard_question: false}
+  connection_1:  {taught: true, minutes: 0, engaged: most, gesture: 0, word: 0, hard_question: false}
+  story_3:       {taught: true, minutes: 0, engaged: most, gesture: 0, word: 0, hard_question: false}
+  power_word_1:  {taught: true, minutes: 0, engaged: most, gesture: 0, word: 0, hard_question: false}
+  home_1:        {taught: true, minutes: 0, engaged: most, gesture: 0, word: 0, hard_question: false}
+
+# Friday recall check (counts)
+friday:
+  present: 0
+  gesture_unprompted: 0
+  word_unprompted: 0
+  word_after_hint: 0
+  sequence_correct: 0
+
+# Teacher feedback form (8 questions), short answers
+feedback:
+  q1_class: ""
+  q2_minutes_long: []          # card ids that ran long
+  q3_readability: 0            # 1 (hard) .. 5 (easy)
+  q4_best: {card: "", why: ""}
+  q5_flat: {card: "", fix: ""}
+  q6_hebrew_load: right        # too many | right | too few
+  q7_hard_question: {asked: false, which: "", script_worked: null}
+  q8_extras: {used: [], again: []}
+
+# Filled in by Simon after reading: which rows of the signal -> action table fired
+signals_fired: []
