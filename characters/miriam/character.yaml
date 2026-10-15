@@ -1,0 +1,50 @@
+# Miriam, Moshe's sister. Locked design from the Beshalach deck.
+key: miriam
+name_en: Miriam
+name_he: מִרְיָם
+gender: female
+role: hero
+canonical: true
+version: 1
+identity: identity.png
+extra_sheets:
+  expressions: expressions.png
+  poses: poses.png
+  turnaround: turnaround.png
+visual_anchors:
+  - young woman with warm olive-tan skin
+  - long dark wavy hair
+  - light-blue head scarf
+  - blue long-sleeved ankle-length dress with purple zigzag trim at neck, cuffs and hem
+  - round wooden tambourine (timbrel)
+  - simple brown sandals
+personality: [brave, musical, protective, joyful, faithful]
+props: [Tambourine/timbrel]
+signature_poses:
+  - Playing tambourine, dancing joyfully
+  - Watching over something carefully
+  - Leading others with arm raised
+  - Singing with joy
+appears_in: [beshalach]
+source_notes: >
+  Identity copied from decks/archive/beshalach/references/miriam_identity.png
+  (the Yitro deck only had miriam_research.json, no image).
+research:
+  biblical_refs: ["Exodus 2:1-10", "Exodus 15:20-21", "Numbers 12", "Numbers 20:1"]
+  key_stories:
+    - Watching baby Moses in the basket
+    - Suggesting her mother as a nurse
+    - Leading the women in song at the sea
+    - The well that followed the Israelites
+  relationships:
+    Moses: younger brother
+    Aaron: brother
+    Yocheved: mother
+    "Pharaoh's daughter": spoke to her about Moses
+  emotional_moments:
+    - {event: Hiding to watch baby Moses, emotion: worried but brave}
+    - {event: Singing at the sea, emotion: overjoyed and grateful}
+    - {event: Caring for her family, emotion: loving and protective}
+  age_appropriate_summary: >-
+    Miriam was brave and loved to sing! She protected her baby brother Moses
+    and later led everyone in celebrating with music.

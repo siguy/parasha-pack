@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Shared Character Library, Year Plan, Sefaria Research Cache (Deck v3 Phase 3)
+
+#### Added
+- **`characters/` library** — one folder per character with `character.yaml` (gender, role, canonical, version, locked `visual_anchors`, research notes) and `identity.png`. Migrated Moses, Yitro, Miriam (with expressions/poses/turnaround sheets), Esther, Mordechai, Haman, Achashverosh. Adam and Chava have locked modest-tunic anchors but no identity sheet yet. Avraham, Sarah and Pharaoh are drafts (`canonical: false`).
+- **`src/character_library.py`** — `load_character`, `list_characters`, `identity_path`, `visual_anchor_text`, `validate_character`, alias map (`abraham` → `avraham`, `moshe` → `moses`).
+- **`series.yaml`** — all 66 decks (54 parshiyot by book + 12 holidays). Filled: Rosh Hashanah, Yom Kippur, Sukkot, Simchat Torah, Bereshit, Noach, Lech Lecha, Purim. **`src/series.py`** validates ids, statuses, middot (read from `docs/policies/values-spine.md`) and the no-repeat-within-4 rule.
+- **Sefaria research cache** — `sefaria_client.fetch_parasha_research()` writes `research/{parasha}.yaml` (EN Metsudah CC-BY, HE Tanach with Nikkud PD). `research/bereshit.yaml` holds 10 key verse ranges plus Rashi 1:1, Kohelet Rabbah 7:13 and a Sanhedrin 37a pointer.
+- `python -m workflows ...` entry point (the old `python workflows.py` stopped working when it became a package).
+- PyYAML in `requirements.txt`. Tests: `tests/test_character_library.py`, `tests/test_series.py`, `tests/test_sefaria_research.py`.
+
+#### Changed
+- **`load_reference_images()`** looks up each character in `characters/` first, falls back to the deck manifest with a warning, and sends at most 4 character refs (extras logged as an error).
+- **Retired duplicate character data** — `CHARACTER_DATABASE` (workflows/research.py) and `DEFAULT_DESIGNS` (workflows/character.py) removed; workflows read the library. `schema.CHARACTER_DESIGNS` is now built from the library (the `israelites` group entry was dropped).
+- Docs: CLAUDE.md, src/CLAUDE.md, agents/VISUAL_SPECS.md, AGENT_PIPELINE.md, 05-visual-director.md, 07-card-designer.md point at `characters/`.
+
 ### Deck v3 — Letter-Size Cards, Single CardBack, Duplex PDF Export (Phase 1)
 
 #### Added

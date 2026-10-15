@@ -1,0 +1,39 @@
+# Sarah Imeinu. DRAFT design (canonical: false) carried over from the old databases.
+key: sarah
+name_en: Sarah
+name_he: שָׂרָה
+gender: female
+role: hero
+canonical: false
+version: 0
+identity: null
+visual_anchors:
+  - graceful woman with a warm, welcoming smile
+  - blue modest head covering
+  - flowing long-sleeved dress in earth tones
+personality: [hospitable, patient, joyful, strong]
+props: []
+signature_poses:
+  - Laughing with joy
+  - Welcoming guests
+  - Holding a baby tenderly
+  - Preparing food
+appears_in: []
+source_notes: >
+  Merged from schema.py CHARACTER_DESIGNS["sarah"] and workflows DEFAULT_DESIGNS["sarah"].
+research:
+  biblical_refs: ["Genesis 11-23"]
+  key_stories:
+    - Traveling to a new land with Abraham
+    - Welcoming visitors to the tent
+    - Laughing when she heard she would have a baby
+    - Being a loving mother to Isaac
+  relationships:
+    Abraham: beloved husband
+    Isaac: son
+  emotional_moments:
+    - {event: Hearing about a baby, emotion: surprised and happy}
+    - {event: Holding Isaac, emotion: overjoyed}
+  age_appropriate_summary: >-
+    Sarah was kind and always welcomed guests. She waited a long time and was so
+    happy when baby Isaac was born!

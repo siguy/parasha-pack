@@ -11,6 +11,8 @@ from enum import Enum
 from typing import Optional, List, Dict, Any
 import json
 
+from character_library import ALIASES as CHARACTER_ALIASES, legacy_design, list_characters
+
 
 class CardType(Enum):
     """Types of cards in a deck."""
@@ -455,150 +457,16 @@ LAYOUT_ZONES = {
 }
 
 
-# Character design guide — single source of truth for character visuals.
-# Imported by image_prompts.py:get_character_style() (reads style_prompt).
-# key_features used by config.py helpers and agent definitions.
-CHARACTER_DESIGNS = {
-    "moses": {
-        "name": "Moses",
-        "name_he": "מֹשֶׁה",
-        "description": "Friendly middle-aged man with warm brown skin and kind, gentle eyes. Short dark beard with some gray showing he's experienced. Wears simple blue and cream robes with a HEAD COVERING (cloth wrap or simple turban). Often holds a wooden shepherd's staff. Has a calm, patient expression.",
-        "key_features": [
-            "Kind gentle eyes",
-            "Short beard with touch of gray",
-            "HEAD COVERING (cloth wrap/turban) - ALWAYS INCLUDE",
-            "Wooden shepherd's staff",
-            "Blue and cream robes",
-            "Calm caring expression",
-        ],
-        "style_prompt": "Moses wearing blue and cream robes with a head covering, holding a wooden staff, with a short gray-touched beard and kind gentle eyes",
-    },
-    "avraham": {
-        "name": "Abraham",
-        "name_he": "אַבְרָהָם",
-        "description": "Elderly patriarch with white robes and walking stick. Wise, warm expression.",
-        "key_features": [
-            "White robe",
-            "Walking stick",
-            "White beard",
-        ],
-        "style_prompt": "Abraham wearing a white robe, with a walking stick and white beard",
-    },
-    "sarah": {
-        "name": "Sarah",
-        "name_he": "שָׂרָה",
-        "description": "Matriarch with blue head covering and warm, welcoming smile.",
-        "key_features": [
-            "Blue head covering",
-            "Warm smile",
-        ],
-        "style_prompt": "Sarah wearing a blue head covering with a warm, welcoming smile",
-    },
-    "yitro": {
-        "name": "Yitro/Jethro",
-        "name_he": "יִתְרוֹ",
-        "description": "Wise elderly man with long flowing white/gray beard. Warm twinkling eyes that show wisdom and kindness. Wears earth-toned desert robes (browns, tans). Has a gentle grandfatherly smile. May have a walking stick.",
-        "key_features": [
-            "Long flowing white/gray beard",
-            "Twinkling wise eyes",
-            "Grandfatherly warm smile",
-            "Earth-toned desert robes",
-            "Optional walking stick",
-        ],
-        "style_prompt": "Jethro wearing colorful Midianite-style robes with a gray beard and wise expression",
-    },
-    "miriam": {
-        "name": "Miriam",
-        "name_he": "מִרְיָם",
-        "description": "Young woman with long dark hair, often holding a tambourine. Joyful, spirited expression.",
-        "key_features": [
-            "Long dark hair",
-            "Tambourine",
-        ],
-        "style_prompt": "Miriam with long dark hair, holding a tambourine",
-    },
-    "pharaoh": {
-        "name": "Pharaoh",
-        "name_he": "פַּרְעֹה",
-        "description": "King with gold Egyptian crown and stern expression.",
-        "key_features": [
-            "Gold crown",
-            "Stern expression",
-        ],
-        "style_prompt": "Pharaoh wearing a gold Egyptian crown with a stern expression",
-    },
-    "esther": {
-        "name": "Esther",
-        "name_he": "אֶסְתֵּר",
-        "description": "Young Jewish woman with warm olive skin and kind determined eyes. Long dark hair with elegant modest head covering. Royal purple and blue flowing dress, simple gold tiara. Gentle, determined expression.",
-        "key_features": [
-            "Large kind brown eyes",
-            "Long dark hair",
-            "Elegant modest head covering",
-            "Royal purple and blue dress",
-            "Simple gold tiara",
-            "Gentle determined expression",
-        ],
-        "style_prompt": "Esther with long dark hair, elegant head covering, royal purple and blue dress, gold tiara, gentle determined expression",
-    },
-    "mordechai": {
-        "name": "Mordechai",
-        "name_he": "מׇרְדְּכַי",
-        "description": "Older Jewish man with wise grandfatherly presence. Full gray-brown beard, kind wise eyes, dignified posture. Jewish head covering (kippah or cloth wrap). Modest robes in earth tones (browns, creams, subtle blues).",
-        "key_features": [
-            "Full gray-brown beard",
-            "Kind wise eyes",
-            "Dignified posture",
-            "Jewish head covering",
-            "Earth-toned robes",
-            "Grandfatherly warmth",
-        ],
-        "style_prompt": "Mordechai with full gray-brown beard, Jewish head covering, dignified posture, earth-toned robes",
-    },
-    "haman": {
-        "name": "Haman",
-        "name_he": "הָמָן",
-        "description": "Adult man with DARK POINTED GOATEE WITH CONNECTED MUSTACHE. DISTINCTIVE THREE-CORNERED HAT (like hamantaschen pastry shape). Pouty frustrated expression, furrowed brow (NOT scary or angry). Persian clothing in MUTED dusty purple and gray-brown. Arms crossed defensively.",
-        "key_features": [
-            "DARK POINTED GOATEE WITH CONNECTED MUSTACHE",
-            "THREE-CORNERED HAT (hamantaschen shape)",
-            "Pouty frustrated expression (NOT scary)",
-            "Muted dusty purple and gray-brown clothing",
-            "Arms crossed, shoulders hunched",
-        ],
-        "style_prompt": "Haman with three-cornered hat, dark pointed goatee, muted dusty purple and gray-brown robes, pouty frustrated expression",
-        "villain": True,
-    },
-    "achashverosh": {
-        "name": "King Achashverosh",
-        "name_he": "אֲחַשְׁוֵרוֹשׁ",
-        "description": "King with confused bewildered expression - somewhat comedic. Large ornate crown. Royal Persian robes in golds and reds. Bewildered look, eyebrows often raised, distracted expression.",
-        "key_features": [
-            "Large ornate crown",
-            "Confused bewildered expression",
-            "Royal Persian robes (golds, reds)",
-            "Somewhat cartoonish",
-            "NOT scary - just distracted",
-        ],
-        "style_prompt": "King Achashverosh with large ornate crown, royal Persian robes in golds and reds, confused bewildered expression",
-        "misguided": True,
-    },
-    "israelites": {
-        "name": "The Israelites",
-        "name_he": "בְּנֵי יִשְׂרָאֵל",
-        "description": "A diverse group of friendly-looking people - men, women, and children. Wear simple robes in warm earth tones and soft colors. Faces show a mix of emotions appropriate to the scene. Include families together.",
-        "key_features": [
-            "Diverse ages (children, adults, elderly)",
-            "Simple modest clothing",
-            "Warm, relatable expressions",
-            "Show as community/group",
-        ],
-        "style_prompt": "A diverse group of Israelites in simple earth-toned robes, families together, warm expressions",
-    },
-}
+# Character designs now live in the shared library (characters/{key}/character.yaml).
+# CHARACTER_DESIGNS is built from it so older helpers keep working:
+# image_prompts.get_character_style() reads style_prompt, config.py reads
+# description / key_features. Edit the yaml files, not this dict.
+CHARACTER_DESIGNS = {key: legacy_design(key) for key in list_characters()}
 
-# Legacy alias: old code may reference "moshe" instead of "moses"
-CHARACTER_DESIGNS["moshe"] = CHARACTER_DESIGNS["moses"]
+# Aliases (old spellings) point at the same entry
+for _alias, _key in CHARACTER_ALIASES.items():
+    if _key in CHARACTER_DESIGNS:
+        CHARACTER_DESIGNS[_alias] = CHARACTER_DESIGNS[_key]
 
 # Safety rules for image generation
 IMAGE_SAFETY_RULES = [

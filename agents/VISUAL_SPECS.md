@@ -109,104 +109,53 @@ Think: Colorful children's book illustration meets educational flashcard.
 
 ## Character Identity System
 
-### Single Source of Truth
+### Single Source of Truth: `characters/`
 
-Each character has ONE identity reference image (`{character}_identity.png`) that serves as the visual anchor for all card generations.
+Every character lives in the shared library at **`characters/{key}/`** (see `characters/README.md`):
+
+- `character.yaml`: gender, role (hero/villain/neutral), canonical flag, version, and the
+  **locked `visual_anchors`** (age, skin, hair, beard, headwear, clothing colors)
+- `identity.png`: the ONE identity image used as the visual anchor for all card generations
+
+The tables that used to live here are now the `visual_anchors` in each `character.yaml`.
+**Edit the yaml, not this doc.**
 
 **Why identity-only?** Multiple reference sheets generated independently from text produced inconsistent character interpretations.
 
 ### How It Works
 
-1. Identity image is base64-encoded and passed to API with each card generation
-2. Card prompts include character descriptions to reinforce visual features
-3. The API uses both image reference AND text description for consistency
+1. `load_reference_images()` looks up each key in `characters_in_scene` in `characters/` first,
+   falling back to the deck's `references/manifest.json` (with a logged warning)
+2. Identity images are base64-encoded and passed to the API (max **4** character refs per image)
+3. Card prompts include character descriptions to reinforce visual features; the locked anchors are
+   available from `character_library.visual_anchor_text(key)`
 
 ### Character Review Checkpoint
 
 Before finalizing a new character identity:
 
-1. Generate 2+ identity versions with variations
-2. User reviews and selects preferred version
-3. Rename selected to canonical: `{character}_identity.png`
-4. Update `references/manifest.json`
+1. Create `characters/{key}/character.yaml` with `identity: null`, `canonical: false`
+2. Generate 2+ identity versions (3-angle turnaround + expression row, plain background, **no caption text**)
+3. User reviews and selects preferred version
+4. Save it as `characters/{key}/identity.png`; set `identity: identity.png`, `canonical: true`
 
-### manifest.json Structure
+### Library contents
 
-```json
-{
-  "moses": {
-    "identity": "decks/yitro/references/moses_identity.png"
-  },
-  "esther": {
-    "identity": "decks/purim/references/esther_identity.png"
-  }
-}
-```
+| Key | Role | Identity sheet | Headline anchors |
+|-----|------|----------------|------------------|
+| moses | hero | yes | blue flowing head covering, short dark beard with gray, blue robe over cream, shepherd's staff |
+| yitro | hero | yes | elderly, long white-gray beard, olive-tan head covering, rust vest with geometric trim, staff |
+| miriam | hero | yes | light-blue head scarf, long dark wavy hair, blue dress with purple zigzag trim, tambourine |
+| esther | hero | yes | royal-blue modest head covering, thin gold tiara, royal purple gown |
+| mordechai | hero | yes | striped cream-and-brown headwrap, full gray-brown beard, brown striped robe, cream shawl |
+| haman | villain | yes | three-cornered hat, pointed goatee, muted dusty purple/gray, arms crossed (not scary) |
+| achashverosh | neutral | yes | blue turban under gold crown with red jewel, bushy beard, red robe with gold trim |
+| adam | hero | not yet | young adult man, short dark curly hair, short beard, modest oatmeal/clay full-coverage tunic |
+| chava | hero | not yet | young adult woman, long dark wavy hair loosely tied, modest sage-green full-coverage tunic dress |
+| avraham, sarah, pharaoh | — | not yet | drafts (`canonical: false`) |
 
----
-
-## Established Character Designs
-
-### Moses (מֹשֶׁה)
-| Feature | Description |
-|---------|-------------|
-| Age | Middle-aged |
-| Skin | Warm brown |
-| Eyes | Kind, gentle |
-| Beard | Short dark with some gray |
-| Head | ALWAYS wears covering (cloth wrap/turban) |
-| Clothing | Blue and cream robes |
-| Props | Wooden shepherd's staff |
-| Expression | Calm, patient, caring |
-
-### Yitro (יִתְרוֹ)
-| Feature | Description |
-|---------|-------------|
-| Age | Elderly |
-| Skin | Warm tones |
-| Eyes | Twinkling, wise |
-| Beard | Long flowing white/gray |
-| Clothing | Earth-toned desert robes (browns, tans, red/gold accents) |
-| Props | Walking stick |
-| Expression | Grandfatherly warm smile |
-
-### Esther (אֶסְתֵּר)
-| Feature | Description |
-|---------|-------------|
-| Age | Young woman |
-| Skin | Warm olive |
-| Eyes | Large, kind, brown |
-| Hair | Long dark with elegant modest head covering |
-| Clothing | Royal purple and blue flowing dress, simple gold tiara |
-| Expression | Gentle, determined |
-
-### Mordechai (מׇרְדְּכַי)
-| Feature | Description |
-|---------|-------------|
-| Age | Older man |
-| Skin | Warm brown |
-| Eyes | Kind, wise |
-| Beard | Full gray-brown |
-| Head | Jewish head covering (kippah or cloth wrap) |
-| Clothing | Modest robes in earth tones (browns, creams, subtle blues) |
-| Expression | Dignified, grandfatherly warmth |
-
-### Haman (הָמָן) - Villain
-| Feature | Description |
-|---------|-------------|
-| Facial Hair | DARK POINTED GOATEE WITH CONNECTED MUSTACHE |
-| Hat | DISTINCTIVE THREE-CORNERED HAT (hamantaschen shape) |
-| Expression | Pouty, frustrated, jealous (NOT scary) |
-| Clothing | Persian style, MUTED dusty purple and gray-brown |
-| Posture | Arms crossed, shoulders hunched, turned away |
-
-### Achashverosh (אֲחַשְׁוֵרוֹשׁ) - Misguided
-| Feature | Description |
-|---------|-------------|
-| Crown | Large, ornate |
-| Clothing | Royal Persian robes in golds and reds |
-| Expression | Confused, bewildered, distracted |
-| Style | Somewhat cartoonish, comedic |
+**Modesty (decision D3, Modern Orthodox):** all characters fully covered; Adam and Chava wear simple
+modest tunics, never leaves or anything revealing.
 
 ---
 
@@ -301,6 +250,6 @@ The Torah Scholar determines the story world setting as part of research. It is 
 
 ## Reference Files
 
-- Character identities: `decks/{deck}/references/{character}_identity.png`
-- Manifest: `decks/{deck}/references/manifest.json`
+- Character library: `characters/{key}/character.yaml` + `characters/{key}/identity.png`
+- Deck manifest (style hero, legacy character fallback): `decks/{deck}/references/manifest.json`
 - Card images: `decks/{deck}/images/{card_id}.png`

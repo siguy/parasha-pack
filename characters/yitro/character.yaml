@@ -1,0 +1,51 @@
+# Yitro (Jethro), Moshe's father-in-law. Locked design from the Yitro deck.
+key: yitro
+name_en: Yitro
+name_he: יִתְרוֹ
+aliases: [jethro]
+gender: male
+role: hero
+canonical: true
+version: 1
+identity: identity.png
+extra_sheets:
+  expressions: expressions.png
+  poses: poses.png
+  turnaround: turnaround.png
+visual_anchors:
+  - elderly grandfather, warm skin tone
+  - long flowing white-gray beard and gray eyebrows
+  - olive-tan cloth head covering that hangs to the shoulders
+  - olive-green robe under a rust-brown open vest with red and gold geometric trim
+  - rust-red sash at the waist
+  - gnarled wooden walking staff
+personality: [wise, welcoming, observant, helpful, grandfatherly]
+props: [Gnarled wooden walking staff]
+signature_poses:
+  - One finger raised, giving wise advice
+  - Arms open wide for embrace
+  - Hand on chin, thinking wisely
+  - Walking with staff, traveling
+appears_in: [yitro]
+source_notes: >
+  Identity copied from decks/archive/yitro/references/yitro_identity.png.
+  Anchors from VISUAL_SPECS.md, workflows/character.py DEFAULT_DESIGNS and the identity image.
+research:
+  biblical_refs: ["Exodus 2:16-22", "Exodus 18"]
+  key_stories:
+    - Welcoming Moses as a stranger
+    - Giving his daughter Tzipporah to Moses
+    - Visiting Moses in the desert
+    - Giving wise advice about judging fairly
+  relationships:
+    Moses: son-in-law
+    Tzipporah: daughter
+    Israelites: wise advisor
+  emotional_moments:
+    - {event: Hearing about the Exodus, emotion: amazed and grateful}
+    - {event: Reuniting with Moses, emotion: overjoyed}
+    - {event: Seeing Moses overwhelmed, emotion: concerned and caring}
+    - {event: Giving advice, emotion: wise and helpful}
+  age_appropriate_summary: >-
+    Yitro was a wise grandfather who loved to help. He gave Moses great advice
+    about being a good leader and sharing work with others.

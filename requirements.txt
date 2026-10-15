@@ -5,3 +5,6 @@ Pillow>=10.0.0
 
 # Optional: For PDF generation (included in Pillow)
 # reportlab>=4.0.0
+
+# Character library, series.yaml and research cache are YAML files
+PyYAML>=6.0

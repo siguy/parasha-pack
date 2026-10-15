@@ -28,34 +28,33 @@ The Visual Director owns character consistency across all cards.
 
 ### For NEW Characters:
 
-1. **Design Phase:** Create detailed character description including:
-   - Visual appearance (skin tone, hair, facial features)
-   - Clothing (specific colors, styles, accessories)
+1. **Design Phase:** Create `characters/{key}/character.yaml` (see `characters/README.md`) with
+   `identity: null`, `canonical: false`, gender, role, and locked `visual_anchors`:
+   - Visual appearance (age, skin tone, hair, facial features)
+   - Clothing (specific colors, styles, headwear)
    - Distinguishing features (beard style, props, etc.)
-   - Default expression and emotional range
+   - Personality and signature poses
 
 2. **Identity Generation:** Generate 2+ identity reference versions
    - Each version should interpret the design slightly differently
    - Use the same text prompt for all versions
-   - Output: `{character}_identity_a.png`, `{character}_identity_b.png`
+   - No caption text on the sheet
+   - Output: `characters/{key}/identity_a.png`, `characters/{key}/identity_b.png`
 
 3. **User Review Checkpoint:** Present versions to user for selection
    - User selects preferred version
-   - Rename selected to canonical: `{character}_identity.png`
+   - Rename selected to `characters/{key}/identity.png`
    - Delete rejected versions
+   - Set `identity: identity.png` and `canonical: true` in `character.yaml`
 
-4. **Manifest Update:** Add to `references/manifest.json`:
-   ```json
-   "{character}": {
-     "identity": "decks/{deck}/references/{character}_identity.png"
-   }
-   ```
+4. **No manifest update needed:** `generate_images.py` finds characters in `characters/`
+   automatically. Deck `references/manifest.json` is only for the style hero and older decks.
 
 ### For RETURNING Characters:
 
-1. Check if identity exists in another deck's references/
-2. If exists: Copy or reference existing identity
-3. If not exists: Follow NEW character workflow
+1. Check `characters/{key}/` (`cd src && python -m workflows list characters`)
+2. If it exists: use the key in `characters_in_scene`; nothing to copy
+3. If not: follow the NEW character workflow
 
 ### Reference Image Integration (Ref-First Prompting):
 

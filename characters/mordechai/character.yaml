@@ -1,0 +1,46 @@
+# Mordechai, Esther's cousin. Locked design from the Purim deck.
+key: mordechai
+name_en: Mordechai
+name_he: מׇרְדְּכַי
+gender: male
+role: hero
+canonical: true
+version: 1
+identity: identity.png
+visual_anchors:
+  - older man with warm skin, kind wise brown eyes, grandfatherly
+  - full gray-brown beard
+  - striped cream-and-brown cloth headwrap (Jewish head covering)
+  - cream shawl wrapped around the shoulders
+  - long brown outer robe with thin blue stripes over a cream inner robe
+  - simple brown sandals
+personality: [wise, brave, faithful, protective, principled]
+props: []
+signature_poses:
+  - Hands clasped peacefully
+  - Standing tall, not bowing
+  - Giving advice to Esther
+  - Celebrating with raised hands
+appears_in: [purim]
+source_notes: >
+  Identity copied from decks/purim/references/mordechai_identity.png.
+  Headwrap matches the Purim story cards ("wrapped cloth turban").
+research:
+  biblical_refs: ["Megillat Esther"]
+  key_stories:
+    - Raising his cousin Esther
+    - Refusing to bow to Haman
+    - Discovering a plot against the king
+    - Being honored by the king
+  relationships:
+    Esther: younger cousin he raised
+    Haman: would not bow to him
+    Achashverosh: saved his life
+  emotional_moments:
+    - {event: Sending Esther to the king, emotion: worried but hopeful}
+    - {event: Refusing to bow, emotion: firm and faithful}
+    - {event: Being honored, emotion: humble}
+    - {event: Celebrating victory, emotion: grateful and joyful}
+  age_appropriate_summary: >-
+    Mordechai was like a wise grandpa who always knew what was right. He helped
+    Esther be brave and stood up for what he believed.

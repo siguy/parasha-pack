@@ -1,0 +1,46 @@
+# Queen Esther. Locked design from the Purim deck.
+key: esther
+name_en: Esther
+name_he: אֶסְתֵּר
+gender: female
+role: hero
+canonical: true
+version: 1
+identity: identity.png
+visual_anchors:
+  - young woman with warm olive skin and large kind brown eyes
+  - long dark wavy hair under a royal-blue modest head covering with gold trim
+  - thin simple gold tiara with one small gold jewel at the center
+  - royal purple long-sleeved ankle-length gown with a blue sash
+  - gentle, quietly brave expression
+personality: [brave, kind, humble, wise, faithful]
+props: ["Royal scepter (occasionally)"]
+signature_poses:
+  - Hand on heart, showing courage
+  - Standing tall before the king
+  - Kneeling in prayer
+  - Arms open, embracing her people
+appears_in: [purim]
+source_notes: >
+  Identity copied from decks/purim/references/esther_identity.png.
+  Note: that sheet has caption text under each panel ("CLOSE-UP PORTRAIT",
+  "FULL BODY STANDING"); regenerate without captions when Esther is next revised.
+research:
+  biblical_refs: ["Megillat Esther"]
+  key_stories:
+    - Becoming queen of Persia
+    - Keeping her Jewish identity secret
+    - Going to the king uninvited to save her people
+    - Hosting banquets for the king and Haman
+  relationships:
+    Mordechai: cousin who raised her
+    Achashverosh: husband, the king
+    Haman: antagonist she confronted
+  emotional_moments:
+    - {event: Keeping her secret, emotion: nervous but determined}
+    - {event: Going to the king uninvited, emotion: scared but brave}
+    - {event: Revealing her identity, emotion: courageous}
+    - {event: Saving her people, emotion: relieved and joyful}
+  age_appropriate_summary: >-
+    Esther was a brave queen with a big secret — she was Jewish! When her
+    people needed help, she was SO brave and saved everyone.

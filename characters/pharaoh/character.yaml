@@ -1,0 +1,20 @@
+# Pharaoh. DRAFT design (canonical: false) carried over from schema.py.
+# Villain rules apply: stubborn, not scary.
+key: pharaoh
+name_en: Pharaoh
+name_he: פַּרְעֹה
+gender: male
+role: villain
+canonical: false
+version: 0
+identity: null
+visual_anchors:
+  - adult man, Egyptian king
+  - gold Egyptian crown
+  - stubborn, frowning expression (NOT scary)
+personality: [stubborn, proud]
+props: []
+signature_poses: []
+appears_in: []
+source_notes: >
+  Carried over from schema.py CHARACTER_DESIGNS["pharaoh"].

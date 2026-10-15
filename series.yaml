@@ -1,0 +1,193 @@
+# Parasha Pack year plan: every deck in the series, in one place.
+#
+# The Series Planner (agent 00) reads and updates this file. src/series.py loads and
+# validates it:  cd src && python3 series.py
+#
+# Layout:
+#   fall_holidays  taught at the start of the school year, before Bereshit
+#   parshiyot      all 54, in Torah order, grouped by book (comments)
+#   holidays       the rest of the year; "before: <parasha id>" = taught in about the
+#                  week before that parasha (approximate, the calendar moves each year)
+#
+# Each entry: id, name_en, name_he (nikud), type (parasha|holiday), book (parshiyot),
+#   status (done|in_progress|planned), middah (from docs/policies/values-spine.md, or TBD),
+#   power_word {he, translit, en} (or TBD), characters (keys in characters/),
+#   sensitivities, notes.
+#
+# Rule (values-spine.md): no middah may repeat within 4 consecutive filled decks.
+
+series: Parasha Pack
+version: 1
+
+fall_holidays:
+  - id: rosh_hashanah
+    name_en: Rosh Hashanah
+    name_he: רֹאשׁ הַשָּׁנָה
+    type: holiday
+    status: planned
+    middah: Kindness
+    power_word: {he: שׁוֹפָר, translit: shofar, en: ram's horn}
+    characters: []
+    sensitivities:
+      - "The shofar is loud: warn sound-sensitive children and let them cover their ears"
+      - "Keep 'Hashem is our King' warm, not judging or scary"
+    notes: "Tishrei 1 (Sep/Oct). Birthday of the world, apples and honey for a sweet year, starting the year doing kind things. Modern-world cards."
+  - id: yom_kippur
+    name_en: Yom Kippur
+    name_he: יוֹם כִּפּוּר
+    type: holiday
+    status: planned
+    middah: Forgiveness
+    power_word: {he: סְלִיחָה, translit: slicha, en: sorry}
+    characters: []
+    sensitivities:
+      - "Fasting is for grown-ups; children do not fast"
+      - "Saying sorry without shame: no 'bad child' framing"
+      - "Yonah story optional; the big fish is friendly, never scary"
+    notes: "Tishrei 10. Saying sorry and making up; white clothes; quiet day in shul."
+  - id: sukkot
+    name_en: Sukkot
+    name_he: סֻכּוֹת
+    type: holiday
+    status: planned
+    middah: Gratitude
+    power_word: {he: סֻכָּה, translit: sukkah, en: hut}
+    characters: []
+    sensitivities:
+      - "Lulav and etrog shown with care (the etrog's tip is precious)"
+      - "Ushpizin guests optional, teacher guide only"
+    notes: "Tishrei 15-21. Building and decorating the sukkah, thanking Hashem for the harvest, inviting guests."
+  - id: simchat_torah
+    name_en: Simchat Torah
+    name_he: שִׂמְחַת תּוֹרָה
+    type: holiday
+    status: planned
+    middah: Joy
+    power_word: {he: תּוֹרָה, translit: Torah, en: Torah}
+    characters: []
+    sensitivities:
+      - "Simchat Torah 2023 (October 7) is painful for many families: keep the cards joyful, give teachers a gentle note in the guide only"
+      - "Torah scrolls drawn with respect (covered, held, never on the floor)"
+    notes: "Tishrei 22/23. Dancing with the Torah (hakafot), finishing V'Zot HaBerachah and starting Bereshit again."
+
+parshiyot:
+  # --- Genesis ---
+  - id: bereshit
+    name_en: Bereshit
+    name_he: בְּרֵאשִׁית
+    type: parasha
+    book: Genesis
+    status: in_progress
+    middah: Caring for the world
+    power_word: {he: טוֹב, translit: tov, en: good}
+    characters: [adam, chava]
+    sensitivities:
+      - "The snake and the fruit (Genesis 3): teacher guide only, not on cards"
+      - "Kayin and Hevel (Genesis 4): skipped"
+      - "Adam and Chava always in simple modest full-coverage tunics (decision D3)"
+      - "Hashem is never drawn as a person: light only"
+    notes: "First v3 deck. Seven days of creation, Adam names the animals, caring for the garden (Genesis 2:15)."
+  - id: noach
+    name_en: Noach
+    name_he: נֹחַ
+    type: parasha
+    book: Genesis
+    status: planned
+    middah: Patience
+    power_word: {he: קֶשֶׁת, translit: keshet, en: rainbow}
+    characters: [noach]
+    sensitivities:
+      - "The flood: no drowning people or animals, no destroyed homes; show the ark safe and cozy"
+      - "Tower of Bavel: optional, teacher guide only"
+      - "Noach's later life (Genesis 9:20-27): skipped"
+    notes: "Building the ark, animals two by two, waiting in the ark, the dove, the rainbow promise. Noach needs a character.yaml + identity sheet."
+  - id: lech_lecha
+    name_en: Lech Lecha
+    name_he: לֶךְ־לְךָ
+    type: parasha
+    book: Genesis
+    status: planned
+    middah: Trust in Hashem
+    power_word: {he: כּוֹכָבִים, translit: kochavim, en: stars}
+    characters: [avraham, sarah]
+    sensitivities:
+      - "Leaving home can be hard for children who have moved: name the feeling gently"
+      - "War of the kings, Hagar and Yishmael, brit milah: teacher guide only or skipped"
+    notes: "Avraham and Sarah travel to a new land; counting the stars. Avraham and Sarah designs are drafts (canonical: false): lock anchors and make identity sheets first."
+  - {id: vayera, name_en: "Vayera", name_he: "וַיֵּרָא", type: parasha, book: Genesis, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: chayei_sarah, name_en: "Chayei Sarah", name_he: "חַיֵּי שָׂרָה", type: parasha, book: Genesis, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: toldot, name_en: "Toldot", name_he: "תּוֹלְדֹת", type: parasha, book: Genesis, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: vayetzei, name_en: "Vayetzei", name_he: "וַיֵּצֵא", type: parasha, book: Genesis, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: vayishlach, name_en: "Vayishlach", name_he: "וַיִּשְׁלַח", type: parasha, book: Genesis, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: vayeshev, name_en: "Vayeshev", name_he: "וַיֵּשֶׁב", type: parasha, book: Genesis, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: miketz, name_en: "Miketz", name_he: "מִקֵּץ", type: parasha, book: Genesis, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: vayigash, name_en: "Vayigash", name_he: "וַיִּגַּשׁ", type: parasha, book: Genesis, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: vayechi, name_en: "Vayechi", name_he: "וַיְחִי", type: parasha, book: Genesis, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  # --- Exodus ---
+  - {id: shemot, name_en: "Shemot", name_he: "שְׁמוֹת", type: parasha, book: Exodus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: vaera, name_en: "Vaera", name_he: "וָאֵרָא", type: parasha, book: Exodus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: bo, name_en: "Bo", name_he: "בֹּא", type: parasha, book: Exodus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: beshalach, name_en: "Beshalach", name_he: "בְּשַׁלַּח", type: parasha, book: Exodus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Older deck archived in decks/archive/; needs a v3 rebuild"}
+  - {id: yitro, name_en: "Yitro", name_he: "יִתְרוֹ", type: parasha, book: Exodus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Older deck archived in decks/archive/; needs a v3 rebuild"}
+  - {id: mishpatim, name_en: "Mishpatim", name_he: "מִשְׁפָּטִים", type: parasha, book: Exodus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Older deck archived in decks/archive/; needs a v3 rebuild"}
+  - {id: terumah, name_en: "Terumah", name_he: "תְּרוּמָה", type: parasha, book: Exodus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Older deck archived in decks/archive/; needs a v3 rebuild"}
+  - {id: tetzaveh, name_en: "Tetzaveh", name_he: "תְּצַוֶּה", type: parasha, book: Exodus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Older deck archived in decks/archive/; needs a v3 rebuild"}
+  - {id: ki_tisa, name_en: "Ki Tisa", name_he: "כִּי תִשָּׂא", type: parasha, book: Exodus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: vayakhel, name_en: "Vayakhel", name_he: "וַיַּקְהֵל", type: parasha, book: Exodus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: pekudei, name_en: "Pekudei", name_he: "פְקוּדֵי", type: parasha, book: Exodus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  # --- Leviticus ---
+  - {id: vayikra, name_en: "Vayikra", name_he: "וַיִּקְרָא", type: parasha, book: Leviticus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: tzav, name_en: "Tzav", name_he: "צַו", type: parasha, book: Leviticus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: shemini, name_en: "Shemini", name_he: "שְׁמִינִי", type: parasha, book: Leviticus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: tazria, name_en: "Tazria", name_he: "תַזְרִיעַ", type: parasha, book: Leviticus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: metzora, name_en: "Metzora", name_he: "מְצֹרָע", type: parasha, book: Leviticus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: acharei_mot, name_en: "Acharei Mot", name_he: "אַחֲרֵי מוֹת", type: parasha, book: Leviticus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: kedoshim, name_en: "Kedoshim", name_he: "קְדֹשִׁים", type: parasha, book: Leviticus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: emor, name_en: "Emor", name_he: "אֱמֹר", type: parasha, book: Leviticus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: behar, name_en: "Behar", name_he: "בְּהַר", type: parasha, book: Leviticus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: bechukotai, name_en: "Bechukotai", name_he: "בְּחֻקֹּתַי", type: parasha, book: Leviticus, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  # --- Numbers ---
+  - {id: bamidbar, name_en: "Bamidbar", name_he: "בְּמִדְבַּר", type: parasha, book: Numbers, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: nasso, name_en: "Nasso", name_he: "נָשֹׂא", type: parasha, book: Numbers, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: behaalotecha, name_en: "Beha'alotecha", name_he: "בְּהַעֲלֹתְךָ", type: parasha, book: Numbers, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: shelach, name_en: "Shelach", name_he: "שְׁלַח־לְךָ", type: parasha, book: Numbers, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: korach, name_en: "Korach", name_he: "קֹרַח", type: parasha, book: Numbers, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: chukat, name_en: "Chukat", name_he: "חֻקַּת", type: parasha, book: Numbers, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: balak, name_en: "Balak", name_he: "בָּלָק", type: parasha, book: Numbers, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: pinchas, name_en: "Pinchas", name_he: "פִּינְחָס", type: parasha, book: Numbers, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: matot, name_en: "Matot", name_he: "מַטּוֹת", type: parasha, book: Numbers, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: masei, name_en: "Masei", name_he: "מַסְעֵי", type: parasha, book: Numbers, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  # --- Deuteronomy ---
+  - {id: devarim, name_en: "Devarim", name_he: "דְּבָרִים", type: parasha, book: Deuteronomy, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: vaetchanan, name_en: "Vaetchanan", name_he: "וָאֶתְחַנַּן", type: parasha, book: Deuteronomy, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: eikev, name_en: "Eikev", name_he: "עֵקֶב", type: parasha, book: Deuteronomy, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: reeh, name_en: "Re'eh", name_he: "רְאֵה", type: parasha, book: Deuteronomy, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: shoftim, name_en: "Shoftim", name_he: "שֹׁפְטִים", type: parasha, book: Deuteronomy, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: ki_teitzei, name_en: "Ki Teitzei", name_he: "כִּי־תֵצֵא", type: parasha, book: Deuteronomy, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: ki_tavo, name_en: "Ki Tavo", name_he: "כִּי־תָבוֹא", type: parasha, book: Deuteronomy, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: nitzavim, name_en: "Nitzavim", name_he: "נִצָּבִים", type: parasha, book: Deuteronomy, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: vayeilech, name_en: "Vayeilech", name_he: "וַיֵּלֶךְ", type: parasha, book: Deuteronomy, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: haazinu, name_en: "Ha'azinu", name_he: "הַאֲזִינוּ", type: parasha, book: Deuteronomy, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+  - {id: vzot_haberachah, name_en: "V'Zot HaBerachah", name_he: "וְזֹאת הַבְּרָכָה", type: parasha, book: Deuteronomy, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: ""}
+
+holidays:
+  - {id: chanukah, name_en: "Chanukah", name_he: "חֲנֻכָּה", type: holiday, before: miketz, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Kislev 25 (Dec); Miketz is usually read on Shabbat Chanukah"}
+  - {id: tu_bshvat, name_en: "Tu B'Shvat", name_he: "ט״וּ בִּשְׁבָט", type: holiday, before: beshalach, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Shvat 15 (Jan/Feb)"}
+  - id: purim
+    name_en: Purim
+    name_he: פּוּרִים
+    type: holiday
+    before: ki_tisa
+    status: done
+    middah: Courage
+    power_word: {he: גִּבּוֹר, translit: gibor, en: hero}
+    characters: [esther, mordechai, haman, achashverosh]
+    sensitivities:
+      - "Haman's plan: say he 'wanted to hurt the Jewish people'; no hanging, no battles"
+      - "Haman is jealous and misguided, never scary"
+    notes: "Adar 14 (Feb/Mar). The 13-card v2 deck in decks/purim/ is the style reference for the series."
+  - {id: pesach, name_en: "Pesach", name_he: "פֶּסַח", type: holiday, before: shemini, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Nisan 15 (Mar/Apr)"}
+  - {id: yom_hashoah, name_en: "Yom HaShoah", name_he: "יוֹם הַשּׁוֹאָה", type: holiday, before: tazria, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Nisan 27 (Apr/May)"}
+  - {id: yom_haatzmaut, name_en: "Yom HaAtzmaut", name_he: "יוֹם הָעַצְמָאוּת", type: holiday, before: acharei_mot, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Iyar 5 (Apr/May)"}
+  - {id: lag_baomer, name_en: "Lag BaOmer", name_he: "ל״ג בָּעֹמֶר", type: holiday, before: behar, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Iyar 18 (May)"}
+  - {id: shavuot, name_en: "Shavuot", name_he: "שָׁבוּעוֹת", type: holiday, before: nasso, status: planned, middah: TBD, power_word: TBD, characters: [], sensitivities: [], notes: "Sivan 6 (May/Jun); Bamidbar is usually read just before"}

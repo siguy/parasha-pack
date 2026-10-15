@@ -10,124 +10,10 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
 
+import character_library
+
 from .models import CharacterResearch, CharacterDesign
 from .research import research_character
-
-
-# =============================================================================
-# DEFAULT DESIGNS
-# =============================================================================
-
-DEFAULT_DESIGNS = {
-    "moses": {
-        "visual_description": "Friendly middle-aged man with warm brown skin",
-        "clothing": ["Blue head covering flowing down", "Blue outer robe with cream undergarment"],
-        "features": ["Kind gentle eyes", "Short dark beard with touch of gray", "Warm expression"],
-        "props": ["Wooden shepherd's crook staff"],
-        "poses": [
-            "Arms wide open, welcoming embrace",
-            "Hand to ear, listening carefully",
-            "Seated, looking tired, hand on forehead",
-            "Standing tall, staff raised, leading",
-        ],
-    },
-    "yitro": {
-        "visual_description": "Wise elderly grandfather figure with warm presence",
-        "clothing": ["Tan/olive head covering", "Colorful earth-toned Midianite robes with geometric patterns"],
-        "features": ["Long flowing white/gray beard", "Warm twinkling wise eyes", "Grandfatherly gentle smile"],
-        "props": ["Gnarled wooden walking staff"],
-        "poses": [
-            "One finger raised, giving wise advice",
-            "Arms open wide for embrace",
-            "Hand on chin, thinking wisely",
-            "Walking with staff, traveling",
-        ],
-    },
-    "miriam": {
-        "visual_description": "Young woman with joyful, brave expression",
-        "clothing": ["Colorful dress with blue and purple", "Simple head covering"],
-        "features": ["Long dark wavy hair", "Bright expressive eyes", "Ready smile"],
-        "props": ["Tambourine/timbrel"],
-        "poses": [
-            "Playing tambourine, dancing joyfully",
-            "Watching over something carefully",
-            "Leading others with arm raised",
-            "Singing with joy",
-        ],
-    },
-    "abraham": {
-        "visual_description": "Kind elderly man with welcoming presence",
-        "clothing": ["White flowing robe", "Simple head covering"],
-        "features": ["Long white beard", "Kind eyes", "Open welcoming expression"],
-        "props": ["Walking stick"],
-        "poses": [
-            "Arms open in welcome",
-            "Looking up at stars",
-            "Offering hospitality",
-            "Walking with purpose",
-        ],
-    },
-    "sarah": {
-        "visual_description": "Graceful woman with warm maternal presence",
-        "clothing": ["Elegant blue head covering", "Flowing dress in earth tones"],
-        "features": ["Warm smile", "Kind eyes", "Graceful posture"],
-        "props": [],
-        "poses": [
-            "Laughing with joy",
-            "Welcoming guests",
-            "Holding a baby tenderly",
-            "Preparing food",
-        ],
-    },
-    "esther": {
-        "visual_description": "Young Jewish woman with warm olive skin and kind determined eyes",
-        "clothing": ["Royal purple and blue flowing dress", "Elegant modest head covering", "Simple gold tiara"],
-        "features": ["Large kind brown eyes", "Long dark hair", "Gentle determined expression", "Warm approachable features"],
-        "props": ["Royal scepter (occasionally)"],
-        "poses": [
-            "Hand on heart, showing courage",
-            "Standing tall before the king",
-            "Kneeling in prayer",
-            "Arms open, embracing her people",
-        ],
-    },
-    "mordechai": {
-        "visual_description": "Older Jewish man with wise grandfatherly presence",
-        "clothing": ["Jewish head covering (kippah or cloth wrap)", "Modest robes in earth tones - browns, creams, subtle blues"],
-        "features": ["Full gray-brown beard", "Kind wise eyes", "Dignified posture", "Grandfatherly warmth"],
-        "props": [],
-        "poses": [
-            "Hands clasped peacefully",
-            "Standing tall, not bowing",
-            "Giving advice to Esther",
-            "Celebrating with raised hands",
-        ],
-    },
-    "haman": {
-        "visual_description": "Adult man with frustrated pouty expression - NOT scary",
-        "clothing": ["DISTINCTIVE THREE-CORNERED HAT (like hamantaschen shape)", "Persian-style clothing in MUTED dusty purple and gray-brown"],
-        "features": ["Dark pointed goatee with connected mustache", "Furrowed brow", "Jealous expression (not angry)", "Arms often crossed", "Shoulders hunched"],
-        "props": ["Three-cornered hat"],
-        "poses": [
-            "Arms crossed, looking jealous",
-            "Turned away, frustrated",
-            "Pouty face, upset",
-            "Looking embarrassed",
-        ],
-    },
-    "achashverosh": {
-        "visual_description": "King with confused bewildered expression - somewhat comedic",
-        "clothing": ["Large ornate crown", "Royal Persian robes in golds and reds"],
-        "features": ["Bewildered look", "Eyebrows often raised", "Distracted expression", "Somewhat cartoonish"],
-        "props": ["Royal scepter", "Crown"],
-        "poses": [
-            "Scratching head, confused",
-            "Sitting on throne, distracted",
-            "Surprised expression",
-            "Making a proclamation",
-        ],
-    },
-}
 
 
 # =============================================================================
@@ -163,7 +49,7 @@ class CharacterWorkflow:
             deck_path: Path to deck directory (for saving references)
         """
         self.name = name
-        self.key = name.lower().strip().replace(" ", "_")
+        self.key = character_library.resolve_key(name)  # "Abraham" -> "avraham"
         self.deck_path = Path(deck_path) if deck_path else None
 
         self.research_data: Optional[CharacterResearch] = None
@@ -216,18 +102,19 @@ class CharacterWorkflow:
         print(f"DESIGNING: {self.name}")
         print('='*50)
 
-        defaults = DEFAULT_DESIGNS.get(self.key, {})
+        # Defaults come from the locked design in characters/{key}/character.yaml
+        library = character_library.load_character(self.key) or {}
 
         self.design_data = CharacterDesign(
             key=self.key,
             name_en=self.research_data.name_en,
             name_he=self.research_data.name_he,
-            visual_description=visual_description or defaults.get("visual_description", ""),
-            clothing=clothing or defaults.get("clothing", []),
-            distinguishing_features=features or defaults.get("features", []),
-            props=props or defaults.get("props", []),
+            visual_description=visual_description or "",
+            clothing=clothing or [],
+            distinguishing_features=features or library.get("visual_anchors", []),
+            props=props or library.get("props", []),
             emotional_range=self.research_data.personality_traits,
-            signature_poses=poses or defaults.get("poses", []),
+            signature_poses=poses or library.get("signature_poses", []),
         )
 
         # Generate style prompt
