@@ -1,0 +1,21 @@
+agent: 05b-image-qa
+deck_id: pipeline_min
+rubric: agents/rubrics/image_qa.yaml
+rubric_version: "1.0"
+contact_sheets: [raw/drafts/contact_sheet.png]
+images:
+  - card_id: story_1
+    file: raw/drafts/story_1_d1.png
+    stage: draft
+    scores: {title_zone: 2, character_match: 2, no_text: 2, anatomy: 2, modesty: 2, villain_posture: 2, god_as_light: 2, period_accuracy: 2, diversity: 2, emotion_at_8pct: 1, style_match: 2}
+    total: 21
+    pass: true
+  - card_id: story_1
+    file: raw/drafts/story_1_d2.png
+    stage: draft
+    scores: {title_zone: 0, character_match: 2, no_text: 2, anatomy: 2, modesty: 2, villain_posture: 2, god_as_light: 2, period_accuracy: 2, diversity: 2, emotion_at_8pct: 2, style_match: 2}
+    total: 20
+    pass: false
+    flags: ["hard band across the top"]
+picks:
+  - {card_id: story_1, chosen_draft: raw/drafts/story_1_d1.png, final: raw/story_1_final.png, decided_by: coordinator, reason: "d2 has a hard band"}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parasha-pack/schemas/pipeline/01-research.schema.json",
+  "title": "Pipeline step 01: Torah Scholar",
+  "description": "decks/<id>/pipeline/01-research.yaml. Every claim cites verses; midrash is labeled and sourced.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent", "deck_id", "research_cache", "summary", "claims", "key_moments", "hard_passages"],
+  "properties": {
+    "agent": { "const": "01-torah-scholar" },
+    "deck_id": { "type": "string" },
+    "research_cache": { "type": "string", "description": "Path of the Sefaria cache that was read, e.g. research/bereshit.yaml" },
+    "summary": { "type": "string", "description": "3-5 sentences: what happens, in plain words" },
+    "emotional_core": { "type": "string" },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text", "kind", "refs"],
+        "properties": {
+          "text": { "type": "string" },
+          "kind": { "enum": ["pshat", "midrash"], "description": "pshat = what the verse says; midrash = 'Our Sages teach…'" },
+          "refs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "source": { "type": "string", "description": "Required for midrash, e.g. 'Rashi on Genesis 1:1'" }
+        },
+        "if": { "properties": { "kind": { "const": "midrash" } } },
+        "then": { "required": ["source"] }
+      }
+    },
+    "key_moments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["moment", "refs", "emotion", "visual_potential"],
+        "properties": {
+          "moment": { "type": "string" },
+          "refs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "characters": { "type": "array", "items": { "type": "string" } },
+          "emotion": { "type": "string" },
+          "visual_potential": { "enum": ["high", "medium", "low"] }
+        }
+      }
+    },
+    "hard_passages": {
+      "type": "array",
+      "description": "Anything on the hard-text policy list, or likely to upset a 4-6 year old. Empty list = none found.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["refs", "topic", "why"],
+        "properties": {
+          "refs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "topic": { "type": "string" },
+          "why": { "type": "string" },
+          "suggested_handling": { "enum": ["ok", "reframe", "guide-only", "skip"] }
+        }
+      }
+    },
+    "hebrew_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["word", "translit", "meaning"],
+        "properties": {
+          "word": { "type": "string" },
+          "translit": { "type": "string" },
+          "meaning": { "type": "string" },
+          "ref": { "type": "string" }
+        }
+      }
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "role_in_story", "refs"],
+        "properties": {
+          "key": { "type": "string" },
+          "role_in_story": { "type": "string" },
+          "refs": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "story_world_notes": { "type": "string", "description": "Setting facts (landscape, clothing, objects) for the Curriculum Designer and Visual Director" }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parasha-pack/schemas/pipeline/02b-sensitivity.schema.json",
+  "title": "Pipeline step 02b: Sensitivity Reviewer",
+  "description": "decks/<id>/pipeline/02b-sensitivity.yaml. Per-card verdicts + scripted 'if they ask' answers, and the ★ checkpoint decision.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent", "deck_id", "checklist", "cards", "if_they_ask", "checkpoint"],
+  "properties": {
+    "agent": { "const": "02b-sensitivity-reviewer" },
+    "deck_id": { "type": "string" },
+    "checklist": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["area", "item", "status"],
+        "properties": {
+          "area": { "enum": ["child_development", "modern_orthodox", "hard_text_policy"] },
+          "item": { "type": "string" },
+          "status": { "enum": ["ok", "flag"] },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "cards": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["card_id", "verdict", "reason"],
+        "properties": {
+          "card_id": { "type": "string" },
+          "verdict": { "enum": ["ok", "reframe", "guide-only", "skip"] },
+          "reason": { "type": "string" },
+          "reframe": { "type": "string", "description": "How the Content Writer must tell it (required for 'reframe')" }
+        },
+        "if": { "properties": { "verdict": { "const": "reframe" } } },
+        "then": { "required": ["reframe"] }
+      }
+    },
+    "if_they_ask": {
+      "type": "array",
+      "description": "Scripted answers for the guide booklet (copied into that card's guide.hard_questions)",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["card_id", "q", "answer", "redirect"],
+        "properties": {
+          "card_id": { "type": "string", "description": "The card whose guide page holds this answer" },
+          "topic": { "type": "string" },
+          "refs": { "type": "array", "items": { "type": "string" } },
+          "q": { "type": "string" },
+          "answer": { "type": "string", "description": "1-2 honest, calm sentences" },
+          "redirect": { "type": "string" }
+        }
+      }
+    },
+    "checkpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approved", "decided_by"],
+      "properties": {
+        "approved": { "type": "boolean" },
+        "decided_by": { "enum": ["simon", "coordinator", "pending"] },
+        "decided_at": { "type": "string" },
+        "notes": { "type": "string" },
+        "decisions_log": { "type": "string", "description": "Overnight runs: where the decision was logged, e.g. docs/overnight/decisions.md" }
+      }
+    }
+  }
+}

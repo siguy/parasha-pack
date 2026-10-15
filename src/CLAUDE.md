@@ -20,6 +20,8 @@ Python modules for generating and managing Parasha Pack card decks.
 | `sefaria_client.py` | Sefaria API: current parasha, plus the `research/{parasha}.yaml` verse cache |
 | `character_library.py` | Reads the shared `characters/{key}/character.yaml` library (single source of truth for characters) |
 | `series.py` | Loads and validates `series.yaml` (the year plan) |
+| `assemble_deck.py` | Merges `decks/{id}/pipeline/*.yaml` into `deck.json` after schema + cross-file checks; runs `validate_deck.py` when present |
+| `contact_sheet.py` | `make_contact_sheet(paths, labels, out_path, cols)`: labeled image grid for Image QA and identity reviews |
 | `config.py` | Configuration constants |
 
 Deprecated v1 code lives in `archive/` for reference. Do not use for new decks.

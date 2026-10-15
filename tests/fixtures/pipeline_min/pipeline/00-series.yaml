@@ -1,0 +1,16 @@
+# Tiny fixture for tests/test_assemble_deck.py (a cut-down Bereshit).
+agent: 00-series-planner
+deck_id: pipeline_min
+name_en: Bereshit
+name_he: בְּרֵאשִׁית
+type: parasha
+holiday: false
+book: Genesis
+ref: "Genesis 1:1–2:15"
+middah: {en: Caring for the world, he: שְׁמִירָה עַל הָעוֹלָם, kid_phrase: "caring for Hashem's world", gesture: "hug the world (arms in a big circle)"}
+recent_middot: [Kindness, Forgiveness, Gratitude, Joy]
+power_word: {he: טוֹב, translit: TOV, en: good, gesture: thumbs up}
+review_words: []
+characters: [adam, chava]
+sensitivities:
+  - "The snake and the fruit: teacher guide only"

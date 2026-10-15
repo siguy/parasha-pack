@@ -1,104 +1,82 @@
-# Card Deck Agent System
+# Card Deck Agent System (pipeline v3)
 
-This document describes the agent-based workflow for creating Parasha Pack card decks and Holiday decks.
+Each "agent" is a role Claude plays, defined in one Markdown file in `definitions/`. Each writes one YAML
+file into `decks/{id}/pipeline/`, checked against a schema in `schemas/pipeline/`. `src/assemble_deck.py`
+then merges the YAML into `deck.json` — no hand merging.
 
-## Overview
+## Agent roster
 
-The deck creation process is broken into specialized roles (agents), each with specific expertise, inputs, and outputs. This allows for:
+| # | Agent | Owns | Writes |
+|---|-------|------|--------|
+| 00 | [Series Planner](definitions/00-series-planner.md) | middah, power word, characters, sensitivities, holiday placement (`series.yaml`) | `00-series.yaml` |
+| 01 | [Torah Scholar](definitions/01-torah-scholar.md) | cited claims (pshat vs midrash), key moments, hard passages | `01-research.yaml` |
+| 02 | [Curriculum Designer](definitions/02-curriculum-designer.md) | card list, ★core, minutes, 5-day week plan, story world | `02-structure.yaml` |
+| 02b | [Sensitivity Reviewer](definitions/02b-sensitivity-reviewer.md) ★ | per-card verdicts, "if they ask" answers | `02b-sensitivity.yaml` |
+| 03 | [Content Writer](definitions/03-content-writer.md) | backs, guide blocks, home card — English **and Hebrew** | `03-content.yaml` |
+| 05 | [Visual Director](definitions/05-visual-director.md) | palette, scene-only prompts, characters in scene | `05-visual.yaml` |
+| 05b | [Image QA](definitions/05b-image-qa.md) ★ | rubric scores, draft picks (flag-only) | `05b-image-qa.yaml` |
+| 06 | [Editor](definitions/06-editor.md) | scored review, routed issues, feedback.json draft | `06-editor.yaml` |
+| — | [Card Designer](tools/card-designer.md) (tool) | sync → export → hub sync | `images/`, `backs/`, `print/` |
 
-- Clear separation of concerns
-- Consistent quality
-- Flexibility for different content types (parasha, holiday)
-- Iterative improvement
-
-## Agent Roster
-
-| # | Agent | Expertise | Key Output |
-|---|-------|-----------|------------|
-| 1 | [Torah Scholar](definitions/01-torah-scholar.md) | Torah/holiday content, themes, continuity | Research doc |
-| 2 | [Curriculum Designer](definitions/02-curriculum-designer.md) | Early childhood education | Deck structure |
-| 3 | [Content Writer](definitions/03-content-writer.md) | Kid-friendly writing | Card text + scripts |
-| 4 | [Hebrew Expert](definitions/04-hebrew-expert.md) | Biblical Hebrew, nikud | Hebrew content |
-| 5 | [Visual Director](definitions/05-visual-director.md) | Art direction, consistency | Image prompts |
-| 6 | [Editor](definitions/06-editor.md) | Quality assurance | QA review |
-| 7 | [Card Designer](definitions/07-card-designer.md) | Card composition, export | Final card images |
+The old **04 Hebrew Expert** is merged into 03 Content Writer (one writer owns a card's words in both languages).
 
 ## Workflow
 
 ```
-[Torah Scholar]
-      ↓ research doc (parasha OR holiday)
-[Curriculum Designer]
-      ↓ deck structure
-      ↓ ← CHECKPOINT: Wife reviews direction
-      ↓
-[Content Writer] ←→ [Hebrew Expert]
-      ↓ complete card text (front/back content)
-[Visual Director]
-      ↓ character designs + scene-only image prompts
-      ↓
-[Character Identity Generation] (tool)
-      ↓ identity reference sheets
-      ↓ ← CHECKPOINT: User reviews 2+ identity versions per NEW character
-      ↓
-[Card Image Generation] (tool)
-      ↓ raw card images (no text rendered)
-      ↓
-[Card Designer] (React app)
-      ↓ text overlay + teacher card backs
-      ↓ export via Playwright → decks/<id>/images/ + backs/
-      ↓
-[Editor]
-      ↓ QA review (checks front/back content + overlay)
-      ↓ ← CHECKPOINT: Wife + teachers review cards
-      ↓
-Final cards (front + back, 5x7 @ 300 DPI)
+[00 Series Planner]       series.yaml entry + 00-series.yaml
+        ↓
+[01 Torah Scholar]        reads research/{parasha}.yaml (Sefaria cache)
+        ↓
+[02 Curriculum Designer]  10 cards (12 holiday), ★core, week_plan
+        ↓
+[02b Sensitivity Reviewer]
+        ↓  ★ CHECKPOINT 1: Simon approves verdicts + framing
+[03 Content Writer]       backs + guide + home card (EN + HE)
+        ↓  assemble_deck.py → validate_deck.py
+[05 Visual Director]      scene-only prompts
+        ↓  (new character? identity sheets, 2 versions → ★ pick)
+        ↓  assemble_deck.py → generate_images.py --draft (1K)
+[05b Image QA]            contact sheet, rubric scores, picks
+        ↓  ★ CHECKPOINT 2: Simon picks drafts
+        ↓  generate_images.py --final --from-draft (2K) → score finals
+        ↓  assemble_deck.py
+[06 Editor]               scored rubric; validator must pass
+        ↓
+[Card Designer tool]      sync-deck.sh → export (letter PDF) → scripts/sync_to_hub.py
+        ↓  ★ CHECKPOINT 3: Simon reviews the printed test copy
 ```
 
-**Critical:** The Character Identity Checkpoint prevents wasted effort. A poor character identity means ALL cards featuring that character will need regeneration.
+Details, file names and commands: [AGENT_PIPELINE.md](AGENT_PIPELINE.md).
 
-## Content Types
+## Human checkpoints (★)
 
-| Type | Description | Cards | Sessions |
-|------|-------------|-------|----------|
-| **Parasha** | Weekly Torah portion | 8-11 | 1x 15 min |
-| **Holiday** | Jewish holidays | 12-16 | 2x 15 min |
+Simon is the only reviewer (D6).
 
-See [CARD_SPECS.md](CARD_SPECS.md) for card type details and deck structure.
+1. **After 02b** — approve the sensitivity verdicts before any content is written.
+2. **After 05b** — pick drafts (and any new character identity sheet).
+3. **After export** — the test print.
 
-## Human Checkpoints
+**Overnight runs** (Simon asleep and he has said so): the coordinator makes each ★ decision using the
+rubrics, keeps runners-up in an `alternates/` folder (or `raw/drafts/`), and logs every decision
+(what, chosen, why, alternates) in `docs/overnight/decisions.md`. In the YAML, `decided_by: coordinator`.
+Simon reviews the log in the morning.
 
-1. **After Curriculum Designer:** Wife reviews deck structure via visual mockup
-2. **After Character Identity Generation:** User reviews 2+ identity versions, selects best
-3. **After Editor:** Wife + other teachers review complete deck with images
+## Card format (short)
 
-## Feedback Flow
+- 10 cards standard / 12 holiday, home card included (D1). See [CARD_SPECS.md](CARD_SPECS.md).
+- AI draws **scene-only** images to `raw/`; the Card Designer adds all text.
+- Default print = **8.5×11 letter**, duplex, one card per sheet; optional 5×7 vendor export.
 
-Currently: Human (you) receives all feedback and routes to appropriate agent.
+## Key files
 
-## Card Format
+- [AGENT_PIPELINE.md](AGENT_PIPELINE.md) — v3 flow, commands, assemble step, budgets
+- [CARD_SPECS.md](CARD_SPECS.md) — card types, back fields, word budgets
+- [VISUAL_SPECS.md](VISUAL_SPECS.md) — art style, characters, safety
+- [LESSONS_LEARNED.md](LESSONS_LEARNED.md) — gotchas (the Editor reads this first)
+- `rubrics/image_qa.yaml`, `rubrics/editor.yaml` — machine-readable scoring rules
+- `schemas/pipeline/*.schema.json` — the shape of each agent's YAML
 
-- AI generates **scene-only images** to `raw/` (no text, no borders)
-- `build_generation_prompt()` layers style, safety, composition, and rules at generation time
-- **Card Designer (React)** renders text overlay and teacher content
-- Card fronts: full-bleed images with React-rendered text
-- Card backs: 5x7 printable teacher content (scripts, activities, questions)
-- Image prompts in deck.json are **pure scene descriptions**
+## Updating this documentation
 
-## Key Files
-
-- [CARD_SPECS.md](CARD_SPECS.md) - Card type specifications
-- [VISUAL_SPECS.md](VISUAL_SPECS.md) - Visual specs and composition guidance
-- [AGENT_PIPELINE.md](AGENT_PIPELINE.md) - Detailed pipeline with YAML schemas
-- [LESSONS_LEARNED.md](LESSONS_LEARNED.md) - Patterns and gotchas
-
-## Updating This Documentation
-
-As you learn from each deck creation:
-
-1. Update individual agent definitions with new learnings
-2. Update CARD_SPECS.md if card structure evolves
-3. Add notes to LESSONS_LEARNED.md for patterns discovered
-4. Add new character designs to VISUAL_SPECS.md
-
-Version this documentation in git alongside the deck files.
+After each deck: add new gotchas to LESSONS_LEARNED.md, fix the agent definition that let the mistake
+through, and if a rubric criterion was missing, add it to `rubrics/` (and bump its `version`).

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parasha-pack/schemas/pipeline/05-visual.schema.json",
+  "title": "Pipeline step 05: Visual Director",
+  "description": "decks/<id>/pipeline/05-visual.yaml. Deck palette + one scene-only prompt per card. Style, safety and composition text are added by build_generation_prompt(), never written here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent", "deck_id", "palette", "web_theme", "cards"],
+  "properties": {
+    "agent": { "const": "05-visual-director" },
+    "deck_id": { "type": "string" },
+    "palette": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "web_theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "secondary", "accent", "wash"],
+      "properties": {
+        "primary": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "secondary": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "accent": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "wash": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
+      }
+    },
+    "new_characters": {
+      "type": "array",
+      "description": "Keys that still need characters/{key}/character.yaml + an identity sheet before any card image",
+      "items": { "type": "string" }
+    },
+    "cards": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["card_id", "characters_in_scene", "image_prompt"],
+        "properties": {
+          "card_id": { "type": "string", "pattern": "^[a-z_]+_[0-9]+$" },
+          "characters_in_scene": {
+            "type": "array",
+            "items": { "type": "string" },
+            "maxItems": 4,
+            "description": "Library keys only (characters/{key}/). Max 4 (Nano Banana 2 limit)."
+          },
+          "image_prompt": { "type": "string", "minLength": 20, "description": "Scene only: what is happening, who does what, the feeling" },
+          "style_plate": {
+            "description": "Optional override of the plate mapping in style/style_config.yaml",
+            "anyOf": [
+              { "enum": ["landscape", "interior", "object", "classroom"] },
+              { "type": "array", "items": { "enum": ["landscape", "interior", "object", "classroom"] }, "maxItems": 3 }
+            ]
+          },
+          "continuity_ref": { "type": "string", "description": "Earlier card_id (same place, new moment), e.g. 'story_1'" },
+          "villain_posture": { "type": "string", "description": "For villains: the sulky/comic posture used (no pointing, no snarling)" },
+          "drafts": { "type": "integer", "minimum": 1, "maximum": 3, "description": "How many 1K drafts to make (default 2)" }
+        }
+      }
+    }
+  }
+}

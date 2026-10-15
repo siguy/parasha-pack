@@ -1,0 +1,11 @@
+agent: 01-torah-scholar
+deck_id: pipeline_min
+research_cache: research/bereshit.yaml
+summary: Hashem makes the world in six days and rests on the seventh. Adam is put in the garden to look after it.
+claims:
+  - {text: "Hashem made light on the first day.", kind: pshat, refs: ["Genesis 1:3-5"]}
+  - {text: "Our Sages teach that Hashem showed Adam every tree and said: take care of My world.", kind: midrash, refs: ["Genesis 2:15"], source: "Kohelet Rabbah 7:13"}
+key_moments:
+  - {moment: "Let there be light", refs: ["Genesis 1:3"], emotion: wonder, visual_potential: high}
+hard_passages:
+  - {refs: ["Genesis 3:1-24"], topic: the snake and the fruit, why: punishment and leaving the garden, suggested_handling: guide-only}

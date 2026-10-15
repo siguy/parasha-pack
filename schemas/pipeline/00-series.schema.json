@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parasha-pack/schemas/pipeline/00-series.schema.json",
+  "title": "Pipeline step 00: Series Planner",
+  "description": "decks/<id>/pipeline/00-series.yaml. The deck's slot in series.yaml: middah, power word, characters, sensitivities.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent", "deck_id", "name_en", "name_he", "type", "holiday", "ref", "middah", "power_word", "characters", "sensitivities"],
+  "properties": {
+    "agent": { "const": "00-series-planner" },
+    "deck_id": { "type": "string", "pattern": "^[a-z0-9_-]+$" },
+    "name_en": { "type": "string" },
+    "name_he": { "type": "string", "description": "With nikud" },
+    "type": { "enum": ["parasha", "holiday"] },
+    "holiday": { "type": "boolean" },
+    "book": { "type": "string" },
+    "ref": { "type": "string", "description": "e.g. 'Genesis 1:1–6:8'" },
+    "holiday_placement": { "type": ["string", "null"], "description": "Holidays only, e.g. 'before: ki_tisa'" },
+    "middah": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "he", "kid_phrase", "gesture"],
+      "properties": {
+        "en": { "type": "string", "description": "Exact name from docs/policies/values-spine.md" },
+        "he": { "type": "string" },
+        "kid_phrase": { "type": "string" },
+        "gesture": { "type": "string", "description": "The middah's fixed hand gesture (same every time it appears)" }
+      }
+    },
+    "recent_middot": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 4,
+      "description": "Middot of the 4 decks before this one (shows the no-repeat rule was checked)"
+    },
+    "power_word": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["he", "translit", "en"],
+      "properties": {
+        "he": { "type": "string", "description": "With nikud" },
+        "translit": { "type": "string", "description": "Stress in CAPS, e.g. 'TOV'" },
+        "en": { "type": "string" },
+        "gesture": { "type": "string" }
+      }
+    },
+    "review_words": {
+      "type": "array",
+      "description": "Power words from earlier decks to bring back this week",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["he", "en", "from_deck"],
+        "properties": { "he": { "type": "string" }, "en": { "type": "string" }, "from_deck": { "type": "string" } }
+      }
+    },
+    "characters": { "type": "array", "items": { "type": "string" }, "description": "Keys that exist in characters/" },
+    "proposed_characters": {
+      "type": "array",
+      "description": "Characters not yet in characters/; each needs a character.yaml + identity sheet before images",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "name_en", "why"],
+        "properties": { "key": { "type": "string" }, "name_en": { "type": "string" }, "why": { "type": "string" } }
+      }
+    },
+    "sensitivities": { "type": "array", "items": { "type": "string" }, "description": "Hard-text policy items for this deck" },
+    "notes": { "type": "string" }
+  }
+}

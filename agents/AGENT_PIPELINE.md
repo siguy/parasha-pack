@@ -1,285 +1,115 @@
-# Parasha Pack Agent Pipeline Documentation
+# Parasha Pack Agent Pipeline (v3)
 
-This document defines the agent pipeline for creating card decks. Each agent has specific responsibilities and MUST use data from previous agents rather than guessing.
+How a deck goes from a parasha name to a printed PDF. Each step's owner, input and output, and the exact
+commands. Roles are in [AGENTS.md](AGENTS.md); each agent's full rules are in `definitions/`.
 
-## Critical Rules
+## Critical rules
 
-1. **NEVER GUESS** - Each agent must use data from the pipeline YAML files, not assumptions
-2. **VERIFY HEBREW SPELLING** - Always double-check Hebrew letter counts and spelling
-3. **NO OLD DATA** - Do not reference old deck structures; use only the current pipeline files
-4. **SCENE-ONLY PROMPTS** - Image prompts are pure scene descriptions. Style, world, safety, composition, and rules are injected automatically by `build_generation_prompt()`
-5. **TEXT RENDERED BY CARD DESIGNER** - AI never renders text. All text overlay is done by React components in the Card Designer
+1. **Never guess.** Each agent uses the earlier pipeline files and the research cache, not memory.
+2. **One owner per field.** If two files disagree, the owner wins and `assemble_deck.py` reports it
+   (e.g. `minutes`/`core` belong to 02; the Content Writer copies them).
+3. **Scene-only prompts.** Style, safety and composition come from `style/style_config.yaml`, added by
+   `build_generation_prompt()`.
+4. **The AI never renders text.** All text is drawn by the Card Designer.
+5. **Every YAML file passes its schema** (`schemas/pipeline/<file>.schema.json`) before the next step.
 
----
+## Files
 
-## Agent 01: Torah Scholar (Research)
+All in `decks/{id}/pipeline/`:
 
-**Input:** Torah portion name
-**Output:** `pipeline/01-parasha-research.yaml`
+| Step | File | Schema | Merged into deck.json |
+|------|------|--------|-----------------------|
+| 00 Series Planner | `00-series.yaml` | `00-series.schema.json` | `id`, `parasha_en/he`, `holiday`, `ref`, `value` |
+| 01 Torah Scholar | `01-research.yaml` | `01-research.schema.json` | (checked, not copied; content cites it) |
+| 02 Curriculum Designer | `02-structure.yaml` | `02-structure.schema.json` | card order, `card_type`, `sequence_number`, `story_world`, `story_world_setting`, `week_plan`; owns `minutes`/`core` |
+| 02b Sensitivity Reviewer | `02b-sensitivity.yaml` | `02b-sensitivity.schema.json` | `if_they_ask` → `guide.hard_questions`; checkpoint must be approved |
+| 03 Content Writer | `03-content.yaml` | `03-content.schema.json` | `title_en/he`, `hebrew_keyword`, `back`, `guide` |
+| 05 Visual Director | `05-visual.yaml` | `05-visual.schema.json` | `palette`, `web_theme`, `image_prompt`, `characters_in_scene`, `style_plate`, `continuity_ref` |
+| 05b Image QA | `05b-image-qa.yaml` | `05b-image-qa.schema.json` | `image_path` (from `picks[].final`) |
+| 06 Editor | `06-editor.yaml` | `06-editor.schema.json` | (checked; a failing review is a warning) |
 
-**Responsibilities:**
+00–03 are required; 05, 05b and 06 are optional so the deck can be assembled at each stage
+(prompts are placeholders until 05 exists).
 
-- Research parasha themes, characters, key moments
-- Identify emotional core and connection hooks
-- List Hebrew vocabulary with correct nikud
-- Document safety restrictions (no God depiction, etc.)
-- Track character continuity (new vs. returning)
+## The flow, with commands
 
-**Must Include:**
-
-- `emotional_core`: Primary emotion/theme
-- `key_moments`: Ranked list with visual potential
-- `main_character` and `secondary_character`: With Hebrew names
-- `hebrew_words`: Primary, secondary, and story keywords with nikud
-- `avoid`: Safety restrictions list
-- `continuity`: Character tracking
-
----
-
-## Agent 02: Curriculum Designer (Structure)
-
-**Input:** `01-parasha-research.yaml`
-**Output:** `pipeline/02-deck-structure.yaml`
-
-**Responsibilities:**
-
-- Decide deck approach (narrative vs. thematic)
-- Set card count (8-12) with rationale
-- Assign card types and purposes
-- Design session flow with timing
-- Plan energy arc
-
-**Card Types:**
-| Type | Purpose |
-|------|---------|
-| anchor | Parasha introduction |
-| spotlight | Character focus |
-| story | Story sequence |
-| connection | Discussion/reflection |
-| tradition | Holiday practices (holiday decks only) |
-| power_word | Hebrew vocabulary |
-
-**Must Include:**
-
-- `card_count` with rationale
-- `session_flow.required_cards` with minutes
-- `card_assignments` for each card with specific content
-
----
-
-## Agent 03: Content Writer (English Content)
-
-**Input:** `02-deck-structure.yaml`, `01-parasha-research.yaml`
-**Output:** `pipeline/03-card-content.yaml`
-
-**Responsibilities:**
-
-- Write all English text: titles, descriptions, teacher scripts
-- Create roleplay prompts (physical, doable for 18 kids)
-- Write discussion questions (2 per connection card)
-- Ensure sentences under 15 words
-
-**Connection Card Questions:**
-
-- DO NOT number questions ("Question 1:", etc.)
-- Open-ended, not yes/no
-- Mix: personal, empathy, action types
-
-**Roleplay Rules:**
-
-- Gender-neutral language ("give a royal wave" not "wave like a queen")
-- Physical and doable in classroom
-- Connected to emotional content
-
-**Must Include:**
-
-- All card content with `card_id` matching structure
-- `teacher_script` for each card
-- `teacher_tip` for each card (1 actionable sentence)
-- `transition_line` for each card (thematic, reusable)
-- `discussion_prompts` for each card except connection (2 open-ended questions)
-- `pronunciation_guide` for power_word cards (syllable breakdown + rhymes-with)
-- `roleplay_prompt` for story cards
-- `questions` array for connection cards (no numbering!)
-
----
-
-## Agent 04: Hebrew Expert (Hebrew Content)
-
-**Input:** `03-card-content.yaml`, `01-parasha-research.yaml`
-**Output:** `pipeline/04-hebrew-content.yaml`
-
-**Responsibilities:**
-
-- Add Hebrew translations with ACCURATE nikud
-- Verify Torah quotes
-- Set feeling face labels (Hebrew only on cards)
-- Double-check word spelling
-
-**Hebrew Spelling Verification:**
-
-- Count letters in each word
-- Verify nikud placement
-- Check for common errors (double letters, wrong finals)
-
-**Example - שָׁמַע (shama):**
-
-- 3 letters ONLY: shin (ש) + mem (מ) + ayin (ע)
-- NOT 4 letters, NOT double mem
-
-**Must Include:**
-
-- `*_he` fields for all text
-- `hebrew_word_nikud` with verified spelling
-- `feeling_faces` with Hebrew labels
-
----
-
-## Agent 05: Visual Director (Art Direction)
-
-**Input:** All previous YAML files
-**Output:** `pipeline/05-visual-direction.yaml`
-
-**Responsibilities:**
-
-- Define character visual specs (appearance, clothing, props)
-- Write **scene-only** image prompts for each card
-- Manage character identity references
-- Create pre-generation checklist
-
-**Scene-Only Prompts:** The Visual Director writes what to draw, not how to draw it. `build_generation_prompt()` automatically layers style, world setting, safety, composition, and rules at generation time.
-
-**Two Visual Worlds:** Connection + tradition cards use a global `MODERN_WORLD_STYLE` (modern Orthodox Jewish community). All other cards use the per-deck `story_world` from deck.json (e.g., ancient Persia for Purim).
-
-**Character Specs Must Include:**
-
-- Physical description (face, clothing, props)
-- Key features that MUST appear
-- Reference sheet path if exists
-- Whether new reference is needed
-
-**Image Prompts Must Be:**
-
-- Pure scene descriptions (what is happening, who is there, emotional tone)
-- Character appearance details (reinforces reference images)
-- 5-7 visual elements maximum per scene
-- NO style instructions, NO safety rules, NO composition guidance, NO text rendering instructions
-
----
-
-## Agent 06: Editor (Final Review)
-
-**Input:** All pipeline files
-**Output:** `pipeline/06-editor-review.yaml`
-
-**Responsibilities:**
-
-- Verify all content is complete
-- Check Hebrew accuracy
-- Confirm safety compliance
-- Verify image prompts are scene-only (no style/composition/rules)
-- Approve for generation
-
-**Checklist:**
-
-- [ ] All cards have content from previous agents
-- [ ] Hebrew spelling verified (letter counts checked)
-- [ ] No "Question 1/2/3" labels in connection card questions
-- [ ] Image prompts are scene-only (no `=== STYLE ===` or similar sections)
-- [ ] Safety compliance (no God in human form, no violence, modest dress)
-- [ ] Roleplay prompts are gender-neutral and classroom-doable
-
----
-
-## Assembly: Pipeline YAML → deck.json
-
-After all 6 agents complete, assemble the pipeline outputs into `deck.json`:
-
-1. Metadata from Agent 01 (name, ref, border_color, theme)
-2. Card structure from Agent 02 (card types, sessions)
-3. English content from Agent 03 (titles, descriptions, scripts)
-4. Hebrew content from Agent 04 (translations, nikud)
-5. Image prompts from Agent 05 (scene-only descriptions)
-
-The resulting `deck.json` has all card content and scene-only `image_prompt` fields.
-
----
-
-## Image Generation
+Run from the repo root unless it says `cd src`.
 
 ```bash
-# Generate raw scene-only images (no text, no borders)
-cd src && python generate_images.py ../decks/{deck}/deck.json
+# 0. Set the spend guard for this session (every image call is logged; calls refused at the budget)
+export PP_SPEND_LEDGER=/path/to/scratchpad/spend_ledger.jsonl
+export PP_BUDGET_USD=15
+source .env && export GEMINI_API_KEY
 
-# build_generation_prompt() automatically layers:
-# 1. Style anchors (children's illustration)
-# 2. World style (MODERN_WORLD_STYLE for connection/tradition,
-#    story_world from deck.json for all others)
-# 3. Safety rules (no God in human form, etc.)
-# 4. Scene description (from deck.json — passed through unchanged)
-# 5. Per-card-type composition (cinematography language)
-# 6. Critical rules (no text, no borders)
+# 00 Series Planner: edit series.yaml, write pipeline/00-series.yaml, then
+cd src && python3 series.py && cd ..
+
+# 01 Torah Scholar: make sure the research cache exists
+ls research/{id}.yaml || (cd src && python3 sefaria_client.py research {id})
+#    write pipeline/01-research.yaml
+
+# 02 Curriculum Designer → pipeline/02-structure.yaml
+# 02b Sensitivity Reviewer → pipeline/02b-sensitivity.yaml      ★ Simon approves
+
+# 03 Content Writer → pipeline/03-content.yaml, then
+python3 src/assemble_deck.py decks/{id}          # also runs src/validate_deck.py when it exists
+
+# 05 Visual Director → pipeline/05-visual.yaml, then
+python3 src/assemble_deck.py decks/{id}          # deck.json now has the prompts
+cd src && python3 generate_images.py ../decks/{id}/deck.json --draft && cd ..   # 2 drafts per card at 1K
+
+# 05b Image QA
+python3 src/contact_sheet.py decks/{id}/raw/drafts/contact_sheet.png decks/{id}/raw/drafts/*.png --cols 4
+#    score every draft, write pipeline/05b-image-qa.yaml              ★ Simon picks
+cd src && python3 generate_images.py ../decks/{id}/deck.json --final --from-draft ../decks/{id}/raw/drafts/story_1_d2.png
+#    (one --final per card, in card order so continuity_ref images exist); score the finals too
+python3 src/assemble_deck.py decks/{id}
+
+# 06 Editor → pipeline/06-editor.yaml + feedback.json draft (must pass)
+
+# Card Designer tool
+./sync-deck.sh {id}
+cd card-designer && npm run export {id} -- --backs --pdf     # letter; add --format 5x7 for vendor print
+python3 scripts/sync_to_hub.py {id}                          # (parallel branch)
 ```
 
-Character reference images from the shared `characters/` library (fallback: deck `references/manifest.json`) are automatically included, max 4 per image.
+## assemble_deck.py
 
----
+`python3 src/assemble_deck.py decks/{id} [--dry-run]`
 
-## Agent 07: Card Designer (Compositor)
+1. Loads each pipeline file and checks it against its schema (errors name the file and the path,
+   e.g. `03-content.yaml: cards/3/back: ...`). Any error → stops, nothing written.
+2. Cross-file checks: `deck_id` matches the folder; D1 card mix (warning) and total (error); every card in
+   02 has an `ok`/`reframe` verdict in 02b and the checkpoint is approved; 03 and 05 cover exactly the
+   02 cards; `minutes`/`core` in 03 match 02; Image QA totals and pass flags add up.
+3. Merges (structure from 02, content from 03, prompts from 05, picks from 05b) in 02's card order.
+4. Checks the result: every `characters_in_scene` key is in `characters/`; the deck passes
+   `schemas/deck.v3.schema.json`. Optional image fields the deck schema doesn't know yet
+   (`story_world_setting`, `style_plate`, `continuity_ref`) are left out with a warning.
+5. Writes `deck.json`, then runs `src/validate_deck.py decks/{id}/deck.json` if that file exists.
 
-**Input:** Raw images from `raw/`, card content from `deck.json`
-**Output:** Final card images in `images/` and `backs/`
+Exit 0 = written and all checks passed. Errors also go to `project.log`.
 
-**Responsibilities:**
+## Draft → final
 
-- Render text overlay on raw scene images (React components)
-- Generate teacher content card backs
-- Export print-ready 1500x2100 PNGs
+Drafts are cheap (1K, $0.067), finals are print size (2K, $0.101; Nano Banana 2 at 3:4). Make 2 drafts per
+card, let Image QA score them, pick one, then make the final with the draft passed as a composition
+reference. Expected per deck: ~$3–4 including identity sheets and extras. See `style/README.md`.
 
-**Technical Details:**
+## Budgets: the spend ledger
 
-- **Z-index layering:** z-0 (background image), z-10 (gradients), z-30 (text)
-- **FitText:** All card types use FitText for dynamic Hebrew title scaling (min/max ranges per type)
-- **Keywords/emotion badges:** Fixed `text-3xl` / `text-sm` spans, left-aligned bottom-left (same on Story + Spotlight)
-- **Fonts:** Fredoka (UI), Hebrew font (RTL), Patrick Hand (notes)
-- **Title gradient:** All card types use `h-44 bg-gradient-to-b from-black/50 to-transparent` at the top for title readability (standardized across all 6 types). Additional `bg-gradient-to-t` (bottom) used on some types for keyword/badge readability.
-- **Export viewport:** Fronts render at 500x700 CSS @ 3x scale (matches design editor). Backs render at 1500x2100 CSS @ 1x (print-calibrated fonts).
+| Env var | Meaning |
+|---------|---------|
+| `PP_SPEND_LEDGER` | Path of a JSONL file; every real image call appends `{ts, branch, purpose, size, usd}` |
+| `PP_BUDGET_USD` | Hard cap. Once the ledger total reaches it, calls are **refused** before any network request |
 
-```bash
-# Sync deck data + raw images to Card Designer
-./sync-deck.sh {deckId}
-
-# Export fronts and backs
-cd card-designer && npm run export {deckId} -- --backs
-```
-
----
-
-## Common Errors to Avoid
-
-1. **Adding style/composition to image prompts** - `build_generation_prompt()` handles this
-2. **Double letters in Hebrew** - Always verify letter count
-3. **Missing nikud** - Always include vowel marks in deck.json
-4. **Numbering connection card questions** - Never use "Question 1:", etc.
-5. **Guessing content** - Only use data from pipeline files
-
----
-
-## Regeneration Checklist
-
-Before regenerating card images, verify:
-
-1. [ ] Image prompt in deck.json is scene-only (no style/safety/composition sections)
-2. [ ] Character descriptions in prompt match reference sheet
-3. [ ] Hebrew content in deck.json has correct nikud (for Card Designer to render)
-4. [ ] Character identity images exist in `characters/{key}/identity.png` for every key in `characters_in_scene`
-5. [ ] All content fields populated (for Card Designer text overlay)
-
----
+Check the total before a batch (`python3 -c "import sys; sys.path.insert(0,'src'); import spend_ledger; print(spend_ledger.total_spent())"`).
+Prices per size are in `src/config.py` (`IMAGE_PRICE_USD`).
 
 ## Reference
 
-- Working pipeline example: `decks/archive/yitro/pipeline/` (6 YAML files)
-- Agent definitions: `agents/definitions/` (01 through 07)
-- Card type specs: `agents/CARD_SPECS.md`
-- Visual specs: `agents/VISUAL_SPECS.md`
+- Agent definitions: `agents/definitions/00…06`, tool: `agents/tools/card-designer.md`
+- Rubrics: `agents/rubrics/image_qa.yaml`, `agents/rubrics/editor.yaml`
+- Schemas: `schemas/pipeline/*.schema.json`, `schemas/deck.v3.schema.json`
+- Test fixture (a tiny complete pipeline): `tests/fixtures/pipeline_min/pipeline/`
+- Old (v2, 6-step) worked example: `decks/archive/yitro/pipeline/` — different file names and fields; for history only

@@ -11,3 +11,6 @@ jsonschema>=4.18
 
 # Character library, series.yaml and research cache are YAML files
 PyYAML>=6.0
+
+# Pipeline YAML + deck.json schema checks (src/assemble_deck.py); referencing comes with jsonschema
+jsonschema>=4.18
